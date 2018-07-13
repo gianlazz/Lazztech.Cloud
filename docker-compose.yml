@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  lazztech.obsidianpresense.vision.microservice.webapi:
+    image: lazztechobsidianpresensevisionmicroservice
+    build:
+      context: .
+      dockerfile: Lazztech.ObsidianPresense.Vision.Microservice.Webapi/Dockerfile

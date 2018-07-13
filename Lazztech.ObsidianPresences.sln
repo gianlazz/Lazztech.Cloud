@@ -1,0 +1,37 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresense.Vision.Microservice.Domain", "Lazztech.ObsidianPresense.Vision.Microservice.Domain\Lazztech.ObsidianPresense.Vision.Microservice.Domain.csproj", "{0E35707E-04F4-4360-AE0D-5C6024A75A5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresense.Vision.Microservice.Webapi", "Lazztech.ObsidianPresense.Vision.Microservice.Webapi\Lazztech.ObsidianPresense.Vision.Microservice.Webapi.csproj", "{CB484675-6B5A-42DE-9648-0D74E84093DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision", "Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision\Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision.csproj", "{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresense.Vision.Microservice.Cli", "Lazztech.ObsidianPresense.Vision.Microservice.Cli\Lazztech.ObsidianPresense.Vision.Microservice.Cli.csproj", "{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E35707E-04F4-4360-AE0D-5C6024A75A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E35707E-04F4-4360-AE0D-5C6024A75A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E35707E-04F4-4360-AE0D-5C6024A75A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E35707E-04F4-4360-AE0D-5C6024A75A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB484675-6B5A-42DE-9648-0D74E84093DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB484675-6B5A-42DE-9648-0D74E84093DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB484675-6B5A-42DE-9648-0D74E84093DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB484675-6B5A-42DE-9648-0D74E84093DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+EndGlobal
