@@ -19,7 +19,7 @@ namespace Lazztech.ObsidianPresense.Vision.Microservice.Cli
             //var imageFiles = filePaths.Where(x => x.EndsWith(".jpg"));
 
             // Load the image file into memory
-            var inputPath = Console.ReadLine();
+            var inputPath = Console.ReadLine().Trim();
 
             var imageBytes = File.ReadAllBytes(inputPath);
             var base64 = Convert.ToBase64String(imageBytes);
@@ -31,6 +31,7 @@ namespace Lazztech.ObsidianPresense.Vision.Microservice.Cli
             var json = JsonConvert.SerializeObject(snapshot, Formatting.Indented);
 
             Console.WriteLine(json);
+            Console.ReadKey();
         }
     }
 }

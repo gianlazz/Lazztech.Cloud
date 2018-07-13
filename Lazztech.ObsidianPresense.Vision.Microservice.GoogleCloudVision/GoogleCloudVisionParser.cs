@@ -14,6 +14,9 @@ namespace Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision
         public Snapshot Process(string base64)
         {
             var snap = new Snapshot();
+            snap.GuidId = Guid.NewGuid();
+            snap.Location = "Seattle";
+            snap.People = new List<Person>();
 
             var bytes = Convert.FromBase64String(base64);
 
@@ -21,10 +24,24 @@ namespace Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision
             var client = ImageAnnotatorClient.Create();
 
             var image = Image.FromBytes(bytes);
+
+            IReadOnlyList<FaceAnnotation> result = client.DetectFaces(image);
             var response = client.DetectFaces(image);
 
+            foreach (var face in response)
+            {
+                var person = new Person();
+                person.Name = "Unknown";
 
-            var json = response.ToString();
+                var faceBox = new FaceBox();
+
+                snap.People.Add(person);
+
+                var boundingPolyVertices = face.BoundingPoly.Vertices;
+
+                Console.WriteLine($"Confidence: {(int)(face.DetectionConfidence * 100)}" +
+                                  $"%; BoundingPoly: {face.BoundingPoly}");
+            }
 
             return snap;
         }
