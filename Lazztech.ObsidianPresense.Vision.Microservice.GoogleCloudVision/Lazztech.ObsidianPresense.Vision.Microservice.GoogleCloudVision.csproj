@@ -7,4 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Google.Cloud.Vision.V1" Version="1.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lazztech.ObsidianPresense.Vision.Microservice.Domain\Lazztech.ObsidianPresense.Vision.Microservice.Domain.csproj" />
+  </ItemGroup>
 </Project>

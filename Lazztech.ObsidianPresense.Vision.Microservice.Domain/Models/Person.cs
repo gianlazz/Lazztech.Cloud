@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Lazztech.ObsidianPresense.Vision.Microservice.Domain.Models
 {
     public class Person
@@ -9,13 +11,13 @@ namespace Lazztech.ObsidianPresense.Vision.Microservice.Domain.Models
 
         public string Name { get; set; }
 
-        public FaceBox FaceBoxes
+        public FaceBox Face
         {
             get;
             set;
         }
 
-        public string Mood
+        public Dictionary<string, Likelyhood> Mood
         {
             get;
             set;

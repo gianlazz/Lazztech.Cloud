@@ -9,6 +9,12 @@ namespace Lazztech.ObsidianPresense.Vision.Microservice.Domain.Models
         {
         }
 
+        public Guid GuidId
+        {
+            get;
+            set;
+        }
+
         public string Location
         {
             get;
