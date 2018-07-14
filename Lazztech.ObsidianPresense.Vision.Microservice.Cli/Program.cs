@@ -41,6 +41,8 @@ namespace Lazztech.ObsidianPresense.Vision.Microservice.Cli
             // Image.Load(string path) is a shortcut for our default type. Other pixel formats use Image.Load<TPixel>(string path))
             using (Image<Rgba32> image = Image.Load(inputPath))
             {
+                //var context = new 
+                //SixLabors.ImageSharp.Processing.Drawing.DrawLineExtensions.Dr
                 image.Mutate(x => x
                      .Resize(image.Width / 2, image.Height / 2)
                      .Grayscale());
