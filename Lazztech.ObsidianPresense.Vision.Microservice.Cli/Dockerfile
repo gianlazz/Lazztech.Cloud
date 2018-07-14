@@ -2,6 +2,9 @@ FROM microsoft/dotnet:2.1-runtime AS base
 WORKDIR /app
 
 FROM microsoft/dotnet:2.1-sdk AS build
+RUN apt-get update -y
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update -y && apt-get install python3.6 -y
 WORKDIR /src
 COPY Lazztech.ObsidianPresences.sln ./
