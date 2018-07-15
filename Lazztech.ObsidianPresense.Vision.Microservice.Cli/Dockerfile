@@ -5,7 +5,10 @@ FROM microsoft/dotnet:2.1-sdk AS build
 #RUN apt-get update -y && apt-get install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt-get install python3 -y
 #RUN apt-get install -y software-properties-common
 #RUN add-apt-repository ppa:deadsnakes/ppa
+#RUN python --version
+#RUN python3 --version
 RUN apt-get update -y && apt-get install python3 -y
+RUN python3 --version
 WORKDIR /src
 COPY Lazztech.ObsidianPresences.sln ./
 COPY Lazztech.ObsidianPresense.Vision.Microservice.Cli/Lazztech.ObsidianPresense.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresense.Vision.Microservice.Cli/
