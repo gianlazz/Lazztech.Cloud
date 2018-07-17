@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Lazztech.ObsidianPresense.Vision.Microservice.Webapi.Controllers
+namespace Lazztech.ObsidianPresenses.Vision.Microservice.Webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

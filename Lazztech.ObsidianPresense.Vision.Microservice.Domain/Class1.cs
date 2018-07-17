@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Lazztech.ObsidianPresense.Vision.Microservice.Domain
+namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 {
     public class Class1
     {

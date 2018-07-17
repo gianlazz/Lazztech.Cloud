@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Lazztech.ObsidianPresense.Vision.Microservice.Webapi": {
+    "Lazztech.ObsidianPresenses.Vision.Microservice.Webapi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

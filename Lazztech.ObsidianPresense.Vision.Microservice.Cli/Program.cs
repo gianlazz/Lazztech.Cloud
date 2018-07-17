@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision;
+using Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision;
 using Newtonsoft.Json;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
@@ -10,7 +10,7 @@ using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.Processing.Filters;
 using SixLabors.ImageSharp.Processing.Transforms;
 
-namespace Lazztech.ObsidianPresense.Vision.Microservice.Cli
+namespace Lazztech.ObsidianPresenses.Vision.Microservice.Cli
 {
     public class Program
     {

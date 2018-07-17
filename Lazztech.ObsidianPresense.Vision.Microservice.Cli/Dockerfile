@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.1-runtime AS base
+﻿FROM microsoft/dotnet:2.1-runtime AS base
 RUN apt-get update -y &&\
     apt-get install -y python3 &&\
     apt-get install -y python3-setuptools &&\
@@ -19,12 +19,12 @@ FROM microsoft/dotnet:2.1-sdk AS build
 RUN python3 --version
 WORKDIR /src
 COPY Lazztech.ObsidianPresences.sln ./
-COPY Lazztech.ObsidianPresense.Vision.Microservice.Cli/Lazztech.ObsidianPresense.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresense.Vision.Microservice.Cli/
-COPY Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision/Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision.csproj Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision/
-COPY Lazztech.ObsidianPresense.Vision.Microservice.Domain/Lazztech.ObsidianPresense.Vision.Microservice.Domain.csproj Lazztech.ObsidianPresense.Vision.Microservice.Domain/
+COPY Lazztech.ObsidianPresenses.Vision.Microservice.Cli/Lazztech.ObsidianPresenses.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Cli/
+COPY Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision/Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision.csproj Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision/
+COPY Lazztech.ObsidianPresenses.Vision.Microservice.Domain/Lazztech.ObsidianPresenses.Vision.Microservice.Domain.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Domain/
 RUN dotnet restore -nowarn:msb3202,nu1503
 COPY . .
-WORKDIR /src/Lazztech.ObsidianPresense.Vision.Microservice.Cli
+WORKDIR /src/Lazztech.ObsidianPresenses.Vision.Microservice.Cli
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
@@ -33,4 +33,4 @@ RUN dotnet publish -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Lazztech.ObsidianPresense.Vision.Microservice.Cli.dll"]
+ENTRYPOINT ["dotnet", "Lazztech.ObsidianPresenses.Vision.Microservice.Cli.dll"]

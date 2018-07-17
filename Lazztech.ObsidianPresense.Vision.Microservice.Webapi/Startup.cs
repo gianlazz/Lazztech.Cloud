@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Lazztech.ObsidianPresense.Vision.Microservice.Webapi
+namespace Lazztech.ObsidianPresenses.Vision.Microservice.Webapi
 {
     public class Startup
     {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Lazztech.ObsidianPresense.Vision.Microservice.Webapi
+namespace Lazztech.ObsidianPresenses.Vision.Microservice.Webapi
 {
     public class Program
     {
