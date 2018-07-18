@@ -1,13 +1,13 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresenses.Vision.Microservice.Domain", "Lazztech.ObsidianPresense.Vision.Microservice.Domain\Lazztech.ObsidianPresenses.Vision.Microservice.Domain.csproj", "{0E35707E-04F4-4360-AE0D-5C6024A75A5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresenses.Vision.Microservice.Domain", "Lazztech.ObsidianPresenses.Vision.Microservice.Domain\Lazztech.ObsidianPresenses.Vision.Microservice.Domain.csproj", "{0E35707E-04F4-4360-AE0D-5C6024A75A5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresenses.Vision.Microservice.Webapi", "Lazztech.ObsidianPresense.Vision.Microservice.Webapi\Lazztech.ObsidianPresenses.Vision.Microservice.Webapi.csproj", "{CB484675-6B5A-42DE-9648-0D74E84093DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresenses.Vision.Microservice.Webapi", "Lazztech.ObsidianPresenses.Vision.Microservice.Webapi\Lazztech.ObsidianPresenses.Vision.Microservice.Webapi.csproj", "{CB484675-6B5A-42DE-9648-0D74E84093DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision", "Lazztech.ObsidianPresense.Vision.Microservice.GoogleCloudVision\Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision.csproj", "{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision", "Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision\Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision.csproj", "{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresenses.Vision.Microservice.Cli", "Lazztech.ObsidianPresense.Vision.Microservice.Cli\Lazztech.ObsidianPresenses.Vision.Microservice.Cli.csproj", "{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresenses.Vision.Microservice.Cli", "Lazztech.ObsidianPresenses.Vision.Microservice.Cli\Lazztech.ObsidianPresenses.Vision.Microservice.Cli.csproj", "{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{78BC127E-1A83-4FB1-B029-569F972CD01F}"
 EndProject
