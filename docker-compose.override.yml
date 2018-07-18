@@ -1,8 +1,0 @@
-﻿version: '3.4'
-
-services:
-  Lazztech.ObsidianPresenses.vision.microservice.webapi:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
