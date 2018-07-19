@@ -15,6 +15,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models
             set;
         }
 
+        public String ImagePathName
+        {
+            get;
+            set;
+        }
+
         public string Location
         {
             get;
