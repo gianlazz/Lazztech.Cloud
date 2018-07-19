@@ -1,4 +1,5 @@
-﻿FROM microsoft/dotnet:2.1-runtime AS base
+FROM microsoft/dotnet:2.1-runtime AS base
+
 RUN apt-get update -y &&\
     apt-get install -y python3 &&\
     apt-get install -y python3-setuptools &&\
@@ -12,12 +13,13 @@ RUN apt-get update -y &&\
     apt-get install -y python3-pip &&\
     pip3 install face_recognition
 
-ENV LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+#ENV LC_ALL=C.UTF-8
+#ENV LANG=C.UTF-8
 WORKDIR /app
 
 FROM microsoft/dotnet:2.1-sdk AS build
-RUN python3 --version
 WORKDIR /src
 COPY Lazztech.ObsidianPresences.sln ./
 COPY Lazztech.ObsidianPresenses.Vision.Microservice.Cli/Lazztech.ObsidianPresenses.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Cli/
