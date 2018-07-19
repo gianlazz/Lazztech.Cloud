@@ -16,7 +16,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Cli
         {
             var resultsPath = @"/face/Results";
             Console.WriteLine("Press any key to begin facial recognition processing.");
-            Console.ReadKey();
+            Console.ReadLine();
             Console.WriteLine("Checking shared volumn is valid.");
             var volumeIsValid = Directory.Exists(resultsPath);
             Console.WriteLine($"Volume exsists: {volumeIsValid}");
@@ -37,7 +37,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Cli
             }
             SerializedResults.ForEach(json => Console.WriteLine(json));
 
-            Console.ReadKey();
+            Console.ReadLine();
         }
 
         private static void Gcv()
