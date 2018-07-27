@@ -67,51 +67,48 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         {
             if (CheckAllAssetsValid() == false)
                 throw new Exception("Input not valid");
-            
+
+            //try
+            //{
+            //    var procStartInfo = new ProcessStartInfo($"face_recognition {known} {unknown}")
+            //    {
+            //        //RedirectStandardOutput = true,
+            //        UseShellExecute = true,
+            //        //CreateNoWindow = false,
+            //        //Arguments = $"say -v {Voice} {input} {speed}"
+            //    };
+
+            //    var proc = new Process { StartInfo = procStartInfo };
+            //    proc.Start();
+            //    proc.WaitForExit();
+            //}
+            //catch { throw; }
+
+            var lines = new List<string>();
+
             try
             {
-                var procStartInfo = new ProcessStartInfo($"face_recognition {known} {unknown}")
+                var procStartInfo = new ProcessStartInfo()
                 {
-                    //RedirectStandardOutput = true,
-                    UseShellExecute = true,
-                    //CreateNoWindow = false,
-                    //Arguments = $"say -v {Voice} {input} {speed}"
-                    //Arguments = $"say -v Alex Hello -r 200"
+                    FileName = "/bin/bash",
+                    RedirectStandardOutput = true,
+                    Arguments = $"face_recognition {known} {unknown}",
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
                 };
 
                 var proc = new Process { StartInfo = procStartInfo };
                 proc.Start();
+                while (proc.StandardOutput.EndOfStream == false)
+                {
+                    var line = proc.StandardOutput.ReadLine();
+                    if (string.IsNullOrEmpty(line) == false)
+                        lines.Add(line);
+                }
                 proc.WaitForExit();
+                //return lines;
             }
             catch { throw; }
         }
-
-        //public List<string> GetLines()
-        //{
-        //    var lines = new List<string>();
-        //    try
-        //    {
-        //        var procStartInfo = new ProcessStartInfo()
-        //        {
-        //            FileName = "/bin/sh",
-        //            RedirectStandardOutput = true,
-        //            Arguments = "-c ",
-        //            UseShellExecute = false,
-        //            CreateNoWindow = true,
-        //        };
-
-        //        var proc = new Process { StartInfo = procStartInfo };
-        //        proc.Start();
-        //        while (proc.StandardOutput.EndOfStream == false)
-        //        {
-        //            var line = proc.StandardOutput.ReadLine();
-        //            if (string.IsNullOrEmpty(line) == false)
-        //                lines.Add(line);
-        //        }
-        //        proc.WaitForExit();
-        //        return lines;
-        //    }
-        //    catch { throw; }
-        //}
     }
 }
