@@ -24,7 +24,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
         public Face_RecognitionManager()
         {
-
+            bool result;
+            result = Directory.Exists(_knownPath);
+            result = Directory.Exists(_unknownPath);
+            result = Directory.Exists(_knownUnkownPath);
         }
 
         public void Process()

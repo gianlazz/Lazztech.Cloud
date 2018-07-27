@@ -14,12 +14,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Cli
 
         public static void Main(string[] args)
         {
-            var resultsPath = @"/face/Results";
+            var resultsPath = @"/face/";
             Console.WriteLine("Press any key to begin facial recognition processing.");
-            Console.ReadLine();
+            //Console.ReadLine();
             Console.WriteLine("Checking shared volumn is valid.");
             var volumeIsValid = Directory.Exists(resultsPath);
-            Console.WriteLine($"Volume exsists: {volumeIsValid}");
+            Console.WriteLine($"Shared volume exists: {volumeIsValid}.");
             if (volumeIsValid == false)
             {
                 System.Threading.Thread.Sleep(1000);
