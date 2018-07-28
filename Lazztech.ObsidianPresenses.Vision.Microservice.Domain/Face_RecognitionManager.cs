@@ -28,42 +28,17 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             result = Directory.Exists(_knownPath);
             result = Directory.Exists(_unknownPath);
             result = Directory.Exists(_knownUnkownPath);
-        }
-
-        public void Process()
-        {
-            Process(_knownPath, _unknownPath);
-        }
-
-        private bool CheckAllAssetsValid()
-        {
-            //var filePaths = new List<string>(Directory.GetFiles(resultsPath));
-            //var jsonFiles = filePaths.Where(x => x.EndsWith(".json"));
-            //var imageFiles = filePaths.Where(x => x.EndsWith(".jpg"));
-            var knownFiles = Directory.GetFiles(_knownPath);
-            var unkownFiles = Directory.GetFiles(_unknownPath);
-            var knownUnknownFiles = Directory.GetFiles(_knownUnkownPath);
-            if (knownFiles.Length == 0)
+            if (result == false)
             {
-                Console.WriteLine("No known files found.");
-                return false;
+                Console.WriteLine("Required paths not found.");
+                /* MAKE PATHS IF REQUIRED PATHS IF THEY DON'T
+                 * EXIST YET. DOCKER VOLUME WILL CREATE EXTERNAL
+                 * PATH SO JUST MAKE THE PATHS IN THE BOUND VOLUME
+                 */
             }
-            Console.WriteLine($"{knownFiles.Length} known images.");
-            if (unkownFiles.Length == 0) 
-            {
-                Console.WriteLine("No unknown files found.");
-                return false;
-            }
-            Console.WriteLine($"{unkownFiles.Length} unknown images.");
-            if (knownUnknownFiles.Length == 0)
-            {
-                Console.WriteLine("No known_unknown files found.");   
-            }
-
-            return true;
         }
         
-        public void Process(string known, string unknown)
+        public void Process()
         {
             if (CheckAllAssetsValid() == false)
                 throw new Exception("Input not valid");
@@ -90,6 +65,34 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             {
                 Console.WriteLine(line);
             }
+        }
+
+        private bool CheckAllAssetsValid()
+        {
+            //var filePaths = new List<string>(Directory.GetFiles(resultsPath));
+            //var jsonFiles = filePaths.Where(x => x.EndsWith(".json"));
+            //var imageFiles = filePaths.Where(x => x.EndsWith(".jpg"));
+            var knownFiles = Directory.GetFiles(_knownPath);
+            var unkownFiles = Directory.GetFiles(_unknownPath);
+            var knownUnknownFiles = Directory.GetFiles(_knownUnkownPath);
+            if (knownFiles.Length == 0)
+            {
+                Console.WriteLine("No known files found.");
+                return false;
+            }
+            Console.WriteLine($"{knownFiles.Length} known images.");
+            if (unkownFiles.Length == 0)
+            {
+                Console.WriteLine("No unknown files found.");
+                return false;
+            }
+            Console.WriteLine($"{unkownFiles.Length} unknown images.");
+            if (knownUnknownFiles.Length == 0)
+            {
+                Console.WriteLine("No known_unknown files found.");
+            }
+
+            return true;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Cli
         public static void Main(string[] args)
         {
             var resultsPath = @"/face/";
-            Console.WriteLine("Press any key to begin facial recognition processing.");
+            Console.WriteLine("Begining facial recognition processing.");
             //Console.ReadLine();
             Console.WriteLine("Checking shared volumn is valid.");
             var volumeIsValid = Directory.Exists(resultsPath);
