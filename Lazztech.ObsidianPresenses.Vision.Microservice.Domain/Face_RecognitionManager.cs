@@ -13,6 +13,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         string _knownPath = @"/face/known/";
         string _unknownPath = @"/face/unknown/";
         string _knownUnkownPath = @"/face/known_unknown/";
+        string _noPersonsFoundPath = @"/face/no_persons_found/";
 
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
@@ -22,15 +23,19 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<string> face_recognitionLines = new List<string>();
         public List<string> face_coordinatesLines = new List<string>();
 
+        #region ctor
         public Face_RecognitionManager()
         {
-            if (Directory.Exists(_knownPath))
+            if (!Directory.Exists(_knownPath))
                 Directory.CreateDirectory(_knownPath);
-            if (Directory.Exists(_unknownPath))
+            if (!Directory.Exists(_unknownPath))
                 Directory.CreateDirectory(_unknownPath);
-            if (Directory.Exists(_knownUnkownPath))
+            if (!Directory.Exists(_knownUnkownPath))
                 Directory.CreateDirectory(_knownUnkownPath);
+            if (!Directory.Exists(_noPersonsFoundPath))
+                Directory.CreateDirectory(_noPersonsFoundPath);
         }
+        #endregion
         
         public void Process()
         {

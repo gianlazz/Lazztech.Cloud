@@ -1,5 +1,15 @@
 {
-  "done": [],
+  "done": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T22:33:21.932Z",
+      "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
+      "references": [],
+      "title": "Test images that don't have a know result already"
+    }
+  ],
   "in-progress": [
     {
       "assignedTo": {
@@ -9,10 +19,28 @@
       "id": "20180728212951_1250467_f19be631783992bb42e585403589c8b6",
       "references": [],
       "title": "face_detection for getting the coordinates into the snapshot"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T22:29:10.951Z",
+      "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
+      "references": [],
+      "title": "Handle no_persons_found results"
     }
   ],
   "testing": [],
   "todo": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T22:36:18.639Z",
+      "id": "20180728223618_22697568_6d25876cab4536346e89b048b9a0540a",
+      "references": [],
+      "title": "Categorize unknown_person in /known_unknown/ directory"
+    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -35,10 +63,19 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T21:30:09.455Z",
-      "id": "20180728213009_478311371_cb9aacaa81f43f4005bca89be1016a55",
+      "creation_time": "2018-07-28T22:30:23.900Z",
+      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
       "references": [],
-      "title": "face_detection to detect if there even is a face"
+      "title": "Handle results/images with multiple faces"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T22:03:33.426Z",
+      "id": "20180728220333_247862016_788c4ccca872f362595a660068d23d6a",
+      "references": [],
+      "title": "Image metadata for the snapshot objects to be uniquely identified?"
     },
     {
       "assignedTo": {
