@@ -15,6 +15,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         string _knownUnkownPath = @"/face/known_unknown/";
         string _noPersonsFoundPath = @"/face/no_persons_found/";
 
+        public List<string> _knownImageDirs = new List<string>();
+        public List<string> _unknownImageDirs = new List<string>();
+        public List<string> _knownUnknownImageDirs = new List<string>();
+
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
         public List<Snapshot> KnownUnknown = new List<Snapshot>();
@@ -90,7 +94,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             {
                 var line = proc.StandardOutput.ReadLine();
                 if (string.IsNullOrEmpty(line) == false)
-                    face_recognitionLines.Add(line);
+                    face_coordinatesLines.Add(line);
                 Console.WriteLine(line);
             }
          }

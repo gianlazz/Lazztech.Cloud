@@ -15,10 +15,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T21:29:51.507Z",
-      "id": "20180728212951_1250467_f19be631783992bb42e585403589c8b6",
+      "creation_time": "2018-07-28T22:36:18.639Z",
+      "id": "20180728223618_22697568_6d25876cab4536346e89b048b9a0540a",
       "references": [],
-      "title": "face_detection for getting the coordinates into the snapshot"
+      "title": "Categorize unknown_person in /known_unknown/ directory"
     },
     {
       "assignedTo": {
@@ -28,19 +28,19 @@
       "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
       "references": [],
       "title": "Handle no_persons_found results"
-    }
-  ],
-  "testing": [],
-  "todo": [
+    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T22:36:18.639Z",
-      "id": "20180728223618_22697568_6d25876cab4536346e89b048b9a0540a",
+      "creation_time": "2018-07-28T22:42:32.998Z",
+      "id": "20180728224232_122245039_3ca1e6c333c98e71495ff0bea8325607",
       "references": [],
-      "title": "Categorize unknown_person in /known_unknown/ directory"
-    },
+      "title": "Handle individual image directories as a collections"
+    }
+  ],
+  "testing": [],
+  "todo": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -58,6 +58,15 @@
       "id": "20180728211713_329375082_00b50c31c3edb538777e1cb916014369",
       "references": [],
       "title": "Construct Snapshot objects with the stdout from face_recognition parsed out"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T21:29:51.507Z",
+      "id": "20180728212951_1250467_f19be631783992bb42e585403589c8b6",
+      "references": [],
+      "title": "face_detection for getting the coordinates into the snapshot"
     },
     {
       "assignedTo": {
