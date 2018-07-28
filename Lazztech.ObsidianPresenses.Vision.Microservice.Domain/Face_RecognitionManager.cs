@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
+using System.Linq;
 using Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models;
 
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
@@ -43,11 +43,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         
         public void Process()
         {
-            if (CheckAllAssetsValid() == false)
-                throw new Exception("Input not valid");
-
+            CheckAllAssetsValid();
             FaceRecognition();
-
             FaceDetection();
 
             Results.AddRange(Known);
@@ -102,27 +99,32 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         private bool CheckAllAssetsValid()
         {
             //var filePaths = new List<string>(Directory.GetFiles(resultsPath));
-            //var jsonFiles = filePaths.Where(x => x.EndsWith(".json"));
-            //var imageFiles = filePaths.Where(x => x.EndsWith(".jpg"));
-            var knownFiles = Directory.GetFiles(_knownPath);
-            var unkownFiles = Directory.GetFiles(_unknownPath);
-            var knownUnknownFiles = Directory.GetFiles(_knownUnkownPath);
-            if (knownFiles.Length == 0)
+            _knownImageDirs.AddRange(Directory.GetFiles(_knownPath).Where(x => x.EndsWith(".jpg")));
+            _knownImageDirs.AddRange(Directory.GetFiles(_knownPath).Where(x => x.EndsWith(".jpeg")));
+            _knownImageDirs.AddRange(Directory.GetFiles(_knownPath).Where(x => x.EndsWith(".png")));
+            _unknownImageDirs.AddRange(Directory.GetFiles(_unknownPath).Where(x => x.EndsWith(".jpg")));
+            _unknownImageDirs.AddRange(Directory.GetFiles(_unknownPath).Where(x => x.EndsWith(".jpeg")));
+            _unknownImageDirs.AddRange(Directory.GetFiles(_unknownPath).Where(x => x.EndsWith(".png")));
+            _knownUnknownImageDirs.AddRange(Directory.GetFiles(_knownUnkownPath).Where(x => x.EndsWith(".jpg")));
+            _knownUnknownImageDirs.AddRange(Directory.GetFiles(_knownUnkownPath).Where(x => x.EndsWith(".jpeg")));
+            _knownUnknownImageDirs.AddRange(Directory.GetFiles(_knownUnkownPath).Where(x => x.EndsWith(".png")));
+            if (_knownImageDirs.Count == 0)
             {
                 Console.WriteLine("No known files found.");
                 return false;
             }
-            Console.WriteLine($"{knownFiles.Length} known images.");
-            if (unkownFiles.Length == 0)
+            Console.WriteLine($"{_knownImageDirs.Count} known images.");
+            if (_unknownImageDirs.Count == 0)
             {
                 Console.WriteLine("No unknown files found.");
                 return false;
             }
-            Console.WriteLine($"{unkownFiles.Length} unknown images.");
-            if (knownUnknownFiles.Length == 0)
+            Console.WriteLine($"{_unknownImageDirs.Count} unknown images.");
+            if (_knownUnknownImageDirs.Count == 0)
             {
                 Console.WriteLine("No known_unknown files found.");
             }
+            Console.WriteLine($"{_knownUnknownImageDirs.Count} known_unknown files found.");
 
             return true;
         }
