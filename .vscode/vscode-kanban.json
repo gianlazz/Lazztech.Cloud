@@ -4,22 +4,34 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T22:33:21.932Z",
-      "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
+      "creation_time": "2018-07-28T22:42:32.998Z",
+      "id": "20180728224232_122245039_3ca1e6c333c98e71495ff0bea8325607",
       "references": [],
-      "title": "Test images that don't have a known result already"
+      "title": "Handle individual image directories as a collections"
     },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T22:42:32.998Z",
-      "id": "20180728224232_122245039_3ca1e6c333c98e71495ff0bea8325607",
+      "creation_time": "2018-07-28T22:33:21.932Z",
+      "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
       "references": [],
-      "title": "Handle individual image directories as a collections"
+      "title": "Test images that don't have a known result already"
     }
   ],
   "in-progress": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T23:24:00.558Z",
+      "id": "20180728232400_530531198_ff30332c2d7d45cc4c4b257c94787f0a",
+      "references": [],
+      "title": "Construct Snapshot object categorized foreach of the collection of directories"
+    }
+  ],
+  "testing": [],
+  "todo": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -29,27 +41,6 @@
       "references": [],
       "title": "Categorize unknown_person in /known_unknown/ directory"
     },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T23:24:00.558Z",
-      "id": "20180728232400_530531198_ff30332c2d7d45cc4c4b257c94787f0a",
-      "references": [],
-      "title": "Construct Snapshot object categorized foreach of the collection of directories"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T22:29:10.951Z",
-      "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
-      "references": [],
-      "title": "Handle no_persons_found results"
-    }
-  ],
-  "testing": [],
-  "todo": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -103,6 +94,15 @@
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T22:29:10.951Z",
+      "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
+      "references": [],
+      "title": "Handle no_persons_found results"
     }
   ]
 }
