@@ -96,7 +96,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             }
          }
 
-        private bool CheckAllAssetsValid()
+        private void CheckAllAssetsValid()
         {
             //var filePaths = new List<string>(Directory.GetFiles(resultsPath));
             _knownImageDirs.AddRange(Directory.GetFiles(_knownPath).Where(x => x.EndsWith(".jpg")));
@@ -114,19 +114,37 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 return false;
             }
             Console.WriteLine($"{_knownImageDirs.Count} known images.");
+            foreach (var imageDir in _knownImageDirs)
+            {
+                Known.Add(new Snapshot(){
+                    ImageDir = imageDir
+                });
+            }
+
             if (_unknownImageDirs.Count == 0)
             {
                 Console.WriteLine("No unknown files found.");
                 return false;
             }
             Console.WriteLine($"{_unknownImageDirs.Count} unknown images.");
+            foreach (var imageDir in _unknownImageDirs)
+            {
+                Unknown.Add(new Snapshot(){
+                    ImageDir = imageDir
+                });
+            }
+
             if (_knownUnknownImageDirs.Count == 0)
             {
                 Console.WriteLine("No known_unknown files found.");
             }
             Console.WriteLine($"{_knownUnknownImageDirs.Count} known_unknown files found.");
-
-            return true;
+            foreach (var imageDir in _knownUnknownImageDirs)
+            {
+                KnownUnknown.Add(new Snapshot(){
+                    ImageDir = imageDir
+                });
+            }
         }
     }
 }
