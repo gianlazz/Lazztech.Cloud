@@ -28,6 +28,15 @@
       "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
       "references": [],
       "title": "Handle no_persons_found results"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T23:24:00.558Z",
+      "id": "20180728232400_530531198_ff30332c2d7d45cc4c4b257c94787f0a",
+      "references": [],
+      "title": "Construct Snapshot object categorized foreach of the collection of directories"
     }
   ],
   "testing": [
