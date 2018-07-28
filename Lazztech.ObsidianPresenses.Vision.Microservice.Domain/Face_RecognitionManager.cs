@@ -68,47 +68,47 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             if (CheckAllAssetsValid() == false)
                 throw new Exception("Input not valid");
 
+            var lines = new List<string>();
+
             //try
             //{
-            //    var procStartInfo = new ProcessStartInfo($"face_recognition {known} {unknown}")
+            //    var procStartInfo = new ProcessStartInfo()
             //    {
-            //        //RedirectStandardOutput = true,
-            //        UseShellExecute = true,
-            //        //CreateNoWindow = false,
-            //        //Arguments = $"say -v {Voice} {input} {speed}"
+            //        RedirectStandardOutput = true,
+            //        Arguments = $"face_recognition {known} {unknown}",
             //    };
 
             //    var proc = new Process { StartInfo = procStartInfo };
             //    proc.Start();
+            //    while (proc.StandardOutput.EndOfStream == false)
+            //    {
+            //        var line = proc.StandardOutput.ReadLine();
+            //        if (string.IsNullOrEmpty(line) == false)
+            //            lines.Add(line);
+            //    }
             //    proc.WaitForExit();
+            //    //return lines;
             //}
             //catch { throw; }
 
-            var lines = new List<string>();
-
-            try
+            var procInfo = new ProcessStartInfo($"face_recognition")
+            { 
+                RedirectStandardOutput = true,
+                WorkingDirectory = "/",
+                Arguments = "face/known/ face/unknown"
+            };
+            var proc = new Process { StartInfo = procInfo };
+            proc.Start();
+            while (proc.StandardOutput.EndOfStream == false)
             {
-                var procStartInfo = new ProcessStartInfo()
-                {
-                    FileName = "/bin/bash",
-                    RedirectStandardOutput = true,
-                    Arguments = $"face_recognition {known} {unknown}",
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                };
-
-                var proc = new Process { StartInfo = procStartInfo };
-                proc.Start();
-                while (proc.StandardOutput.EndOfStream == false)
-                {
-                    var line = proc.StandardOutput.ReadLine();
-                    if (string.IsNullOrEmpty(line) == false)
-                        lines.Add(line);
-                }
-                proc.WaitForExit();
-                //return lines;
+                var line = proc.StandardOutput.ReadLine();
+                if (string.IsNullOrEmpty(line) == false)
+                    lines.Add(line);
             }
-            catch { throw; }
+            foreach (var line in lines)
+            {
+                Console.WriteLine(line);
+            }
         }
     }
 }
