@@ -13,8 +13,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         string _knownPath = @"/face/known/";
         string _unknownPath = @"/face/unknown/";
         string _knownUnkownPath = @"/face/known_unknown/";
-        string _rpiMotionPath;
-        string _motionPath = @"/face/motion";
 
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
@@ -26,18 +24,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
         public Face_RecognitionManager()
         {
-            bool result;
-            result = Directory.Exists(_knownPath);
-            result = Directory.Exists(_unknownPath);
-            result = Directory.Exists(_knownUnkownPath);
-            if (result == false)
-            {
-                Console.WriteLine("Required paths not found.");
-                /* MAKE PATHS IF REQUIRED PATHS IF THEY DON'T
-                 * EXIST YET. DOCKER VOLUME WILL CREATE EXTERNAL
-                 * PATH SO JUST MAKE THE PATHS IN THE BOUND VOLUME
-                 */
-            }
+            if (Directory.Exists(_knownPath))
+                Directory.CreateDirectory(_knownPath);
+            if (Directory.Exists(_unknownPath))
+                Directory.CreateDirectory(_unknownPath);
+            if (Directory.Exists(_knownUnkownPath))
+                Directory.CreateDirectory(_knownUnkownPath);
         }
         
         public void Process()
@@ -48,7 +40,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             FaceRecognition();
 
             FaceDetection();
-            
+
+            Results.AddRange(Known);
+            Results.AddRange(Unknown);
+            Results.AddRange(KnownUnknown);
+
+            //return Results;
          }
 
          private void FaceRecognition()
