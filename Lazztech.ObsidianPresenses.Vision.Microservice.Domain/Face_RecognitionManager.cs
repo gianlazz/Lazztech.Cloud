@@ -68,36 +68,17 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             if (CheckAllAssetsValid() == false)
                 throw new Exception("Input not valid");
 
-            var lines = new List<string>();
-
-            //try
-            //{
-            //    var procStartInfo = new ProcessStartInfo()
-            //    {
-            //        RedirectStandardOutput = true,
-            //        Arguments = $"face_recognition {known} {unknown}",
-            //    };
-
-            //    var proc = new Process { StartInfo = procStartInfo };
-            //    proc.Start();
-            //    while (proc.StandardOutput.EndOfStream == false)
-            //    {
-            //        var line = proc.StandardOutput.ReadLine();
-            //        if (string.IsNullOrEmpty(line) == false)
-            //            lines.Add(line);
-            //    }
-            //    proc.WaitForExit();
-            //    //return lines;
-            //}
-            //catch { throw; }
 
             var procInfo = new ProcessStartInfo($"face_recognition")
             { 
                 RedirectStandardOutput = true,
-                WorkingDirectory = "/",
-                Arguments = "face/known/ face/unknown"
+                //WorkingDirectory = "/",
+                Arguments = $"{_knownPath} {_unknownPath}"
             };
             var proc = new Process { StartInfo = procInfo };
+
+            var lines = new List<string>();
+
             proc.Start();
             while (proc.StandardOutput.EndOfStream == false)
             {
