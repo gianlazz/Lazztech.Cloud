@@ -1,6 +1,53 @@
 {
-  "todo": [],
-  "in-progress": [],
+  "done": [],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T21:29:51.507Z",
+      "id": "20180728212951_1250467_f19be631783992bb42e585403589c8b6",
+      "references": [],
+      "title": "face_detection for getting the coordinates into the snapshot"
+    }
+  ],
   "testing": [],
-  "done": []
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T21:30:35.652Z",
+      "id": "20180728213035_385423038_ec231cc4c1f60e6afb571f9eb16bc414",
+      "references": [],
+      "title": "check in motion ip cam .config into repo"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T21:17:13.787Z",
+      "id": "20180728211713_329375082_00b50c31c3edb538777e1cb916014369",
+      "references": [],
+      "title": "Construct Snapshot objects with the stdout from face_recognition parsed out"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T21:30:09.455Z",
+      "id": "20180728213009_478311371_cb9aacaa81f43f4005bca89be1016a55",
+      "references": [],
+      "title": "face_detection to detect if there even is a face"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T21:31:12.681Z",
+      "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
+      "references": [],
+      "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
+    }
+  ]
 }

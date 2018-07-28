@@ -13,14 +13,16 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         string _knownPath = @"/face/known/";
         string _unknownPath = @"/face/unknown/";
         string _knownUnkownPath = @"/face/known_unknown/";
+        string _rpiMotionPath;
+        string _motionPath = @"/face/motion";
 
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
         public List<Snapshot> KnownUnknown = new List<Snapshot>();
 
         public List<Snapshot> Results = new List<Snapshot>();
-
-        //SHOULD THESE BE LIST OF PEOPLE OBJECTS?
+        public List<string> face_recognitionLines = new List<string>();
+        public List<string> face_coordinatesLines = new List<string>();
 
         public Face_RecognitionManager()
         {
@@ -43,29 +45,53 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             if (CheckAllAssetsValid() == false)
                 throw new Exception("Input not valid");
 
+            FaceRecognition();
 
+            FaceDetection();
+            
+         }
+
+         private void FaceRecognition()
+         {
             var procInfo = new ProcessStartInfo($"face_recognition")
             { 
                 RedirectStandardOutput = true,
                 //WorkingDirectory = "/",
+                //Arguments = $"{_knownPath} {_unknownPath}"
                 Arguments = $"{_knownPath} {_unknownPath}"
             };
             var proc = new Process { StartInfo = procInfo };
-
-            var lines = new List<string>();
 
             proc.Start();
             while (proc.StandardOutput.EndOfStream == false)
             {
                 var line = proc.StandardOutput.ReadLine();
                 if (string.IsNullOrEmpty(line) == false)
-                    lines.Add(line);
-            }
-            foreach (var line in lines)
-            {
+                    face_recognitionLines.Add(line);
                 Console.WriteLine(line);
             }
-        }
+         }
+
+         private void FaceDetection()
+         {
+            var procInfo = new ProcessStartInfo($"face_detection")
+            { 
+                RedirectStandardOutput = true,
+                //WorkingDirectory = "/",
+                //Arguments = $"{_knownPath} {_unknownPath}"
+                Arguments = $"{_knownPath} {_unknownPath}"
+            };
+            var proc = new Process { StartInfo = procInfo };
+
+            proc.Start();
+            while (proc.StandardOutput.EndOfStream == false)
+            {
+                var line = proc.StandardOutput.ReadLine();
+                if (string.IsNullOrEmpty(line) == false)
+                    face_recognitionLines.Add(line);
+                Console.WriteLine(line);
+            }
+         }
 
         private bool CheckAllAssetsValid()
         {
