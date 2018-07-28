@@ -14,8 +14,14 @@ https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-con
 
 
 ## july, 27, 2018
-Finished getting docker-compose.yml configured to bind mount volumes to services by absolute path.
+- [x] Finished getting docker-compose.yml configured to bind mount volumes to services by absolute path.
 
 Why doesn't docker-compose up work? It always says that it can't find the docker-compose.dcsproj. Running the docker-compose.dcsproj from vs4mac doesn't seem to have this issue if I run the command then run it in vs4mac... Weird.
 
 Having issues with the working directory for the Process object running the correct path for the face_recognition arguments.
+
+Run this line while connected to the vpn to move over all of the images from the rpi to my dev machine:
+
+`rsync -a --progress --remove-source-files pi@pi1:/var/lib/motion Desktop/face_recognition/`
+
+Also I may want to make `/var/lib/motion` a bind mount path volume in the container?
