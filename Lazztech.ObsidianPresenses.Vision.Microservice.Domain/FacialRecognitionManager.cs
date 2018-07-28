@@ -7,7 +7,7 @@ using Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models;
 
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 {
-    public class Face_RecognitionManager
+    public class FacialRecognitionManager
     {
         string binaryPath = System.Reflection.Assembly.GetEntryAssembly().Location;
         string _knownPath = @"/face/known/";
@@ -28,7 +28,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<string> face_coordinatesLines = new List<string>();
 
         #region ctor
-        public Face_RecognitionManager()
+        public FacialRecognitionManager()
         {
             if (!Directory.Exists(_knownPath))
                 Directory.CreateDirectory(_knownPath);

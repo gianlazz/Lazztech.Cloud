@@ -26,10 +26,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Cli
                 return;
             }
 
-            var face_recognition = new Face_RecognitionManager();
-            face_recognition.Process();
+            var facialRecognition = new FacialRecognitionManager();
+            facialRecognition.Process();
 
-            foreach (var snapshot in face_recognition.Results)
+            foreach (var snapshot in facialRecognition.Results)
             {
                 SerializedResults.Add(
                     JsonConvert.SerializeObject(snapshot, Formatting.Indented)
