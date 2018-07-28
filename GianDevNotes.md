@@ -25,3 +25,11 @@ Run this line while connected to the vpn to move over all of the images from the
 `rsync -a --progress --remove-source-files pi@pi1:/var/lib/motion Desktop/face_recognition/`
 
 Also I may want to make `/var/lib/motion` a bind mount path volume in the container?
+
+## july, 28, 2018
+Using details like the image capture date from the metadata to populate the Snapshot object's properties would likely be a
+good idea. Here's some links I found on getting these values.
+https://medium.com/@dannyc/get-image-file-metadata-in-c-using-net-88603e6da63f
+https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-read-image-metadata
+https://stackoverflow.com/questions/2280948/reading-data-metadata-from-jpeg-xmp-or-exif-in-c-sharp
+https://www.dreamincode.net/forums/topic/231165-how-to-read-image-metadata-in-c%23/

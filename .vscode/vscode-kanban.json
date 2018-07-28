@@ -8,6 +8,15 @@
       "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
       "references": [],
       "title": "Test images that don't have a known result already"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T22:42:32.998Z",
+      "id": "20180728224232_122245039_3ca1e6c333c98e71495ff0bea8325607",
+      "references": [],
+      "title": "Handle individual image directories as a collections"
     }
   ],
   "in-progress": [
@@ -24,32 +33,22 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T22:29:10.951Z",
-      "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
+      "creation_time": "2018-07-28T23:24:00.558Z",
+      "id": "20180728232400_530531198_ff30332c2d7d45cc4c4b257c94787f0a",
       "references": [],
-      "title": "Handle no_persons_found results"
+      "title": "Construct Snapshot object categorized foreach of the collection of directories"
     },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T23:24:00.558Z",
-      "id": "20180728232400_530531198_ff30332c2d7d45cc4c4b257c94787f0a",
+      "creation_time": "2018-07-28T22:29:10.951Z",
+      "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
       "references": [],
-      "title": "Construct Snapshot object categorized foreach of the collection of directories"
+      "title": "Handle no_persons_found results"
     }
   ],
-  "testing": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T22:42:32.998Z",
-      "id": "20180728224232_122245039_3ca1e6c333c98e71495ff0bea8325607",
-      "references": [],
-      "title": "Handle individual image directories as a collections"
-    }
-  ],
+  "testing": [],
   "todo": [
     {
       "assignedTo": {
