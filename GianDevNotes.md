@@ -33,3 +33,5 @@ https://medium.com/@dannyc/get-image-file-metadata-in-c-using-net-88603e6da63f
 https://docs.microsoft.com/en-us/dotnet/framework/winforms/advanced/how-to-read-image-metadata
 https://stackoverflow.com/questions/2280948/reading-data-metadata-from-jpeg-xmp-or-exif-in-c-sharp
 https://www.dreamincode.net/forums/topic/231165-how-to-read-image-metadata-in-c%23/
+
+Write if else logic in FacialRecognitionManager.CheckAllAssetsValid();

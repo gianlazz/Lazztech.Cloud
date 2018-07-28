@@ -111,7 +111,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             if (_knownImageDirs.Count == 0)
             {
                 Console.WriteLine("No known files found.");
-                return false;
             }
             Console.WriteLine($"{_knownImageDirs.Count} known images.");
             foreach (var imageDir in _knownImageDirs)
@@ -124,7 +123,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             if (_unknownImageDirs.Count == 0)
             {
                 Console.WriteLine("No unknown files found.");
-                return false;
             }
             Console.WriteLine($"{_unknownImageDirs.Count} unknown images.");
             foreach (var imageDir in _unknownImageDirs)
