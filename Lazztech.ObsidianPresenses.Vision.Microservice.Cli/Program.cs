@@ -39,17 +39,5 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Cli
 
             Console.ReadLine();
         }
-
-        private static void Gcv()
-        {
-            //var binaryPath = System.Reflection.Assembly.GetEntryAssembly().Location;
-            //var resultsPath = binaryPath + "/Results";
-
-            //var imageBytes = File.ReadAllBytes(inputPath);
-            //var base64 = Convert.ToBase64String(imageBytes);
-
-            //var gcv = new GoogleCloudVisionParser();
-            //var snapshot = gcv.Process(base64);
-        }
     }
 }
