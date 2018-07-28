@@ -79,7 +79,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 RedirectStandardOutput = true,
                 //WorkingDirectory = "/",
                 //Arguments = $"{_knownPath} {_unknownPath}"
-                Arguments = $"{_knownPath} {_unknownPath}"
+                Arguments = $"{_unknownPath}"
             };
             var proc = new Process { StartInfo = procInfo };
 
