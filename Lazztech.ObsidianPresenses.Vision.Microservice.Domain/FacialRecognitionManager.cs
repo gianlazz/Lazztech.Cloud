@@ -115,8 +115,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Console.WriteLine($"{_knownImageDirs.Count} known images.");
             foreach (var imageDir in _knownImageDirs)
             {
+                DateTime creation = File.GetCreationTime(imageDir);
+                DateTime modification = File.GetLastWriteTime(imageDir);
                 Known.Add(new Snapshot(){
-                    ImageDir = imageDir
+                    ImageDir = imageDir,
+                    DateTimeWhenCaptured = creation.ToString()
                 });
             }
 
@@ -127,8 +130,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Console.WriteLine($"{_unknownImageDirs.Count} unknown images.");
             foreach (var imageDir in _unknownImageDirs)
             {
+                DateTime creation = File.GetCreationTime(imageDir);
+                DateTime modification = File.GetLastWriteTime(imageDir);
                 Unknown.Add(new Snapshot(){
-                    ImageDir = imageDir
+                    ImageDir = imageDir,
+                    DateTimeWhenCaptured = creation.ToString()
                 });
             }
 
@@ -139,8 +145,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Console.WriteLine($"{_knownUnknownImageDirs.Count} known_unknown files found.");
             foreach (var imageDir in _knownUnknownImageDirs)
             {
+                DateTime creation = File.GetCreationTime(imageDir);
+                DateTime modification = File.GetLastWriteTime(imageDir);
                 KnownUnknown.Add(new Snapshot(){
-                    ImageDir = imageDir
+                    ImageDir = imageDir,
+                    DateTimeWhenCaptured = creation.ToString()
                 });
             }
         }
