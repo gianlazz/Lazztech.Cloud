@@ -31,10 +31,20 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models
             set;
         }
 
+        public SnapshotStatus Status { get; set; } 
+
         public List<Person> People
         {
             get;
             set;
+        }
+
+        public enum SnapshotStatus {
+            known,
+            unknown,
+            known_unknown,
+            unknown_person,
+            no_persons_found
         }
     }
 }
