@@ -17,6 +17,15 @@
       "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
       "references": [],
       "title": "Test images that don't have a known result already"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-29T03:10:28.239Z",
+      "id": "20180729031028_68198483_4f2af2ad0a51eaa13d93a70116263053",
+      "references": [],
+      "title": "Get image creation metadata for each Snapshot"
     }
   ],
   "in-progress": [
@@ -72,6 +81,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-07-28T22:29:10.951Z",
+      "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
+      "references": [],
+      "title": "Handle no_persons_found results"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-28T22:30:23.900Z",
       "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
       "references": [],
@@ -94,15 +112,6 @@
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T22:29:10.951Z",
-      "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
-      "references": [],
-      "title": "Handle no_persons_found results"
     }
   ]
 }
