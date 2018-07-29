@@ -47,12 +47,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             FaceRecognition();
             FaceDetection();
 
-            // HandleIdentities();
-            // HandleCoordinates();
-
             Results.AddRange(Known);
             Results.AddRange(Unknown);
             Results.AddRange(KnownUnknown);
+
+            // HandleIdentities();
+            // HandleCoordinates();
 
             //return Results;
          }
@@ -63,7 +63,16 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
              * Assign image result to the respective snapshot object
              */
 
-            throw new NotImplementedException();
+             foreach (var line in face_recognitionLines)
+             {
+                 var imageDir = GetImageDir(line);
+                 var snapshot = Results.Where(x => x.ImageDir == imageDir).FirstOrDefault();
+             }
+        }
+
+        private string GetImageDir(string line)
+        {
+            return line.Split(',')[0];
         }
 
         private Snapshot.SnapshotStatus GetSnapshotStatus(string line)
@@ -82,7 +91,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             }
         }
 
-        private void HandleCoordinates()
+        private void HandleCoordinates(string line)
         {
             throw new NotImplementedException();
         }
