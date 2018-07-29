@@ -76,8 +76,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             var procInfo = new ProcessStartInfo($"face_recognition")
             { 
                 RedirectStandardOutput = true,
-                //WorkingDirectory = "/",
-                //Arguments = $"{_knownPath} {_unknownPath}"
                 Arguments = $"{_knownPath} {_unknownPath}"
             };
             var proc = new Process { StartInfo = procInfo };
@@ -97,8 +95,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             var procInfo = new ProcessStartInfo($"face_detection")
             { 
                 RedirectStandardOutput = true,
-                //WorkingDirectory = "/",
-                //Arguments = $"{_knownPath} {_unknownPath}"
                 Arguments = $"{_unknownPath}"
             };
             var proc = new Process { StartInfo = procInfo };
