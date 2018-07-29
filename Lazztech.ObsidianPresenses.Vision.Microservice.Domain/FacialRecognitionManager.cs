@@ -66,6 +66,22 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             throw new NotImplementedException();
         }
 
+        private Snapshot.SnapshotStatus GetSnapshotStatus(string line)
+        {
+            var statusLine = line.Substring(line.LastIndexOf(',') + 1);
+            if (statusLine == "no_persons_found")
+            {
+                return Snapshot.SnapshotStatus.no_persons_found;
+            }
+            else if (statusLine == "unknown_person")
+            {
+                return Snapshot.SnapshotStatus.unknown_person;
+            }
+            else {
+                return Snapshot.SnapshotStatus.known;
+            }
+        }
+
         private void HandleCoordinates()
         {
             throw new NotImplementedException();
