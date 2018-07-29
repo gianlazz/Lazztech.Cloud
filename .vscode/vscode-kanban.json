@@ -105,6 +105,12 @@
       "title": "Image metadata for the snapshot objects to be uniquely identified?"
     },
     {
+      "creation_time": "2018-07-29T18:55:38.806Z",
+      "id": "20180729185538_430030264_eb6207138702cf912f6a89a111bfeff6",
+      "references": [],
+      "title": "no_persons_found == known_unknown ?"
+    },
+    {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
@@ -112,6 +118,12 @@
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
+    },
+    {
+      "creation_time": "2018-07-29T18:56:47.394Z",
+      "id": "20180729185647_378173172_a593af41d95a8aba56c34dfe5738e09f",
+      "references": [],
+      "title": "loop through string array of image extension names when looking through dirs"
     }
   ]
 }

@@ -47,6 +47,9 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             FaceRecognition();
             FaceDetection();
 
+            HandleIdentities();
+            HandleCoordinates();
+
             Results.AddRange(Known);
             Results.AddRange(Unknown);
             Results.AddRange(KnownUnknown);
@@ -54,7 +57,21 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             //return Results;
          }
 
-         private void FaceRecognition()
+        private void HandleIdentities()
+        {
+            /* LOOP THROUGH face_recognitionLines
+             * Assign image result to the respective snapshot object
+             */
+
+            throw new NotImplementedException();
+        }
+
+        private void HandleCoordinates()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void FaceRecognition()
          {
             var procInfo = new ProcessStartInfo($"face_recognition")
             { 
@@ -96,6 +113,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             }
          }
 
+         private string GetFileNameFromDir(string dir)
+         {
+             return dir.Substring(dir.LastIndexOf('/'));
+         }
+
         private void CheckAllAssetsValid()
         {
             //var filePaths = new List<string>(Directory.GetFiles(resultsPath));
@@ -119,7 +141,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 DateTime modification = File.GetLastWriteTime(imageDir);
                 Known.Add(new Snapshot(){
                     ImageDir = imageDir,
-                    DateTimeWhenCaptured = creation.ToString()
+                    DateTimeWhenCaptured = creation.ToString(),
+                    ImageName = GetFileNameFromDir(imageDir)
                 });
             }
 
@@ -134,7 +157,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 DateTime modification = File.GetLastWriteTime(imageDir);
                 Unknown.Add(new Snapshot(){
                     ImageDir = imageDir,
-                    DateTimeWhenCaptured = creation.ToString()
+                    DateTimeWhenCaptured = creation.ToString(),
+                    ImageName = GetFileNameFromDir(imageDir)
                 });
             }
 
@@ -149,7 +173,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 DateTime modification = File.GetLastWriteTime(imageDir);
                 KnownUnknown.Add(new Snapshot(){
                     ImageDir = imageDir,
-                    DateTimeWhenCaptured = creation.ToString()
+                    DateTimeWhenCaptured = creation.ToString(),
+                    ImageName = GetFileNameFromDir(imageDir)
                 });
             }
         }
