@@ -47,8 +47,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             FaceRecognition();
             FaceDetection();
 
-            HandleIdentities();
-            HandleCoordinates();
+            // HandleIdentities();
+            // HandleCoordinates();
 
             Results.AddRange(Known);
             Results.AddRange(Unknown);
@@ -111,7 +111,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
          private string GetFileNameFromDir(string dir)
          {
-             return dir.Substring(dir.LastIndexOf('/'));
+             return dir.Substring(dir.LastIndexOf('/') + 1);
          }
 
         private void CheckAllAssetsValid()
