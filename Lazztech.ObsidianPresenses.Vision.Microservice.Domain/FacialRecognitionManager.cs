@@ -67,7 +67,22 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
              {
                  var imageDir = GetImageDir(line);
                  var snapshot = Results.Where(x => x.ImageDir == imageDir).FirstOrDefault();
+                 var status = SetIdentityOutcome(line);
+                 snapshot.Status = status;
+
+                 if (snapshot.Status == Snapshot.SnapshotStatus.known)
+                 {
+                     AssignIdentifiedPersons(snapshot, line);
+                 }
              }
+        }
+
+        private void AssignIdentifiedPersons(Snapshot snapshot, string line)
+        {
+            //CONDITION FOR SINGLE OR MULTIPLE PEOPLE
+            snapshot.People.Add(new Person(){
+                Name = GetIdentifiedName(line)
+            });
         }
 
         private string GetImageDir(string line)
@@ -75,7 +90,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             return line.Split(',')[0];
         }
 
-        private Snapshot.SnapshotStatus GetSnapshotStatus(string line)
+        private Snapshot.SnapshotStatus SetIdentityOutcome(string line)
         {
             var statusLine = line.Substring(line.LastIndexOf(',') + 1);
             if (statusLine == "no_persons_found")
@@ -89,6 +104,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             else {
                 return Snapshot.SnapshotStatus.known;
             }
+        }
+
+        private string GetIdentifiedName(string line)
+        {
+            return line.Split(',').Last();
         }
 
         private void HandleCoordinates(string line)
