@@ -35,3 +35,17 @@ https://stackoverflow.com/questions/2280948/reading-data-metadata-from-jpeg-xmp-
 https://www.dreamincode.net/forums/topic/231165-how-to-read-image-metadata-in-c%23/
 
 Write if else logic in FacialRecognitionManager.CheckAllAssetsValid();
+
+## july, 30, 2018
+Succumbing to the complexity of FacialRecognitionManager.cs as it develops and turning to PDD(pain driven developmetn). I'm working to transistion to using vscode as much as possible as my primary development enviroment.
+```
+mkdir [Project layer name for dir]
+cd [new project folder]
+dotnet new classlib
+cmd + shift + p => nuget add:
+NUnit
+NUnit3TestAdapter
+Microsoft.NET.Test.Sdk
+cd ..
+dotnet sln add [new project folder/newproject.csproj]
+```
