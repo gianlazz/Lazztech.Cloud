@@ -67,16 +67,14 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
              {
                  var imageDir = GetImageDir(line);
                  var snapshot = Results.Where(x => x.ImageDir == imageDir).FirstOrDefault();
-                 //if (snapshot == null)
-                    //throw new Exception();
-                 //Results.Remove(snapshot);
+                 if (snapshot == null)
+                    throw new Exception();
                  var status = SetIdentityOutcome(line);
                  snapshot.Status = status;
                  if (snapshot.Status == Snapshot.SnapshotStatus.known)
                  {
                      AssignIdentifiedPersons(snapshot, line);
                  }
-                 //Results.Add(snapshot);
              }
         }
 

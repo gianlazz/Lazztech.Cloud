@@ -13,6 +13,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-07-28T21:17:13.787Z",
+      "id": "20180728211713_329375082_00b50c31c3edb538777e1cb916014369",
+      "references": [],
+      "title": "Construct Snapshot objects with the stdout from face_recognition parsed out"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-28T21:29:51.507Z",
       "id": "20180728212951_1250467_f19be631783992bb42e585403589c8b6",
       "references": [],
@@ -40,6 +49,33 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-07-28T22:29:10.951Z",
+      "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
+      "references": [],
+      "title": "Handle no_persons_found results"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T22:03:33.426Z",
+      "id": "20180728220333_247862016_788c4ccca872f362595a660068d23d6a",
+      "references": [],
+      "title": "Image metadata for the snapshot objects to be uniquely identified?"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-31T01:45:16.198Z",
+      "id": "20180731014516_198979173_e29003918c6f061ab35310766b86256d",
+      "references": [],
+      "title": "Set Snapshot status enum property"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-28T22:33:21.932Z",
       "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
       "references": [],
@@ -47,33 +83,6 @@
     }
   ],
   "in-progress": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T22:36:18.639Z",
-      "id": "20180728223618_22697568_6d25876cab4536346e89b048b9a0540a",
-      "references": [],
-      "title": "Categorize unknown_person in /known_unknown/ directory"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T21:17:13.787Z",
-      "id": "20180728211713_329375082_00b50c31c3edb538777e1cb916014369",
-      "references": [],
-      "title": "Construct Snapshot objects with the stdout from face_recognition parsed out"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T22:29:10.951Z",
-      "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
-      "references": [],
-      "title": "Handle no_persons_found results"
-    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -87,10 +96,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-31T01:45:16.198Z",
-      "id": "20180731014516_198979173_e29003918c6f061ab35310766b86256d",
+      "creation_time": "2018-07-31T02:31:21.042Z",
+      "id": "20180731023121_515614061_e5e9f6c67d7c08a4a59014e8c2dd1b03",
       "references": [],
-      "title": "Set Snapshot status enum property"
+      "title": "Unit Test Vision FacialRecognitionManager.cs"
     }
   ],
   "testing": [],
@@ -99,19 +108,19 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T21:30:35.652Z",
-      "id": "20180728213035_385423038_ec231cc4c1f60e6afb571f9eb16bc414",
+      "creation_time": "2018-07-28T22:36:18.639Z",
+      "id": "20180728223618_22697568_6d25876cab4536346e89b048b9a0540a",
       "references": [],
-      "title": "check in motion ip cam .config into repo"
+      "title": "Categorize unknown_person in /known_unknown/ directory"
     },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T22:03:33.426Z",
-      "id": "20180728220333_247862016_788c4ccca872f362595a660068d23d6a",
+      "creation_time": "2018-07-28T21:30:35.652Z",
+      "id": "20180728213035_385423038_ec231cc4c1f60e6afb571f9eb16bc414",
       "references": [],
-      "title": "Image metadata for the snapshot objects to be uniquely identified?"
+      "title": "check in motion ip cam .config into repo"
     },
     {
       "creation_time": "2018-07-29T18:56:47.394Z",
@@ -124,6 +133,15 @@
       "id": "20180729185538_430030264_eb6207138702cf912f6a89a111bfeff6",
       "references": [],
       "title": "no_persons_found == known_unknown ?"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-31T02:34:48.772Z",
+      "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
+      "references": [],
+      "title": "HandleCoordinates(); Set Snapshot.Persons FaceBox with the stdout from face_coordinates parsed out"
     },
     {
       "assignedTo": {
