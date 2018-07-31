@@ -73,6 +73,24 @@
       "id": "20180728222910_70148171_4337f9bcb0988d8be8553b19fd02538c",
       "references": [],
       "title": "Handle no_persons_found results"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T22:30:23.900Z",
+      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
+      "references": [],
+      "title": "Test results/images with multiple faces"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-31T01:45:16.198Z",
+      "id": "20180731014516_198979173_e29003918c6f061ab35310766b86256d",
+      "references": [],
+      "title": "Set Snapshot status enum property"
     }
   ],
   "testing": [],
@@ -85,15 +103,6 @@
       "id": "20180728213035_385423038_ec231cc4c1f60e6afb571f9eb16bc414",
       "references": [],
       "title": "check in motion ip cam .config into repo"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T22:30:23.900Z",
-      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
-      "references": [],
-      "title": "Handle results/images with multiple faces"
     },
     {
       "assignedTo": {
@@ -124,15 +133,6 @@
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-29T19:20:41.829Z",
-      "id": "20180729192041_55441114_db9c730067fed10dd2ca825d452fe32f",
-      "references": [],
-      "title": "Output Snapshot object json foreach image result"
     }
   ]
 }
