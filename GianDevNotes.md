@@ -41,7 +41,7 @@ Succumbing to the complexity of FacialRecognitionManager.cs as it develops and t
 ```
 mkdir [Project layer name for dir]
 cd [new project folder]
-dotnet new classlib
+dotnet new classlib -f netcoreapp2.1
 cmd + shift + p => nuget add:
 NUnit
 NUnit3TestAdapter
