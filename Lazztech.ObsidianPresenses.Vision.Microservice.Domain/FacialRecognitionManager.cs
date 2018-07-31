@@ -51,7 +51,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Results.AddRange(Unknown);
             Results.AddRange(KnownUnknown);
 
-            // HandleIdentities();
+             HandleIdentities();
             // HandleCoordinates();
 
             //return Results;
@@ -67,13 +67,16 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
              {
                  var imageDir = GetImageDir(line);
                  var snapshot = Results.Where(x => x.ImageDir == imageDir).FirstOrDefault();
+                 //if (snapshot == null)
+                    //throw new Exception();
+                 //Results.Remove(snapshot);
                  var status = SetIdentityOutcome(line);
                  snapshot.Status = status;
-
                  if (snapshot.Status == Snapshot.SnapshotStatus.known)
                  {
                      AssignIdentifiedPersons(snapshot, line);
                  }
+                 //Results.Add(snapshot);
              }
         }
 

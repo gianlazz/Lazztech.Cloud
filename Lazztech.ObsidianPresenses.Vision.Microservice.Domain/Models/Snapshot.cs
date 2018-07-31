@@ -7,6 +7,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models
     {
         public Snapshot()
         {
+            People = new List<Person>();
         }
 
         public Guid GuidId
