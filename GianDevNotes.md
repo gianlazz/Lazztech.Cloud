@@ -49,3 +49,16 @@ Microsoft.NET.Test.Sdk
 cd ..
 dotnet sln add [new project folder/newproject.csproj]
 ```
+
+## july, 31, 2018
+Project still builds though it's throwing warnings. Setting up CI could be a good idea though I want to keep the repo private. Maybe a heroku jenkins instance? Or azure jenkins? I do have credits. It's probably too soon to worry about that though. However since the project is dockerized it could be more simple when the time comes.
+
+Setup interface for FacialRecognitionManager and a unit test against the resulting Snapshot collection.
+
+Adding reference to domain to the testing layer requires a kind of long chaned command:
+
+`dotnet add Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj reference Lazztech.ObsidianPresenses.Vision.Microservice.Domain/Lazztech.ObsidianPresenses.Vision.Microservice.Domain.csproj`
+
+`dotnet add [Project to be added] reference [project to get reference to other project]`
+
+References are all setup and I've gotten together a very simple unit test though I've got issues with the Nunit3TestAdapter.
