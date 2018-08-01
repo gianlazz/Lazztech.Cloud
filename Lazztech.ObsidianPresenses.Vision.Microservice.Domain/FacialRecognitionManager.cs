@@ -22,15 +22,18 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
         public List<Snapshot> KnownUnknown = new List<Snapshot>();
+        private IFacialIdentityHandler _facialIdentityHandler;
 
         public List<Snapshot> Results { get; set; }    
         public List<string> face_recognitionLines = new List<string>();
         public List<string> face_coordinatesLines = new List<string>();
 
         #region ctor
-        public FacialRecognitionManager()
+        public FacialRecognitionManager(IFacialIdentityHandler facialIdentityHandler)
         {
+            _facialIdentityHandler = facialIdentityHandler;
             Results = new List<Snapshot>();
+
             if (!Directory.Exists(_knownPath))
                 Directory.CreateDirectory(_knownPath);
             if (!Directory.Exists(_unknownPath))
@@ -45,7 +48,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public void Process()
         {
             CheckAllAssetsValid();
-            face_recognitionLines = FaceRecognition();
+            face_recognitionLines = _facialIdentityHandler.FaceRecognition();
             FaceDetection();
 
             Results.AddRange(Known);

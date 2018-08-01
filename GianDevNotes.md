@@ -69,7 +69,9 @@ Oh this is slightly more complicated. I need to make sure I'm testing against ho
 
 - [ ] Break out responsabilities for the process execution so that it's an interface that returns the List<string> stdout from the respective processes that I'm testing against for the facial recognitiona and facial coordinates.
 
-resolve "Some projects have trouble loading. Please review the output for more details" eventually.
+- [ ] resolve "Some projects have trouble loading. Please review the output for more details" eventually.
 
- - [x] Created mock for IFacialIdentityHandler using the static stdout test data string
+- [x] Created mock for IFacialIdentityHandler using the static stdout test data string
+
+Now I need to setup dependency injection into the FacialRecognitionManager in the ctor so that I can inject the mock or real interface implementation for the handling of the process.
 
