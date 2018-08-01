@@ -77,3 +77,6 @@ Now I need to setup dependency injection into the FacialRecognitionManager in th
 
 Leaving the project in a non-building state to be resolved in the future.
 
+## august, 1, 2018
+- [ ] dotnet build Lazztech.ObsidianPresences.sln fails: There is no argument given that corresponds to the required formal parameter 'facialIdentityHandler'
+

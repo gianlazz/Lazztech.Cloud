@@ -87,10 +87,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-01T04:38:44.698Z",
-      "id": "20180801043844_125736006_4ad1ed7c1716f890b2261f25358c9817",
+      "creation_time": "2018-08-01T21:10:38.805Z",
+      "id": "20180801211038_208856296_9355407b590784b6885eeaf86a7b9d5f",
       "references": [],
-      "title": "Make FacialRecognitionManager testable"
+      "title": "Get solution building after adding 'facialIdentityHandler' parameter to FacialRecognitionManager ctor"
     },
     {
       "assignedTo": {
@@ -102,7 +102,17 @@
       "title": "Unit Test Vision FacialRecognitionManager.cs"
     }
   ],
-  "testing": [],
+  "testing": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-01T04:38:44.698Z",
+      "id": "20180801043844_125736006_4ad1ed7c1716f890b2261f25358c9817",
+      "references": [],
+      "title": "Make FacialRecognitionManager testable"
+    }
+  ],
   "todo": [
     {
       "assignedTo": {
