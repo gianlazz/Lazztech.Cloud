@@ -7,7 +7,7 @@ using Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models;
 
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 {
-    public class FacialRecognitionManager : IFacialRecognitionManager
+    public class FacialRecognitionManager : IFacialRecognitionManager, IFacialIdentityHandler
     {
         string binaryPath = System.Reflection.Assembly.GetEntryAssembly().Location;
         string _knownPath = @"/face/known/";
@@ -45,7 +45,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public void Process()
         {
             CheckAllAssetsValid();
-            FaceRecognition();
+            face_recognitionLines = FaceRecognition();
             FaceDetection();
 
             Results.AddRange(Known);
@@ -116,8 +116,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             throw new NotImplementedException();
         }
 
-        private void FaceRecognition()
-         {
+        public List<string> FaceRecognition()
+        {
+             var results = new List<string>();
+
             var procInfo = new ProcessStartInfo($"face_recognition")
             { 
                 RedirectStandardOutput = true,
@@ -130,10 +132,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             {
                 var line = proc.StandardOutput.ReadLine();
                 if (string.IsNullOrEmpty(line) == false)
-                    face_recognitionLines.Add(line);
+                    results.Add(line);
                 Console.WriteLine(line);
             }
-         }
+
+            return results;
+        }
 
          private void FaceDetection()
          {

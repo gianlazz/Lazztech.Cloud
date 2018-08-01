@@ -147,19 +147,19 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T21:31:12.681Z",
-      "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
+      "creation_time": "2018-07-28T22:30:23.900Z",
+      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
       "references": [],
-      "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
+      "title": "Test results/images with multiple faces"
     },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T22:30:23.900Z",
-      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
+      "creation_time": "2018-07-28T21:31:12.681Z",
+      "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
-      "title": "Test results/images with multiple faces"
+      "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
     }
   ]
 }

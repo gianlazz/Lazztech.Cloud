@@ -69,3 +69,7 @@ Oh this is slightly more complicated. I need to make sure I'm testing against ho
 
 - [ ] Break out responsabilities for the process execution so that it's an interface that returns the List<string> stdout from the respective processes that I'm testing against for the facial recognitiona and facial coordinates.
 
+resolve "Some projects have trouble loading. Please review the output for more details" eventually.
+
+ - [x] Created mock for IFacialIdentityHandler using the static stdout test data string
+
