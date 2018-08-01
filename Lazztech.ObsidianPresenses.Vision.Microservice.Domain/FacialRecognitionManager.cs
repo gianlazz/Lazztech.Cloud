@@ -29,9 +29,9 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<string> face_coordinatesLines = new List<string>();
 
         #region ctor
-        public FacialRecognitionManager()
+        public FacialRecognitionManager(IFacialIdentityHandler facialIdentityHandler)
         {
-            _facialIdentityHandler = new FaceRecognitionProcess();
+            _facialIdentityHandler = facialIdentityHandler;
             
             Results = new List<Snapshot>();
 

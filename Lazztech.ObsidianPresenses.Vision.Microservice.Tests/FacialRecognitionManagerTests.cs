@@ -26,10 +26,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void AssertNotNull()
         {
             //Arrange
-            var rec = new FacialRecognitionManager();
+            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock());
 
             //Act
-            rec.FaceRecognition();
+            rec.Process();
             var results = rec.Results;
 
             //Assert
