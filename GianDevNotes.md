@@ -62,3 +62,7 @@ Adding reference to domain to the testing layer requires a kind of long chaned c
 `dotnet add [Project to be added] reference [project to get reference to other project]`
 
 References are all setup and I've gotten together a very simple unit test though I've got issues with the Nunit3TestAdapter.
+
+Oh this is slightly more complicated. I need to make sure I'm testing against how this class processes the lines output from the cmd line tools not that those perform. Otherwise I'd have to run the docker-compose project to get the domain tested and that would make it more of an integration test instead of a unit test.
+
+Setup test data for realistic output of cmdline process stdout that I'm parsing into a desired valid collection of Snapshots.
