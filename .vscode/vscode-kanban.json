@@ -40,6 +40,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-01T21:10:38.805Z",
+      "id": "20180801211038_208856296_9355407b590784b6885eeaf86a7b9d5f",
+      "references": [],
+      "title": "Get solution building after adding 'facialIdentityHandler' parameter to FacialRecognitionManager ctor"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-28T22:42:32.998Z",
       "id": "20180728224232_122245039_3ca1e6c333c98e71495ff0bea8325607",
       "references": [],
@@ -80,15 +89,6 @@
       "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
       "references": [],
       "title": "Test images that don't have a known result already"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-01T21:10:38.805Z",
-      "id": "20180801211038_208856296_9355407b590784b6885eeaf86a7b9d5f",
-      "references": [],
-      "title": "Get solution building after adding 'facialIdentityHandler' parameter to FacialRecognitionManager ctor"
     }
   ],
   "in-progress": [
@@ -100,6 +100,15 @@
       "id": "20180731023121_515614061_e5e9f6c67d7c08a4a59014e8c2dd1b03",
       "references": [],
       "title": "Unit Test Vision FacialRecognitionManager.cs"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-01T22:04:07.865Z",
+      "id": "20180801220407_306904015_b4bf3c8211df66cde486c926b0131c69",
+      "references": [],
+      "title": "Transition from NUnit to xUnit for testing framework"
     }
   ],
   "testing": [

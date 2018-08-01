@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Lazztech.ObsidianPresenses.Vision.Microservice.Domain;
-using NUnit.Framework;
+using Xunit;
 
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 {
-    [TestFixture]
     public class FacialRecognitionManagerTests
     {
         public static string face_recognitionLinesTestData = @"/face/unknown/0.jpeg,Gian Lazzarini
@@ -22,8 +21,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 /face/unknown/Chad Peterson.jpg,113,328,328,113
 /face/unknown/unnamed.jpg,156,610,527,238";
 
-        [Test]
-        public void AssertNotNull()
+        [Fact]
+        public void Test1()
         {
             //Arrange
             var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock());

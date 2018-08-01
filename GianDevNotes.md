@@ -80,4 +80,16 @@ Leaving the project in a non-building state to be resolved in the future.
 ## august, 1, 2018
 - [x] dotnet build Lazztech.ObsidianPresences.sln fails: There is no argument given that corresponds to the required formal parameter 'facialIdentityHandler'
 Solution builds again: `dotnet build Lazztech.ObsidianPresences.sln`
+Maybe it would be easier to just use xunit instead? I'm having some issues debugging and running the NUnit tests fixture.
+Yeah it looks like I'm going to have a smoother development experience if I transistion to using xunit instead of NUnit with with dotnet core.
+https://xunit.github.io/docs/why-did-we-build-xunit-1.0.html
+```
+dotnet sln remove Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj
+rm -r Lazztech.ObsidianPresenses.Vision.Microservice.Tests/
+mkdir Lazztech.ObsidianPresenses.Vision.Microservice.Tests/
+cd Lazztech.ObsidianPresenses.Vision.Microservice.Tests
+dotnet new xunit
+dotnet add Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj reference Lazztech.ObsidianPresenses.Vision.Microservice.Domain/Lazztech.ObsidianPresenses.Vision.Microservice.Domain.csproj
+```
+I then clicked restore on the vscode prompt.
 
