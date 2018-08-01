@@ -75,3 +75,5 @@ Oh this is slightly more complicated. I need to make sure I'm testing against ho
 
 Now I need to setup dependency injection into the FacialRecognitionManager in the ctor so that I can inject the mock or real interface implementation for the handling of the process.
 
+Leaving the project in a non-building state to be resolved in the future.
+
