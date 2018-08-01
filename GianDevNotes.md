@@ -95,3 +95,6 @@ I then clicked restore on the vscode prompt.
 
 All switched to xUnit now however the test failes because "Access to the path '/face/known/' is denied." so I'll need to make sure that all is handled by the interface implementation that I'm mocking not the FacialRecognitionManager.cs that depends on them and handles their stdout.
 
+Switching to xunit seems to have resolved the "Some projects have trouble loading. Please review the output for more details"
+- [x] resolve "Some projects have trouble loading. Please review the output for more details" eventually.
+
