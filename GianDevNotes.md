@@ -65,4 +65,7 @@ References are all setup and I've gotten together a very simple unit test though
 
 Oh this is slightly more complicated. I need to make sure I'm testing against how this class processes the lines output from the cmd line tools not that those perform. Otherwise I'd have to run the docker-compose project to get the domain tested and that would make it more of an integration test instead of a unit test.
 
-Setup test data for realistic output of cmdline process stdout that I'm parsing into a desired valid collection of Snapshots.
+- [x] Setup test data for realistic output of cmdline process stdout that I'm parsing into a desired valid collection of Snapshots.
+
+- [ ] Break out responsabilities for the process execution so that it's an interface that returns the List<string> stdout from the respective processes that I'm testing against for the facial recognitiona and facial coordinates.
+

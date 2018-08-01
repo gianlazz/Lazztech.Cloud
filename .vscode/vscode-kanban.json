@@ -87,10 +87,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T22:30:23.900Z",
-      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
+      "creation_time": "2018-08-01T04:38:44.698Z",
+      "id": "20180801043844_125736006_4ad1ed7c1716f890b2261f25358c9817",
       "references": [],
-      "title": "Test results/images with multiple faces"
+      "title": "Make FacialRecognitionManager testable"
     },
     {
       "assignedTo": {
@@ -123,6 +123,15 @@
       "title": "check in motion ip cam .config into repo"
     },
     {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-31T02:34:48.772Z",
+      "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
+      "references": [],
+      "title": "HandleCoordinates(); Set Snapshot.Persons FaceBox with the stdout from face_coordinates parsed out"
+    },
+    {
       "creation_time": "2018-07-29T18:56:47.394Z",
       "id": "20180729185647_378173172_a593af41d95a8aba56c34dfe5738e09f",
       "references": [],
@@ -138,19 +147,19 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-31T02:34:48.772Z",
-      "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
+      "creation_time": "2018-07-28T21:31:12.681Z",
+      "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
-      "title": "HandleCoordinates(); Set Snapshot.Persons FaceBox with the stdout from face_coordinates parsed out"
+      "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
     },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T21:31:12.681Z",
-      "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
+      "creation_time": "2018-07-28T22:30:23.900Z",
+      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
       "references": [],
-      "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
+      "title": "Test results/images with multiple faces"
     }
   ]
 }
