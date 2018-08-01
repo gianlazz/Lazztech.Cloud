@@ -93,3 +93,5 @@ dotnet add Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.Obsidia
 ```
 I then clicked restore on the vscode prompt.
 
+All switched to xUnit now however the test failes because "Access to the path '/face/known/' is denied." so I'll need to make sure that all is handled by the interface implementation that I'm mocking not the FacialRecognitionManager.cs that depends on them and handles their stdout.
+

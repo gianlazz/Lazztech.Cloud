@@ -89,6 +89,15 @@
       "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
       "references": [],
       "title": "Test images that don't have a known result already"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-01T22:04:07.865Z",
+      "id": "20180801220407_306904015_b4bf3c8211df66cde486c926b0131c69",
+      "references": [],
+      "title": "Transition from NUnit to xUnit for testing framework"
     }
   ],
   "in-progress": [
@@ -105,10 +114,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-01T22:04:07.865Z",
-      "id": "20180801220407_306904015_b4bf3c8211df66cde486c926b0131c69",
+      "creation_time": "2018-08-01T22:30:19.625Z",
+      "id": "20180801223019_17197292_18e8c0eb77a2434e8b3ec72a5102cfa6",
       "references": [],
-      "title": "Transition from NUnit to xUnit for testing framework"
+      "title": "FacialRecognitionManager Unit test fails because: \"Access to the path '/face/known/' is denied\" make sure this is mocked."
     }
   ],
   "testing": [
