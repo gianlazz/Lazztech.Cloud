@@ -99,4 +99,12 @@ All switched to xUnit now however the test failes because "Access to the path '/
 
 Switching to xunit seems to have resolved the "Some projects have trouble loading. Please review the output for more details"
 - [x] resolve "Some projects have trouble loading. Please review the output for more details" eventually.
+vscode test explorer issue:
+MSBUILD : error MSB1011: Specify which project or solution file to use because this folder contains more than one project or solution file.
 
+I think I need to add configrations for the other project layers to the vscode tasks.json and launch.json to get the test explorer working.
+https://code.visualstudio.com/docs/editor/tasks
+https://code.visualstudio.com/docs/editor/debugging
+https://stackoverflow.com/questions/41483477/what-is-the-difference-between-launch-json-and-task-json-in-visual-studio-code
+Okay the .NET TEST EXPLORERER: issue "Please open or set the test project..." could actually be a bug.
+https://github.com/formulahendry/vscode-dotnet-test-explorer/issues/39
