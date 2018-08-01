@@ -89,6 +89,8 @@ rm -r Lazztech.ObsidianPresenses.Vision.Microservice.Tests/
 mkdir Lazztech.ObsidianPresenses.Vision.Microservice.Tests/
 cd Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 dotnet new xunit
+cd ..
+dotnet sln add Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj
 dotnet add Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj reference Lazztech.ObsidianPresenses.Vision.Microservice.Domain/Lazztech.ObsidianPresenses.Vision.Microservice.Domain.csproj
 ```
 I then clicked restore on the vscode prompt.
