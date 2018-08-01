@@ -7,7 +7,7 @@ using Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models;
 
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 {
-    public class FacialRecognitionManager : IFacialRecognitionManager, IFacialIdentityHandler
+    public class FacialRecognitionManager : IFacialRecognitionManager
     {
         string binaryPath = System.Reflection.Assembly.GetEntryAssembly().Location;
         public static string knownPath = @"/face/known/";
