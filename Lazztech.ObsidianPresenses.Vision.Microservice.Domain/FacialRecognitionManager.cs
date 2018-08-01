@@ -10,10 +10,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
     public class FacialRecognitionManager : IFacialRecognitionManager, IFacialIdentityHandler
     {
         string binaryPath = System.Reflection.Assembly.GetEntryAssembly().Location;
-        string _knownPath = @"/face/known/";
-        string _unknownPath = @"/face/unknown/";
-        string _knownUnkownPath = @"/face/known_unknown/";
-        string _noPersonsFoundPath = @"/face/no_persons_found/";
+        public static string knownPath = @"/face/known/";
+        public static string unknownPath = @"/face/unknown/";
+        public static string knownUnkownPath = @"/face/known_unknown/";
+        public static string noPersonsFoundPath = @"/face/no_persons_found/";
 
         public List<string> _knownImageDirs = new List<string>();
         public List<string> _unknownImageDirs = new List<string>();
@@ -29,19 +29,20 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<string> face_coordinatesLines = new List<string>();
 
         #region ctor
-        public FacialRecognitionManager(IFacialIdentityHandler facialIdentityHandler)
+        public FacialRecognitionManager()
         {
-            _facialIdentityHandler = facialIdentityHandler;
+            _facialIdentityHandler = new FaceRecognitionProcess();
+            
             Results = new List<Snapshot>();
 
-            if (!Directory.Exists(_knownPath))
-                Directory.CreateDirectory(_knownPath);
-            if (!Directory.Exists(_unknownPath))
-                Directory.CreateDirectory(_unknownPath);
-            if (!Directory.Exists(_knownUnkownPath))
-                Directory.CreateDirectory(_knownUnkownPath);
-            if (!Directory.Exists(_noPersonsFoundPath))
-                Directory.CreateDirectory(_noPersonsFoundPath);
+            if (!Directory.Exists(knownPath))
+                Directory.CreateDirectory(knownPath);
+            if (!Directory.Exists(unknownPath))
+                Directory.CreateDirectory(unknownPath);
+            if (!Directory.Exists(knownUnkownPath))
+                Directory.CreateDirectory(knownUnkownPath);
+            if (!Directory.Exists(noPersonsFoundPath))
+                Directory.CreateDirectory(noPersonsFoundPath);
         }
         #endregion
         
@@ -119,35 +120,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             throw new NotImplementedException();
         }
 
-        public List<string> FaceRecognition()
-        {
-             var results = new List<string>();
-
-            var procInfo = new ProcessStartInfo($"face_recognition")
-            { 
-                RedirectStandardOutput = true,
-                Arguments = $"{_knownPath} {_unknownPath}"
-            };
-            var proc = new Process { StartInfo = procInfo };
-
-            proc.Start();
-            while (proc.StandardOutput.EndOfStream == false)
-            {
-                var line = proc.StandardOutput.ReadLine();
-                if (string.IsNullOrEmpty(line) == false)
-                    results.Add(line);
-                Console.WriteLine(line);
-            }
-
-            return results;
-        }
-
          private void FaceDetection()
          {
             var procInfo = new ProcessStartInfo($"face_detection")
             { 
                 RedirectStandardOutput = true,
-                Arguments = $"{_unknownPath}"
+                Arguments = $"{unknownPath}"
             };
             var proc = new Process { StartInfo = procInfo };
 
@@ -169,15 +147,15 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         private void CheckAllAssetsValid()
         {
             //var filePaths = new List<string>(Directory.GetFiles(resultsPath));
-            _knownImageDirs.AddRange(Directory.GetFiles(_knownPath).Where(x => x.EndsWith(".jpg")));
-            _knownImageDirs.AddRange(Directory.GetFiles(_knownPath).Where(x => x.EndsWith(".jpeg")));
-            _knownImageDirs.AddRange(Directory.GetFiles(_knownPath).Where(x => x.EndsWith(".png")));
-            _unknownImageDirs.AddRange(Directory.GetFiles(_unknownPath).Where(x => x.EndsWith(".jpg")));
-            _unknownImageDirs.AddRange(Directory.GetFiles(_unknownPath).Where(x => x.EndsWith(".jpeg")));
-            _unknownImageDirs.AddRange(Directory.GetFiles(_unknownPath).Where(x => x.EndsWith(".png")));
-            _knownUnknownImageDirs.AddRange(Directory.GetFiles(_knownUnkownPath).Where(x => x.EndsWith(".jpg")));
-            _knownUnknownImageDirs.AddRange(Directory.GetFiles(_knownUnkownPath).Where(x => x.EndsWith(".jpeg")));
-            _knownUnknownImageDirs.AddRange(Directory.GetFiles(_knownUnkownPath).Where(x => x.EndsWith(".png")));
+            _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpg")));
+            _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpeg")));
+            _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".png")));
+            _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpg")));
+            _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpeg")));
+            _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".png")));
+            _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".jpg")));
+            _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".jpeg")));
+            _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".png")));
             if (_knownImageDirs.Count == 0)
             {
                 Console.WriteLine("No known files found.");
