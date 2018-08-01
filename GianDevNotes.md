@@ -108,3 +108,6 @@ https://code.visualstudio.com/docs/editor/debugging
 https://stackoverflow.com/questions/41483477/what-is-the-difference-between-launch-json-and-task-json-in-visual-studio-code
 Okay the .NET TEST EXPLORERER: issue "Please open or set the test project..." could actually be a bug.
 https://github.com/formulahendry/vscode-dotnet-test-explorer/issues/39
+
+https://github.com/formulahendry/vscode-dotnet-test-explorer
+Trying adding `"dotnet-test-explorer.testProjectPath": "Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj",` to the workspace settings.
