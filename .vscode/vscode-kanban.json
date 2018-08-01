@@ -80,9 +80,7 @@
       "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
       "references": [],
       "title": "Test images that don't have a known result already"
-    }
-  ],
-  "in-progress": [
+    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -91,7 +89,9 @@
       "id": "20180801211038_208856296_9355407b590784b6885eeaf86a7b9d5f",
       "references": [],
       "title": "Get solution building after adding 'facialIdentityHandler' parameter to FacialRecognitionManager ctor"
-    },
+    }
+  ],
+  "in-progress": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
