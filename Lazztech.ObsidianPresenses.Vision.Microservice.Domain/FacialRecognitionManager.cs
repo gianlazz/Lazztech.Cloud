@@ -42,6 +42,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         {
             CollectAllImageDirs();
             InstantiateSnapshotsFromDirs();
+            //SetSnapshotsCreationDateTime();
             face_recognitionLines = _facialIdentityHandler.FaceRecognition();
             //FaceDetection();
 

@@ -6,6 +6,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
     {
          string[] GetAllImageDirs(string path);
          string GetFileNameFromDir(string dir);
-         DateTime GetCreationTime(string filePath); 
+         DateTime GetCreationDateTime(string filePath); 
     }
 }

@@ -135,3 +135,9 @@ Maybe I should just make an IFileServices that can be mocked...
 Got the test explorer working today with xUnit project via workspace settings.
 
 I'm giving IFileServices the responsabilities that IImageDirectoriesFinder had and removing IImageDirectoriesFinder.
+
+What is this:
+
+Failed to start debugger: "System.InvalidOperationException: Debug session already started.\n at 
+
+`cmd + shift + p` then reloading the window seems to have fixed this.
