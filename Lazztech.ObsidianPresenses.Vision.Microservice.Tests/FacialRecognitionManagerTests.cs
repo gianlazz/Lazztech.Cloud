@@ -29,7 +29,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void Test1_BasicSmokeTest()
         {
             //Arrange
-            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock());
+            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new ImageDirectoriesFinder());
 
             //Act
             rec.Process();

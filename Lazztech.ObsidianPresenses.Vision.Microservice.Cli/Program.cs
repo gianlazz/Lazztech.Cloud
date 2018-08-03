@@ -26,7 +26,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Cli
                 return;
             }
 
-            var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess());
+            var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess(), new ImageDirectoriesFinder());
             facialRecognition.Process();
 
             foreach (var snapshot in facialRecognition.Results)

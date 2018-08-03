@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 {
     public class ImageDirectoriesFinder : IImageDirectoryFinder
@@ -22,17 +26,29 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
         public string[] GetAllKnownImageDirs()
         {
-            throw new System.NotImplementedException();
+            var result = new List<string>();
+            result.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpg")));
+            result.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpeg")));
+            result.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".png")));
+            return result.ToArray();
         }
 
         public string[] GetAllKnownUnknownImageDirs()
         {
-            throw new System.NotImplementedException();
+            var result = new List<string>();
+            result.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpg")));
+            result.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpeg")));
+            result.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".png")));
+            return result.ToArray();
         }
 
         public string[] GetAllUnknownImageDirs()
         {
-            throw new System.NotImplementedException();
+            var result = new List<string>();
+            result.AddRange(Directory.GetFiles(knownUnknownPath).Where(x => x.EndsWith(".jpg")));
+            result.AddRange(Directory.GetFiles(knownUnknownPath).Where(x => x.EndsWith(".jpeg")));
+            result.AddRange(Directory.GetFiles(knownUnknownPath).Where(x => x.EndsWith(".png")));
+            return result.ToArray();
         }
 
         public string[] GetAllNoPersonsFoundImageDirs()

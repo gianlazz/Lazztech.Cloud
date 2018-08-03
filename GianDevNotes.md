@@ -125,3 +125,5 @@ Oh, well the xUnit debugging actually works alright in vscode as is so I'll cont
 
 I need a file directory finding interface for mocking.
 God-damn, making this testable seems like it's quadrupaling the amount of code...
+
+I think I need to put everything that uses the System.IO namespace in an interface that would be mocked since all of that will likely not matche the runtime enviroment in the docker container.
