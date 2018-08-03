@@ -138,13 +138,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Console.WriteLine($"{_knownImageDirs.Count} known images.");
             foreach (var imageDir in _knownImageDirs)
             {
-                //MOVE THIS TO IFileServices!!
-                throw new Exception("Move referenced Creation datetime responsability to IFIleServices");
-                DateTime creation = File.GetCreationTime(imageDir);
+                DateTime creation = _fileServices.GetCreationDateTime(imageDir);
                 Known.Add(new Snapshot()
                 {
                     ImageDir = imageDir,
-                    DateTimeWhenCaptured = creation.ToString(),
+                    DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir).ToString(),
                     ImageName = GetFileNameFromDir(imageDir)
                 });
             }
@@ -156,11 +154,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Console.WriteLine($"{_unknownImageDirs.Count} unknown images.");
             foreach (var imageDir in _unknownImageDirs)
             {
-                DateTime creation = File.GetCreationTime(imageDir);
                 Unknown.Add(new Snapshot()
                 {
                     ImageDir = imageDir,
-                    DateTimeWhenCaptured = creation.ToString(),
+                    DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir).ToString(),
                     ImageName = GetFileNameFromDir(imageDir)
                 });
             }
@@ -172,11 +169,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Console.WriteLine($"{_knownUnknownImageDirs.Count} known_unknown files found.");
             foreach (var imageDir in _knownUnknownImageDirs)
             {
-                DateTime creation = File.GetCreationTime(imageDir);
                 KnownUnknown.Add(new Snapshot()
                 {
                     ImageDir = imageDir,
-                    DateTimeWhenCaptured = creation.ToString(),
+                    DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir).ToString(),
                     ImageName = GetFileNameFromDir(imageDir)
                 });
             }

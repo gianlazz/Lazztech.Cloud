@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,6 +19,16 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             result.AddRange(Directory.GetFiles(path).Where(x => x.EndsWith(".jpeg")));
             result.AddRange(Directory.GetFiles(path).Where(x => x.EndsWith(".png")));
             return result.ToArray();
+        }
+
+        public DateTime GetCreationDateTime(string filePath)
+        {
+            return File.GetCreationTime(filePath);
+        }
+
+        public string GetFileNameFromDir(string dir)
+        {
+            return dir.Substring(dir.LastIndexOf('/') + 1);
         }
     }
 }
