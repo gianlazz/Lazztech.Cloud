@@ -22,7 +22,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
         public List<Snapshot> KnownUnknown = new List<Snapshot>();
-        private IImageDirectoryFinder _imageDirectoryFinder;
+        private IImageDirectoriesFinder _imageDirectoryFinder;
         private IFacialIdentityHandler _facialIdentityHandler;
 
         public List<Snapshot> Results { get; set; }    
@@ -30,7 +30,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<string> face_coordinatesLines = new List<string>();
 
         #region ctor
-        public FacialRecognitionManager(IFacialIdentityHandler facialIdentityHandler, IImageDirectoryFinder imageDirectoryFinder)
+        public FacialRecognitionManager(IFacialIdentityHandler facialIdentityHandler, IImageDirectoriesFinder imageDirectoryFinder)
         {
             _imageDirectoryFinder = imageDirectoryFinder;
             _facialIdentityHandler = facialIdentityHandler;

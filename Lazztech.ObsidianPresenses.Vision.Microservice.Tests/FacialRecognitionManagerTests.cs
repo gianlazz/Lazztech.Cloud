@@ -29,7 +29,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void Test1_BasicSmokeTest()
         {
             //Arrange
-            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new ImageDirectoriesFinder());
+            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new ImageDirectoriesFinderMock());
 
             //Act
             rec.Process();
@@ -37,6 +37,34 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 
             //Assert
             Assert.NotNull(results);
+        }
+    }
+
+    class ImageDirectoriesFinderMock : IImageDirectoriesFinder
+    {
+        public string KnownImageDir { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string UnknownImageDir { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string KnownUnknownImagDir { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string NoPersonsFoundDir { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string[] GetAllKnownImageDirs()
+        {
+            return FacialRecognitionManagerTests.knownDirs;
+        }
+
+        public string[] GetAllKnownUnknownImageDirs()
+        {
+            return FacialRecognitionManagerTests.knownUnknownDirs;
+        }
+
+        public string[] GetAllNoPersonsFoundImageDirs()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string[] GetAllUnknownImageDirs()
+        {
+            return FacialRecognitionManagerTests.unknownDirs;
         }
     }
 

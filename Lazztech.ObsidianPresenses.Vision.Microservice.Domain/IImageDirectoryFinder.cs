@@ -1,6 +1,6 @@
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 {
-    public interface IImageDirectoryFinder
+    public interface IImageDirectoriesFinder
     {
         string KnownImageDir { get; set; } 
         string UnknownImageDir { get; set; }

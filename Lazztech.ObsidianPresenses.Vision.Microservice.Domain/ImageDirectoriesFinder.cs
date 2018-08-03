@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 {
-    public class ImageDirectoriesFinder : IImageDirectoryFinder
+    public class ImageDirectoriesFinder : IImageDirectoriesFinder
     {
         public string KnownImageDir { get; set; }
         public string UnknownImageDir { get; set; }
