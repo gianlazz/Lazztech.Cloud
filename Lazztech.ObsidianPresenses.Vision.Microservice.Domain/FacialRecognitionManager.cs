@@ -47,24 +47,24 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Results.AddRange(Unknown);
             Results.AddRange(KnownUnknown);
 
-             HandleIdentities();
+            HandleIdentities();
          }
 
         private void HandleIdentities()
         {
-             foreach (var line in face_recognitionLines)
-             {
-                 var imageDir = GetImageDir(line);
-                 var snapshot = Results.Where(x => x.ImageDir == imageDir).FirstOrDefault();
-                 if (snapshot == null)
-                    throw new Exception("No snapshot found by that image directory.");
-                 var status = SetIdentityOutcome(line);
-                 snapshot.Status = status;
-                 if (snapshot.Status == Snapshot.SnapshotStatus.known)
-                 {
-                     AssignIdentifiedPersons(snapshot, line);
-                 }
-             }
+            foreach (var line in face_recognitionLines)
+            {
+                var imageDir = GetImageDir(line);
+                var snapshot = Results.Where(x => x.ImageDir == imageDir).FirstOrDefault();
+                if (snapshot == null)
+                   throw new Exception("No snapshot found by that image directory.");
+                var status = SetIdentityOutcome(line);
+                snapshot.Status = status;
+                if (snapshot.Status == Snapshot.SnapshotStatus.known)
+                {
+                    AssignIdentifiedPersons(snapshot, line);
+                }
+            }
         }
 
         private void AssignIdentifiedPersons(Snapshot snapshot, string line)
