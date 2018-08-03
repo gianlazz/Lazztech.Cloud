@@ -122,13 +122,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             }
          }
 
-        //MOVE THIS TO IFileServices!!
-         private string GetFileNameFromDir(string dir)
-         {
-             throw new Exception("Move referenced responsability to IFileServices");
-             return dir.Substring(dir.LastIndexOf('/') + 1);
-         }
-
         private void InstantiateSnapshotsFromDirs()
         {
             if (_knownImageDirs.Count == 0)
@@ -143,7 +136,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 {
                     ImageDir = imageDir,
                     DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir).ToString(),
-                    ImageName = GetFileNameFromDir(imageDir)
+                    ImageName = _fileServices.GetFileNameFromDir(imageDir)
                 });
             }
 
@@ -158,7 +151,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 {
                     ImageDir = imageDir,
                     DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir).ToString(),
-                    ImageName = GetFileNameFromDir(imageDir)
+                    ImageName = _fileServices.GetFileNameFromDir(imageDir)
                 });
             }
 
@@ -173,7 +166,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 {
                     ImageDir = imageDir,
                     DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir).ToString(),
-                    ImageName = GetFileNameFromDir(imageDir)
+                    ImageName = _fileServices.GetFileNameFromDir(imageDir)
                 });
             }
         }
