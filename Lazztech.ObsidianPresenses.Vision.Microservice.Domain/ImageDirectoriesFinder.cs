@@ -5,12 +5,13 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public string KnownImageDir { get; set; }
         public string UnknownImageDir { get; set; }
         public string KnownUnknownImagDir { get; set; }
-        public string NoPersonsFoundDir { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public string NoPersonsFoundDir { get; set; }
 
-        public static string knownPath = @"/face/known/";
-        public static string unknownPath = @"/face/unknown/";
-        public static string knownUnknownPath = @"/face/known_unknown/";
-        public static string noPersonsFoundPath = @"/face/no_persons_found/";
+        private static string knownPath = @"/face/known/";
+        private static string unknownPath = @"/face/unknown/";
+        private static string knownUnknownPath = @"/face/known_unknown/";
+        private static string noPersonsFoundPath = @"/face/no_persons_found/";
+
         public ImageDirectoriesFinder()
         {
             KnownImageDir = knownPath;
