@@ -141,3 +141,5 @@ What is this:
 Failed to start debugger: "System.InvalidOperationException: Debug session already started.\n at 
 
 `cmd + shift + p` then reloading the window seems to have fixed this.
+
+Should I mock the snapshot.ImageDir setting? Also now I'm getting exceptions with the Snapshot.Status code. Things are definitly moving along now.

@@ -36,7 +36,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void Test1_BasicSmokeTest()
         {
             //Arrange
-            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new FileServices());
+            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new FileServicesMock());
 
             //Act
             rec.Process();
@@ -47,10 +47,23 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         }
     }
 
-    // class FileServicesMock : IFileServices 
-    // {
+    class FileServicesMock : IFileServices
+    {
+        public string[] GetAllImageDirs(string path)
+        {
+            return new string[] {};
+        }
 
-    // }
+        public DateTime GetCreationDateTime(string filePath)
+        {
+            return DateTime.Now;
+        }
+
+        public string GetFileNameFromDir(string dir)
+        {
+            return null;
+        }
+    }
 
     class FacialIdendtityHandlerMock : IFacialIdentityHandler
     {

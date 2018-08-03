@@ -59,8 +59,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             {
                 var imageDir = GetImageDir(line);
                 var snapshot = Results.Where(x => x.ImageDir == imageDir).FirstOrDefault();
-                if (snapshot == null)
-                   throw new Exception("No snapshot found by that image directory.");
+                // if (snapshot == null)
+                //    throw new Exception("No snapshot found by that image directory.");
                 var status = SetIdentityOutcome(line);
                 snapshot.Status = status;
                 if (snapshot.Status == Snapshot.SnapshotStatus.known)
