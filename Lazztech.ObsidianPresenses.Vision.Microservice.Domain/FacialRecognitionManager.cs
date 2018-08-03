@@ -43,7 +43,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             CollectAllImageDirs();
             InstantiateSnapshotsFromDirs();
             face_recognitionLines = _facialIdentityHandler.FaceRecognition();
-            FaceDetection();
+            //FaceDetection();
 
             Results.AddRange(Known);
             Results.AddRange(Unknown);

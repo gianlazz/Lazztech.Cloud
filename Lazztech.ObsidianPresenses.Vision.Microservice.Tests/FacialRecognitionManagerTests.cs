@@ -7,9 +7,16 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 {
     public class FacialRecognitionManagerTests
     {
-        public static string[] knownDirs = {"", ""};
-        public static string[] unknownDirs = {"", ""};
-        public static string[] knownUnknownDirs = {"", ""};
+        public static string[] knownDirs = {
+            "/face/known/Gian Lazzarini.jpg",
+            "/face/known/Scott Hanselman.jpeg"};
+        public static string[] unknownDirs = {
+            "/face/unknown/webcam.jpg",
+            "/face/unknown/images.jpeg",
+            "/face/unknown/2892.png",
+            "/face/unknown/Chad Peterson.jpg",
+            "/face/unknown/unnamed.jpg"};
+        public static string[] knownUnknownDirs = {};
 
         public static string face_recognitionLinesTestData = @"/face/unknown/0.jpeg,Gian Lazzarini
 /face/unknown/webcam.jpg,no_persons_found
