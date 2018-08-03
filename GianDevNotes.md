@@ -143,3 +143,9 @@ Failed to start debugger: "System.InvalidOperationException: Debug session alrea
 `cmd + shift + p` then reloading the window seems to have fixed this.
 
 Should I mock the snapshot.ImageDir setting? Also now I'm getting exceptions with the Snapshot.Status code. Things are definitly moving along now.
+
+Actually yeah I'm pretty close as I seem to have mocked all System.IO code with IFileServices now. Also if I comment out HandleIdentities() the basic non-null return value test passes.
+
+Does the code actually run like I expect it in the docker container thought? Also the thought of integration tests has crossed my mind again..
+
+Yes it works in the docker container! Now I have to get HandleIdentities() to work with the tests also I need to extract FaceDetection to it's own interface for the coordinates process. Then I can mock it and start testing the logic for instantiating the coordinates correctly from the process stdout.
