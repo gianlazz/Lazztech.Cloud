@@ -1,0 +1,54 @@
+
+var myPerson = new person() {id = Guid.NewGuid }
+
+PersonRepository.SavePerson(){
+    if(_db.People.Where(x => x.Id == myPerson.Id).Any())
+        myPerson.Id = Guid.NewGuid;
+}
+
+
+
+
+
+
+
+
+
+public void Process(){
+
+//Paralell for release build
+MainParalell();
+//Synchronous for DEBUG
+MainSynchronous();
+
+Persistence();
+}
+
+[Conditional("RELEASE")]
+private void MainParalell(){
+        Paralell.foreach{
+        Main()
+    }
+}
+
+[Conditional("DEBUG")]
+pivate void MainSynchronous(){
+    foereach(document in documents){
+        Main(document)
+    }
+}
+    
+    
+Main(){
+// Parsing logic
+
+}
+
+Persistence(){
+    foreach(result in ProcessedResults){
+        _repository.SaveProcessedResult(result);
+    }
+}
+
+
+

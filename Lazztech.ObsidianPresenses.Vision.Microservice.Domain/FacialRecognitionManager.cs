@@ -32,23 +32,14 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public FacialRecognitionManager(IFacialIdentityHandler facialIdentityHandler)
         {
             _facialIdentityHandler = facialIdentityHandler;
-            
             Results = new List<Snapshot>();
-
-            if (!Directory.Exists(knownPath))
-                Directory.CreateDirectory(knownPath);
-            if (!Directory.Exists(unknownPath))
-                Directory.CreateDirectory(unknownPath);
-            if (!Directory.Exists(knownUnkownPath))
-                Directory.CreateDirectory(knownUnkownPath);
-            if (!Directory.Exists(noPersonsFoundPath))
-                Directory.CreateDirectory(noPersonsFoundPath);
         }
         #endregion
         
         public void Process()
         {
-            CheckAllAssetsValid();
+            CollectAllImageDirs();
+            InstantiateSnapshotsFromDirs();
             face_recognitionLines = _facialIdentityHandler.FaceRecognition();
             FaceDetection();
 
@@ -57,15 +48,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Results.AddRange(KnownUnknown);
 
              HandleIdentities();
-            // HandleCoordinates();
          }
 
         private void HandleIdentities()
         {
-            /* LOOP THROUGH face_recognitionLines
-             * Assign image result to the respective snapshot object
-             */
-
              foreach (var line in face_recognitionLines)
              {
                  var imageDir = GetImageDir(line);
@@ -115,11 +101,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             return line.Split(',').Last();
         }
 
-        private void HandleCoordinates(string line)
-        {
-            throw new NotImplementedException();
-        }
-
          private void FaceDetection()
          {
             var procInfo = new ProcessStartInfo($"face_detection")
@@ -144,18 +125,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
              return dir.Substring(dir.LastIndexOf('/') + 1);
          }
 
-        private void CheckAllAssetsValid()
+        private void InstantiateSnapshotsFromDirs()
         {
-            //var filePaths = new List<string>(Directory.GetFiles(resultsPath));
-            _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpg")));
-            _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpeg")));
-            _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".png")));
-            _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpg")));
-            _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpeg")));
-            _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".png")));
-            _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".jpg")));
-            _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".jpeg")));
-            _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".png")));
             if (_knownImageDirs.Count == 0)
             {
                 Console.WriteLine("No known files found.");
@@ -165,7 +136,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             {
                 DateTime creation = File.GetCreationTime(imageDir);
                 DateTime modification = File.GetLastWriteTime(imageDir);
-                Known.Add(new Snapshot(){
+                Known.Add(new Snapshot()
+                {
                     ImageDir = imageDir,
                     DateTimeWhenCaptured = creation.ToString(),
                     ImageName = GetFileNameFromDir(imageDir)
@@ -181,7 +153,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             {
                 DateTime creation = File.GetCreationTime(imageDir);
                 DateTime modification = File.GetLastWriteTime(imageDir);
-                Unknown.Add(new Snapshot(){
+                Unknown.Add(new Snapshot()
+                {
                     ImageDir = imageDir,
                     DateTimeWhenCaptured = creation.ToString(),
                     ImageName = GetFileNameFromDir(imageDir)
@@ -197,12 +170,26 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             {
                 DateTime creation = File.GetCreationTime(imageDir);
                 DateTime modification = File.GetLastWriteTime(imageDir);
-                KnownUnknown.Add(new Snapshot(){
+                KnownUnknown.Add(new Snapshot()
+                {
                     ImageDir = imageDir,
                     DateTimeWhenCaptured = creation.ToString(),
                     ImageName = GetFileNameFromDir(imageDir)
                 });
             }
+        }
+
+        private void CollectAllImageDirs()
+        {
+            _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpg")));
+            _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpeg")));
+            _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".png")));
+            _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpg")));
+            _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpeg")));
+            _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".png")));
+            _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".jpg")));
+            _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".jpeg")));
+            _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".png")));
         }
     }
 }

@@ -114,22 +114,31 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-01T22:30:19.625Z",
-      "id": "20180801223019_17197292_18e8c0eb77a2434e8b3ec72a5102cfa6",
+      "creation_time": "2018-07-31T02:31:21.042Z",
+      "id": "20180731023121_515614061_e5e9f6c67d7c08a4a59014e8c2dd1b03",
       "references": [],
-      "title": "FacialRecognitionManager Unit test fails because: \"Access to the path '/face/known/' is denied\" make sure this is mocked."
+      "title": "Unit Test Vision FacialRecognitionManager.cs"
     },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-31T02:31:21.042Z",
-      "id": "20180731023121_515614061_e5e9f6c67d7c08a4a59014e8c2dd1b03",
+      "creation_time": "2018-08-03T04:42:07.352Z",
+      "id": "20180803044207_98861785_ba243820cf9c8cc1a0b1be8b873d0595",
       "references": [],
-      "title": "Unit Test Vision FacialRecognitionManager.cs"
+      "title": "Decouple FacialRecognitionManager.CheckAllAssets(), move those responsabilities into mockable interfaces"
     }
   ],
   "testing": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-01T22:30:19.625Z",
+      "id": "20180801223019_17197292_18e8c0eb77a2434e8b3ec72a5102cfa6",
+      "references": [],
+      "title": "FacialRecognitionManager Unit test fails because: \"Access to the path '/face/known/' is denied\" make sure this is mocked."
+    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
