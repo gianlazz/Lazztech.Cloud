@@ -98,9 +98,7 @@
       "id": "20180801220407_306904015_b4bf3c8211df66cde486c926b0131c69",
       "references": [],
       "title": "Transition from NUnit to xUnit for testing framework"
-    }
-  ],
-  "in-progress": [
+    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -109,6 +107,17 @@
       "id": "20180801225122_138298350_322eba6b3218d3f06645f5eb78168c45",
       "references": [],
       "title": "configure vscode test explorer with xUnit project layer"
+    }
+  ],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-03T07:03:22.807Z",
+      "id": "20180803070322_225937349_a8e5503fcf56f7ac1c7614abb7c43d1f",
+      "references": [],
+      "title": "Make FacialRecognitionManager.InstantiateSnapshotsFromDirs() testable as it has code with System.IO"
     },
     {
       "assignedTo": {
@@ -118,15 +127,6 @@
       "id": "20180731023121_515614061_e5e9f6c67d7c08a4a59014e8c2dd1b03",
       "references": [],
       "title": "Unit Test Vision FacialRecognitionManager.cs"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-03T07:03:22.807Z",
-      "id": "20180803070322_225937349_a8e5503fcf56f7ac1c7614abb7c43d1f",
-      "references": [],
-      "title": "Make FacialRecognitionManager.InstantiateSnapshotsFromDirs() testable as it has code with System.IO"
     }
   ],
   "testing": [

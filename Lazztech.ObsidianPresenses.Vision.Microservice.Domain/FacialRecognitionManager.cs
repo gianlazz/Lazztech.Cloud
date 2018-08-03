@@ -22,7 +22,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
         public List<Snapshot> KnownUnknown = new List<Snapshot>();
-        private IImageDirectoriesFinder _imageDirectoryFinder;
+        private IFileServices _fileServices;
         private IFacialIdentityHandler _facialIdentityHandler;
 
         public List<Snapshot> Results { get; set; }    
@@ -30,9 +30,9 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<string> face_coordinatesLines = new List<string>();
 
         #region ctor
-        public FacialRecognitionManager(IFacialIdentityHandler facialIdentityHandler, IImageDirectoriesFinder imageDirectoryFinder)
+        public FacialRecognitionManager(IFacialIdentityHandler facialIdentityHandler, IFileServices fileServices)
         {
-            _imageDirectoryFinder = imageDirectoryFinder;
+            _fileServices = fileServices;
             _facialIdentityHandler = facialIdentityHandler;
             Results = new List<Snapshot>();
         }
@@ -122,8 +122,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             }
          }
 
+        //MOVE THIS TO IFileServices!!
          private string GetFileNameFromDir(string dir)
          {
+             throw new Exception("Move referenced responsability to IFileServices");
              return dir.Substring(dir.LastIndexOf('/') + 1);
          }
 
@@ -136,6 +138,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Console.WriteLine($"{_knownImageDirs.Count} known images.");
             foreach (var imageDir in _knownImageDirs)
             {
+                //MOVE THIS TO IFileServices!!
+                throw new Exception("Move referenced Creation datetime responsability to IFIleServices");
                 DateTime creation = File.GetCreationTime(imageDir);
                 Known.Add(new Snapshot()
                 {
@@ -180,9 +184,9 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
         private void CollectAllImageDirs()
         {
-            _knownImageDirs = new List<string>(_imageDirectoryFinder.GetAllKnownImageDirs());
-            _unknownImageDirs = new List<string>(_imageDirectoryFinder.GetAllUnknownImageDirs());
-            _knownUnknownImageDirs = new List<string>(_imageDirectoryFinder.GetAllKnownUnknownImageDirs());
+            _knownImageDirs = new List<string>(_fileServices.GetAllImageDirs(knownPath));
+            _unknownImageDirs = new List<string>(_fileServices.GetAllImageDirs(unknownPath));
+            _knownUnknownImageDirs = new List<string>(_fileServices.GetAllImageDirs(knownUnkownPath));
         }
     }
 }

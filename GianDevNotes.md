@@ -132,3 +132,6 @@ The next remaining testability issue is the InstantiateSnapshotsFromDirs() metho
 
 ## august 3, 2018
 Maybe I should just make an IFileServices that can be mocked...
+Got the test explorer working today with xUnit project via workspace settings.
+
+I'm giving IFileServices the responsabilities that IImageDirectoriesFinder had and removing IImageDirectoriesFinder.
