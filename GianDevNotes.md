@@ -127,3 +127,5 @@ I need a file directory finding interface for mocking.
 God-damn, making this testable seems like it's quadrupaling the amount of code...
 
 I think I need to put everything that uses the System.IO namespace in an interface that would be mocked since all of that will likely not matche the runtime enviroment in the docker container.
+
+The next remaining testability issue is the InstantiateSnapshotsFromDirs() method setting the Snapshot.DateTimeWhenCaptured = File.GetCreationTime(imageDir) which will need to be mocked as it's trying to reference the externality through System.IO which will most likely only exist during run time in the docker container.

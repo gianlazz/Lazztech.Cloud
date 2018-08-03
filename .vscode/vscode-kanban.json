@@ -123,13 +123,22 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-03T07:03:22.807Z",
+      "id": "20180803070322_225937349_a8e5503fcf56f7ac1c7614abb7c43d1f",
+      "references": [],
+      "title": "Make FacialRecognitionManager.InstantiateSnapshotsFromDirs() testable as it has code with System.IO"
+    }
+  ],
+  "testing": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-03T04:42:07.352Z",
       "id": "20180803044207_98861785_ba243820cf9c8cc1a0b1be8b873d0595",
       "references": [],
       "title": "Decouple FacialRecognitionManager.CheckAllAssets(), move those responsabilities into mockable interfaces"
-    }
-  ],
-  "testing": [
+    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"

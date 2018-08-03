@@ -137,7 +137,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             foreach (var imageDir in _knownImageDirs)
             {
                 DateTime creation = File.GetCreationTime(imageDir);
-                DateTime modification = File.GetLastWriteTime(imageDir);
                 Known.Add(new Snapshot()
                 {
                     ImageDir = imageDir,
@@ -154,7 +153,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             foreach (var imageDir in _unknownImageDirs)
             {
                 DateTime creation = File.GetCreationTime(imageDir);
-                DateTime modification = File.GetLastWriteTime(imageDir);
                 Unknown.Add(new Snapshot()
                 {
                     ImageDir = imageDir,
@@ -171,7 +169,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             foreach (var imageDir in _knownUnknownImageDirs)
             {
                 DateTime creation = File.GetCreationTime(imageDir);
-                DateTime modification = File.GetLastWriteTime(imageDir);
                 KnownUnknown.Add(new Snapshot()
                 {
                     ImageDir = imageDir,
@@ -183,19 +180,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
         private void CollectAllImageDirs()
         {
-            // _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpg")));
-            // _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".jpeg")));
-            // _knownImageDirs.AddRange(Directory.GetFiles(knownPath).Where(x => x.EndsWith(".png")));
             _knownImageDirs = new List<string>(_imageDirectoryFinder.GetAllKnownImageDirs());
-
-            // _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpg")));
-            // _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".jpeg")));
-            // _unknownImageDirs.AddRange(Directory.GetFiles(unknownPath).Where(x => x.EndsWith(".png")));
             _unknownImageDirs = new List<string>(_imageDirectoryFinder.GetAllUnknownImageDirs());
-
-            // _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".jpg")));
-            // _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".jpeg")));
-            // _knownUnknownImageDirs.AddRange(Directory.GetFiles(knownUnkownPath).Where(x => x.EndsWith(".png")));
             _knownUnknownImageDirs = new List<string>(_imageDirectoryFinder.GetAllKnownUnknownImageDirs());
         }
     }
