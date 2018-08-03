@@ -7,6 +7,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 {
     public class FacialRecognitionManagerTests
     {
+        public static string[] knownDirs = {"", ""};
+        public static string[] unknownDirs = {"", ""};
+        public static string[] knownUnknownDirs = {"", ""};
+
         public static string face_recognitionLinesTestData = @"/face/unknown/0.jpeg,Gian Lazzarini
 /face/unknown/webcam.jpg,no_persons_found
 /face/unknown/images.jpeg,Gian Lazzarini
@@ -22,7 +26,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 /face/unknown/unnamed.jpg,156,610,527,238";
 
         [Fact]
-        public void Test1()
+        public void Test1_BasicSmokeTest()
         {
             //Arrange
             var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock());

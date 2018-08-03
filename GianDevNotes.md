@@ -122,3 +122,6 @@ I suppose this method really is doing more than one responsability it'self too. 
 I've moved the first responsability to a method called .CollectAllImageDirs(); and the second to a method called .InstantiateSnapshotsFromDirs();
 
 Oh, well the xUnit debugging actually works alright in vscode as is so I'll continue with that. I looks like if I comment out the issues related to directories then it still throws an exception due to not having valid Snapshots constructed. This issue is in HandleIdentities. Oh gotcha it's because the InstantiateSnapshotsFromDirs needs to probably happen in the interfaces as well... It's looking for valid Snapshots that should already exist at this point however don't.
+
+I need a file directory finding interface for mocking.
+God-damn, making this testable seems like it's quadrupaling the amount of code...
