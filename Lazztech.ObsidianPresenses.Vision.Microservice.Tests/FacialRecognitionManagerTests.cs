@@ -36,7 +36,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void Test1_BasicSmokeTest()
         {
             //Arrange
-            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new FileServicesMock());
+            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new FaceDetectionProcess(), new FileServicesMock());
 
             //Act
             rec.Process();
@@ -65,7 +65,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         }
     }
 
-    class FacialIdendtityHandlerMock : IFacialIdentityHandler
+    class FacialIdendtityHandlerMock : Iface_recognition
     {
         public List<string> FaceRecognition()
         {

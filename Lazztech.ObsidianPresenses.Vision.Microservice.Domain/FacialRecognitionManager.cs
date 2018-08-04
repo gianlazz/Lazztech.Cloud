@@ -23,17 +23,22 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<Snapshot> Unknown = new List<Snapshot>();
         public List<Snapshot> KnownUnknown = new List<Snapshot>();
         private IFileServices _fileServices;
-        private IFacialIdentityHandler _facialIdentityHandler;
+        private Iface_detection _face_detection;
+        private Iface_recognition _face_recognition;
 
         public List<Snapshot> Results { get; set; }    
         public List<string> face_recognitionLines = new List<string>();
-        public List<string> face_coordinatesLines = new List<string>();
+        public List<string> face_detectionLines = new List<string>();
 
         #region ctor
-        public FacialRecognitionManager(IFacialIdentityHandler facialIdentityHandler, IFileServices fileServices)
+        public FacialRecognitionManager(
+            Iface_recognition face_recognition, 
+            Iface_detection face_detection, 
+            IFileServices fileServices)
         {
+            _face_detection = face_detection;
+            _face_recognition = face_recognition;
             _fileServices = fileServices;
-            _facialIdentityHandler = facialIdentityHandler;
             Results = new List<Snapshot>();
         }
         #endregion
@@ -43,8 +48,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             CollectAllImageDirs();
             InstantiateSnapshotsFromDirs();
             //SetSnapshotsCreationDateTime();
-            face_recognitionLines = _facialIdentityHandler.FaceRecognition();
-            //FaceDetection();
+            face_recognitionLines = _face_recognition.FaceRecognition();
+            face_detectionLines = _face_detection.FaceDetection();
 
             Results.AddRange(Known);
             Results.AddRange(Unknown);
@@ -103,25 +108,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         {
             return line.Split(',').Last();
         }
-
-         private void FaceDetection()
-         {
-            var procInfo = new ProcessStartInfo($"face_detection")
-            { 
-                RedirectStandardOutput = true,
-                Arguments = $"{unknownPath}"
-            };
-            var proc = new Process { StartInfo = procInfo };
-
-            proc.Start();
-            while (proc.StandardOutput.EndOfStream == false)
-            {
-                var line = proc.StandardOutput.ReadLine();
-                if (string.IsNullOrEmpty(line) == false)
-                    face_coordinatesLines.Add(line);
-                Console.WriteLine(line);
-            }
-         }
 
         private void InstantiateSnapshotsFromDirs()
         {

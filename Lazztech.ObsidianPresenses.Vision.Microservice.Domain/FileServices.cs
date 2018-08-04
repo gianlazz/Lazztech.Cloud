@@ -10,8 +10,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public FileServices()
         {
         }
-
-        //THIS SHOULD REPLACE IImageDirectoriesFinder
+        
         public string[] GetAllImageDirs(string path)
         {
             var result = new List<string>();
