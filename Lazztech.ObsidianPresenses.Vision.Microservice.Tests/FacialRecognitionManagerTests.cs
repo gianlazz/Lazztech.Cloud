@@ -14,9 +14,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public static string noPersonsFoundPath = @"/face/no_persons_found/";
 
         public static string[] knownDirs = {
-            "/face/known/Gian Lazzarini.jpg",
-            "/face/known/Scott Hanselman.jpeg"};
+            "/face/known/Gian Lazzarini.jpeg",
+            "/face/known/Scott Hanselman.png"};
         public static string[] unknownDirs = {
+            "/face/unknown/0.jpeg",
             "/face/unknown/webcam.jpg",
             "/face/unknown/images.jpeg",
             "/face/unknown/2892.png",
@@ -84,18 +85,20 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         {
             if (path.Contains("/known/"))
             {
-                return new string[] {};
+                return FacialRecognitionManagerTests.knownDirs;
             } 
             else if (path.Contains("/unknown/"))
             {
-                return new string[] {};
+                return FacialRecognitionManagerTests.unknownDirs;
             }
             else if (path.Contains("/known_unknown/"))
             {
+                //throw new Exception("No valid mock prepared yet.");
                 return new string[] {};
             }
-            else if (path.Contains("/"))
+            else if (path.Contains("/no_persons_found/"))
             {
+                throw new Exception("No valid mock prepared yet.");
                 return new string[] {};
             }
             else
@@ -107,12 +110,13 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 
         public DateTime GetCreationDateTime(string filePath)
         {
+            //MAY NEED TO CHANGE IF I START INCORPERATING LOGIC FROM THIS
             return DateTime.Now;
         }
 
         public string GetFileNameFromDir(string dir)
         {
-            return null;
+            return dir.Substring(dir.LastIndexOf('/') + 1);
         }
     }
     #endregion
