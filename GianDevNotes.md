@@ -130,7 +130,7 @@ I think I need to put everything that uses the System.IO namespace in an interfa
 
 The next remaining testability issue is the InstantiateSnapshotsFromDirs() method setting the Snapshot.DateTimeWhenCaptured = File.GetCreationTime(imageDir) which will need to be mocked as it's trying to reference the externality through System.IO which will most likely only exist during run time in the docker container.
 
-## august 3, 2018
+## August Friday 3, 2018
 Maybe I should just make an IFileServices that can be mocked...
 Got the test explorer working today with xUnit project via workspace settings.
 
@@ -149,3 +149,8 @@ Actually yeah I'm pretty close as I seem to have mocked all System.IO code with 
 Does the code actually run like I expect it in the docker container thought? Also the thought of integration tests has crossed my mind again..
 
 Yes it works in the docker container! Now I have to get HandleIdentities() to work with the tests also I need to extract FaceDetection to it's own interface for the coordinates process. Then I can mock it and start testing the logic for instantiating the coordinates correctly from the process stdout.
+
+#### Achieved unit testablility! ~9:00PM on 108th commit id #81379b50
+- [x] Passed first unit test against FacialRecognitionManager with it now fully testable
+
+I would also like to look into logging my hours some how in a serializable way in the repo.

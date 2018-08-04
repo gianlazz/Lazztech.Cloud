@@ -4,6 +4,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-01T22:51:22.159Z",
+      "id": "20180801225122_138298350_322eba6b3218d3f06645f5eb78168c45",
+      "references": [],
+      "title": "configure vscode test explorer with xUnit project layer"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-28T23:24:00.558Z",
       "id": "20180728232400_530531198_ff30332c2d7d45cc4c4b257c94787f0a",
       "references": [],
@@ -26,6 +35,15 @@
       "id": "20180728212951_1250467_f19be631783992bb42e585403589c8b6",
       "references": [],
       "title": "face_detection for getting the coordinates into the snapshot"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-01T22:30:19.625Z",
+      "id": "20180801223019_17197292_18e8c0eb77a2434e8b3ec72a5102cfa6",
+      "references": [],
+      "title": "FacialRecognitionManager Unit test fails because: \"Access to the path '/face/known/' is denied\" make sure this is mocked."
     },
     {
       "assignedTo": {
@@ -76,6 +94,24 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-01T04:38:44.698Z",
+      "id": "20180801043844_125736006_4ad1ed7c1716f890b2261f25358c9817",
+      "references": [],
+      "title": "Make FacialRecognitionManager testable"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-03T07:03:22.807Z",
+      "id": "20180803070322_225937349_a8e5503fcf56f7ac1c7614abb7c43d1f",
+      "references": [],
+      "title": "Make FacialRecognitionManager.InstantiateSnapshotsFromDirs() testable as it has code with System.IO"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-31T01:45:16.198Z",
       "id": "20180731014516_198979173_e29003918c6f061ab35310766b86256d",
       "references": [],
@@ -103,22 +139,13 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-01T22:51:22.159Z",
-      "id": "20180801225122_138298350_322eba6b3218d3f06645f5eb78168c45",
+      "creation_time": "2018-08-03T04:42:07.352Z",
+      "id": "20180803044207_98861785_ba243820cf9c8cc1a0b1be8b873d0595",
       "references": [],
-      "title": "configure vscode test explorer with xUnit project layer"
+      "title": "Decouple FacialRecognitionManager.CheckAllAssets(), move those responsabilities into mockable interfaces"
     }
   ],
   "in-progress": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-03T07:03:22.807Z",
-      "id": "20180803070322_225937349_a8e5503fcf56f7ac1c7614abb7c43d1f",
-      "references": [],
-      "title": "Make FacialRecognitionManager.InstantiateSnapshotsFromDirs() testable as it has code with System.IO"
-    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -129,35 +156,7 @@
       "title": "Unit Test Vision FacialRecognitionManager.cs"
     }
   ],
-  "testing": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-03T04:42:07.352Z",
-      "id": "20180803044207_98861785_ba243820cf9c8cc1a0b1be8b873d0595",
-      "references": [],
-      "title": "Decouple FacialRecognitionManager.CheckAllAssets(), move those responsabilities into mockable interfaces"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-01T22:30:19.625Z",
-      "id": "20180801223019_17197292_18e8c0eb77a2434e8b3ec72a5102cfa6",
-      "references": [],
-      "title": "FacialRecognitionManager Unit test fails because: \"Access to the path '/face/known/' is denied\" make sure this is mocked."
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-01T04:38:44.698Z",
-      "id": "20180801043844_125736006_4ad1ed7c1716f890b2261f25358c9817",
-      "references": [],
-      "title": "Make FacialRecognitionManager testable"
-    }
-  ],
+  "testing": [],
   "todo": [
     {
       "assignedTo": {
