@@ -154,3 +154,10 @@ Yes it works in the docker container! Now I have to get HandleIdentities() to wo
 - [x] Passed first unit test against FacialRecognitionManager with it now fully testable
 
 I would also like to look into logging my hours some how in a serializable way in the repo.
+
+## August Saturday, 4 2018
+This tool looks perfect for tracking my time programming. This will go nicely with these markdown files and the .json based kanban board. Hopefully it's json based so I can keep it in the repo.
+https://github.com/wakatime/vscode-wakatime
+https://wakatime.com/vs-code-time-tracking
+
+It could also be nice to visualize statistics from the git activity? And also I should look into the .net test explorer code coverage output and see if that's viewable too?
