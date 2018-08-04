@@ -7,6 +7,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 {
     public class FacialRecognitionManagerTests
     {
+        #region test data
+        public static string knownPath = @"/face/known/";
+        public static string unknownPath = @"/face/unknown/";
+        public static string knownUnkownPath = @"/face/known_unknown/";
+        public static string noPersonsFoundPath = @"/face/no_persons_found/";
+
         public static string[] knownDirs = {
             "/face/known/Gian Lazzarini.jpg",
             "/face/known/Scott Hanselman.jpeg"};
@@ -31,6 +37,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 /face/unknown/2892.png,136,394,394,136
 /face/unknown/Chad Peterson.jpg,113,328,328,113
 /face/unknown/unnamed.jpg,156,610,527,238";
+        #endregion
 
         [Fact]
         public void Test1_BasicSmokeTest()
@@ -45,6 +52,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             Assert.NotNull(results);
         }
     }
+
+    #region interface mocks
     class FaceRecognitionProcessMock : Iface_recognition
     {
         public List<string> FaceRecognition()
@@ -71,7 +80,27 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
     {
         public string[] GetAllImageDirs(string path)
         {
-            return new string[] {};
+            if (path.Contains("/known/"))
+            {
+                return new string[] {};
+            } 
+            else if (path.Contains("/unknown/"))
+            {
+                return new string[] {};
+            }
+            else if (path.Contains("/known_unknown/"))
+            {
+                return new string[] {};
+            }
+            else if (path.Contains("/"))
+            {
+                return new string[] {};
+            }
+            else
+            {
+                throw new Exception("No valid path mock detected.");
+                return new string[] {};
+            }
         }
 
         public DateTime GetCreationDateTime(string filePath)
@@ -84,4 +113,5 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             return null;
         }
     }
+    #endregion
 }
