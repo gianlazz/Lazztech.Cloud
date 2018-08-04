@@ -25,7 +25,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 /face/unknown/Chad Peterson.jpg,unknown_person
 /face/unknown/unnamed.jpg,Gian Lazzarini";
 
-        public static string face_coordinatesLinesTestData = @"/face/unknown/0.jpeg,29,133,101,61
+        public static string face_detectionLinesTestData = @"/face/unknown/0.jpeg,29,133,101,61
 /face/unknown/webcam.jpg,185,400,400,185
 /face/unknown/images.jpeg,54,181,158,77
 /face/unknown/2892.png,136,394,394,136
@@ -36,13 +36,34 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void Test1_BasicSmokeTest()
         {
             //Arrange
-            var recognition = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new FaceDetectionProcess(), new FileServicesMock());
+            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
 
             //Act
             var results = recognition.Process();
 
             //Assert
             Assert.NotNull(results);
+        }
+    }
+    class FaceRecognitionProcessMock : Iface_recognition
+    {
+        public List<string> FaceRecognition()
+        {
+            string[] lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
+                new[] { Environment.NewLine },
+                StringSplitOptions.None);
+            return new List<string>(lines);
+        }
+    }
+
+    class FaceDetectionProcessMock : Iface_detection
+    {
+        public List<string> FaceDetection()
+        {
+            string[] lines = FacialRecognitionManagerTests.face_detectionLinesTestData.Split(
+                new[] { Environment.NewLine },
+                StringSplitOptions.None);
+            return new List<string>(lines);
         }
     }
 
@@ -61,17 +82,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public string GetFileNameFromDir(string dir)
         {
             return null;
-        }
-    }
-
-    class FacialIdendtityHandlerMock : Iface_recognition
-    {
-        public List<string> FaceRecognition()
-        {
-            string[] lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
-                new[] { Environment.NewLine },
-                StringSplitOptions.None);
-            return new List<string>(lines);
         }
     }
 }
