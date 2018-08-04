@@ -8,7 +8,9 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
     {
         public List<string> FaceRecognition()
         {
-             var results = new List<string>();
+            var results = new List<string>();
+
+            var x = Environment.ProcessorCount;
 
             var procInfo = new ProcessStartInfo($"face_recognition")
             { 
