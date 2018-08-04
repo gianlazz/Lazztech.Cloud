@@ -169,8 +169,16 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         private void CollectAllImageDirs()
         {
             _knownImageDirs = new List<string>(_fileServices.GetAllImageDirs(knownPath));
+            System.Console.WriteLine("_knownImageDirs");
+            _knownImageDirs.ForEach(x => System.Console.WriteLine(x));
+
             _unknownImageDirs = new List<string>(_fileServices.GetAllImageDirs(unknownPath));
+            System.Console.WriteLine("_unknownImageDirs");
+            _unknownImageDirs.ForEach(x => System.Console.WriteLine(x));
+
             _knownUnknownImageDirs = new List<string>(_fileServices.GetAllImageDirs(knownUnkownPath));
+            System.Console.WriteLine("_knownUnknownImageDirs");
+            _knownUnknownImageDirs.ForEach(x => System.Console.WriteLine(x));
         }
     }
 }

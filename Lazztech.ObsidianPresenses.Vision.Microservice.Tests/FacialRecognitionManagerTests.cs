@@ -39,6 +39,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 /face/unknown/unnamed.jpg,156,610,527,238";
         #endregion
 
+        #region test cases
         [Fact]
         public void Test1_BasicSmokeTest()
         {
@@ -51,6 +52,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             //Assert
             Assert.NotNull(results);
         }
+        #endregion
     }
 
     #region interface mocks
