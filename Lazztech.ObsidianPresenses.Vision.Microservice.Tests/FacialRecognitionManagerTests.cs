@@ -36,11 +36,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void Test1_BasicSmokeTest()
         {
             //Arrange
-            var rec = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new FaceDetectionProcess(), new FileServicesMock());
+            var recognition = new FacialRecognitionManager(new FacialIdendtityHandlerMock(), new FaceDetectionProcess(), new FileServicesMock());
 
             //Act
-            rec.Process();
-            var results = rec.Results;
+            var results = recognition.Process();
 
             //Assert
             Assert.NotNull(results);

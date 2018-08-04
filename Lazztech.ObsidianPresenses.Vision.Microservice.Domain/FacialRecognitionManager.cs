@@ -10,6 +10,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
     public class FacialRecognitionManager : IFacialRecognitionManager
     {
         string binaryPath = System.Reflection.Assembly.GetEntryAssembly().Location;
+        #region properties
         public static string knownPath = @"/face/known/";
         public static string unknownPath = @"/face/unknown/";
         public static string knownUnkownPath = @"/face/known_unknown/";
@@ -22,13 +23,17 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
         public List<Snapshot> KnownUnknown = new List<Snapshot>();
-        private IFileServices _fileServices;
-        private Iface_detection _face_detection;
-        private Iface_recognition _face_recognition;
 
         public List<Snapshot> Results { get; set; }    
         public List<string> face_recognitionLines = new List<string>();
         public List<string> face_detectionLines = new List<string>();
+        #endregion
+
+        #region services fields
+        private IFileServices _fileServices;
+        private Iface_detection _face_detection;
+        private Iface_recognition _face_recognition;
+        #endregion
 
         #region ctor
         public FacialRecognitionManager(
@@ -43,7 +48,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         }
         #endregion
         
-        public void Process()
+        public List<Snapshot> Process()
         {
             CollectAllImageDirs();
             InstantiateSnapshotsFromDirs();
@@ -56,6 +61,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Results.AddRange(KnownUnknown);
 
             HandleIdentities();
+
+            return Results;
          }
 
         private void HandleIdentities()
@@ -106,6 +113,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
         private string GetIdentifiedName(string line)
         {
+            //THIS COULD BE MORE COMPLEX IF THERE'S MORE THAN ONE NAME
             return line.Split(',').Last();
         }
 
