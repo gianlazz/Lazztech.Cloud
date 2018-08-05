@@ -2,16 +2,7 @@
 {
     public class Vertice
     {
-        public float x
-        {
-            get;
-            set;
-        }
-
-        public float y
-        {
-            get;
-            set;
-        }
+        public float x { get; set; }
+        public float y { get; set; }
     }
 }

@@ -7,6 +7,5 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models
         Likely,
         Unlikely,
         Very_Unlikely
-
     }
 }
