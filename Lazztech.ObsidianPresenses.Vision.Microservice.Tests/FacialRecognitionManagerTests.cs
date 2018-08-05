@@ -128,7 +128,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var giansFaceBoundingBox = gian.FaceBoundingBox;
 
             //Assert
-            Assert.True(gian.FaceBoundingBox == arrangedBoundingBox);
+            Assert.Equal(gian.FaceBoundingBox, arrangedBoundingBox);
         }
         #endregion
     }

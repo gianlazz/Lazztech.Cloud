@@ -239,3 +239,7 @@ vscode shortcut to move through tabs:
 `cmd + option + Right or Left`
 or
 `ctrl + [number of tab like 1, 2, or 3 etc.]`
+
+Wtf I passed the test then ran it again and now it's saying it fails though the output looks passing...
+[xUnit.net 00:00:00.6506820]       Expected: FaceBoundingBox { LeftTopCoordinate = PixelCoordinateVertex { x = 54, y = 181 }, RightBottomCoordinate = PixelCoordinateVertex { x = 158, y = 77 } }
+[xUnit.net 00:00:00.6507420]       Actual:   FaceBoundingBox { LeftTopCoordinate = PixelCoordinateVertex { x = 54, y = 181 }, RightBottomCoordinate = PixelCoordinateVertex { x = 158, y = 77 } }
