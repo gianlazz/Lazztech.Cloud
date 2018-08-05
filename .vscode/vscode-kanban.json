@@ -121,6 +121,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-05T05:42:22.935Z",
+      "id": "20180805054222_422806226_02e14ad66b529a9c4c8d5982a0e1a61c",
+      "references": [],
+      "title": "Remove return carriage \\r from Person.Name property from stdout"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-31T01:45:16.198Z",
       "id": "20180731014516_198979173_e29003918c6f061ab35310766b86256d",
       "references": [],
@@ -157,43 +166,13 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-05T05:42:22.935Z",
-      "id": "20180805054222_422806226_02e14ad66b529a9c4c8d5982a0e1a61c",
-      "references": [],
-      "title": "Remove return carriage \\r from Person.Name property from stdout"
-    }
-  ],
-  "in-progress": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
       "creation_time": "2018-07-31T02:34:48.772Z",
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
-      "title": "Unit Test(TDD)HandleCoordinates(); Set Snapshot.Persons FaceBox with the stdout from face_coordinates parsed out"
+      "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
     }
   ],
-  "testing": [],
-  "todo": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T22:36:18.639Z",
-      "id": "20180728223618_22697568_6d25876cab4536346e89b048b9a0540a",
-      "references": [],
-      "title": "Categorize unknown_person in /known_unknown/ directory"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T21:30:35.652Z",
-      "id": "20180728213035_385423038_ec231cc4c1f60e6afb571f9eb16bc414",
-      "references": [],
-      "title": "check in motion ip cam .config into repo"
-    },
+  "in-progress": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -204,10 +183,34 @@
       "title": "Get docker-compose.dscroj running in vscode"
     },
     {
-      "creation_time": "2018-07-29T18:56:47.394Z",
-      "id": "20180729185647_378173172_a593af41d95a8aba56c34dfe5738e09f",
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-05T21:00:42.180Z",
+      "id": "20180805210042_150493196_125f8f09f53b665ce94b34f5be1e6caa",
       "references": [],
-      "title": "loop through string array of image extension names when looking through dirs"
+      "title": "Solve why there was an exception in setting FaceBoundingBox in docker but not the tests."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-05T21:01:14.930Z",
+      "id": "20180805210114_322815295_c7776fffe8191e1cc3721f228bbb0054",
+      "references": [],
+      "title": "Insure that test coverage for the facebounding box instantiation exception in docker is reflected in the unit tests"
+    }
+  ],
+  "testing": [],
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T21:30:35.652Z",
+      "id": "20180728213035_385423038_ec231cc4c1f60e6afb571f9eb16bc414",
+      "references": [],
+      "title": "check in motion ip cam .config into repo"
     },
     {
       "creation_time": "2018-07-29T18:55:38.806Z",

@@ -70,12 +70,17 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         private void HandleBoundingBoxes()
         {
             var lines = face_detectionLines;
+            // var snaps = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
+            // var snapsWithPeople = snaps.Where(x => x.People.Any()).ToList();
+
+            //FOR DEBUGGING DOCKER RUN TIME EXCEPTION VS UNIT TEST
             var snapsWithPeople = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
+
             foreach (var line in lines)
             {
                 var imageDirFromLine = line.Split(',')[0];
                 var imageName = _fileServices.GetFileNameFromDir(imageDirFromLine); 
-                if (snapsWithPeople.Where(x => x.ImageName == imageName).ToList() != null)
+                if (snapsWithPeople.Where(x => x.ImageName == imageName).ToList().Any())
                 {
                     var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
                     var bb = ExtractBoundingBox(line);

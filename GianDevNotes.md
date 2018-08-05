@@ -264,3 +264,31 @@ Hmm maybe I should make the FaceBoundingBox a struct? Sure, why not. Seems like 
 Test is passing however it's throwing an exception when actually run in the docker-compose project.
 
 Hmm I think it's an issue with looking at the snapshots being created from the images in the known/ dir that don't have people? Idk why but I need to identify why any would not have people and make sure it's not something I'm looking for to assign bounding boxes against as it will throw an exception. Also I still don't know why the unit test isn't throwing an exception...
+
+Got it working in the docker-compose and outputing the snapshots with the coordinates on the people populated properly. I also have all of the tests passing too however it's concerning that the tests didn't reflect the exception being thrown when actually running the docker-compose project... Also I think it's time to configure the docker compose with vscode to stop using vs4mac.
+
+This throws an exception in the docker runtime however passes all of the tests
+```
+        private void HandleBoundingBoxes()
+        {
+            var lines = face_detectionLines;
+            // var snaps = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
+            // var snapsWithPeople = snaps.Where(x => x.People.Any()).ToList();
+
+            //FOR DEBUGGING DOCKER RUN TIME EXCEPTION VS UNIT TEST
+            var snapsWithPeople = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
+```
+
+This also passes all of the tests however fixes the exception in the docker runtime.
+```
+        private void HandleBoundingBoxes()
+        {
+            var lines = face_detectionLines;
+            var snaps = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
+            var snapsWithPeople = snaps.Where(x => x.People.Any()).ToList();
+
+            // //FOR DEBUGGING DOCKER RUN TIME EXCEPTION VS UNIT TEST
+            // var snapsWithPeople = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
+```
+
+Make sure that there's a test to reflect this failure
