@@ -100,12 +100,16 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 
             //Act
             var results = recognition.Process();
+            var result = results.Where(snapshot => snapshot.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault();
+            var person = result.People.Where(p => p.Name == "Gian Lazzarini").FirstOrDefault();
+            var personsBoundingBox = result.People.Where(p => p.Name == "Gian Lazzarini").FirstOrDefault().FaceBoundingBox;
 
             //Assert
-            Assert.True(
-                results.Where(snapshot => snapshot.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault()
-                .People.Where(person => person.Name == "Gian Lazzarini").FirstOrDefault()
-                .FaceBoundingBox == boundingBox);
+            Assert.True(personsBoundingBox == boundingBox);
+            // Assert.True(
+            //     results.Where(snapshot => snapshot.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault()
+            //     .People.Where(person => person.Name == "Gian Lazzarini").FirstOrDefault()
+            //     .FaceBoundingBox == boundingBox);
         }
         #endregion
     }
