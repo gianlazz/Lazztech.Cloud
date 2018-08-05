@@ -152,6 +152,15 @@
       "id": "20180731023121_515614061_e5e9f6c67d7c08a4a59014e8c2dd1b03",
       "references": [],
       "title": "Unit Test Vision FacialRecognitionManager.cs"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-05T05:42:22.935Z",
+      "id": "20180805054222_422806226_02e14ad66b529a9c4c8d5982a0e1a61c",
+      "references": [],
+      "title": "Remove return carriage \\r from Person.Name property from stdout"
     }
   ],
   "in-progress": [
@@ -163,15 +172,6 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD)HandleCoordinates(); Set Snapshot.Persons FaceBox with the stdout from face_coordinates parsed out"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-05T05:42:22.935Z",
-      "id": "20180805054222_422806226_02e14ad66b529a9c4c8d5982a0e1a61c",
-      "references": [],
-      "title": "Remove return carriage \\r from Person.Name property from stdout"
     }
   ],
   "testing": [],

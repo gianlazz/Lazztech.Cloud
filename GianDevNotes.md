@@ -223,3 +223,6 @@ Also I wonder if this return carriage only is happening because of how I pasted 
 I wish vscode would change to the light theme when it's bright out or even adjust between dark and light depending on the sunlight. That way I could keep maximum viewability without having to change anything manually.
 
 * I have to run .ToList() on a .Where() linq query before .Any() will work.
+
+## Sunday, August 5, 2018
+Finished fixing the name return carriage issue however I'm still not certain it's actually a reall issue and not a test data mock problem.

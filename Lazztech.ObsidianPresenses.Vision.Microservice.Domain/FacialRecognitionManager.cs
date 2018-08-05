@@ -115,7 +115,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         {
             //THIS COULD BE MORE COMPLEX IF THERE'S MORE THAN ONE NAME
             var name = line.Split(',').Last();
-            //name = name.TrimEnd('\r', '\n');
+            name = name.TrimEnd('\r', '\n');
             return name;
         }
 
