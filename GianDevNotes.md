@@ -178,3 +178,5 @@ It could also be nice to visualize statistics from the git activity? And also I 
 https://stackoverflow.com/questions/1542213/how-to-find-the-number-of-cpu-cores-via-net-c
 
 https://stackoverflow.com/questions/565075/how-to-set-the-value-of-a-read-only-property-with-generic-getters-and-setters
+
+Added new tests now I'm looking seriously into how to set the coordinates of the face bounding boxes. I wonder if I should also add the image dimensions to the snapshot property since the bounding box coordinates use "pixel coordinates"

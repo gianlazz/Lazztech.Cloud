@@ -57,7 +57,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         }
 
         [Fact]
-        public void SnapshotWithStatusOfno_persons_found_ShouldHavNoPeople() 
+        public void SnapshotWithStatusOfno_persons_found_ShouldHaveNoPeople() 
         {
             //Arrange
             var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
@@ -78,6 +78,24 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         {
             //Arrange
             var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+
+            //Act
+            var results = recognition.Process();
+
+            //Assert
+            Assert.False(results.Where(snapshot => snapshot.GuidId == Guid.Empty).Any());
+        }
+
+        [Fact]
+        public void SnapshotsWithPeopleFoundShouldHaveValidBoundingBoxForThem()
+        {
+            //Arrange
+            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+            var pixelCoordinate1 = new Vertice() { x = 0, y = 0};
+            var pixelCoordinate2 = new Vertice() { x = 0, y = 0};
+            var vertices = new List<Vertice>();
+            vertices.Add(pixelCoordinate1);
+            var face = new FaceBox(){ Vertices = vertices };
 
             //Act
             var results = recognition.Process();
