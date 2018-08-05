@@ -15,8 +15,6 @@ RUN apt-get update -y &&\
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
-#ENV LC_ALL=C.UTF-8
-#ENV LANG=C.UTF-8
 WORKDIR /app
 
 FROM microsoft/dotnet:2.1-sdk AS build
