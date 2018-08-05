@@ -256,3 +256,9 @@ Hmm hashing them and comparing that fails too.
 [xUnit.net 00:00:00.6414400]       Expected: 63403007
 [xUnit.net 00:00:00.6415010]       Actual:   4916187 
 ```
+
+"The rules are different for a struct but I'm not even going to cover that... 8 years using C# professionally and I don't recall creating my own struct once. If you're interested though, you can find more info in the C# guide."
+
+Hmm maybe I should make the FaceBoundingBox a struct? Sure, why not. Seems like it lends well to it then I can write custom equations against it more simply. Yup changing the FaceBoundingBox and it's PixelCoordinateVertext properties to structs from classes allowed my Assert.Equal(a, b); statment to pass like I expected.
+
+Test is passing however it's throwing an exception when actually run in the docker-compose project.
