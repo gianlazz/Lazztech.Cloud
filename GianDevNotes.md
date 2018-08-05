@@ -292,3 +292,48 @@ This also passes all of the tests however fixes the exception in the docker runt
 ```
 
 Make sure that there's a test to reflect this failure
+
+Alright to do this it's time to get the docker-compose.dcsproj running in vscode. So that probably means I'll finally figure out why vs4mac can run it however doing `docker-compose up` doesn't work.
+```
+Step 12/21 : RUN dotnet restore -nowarn:msb3202,nu1503
+ ---> Running in c0fe86f9318e
+/usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj" was not found. [/src/Lazztech.ObsidianPresences.sln]
+/usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/docker-compose.dcproj" was not found. [/src/Lazztech.ObsidianPresences.sln]
+ERROR: Service 'lazztech.obsidianpresenses.vision.microservice.cli' failed to build: The command '/bin/sh -c dotnet restore -nowarn:msb3202,nu1503' returned a non-zero code: 1
+```
+Hmm it also looks like vs4mac can't run it in release either, only debug. I wonder if that could be related? Yup it looks like it is... vs4mac build error output says:
+```
+Step 12/21 : RUN dotnet restore -nowarn:msb3202,nu1503
+     ---> Running in 03ee26a83aea
+    /usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj" was not found. [/src/Lazztech.ObsidianPresences.sln]
+    /usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/docker-compose.dcproj" was not found. [/src/Lazztech.ObsidianPresences.sln]
+    Service 'lazztech.obsidianpresenses.vision.microservice.cli' failed to build: The command '/bin/sh -c dotnet restore -nowarn:msb3202,nu1503' returned a non-zero code: 1
+    /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : Building lazztech.obsidianpresenses.vision.microservice.cli
+    /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : Service 'lazztech.obsidianpresenses.vision.microservice.cli' failed to build: The command '/bin/sh -c dotnet restore -nowarn:msb3202,nu1503' returned a non-zero code: 1.
+    /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : 
+    /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : For more troubleshooting information, go to http://aka.ms/DockerToolsTroubleshooting
+Done building target "DockerComposeBuild" in project "docker-compose.dcproj" -- FAILED.
+```
+
+vs4mac outputs this which gives a clue to what's happening when it's running the docker-compose project in debug.
+```
+Starting: "docker" exec -i 2d9d413a4180 "/remote_debugger/vsdbg" --interpreter=vscode
+```
+
+https://code.visualstudio.com/docs/azure/docker
+https://marketplace.visualstudio.com/items?itemName=formulahendry.docker-explorer
+
+https://developercommunity.visualstudio.com/content/problem/216100/build-docker-compose-on-release-fails-on-new-proje.html
+https://github.com/dotnet/dotnet-docker/pull/430
+Okay so it failing when running `docker-compose up` could be related to the version of the base image.
+
+No actually it looks like it's just throwing an error because it can't find the .Tests project? Oh okay after adding this line below it resolved that issue and now is back to a familiar one.
+```COPY Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Tests/```
+Now it says this which looks to me like I need to make sure that docker file copies over every project in the solution file? I'm not sure it would sense for one file to have the docker-compose but I'll give it a try.
+```/usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/docker-compose.dcproj" was not found. [/src/Lazztech.ObsidianPresences.sln]```
+
+Maybe I need to have the sln clarify when it needs the docker-compose.dcsproj?
+Okay now, after adding the docker-compose proj that the solution needs it says:
+```
+MSBUILD : error MSB1011: Specify which project or solution file to use because this folder contains more than one project or solution file.
+```
