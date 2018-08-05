@@ -230,3 +230,5 @@ Finished fixing the name return carriage issue however I'm still not certain it'
 After getting the FaceBoundingBox's set for the person in the relivant snapshot I should really start testing cases where there's multiple people. A lot of my code has expressions like : `Snap.Persons.First().FaceBoundingBox = bb;`
 
 Using TDD to solve that will be helpful.
+
+https://stackoverflow.com/questions/30878856/is-there-a-shortcut-to-hide-the-side-bar-in-visual-studio-code
