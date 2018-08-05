@@ -87,6 +87,29 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         }
 
         [Fact]
+        public void PersonNameShouldNotHaveReturnCarriage()
+        {
+            //Arrange
+            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+
+            //Act
+            var results = recognition.Process();
+            var people = new List<Person>();
+            foreach (var result in results)
+            {
+                people.AddRange(result.People);
+            }
+            var a = people.Where(x => x.Name.Contains("\r")).ToList();
+            var b = people.Where(x => x.Name.Contains("\n")).ToList();
+
+            //Assert
+            Assert.False(
+                people.Where(x => x.Name.Contains("\r")).ToList().Any()
+                ||
+                people.Where(x => x.Name.Contains("\n")).ToList().Any());
+        }
+
+        [Fact]
         public void SnapshotsWithPeopleFoundShouldHaveValidBoundingBoxForThem()
         {
             //Arrange

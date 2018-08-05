@@ -114,7 +114,9 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         private string GetIdentifiedName(string line)
         {
             //THIS COULD BE MORE COMPLEX IF THERE'S MORE THAN ONE NAME
-            return line.Split(',').Last();
+            var name = line.Split(',').Last();
+            //name = name.TrimEnd('\r', '\n');
+            return name;
         }
 
         private void InstantiateSnapshotsFromDirs()

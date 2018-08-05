@@ -216,3 +216,10 @@ It looks like I'm having an issue with capturing the new line \r from the stdout
 ```p.Name == "Gian Lazzarini\r"```
 vs 
 ```p.Name == "Gian Lazzarini")```
+https://stackoverflow.com/questions/873043/removing-carriage-return-and-new-line-from-the-end-of-a-string-in-c-sharp
+
+Also I wonder if this return carriage only is happening because of how I pasted in the stdout lines instead of just having it line by line? I suppose I should probably debug it during actual containerized execution to check...
+
+I wish vscode would change to the light theme when it's bright out or even adjust between dark and light depending on the sunlight. That way I could keep maximum viewability without having to change anything manually.
+
+* I have to run .ToList() on a .Where() linq query before .Any() will work.
