@@ -232,3 +232,10 @@ After getting the FaceBoundingBox's set for the person in the relivant snapshot 
 Using TDD to solve that will be helpful.
 
 https://stackoverflow.com/questions/30878856/is-there-a-shortcut-to-hide-the-side-bar-in-visual-studio-code
+
+I wish I could edit this .md in the preview, rendered view like in Forestry.io with my blog.
+
+vscode shortcut to move through tabs:
+`cmd + option + Right or Left`
+or
+`ctrl + [number of tab like 1, 2, or 3 etc.]`
