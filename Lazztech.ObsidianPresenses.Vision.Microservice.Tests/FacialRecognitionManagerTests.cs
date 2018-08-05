@@ -102,8 +102,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 
             //Assert
             Assert.True(
-                results.Where(snapshot => snapshot.ImageName == "").FirstOrDefault()
-                .People.Where(person => person.Name == "").FirstOrDefault()
+                results.Where(snapshot => snapshot.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault()
+                .People.Where(person => person.Name == "Gian Lazzarini").FirstOrDefault()
                 .Face == face);
         }
         #endregion
