@@ -226,3 +226,7 @@ I wish vscode would change to the light theme when it's bright out or even adjus
 
 ## Sunday, August 5, 2018
 Finished fixing the name return carriage issue however I'm still not certain it's actually a reall issue and not a test data mock problem.
+
+After getting the FaceBoundingBox's set for the person in the relivant snapshot I should really start testing cases where there's multiple people. A lot of my code has expressions like : `Snap.Persons.First().FaceBoundingBox = bb;`
+
+Using TDD to solve that will be helpful.

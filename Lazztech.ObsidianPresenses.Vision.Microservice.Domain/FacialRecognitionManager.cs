@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models;
+using static Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models.Snapshot;
 
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 {
@@ -61,9 +62,35 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             Results.AddRange(KnownUnknown);
 
             HandleIdentities();
+            HandleBoundingBoxes();
 
             return Results;
          }
+
+        private void HandleBoundingBoxes()
+        {
+            var lines = face_detectionLines;
+            var snapsWithPeople = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
+            foreach (var line in lines)
+            {
+                var imageDirFromLine = line.Split(',')[0];
+                var imageName = _fileServices.GetFileNameFromDir(imageDirFromLine); 
+                var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
+                if (snap != null)
+                {
+                    var bb = ExtractBoundingBox(line);
+                    snap.People.First().FaceBoundingBox = bb;
+                }
+                else { continue; }
+            }
+
+            throw new NotImplementedException();
+        }
+
+        private FaceBoundingBox ExtractBoundingBox(string line)
+        {
+            throw new NotImplementedException();
+        }
 
         private void HandleIdentities()
         {
