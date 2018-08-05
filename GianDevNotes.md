@@ -262,3 +262,5 @@ Hmm hashing them and comparing that fails too.
 Hmm maybe I should make the FaceBoundingBox a struct? Sure, why not. Seems like it lends well to it then I can write custom equations against it more simply. Yup changing the FaceBoundingBox and it's PixelCoordinateVertext properties to structs from classes allowed my Assert.Equal(a, b); statment to pass like I expected.
 
 Test is passing however it's throwing an exception when actually run in the docker-compose project.
+
+Hmm I think it's an issue with looking at the snapshots being created from the images in the known/ dir that don't have people? Idk why but I need to identify why any would not have people and make sure it's not something I'm looking for to assign bounding boxes against as it will throw an exception. Also I still don't know why the unit test isn't throwing an exception...
