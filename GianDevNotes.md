@@ -241,5 +241,18 @@ or
 `ctrl + [number of tab like 1, 2, or 3 etc.]`
 
 Wtf I passed the test then ran it again and now it's saying it fails though the output looks passing...
+```
 [xUnit.net 00:00:00.6506820]       Expected: FaceBoundingBox { LeftTopCoordinate = PixelCoordinateVertex { x = 54, y = 181 }, RightBottomCoordinate = PixelCoordinateVertex { x = 158, y = 77 } }
 [xUnit.net 00:00:00.6507420]       Actual:   FaceBoundingBox { LeftTopCoordinate = PixelCoordinateVertex { x = 54, y = 181 }, RightBottomCoordinate = PixelCoordinateVertex { x = 158, y = 77 } }
+```
+
+Looks like I may have a fundimental miss-understanding about oop instance equality:
+https://grantwinney.com/how-to-compare-two-objects-testing-for-equality-in-c/
+
+Yeah so it looks like it's checking to see if it's the exact same instance which it isn't however the values are the same for the two different objects. That's what I want to make assertions for. I wonder if xUnit has an assertion for that? I could hash both and compare that?
+Hmm hashing them and comparing that fails too.
+```
+[xUnit.net 00:00:00.6413380]       Assert.Equal() Failure
+[xUnit.net 00:00:00.6414400]       Expected: 63403007
+[xUnit.net 00:00:00.6415010]       Actual:   4916187 
+```

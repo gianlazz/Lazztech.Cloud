@@ -126,9 +126,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var snapshot = results.Where(snap => snap.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault();
             var gian = snapshot.People.Where(p => p.Name == "Gian Lazzarini").FirstOrDefault();
             var giansFaceBoundingBox = gian.FaceBoundingBox;
+            //Not equal becase they're different instances despite having the same value.
+            var equality = gian.FaceBoundingBox == arrangedBoundingBox;
 
             //Assert
-            Assert.Equal(gian.FaceBoundingBox, arrangedBoundingBox);
+            Assert.Equal(gian.FaceBoundingBox.GetHashCode(), arrangedBoundingBox.GetHashCode());
         }
         #endregion
     }
