@@ -101,6 +101,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             //Act
             var results = recognition.Process();
             var result = results.Where(snapshot => snapshot.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault();
+            var person2 = result.People.Where(p => p.Name == "Gian Lazzarini\r").FirstOrDefault();
             var person = result.People.Where(p => p.Name == "Gian Lazzarini").FirstOrDefault();
             // var personsBoundingBox = result.People.Where(p => p.Name == "Gian Lazzarini").FirstOrDefault().FaceBoundingBox;
 

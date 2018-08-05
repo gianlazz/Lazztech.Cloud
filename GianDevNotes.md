@@ -211,3 +211,8 @@ Based on the python code example for face_recognition bounding box image drawing
 https://github.com/ageitgey/face_recognition/blob/master/examples/identify_and_draw_boxes_on_faces.py
 
 Look up structs vs primitives.
+
+It looks like I'm having an issue with capturing the new line \r from the stdout for the person.Name properties:
+```p.Name == "Gian Lazzarini\r"```
+vs 
+```p.Name == "Gian Lazzarini")```
