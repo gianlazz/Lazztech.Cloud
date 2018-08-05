@@ -2,8 +2,9 @@
 
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models
 {
-    public class FaceBox
+    public class FaceBoundingBox
     {
-        public List<Vertice> Vertices { get; set; }
+        public PixelCoordinateVertex LeftTopCoordinate { get; set; }
+        public PixelCoordinateVertex RightBottomCoordinate { get; set; }
     }
 }

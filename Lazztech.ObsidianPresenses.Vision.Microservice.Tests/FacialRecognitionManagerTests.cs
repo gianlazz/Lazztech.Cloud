@@ -91,11 +91,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         {
             //Arrange
             var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
-            var pixelCoordinate1 = new Vertice() { x = 0, y = 0};
-            var pixelCoordinate2 = new Vertice() { x = 0, y = 0};
-            var vertices = new List<Vertice>();
-            vertices.Add(pixelCoordinate1);
-            var face = new FaceBox(){ Vertices = vertices };
+            //54,181,158,77
+            var boundingBox = new FaceBoundingBox() 
+            {
+                LeftTopCoordinate = new PixelCoordinateVertex() { x = 54, y = 181 },
+                RightBottomCoordinate = new PixelCoordinateVertex() { x = 158, y = 77 }
+            };
 
             //Act
             var results = recognition.Process();
@@ -104,7 +105,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             Assert.True(
                 results.Where(snapshot => snapshot.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault()
                 .People.Where(person => person.Name == "Gian Lazzarini").FirstOrDefault()
-                .Face == face);
+                .FaceBoundingBox == boundingBox);
         }
         #endregion
     }

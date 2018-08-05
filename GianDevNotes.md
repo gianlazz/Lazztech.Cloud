@@ -206,3 +206,8 @@ Also heres information comparing the two different linq syntax styles of using t
 https://stackoverflow.com/questions/796246/what-is-the-difference-between-linq-query-expressions-and-extension-methods
 
 Oh and I've been thinking a lot about eventually putting together an Application Facade for all of the microservices as a graphql api instead of just a REST api. I want to eventually look into using linq against a graphql web api as I think I heard something about that in a podcast.
+
+Based on the python code example for face_recognition bounding box image drawing it looks like the first two numbers are the x,y for the (left, top) then the (right, bottom). I should probably name the property accordingly.
+https://github.com/ageitgey/face_recognition/blob/master/examples/identify_and_draw_boxes_on_faces.py
+
+Look up structs vs primitives.
