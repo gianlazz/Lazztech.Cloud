@@ -101,7 +101,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var results = recognition.Process();
 
             //Assert
-            Assert.False(results.Where(snapshot => snapshot.GuidId == Guid.Empty).Any());
+            Assert.True(results.Where(snapshot => snapshot.ImageName == "").FirstOrDefault().People.FirstOrDefault().Face == face);
         }
         #endregion
     }
