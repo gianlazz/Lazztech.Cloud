@@ -14,7 +14,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision
         public Snapshot Process(string base64)
         {
             var snap = new Snapshot();
-            snap.GuidId = Guid.NewGuid();
             snap.Location = "Seattle";
             snap.People = new List<Person>();
 
