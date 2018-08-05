@@ -75,9 +75,9 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             {
                 var imageDirFromLine = line.Split(',')[0];
                 var imageName = _fileServices.GetFileNameFromDir(imageDirFromLine); 
-                var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
-                if (snap != null)
+                if (snapsWithPeople.Where(x => x.ImageName == imageName).ToList() != null)
                 {
+                    var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
                     var bb = ExtractBoundingBox(line);
                     snap.People.First().FaceBoundingBox = bb;
                 }
