@@ -72,6 +72,19 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
                 .Any()
                 );
         }
+
+        [Fact]
+        public void SnapshotGuidIdShouldNotBeEmpty()
+        {
+            //Arrange
+            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+
+            //Act
+            var results = recognition.Process();
+
+            //Assert
+            Assert.False(results.Where(snapshot => snapshot.GuidId == Guid.Empty).Any());
+        }
         #endregion
     }
 
