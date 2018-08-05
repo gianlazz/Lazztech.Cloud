@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Lazztech.ObsidianPresenses.Vision.Microservice.Domain;
+using Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models;
 using Xunit;
 
 namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
@@ -53,6 +55,23 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             //Assert
             Assert.NotNull(results);
         }
+
+        [Fact]
+        public void SnapshotWithStatusOfno_persons_found_ShouldHavNoPeople() 
+        {
+            //Arrange
+            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+
+            //Act
+            var results = recognition.Process();
+
+            //Assert
+            Assert.False(
+                results.Where(x => x.Status == Snapshot.SnapshotStatus.unknown_person)
+                .Where(y => y.People.Count > 0)
+                .Any()
+                );
+        }
         #endregion
     }
 
@@ -99,12 +118,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             else if (path.Contains("/no_persons_found/"))
             {
                 throw new Exception("No valid mock prepared yet.");
-                return new string[] {};
             }
             else
             {
                 throw new Exception("No valid path mock detected.");
-                return new string[] {};
             }
         }
 
