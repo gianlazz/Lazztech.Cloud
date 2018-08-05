@@ -31,6 +31,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-03T04:42:07.352Z",
+      "id": "20180803044207_98861785_ba243820cf9c8cc1a0b1be8b873d0595",
+      "references": [],
+      "title": "Decouple FacialRecognitionManager.CheckAllAssets(), move those responsabilities into mockable interfaces"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-28T21:29:51.507Z",
       "id": "20180728212951_1250467_f19be631783992bb42e585403589c8b6",
       "references": [],
@@ -139,10 +148,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-03T04:42:07.352Z",
-      "id": "20180803044207_98861785_ba243820cf9c8cc1a0b1be8b873d0595",
+      "creation_time": "2018-07-31T02:31:21.042Z",
+      "id": "20180731023121_515614061_e5e9f6c67d7c08a4a59014e8c2dd1b03",
       "references": [],
-      "title": "Decouple FacialRecognitionManager.CheckAllAssets(), move those responsabilities into mockable interfaces"
+      "title": "Unit Test Vision FacialRecognitionManager.cs"
     }
   ],
   "in-progress": [
@@ -150,10 +159,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-31T02:31:21.042Z",
-      "id": "20180731023121_515614061_e5e9f6c67d7c08a4a59014e8c2dd1b03",
+      "creation_time": "2018-07-31T02:34:48.772Z",
+      "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
-      "title": "Unit Test Vision FacialRecognitionManager.cs"
+      "title": "Unit Test(TDD)HandleCoordinates(); Set Snapshot.Persons FaceBox with the stdout from face_coordinates parsed out"
     }
   ],
   "testing": [],
@@ -175,15 +184,6 @@
       "id": "20180728213035_385423038_ec231cc4c1f60e6afb571f9eb16bc414",
       "references": [],
       "title": "check in motion ip cam .config into repo"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-31T02:34:48.772Z",
-      "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
-      "references": [],
-      "title": "HandleCoordinates(); Set Snapshot.Persons FaceBox with the stdout from face_coordinates parsed out"
     },
     {
       "creation_time": "2018-07-29T18:56:47.394Z",
@@ -214,6 +214,15 @@
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-05T03:13:08.746Z",
+      "id": "20180805031308_419208128_6db4fd3deaafabc6a203e26ef329294d",
+      "references": [],
+      "title": "Get docker-compose.dscroj running in vscode"
     }
   ]
 }

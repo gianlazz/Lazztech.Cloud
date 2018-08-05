@@ -159,5 +159,22 @@ I would also like to look into logging my hours some how in a serializable way i
 This tool looks perfect for tracking my time programming. This will go nicely with these markdown files and the .json based kanban board. Hopefully it's json based so I can keep it in the repo.
 https://github.com/wakatime/vscode-wakatime
 https://wakatime.com/vs-code-time-tracking
+Hmm it looks great but it looks like it's not really git backed and has a monthly membership for all of the features... I want something .json based and gitbacked.
+
+More git based time trackers:
+https://github.com/git-time-metric/gtm
+https://git-time-metric.github.io
+https://github.com/timeglass/glass
+http://gitstats.sourceforge.net/examples/git/activity.html
+https://github.com/kimmobrunfeldt/git-hours
+
+https://docs.gitlab.com/ee/workflow/time_tracking.html
+https://kris.cool/2015/09/time-tracking-with-git
+
+Also I could use some kind of json based pomodoro tool for time tracking... May end up going that route.
 
 It could also be nice to visualize statistics from the git activity? And also I should look into the .net test explorer code coverage output and see if that's viewable too?
+
+https://stackoverflow.com/questions/1542213/how-to-find-the-number-of-cpu-cores-via-net-c
+
+https://stackoverflow.com/questions/565075/how-to-set-the-value-of-a-read-only-property-with-generic-getters-and-setters
