@@ -180,3 +180,29 @@ https://stackoverflow.com/questions/1542213/how-to-find-the-number-of-cpu-cores-
 https://stackoverflow.com/questions/565075/how-to-set-the-value-of-a-read-only-property-with-generic-getters-and-setters
 
 Added new tests now I'm looking seriously into how to set the coordinates of the face bounding boxes. I wonder if I should also add the image dimensions to the snapshot property since the bounding box coordinates use "pixel coordinates"
+
+#### How do I debug long chained linq expressions?
+https://stackoverflow.com/questions/118341/how-to-debug-a-linq-statement
+https://www.linqpad.net scott hanselman even advocates for this one apperantly
+https://stackoverflow.com/questions/952796/debugging-linq-queries
+```
+.Select(z =>
+{return z;}
+)
+```
+https://blogs.msdn.microsoft.com/ericwhite/2008/11/06/debugging-linq-queries/
+https://www.red-gate.com/simple-talk/dotnet/net-development/linq-debugging-visualization/
+https://www.red-gate.com/simple-talk/dotnet/net-framework/linq-secrets-revealed-chaining-and-debugging/
+Also apperantly vs2017 can evaluate lamdas? I wonder about vscode?
+https://stackoverflow.com/questions/18620819/view-result-of-linq-query-in-watch-debugger
+
+https://stackoverflow.com/questions/11440911/how-to-debug-linq-result
+
+Also I was curious and looked up this because I was unsure if it was correct to call it a linq statment or expression. It seems like
+it's an expression because it has a return value where as a statement just does an action.
+https://stackoverflow.com/questions/19132/expression-versus-statement
+
+Also heres information comparing the two different linq syntax styles of using the querying keywords or using the extension methods like I have been.
+https://stackoverflow.com/questions/796246/what-is-the-difference-between-linq-query-expressions-and-extension-methods
+
+Oh and I've been thinking a lot about eventually putting together an Application Facade for all of the microservices as a graphql api instead of just a REST api. I want to eventually look into using linq against a graphql web api as I think I heard something about that in a podcast.
