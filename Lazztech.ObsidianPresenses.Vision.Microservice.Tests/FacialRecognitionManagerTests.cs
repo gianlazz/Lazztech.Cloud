@@ -115,7 +115,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             //Arrange
             var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
             //54,181,158,77
-            var boundingBox = new FaceBoundingBox() 
+            var arrangedBoundingBox = new FaceBoundingBox() 
             {
                 LeftTopCoordinate = new PixelCoordinateVertex() { x = 54, y = 181 },
                 RightBottomCoordinate = new PixelCoordinateVertex() { x = 158, y = 77 }
@@ -123,17 +123,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 
             //Act
             var results = recognition.Process();
-            var result = results.Where(snapshot => snapshot.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault();
-            var person2 = result.People.Where(p => p.Name == "Gian Lazzarini\r").FirstOrDefault();
-            var person = result.People.Where(p => p.Name == "Gian Lazzarini").FirstOrDefault();
-            // var personsBoundingBox = result.People.Where(p => p.Name == "Gian Lazzarini").FirstOrDefault().FaceBoundingBox;
+            var snapshot = results.Where(snap => snap.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault();
+            var gian = snapshot.People.Where(p => p.Name == "Gian Lazzarini").FirstOrDefault();
+            var giansFaceBoundingBox = gian.FaceBoundingBox;
 
             //Assert
-            //Assert.True(personsBoundingBox == boundingBox);
-            // Assert.True(
-            //     results.Where(snapshot => snapshot.ImageDir == "/face/unknown/images.jpeg").FirstOrDefault()
-            //     .People.Where(p => p.Name == "Gian Lazzarini").FirstOrDefault()
-            //     .FaceBoundingBox == boundingBox);
+            Assert.True(gian.FaceBoundingBox == arrangedBoundingBox);
         }
         #endregion
     }
