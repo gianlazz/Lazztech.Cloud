@@ -355,6 +355,20 @@ https://github.com/sleemer/docker.dotnet.debug
 
 https://stackoverflow.com/questions/46500639/how-do-i-use-docker-compose-debug-yml-to-debug-my-node-running-in-docker
 
+https://github.com/VSChina/debug-dotnetcore-in-docker
+https://stackoverflow.com/questions/48837155/possible-remote-debugging-net-core-linux-docker-container-with-vscode-from-mac
+https://github.com/OmniSharp/omnisharp-vscode/wiki/Attaching-to-remote-processes
+https://stackoverflow.com/questions/48596181/how-to-debug-net-core-project-with-docker-support-using-visual-studio-on-a-rem
+https://stackoverflow.com/questions/48381127/debugging-already-running-docker-linux-net-core-container-with-visual-studio-20
+http://thepassingthoughts.blogspot.com/2018/01/debugging-net-core-application-running.html
+http://blog.jonathanchannon.com/2017/06/07/debugging-netcore-docker/
+https://developers.redhat.com/blog/2018/06/13/remotely-debug-asp-net-core-container-pod-on-openshift-with-visual-studio/
+https://blog.quickbird.uk/debug-netcore-containers-remotely-9a103060b2ff
+https://developers.redhat.com/blog/2017/10/23/remote-debug-asp-net-core-container-openshift-visual-studio-code/
+https://dzone.com/articles/remotely-debugging-aspnet-core-containers-on-opens
+
+This remote debugging setup could actually let me debug or profile the code when it runs on my raspberry pi cluster too.
+
 Also how do I profile performance with .net core code in vscode? In visual studio it's straight forward with the built in profiler. And would this work remotely in a docker container?
 
 Found this interesting documentation on building software-as-a-service apps: 
