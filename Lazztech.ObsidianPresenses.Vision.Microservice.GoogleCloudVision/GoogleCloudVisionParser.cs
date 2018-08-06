@@ -32,7 +32,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision
                 var person = new Person();
                 person.Name = "Unknown";
 
-                var faceBox = new FaceBoundingBox();
+                // var faceBox = new FaceBoundingBox();
                 snap.People.Add(person);
 
                 var boundingPolyVertices = face.BoundingPoly.Vertices;
