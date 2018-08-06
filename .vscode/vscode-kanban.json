@@ -58,6 +58,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-06T00:03:21.097Z",
+      "id": "20180806000321_13111963_d690fd191839e5e3a94c86263639c5dc",
+      "references": [],
+      "title": "get docker-compose up working"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-29T03:10:28.239Z",
       "id": "20180729031028_68198483_4f2af2ad0a51eaa13d93a70116263053",
       "references": [],
@@ -170,15 +179,6 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-06T00:03:21.097Z",
-      "id": "20180806000321_13111963_d690fd191839e5e3a94c86263639c5dc",
-      "references": [],
-      "title": "get docker-compose up working"
     }
   ],
   "in-progress": [
@@ -189,7 +189,7 @@
       "creation_time": "2018-08-05T03:13:08.746Z",
       "id": "20180805031308_419208128_6db4fd3deaafabc6a203e26ef329294d",
       "references": [],
-      "title": "Get docker-compose.dscroj running in vscode"
+      "title": "Setup Docker remote debugging launch configuration for Cli project with vscode"
     },
     {
       "assignedTo": {
