@@ -344,4 +344,20 @@ https://code.visualstudio.com/docs/azure/docker#_generating-docker-files
 
 Running `Docker: Add Docker files to Workspace` didn't make the `docker-compose.debug.yml` like I wanted. The dockerfile it generates does however look better configured in that it just builds/restores against the specific .proj instead of bundling the entire solution. I may look into that further.
 
+It looks like I'm going to need to configure some launch configurations with remote debugging for the docker container.
+https://code.visualstudio.com/docs/editor/tasks
+https://code.visualstudio.com/docs/editor/debugging
+
 https://techblog.dorogin.com/running-and-debugging-net-core-unit-tests-inside-docker-containers-48476eda2d2a
+https://github.com/OmniSharp/omnisharp-vscode/wiki/Attaching-to-remote-processes
+https://github.com/Microsoft/MIEngine/wiki/Offroad-Debugging-of-.NET-Core-on-Linux---OSX-from-Visual-Studio
+https://github.com/sleemer/docker.dotnet.debug
+
+https://stackoverflow.com/questions/46500639/how-do-i-use-docker-compose-debug-yml-to-debug-my-node-running-in-docker
+
+Also how do I profile performance with .net core code in vscode? In visual studio it's straight forward with the built in profiler. And would this work remotely in a docker container?
+
+Found this interesting documentation on building software-as-a-service apps: 
+"The format is inspired by Martin Fowler’s books Patterns of Enterprise Application Architecture and Refactoring."
+https://github.com/docker/labs/blob/master/12factor/README.md
+https://12factor.net
