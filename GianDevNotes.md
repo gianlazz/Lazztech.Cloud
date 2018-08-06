@@ -337,3 +337,5 @@ Okay now, after adding the docker-compose proj that the solution needs it says:
 ```
 MSBUILD : error MSB1011: Specify which project or solution file to use because this folder contains more than one project or solution file.
 ```
+
+I still need to figure out how to run the docker-compose.dcproj in vscode so that I can debug it in vscode.
