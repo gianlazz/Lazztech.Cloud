@@ -375,3 +375,5 @@ Found this interesting documentation on building software-as-a-service apps:
 "The format is inspired by Martin Fowler’s books Patterns of Enterprise Application Architecture and Refactoring."
 https://github.com/docker/labs/blob/master/12factor/README.md
 https://12factor.net
+
+https://stackoverflow.com/questions/46382883/shortcut-to-push-code-to-git-in-vscode
