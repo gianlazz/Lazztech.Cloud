@@ -25,7 +25,8 @@ COPY Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision/Lazztech.O
 COPY Lazztech.ObsidianPresenses.Vision.Microservice.Domain/Lazztech.ObsidianPresenses.Vision.Microservice.Domain.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Domain/
 COPY Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Tests/
 COPY docker-compose.dcproj ./
-RUN dotnet restore -nowarn:msb3202,nu1503
+# RUN dotnet restore -nowarn:msb3202,nu1503
+RUN dotnet restore Lazztech.ObsidianPresences.sln -nowarn:msb3202,nu1503
 COPY . .
 WORKDIR /src/Lazztech.ObsidianPresenses.Vision.Microservice.Cli
 RUN dotnet build -c Release -o /app
