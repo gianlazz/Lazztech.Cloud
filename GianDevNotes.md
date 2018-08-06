@@ -339,3 +339,5 @@ MSBUILD : error MSB1011: Specify which project or solution file to use because t
 ```
 
 I still need to figure out how to run the docker-compose.dcproj in vscode so that I can debug it in vscode.
+I think I may need to experiment with seeing how vscode configures the docker files for my solution with the `Docker: Add Docker files to Workspace` command from the command pallete. Also it looks like I need a file called `docker-compose.debug.yml` which I do not have from vs4mac.
+https://code.visualstudio.com/docs/azure/docker#_generating-docker-files
