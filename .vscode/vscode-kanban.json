@@ -186,15 +186,6 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-05T03:13:08.746Z",
-      "id": "20180805031308_419208128_6db4fd3deaafabc6a203e26ef329294d",
-      "references": [],
-      "title": "Setup Docker remote debugging launch configuration for Cli project with vscode"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
       "creation_time": "2018-08-05T21:01:14.930Z",
       "id": "20180805210114_322815295_c7776fffe8191e1cc3721f228bbb0054",
       "references": [],
@@ -204,10 +195,28 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-05T03:13:08.746Z",
+      "id": "20180805031308_419208128_6db4fd3deaafabc6a203e26ef329294d",
+      "references": [],
+      "title": "Setup Docker remote debugging launch configuration for Cli project with vscode"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-05T21:00:42.180Z",
       "id": "20180805210042_150493196_125f8f09f53b665ce94b34f5be1e6caa",
       "references": [],
       "title": "Solve why there was an exception in setting FaceBoundingBox in docker but not the tests."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-07T21:21:33.036Z",
+      "id": "20180807212133_484551544_73201493681b9735d36a79f427a47fb9",
+      "references": [],
+      "title": "Learn about docker-compose.debug.yml"
     }
   ],
   "testing": [],

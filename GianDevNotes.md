@@ -377,3 +377,7 @@ https://github.com/docker/labs/blob/master/12factor/README.md
 https://12factor.net
 
 https://stackoverflow.com/questions/46382883/shortcut-to-push-code-to-git-in-vscode
+
+## Tuesday, August 7, 2018
+
+Familiarize youreslf with `docker-compose.debug.yml` as that seems to be an important missing file to do the remote debugging with vscode like I need and am doing with vs4mac easily. Once I have the rest of the setup on par with vs4mac then I can continue to identify why the docker run-time throws that exception that the unit tests aren't catching. It could be an issue with the test data not accurately reflecting the run time or possibly something to do with how I've configured the mocks. Either way I can't move forward until I'm able to test and solve that and my goal is to move away from using anything but vscode.
