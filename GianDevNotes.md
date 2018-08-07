@@ -413,3 +413,14 @@ cmd + shift + p : Docker: Add Docker files to Workspace
 
 I could probably raise an issue about this on https://github.com/Microsoft/vscode-docker as there it says it only makes the two files.
 
+This linke raises the fact that the docker-compose.dcproj causes issues with vs code:
+https://softwareengineering.stackexchange.com/questions/369429/net-core-using-visual-studio-and-keeping-it-cross-platform
+Then  this person replies:
+"Thank you for the answer. It looks like they're aware of this issue and have a solution: https://github.com/dotnet/cli/issues/6178"
+
+I don't have issues building like in that github issue though so that must've been solved by now. Lol and there's even a comment by Scott Hanselman in that issue!
+https://github.com/dotnet/cli/issues/6178#issuecomment-348852554
+It was fixed with: https://github.com/dotnet/cli/pull/8416
+
+https://www.richard-banks.org/2018/07/debugging-core-in-docker.html
+Maybe I just need to make the `docker-compose.debug.yml` and `docker-compose.release.yml` manually.
