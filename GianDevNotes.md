@@ -381,3 +381,9 @@ https://stackoverflow.com/questions/46382883/shortcut-to-push-code-to-git-in-vsc
 ## Tuesday, August 7, 2018
 
 Familiarize youreslf with `docker-compose.debug.yml` as that seems to be an important missing file to do the remote debugging with vscode like I need and am doing with vs4mac easily. Once I have the rest of the setup on par with vs4mac then I can continue to identify why the docker run-time throws that exception that the unit tests aren't catching. It could be an issue with the test data not accurately reflecting the run time or possibly something to do with how I've configured the mocks. Either way I can't move forward until I'm able to test and solve that and my goal is to move away from using anything but vscode.
+
+http://www.clearpeople.com/insights/blog/2018/june/finding-docker-compose-vs-debug-yml
+
+Okay so it looks like in regular visual studio/vs4mac the equivalent is generated automatically from building the `docker-compose.dcproj` which looks at the docker-compose.yml then builds `docker-compose.vs.debug.g.yml` and `docker-compose.vs.release.g.yml` which is in the untracked binary output from the projects in the `./obj/Docker`. I wonder if creating a launch action for the `docker-compose.dcproj` in vscode would work?
+
+How much do I really want/need whatever vs2017/vs4mac is automatically doing? It could be better just to manage it all myself via the manual `docker-compose.debug.yml` file way that vscode does and the blog post above illustrates also seems to override the automatic generation in vs2017/vs4mac.
