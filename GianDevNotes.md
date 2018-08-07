@@ -410,3 +410,6 @@ dotnet sln add exampleproject/exampleproject.csproj
 dotnet build newsolutionfolder.sln
 cmd + shift + p : Docker: Add Docker files to Workspace
 ```
+
+I could probably raise an issue about this on https://github.com/Microsoft/vscode-docker as there it says it only makes the two files.
+
