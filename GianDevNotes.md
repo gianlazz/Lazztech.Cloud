@@ -387,3 +387,26 @@ http://www.clearpeople.com/insights/blog/2018/june/finding-docker-compose-vs-deb
 Okay so it looks like in regular visual studio/vs4mac the equivalent is generated automatically from building the `docker-compose.dcproj` which looks at the docker-compose.yml then builds `docker-compose.vs.debug.g.yml` and `docker-compose.vs.release.g.yml` which is in the untracked binary output from the projects in the `./obj/Docker`. I wonder if creating a launch action for the `docker-compose.dcproj` in vscode would work?
 
 How much do I really want/need whatever vs2017/vs4mac is automatically doing? It could be better just to manage it all myself via the manual `docker-compose.debug.yml` file way that vscode does and the blog post above illustrates also seems to override the automatic generation in vs2017/vs4mac.
+
+Also I forgot about the `docker-compose.override.yml` that vs4mac created and caused issues for me. Idk what the point of that actually was in the first place?
+
+I wonder if deleting all of the docker related files in the workspace then running `Docker: Add Docker files to Workspace` will add the files like I wanted?
+
+I'm not sure that the docker-compose.dcproj actually makes a dll.
+
+`dotnet sln remove docker-compose.dcproj`
+
+Okay so creating an entirely new solution still doesn't generate all the docker related files like the documentation says. And this is with the Docker 0.1.0 extension...
+I did this or something like it:
+```
+mkdir newsolutionfolder
+cd newsolutionfolder
+dotnet new sln
+mkdir exampleproject
+cd exampleproject
+dotnet new console
+cd ..
+dotnet sln add exampleproject/exampleproject.csproj
+dotnet build newsolutionfolder.sln
+cmd + shift + p : Docker: Add Docker files to Workspace
+```
