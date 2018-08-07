@@ -422,5 +422,7 @@ I don't have issues building like in that github issue though so that must've be
 https://github.com/dotnet/cli/issues/6178#issuecomment-348852554
 It was fixed with: https://github.com/dotnet/cli/pull/8416
 
-https://www.richard-banks.org/2018/07/debugging-core-in-docker.html
 Maybe I just need to make the `docker-compose.debug.yml` and `docker-compose.release.yml` manually.
+
+This link seems to illustrate my use case exactly. It talks about having multiple containers and configuring everything to work across regular vs on windows and vscode on mac/linux
+https://www.richard-banks.org/2018/07/debugging-core-in-docker.html
