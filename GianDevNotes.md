@@ -426,3 +426,7 @@ Maybe I just need to make the `docker-compose.debug.yml` and `docker-compose.rel
 
 This link seems to illustrate my use case exactly. It talks about having multiple containers and configuring everything to work across regular vs on windows and vscode on mac/linux.
 https://www.richard-banks.org/2018/07/debugging-core-in-docker.html
+
+https://www.youtube.com/watch?v=D75NBrjRZzs
+
+Okay so I keep on seeing that I'm going to need to instal vsdebugger in the container: curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /vsdbg
