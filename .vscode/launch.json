@@ -5,16 +5,21 @@
    "version": "0.2.0",
    "configurations": [
        {
-           "name": ".NET Core Docker Remote Attach",
+           "name": ".NET Core Docker Debugger Remote Attach",
            "type": "coreclr",
            "request": "attach",
            "processId": "${command:pickRemoteProcess}",
+        //    "preLaunchTask": "preDockerDebug",
            "pipeTransport": {
                "pipeCwd": "${workspaceRoot}",
-               "pipeProgram": "enter the fully qualified path for the pipe program name, for example '/usr/bin/ssh'",
-               "pipeArgs": [],
+               "pipeProgram": "docker",
+            // TODO: put your container name instead of CONTAINER_NAME
+               "pipeArgs": [
+               "exec", "-i", "CONTAINER_NAME"
+                ],
             //    "debuggerPath": "enter the path for the debugger on the target machine, for example ~/vsdbg/vsdbg",
                "debuggerPath": "~/vsdbg/vsdbg",
+               "quoteArgs": false
            }
        },
         {
