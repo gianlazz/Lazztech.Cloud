@@ -15,12 +15,21 @@
                "pipeProgram": "docker",
             // TODO: put your container name instead of CONTAINER_NAME
                "pipeArgs": [
-               "exec", "-i", "CONTAINER_NAME"
+               "exec", "-i", "lazztechobsidianpresensevisionmicroservicecli"
+                ],
+                  // not important in this case but useful anyway 
+                "requireExactSource": false,
+                // where to pick symbols, not needed in this case
+                "symbolPath": [
+                    "${workspaceRoot}/bin/Debug/netcoreapp2.0"
                 ],
             //    "debuggerPath": "enter the path for the debugger on the target machine, for example ~/vsdbg/vsdbg",
                "debuggerPath": "~/vsdbg/vsdbg",
                "quoteArgs": false
-           }
+           },
+           "justMyCode": false,
+             // pause debugger at entrance
+            // "stopAtEntry": true
        },
         {
             "name": ".NET Core Launch (console)",
