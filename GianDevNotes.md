@@ -445,3 +445,5 @@ Downloading https://vsdebugger.azureedge.net/vsdbg-15-7-20425-2/vsdbg-linux-x64.
 ERROR: Command 'unzip' not found. Install 'unzip' for this script to work.
 ERROR: Service 'lazztech.obsidianpresenses.vision.microservice.cli' failed to build: The command '/bin/sh -c curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg' returned a non-zero code: 1
 ```
+
+The launch configuration seems to be coming along however the container runs and then closes on completion. I believe from the documentation that I need to add a command to keep it running.

@@ -9,13 +9,13 @@
            "type": "coreclr",
            "request": "attach",
            "processId": "${command:pickRemoteProcess}",
-           "preLaunchTask": "preDockerDebug",
+        //    "preLaunchTask": "preDockerDebug",
            "pipeTransport": {
                "pipeCwd": "${workspaceRoot}",
                "pipeProgram": "docker",
             // TODO: put your container name instead of CONTAINER_NAME
                "pipeArgs": [
-               "exec", "-i", "dockercompose15207931530571410403_lazztech.obsidianpresenses.vision.microservice.cli_1"
+               "exec", "-i", "lazztechobsidianpresences_lazztech.obsidianpresenses.vision.microservice.cli_1"
                 ],
                   // not important in this case but useful anyway 
                 "requireExactSource": false,
