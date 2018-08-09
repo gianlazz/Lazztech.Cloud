@@ -447,3 +447,5 @@ ERROR: Service 'lazztech.obsidianpresenses.vision.microservice.cli' failed to bu
 ```
 
 The launch configuration seems to be coming along however the container runs and then closes on completion. I believe from the documentation that I need to add a command to keep it running.
+
+I think that it's just missing the build task.
