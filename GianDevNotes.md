@@ -430,3 +430,18 @@ https://www.richard-banks.org/2018/07/debugging-core-in-docker.html
 https://www.youtube.com/watch?v=D75NBrjRZzs
 
 Okay so I keep on seeing that I'm going to need to instal vsdebugger in the container: curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /vsdbg
+
+## Wednesday, Augsut 8, 2018
+
+- Ran `docker system prune -a`
+- Continueing to follow along with https://techblog.dorogin.com/running-and-debugging-net-core-unit-tests-inside-docker-containers-48476eda2d2a
+Making the preLaunchTask “preDockerDebug”.
+- Then ran `docker compose up`
+
+dockerfile build output:
+```
+Downloading https://vsdebugger.azureedge.net/vsdbg-15-7-20425-2/vsdbg-linux-x64.zip
+
+ERROR: Command 'unzip' not found. Install 'unzip' for this script to work.
+ERROR: Service 'lazztech.obsidianpresenses.vision.microservice.cli' failed to build: The command '/bin/sh -c curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg' returned a non-zero code: 1
+```

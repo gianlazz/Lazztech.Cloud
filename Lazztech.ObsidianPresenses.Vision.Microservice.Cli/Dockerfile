@@ -18,7 +18,9 @@ ENV LANG C.UTF-8
 WORKDIR /app
 
 FROM microsoft/dotnet:2.1-sdk AS build
-RUN curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
+RUN apt-get update -y &&\
+    apt-get install -y unzip &&\
+    curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /vsdbg
 WORKDIR /src
 COPY Lazztech.ObsidianPresences.sln ./
 COPY Lazztech.ObsidianPresenses.Vision.Microservice.Cli/Lazztech.ObsidianPresenses.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Cli/
