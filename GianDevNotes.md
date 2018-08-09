@@ -437,7 +437,6 @@ Okay so I keep on seeing that I'm going to need to instal vsdebugger in the cont
 - Continueing to follow along with https://techblog.dorogin.com/running-and-debugging-net-core-unit-tests-inside-docker-containers-48476eda2d2a
 Making the preLaunchTask “preDockerDebug”.
 - Then ran `docker compose up`
-
 dockerfile build output:
 ```
 Downloading https://vsdebugger.azureedge.net/vsdbg-15-7-20425-2/vsdbg-linux-x64.zip
@@ -445,7 +444,7 @@ Downloading https://vsdebugger.azureedge.net/vsdbg-15-7-20425-2/vsdbg-linux-x64.
 ERROR: Command 'unzip' not found. Install 'unzip' for this script to work.
 ERROR: Service 'lazztech.obsidianpresenses.vision.microservice.cli' failed to build: The command '/bin/sh -c curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg' returned a non-zero code: 1
 ```
-
 The launch configuration seems to be coming along however the container runs and then closes on completion. I believe from the documentation that I need to add a command to keep it running.
-
 I think that it's just missing the build task.
+
+Theres many mentions about this being unusually manual or "off road" from the conventional path as there's lots of manual configuration they don't seem to expect the typical .net developer to be familiar with.
