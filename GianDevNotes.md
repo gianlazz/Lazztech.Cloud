@@ -451,7 +451,8 @@ Theres many mentions about this being unusually manual or "off road" from the co
 
 ## Thursday, August 9, 2018
 
-### Project Managment Ideas:
+# Project Managment Ideas:
+
 - Markdown for documentation
 - Json based Kanban Board
 - Json based Pomodoro based time tracking
@@ -474,4 +475,26 @@ I guess the report may need to be client side on my dev machine as some kind of 
 Here's the link for the json based pomodoro technique time tracker I found:
 https://github.com/luckyshot/freelance-timetracker
 
-### Json Based Pomodoro Time Trackers
+## Markdown documentation Tips and tricks
+- https://stackoverflow.com/questions/15764242/is-it-possible-to-make-relative-link-to-image-in-a-markdown-file-in-a-gist
+
+Markdown based wiki
+- http://dynalon.github.io/mdwiki/#!index.md
+- https://wiki.js.org
+- https://github.com/gollum/gollum - A simple, Git-powered wiki with a sweet API and local frontend.
+
+## Json Based Pomodoro Time Trackers
+- https://github.com/luckyshot/freelance-timetracker
+- https://github.com/hangxingliu/vscode-coding-tracker
+- https://marketplace.visualstudio.com/items?itemName=EastonLee.todopomo
+- https://github.com/brunobord/pomodorock - A single webpage pomodoro timer / tracker that keeps ZERO KNOWLEDGE of your data on the server-side.
+    -  http://brunobord.github.io/pomodorock
+- https://www.tyme-app.com/mac-2/ - cost money and is mac only
+- http://www.lukefabish.com/turned-react-tutorial-complete-application/
+- https://github.com/nerab/paradeiser - Command-line tool for the Pomodoro Technique https://github.com/nerab/paradeiser
+
+This one is command line based and can export to json. It could work well in vscode and could even work as a vscode task with a shortcut.
+https://github.com/nerab/paradeiser
+
+Goodtime is the android based one that I've used the most and like:
+https://github.com/goodtime-productivity/Goodtime
