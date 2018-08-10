@@ -13,7 +13,7 @@ https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose
 https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
 
 
-## july, 27, 2018
+## Friday July, 27, 2018
 - [x] Finished getting docker-compose.yml configured to bind mount volumes to services by absolute path.
 
 Why doesn't docker-compose up work? It always says that it can't find the docker-compose.dcsproj. Running the docker-compose.dcsproj from vs4mac doesn't seem to have this issue if I run the command then run it in vs4mac... Weird.
@@ -26,7 +26,7 @@ Run this line while connected to the vpn to move over all of the images from the
 
 Also I may want to make `/var/lib/motion` a bind mount path volume in the container?
 
-## july, 28, 2018
+## Saturday July, 28, 2018
 Using details like the image capture date from the metadata to populate the Snapshot object's properties would likely be a
 good idea. Here's some links I found on getting these values.
 https://medium.com/@dannyc/get-image-file-metadata-in-c-using-net-88603e6da63f
@@ -36,7 +36,8 @@ https://www.dreamincode.net/forums/topic/231165-how-to-read-image-metadata-in-c%
 
 Write if else logic in FacialRecognitionManager.CheckAllAssetsValid();
 
-## july, 30, 2018
+## Monday July, 30, 2018
+## Sprint 0: Unit Tests & Snapshot Coordinates
 Succumbing to the complexity of FacialRecognitionManager.cs as it develops and turning to PDD(pain driven developmetn). I'm working to transistion to using vscode as much as possible as my primary development enviroment.
 ```
 mkdir [Project layer name for dir]
@@ -50,7 +51,8 @@ cd ..
 dotnet sln add [new project folder/newproject.csproj]
 ```
 
-## july, 31, 2018
+## Tuesday July, 31, 2018
+## Sprint 0: Unit Tests & Snapshot Coordinates
 Project still builds though it's throwing warnings. Setting up CI could be a good idea though I want to keep the repo private. Maybe a heroku jenkins instance? Or azure jenkins? I do have credits. It's probably too soon to worry about that though. However since the project is dockerized it could be more simple when the time comes.
 
 Setup interface for FacialRecognitionManager and a unit test against the resulting Snapshot collection.
@@ -77,7 +79,8 @@ Now I need to setup dependency injection into the FacialRecognitionManager in th
 
 Leaving the project in a non-building state to be resolved in the future.
 
-## august, 1, 2018
+## Wednesday August, 1, 2018
+## Sprint 0: Unit Tests & Snapshot Coordinates
 - [x] dotnet build Lazztech.ObsidianPresences.sln fails: There is no argument given that corresponds to the required formal parameter 'facialIdentityHandler'
 Solution builds again: `dotnet build Lazztech.ObsidianPresences.sln`
 Maybe it would be easier to just use xunit instead? I'm having some issues debugging and running the NUnit tests fixture.
@@ -112,7 +115,8 @@ https://github.com/formulahendry/vscode-dotnet-test-explorer/issues/39
 https://github.com/formulahendry/vscode-dotnet-test-explorer
 Trying adding `"dotnet-test-explorer.testProjectPath": "Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj",` to the workspace settings.
 
-## august 2, 2018
+## Thursday August 2, 2018
+## Sprint 0: Unit Tests & Snapshot Coordinates
 FacialRecognitionManager ctor was interacting with the explicit paths causinging and issue with testability. After removing those lines in the ctor the xUnit test case passes.
 Also I wonder if there may be an issue with the xUnit tests not showing up in the explorer from missing the test adapter? Does that come packaged in the dotnet new xunit proj?
 I'm also unable to get the vs4mac debugger working on the unit tests... It just executes them and returns 0 however never hits any of the breakpoints.
@@ -131,6 +135,7 @@ I think I need to put everything that uses the System.IO namespace in an interfa
 The next remaining testability issue is the InstantiateSnapshotsFromDirs() method setting the Snapshot.DateTimeWhenCaptured = File.GetCreationTime(imageDir) which will need to be mocked as it's trying to reference the externality through System.IO which will most likely only exist during run time in the docker container.
 
 ## August Friday 3, 2018
+## Sprint 0: Unit Tests & Snapshot Coordinates
 Maybe I should just make an IFileServices that can be mocked...
 Got the test explorer working today with xUnit project via workspace settings.
 
@@ -156,6 +161,7 @@ Yes it works in the docker container! Now I have to get HandleIdentities() to wo
 I would also like to look into logging my hours some how in a serializable way in the repo.
 
 ## August Saturday, 4 2018
+## Sprint 0: Unit Tests & Snapshot Coordinates
 This tool looks perfect for tracking my time programming. This will go nicely with these markdown files and the .json based kanban board. Hopefully it's json based so I can keep it in the repo.
 https://github.com/wakatime/vscode-wakatime
 https://wakatime.com/vs-code-time-tracking
@@ -225,6 +231,7 @@ I wish vscode would change to the light theme when it's bright out or even adjus
 * I have to run .ToList() on a .Where() linq query before .Any() will work.
 
 ## Sunday, August 5, 2018
+## Sprint 0: Unit Tests & Snapshot Coordinates
 Finished fixing the name return carriage issue however I'm still not certain it's actually a reall issue and not a test data mock problem.
 
 After getting the FaceBoundingBox's set for the person in the relivant snapshot I should really start testing cases where there's multiple people. A lot of my code has expressions like : `Snap.Persons.First().FaceBoundingBox = bb;`
@@ -379,6 +386,7 @@ https://12factor.net
 https://stackoverflow.com/questions/46382883/shortcut-to-push-code-to-git-in-vscode
 
 ## Tuesday, August 7, 2018
+## Sprint 1: Remote Docker Debugging in vscode
 
 Familiarize youreslf with `docker-compose.debug.yml` as that seems to be an important missing file to do the remote debugging with vscode like I need and am doing with vs4mac easily. Once I have the rest of the setup on par with vs4mac then I can continue to identify why the docker run-time throws that exception that the unit tests aren't catching. It could be an issue with the test data not accurately reflecting the run time or possibly something to do with how I've configured the mocks. Either way I can't move forward until I'm able to test and solve that and my goal is to move away from using anything but vscode.
 
@@ -432,6 +440,7 @@ https://www.youtube.com/watch?v=D75NBrjRZzs
 Okay so I keep on seeing that I'm going to need to instal vsdebugger in the container: curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /vsdbg
 
 ## Wednesday, Augsut 8, 2018
+## Sprint 1: Remote Docker Debugging in vscode
 
 - Ran `docker system prune -a`
 - Continueing to follow along with https://techblog.dorogin.com/running-and-debugging-net-core-unit-tests-inside-docker-containers-48476eda2d2a
@@ -450,6 +459,8 @@ I think that it's just missing the build task.
 Theres many mentions about this being unusually manual or "off road" from the conventional path as there's lots of manual configuration they don't seem to expect the typical .net developer to be familiar with.
 
 ## Thursday, August 9, 2018
+## Sprint 1: Remote Docker Debugging in vscode
+
 
 # Project Managment Ideas:
 
@@ -466,6 +477,9 @@ I really want the readme to have a report of:
 - Time spent in the last 3 days, 10 days & month along with the calculated quote based on an hourly consulting rate
 - Kanban completed taskes, added tasks, moved tasks for the past two weeks or something. I guess it could be new and completed for two weeks.
 - I'd also want a report on days that I had logged entries in the documentation and preview of the "DevNotes" work documentaion log.
+- Details about current and sprint
+
+Maybe the report shoult just be about the current and just completed weekly or bi-weekly sprint?
 
 Then a client or myself would see a report, updated from every single commit where any of the details changed.
 
@@ -510,3 +524,19 @@ https://eastonlee.com/blog/2017/06/01/todopomo/
 
 ## Json Based Git Backed Vscode Kanban extension
 - https://marketplace.visualstudio.com/items?itemName=mkloubert.vscode-kanban
+---
+
+Also I've decided to just use json persistance for the vision microservice at least until it ends up not being managable. I'll bind mount to a a usb drive on my cluster so that I can just unplug and inspect the results. Each microservice can have it's own usb flash drive. The read right performance will probably not be that good but it should be enough for my needs. I can name the json files after the date and time and a dash to seperate the hash value of the snapshot objects.
+
+That way I can just iterate though them by either date or compare the hash to a set of deserialized snapshots for sorting. So I could just iterate through sets of jsons.
+
+Also I want to set a limit on when to set down the effort on getting the remote debugging for the docker containers working in vscode and get some more development progress made as it's been stalled for too long. I do still intend to get the vscode docker remote debugging setup however it's really not a blocking issue and more of just an inconvenience.
+
+I'd like to start doing weekly sprints with objectives for my project and tracking that too.
+
+For this one I'll just go ahead and say that this weeks sprint has been #1 and was for vscode remote docker debugging.
+
+I also need to go ahead and add in the devnotes from setting up the raspberry pi cluster too as that's definitly part of this project too. I've added it in as lazztech_cloud_notes.txt
+
+**Next weeks sprint will be**
+#### Sprint 2, Json Snapshot Persistance & Multiple Subjects 
