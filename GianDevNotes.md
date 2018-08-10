@@ -448,3 +448,30 @@ The launch configuration seems to be coming along however the container runs and
 I think that it's just missing the build task.
 
 Theres many mentions about this being unusually manual or "off road" from the conventional path as there's lots of manual configuration they don't seem to expect the typical .net developer to be familiar with.
+
+## Thursday, August 9, 2018
+
+### Project Managment Ideas:
+- Markdown for documentation
+- Json based Kanban Board
+- Json based Pomodoro based time tracking
+
+I'll just log and track all of my project managment with those approaches and have it all git backed so it's portable. Also I want a report generated and embeded into the README.md with statistics.
+
+It could be really useful for freelance project managment because literally everything would be right in the git repository. I could work offline, it would be free, everything would be located in one place, I would actually be independent from any service or third party hosted solution.
+
+I really want the readme to have a report of:
+- Time spent in the last 3 days, 10 days & month along with the calculated quote based on an hourly consulting rate
+- Kanban completed taskes, added tasks, moved tasks for the past two weeks or something. I guess it could be new and completed for two weeks.
+- I'd also want a report on days that I had logged entries in the documentation and preview of the "DevNotes" work documentaion log.
+
+Then a client or myself would see a report, updated from every single commit where any of the details changed.
+
+That would allow me to focus on work and maintain the KISS principale(Keep It Simple Stupid) by taking what I've found to be the most helpful project managment techniques while keeping everything really minimalist and non-distracting.
+
+I guess the report may need to be client side on my dev machine as some kind of statically generated html,css,js and whatever from the json files. Or maybe it could just be a jekyll based report? Either way I really want it be seemlessly self updating from every commit or as close as possible. I don't want it to make more work for me.
+
+Here's the link for the json based pomodoro technique time tracker I found:
+https://github.com/luckyshot/freelance-timetracker
+
+### Json Based Pomodoro Time Trackers
