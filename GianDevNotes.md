@@ -456,6 +456,7 @@ Theres many mentions about this being unusually manual or "off road" from the co
 - Markdown for documentation
 - Json based Kanban Board
 - Json based Pomodoro based time tracking
+- Must be free, non hosted and git backed
 
 I'll just log and track all of my project managment with those approaches and have it all git backed so it's portable. Also I want a report generated and embeded into the README.md with statistics.
 
@@ -498,3 +499,14 @@ https://github.com/nerab/paradeiser
 
 Goodtime is the android based one that I've used the most and like:
 https://github.com/goodtime-productivity/Goodtime
+
+https://marketplace.visualstudio.com/items?itemName=yahya-gilany.vscode-pomodoro
+https://marketplace.visualstudio.com/items?itemName=lkytal.pomodoro
+https://marketplace.visualstudio.com/items?itemName=odonno.pomodoro-code
+https://marketplace.visualstudio.com/items?itemName=brandonsoto.pomodoro-timer
+https://github.com/brandonsoto/pomodoro-timer
+
+https://eastonlee.com/blog/2017/06/01/todopomo/
+
+## Json Based Git Backed Vscode Kanban extension
+- https://marketplace.visualstudio.com/items?itemName=mkloubert.vscode-kanban
