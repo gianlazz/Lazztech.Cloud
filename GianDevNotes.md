@@ -445,7 +445,7 @@ Okay so I keep on seeing that I'm going to need to instal vsdebugger in the cont
 - Ran `docker system prune -a`
 - Continueing to follow along with https://techblog.dorogin.com/running-and-debugging-net-core-unit-tests-inside-docker-containers-48476eda2d2a
 Making the preLaunchTask “preDockerDebug”.
-- Then ran `docker compose up`
+- Then ran `docker-compose up`
 dockerfile build output:
 ```
 Downloading https://vsdebugger.azureedge.net/vsdbg-15-7-20425-2/vsdbg-linux-x64.zip
@@ -542,6 +542,8 @@ I also need to go ahead and add in the devnotes from setting up the raspberry pi
 #### Sprint 2, Json Snapshot Persistance & Multiple Subjects 
 
 ## Saturday, August 11, 2018
+## Sprint 1: Remote Docker Debugging in vscode
+## Poms: 
 
 cli image classifier
 https://www.npmjs.com/package/puddlenuts
@@ -578,3 +580,8 @@ I could fork and improve it if I need.
 Oh actually the same developer made this too which seems better and also supports json exporting:
 https://github.com/luckyshot/twentyfive
 
+Looks like just sshing into docker containers is a viable option too after installing the command line debugger. I wonder if that would end up being simpler to manage.
+
+Okay so I've decided to end this sprint early. I don't like how much time I've spent on setting up remote debugging in vscode for docker containers. I've learned a lot and documented it all but it's time to continue.
+
+#### Sprint 2, Json Snapshot Persistance & Multiple Subjects 

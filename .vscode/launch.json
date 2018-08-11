@@ -20,7 +20,7 @@
            "type": "coreclr",
            "request": "attach",
            "processId": "${command:pickRemoteProcess}",
-        //    "preLaunchTask": "preDockerDebug",
+           "preLaunchTask": "preDockerDebug",
            "pipeTransport": {
                "pipeCwd": "${workspaceRoot}",
                "pipeProgram": "docker",
