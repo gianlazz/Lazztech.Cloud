@@ -568,3 +568,13 @@ Okay so I went ahead and made a new project for the pomodoro technique cli howev
 
 https://github.com/OmniSharp/omnisharp-vscode/issues/8
 
+https://www.slant.co/topics/4542/viewpoints/2/~open-source-multi-platform-time-tracking-apps~spacemacs
+http://orgmode.org
+
+It looks like this one that I originally found may be the best:
+https://github.com/luckyshot/freelance-timetracker
+I could fork and improve it if I need.
+
+Oh actually the same developer made this too which seems better and also supports json exporting:
+https://github.com/luckyshot/twentyfive
+
