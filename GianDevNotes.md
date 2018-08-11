@@ -566,3 +566,5 @@ It looks like they're typically done in javascript which makes sense. Yeah a cli
 
 Okay so I went ahead and made a new project for the pomodoro technique cli however I was unable to get it to help me with the "Add Using Statment" shortcut. It looks like I had to add it to the solution first as vscode is only going to give full intelisense support to the project/solution listed in the bottom left of the vscode window.
 
+https://github.com/OmniSharp/omnisharp-vscode/issues/8
+
