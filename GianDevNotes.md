@@ -540,3 +540,29 @@ I also need to go ahead and add in the devnotes from setting up the raspberry pi
 
 **Next weeks sprint will be**
 #### Sprint 2, Json Snapshot Persistance & Multiple Subjects 
+
+## Saturday, August 11, 2018
+
+cli image classifier
+https://www.npmjs.com/package/puddlenuts
+http://dlib.net/train_object_detector.cpp.html
+https://www.tensorflow.org/tutorials/images/image_recognition
+https://github.com/TensorPy/TensorPy - This one seems really easy
+http://tensorpy.com
+https://robopress.robotsandpencils.com/build-your-own-image-classifier-in-less-time-than-it-takes-to-bake-a-pizza-9a7b898264de
+http://androidkt.com/train-image-classifier/
+
+The first few pomodoro extensions don't seem to save to json.
+Yeah none of them seem to do what I want. Coding tracker seems promising though.
+
+Yeah coding tracker is great but it might be overkill. Also it only tracks time from vscode usage. I don't really want or need that much specificity and would rather have just pomodoro time tracking.
+
+Maybe I should just make my own cli time tracking program? I wonder what would be involved in making a vscode extension with c#? Also it wouldn't have to be a command line tool and instead could just be a cli. Then I could use it anywhere and just set the output path for all of the json results. I could also add a build step to run some kind of report generation script. Or maybe have a vscode task that could execute it. Yeah maybe I should make my own pomodoro time tracking cli.
+
+I could eventually add in a kanban feature to and build it out more with time? 
+
+https://code.visualstudio.com/docs/extensions/example-hello-world
+It looks like they're typically done in javascript which makes sense. Yeah a cli may be best.
+
+Okay so I went ahead and made a new project for the pomodoro technique cli however I was unable to get it to help me with the "Add Using Statment" shortcut. It looks like I had to add it to the solution first as vscode is only going to give full intelisense support to the project/solution listed in the bottom left of the vscode window.
+
