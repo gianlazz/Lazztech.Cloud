@@ -7,17 +7,20 @@ namespace Lazztech.Pomodoro
     {
         static void Main(string[] args)
         {
-            if (args[0].ToLower() == "start")
-            {}
+            if (args.Any())
+            {
+                if (args[0].ToLower() == "start")
+                {}
 
-            if (args[0].ToLower() == "stop")
-            {}
+                if (args[0].ToLower() == "stop")
+                {}
 
-            if (args[0].ToLower() == "pause")
-            {}
+                if (args[0].ToLower() == "pause")
+                {}
 
-            if (args[0] == "-h")
-            {}
+                if (args[0] == "-h")
+                {}
+            }
 
             //Show status with brief intro and description
             Console.WriteLine("Lazztech.Pomodoro");
