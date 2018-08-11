@@ -5,6 +5,17 @@
    "version": "0.2.0",
    "configurations": [
        {
+           "name": ".NET Core Launch Pomodoro (console)",
+           "type": "coreclr",
+           "request": "launch",
+           "preLaunchTask": "build",
+           "program": "${workspaceRoot}/Lazztech.Pomodoro/bin/Debug/netcoreapp2.1/Lazztech.Pomodoro.dll",
+           "args": [],
+           "cwd": "${workspaceRoot}",
+           "stopAtEntry": false,
+           "console": "internalConsole"
+       },
+       {
            "name": ".NET Core Docker Debugger Remote Attach",
            "type": "coreclr",
            "request": "attach",
