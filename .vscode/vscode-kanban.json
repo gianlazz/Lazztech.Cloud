@@ -148,6 +148,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-05T21:00:42.180Z",
+      "id": "20180805210042_150493196_125f8f09f53b665ce94b34f5be1e6caa",
+      "references": [],
+      "title": "Solve why there was an exception in setting FaceBoundingBox in docker but not the tests."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-28T22:33:21.932Z",
       "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
       "references": [],
@@ -179,9 +188,7 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
-    }
-  ],
-  "in-progress": [
+    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -192,17 +199,8 @@
       "title": "Insure that test coverage for the facebounding box instantiation exception in docker is reflected in the unit tests"
     }
   ],
-  "testing": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-05T21:00:42.180Z",
-      "id": "20180805210042_150493196_125f8f09f53b665ce94b34f5be1e6caa",
-      "references": [],
-      "title": "Solve why there was an exception in setting FaceBoundingBox in docker but not the tests."
-    }
-  ],
+  "in-progress": [],
+  "testing": [],
   "todo": [
     {
       "assignedTo": {

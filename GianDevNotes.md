@@ -605,3 +605,7 @@ Okay so I found the issue. In the test there's an extra snapshot object for the 
 The other messed up one is the snapshot for "/face/unkown/Chad Peterson.jpg" where the name on the person is "unknown_person". Which for this one there shouldn't even be person.
 
 Okay so yeah the status was getting left as the default .known since it didn't match the other status settings due to still having the "\r" on the end of the line from the test data stdout not mocking the container data properly.
+
+Splitting the test stdout lines properly with the return carriage trimmed off seems to have unified the debugging values in the test env with the container env. There is now the same amout of snapshot objects as there's no return carriage characters at the end of the string to mess up the assignment of the snapshot status that the method throwing the error in the container depends on.
+
+The tests now match in passing or failing.
