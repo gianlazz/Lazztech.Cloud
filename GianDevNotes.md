@@ -611,3 +611,18 @@ Splitting the test stdout lines properly with the return carriage trimmed off se
 The tests now match in passing or failing.
 
 For tomorrow I'll probably switch to testing against known and a single unknown image as apposed to the entire collection of unknown. Then I think I could parallelize the image processing.
+
+## Sunday August 13, 2018
+## Sprint 2, Json Snapshot Persistance & Multiple Subjects
+
+Okay so it outputs a line for each face in an image with multiple faces. That should be easy enough. I wonder if it starts from left to right or how to know which face goes to which bounding box? That'll definitly be something to get some unit tests for. Here's an example of the output.
+
+```
+/face/unknown/harry-meghan-15.jpg,unknown_person
+/face/unknown/harry-meghan-15.jpg,unknown_person
+```
+
+```
+/face/unknown/harry-meghan-15.jpg,294,792,443,642
+/face/unknown/harry-meghan-15.jpg,154,652,333,473
+```
