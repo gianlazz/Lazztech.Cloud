@@ -609,3 +609,5 @@ Okay so yeah the status was getting left as the default .known since it didn't m
 Splitting the test stdout lines properly with the return carriage trimmed off seems to have unified the debugging values in the test env with the container env. There is now the same amout of snapshot objects as there's no return carriage characters at the end of the string to mess up the assignment of the snapshot status that the method throwing the error in the container depends on.
 
 The tests now match in passing or failing.
+
+For tomorrow I'll probably switch to testing against known and a single unknown image as apposed to the entire collection of unknown. Then I think I could parallelize the image processing.
