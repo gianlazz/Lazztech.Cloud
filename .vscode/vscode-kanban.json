@@ -112,6 +112,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-05T21:01:14.930Z",
+      "id": "20180805210114_322815295_c7776fffe8191e1cc3721f228bbb0054",
+      "references": [],
+      "title": "Insure that test coverage for the facebounding box instantiation exception in docker is reflected in the unit tests"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-01T04:38:44.698Z",
       "id": "20180801043844_125736006_4ad1ed7c1716f890b2261f25358c9817",
       "references": [],
@@ -188,18 +197,19 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
-    },
+    }
+  ],
+  "in-progress": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-05T21:01:14.930Z",
-      "id": "20180805210114_322815295_c7776fffe8191e1cc3721f228bbb0054",
+      "creation_time": "2018-07-28T22:30:23.900Z",
+      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
       "references": [],
-      "title": "Insure that test coverage for the facebounding box instantiation exception in docker is reflected in the unit tests"
+      "title": "Test results/images with multiple faces"
     }
   ],
-  "in-progress": [],
   "testing": [],
   "todo": [
     {
@@ -234,15 +244,6 @@
       "id": "20180805031308_419208128_6db4fd3deaafabc6a203e26ef329294d",
       "references": [],
       "title": "Setup Docker remote debugging launch configuration for Cli project with vscode"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-07-28T22:30:23.900Z",
-      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
-      "references": [],
-      "title": "Test results/images with multiple faces"
     },
     {
       "assignedTo": {
