@@ -595,3 +595,11 @@ The container crashes on this line: `/face/unknown/Chad Peterson.jpg,113,328,328
 Okay so in the tests there's a person object on the snapshot but not in the actual container... In the tests the name is "unknown_person".
 
 I need to find in the tests when that person object for that snapshot is being newed up and see why. It's probably an issue with the test data. That and I should count the snaps between the test and container enviroments.
+
+I guess in the test enviroment there's one more snapshot that hasn't geen set as no_persons_found than in the container.
+
+In test Chad Peterson is known and there's a person object on the snapshot. In the container it's unknown_person. Which is correct. I wonder if I figure out why that snapshot has a person if that will solve the issue.
+
+Okay so I found the issue. In the test there's an extra snapshot object for the "/face/unkown/webcam.jpg" again that has the status for the image set as the name... It's 3rd in the collection.
+
+The other messed up one is the snapshot for "/face/unkown/Chad Peterson.jpg" where the name on the person is "unknown_person". Which for this one there shouldn't even be person.
