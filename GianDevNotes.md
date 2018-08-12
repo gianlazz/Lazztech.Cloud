@@ -543,7 +543,7 @@ I also need to go ahead and add in the devnotes from setting up the raspberry pi
 
 ## Saturday, August 11, 2018
 ## Sprint 1: Remote Docker Debugging in vscode
-## Poms: 
+## Poms: 2
 
 cli image classifier
 https://www.npmjs.com/package/puddlenuts
@@ -582,6 +582,16 @@ https://github.com/luckyshot/twentyfive
 
 Looks like just sshing into docker containers is a viable option too after installing the command line debugger. I wonder if that would end up being simpler to manage.
 
-Okay so I've decided to end this sprint early. I don't like how much time I've spent on setting up remote debugging in vscode for docker containers. I've learned a lot and documented it all but it's time to continue.
+Okay so I've decided to end this sprint early. I don't like how much time I've spent on setting up remote debugging in vscode for docker containers. I've learned a lot and documented it all but it's time to continue. Debugging with vs4mac or regular vs works fine enough for now.
 
-#### Sprint 2, Json Snapshot Persistance & Multiple Subjects 
+#### Sprint 2, Json Snapshot Persistance & Multiple Subjects
+
+So I'm comparing the docker debugging and the unit test debugging and one thing I see that is different that would make them similar is to have the sdtout lines as a string array in the tests instead of just removing the return carriage on each as that doesn't show up in the container.
+
+Also in the unit test the snapsWithPeople has 8 but in the container it has 7.
+
+The container crashes on this line: `/face/unknown/Chad Peterson.jpg,113,328,328,113`
+
+Okay so in the tests there's a person object on the snapshot but not in the actual container... In the tests the name is "unknown_person".
+
+I need to find in the tests when that person object for that snapshot is being newed up and see why. It's probably an issue with the test data. That and I should count the snaps between the test and container enviroments.

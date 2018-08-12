@@ -72,11 +72,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             var lines = face_detectionLines;
 
             //THIS WORKS IN DOCKER RUN TIME
-            var snaps = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
-            var snapsWithPeople = snaps.Where(x => x.People.Any()).ToList();
+            // var snaps = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
+            // var snapsWithPeople = snaps.Where(x => x.People.Any()).ToList();
 
             //FOR DEBUGGING DOCKER RUN TIME EXCEPTION VS UNIT TEST
-            // var snapsWithPeople = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
+            var snapsWithPeople = Results.Where(x => x.Status != SnapshotStatus.no_persons_found).ToList();
 
             foreach (var line in lines)
             {
