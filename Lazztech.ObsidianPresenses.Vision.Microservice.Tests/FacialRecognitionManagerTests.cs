@@ -138,9 +138,13 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
     {
         public List<string> FaceRecognition()
         {
+            
+            // string[] lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
+            //     new[] { Environment.NewLine },
+            //     StringSplitOptions.None);
+
             string[] lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
-                new[] { Environment.NewLine },
-                StringSplitOptions.None);
+                '\r', '\n', StringSplitOptions.RemoveEmptyEntries);
             return new List<string>(lines);
         }
     }
@@ -149,9 +153,12 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
     {
         public List<string> FaceDetection()
         {
+            // string[] lines = FacialRecognitionManagerTests.face_detectionLinesTestData.Split(
+            //     new[] { Environment.NewLine },
+            //     StringSplitOptions.None);
+
             string[] lines = FacialRecognitionManagerTests.face_detectionLinesTestData.Split(
-                new[] { Environment.NewLine },
-                StringSplitOptions.None);
+            '\r', '\n', StringSplitOptions.RemoveEmptyEntries);
             return new List<string>(lines);
         }
     }

@@ -603,3 +603,5 @@ In test Chad Peterson is known and there's a person object on the snapshot. In t
 Okay so I found the issue. In the test there's an extra snapshot object for the "/face/unkown/webcam.jpg" again that has the status for the image set as the name... It's 3rd in the collection.
 
 The other messed up one is the snapshot for "/face/unkown/Chad Peterson.jpg" where the name on the person is "unknown_person". Which for this one there shouldn't even be person.
+
+Okay so yeah the status was getting left as the default .known since it didn't match the other status settings due to still having the "\r" on the end of the line from the test data stdout not mocking the container data properly.
