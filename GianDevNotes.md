@@ -616,18 +616,10 @@ For tomorrow I'll probably switch to testing against known and a single unknown 
 ## Sprint 2, Json Snapshot Persistance & Multiple Subjects
 
 Okay so it outputs a line for each face in an image with multiple faces. That should be easy enough. I wonder if it starts from left to right or how to know which face goes to which bounding box? That'll definitly be something to get some unit tests for. Here's an example of the output.
-<<<<<<< HEAD
-=======
-
->>>>>>> fcad209301977ffad6255d6dd7ef209dfee1169d
 ```
 /face/unknown/harry-meghan-15.jpg,unknown_person
 /face/unknown/harry-meghan-15.jpg,unknown_person
 ```
-<<<<<<< HEAD
-=======
-
->>>>>>> fcad209301977ffad6255d6dd7ef209dfee1169d
 ```
 /face/unknown/harry-meghan-15.jpg,294,792,443,642
 /face/unknown/harry-meghan-15.jpg,154,652,333,473
