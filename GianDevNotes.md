@@ -624,3 +624,9 @@ Okay so it outputs a line for each face in an image with multiple faces. That sh
 /face/unknown/harry-meghan-15.jpg,294,792,443,642
 /face/unknown/harry-meghan-15.jpg,154,652,333,473
 ```
+
+After adding in images for both the prince and his wife the output looks like this which seems to suggest that parser may go form right to left
+```
+/face/unknown/harry-meghan-15.jpg,Meghan Markle
+/face/unknown/harry-meghan-15.jpg,Prince Harry
+```
