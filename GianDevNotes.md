@@ -634,3 +634,6 @@ After adding in images for both the prince and his wife the output looks like th
 ## Monday August 13, 2018
 ## Sprint 2, Json Snapshot Persistance & Multiple Subjects
 
+Improved all of the test mocks to accept ctor parameters and refactored all of the test cases over. I then added in stdout data for multiperson image output.
+
+I just relised I don't have all of the mock data setup yet.
