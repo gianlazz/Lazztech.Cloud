@@ -92,28 +92,23 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
         private FaceBoundingBox ExtractBoundingBox(string line)
         {
             var csvSplit = line.Split(',').ToList();
-            csvSplit.RemoveAt(0);
-            var count = csvSplit.Count();
-            if (count > 4)
-                throw new Exception("Implement handling for multiple faces");
-            else
+            csvSplit.RemoveAt(0);            
+            var leftTopCoordinate = new PixelCoordinateVertex()
+                {
+                    x = int.Parse(csvSplit[0]),
+                    y = int.Parse(csvSplit[1])
+                };
+            var rightBottomCoordinate = new PixelCoordinateVertex()
             {
-                var leftTopCoordinate = new PixelCoordinateVertex()
-                    {
-                        x = int.Parse(csvSplit[0]),
-                        y = int.Parse(csvSplit[1])
-                    };
-                var rightBottomCoordinate = new PixelCoordinateVertex()
-                {
-                    x = int.Parse(csvSplit[2]),
-                    y = int.Parse(csvSplit[3])
-                };
-                return new FaceBoundingBox() 
-                {
-                    LeftTopCoordinate = leftTopCoordinate,
-                    RightBottomCoordinate = rightBottomCoordinate
-                };
-            }
+                x = int.Parse(csvSplit[2]),
+                y = int.Parse(csvSplit[3])
+            };
+            return new FaceBoundingBox() 
+            {
+                LeftTopCoordinate = leftTopCoordinate,
+                RightBottomCoordinate = rightBottomCoordinate
+            };
+            
         }
 
         private void HandleIdentities()
@@ -164,7 +159,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
         private string GetIdentifiedName(string line)
         {
-            //THIS COULD BE MORE COMPLEX IF THERE'S MORE THAN ONE NAME
             var name = line.Split(',').Last();
             return name;
         }

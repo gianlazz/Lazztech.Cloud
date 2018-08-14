@@ -645,3 +645,5 @@ After adding in the multiperson face_recognition and face_detection stdout test 
 It does however have the facebounding box values not assigned for the second person. I think I may remember leaving code in there specifying only the first person.
 
 I also removed all of the results where the ImageDir contains "/known/" since that's not as constructive to output for now. I may want to handle the known people differently.
+
+I'll just do something like foreach where imageDir ==. Wait maybe I should persist in the processed snapshots not only the snapshot being processed but also in the people object there should be the name of the image used to match them? No because that's already used as their name.
