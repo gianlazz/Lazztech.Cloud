@@ -182,10 +182,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 
         private List<string> SplitStdoutLines(string stdout)
         {
-            // var lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
-            //     new[] { Environment.NewLine },
-            //     StringSplitOptions.None).ToList();
-
             var lines = stdout.Split(
                 new[] { Environment.NewLine },
                 StringSplitOptions.None).ToList();
@@ -215,10 +211,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 
         private List<string> SplitStdoutLines(string stdout)
         {
-            // var lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
-            //     new[] { Environment.NewLine },
-            //     StringSplitOptions.None).ToList();
-
             var lines = stdout.Split(
                 new[] { Environment.NewLine },
                 StringSplitOptions.None).ToList();
