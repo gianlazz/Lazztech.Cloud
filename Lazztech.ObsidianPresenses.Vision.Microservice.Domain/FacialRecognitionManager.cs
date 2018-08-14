@@ -81,10 +81,18 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 var imageName = _fileServices.GetFileNameFromDir(imageDirFromLine); 
                 if (snapsWithPeople.Where(x => x.ImageName == imageName).ToList().Any())
                 {
-                    var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
-                    var bb = ExtractBoundingBox(line);
-                    //THIS IS THE LINE CAUSING THE ISSUE WITH MULTIPERSON SNAPSHOTS
-                    snap.People.First().FaceBoundingBox = bb;
+                    // var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
+                    // var bb = ExtractBoundingBox(line);
+                    // //THIS IS THE LINE CAUSING THE ISSUE WITH MULTIPERSON SNAPSHOTS
+                    // snap.People.First().FaceBoundingBox = bb;
+                    var matchingLines = lines.Where(x => x.Split(',')[0] == imageDirFromLine).ToList();
+                    for (int i = 0; i < matchingLines.Count(); i++)
+                    {
+                        var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
+                        var bb = ExtractBoundingBox(matchingLines[i]);
+                        //THIS IS THE LINE CAUSING THE ISSUE WITH MULTIPERSON SNAPSHOTS
+                        snap.People[i].FaceBoundingBox = bb;
+                    }
                 }
                 else { continue; }
             }
