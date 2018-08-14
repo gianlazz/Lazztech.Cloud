@@ -39,17 +39,18 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 /face/unknown/Chad Peterson.jpg,113,328,328,113
 /face/unknown/unnamed.jpg,156,610,527,238";
 
-        // public static string[] multipersonKnownDirs = {
-        //     "/face/known/Gian Lazzarini.jpeg",
-        //     "/face/known/Scott Hanselman.png"};
+        public static string multipersonKnownDirs = @"/face/known/Prince Harry.jpg
+/face/known/Gian Lazzarini.jpeg
+/face/known/Meghan Markle.jpeg
+/face/known/Scott Hanselman.png";
 
-        // public static string[] multiplepersonunknownDirs = {
-        //     "/face/unknown/0.jpeg",
-        //     "/face/unknown/webcam.jpg",
-        //     "/face/unknown/images.jpeg",
-        //     "/face/unknown/2892.png",
-        //     "/face/unknown/Chad Peterson.jpg",
-        //     "/face/unknown/unnamed.jpg"};
+        public static string multiplepersonunknownDirs = @"/face/unknown/webcam.jpg
+/face/unknown/Chad Peterson.jpg
+/face/unknown/unnamed.jpg
+/face/unknown/harry-meghan-15.jpg
+/face/unknown/0.jpeg
+/face/unknown/images.jpeg
+/face/unknown/2892.png";
 
         #endregion
 
@@ -165,14 +166,15 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var recognition = new FacialRecognitionManager(
                 new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
                 new FaceDetectionProcessMock(face_detectionLinesTestData), 
-                new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));
+                new FileServicesMock(multipersonKnownDirs, multiplepersonunknownDirs, knownUnknownDirs));
             
             //Act
             var results = recognition.Process();
             var resultsFromDualPersonImage = results.Where(x => x.ImageName == "harry-meghan-15.jpg").ToList();
 
             //Assert
-            Assert.Equal(resultsFromDualPersonImage.Count(), 2);
+            Assert.Equal(1, resultsFromDualPersonImage.Count());
+            Assert.Equal(2, resultsFromDualPersonImage.First().People.Count);
         }
         #endregion
     }
