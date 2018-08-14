@@ -47,7 +47,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void Test1_BasicSmokeTest()
         {
             //Arrange
-            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
+                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FileServicesMock());
 
             //Act
             var results = recognition.Process();
@@ -60,7 +63,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void SnapshotWithStatusOfno_persons_found_ShouldHaveNoPeople() 
         {
             //Arrange
-            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
+                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FileServicesMock());
 
             //Act
             var results = recognition.Process();
@@ -77,7 +83,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void SnapshotGuidIdShouldNotBeEmpty()
         {
             //Arrange
-            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
+                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FileServicesMock());
 
             //Act
             var results = recognition.Process();
@@ -90,7 +99,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void PersonNameShouldNotHaveReturnCarriage()
         {
             //Arrange
-            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
+                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FileServicesMock());
 
             //Act
             var results = recognition.Process();
@@ -113,7 +125,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void SnapshotsWithPeopleFoundShouldHaveValidBoundingBoxForThem()
         {
             //Arrange
-            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
+                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FileServicesMock());            
+
             //54,181,158,77
             var arrangedBoundingBox = new FaceBoundingBox() 
             {
@@ -135,7 +151,10 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public void SnapshotWithTwoKnownPeople()
         {
             //Arrange
-            var recognition = new FacialRecognitionManager(new FaceRecognitionProcessMock(), new FaceDetectionProcessMock(), new FileServicesMock());
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
+                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FileServicesMock());
             
             //Act
             var results = recognition.Process();
@@ -150,10 +169,24 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
     #region interface mocks
     class FaceRecognitionProcessMock : Iface_recognition
     {
+        private List<string> output;
+
+        public FaceRecognitionProcessMock(string lines)
+        {
+            output = SplitStdoutLines(lines);
+        }
         public List<string> FaceRecognition()
         {
-            
-            var lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
+            return output;
+        }
+
+        private List<string> SplitStdoutLines(string stdout)
+        {
+            // var lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
+            //     new[] { Environment.NewLine },
+            //     StringSplitOptions.None).ToList();
+
+            var lines = stdout.Split(
                 new[] { Environment.NewLine },
                 StringSplitOptions.None).ToList();
 
@@ -161,18 +194,32 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             {
                 lines[i] = lines[i].TrimEnd('\r', '\n');
             }
-            
-            // string[] lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
-            //     '\r', '\n', StringSplitOptions.RemoveEmptyEntries);
+
             return new List<string>(lines);
         }
     }
 
     class FaceDetectionProcessMock : Iface_detection
     {
+        private List<string> output;
+
+        public FaceDetectionProcessMock(string lines)
+        {
+            output = SplitStdoutLines(lines);
+        }
+
         public List<string> FaceDetection()
         {
-            var lines = FacialRecognitionManagerTests.face_detectionLinesTestData.Split(
+            return output;
+        }
+
+        private List<string> SplitStdoutLines(string stdout)
+        {
+            // var lines = FacialRecognitionManagerTests.face_recognitionLinesTestData.Split(
+            //     new[] { Environment.NewLine },
+            //     StringSplitOptions.None).ToList();
+
+            var lines = stdout.Split(
                 new[] { Environment.NewLine },
                 StringSplitOptions.None).ToList();
 
@@ -181,8 +228,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
                 lines[i] = lines[i].TrimEnd('\r', '\n');
             }
 
-            // string[] lines = FacialRecognitionManagerTests.face_detectionLinesTestData.Split(
-            // '\r', '\n', StringSplitOptions.RemoveEmptyEntries);
             return new List<string>(lines);
         }
     }
