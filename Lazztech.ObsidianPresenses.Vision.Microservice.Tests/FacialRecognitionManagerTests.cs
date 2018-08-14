@@ -52,6 +52,24 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 /face/unknown/images.jpeg
 /face/unknown/2892.png";
 
+        public static string multipersonface_recognitionLinesTestData = @"/face/unknown/0.jpeg,Gian Lazzarini
+/face/unknown/webcam.jpg,no_persons_found
+/face/unknown/images.jpeg,Gian Lazzarini
+/face/unknown/2892.png,Scott Hanselman
+/face/unknown/Chad Peterson.jpg,unknown_person
+/face/unknown/unnamed.jpg,Gian Lazzarini
+/face/unknown/harry-meghan-15.jpg,Meghan Markle
+/face/unknown/harry-meghan-15.jpg,Prince Harry";
+
+        public static string multipersonface_detectionLinesTestData = @"/face/unknown/0.jpeg,29,133,101,61
+/face/unknown/webcam.jpg,185,400,400,185
+/face/unknown/images.jpeg,54,181,158,77
+/face/unknown/2892.png,136,394,394,136
+/face/unknown/Chad Peterson.jpg,113,328,328,113
+/face/unknown/unnamed.jpg,156,610,527,238
+/face/unknown/harry-meghan-15.jpg,294,792,443,642
+/face/unknown/harry-meghan-15.jpg,154,652,333,473";
+
         #endregion
 
         #region test cases
@@ -164,8 +182,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
-                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FaceRecognitionProcessMock(multipersonface_recognitionLinesTestData), 
+                new FaceDetectionProcessMock(multipersonface_detectionLinesTestData), 
                 new FileServicesMock(multipersonKnownDirs, multiplepersonunknownDirs, knownUnknownDirs));
             
             //Act

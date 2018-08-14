@@ -637,3 +637,11 @@ After adding in images for both the prince and his wife the output looks like th
 Improved all of the test mocks to accept ctor parameters and refactored all of the test cases over. I then added in stdout data for multiperson image output.
 
 I just relised I don't have all of the mock data setup yet.
+
+## Tuesday August 14, 2018
+## Sprint 2, Json Snapshot Persistance & Multiple Subjects
+
+After adding in the multiperson face_recognition and face_detection stdout test data the test passed in finding two people.
+It does however have the facebounding box values not assigned for the second person. I think I may remember leaving code in there specifying only the first person.
+
+I also removed all of the results where the ImageDir contains "/known/" since that's not as constructive to output for now. I may want to handle the known people differently.
