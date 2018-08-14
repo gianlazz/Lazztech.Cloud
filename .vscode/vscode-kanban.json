@@ -197,6 +197,15 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-07-28T22:30:23.900Z",
+      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
+      "references": [],
+      "title": "Manual test results/images with multiple faces"
     }
   ],
   "in-progress": [
@@ -217,7 +226,9 @@
       "id": "20180813005343_426420820_f9227f5c2a2e12fa41f66aae62a6377d",
       "references": [],
       "title": "Test case where multi person image has known and unknown."
-    },
+    }
+  ],
+  "testing": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -228,18 +239,20 @@
       "title": "Unit test for case where image contains two people both of which are known."
     }
   ],
-  "testing": [
+  "todo": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T22:30:23.900Z",
-      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
+      "creation_time": "2018-08-13T01:01:23.600Z",
+      "description": {
+        "content": "Unless it's parallel then make sure that the console write doesn't compete",
+        "mime": "text/markdown"
+      },
+      "id": "20180813010123_409985466_618ed8bf088058910897ef559dd64c02",
       "references": [],
-      "title": "Test results/images with multiple faces"
-    }
-  ],
-  "todo": [
+      "title": "Add json object serialization/deserialization to IFileServices then write out each to console as they're processed instead of all at the end."
+    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -290,19 +303,6 @@
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-13T01:01:23.600Z",
-      "description": {
-        "content": "Unless it's parallel then make sure that the console write doesn't compete",
-        "mime": "text/markdown"
-      },
-      "id": "20180813010123_409985466_618ed8bf088058910897ef559dd64c02",
-      "references": [],
-      "title": "Add json object serialization/deserialization to IFileServices then write out each to console as they're processed instead of all at the end."
     }
   ]
 }
