@@ -83,6 +83,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 {
                     var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
                     var bb = ExtractBoundingBox(line);
+                    //THIS IS THE LINE CAUSING THE ISSUE WITH MULTIPERSON SNAPSHOTS
                     snap.People.First().FaceBoundingBox = bb;
                 }
                 else { continue; }

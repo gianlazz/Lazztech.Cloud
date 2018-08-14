@@ -647,3 +647,8 @@ It does however have the facebounding box values not assigned for the second per
 I also removed all of the results where the ImageDir contains "/known/" since that's not as constructive to output for now. I may want to handle the known people differently.
 
 I'll just do something like foreach where imageDir ==. Wait maybe I should persist in the processed snapshots not only the snapshot being processed but also in the people object there should be the name of the image used to match them? No because that's already used as their name.
+
+```
+    //THIS IS THE LINE CAUSING THE ISSUE WITH MULTIPERSON SNAPSHOTS
+    snap.People.First().FaceBoundingBox = bb;
+```
