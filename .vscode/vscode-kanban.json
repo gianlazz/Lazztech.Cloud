@@ -139,6 +139,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-07-28T22:30:23.900Z",
+      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
+      "references": [],
+      "title": "Manual test results/images with multiple faces"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-05T05:42:22.935Z",
       "id": "20180805054222_422806226_02e14ad66b529a9c4c8d5982a0e1a61c",
       "references": [],
@@ -184,6 +193,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-13T00:52:45.178Z",
+      "id": "20180813005245_367134562_8db876bc7a62a4a39508272539ad26ca",
+      "references": [],
+      "title": "Unit test for case where image contains two people both of which are known."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-31T02:31:21.042Z",
       "id": "20180731023121_515614061_e5e9f6c67d7c08a4a59014e8c2dd1b03",
       "references": [],
@@ -202,22 +220,13 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-07-28T22:30:23.900Z",
-      "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
-      "references": [],
-      "title": "Manual test results/images with multiple faces"
-    }
-  ],
-  "in-progress": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
       "creation_time": "2018-08-13T00:57:22.484Z",
       "id": "20180813005722_55801073_7ddd087ec556913ae16a46e26dbf1ddf",
       "references": [],
       "title": "Test case to make sure name goes to correct bounding box output in multiperson image"
-    },
+    }
+  ],
+  "in-progress": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -228,17 +237,7 @@
       "title": "Test case where multi person image has known and unknown."
     }
   ],
-  "testing": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-13T00:52:45.178Z",
-      "id": "20180813005245_367134562_8db876bc7a62a4a39508272539ad26ca",
-      "references": [],
-      "title": "Unit test for case where image contains two people both of which are known."
-    }
-  ],
+  "testing": [],
   "todo": [
     {
       "assignedTo": {
