@@ -194,6 +194,39 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             Assert.Equal(1, resultsFromDualPersonImage.Count());
             Assert.Equal(2, resultsFromDualPersonImage.First().People.Count);
         }
+
+        [Fact]
+        public void SnapshotWithTwoKnownPeopleShouldHaveCorrectlyAssignedBBForBoth()
+        {
+            //Arrange
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(multipersonface_recognitionLinesTestData), 
+                new FaceDetectionProcessMock(multipersonface_detectionLinesTestData), 
+                new FileServicesMock(multipersonKnownDirs, multiplepersonunknownDirs, knownUnknownDirs));
+
+            //294,792,443,642
+            var meganArrangedBoundingBox = new FaceBoundingBox() 
+            {
+                LeftTopCoordinate = new PixelCoordinateVertex() { x = 294, y = 792 },
+                RightBottomCoordinate = new PixelCoordinateVertex() { x = 443, y = 642 }
+            }; 
+            //154,652,333,473
+            var harryArrangedBoundingBox = new FaceBoundingBox() 
+            {
+                LeftTopCoordinate = new PixelCoordinateVertex() { x = 154, y = 652 },
+                RightBottomCoordinate = new PixelCoordinateVertex() { x = 333, y = 473 }
+            };                           
+            
+            //Act
+            var results = recognition.Process();
+            var resultsFromDualPersonImage = results.Where(x => x.ImageName == "harry-meghan-15.jpg").ToList();
+            var megan = resultsFromDualPersonImage.First().People.Where(x => x.Name == "Meghan Markle").FirstOrDefault();
+            var harry = resultsFromDualPersonImage.First().People.Where(x => x.Name == "Prince Harry").FirstOrDefault();
+
+            //Assert
+            Assert.Equal(meganArrangedBoundingBox, megan.FaceBoundingBox);
+            Assert.Equal(harryArrangedBoundingBox, harry.FaceBoundingBox);
+        }
         #endregion
     }
 
