@@ -15,17 +15,15 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public static string knownUnkownPath = @"/face/known_unknown/";
         public static string noPersonsFoundPath = @"/face/no_persons_found/";
 
-        public static string[] knownDirs = {
-            "/face/known/Gian Lazzarini.jpeg",
-            "/face/known/Scott Hanselman.png"};
-        public static string[] unknownDirs = {
-            "/face/unknown/0.jpeg",
-            "/face/unknown/webcam.jpg",
-            "/face/unknown/images.jpeg",
-            "/face/unknown/2892.png",
-            "/face/unknown/Chad Peterson.jpg",
-            "/face/unknown/unnamed.jpg"};
-        public static string[] knownUnknownDirs = {};
+        public static string knownDirs = @"/face/known/Gian Lazzarini.jpeg
+/face/known/Scott Hanselman.png";
+        public static string unknownDirs = @"/face/unknown/0.jpeg
+/face/unknown/webcam.jpg
+/face/unknown/images.jpeg
+/face/unknown/2892.png
+/face/unknown/Chad Peterson.jpg
+/face/unknown/unnamed.jpg";
+        public static string knownUnknownDirs = @"";
 
         public static string face_recognitionLinesTestData = @"/face/unknown/0.jpeg,Gian Lazzarini
 /face/unknown/webcam.jpg,no_persons_found
@@ -40,6 +38,19 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 /face/unknown/2892.png,136,394,394,136
 /face/unknown/Chad Peterson.jpg,113,328,328,113
 /face/unknown/unnamed.jpg,156,610,527,238";
+
+        // public static string[] multipersonKnownDirs = {
+        //     "/face/known/Gian Lazzarini.jpeg",
+        //     "/face/known/Scott Hanselman.png"};
+
+        // public static string[] multiplepersonunknownDirs = {
+        //     "/face/unknown/0.jpeg",
+        //     "/face/unknown/webcam.jpg",
+        //     "/face/unknown/images.jpeg",
+        //     "/face/unknown/2892.png",
+        //     "/face/unknown/Chad Peterson.jpg",
+        //     "/face/unknown/unnamed.jpg"};
+
         #endregion
 
         #region test cases
@@ -50,7 +61,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var recognition = new FacialRecognitionManager(
                 new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
                 new FaceDetectionProcessMock(face_detectionLinesTestData), 
-                new FileServicesMock());
+                new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));
 
             //Act
             var results = recognition.Process();
@@ -66,7 +77,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var recognition = new FacialRecognitionManager(
                 new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
                 new FaceDetectionProcessMock(face_detectionLinesTestData), 
-                new FileServicesMock());
+                new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));
 
             //Act
             var results = recognition.Process();
@@ -86,7 +97,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var recognition = new FacialRecognitionManager(
                 new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
                 new FaceDetectionProcessMock(face_detectionLinesTestData), 
-                new FileServicesMock());
+                new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));
 
             //Act
             var results = recognition.Process();
@@ -102,7 +113,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var recognition = new FacialRecognitionManager(
                 new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
                 new FaceDetectionProcessMock(face_detectionLinesTestData), 
-                new FileServicesMock());
+                new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));
 
             //Act
             var results = recognition.Process();
@@ -128,7 +139,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var recognition = new FacialRecognitionManager(
                 new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
                 new FaceDetectionProcessMock(face_detectionLinesTestData), 
-                new FileServicesMock());            
+                new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));         
 
             //54,181,158,77
             var arrangedBoundingBox = new FaceBoundingBox() 
@@ -154,7 +165,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             var recognition = new FacialRecognitionManager(
                 new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
                 new FaceDetectionProcessMock(face_detectionLinesTestData), 
-                new FileServicesMock());
+                new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));
             
             //Act
             var results = recognition.Process();
@@ -226,20 +237,34 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 
     class FileServicesMock : IFileServices
     {
+        private string known;
+        private string unknown;
+        private string knownUnknown;
+
+        public FileServicesMock(string knownPaths, string unknownPaths, string knownUnknownPaths)
+        {
+            known = knownPaths;
+            unknown = unknownPaths;
+            knownUnknown = knownUnknownPaths;
+        }
+
         public string[] GetAllImageDirs(string path)
         {
             if (path.Contains("/known/"))
             {
-                return FacialRecognitionManagerTests.knownDirs;
+                return SplitStdoutLines(known).ToArray();
+                // return FacialRecognitionManagerTests.knownDirs;
             } 
             else if (path.Contains("/unknown/"))
             {
-                return FacialRecognitionManagerTests.unknownDirs;
+                return SplitStdoutLines(unknown).ToArray();
+                // return FacialRecognitionManagerTests.unknownDirs;
             }
             else if (path.Contains("/known_unknown/"))
             {
                 //throw new Exception("No valid mock prepared yet.");
-                return new string[] {};
+                return SplitStdoutLines(knownUnknown).ToArray();
+                // return new string[] {};
             }
             else if (path.Contains("/no_persons_found/"))
             {
@@ -260,6 +285,20 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         public string GetFileNameFromDir(string dir)
         {
             return dir.Substring(dir.LastIndexOf('/') + 1);
+        }
+
+        private List<string> SplitStdoutLines(string stdout)
+        {
+            var lines = stdout.Split(
+                new[] { Environment.NewLine },
+                StringSplitOptions.None).ToList();
+
+            for (int i = 0; i < lines.Count; i++)
+            {
+                lines[i] = lines[i].TrimEnd('\r', '\n');
+            }
+
+            return new List<string>(lines);
         }
     }
     #endregion
