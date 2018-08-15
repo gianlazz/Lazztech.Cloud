@@ -652,3 +652,12 @@ I'll just do something like foreach where imageDir ==. Wait maybe I should persi
     //THIS IS THE LINE CAUSING THE ISSUE WITH MULTIPERSON SNAPSHOTS
     snap.People.First().FaceBoundingBox = bb;
 ```
+
+I also now need to make sure it can handle a known and unknown. When there is a "known_unknown" it should still have a person object with it's bounding box set.
+Yup so adding an image with two known people and a 3rd unkonw person in it causes ArgumentOutOfRangeException in the HandleBoundingBoxes() private method because it's trying to assign the bounding box to the "unknown_person" however it has not had a person object instantiated on the People property of the snapshot.
+
+I need to make sure that "unknown_person" still instantiates a person so that it can recieve the bounding box. Also I think I'm going to do away with the "known_unknown" status and just consolidate that down to "unknown_person" since that's the same thing. Also I may move the status to the person object.
+
+## Wednesday August 15, 2018
+## Sprint 2, Json Snapshot Persistance & Multiple Subjects
+

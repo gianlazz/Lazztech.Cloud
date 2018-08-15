@@ -227,6 +227,37 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             Assert.Equal(meganArrangedBoundingBox, megan.FaceBoundingBox);
             Assert.Equal(harryArrangedBoundingBox, harry.FaceBoundingBox);
         }
+
+        [Fact]
+        public void _3PersonSnap1UnkownShouldStillHavePeopleForeachWithBB()
+        {
+            //Arrange
+            var recogLines = @"/face/unknown/Prince-Harry_Thomas-Markle_Meghan-Markle.jpg,unknown_person
+/face/unknown/Prince-Harry_Thomas-Markle_Meghan-Markle.jpg,Meghan Markle
+/face/unknown/Prince-Harry_Thomas-Markle_Meghan-Markle.jpg,Prince Harry";
+            var detectLines = @"/face/unknown/Prince-Harry_Thomas-Markle_Meghan-Markle.jpg,78,559,228,410
+/face/unknown/Prince-Harry_Thomas-Markle_Meghan-Markle.jpg,54,413,234,234
+/face/unknown/Prince-Harry_Thomas-Markle_Meghan-Markle.jpg,95,228,244,78";
+            var knownDirs = @"/face/known/Prince Harry.jpg
+/face/known/Meghan Markle.jpeg";
+            var unknownDirs = @"/face/unknown/Prince-Harry_Thomas-Markle_Meghan-Markle.jpg";
+            //var knownUnknownDirs = @"";
+
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(recogLines), 
+                new FaceDetectionProcessMock(detectLines), 
+                new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));
+            
+            //Act
+            var snapshots = recognition.Process();
+            var people = snapshots.Where(x => x.ImageName == "Prince-Harry_Thomas-Markle_Meghan-Markle.jpg").First().People;
+
+            //Assert
+            Assert.Equal(1, snapshots.Count());
+            Assert.True(people.Where(x => x.Name == "Prince Harry").ToList().Any());
+            Assert.True(people.Where(x => x.Name == "Meghan Markle").ToList().Any());
+            Assert.Equal(3, people.Count());
+        }
         #endregion
     }
 
