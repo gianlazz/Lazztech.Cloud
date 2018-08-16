@@ -184,6 +184,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-13T00:53:43.037Z",
+      "id": "20180813005343_426420820_f9227f5c2a2e12fa41f66aae62a6377d",
+      "references": [],
+      "title": "Test case where multi person image has known and unknown."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-07-28T22:33:21.932Z",
       "id": "20180728223321_207888134_8205ef73a51da783d563984498f35b83",
       "references": [],
@@ -224,15 +233,6 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-13T00:53:43.037Z",
-      "id": "20180813005343_426420820_f9227f5c2a2e12fa41f66aae62a6377d",
-      "references": [],
-      "title": "Test case where multi person image has known and unknown."
     }
   ],
   "in-progress": [
@@ -241,6 +241,24 @@
       "id": "20180729185538_430030264_eb6207138702cf912f6a89a111bfeff6",
       "references": [],
       "title": "no_persons_found == known_unknown ?"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-16T01:25:31.193Z",
+      "id": "20180816012531_424979507_d02f17357bbc75efe036754d48ab75cb",
+      "references": [],
+      "title": "Remove known unknown and just use the \"unknown_person\" result. Consolidate results to simplify."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-16T01:26:29.508Z",
+      "id": "20180816012629_390615114_553f92b197e893e8e01a70a3969f8088",
+      "references": [],
+      "title": "Fix ObsidianPresenses misspelling to the correct ObsidianPresences"
     }
   ],
   "testing": [],

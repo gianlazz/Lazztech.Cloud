@@ -676,3 +676,5 @@ Oddly now however, the _3PersonSnap1UnkownShouldStillHavePeopleForeachWithBB() t
 I swear I saw it pass so that's really confusing. Maybe I was just confused. Anyways, in the mocks where it's splitting the mock stdout test data I added the .Split() enum param StringSplitOptions.RemoveEmptyEntries which fixed it.
 
 I should really probably just remove the whole notion of a "known_unknown" dir or snapshot enum status entirely. It's not helping and didn't end up fitting the design.
+
+I also need to refactor the project code name over to there correct spelling where it's mispelled.
