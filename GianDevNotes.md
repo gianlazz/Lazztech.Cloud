@@ -672,3 +672,7 @@ Yup so after just setting that test data to string.Empty instead of just "" it w
 Also now after this design decision change the test SnapshotWithStatusOfno_persons_found_ShouldHaveNoPeople() fails however that is no longer a fact that I want to assert so I'll delete it. I've changed it over to reflect that a "unknown_person" should still have a non empty bb.
 
 Oddly now however, the _3PersonSnap1UnkownShouldStillHavePeopleForeachWithBB() test case is failing again with an empty snapshot resulting in the count assertion being off. It appears to be taken from the KnownUnknown collection which I thought I'd just solved...
+
+I swear I saw it pass so that's really confusing. Maybe I was just confused. Anyways, in the mocks where it's splitting the mock stdout test data I added the .Split() enum param StringSplitOptions.RemoveEmptyEntries which fixed it.
+
+I should really probably just remove the whole notion of a "known_unknown" dir or snapshot enum status entirely. It's not helping and didn't end up fitting the design.

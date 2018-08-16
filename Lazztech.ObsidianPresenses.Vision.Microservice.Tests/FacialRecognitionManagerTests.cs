@@ -291,7 +291,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         {
             var lines = stdout.Split(
                 new[] { Environment.NewLine },
-                StringSplitOptions.None).ToList();
+                StringSplitOptions.RemoveEmptyEntries).ToList();
 
             for (int i = 0; i < lines.Count; i++)
             {
@@ -320,7 +320,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         {
             var lines = stdout.Split(
                 new[] { Environment.NewLine },
-                StringSplitOptions.None).ToList();
+                StringSplitOptions.RemoveEmptyEntries).ToList();
 
             for (int i = 0; i < lines.Count; i++)
             {
@@ -359,7 +359,8 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             else if (path.Contains("/known_unknown/"))
             {
                 //throw new Exception("No valid mock prepared yet.");
-                return SplitStdoutLines(knownUnknown).ToArray();
+                var results = SplitStdoutLines(knownUnknown);
+                return results.ToArray();
                 // return new string[] {};
             }
             else if (path.Contains("/no_persons_found/"))
@@ -387,7 +388,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
         {
             var lines = stdout.Split(
                 new[] { Environment.NewLine },
-                StringSplitOptions.None).ToList();
+                StringSplitOptions.RemoveEmptyEntries).ToList();
 
             for (int i = 0; i < lines.Count; i++)
             {

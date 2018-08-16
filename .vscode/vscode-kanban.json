@@ -224,17 +224,7 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
-    }
-  ],
-  "in-progress": [
-    {
-      "creation_time": "2018-07-29T18:55:38.806Z",
-      "id": "20180729185538_430030264_eb6207138702cf912f6a89a111bfeff6",
-      "references": [],
-      "title": "no_persons_found == known_unknown ?"
-    }
-  ],
-  "testing": [
+    },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -245,6 +235,15 @@
       "title": "Test case where multi person image has known and unknown."
     }
   ],
+  "in-progress": [
+    {
+      "creation_time": "2018-07-29T18:55:38.806Z",
+      "id": "20180729185538_430030264_eb6207138702cf912f6a89a111bfeff6",
+      "references": [],
+      "title": "no_persons_found == known_unknown ?"
+    }
+  ],
+  "testing": [],
   "todo": [
     {
       "assignedTo": {
