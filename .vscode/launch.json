@@ -26,7 +26,7 @@
                "pipeProgram": "docker",
             // TODO: put your container name instead of CONTAINER_NAME
                "pipeArgs": [
-               "exec", "-i", "lazztechobsidianpresences_lazztech.obsidianpresenses.vision.microservice.cli_1"
+               "exec", "-i", "lazztechobsidianpresences_lazztech.ObsidianPresences.vision.microservice.cli_1"
                 ],
                   // not important in this case but useful anyway 
                 "requireExactSource": false,
@@ -48,9 +48,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Lazztech.ObsidianPresenses.Vision.Microservice.Cli/bin/Debug/netcoreapp2.1/Lazztech.ObsidianPresenses.Vision.Microservice.Cli.dll",
+            "program": "${workspaceFolder}/Lazztech.ObsidianPresences.Vision.Microservice.Cli/bin/Debug/netcoreapp2.1/Lazztech.ObsidianPresences.Vision.Microservice.Cli.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Lazztech.ObsidianPresenses.Vision.Microservice.Cli",
+            "cwd": "${workspaceFolder}/Lazztech.ObsidianPresences.Vision.Microservice.Cli",
             // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
             "console": "internalConsole",
             "stopAtEntry": false,

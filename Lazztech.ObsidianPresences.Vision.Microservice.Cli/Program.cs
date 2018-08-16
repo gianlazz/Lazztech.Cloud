@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Lazztech.ObsidianPresenses.Vision.Microservice.Domain;
-using Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
+using Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision;
 using Newtonsoft.Json;
 
-namespace Lazztech.ObsidianPresenses.Vision.Microservice.Cli
+namespace Lazztech.ObsidianPresences.Vision.Microservice.Cli
 {
     public class Program
     {

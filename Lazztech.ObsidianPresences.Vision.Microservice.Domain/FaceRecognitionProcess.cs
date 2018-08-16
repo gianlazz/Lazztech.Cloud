@@ -2,18 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
+namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 {
-    public class FaceDetectionProcess : Iface_detection
+    public class FaceRecognitionProcess : Iface_recognition
     {
-        public List<string> FaceDetection()
+        public List<string> FaceRecognition()
         {
-            var result = new List<string>();
+            var results = new List<string>();
 
-            var procInfo = new ProcessStartInfo($"face_detection")
+            var x = Environment.ProcessorCount;
+
+            var procInfo = new ProcessStartInfo($"face_recognition")
             { 
                 RedirectStandardOutput = true,
-                Arguments = $"{FacialRecognitionManager.unknownPath}"
+                Arguments = $"{FacialRecognitionManager.knownPath} {FacialRecognitionManager.unknownPath}"
             };
             var proc = new Process { StartInfo = procInfo };
 
@@ -22,11 +24,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             {
                 var line = proc.StandardOutput.ReadLine();
                 if (string.IsNullOrEmpty(line) == false)
-                    result.Add(line);
+                    results.Add(line);
                 Console.WriteLine(line);
             }
-            
-            return result;
+
+            return results;
         }
     }
 }

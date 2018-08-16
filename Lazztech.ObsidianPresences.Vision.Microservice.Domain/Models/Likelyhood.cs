@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models
+namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models
 {
     public enum Likelyhood
     {

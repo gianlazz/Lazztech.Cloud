@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Lazztech.ObsidianPresenses.Vision.Microservice.Domain;
-using Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using Xunit;
 
-namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
+namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
 {
     public class FacialRecognitionManagerTests
     {

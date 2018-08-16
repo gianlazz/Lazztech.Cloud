@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
+namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 {
     public class FileServices : IFileServices
     {

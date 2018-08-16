@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models
+namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models
 {
     public struct FaceBoundingBox
     {

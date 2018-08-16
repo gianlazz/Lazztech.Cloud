@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
+namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 {
     public interface Iface_detection
     {

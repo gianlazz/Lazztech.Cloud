@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models;
-using static Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models.Snapshot;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
+using static Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models.Snapshot;
 
-namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
+namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 {
     public class FacialRecognitionManager
     {

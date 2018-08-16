@@ -23,15 +23,15 @@ RUN apt-get update -y &&\
     curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 WORKDIR /src
 COPY Lazztech.ObsidianPresences.sln ./
-COPY Lazztech.ObsidianPresenses.Vision.Microservice.Cli/Lazztech.ObsidianPresenses.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Cli/
-COPY Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision/Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision.csproj Lazztech.ObsidianPresenses.Vision.Microservice.GoogleCloudVision/
-COPY Lazztech.ObsidianPresenses.Vision.Microservice.Domain/Lazztech.ObsidianPresenses.Vision.Microservice.Domain.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Domain/
-COPY Lazztech.ObsidianPresenses.Vision.Microservice.Tests/Lazztech.ObsidianPresenses.Vision.Microservice.Tests.csproj Lazztech.ObsidianPresenses.Vision.Microservice.Tests/
+COPY Lazztech.ObsidianPresences.Vision.Microservice.Cli/Lazztech.ObsidianPresences.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresences.Vision.Microservice.Cli/
+COPY Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision/Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision.csproj Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision/
+COPY Lazztech.ObsidianPresences.Vision.Microservice.Domain/Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj Lazztech.ObsidianPresences.Vision.Microservice.Domain/
+COPY Lazztech.ObsidianPresences.Vision.Microservice.Tests/Lazztech.ObsidianPresences.Vision.Microservice.Tests.csproj Lazztech.ObsidianPresences.Vision.Microservice.Tests/
 COPY docker-compose.dcproj ./
 # RUN dotnet restore -nowarn:msb3202,nu1503
 RUN dotnet restore Lazztech.ObsidianPresences.sln -nowarn:msb3202,nu1503
 COPY . .
-WORKDIR /src/Lazztech.ObsidianPresenses.Vision.Microservice.Cli
+WORKDIR /src/Lazztech.ObsidianPresences.Vision.Microservice.Cli
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
@@ -40,4 +40,4 @@ RUN dotnet publish -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Lazztech.ObsidianPresenses.Vision.Microservice.Cli.dll"]
+ENTRYPOINT ["dotnet", "Lazztech.ObsidianPresences.Vision.Microservice.Cli.dll"]
