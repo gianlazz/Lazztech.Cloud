@@ -130,7 +130,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                    throw new Exception("No snapshot found by that image directory.");
                 var status = SetIdentityOutcome(line);
                 snapshot.Status = status;
-                if (snapshot.Status == Snapshot.SnapshotStatus.known)
+                if (snapshot.Status == Snapshot.SnapshotStatus.known || snapshot.Status == Snapshot.SnapshotStatus.unknown_person)
                 {
                     AssignIdentifiedPersons(snapshot, line);
                 }

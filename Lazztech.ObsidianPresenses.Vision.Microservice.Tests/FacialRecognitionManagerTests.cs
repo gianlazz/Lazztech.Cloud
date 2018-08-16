@@ -23,7 +23,7 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
 /face/unknown/2892.png
 /face/unknown/Chad Peterson.jpg
 /face/unknown/unnamed.jpg";
-        public static string knownUnknownDirs = @"";
+        public static string knownUnknownDirs = string.Empty;
 
         public static string face_recognitionLinesTestData = @"/face/unknown/0.jpeg,Gian Lazzarini
 /face/unknown/webcam.jpg,no_persons_found
@@ -89,25 +89,37 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Tests
             Assert.NotNull(results);
         }
 
-        [Fact]
-        public void SnapshotWithStatusOfno_persons_found_ShouldHaveNoPeople() 
-        {
-            //Arrange
-            var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
-                new FaceDetectionProcessMock(face_detectionLinesTestData), 
-                new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));
+        // [Fact]
+        // public void SnapshotWithStatusOfno_persons_found_PersonShouldStillHaveBB() 
+        // {
+        //     //Arrange
+        //     var recognition = new FacialRecognitionManager(
+        //         new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
+        //         new FaceDetectionProcessMock(face_detectionLinesTestData), 
+        //         new FileServicesMock(knownDirs, unknownDirs, knownUnknownDirs));
 
-            //Act
-            var results = recognition.Process();
+        //     var arrangedBb = new FaceBoundingBox(){
+        //         LeftTopCoordinate = new PixelCoordinateVertex() {
+        //             x = 0,
+        //             y = 0
+        //         },
+        //         RightBottomCoordinate = new PixelCoordinateVertex() {
+        //             x = 0,
+        //             y = 0
+        //         }
+        //     };
 
-            //Assert
-            Assert.False(
-                results.Where(x => x.Status == Snapshot.SnapshotStatus.unknown_person)
-                .Where(y => y.People.Count > 0)
-                .Any()
-                );
-        }
+        //     //Act
+        //     var results = recognition.Process();
+        //     var unknownPersons = results.Where(x => x.Status == Snapshot.SnapshotStatus.unknown_person).ToList();
+        //     var unknownPerson = unknownPersons.Where(y => y.People.Count > 0).First().People.Where(x => x.Name == "unknown_person").First();
+        //     var bb = unknownPerson.FaceBoundingBox;
+
+        //     //Assert
+        //     Assert.True(unknownPerson != null);
+        //     Assert.NotEqual(arrangedBb, bb);
+        //     // Assert.True()
+        // }
 
         [Fact]
         public void SnapshotGuidIdShouldNotBeEmpty()

@@ -661,3 +661,14 @@ I need to make sure that "unknown_person" still instantiates a person so that it
 ## Wednesday August 15, 2018
 ## Sprint 2, Json Snapshot Persistance & Multiple Subjects
 
+New test: _3PersonSnap1UnkownShouldStillHavePeopleForeachWithBB()
+Now I need to make sure that in the status setting method that if it returns "unknown_person" to still makes a person. I'll just have their name be "unknown_person" or empty.
+
+Making progress on _3PersonSnap1UnkownShouldStillHavePeopleForeachWithBB() test however it's failing because there's 1 extra test empty snapshot. I think I've seen this once in the debugger. Idk why it's happening.
+
+Okay this comes from the mock saying that there is an array element for the knownUnknownImageDirs when I pass in an empty string to be split into the paths. I need to ensure that if it's an empty string it doesn't result in any, and is null or Count == 0. 
+Yup so after just setting that test data to string.Empty instead of just "" it worked as I expected. I guess that's why to use string.Empty instead... And setting it to null caused an exception because a null value can't be passed in as a param for .Split(). I guess string.Empty really is what I'll want to use in that kind of situation.
+
+Also now after this design decision change the test SnapshotWithStatusOfno_persons_found_ShouldHaveNoPeople() fails however that is no longer a fact that I want to assert so I'll delete it. I've changed it over to reflect that a "unknown_person" should still have a non empty bb.
+
+Oddly now however, the _3PersonSnap1UnkownShouldStillHavePeopleForeachWithBB() test case is failing again with an empty snapshot resulting in the count assertion being off. It appears to be taken from the KnownUnknown collection which I thought I'd just solved...
