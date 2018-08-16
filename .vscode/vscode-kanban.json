@@ -148,6 +148,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-16T01:25:31.193Z",
+      "id": "20180816012531_424979507_d02f17357bbc75efe036754d48ab75cb",
+      "references": [],
+      "title": "Remove known unknown and just use the \"unknown_person\" result. Consolidate results to simplify."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-05T05:42:22.935Z",
       "id": "20180805054222_422806226_02e14ad66b529a9c4c8d5982a0e1a61c",
       "references": [],
@@ -233,24 +242,15 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
-    }
-  ],
-  "in-progress": [
+    },
     {
       "creation_time": "2018-07-29T18:55:38.806Z",
       "id": "20180729185538_430030264_eb6207138702cf912f6a89a111bfeff6",
       "references": [],
       "title": "no_persons_found == known_unknown ?"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-16T01:25:31.193Z",
-      "id": "20180816012531_424979507_d02f17357bbc75efe036754d48ab75cb",
-      "references": [],
-      "title": "Remove known unknown and just use the \"unknown_person\" result. Consolidate results to simplify."
-    },
+    }
+  ],
+  "in-progress": [
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
@@ -284,6 +284,15 @@
       "id": "20180728213035_385423038_ec231cc4c1f60e6afb571f9eb16bc414",
       "references": [],
       "title": "check in motion ip cam .config into repo"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-16T02:01:07.077Z",
+      "id": "20180816020107_108874429_a6ac225d127adc4f148896cc3d280c99",
+      "references": [],
+      "title": "Handle no_persons_found properly, whatever that may be."
     },
     {
       "assignedTo": {
