@@ -678,3 +678,5 @@ I swear I saw it pass so that's really confusing. Maybe I was just confused. Any
 I should really probably just remove the whole notion of a "known_unknown" dir or snapshot enum status entirely. It's not helping and didn't end up fitting the design.
 
 I also need to refactor the project code name over to there correct spelling where it's misspelled.
+
+I ran into issues getting the solution to run and build again after fixing the mispelling due to untracked files. After cloning the repo it regenerated all of the docker compose dcproj related files and then it all worked again as expected.
