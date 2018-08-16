@@ -22,7 +22,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain.Models
         public enum SnapshotStatus {
             known,
             unknown,
-            known_unknown,
             unknown_person,
             no_persons_found
         }

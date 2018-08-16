@@ -10,20 +10,16 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 {
     public class FacialRecognitionManager
     {
-        string binaryPath = System.Reflection.Assembly.GetEntryAssembly().Location;
         #region properties
         public static string knownPath = @"/face/known/";
         public static string unknownPath = @"/face/unknown/";
-        public static string knownUnkownPath = @"/face/known_unknown/";
         public static string noPersonsFoundPath = @"/face/no_persons_found/";
 
         public List<string> _knownImageDirs = new List<string>();
         public List<string> _unknownImageDirs = new List<string>();
-        public List<string> _knownUnknownImageDirs = new List<string>();
 
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
-        public List<Snapshot> KnownUnknown = new List<Snapshot>();
 
         public List<Snapshot> Results { get; set; }    
         public List<string> face_recognitionLines = new List<string>();
@@ -59,7 +55,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
             Results.AddRange(Known);
             Results.AddRange(Unknown);
-            Results.AddRange(KnownUnknown);
             Results.RemoveAll(x => x.ImageDir.Contains("/known/"));
 
             HandleIdentities();
@@ -81,16 +76,11 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                 var imageName = _fileServices.GetFileNameFromDir(imageDirFromLine); 
                 if (snapsWithPeople.Where(x => x.ImageName == imageName).ToList().Any())
                 {
-                    // var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
-                    // var bb = ExtractBoundingBox(line);
-                    // //THIS IS THE LINE CAUSING THE ISSUE WITH MULTIPERSON SNAPSHOTS
-                    // snap.People.First().FaceBoundingBox = bb;
                     var matchingLines = lines.Where(x => x.Split(',')[0] == imageDirFromLine).ToList();
                     for (int i = 0; i < matchingLines.Count(); i++)
                     {
                         var snap = snapsWithPeople.Where(x => x.ImageName == imageName).First();
                         var bb = ExtractBoundingBox(matchingLines[i]);
-                        //THIS IS THE LINE CAUSING THE ISSUE WITH MULTIPERSON SNAPSHOTS
                         snap.People[i].FaceBoundingBox = bb;
                     }
                 }
@@ -139,7 +129,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
 
         private void AssignIdentifiedPersons(Snapshot snapshot, string line)
         {
-            //CONDITION FOR SINGLE OR MULTIPLE PEOPLE
             snapshot.People.Add(new Person(){
                 Name = GetIdentifiedName(line)
             });
@@ -204,21 +193,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
                     ImageName = _fileServices.GetFileNameFromDir(imageDir)
                 });
             }
-
-            if (_knownUnknownImageDirs.Count == 0)
-            {
-                Console.WriteLine("No known_unknown files found.");
-            }
-            Console.WriteLine($"{_knownUnknownImageDirs.Count} known_unknown files found.");
-            foreach (var imageDir in _knownUnknownImageDirs)
-            {
-                KnownUnknown.Add(new Snapshot()
-                {
-                    ImageDir = imageDir,
-                    DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir).ToString(),
-                    ImageName = _fileServices.GetFileNameFromDir(imageDir)
-                });
-            }
         }
 
         private void CollectAllImageDirs()
@@ -230,10 +204,6 @@ namespace Lazztech.ObsidianPresenses.Vision.Microservice.Domain
             _unknownImageDirs = new List<string>(_fileServices.GetAllImageDirs(unknownPath));
             System.Console.WriteLine("_unknownImageDirs");
             _unknownImageDirs.ForEach(x => System.Console.WriteLine(x));
-
-            _knownUnknownImageDirs = new List<string>(_fileServices.GetAllImageDirs(knownUnkownPath));
-            System.Console.WriteLine("_knownUnknownImageDirs");
-            _knownUnknownImageDirs.ForEach(x => System.Console.WriteLine(x));
         }
     }
 }
