@@ -711,3 +711,7 @@ First step to finish the sprint is to write all of the Json files to disk with t
 I'll continue the philosophy of microservices in allowing them to marshal the data. In the intereum I'll be using the container with the cli and just reference that instead of the vision domain directly. I'll have the cli responsable for the initial deserialization of the snapshot jsons, processing of any unprocessed images and writing the new jsons. I'll make a public field or property in the Cli program that I'll reference in the web page but eventually will just get the data from the rest api instead of the cli. I will probably need to change the references to the domain at that point so that I can still have access to the vision domain models, right? Or will that eventually cause a coupling issue with the microservice architecture? Idk I'll deal with that when I get there. 
 
 Also after finishing with the json related stuff when I'm making the aspnet core razer pages web app front end I'll just make it as the general **Lazztech Cloud** front end. I'll work my towards having a page for each of the microservices or something like that, idk.
+
+To add the datetime to the names of the snapshot jsons like I want to I'll have to format it to use dashes instead of the default forward slashes as that will result in deeply nested folders instead of file names. Or it just won't write at all because it will think that they're paths.
+
+https://stackoverflow.com/questions/4158868/get-date-without-slashes

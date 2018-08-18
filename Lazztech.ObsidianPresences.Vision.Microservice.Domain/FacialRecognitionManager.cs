@@ -174,7 +174,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
                 Known.Add(new Snapshot()
                 {
                     ImageDir = imageDir,
-                    DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir).ToString(),
+                    DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir),
                     ImageName = _fileServices.GetFileNameFromDir(imageDir)
                 });
             }
@@ -189,7 +189,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
                 Unknown.Add(new Snapshot()
                 {
                     ImageDir = imageDir,
-                    DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir).ToString(),
+                    DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir),
                     ImageName = _fileServices.GetFileNameFromDir(imageDir)
                 });
             }
