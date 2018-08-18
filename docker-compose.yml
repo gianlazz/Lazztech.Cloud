@@ -9,3 +9,10 @@ services:
       context: .
       dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.Cli/Dockerfile
 
+
+  lazztech.obsidianpresences.cloudwebapp:
+    image: lazztechobsidianpresences
+    build:
+      context: .
+      dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
+
