@@ -727,3 +727,10 @@ https://stackoverflow.com/questions/49798012/aspnetcore2-1-not-found
 I'm updating vs4mac to see if that fixes this since I think I've run into this issue before earlier when I was first learning how to work with docker but before I was documenting my project.
 
 This problem can be fixed by following along with that documentation and changing the base images to the new ones so `microsoft/aspnetcore:2.1` => `microsoft/dotnet:2.1-aspnetcore-runtime` and `microsoft/aspnetcore-build:2.1` => `microsoft/dotnet:2.1-sdk`.
+
+So I can build and launch the docker-compose.dcproj in debug which includes the containerized dotnet core razor project however idk how to connect to it. I thought it would automatically launch it in a browser but it just says: "Now listening on: http://[::]:80". 
+https://www.google.com/search?client=safari&rls=en&q=Now+listening+on:+http://%5B::%5D:80&ie=UTF-8&oe=UTF-8
+
+Okay so I added the port to the docker-compose.yml for the webapp and also in the dockerfile for it set the port to 5000 now it launches the app. I learned how to set the interanal port to 5000 with this link: https://stackoverflow.com/questions/48669548/why-does-aspnet-core-start-on-port-80-from-within-docker
+
+And I learned how to configure the port with the docker-compose.yml with this link: https://stackoverflow.com/questions/51033062/docker-container-listening-on-http-80
