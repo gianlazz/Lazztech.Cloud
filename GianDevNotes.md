@@ -720,3 +720,10 @@ The current naming convention for the json files is: `dd-MM-yyyy-hh-mm-ss-tt_Ima
 The date is day-month-year-hour-minute-seccond-am/pm and that's for the datetime of the creation of the original image that the snapshot object/json was processed from.
 This should allow me to look through them all by date range, and also with the hashcode I can use that for object comparisons against the jsons.
 All of these values can then be accessed by spliting the json file name by '_'
+
+Okay so I made the new web app front end project and then in vs4mac added docker support however it's throwing this issue: "failed to build: manifest for microsoft/aspnetcore:2.1 not found."
+https://stackoverflow.com/questions/49798012/aspnetcore2-1-not-found
+
+I'm updating vs4mac to see if that fixes this since I think I've run into this issue before earlier when I was first learning how to work with docker but before I was documenting my project.
+
+This problem can be fixed by following along with that documentation and changing the base images to the new ones so `microsoft/aspnetcore:2.1` => `microsoft/dotnet:2.1-aspnetcore-runtime` and `microsoft/aspnetcore-build:2.1` => `microsoft/dotnet:2.1-sdk`.
