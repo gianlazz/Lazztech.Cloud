@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresences.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Pomodoro", "Lazztech.Pomodoro\Lazztech.Pomodoro.csproj", "{B36C34F2-BD28-4BBF-885D-11DB9D9AACC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresences.CloudWebApp", "Lazztech.ObsidianPresences.CloudWebApp\Lazztech.ObsidianPresences.CloudWebApp.csproj", "{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,5 +51,9 @@ Global
 		{B36C34F2-BD28-4BBF-885D-11DB9D9AACC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B36C34F2-BD28-4BBF-885D-11DB9D9AACC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B36C34F2-BD28-4BBF-885D-11DB9D9AACC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

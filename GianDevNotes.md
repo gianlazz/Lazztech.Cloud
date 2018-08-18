@@ -715,3 +715,8 @@ Also after finishing with the json related stuff when I'm making the aspnet core
 To add the datetime to the names of the snapshot jsons like I want to I'll have to format it to use dashes instead of the default forward slashes as that will result in deeply nested folders instead of file names. Or it just won't write at all because it will think that they're paths.
 
 https://stackoverflow.com/questions/4158868/get-date-without-slashes
+
+The current naming convention for the json files is: `dd-MM-yyyy-hh-mm-ss-tt_ImageName_SnapshotObjectHashcode.json`
+The date is day-month-year-hour-minute-seccond-am/pm and that's for the datetime of the creation of the original image that the snapshot object/json was processed from.
+This should allow me to look through them all by date range, and also with the hashcode I can use that for object comparisons against the jsons.
+All of these values can then be accessed by spliting the json file name by '_'
