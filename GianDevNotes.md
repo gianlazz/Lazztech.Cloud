@@ -680,3 +680,22 @@ I should really probably just remove the whole notion of a "known_unknown" dir o
 I also need to refactor the project code name over to there correct spelling where it's misspelled.
 
 I ran into issues getting the solution to run and build again after fixing the mispelling due to untracked files. After cloning the repo it regenerated all of the docker compose dcproj related files and then it all worked again as expected.
+
+## Friday August 17, 2018
+## Sprint 2, Json Snapshot Persistance & Multiple Subjects
+
+### ***Project Planning:***
+I think that next I want to make a web front end for this project. I'm thinking of trying out razor pages. I also would really like to try out blazor eventually. Also I've been thinking about the microservice architecture and wondering how to handle the vision data which now is in the form of json files to start with and then also the images. How are binary files like images and such usually handled? Does that count as "blob storage"? 
+
+I supose to start with I could make the aspnet core razor pages/mvc in a docker container and give it access to the same volume/bind path with the images and the data however knowing that eventually I'll be switching to interacting with the vision service through a REST Api so that I can set it up for the cluster with eventual elastic scaling and dns handling for the requests however I may still want to have a volume that both the front end and the vision layer use to handle the images.
+
+Yeah so I'll do it in this order I think unless I find out something better from more research:
+1. Make a web front end in a docker container with the same volume acess to the vision with the jsons and images
+2. Setup that container along with the vision Cli conatainer in the docker-compose
+3. Transition to using a new vision REST Api container from the Cli container, that will serve all of the json data and all clients will also have volume access to the images as well
+
+Also eventually I'm excited to setup the authentication microservice. I'll be using the aspnet core authentication classes and that will probably be easy enough with the WebApi REST Api project. However that will come later.
+
+Also after I get step 1. and step 2. done from that list above I but before getting it setup as an actual independent microservice administrating it's own data I would like to look into how I could do object detection and classification on cars and cats. I would like to be able to tell what individual cars are outside the camera, query about them to display statistics like who's there based on who owns a certain type of car. I would also like to be able to ask questions like how many times a certain type of car has been by in the last 2 weeks etc. like "How many times has the silver 2002 honda been seen outside?" Or follow up context aware questions like "How many times has that car been seen for around for longer that 20 seconds at a time?"; all of these questions I'm imagining a mix of voice and web front end interaction and presentation.
+
+I want to be able to ask it either spoken or ui based queries like: "When was the last time you saw Waldo?", "Have you seen Osma outside?", "Where's Waldo?" and the like.

@@ -58,6 +58,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-16T01:26:29.508Z",
+      "id": "20180816012629_390615114_553f92b197e893e8e01a70a3969f8088",
+      "references": [],
+      "title": "Fix ObsidianPresences misspelling to the correct ObsidianPresences"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-06T00:03:21.097Z",
       "id": "20180806000321_13111963_d690fd191839e5e3a94c86263639c5dc",
       "references": [],
@@ -143,6 +152,12 @@
       "id": "20180728223023_162540998_cfb884be6484e5f1c5a4bf01af12c178",
       "references": [],
       "title": "Manual test results/images with multiple faces"
+    },
+    {
+      "creation_time": "2018-07-29T18:55:38.806Z",
+      "id": "20180729185538_430030264_eb6207138702cf912f6a89a111bfeff6",
+      "references": [],
+      "title": "no_persons_found == known_unknown ?"
     },
     {
       "assignedTo": {
@@ -242,12 +257,6 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
-    },
-    {
-      "creation_time": "2018-07-29T18:55:38.806Z",
-      "id": "20180729185538_430030264_eb6207138702cf912f6a89a111bfeff6",
-      "references": [],
-      "title": "no_persons_found == known_unknown ?"
     }
   ],
   "in-progress": [
@@ -255,10 +264,19 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-16T01:26:29.508Z",
-      "id": "20180816012629_390615114_553f92b197e893e8e01a70a3969f8088",
+      "creation_time": "2018-08-18T04:41:15.427Z",
+      "id": "20180818044115_203314390_886c67173daccc9bc8c0862545c5c603",
       "references": [],
-      "title": "Fix ObsidianPresences misspelling to the correct ObsidianPresences"
+      "title": "Persist snapshot results to json files in docker volume/bindmount path that will serve as temporary persistance"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-18T04:42:29.859Z",
+      "id": "20180818044229_41597863_c5b5a2102979d2df3a936ba0e64cd31b",
+      "references": [],
+      "title": "Setup containerized web front end with access to the same vision volume with the images and json results with the cli and new web app container in the compose file"
     }
   ],
   "testing": [],
@@ -284,6 +302,15 @@
       "id": "20180728213035_385423038_ec231cc4c1f60e6afb571f9eb16bc414",
       "references": [],
       "title": "check in motion ip cam .config into repo"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-18T04:43:05.877Z",
+      "id": "20180818044305_144068559_3e086c15277e5bf29ce82c2bb17c0b09",
+      "references": [],
+      "title": "Create containerized vision REST Api in place of the vision Cli container"
     },
     {
       "assignedTo": {
@@ -329,6 +356,15 @@
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-18T04:44:46.175Z",
+      "id": "20180818044446_127911749_8175aa816c83f7ba501c0055a07c168a",
+      "references": [],
+      "title": "Transition the web front end to get the data from the containerized vision Rest Api instead of the volume with jsons"
     }
   ]
 }
