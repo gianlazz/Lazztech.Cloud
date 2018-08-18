@@ -704,3 +704,10 @@ I want to be able to ask it either spoken or ui based queries like: "When was th
 For now I'm going to use Json serialized output as a basic form of persistence then I'll make a non microservice though still docker containerized front end that just shares the same bind mount volume as the vision cli container that will also be in the docker-compose. This will not count as an actual microservice as since interacting with the output of the vision cli container in such a way wouldn't work as well in a decoupled eleastically scaling cluster which requires some kind of networked rpc.
 
 First step to finish the sprint is to write all of the Json files to disk with the images, for convenience, which will be done in the Cli program.cs class in it's container. I'll handle replacing jsons if one already exists too.
+
+## Saturday August 18, 2018
+## Sprint 2, Json Snapshot Persistance & Multiple Subjects
+
+I'll continue the philosophy of microservices in allowing them to marshal the data. In the intereum I'll be using the container with the cli and just reference that instead of the vision domain directly. I'll have the cli responsable for the initial deserialization of the snapshot jsons, processing of any unprocessed images and writing the new jsons. I'll make a public field or property in the Cli program that I'll reference in the web page but eventually will just get the data from the rest api instead of the cli. I will probably need to change the references to the domain at that point so that I can still have access to the vision domain models, right? Or will that eventually cause a coupling issue with the microservice architecture? Idk I'll deal with that when I get there. 
+
+Also after finishing with the json related stuff when I'm making the aspnet core razer pages web app front end I'll just make it as the general **Lazztech Cloud** front end. I'll work my towards having a page for each of the microservices or something like that, idk.
