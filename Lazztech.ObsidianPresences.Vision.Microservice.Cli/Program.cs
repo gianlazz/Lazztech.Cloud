@@ -52,7 +52,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Cli
             foreach (var snapshot in Results)
             {
                 var json = JsonConvert.SerializeObject(snapshot, Formatting.Indented);
-                var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss");
+                var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
                 File.WriteAllText($"{resultsPath}/results/{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json",json);
             }
 
