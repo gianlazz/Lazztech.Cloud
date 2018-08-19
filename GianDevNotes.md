@@ -791,3 +791,9 @@ Hmm now it could be convenient to move the serialization and deserialization cod
 - [ ] Look into aspnet core controller serialization conventions
 
 Also I think the next microservice I'll be making is a web crawler/scraping service. I could use it to look up images for people to be recognized by scraping facebook, google images etc. That will be a really fun project challenge... Maybe after that I can start looking into either marketing or a software defined radio microservice?
+
+Okay with razor pages projects where do I do the stuff I would usually do in the controller? Is it all in the page view too sorta like a react jsx file? But doesn't it also have mvc as well built in under the razor pages? Tbd. Oh I see it's got something like codebehind with each pages cshtml being accompanied by a cshtml.cs following the naming convention of the pages that I think by convention makes the url routing. So for this I'll be working in the `Index.cshtml` and I'll do the Snapshot model preperation I was talking about in it's `Index.cshtml.cs`.
+
+Also in the next couple of sprints I'm going to really be wanting to get together some continous integration testing for all of the microservies working together then that will set me up for continous deployment with ARM compilation for the Single Board Computer cluster I've setup.
+
+Okay so it looks like the `cshtml.cs` which inherits from `PageModel` forwhich the class is name: `IndexModel` or whatever the page is; is both the controller and the model... It looks like the `cshtml` view binds to the model with `@model IndexModel` and accesses the view models properties like this: `<h3>@Model.Message</h3>`.
