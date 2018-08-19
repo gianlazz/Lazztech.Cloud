@@ -749,3 +749,8 @@ https://www.youtube.com/watch?v=dRGkUiQ1Kto
 I really want to avoid having to configure any kind of webpack build configuration scripts or anything like that though... So it looks like it does however come with bower package manager out of the box which is too bad...
 Here's a guide on how to update with bower for aspnet core which is how the project ships by default. Though I may have to transistion to npm since there's going to be less and less support for bower.
 https://medium.com/@ashwinigupta/how-to-migrate-from-bootstrap-3-template-to-4-in-asp-net-core-application-7da01a1acf99
+
+Okay so I've got bootstrap 4 based on the above blog post but the nav bar is floating below where it should be...
+
+Also here's the link for the watcher details so that it will recompile as I make changes:
+https://stackoverflow.com/questions/46584740/watching-an-asp-net-core-2-0-app
