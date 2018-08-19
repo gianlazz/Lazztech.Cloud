@@ -756,3 +756,10 @@ Also here's the link for the watcher details so that it will recompile as I make
 https://stackoverflow.com/questions/46584740/watching-an-asp-net-core-2-0-app
 
 Why the fuck is the nav bar floating too low?... Okay after commenting out everthing else out in the site.css it now is in the right place.
+Okay so it was this that was causing the problem which was fixed after commenting it out:
+```css
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+```
