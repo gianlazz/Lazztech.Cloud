@@ -374,6 +374,15 @@
       "id": "20180818044446_127911749_8175aa816c83f7ba501c0055a07c168a",
       "references": [],
       "title": "Transition the web front end to get the data from the containerized vision Rest Api instead of the volume with jsons"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-19T19:01:19.256Z",
+      "id": "20180819190119_587898148_b84ea77f6a7e905dc9fd1f4b4d2eb0fb",
+      "references": [],
+      "title": "Look into ASP.NET core controller serialization conventions for interop between web frontend and future REST Api"
     }
   ]
 }

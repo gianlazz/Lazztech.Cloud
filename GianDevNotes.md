@@ -785,3 +785,9 @@ Created temporary coupling issue with:
 ```
 dotnet add Lazztech.ObsidianPresences.CloudWebApp/Lazztech.ObsidianPresences.CloudWebApp.csproj reference Lazztech.ObsidianPresences.Vision.Microservice.Domain/Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj
 ```
+
+Hmm now it could be convenient to move the serialization and deserialization code to the domain... But I want to keep it pure. idk. Doesn't aspnet core mvc/razor projects have built in serialization/deserialization by convention?
+
+- [ ] Look into aspnet core controller serialization conventions
+
+Also I think the next microservice I'll be making is a web crawler/scraping service. I could use it to look up images for people to be recognized by scraping facebook, google images etc. That will be a really fun project challenge... Maybe after that I can start looking into either marketing or a software defined radio microservice?
