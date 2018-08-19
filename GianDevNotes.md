@@ -739,3 +739,13 @@ Also idk when it happened but now the .NET TEST EXPLORER is now having issues fi
 
 Also I need to update the WebApp project to use bootstrap 4 which is always a hassle with these. Or at least it was with the old .Net Framework MVC project. I'll document the process.
 All of the tests are still passing though so that's good. I just ran them in vs4mac which works fine. I think this is because I added the "face_detection" folder in and that made it a vscode multi-root workspace which confused the test explorer on where to look.
+
+Hmm it also looks like these aspnet core web projects have npm intalled even with the mvc/razor pages projects. Do I update it with nuget like before or with one of the other package managers? Maybe I should watch a primer video on aspnet core?
+
+Okay yeah so it doesn't come with npm but here's a video on how to set that up:
+Adding node package manager in asp net core mvc project
+https://www.youtube.com/watch?v=dRGkUiQ1Kto
+
+I really want to avoid having to configure any kind of webpack build configuration scripts or anything like that though... So it looks like it does however come with bower package manager out of the box which is too bad...
+Here's a guide on how to update with bower for aspnet core which is how the project ships by default. Though I may have to transistion to npm since there's going to be less and less support for bower.
+https://medium.com/@ashwinigupta/how-to-migrate-from-bootstrap-3-template-to-4-in-asp-net-core-application-7da01a1acf99

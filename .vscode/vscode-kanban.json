@@ -163,6 +163,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-18T04:41:15.427Z",
+      "id": "20180818044115_203314390_886c67173daccc9bc8c0862545c5c603",
+      "references": [],
+      "title": "Persist snapshot results to json files in docker volume/bindmount path that will serve as temporary persistance"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-16T01:25:31.193Z",
       "id": "20180816012531_424979507_d02f17357bbc75efe036754d48ab75cb",
       "references": [],
@@ -264,19 +273,19 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-18T04:41:15.427Z",
-      "id": "20180818044115_203314390_886c67173daccc9bc8c0862545c5c603",
+      "creation_time": "2018-08-18T04:42:29.859Z",
+      "id": "20180818044229_41597863_c5b5a2102979d2df3a936ba0e64cd31b",
       "references": [],
-      "title": "Persist snapshot results to json files in docker volume/bindmount path that will serve as temporary persistance"
+      "title": "Setup containerized web front end with access to the same vision volume with the images and json results with the cli and new web app container in the compose file"
     },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-18T04:42:29.859Z",
-      "id": "20180818044229_41597863_c5b5a2102979d2df3a936ba0e64cd31b",
+      "creation_time": "2018-08-19T04:32:09.317Z",
+      "id": "20180819043209_473525162_319dc494c388a24f5218c5a561e7cb04",
       "references": [],
-      "title": "Setup containerized web front end with access to the same vision volume with the images and json results with the cli and new web app container in the compose file"
+      "title": "Update WebApp to Bootstrap 4"
     }
   ],
   "testing": [],
