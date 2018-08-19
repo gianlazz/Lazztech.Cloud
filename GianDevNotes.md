@@ -764,4 +764,4 @@ body {
 }
 ```
 
-I should setup the docker container to run the webapp with watch while in debug.
+I should setup the docker container to run the webapp with watch while in debug. Here's more documentation on the watcher: https://docs.microsoft.com/en-us/aspnet/core/tutorials/dotnet-watch?view=aspnetcore-2.1
