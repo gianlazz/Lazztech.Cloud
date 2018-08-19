@@ -266,6 +266,15 @@
       "id": "20180731023448_415411119_3e2065eb48657537e9a1b1aa5f43c90c",
       "references": [],
       "title": "Unit Test(TDD) the instantiation of Persons FaceBoundingBox property"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-19T04:32:09.317Z",
+      "id": "20180819043209_473525162_319dc494c388a24f5218c5a561e7cb04",
+      "references": [],
+      "title": "Update WebApp to Bootstrap 4"
     }
   ],
   "in-progress": [
@@ -277,15 +286,6 @@
       "id": "20180818044229_41597863_c5b5a2102979d2df3a936ba0e64cd31b",
       "references": [],
       "title": "Setup containerized web front end with access to the same vision volume with the images and json results with the cli and new web app container in the compose file"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-19T04:32:09.317Z",
-      "id": "20180819043209_473525162_319dc494c388a24f5218c5a561e7cb04",
-      "references": [],
-      "title": "Update WebApp to Bootstrap 4"
     }
   ],
   "testing": [],

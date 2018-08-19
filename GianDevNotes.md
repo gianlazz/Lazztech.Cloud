@@ -705,7 +705,7 @@ For now I'm going to use Json serialized output as a basic form of persistence t
 
 First step to finish the sprint is to write all of the Json files to disk with the images, for convenience, which will be done in the Cli program.cs class in it's container. I'll handle replacing jsons if one already exists too.
 
-## Saturday August 18, 2018
+## Saturday, August 18, 2018
 ## Sprint 2, Json Snapshot Persistance & Multiple Subjects
 
 I'll continue the philosophy of microservices in allowing them to marshal the data. In the intereum I'll be using the container with the cli and just reference that instead of the vision domain directly. I'll have the cli responsable for the initial deserialization of the snapshot jsons, processing of any unprocessed images and writing the new jsons. I'll make a public field or property in the Cli program that I'll reference in the web page but eventually will just get the data from the rest api instead of the cli. I will probably need to change the references to the domain at that point so that I can still have access to the vision domain models, right? Or will that eventually cause a coupling issue with the microservice architecture? Idk I'll deal with that when I get there. 
@@ -765,3 +765,18 @@ body {
 ```
 
 I should setup the docker container to run the webapp with watch while in debug. Here's more documentation on the watcher: https://docs.microsoft.com/en-us/aspnet/core/tutorials/dotnet-watch?view=aspnetcore-2.1
+
+## Sunday, August 19, 2018
+## Sprint 2, Json Snapshot Persistance & Multiple Subjects
+=> *Transitionsing To Next Sprint*
+## Sprint 3, Web Front-end then decoupling into Microservices with containerized vision REST Api
+
+I'm planning the next sprint which I've named above. I'm going to go ahead and throw together the front end then once it presents the basics nicely then I'll go ahead pull it apart from the vision service with it's current containerized Cli execution to a containerized REST Api as a aspnet core webapi project.
+
+Well actually this is already tricky since only the vision cli container has the dependencies to be able to execute the vision services... I do know I'll need to give the front end container access to the same volume so that it can access the images. I could start by having the front end deserialize the jsons into snapshots with the cli container creating them then when I decouple into microservices I'll have the new Vision Microservice REST Api responsible for marshaling the snapshot data.
+
+So yeah to get it working roughly to build out the front end I'm going to create a lot of coupling issues which I'll then have to pull apart.
+### ***Coupling Issues To Resolve Going Forward:***
+- Frontend reference to vision domain for models: ***should be dynamic view models, with no direct reference to the domain***
+- Frontend deserializing the Snapshot jsons: ***this should be served by Vision Microservice REST Api***
+- 
