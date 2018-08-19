@@ -780,3 +780,8 @@ So yeah to get it working roughly to build out the front end I'm going to create
 - Frontend reference to vision domain for models: ***should be dynamic view models, with no direct reference to the domain***
 - Frontend deserializing the Snapshot jsons: ***this should be served by Vision Microservice REST Api***
 - 
+
+Created temporary coupling issue with:
+```
+dotnet add Lazztech.ObsidianPresences.CloudWebApp/Lazztech.ObsidianPresences.CloudWebApp.csproj reference Lazztech.ObsidianPresences.Vision.Microservice.Domain/Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj
+```
