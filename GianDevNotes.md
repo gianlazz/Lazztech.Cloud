@@ -754,3 +754,5 @@ Okay so I've got bootstrap 4 based on the above blog post but the nav bar is flo
 
 Also here's the link for the watcher details so that it will recompile as I make changes:
 https://stackoverflow.com/questions/46584740/watching-an-asp-net-core-2-0-app
+
+Why the fuck is the nav bar floating too low?... Okay after commenting out everthing else out in the site.css it now is in the right place.
