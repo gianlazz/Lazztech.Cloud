@@ -763,3 +763,5 @@ body {
     padding-bottom: 20px;
 }
 ```
+
+I should setup the docker container to run the webapp with watch while in debug.
