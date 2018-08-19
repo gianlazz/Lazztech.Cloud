@@ -734,3 +734,8 @@ https://www.google.com/search?client=safari&rls=en&q=Now+listening+on:+http://%5
 Okay so I added the port to the docker-compose.yml for the webapp and also in the dockerfile for it set the port to 5000 now it launches the app. I learned how to set the interanal port to 5000 with this link: https://stackoverflow.com/questions/48669548/why-does-aspnet-core-start-on-port-80-from-within-docker
 
 And I learned how to configure the port with the docker-compose.yml with this link: https://stackoverflow.com/questions/51033062/docker-container-listening-on-http-80
+
+Also idk when it happened but now the .NET TEST EXPLORER is now having issues finding the tests and I've got a warning from it saying something about the settings.json "This setting cannot be applied now. It will be applied when you open this folder directly."
+
+Also I need to update the WebApp project to use bootstrap 4 which is always a hassle with these. Or at least it was with the old .Net Framework MVC project. I'll document the process.
+All of the tests are still passing though so that's good. I just ran them in vs4mac which works fine. I think this is because I added the "face_detection" folder in and that made it a vscode multi-root workspace which confused the test explorer on where to look.
