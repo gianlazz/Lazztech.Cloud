@@ -12,13 +12,13 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages
 {
     public class IndexModel : PageModel
     {
-        public List<Snapshot> Snapshots => new List<Snapshot>();
-        //public List<Snapshot> Snapshots { get; set; }
+        //public List<Snapshot> Snapshots => new List<Snapshot>();
+        public List<Snapshot> Snapshots { get; set; }
         // public List<Snapshot> Snaps { get; set; }
 
         public void OnGet()
         {
-            //Snapshots = new List<Snapshot>();
+            Snapshots = new List<Snapshot>();
 
             var resultsDir = @"/face/results/";
             var dirExists = Directory.Exists(resultsDir);
