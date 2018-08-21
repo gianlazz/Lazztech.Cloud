@@ -32,9 +32,12 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages
             {
                 var json = System.IO.File.ReadAllText(jsonDir);
                 var snapshotObject = JsonConvert.DeserializeObject(json);
-                var snapshot = JsonConvert.DeserializeObject<Snapshot>(json);;
-                var imageFound = Directory.Exists(snapshot.ImageDir);
-                var imageFound2 = System.IO.File.Exists(snapshot.ImageDir);
+                var snapshot = JsonConvert.DeserializeObject<Snapshot>(json);
+                var imageFound = System.IO.File.Exists(snapshot.ImageDir);
+                var imageBytes = System.IO.File.ReadAllBytes(snapshot.ImageDir);
+                var imageBase64 = Convert.ToBase64String(imageBytes);
+                var imageExtension = snapshot.ImageDir.Split('.').Last();
+                snapshot.ImageDir = $"data:image/{imageExtension};base64, {imageBase64}";
                 Snapshots.Add(snapshot);
             }
         }

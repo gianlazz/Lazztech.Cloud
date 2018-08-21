@@ -51,6 +51,8 @@ namespace Lazztech.ObsidianPresences.CloudWebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseStaticFiles("/face");
+            app.UseStaticFiles("/face/unknown");
 
             app.UseMvc();
         }
