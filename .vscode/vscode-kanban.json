@@ -199,6 +199,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-18T04:42:29.859Z",
+      "id": "20180818044229_41597863_c5b5a2102979d2df3a936ba0e64cd31b",
+      "references": [],
+      "title": "Setup containerized web front end with access to the same vision volume with the images and json results with the cli and new web app container in the compose file"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-05T21:00:42.180Z",
       "id": "20180805210042_150493196_125f8f09f53b665ce94b34f5be1e6caa",
       "references": [],
@@ -282,10 +291,19 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-18T04:42:29.859Z",
-      "id": "20180818044229_41597863_c5b5a2102979d2df3a936ba0e64cd31b",
+      "creation_time": "2018-08-21T06:34:39.958Z",
+      "id": "20180821063439_341868655_713d3dd955aa284e2ad0f594dfb6bbdb",
       "references": [],
-      "title": "Setup containerized web front end with access to the same vision volume with the images and json results with the cli and new web app container in the compose file"
+      "title": "Write the razor cshtml view logic to loop through a layout of 3 cards with the snapshots."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-21T06:35:24.909Z",
+      "id": "20180821063524_440588378_935763489543af4ca02cf397e54d4ee7",
+      "references": [],
+      "title": "Configure aspnet to use the static files instead of converting it to a byte array -> base64 -> passing it as a string parameter for the source."
     }
   ],
   "testing": [],
@@ -343,6 +361,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-19T19:01:19.256Z",
+      "id": "20180819190119_587898148_b84ea77f6a7e905dc9fd1f4b4d2eb0fb",
+      "references": [],
+      "title": "Look into ASP.NET core controller serialization conventions for interop between web frontend and future REST Api"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-13T00:59:16.790Z",
       "id": "20180813005916_330292015_1717ef38ab7146fab6b0162c27d9cb0d",
       "references": [],
@@ -374,15 +401,6 @@
       "id": "20180818044446_127911749_8175aa816c83f7ba501c0055a07c168a",
       "references": [],
       "title": "Transition the web front end to get the data from the containerized vision Rest Api instead of the volume with jsons"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-19T19:01:19.256Z",
-      "id": "20180819190119_587898148_b84ea77f6a7e905dc9fd1f4b4d2eb0fb",
-      "references": [],
-      "title": "Look into ASP.NET core controller serialization conventions for interop between web frontend and future REST Api"
     }
   ]
 }
