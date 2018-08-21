@@ -797,3 +797,30 @@ Okay with razor pages projects where do I do the stuff I would usually do in the
 Also in the next couple of sprints I'm going to really be wanting to get together some continous integration testing for all of the microservies working together then that will set me up for continous deployment with ARM compilation for the Single Board Computer cluster I've setup.
 
 Okay so it looks like the `cshtml.cs` which inherits from `PageModel` forwhich the class is name: `IndexModel` or whatever the page is; is both the controller and the model... It looks like the `cshtml` view binds to the model with `@model IndexModel` and accesses the view models properties like this: `<h3>@Model.Message</h3>`.
+
+## Monday, August 20, 2018
+## Sprint 3, Web Front-end then decoupling into Microservices with containerized vision REST Api
+
+Saw this new syntax last night on properties and wtf it's awesome...
+```C#
+public List<Snapshot> Snapshots => new List<Snapshot>();
+```
+
+Here's the video where I saw it @23:00 he called it a derived or calculated property.
+https://www.youtube.com/watch?v=yyBijyCI5Sk
+
+Okay so it doesn't looked like a derived property but that also looks cool as hell:
+https://codereview.stackexchange.com/questions/28609/when-one-property-is-calculated-from-another
+
+Okay I think this is a calculated property which is seems to be a C# 7 language feature:
+https://stackoverflow.com/questions/36372457/lambda-for-getter-and-setter-of-property/36372531
+
+Or maybe it's the C# 6 Expression bodied members?:
+https://davefancher.com/2014/08/25/c-6-0-expression-bodied-members/
+
+Woah... Is ther no Intellisense for aspnet core razor pages in vscode? 
+https://github.com/OmniSharp/omnisharp-vscode/issues/168
+
+Wow... yeah vscode Intellisense really doesn't support razor syntax in .cshtml files, though at least vs4mac does.
+
+Having an issue casting the deserialized json object into a Snapshot... Okay so the syntax is `var snapshot = JsonConvert.DeserializeObject<Snapshot>(json);` not `var snapshot = (Snapshot)JsonConvert.DeserializeObject(json);`

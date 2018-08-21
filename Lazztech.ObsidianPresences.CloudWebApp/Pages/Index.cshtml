@@ -16,7 +16,23 @@
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             <a href="#" class="btn btn-primary">Show All Occurences</a>
         </div>
-        </div>
+        </div> 
+
+        @foreach(var snap in Model.Snapshots)
+        {
+            foreach(var person in snap.People)
+            {
+                <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="@snap.ImageDir" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@person.Name</h5>
+                    <p class="card-text">Seen: @snap.DateTimeWhenCaptured.ToString()</p>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <a href="#" class="btn btn-primary">Show All Occurences</a>
+                </div>
+                </div>    
+            }
+        }
         
     </div>
     <div class="col">
