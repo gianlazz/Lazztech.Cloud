@@ -291,6 +291,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-21T06:35:24.909Z",
+      "id": "20180821063524_440588378_935763489543af4ca02cf397e54d4ee7",
+      "references": [],
+      "title": "Configure aspnet to use the static files instead of converting it to a byte array -> base64 -> passing it as a string parameter for the source."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-21T06:34:39.958Z",
       "id": "20180821063439_341868655_713d3dd955aa284e2ad0f594dfb6bbdb",
       "references": [],
@@ -300,10 +309,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-21T06:35:24.909Z",
-      "id": "20180821063524_440588378_935763489543af4ca02cf397e54d4ee7",
+      "creation_time": "2018-08-21T06:37:35.329Z",
+      "id": "20180821063735_163091676_6d8e5b375ec6ca229ffe1b0b2d25c646",
       "references": [],
-      "title": "Configure aspnet to use the static files instead of converting it to a byte array -> base64 -> passing it as a string parameter for the source."
+      "title": "Draw the bounding box in webpage on the snapshots."
     }
   ],
   "testing": [],
