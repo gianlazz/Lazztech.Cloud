@@ -830,3 +830,5 @@ Weird it's not able to find the directories for the images however it can find t
 I thought initially that it may be an issue with not having a correct aspnet `app.UseStaticFiles()` configuration based on this link. https://github.com/aspnet/Home/issues/575
 
 Okay so I got it working through a kind of hack since it seems to be being prevented by some kind of aspnet configuration so what I did for now to get going was just read the byte array in the page code behind `.cshtml.cs` then converted it to base64 and did string enterpolation to configure the output to html friendly base64 which got the images displaying. It's super hacky though and I'm pretty sure that it's not how I'm going to want to actually deploy it... However for stubbing out the front end it's fine.
+
+Used this as reference to see how to setup string interpolation for a valid base64 value in an html source.
