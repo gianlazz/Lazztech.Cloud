@@ -29,6 +29,7 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages
                 var json = System.IO.File.ReadAllText(jsonDir);
                 var snapshotObject = JsonConvert.DeserializeObject(json);
                 var snapshot = JsonConvert.DeserializeObject<Snapshot>(json);;
+                var imageFound = Directory.Exists(snapshot.ImageDir);
                 Snapshots.Add(snapshot);
             }
         }

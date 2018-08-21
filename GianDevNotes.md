@@ -824,3 +824,5 @@ https://github.com/OmniSharp/omnisharp-vscode/issues/168
 Wow... yeah vscode Intellisense really doesn't support razor syntax in .cshtml files, though at least vs4mac does.
 
 Having an issue casting the deserialized json object into a Snapshot... Okay so the syntax is `var snapshot = JsonConvert.DeserializeObject<Snapshot>(json);` not `var snapshot = (Snapshot)JsonConvert.DeserializeObject(json);`
+
+Weird it's not able to find the directories for the images however it can find the directories to the jsons no problem...
