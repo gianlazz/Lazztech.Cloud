@@ -23,6 +23,10 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages
             var resultsDir = @"/face/results/";
             var dirExists = Directory.Exists(resultsDir);
 
+            var faceFolders = Directory.GetDirectories("/face/");
+            var knownImageDirs = Directory.GetFiles("/face/known/");
+            var unknownImageDirs = Directory.GetFiles("/face/unknown");
+
             var jsonDirs = Directory.GetFiles(resultsDir).Where(x => x.EndsWith(".json"));
             foreach (var jsonDir in jsonDirs)
             {
