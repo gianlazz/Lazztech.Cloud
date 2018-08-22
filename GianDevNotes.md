@@ -846,3 +846,6 @@ I need to get the Bootstrap 4 Nav bar in the _Layout.cshtml to highlight the cor
 
 https://asp.net-hacker.rocks/2017/03/03/taghelper-to-show-or-hide-on-route-conditions.html
 https://stackoverflow.com/questions/50342390/how-can-i-retrieve-the-current-route-from-the-layout-cshtml-file-in-my-asp-net
+
+Here's a link about making bootstrap 4 cards dynamically resize in a grid layout:
+https://stackoverflow.com/questions/35868756/how-to-make-bootstrap-4-cards-the-same-height-in-card-columns

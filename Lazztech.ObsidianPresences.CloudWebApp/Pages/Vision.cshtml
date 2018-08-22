@@ -4,87 +4,90 @@
 }
 
 <div class="container">
+    <div class="row">
         <div class="col">
             <h4>Processed Snapshots</h4>
             <hr>
-            <div class="row"> 
-            @for (int i = 0; i < Model.Snapshots.Count(); i++)
-            {               
-                if (i > 0 && i % 3 == 0)
+            <div class="row">
+                @for (int i = 0; i < Model.Snapshots.Count(); i++)
                 {
-                    // CLOSE AND START A NEW ROW
+                    if (i > 0 && i % 3 == 0)
+                    {
+                        // CLOSE AND START A NEW ROW
                     @:</div><br /><div class="row">
+                    }
+
+
                 }
 
-            
-            }
-
-            @foreach (var snap in Model.Snapshots)
-            {
-                foreach(var person in snap.People)
+                @foreach (var snap in Model.Snapshots)
                 {
-                    <div class="col">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="@snap.ImageDir" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">@person.Name</h5>
-                            <p class="card-text">Seen: @snap.DateTimeWhenCaptured.ToString()</p>
-                            @*<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>*@
-                            <a href="#" class="btn btn-primary">Show All Occurences</a>
+                    foreach (var person in snap.People)
+                    {
+                        <div class="col">
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="@snap.ImageDir" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">@person.Name</h5>
+                                    <p class="card-text">Seen: @snap.DateTimeWhenCaptured.ToString()</p>
+                                    @*<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>*@
+                                    <a href="#" class="btn btn-primary">Show All Occurences</a>
+                                </div>
+                            </div>
+                            <br />
                         </div>
-                    </div>
-                    <br />
-                    </div>
+                    }
                 }
-            }
+
+            </div>
 
         </div>
-        <div class="col">
-            <h4>Known Persons</h4>
-            <hr>
+             <div class="col">
+                <h4>Known Persons</h4>
+                <hr>
 
-                        <div class="row"> 
-            @for (int i = 0; i < Model.Snapshots.Count(); i++)
-            {               
-                if (i > 0 && i % 3 == 0)
-                {
-                    // CLOSE AND START A NEW ROW
-                    @:</div><br /><div class="row">
-                }
+                <div class="row">
+                    @for (int i = 0; i < Model.Snapshots.Count(); i++)
+                    {
+                        if (i > 0 && i % 3 == 0)
+                        {
+                            // CLOSE AND START A NEW ROW
+                        @:</div><br /><div class="row">
+                        }
 
-            
-            }
 
-            @foreach (var snap in Model.Snapshots)
-            {
-                foreach(var person in snap.People)
-                {
-                    <div class="col">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="@snap.ImageDir" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">@person.Name</h5>
-                            <p class="card-text">Seen: @snap.DateTimeWhenCaptured.ToString()</p>
-                            @*<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>*@
-                            <a href="#" class="btn btn-primary">Show All Occurences</a>
-                        </div>
-                    </div>
-                    <br />
-                    </div>
-                }
-            }
-        </div>
+                    }
+
+                    @foreach (var snap in Model.Snapshots)
+                    {
+                        foreach (var person in snap.People)
+                        {
+                            <div class="col-md-6 d-flex align-items-stretch">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="@snap.ImageDir" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@person.Name</h5>
+                                        <p class="card-text">Seen: @snap.DateTimeWhenCaptured.ToString()</p>
+                                        @*<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>*@
+                                        <a href="#" class="btn btn-primary">Show All Occurences</a>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
     </div>
 </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h3>hi</h3>
-        </div>
-        <div class="col">
-            <h3>hi</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>hi</h3>
+            </div>
+            <div class="col">
+                <h3>hi</h3>
+            </div>
         </div>
     </div>
-</div>
