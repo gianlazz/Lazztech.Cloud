@@ -47,27 +47,24 @@
                 <hr>
 
                 <div class="row">
-                    @*@for (int i = 0; i < Model.Snapshots.Count(); i++)
+                    @*@foreach (var snap in Model.Snapshots)*@
+                    @for (int i = 0; i < Model.Snapshots.Count(); i++)
                     {
+                        
                         if (i > 0 && i % 2 == 0)
                         {
                             // CLOSE AND START A NEW ROW
                             @:</div><br /><div class="row">
                         }
 
-
-                    }*@
-
-                    @foreach (var snap in Model.Snapshots)
-                    {
-                        foreach (var person in snap.People)
+                        foreach (var person in Model.Snapshots[i].People)
                         {
                             <div class="col-md-6 d-flex align-items-stretch">
                                 <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="@snap.ImageDir" alt="Card image cap">
+                                    <img class="card-img-top" src="@Model.Snapshots[i].ImageDir" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">@person.Name</h5>
-                                        <p class="card-text">Seen: @snap.DateTimeWhenCaptured.ToString()</p>
+                                        <p class="card-text">Seen: @Model.Snapshots[i].DateTimeWhenCaptured.ToString()</p>
                                         @*<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>*@
                                         <a href="#" class="btn btn-primary">Show All Occurences</a>
                                     </div>
