@@ -843,3 +843,6 @@ Also I'm growing really fed up with the uncomplete support for vscode or vs4mac.
 Today while I was walking in the botanical garden I remembered my desire to farm plants indoor with some kind of software monitoring so I'm going to go ahead and stub out a Plants page in the Lazztech Cloud Web Frontend. And I'm going to take the work I've done for the Snapshot visualization and move it to it's own Vision page leaving the index as just a homepage with a dashboard.
 
 I need to get the Bootstrap 4 Nav bar in the _Layout.cshtml to highlight the correct link instead of always just the Home link.
+
+https://asp.net-hacker.rocks/2017/03/03/taghelper-to-show-or-hide-on-route-conditions.html
+https://stackoverflow.com/questions/50342390/how-can-i-retrieve-the-current-route-from-the-layout-cshtml-file-in-my-asp-net

@@ -8,19 +8,17 @@
         <div class="col">
             <h4>Processed Snapshots</h4>
             <hr>
-            @*@for (int i = Model.Snapshots.Count() - 1; i >= 0; i--)
-            {
-            if (i % 3 == 0)
-            {
-            <div class="col">
-                }
-                else
+            <div class="row"> 
+            @for (int i = 0; i < Model.Snapshots.Count(); i++)
+            {               
+                if (i > 0 && i % 3 == 0)
                 {
-
+                    // CLOSE AND START A NEW ROW
+                    @:</div><br /><div class="row">
                 }
 
-            </div>
-            }*@
+            
+            }
 
             @foreach (var snap in Model.Snapshots)
             {
