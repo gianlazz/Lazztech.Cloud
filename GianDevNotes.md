@@ -832,3 +832,12 @@ I thought initially that it may be an issue with not having a correct aspnet `ap
 Okay so I got it working through a kind of hack since it seems to be being prevented by some kind of aspnet configuration so what I did for now to get going was just read the byte array in the page code behind `.cshtml.cs` then converted it to base64 and did string enterpolation to configure the output to html friendly base64 which got the images displaying. It's super hacky though and I'm pretty sure that it's not how I'm going to want to actually deploy it... However for stubbing out the front end it's fine.
 
 Used this as reference to see how to setup string interpolation for a valid base64 value in an html source.
+
+## Tuesday, August 21, 2018
+## Sprint 3, Lazztech Cloud Razor Pages Web Frontend
+
+I've desided to hone in the objective of this weeks sprint just to design the web page. I'm doing this to set healthier expectations with a better work life balance. I'll continue as I have now, with the website deserializing the json snapshots and save the REST Api webapi project for the next sprint.
+
+Also I'm growing really fed up with the uncomplete support for vscode or vs4mac. I also really don't want to have to reboot to get to full vs2017 so I'm going to eventually, wipe away bootcamp and just use VMWare Fusion to run vs2017 in my mac os.
+
+Today while I was walking in the botanical garden I remembered my desire to farm plants indoor with some kind of software monitoring so I'm going to go ahead and stub out a Plants page in the Lazztech Cloud Web Frontend. And I'm going to take the work I've done for the Snapshot visualization and move it to it's own Vision page leaving the index as just a homepage with a dashboard.

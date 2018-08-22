@@ -300,6 +300,24 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-21T06:37:35.329Z",
+      "id": "20180821063735_163091676_6d8e5b375ec6ca229ffe1b0b2d25c646",
+      "references": [],
+      "title": "Draw the bounding box in webpage on the snapshots."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-22T00:24:56.488Z",
+      "id": "20180822002456_87730774_ace889050aaf88ac5968a5e3d65b6b24",
+      "references": [],
+      "title": "Lazztech Cloud Web Frontend Homepage Dashboard"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-21T06:34:39.958Z",
       "id": "20180821063439_341868655_713d3dd955aa284e2ad0f594dfb6bbdb",
       "references": [],
@@ -309,10 +327,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-21T06:37:35.329Z",
-      "id": "20180821063735_163091676_6d8e5b375ec6ca229ffe1b0b2d25c646",
+      "creation_time": "2018-08-22T00:25:28.009Z",
+      "id": "20180822002528_81959084_dd36333be26f9c6489e1907fd3f3eeb6",
       "references": [],
-      "title": "Draw the bounding box in webpage on the snapshots."
+      "title": "Lazztech Cloud Frontend Plants page stub"
     }
   ],
   "testing": [],
