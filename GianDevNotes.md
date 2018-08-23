@@ -862,3 +862,9 @@ Yeah I'm sick of this shit. I'm deleting bootcamp windows 10 and installing para
 Also I need to update my mac but it caused me to have to do an emergency reinstall of mac os as it panicked during the update... I may have to wipe my mac and start clean... That would be a pain and take some time. I suspect it may be because of the modifications I tried to make to the terminal.
 
 I need to backup the files from my macbook pro then I'll reinstall mac os. I'll do that later for now I'll just start with a fresh install of windows for the parallels install and delete bootcamp.
+
+I restored my mac os command line with this: https://apple.stackexchange.com/questions/100468/how-to-uninstall-zsh
+
+https://www.cnet.com/how-to/how-to-delete-a-hard-drive-partition-on-a-mac/
+
+Well I restored the partition size, maybe I don't need to reinstall mac os?
