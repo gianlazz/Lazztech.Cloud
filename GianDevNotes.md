@@ -858,3 +858,5 @@ Make the background for the unknown_persons red to alert that they stand out. Or
 ## Sprint 3, Lazztech Cloud Razor Pages Web Frontend
 
 Yeah I'm sick of this shit. I'm deleting bootcamp windows 10 and installing parallels desktop for regular vs2017 in mac os. Also for the rest of my sprint my objective is to get a little bit more improvment to the frontend and get the backend/jsons to also support known people.
+
+Also I need to update my mac but it caused me to have to do an emergency reinstall of mac os as it panicked during the update... I may have to wipe my mac and start clean... That would be a pain and take some time. I suspect it may be because of the modifications I tried to make to the terminal.
