@@ -868,3 +868,5 @@ I restored my mac os command line with this: https://apple.stackexchange.com/que
 https://www.cnet.com/how-to/how-to-delete-a-hard-drive-partition-on-a-mac/
 
 Well I restored the partition size, maybe I don't need to reinstall mac os?
+
+Okay so I need to setup windows 10 pro on the parallels desktop first to be able to be able to install docker.
