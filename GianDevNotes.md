@@ -849,3 +849,12 @@ https://stackoverflow.com/questions/50342390/how-can-i-retrieve-the-current-rout
 
 Here's a link about making bootstrap 4 cards dynamically resize in a grid layout:
 https://stackoverflow.com/questions/35868756/how-to-make-bootstrap-4-cards-the-same-height-in-card-columns
+
+Add Side bar menu or nav bar drop down for the Vision page link to sort between the Known and Processed.
+
+Make the background for the unknown_persons red to alert that they stand out. Or just make the card outline red with the "unknown_person" name red too. Remove buttons from cards if possible and just have the image on the card be the link with hover over text.
+
+## Wednesday, August 22, 2018
+## Sprint 3, Lazztech Cloud Razor Pages Web Frontend
+
+Yeah I'm sick of this shit. I'm deleting bootcamp windows 10 and installing parallels desktop for regular vs2017 in mac os. Also for the rest of my sprint my objective is to get a little bit more improvment to the frontend and get the backend/jsons to also support known people.
