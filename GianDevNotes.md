@@ -883,3 +883,6 @@ Also I'm unsure about the performance of doing development with mac os, the virt
 https://natemcmaster.com/blog/2017/11/13/dotnet-watch-and-docker/
 
 Added watch to web app frontend docker file entrypoint command.
+
+Using folders to group pages & routing:
+https://www.thereformedprogrammer.net/six-things-i-learnt-about-using-asp-net-cores-razor-pages/#routing-using-folders-and-filenames-with-a-different-handling-to-invalid-urls
