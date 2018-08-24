@@ -879,3 +879,7 @@ So it looks like I need both windows pro with hyper v and also parallels pro to 
 Added vision nav dropdown and navigation breadcrumbs. I need to figure out how to do pages groups or nested pages with aspnet core razor pages. I think I saw something about it supporting grouped pages in a folder from one of the videos I watched.
 
 Also I'm unsure about the performance of doing development with mac os, the virtualizing linux in mac for docker then windows 10 in parallels all with 8gb of ram... It seems okay but we'll see how it goes.
+
+https://natemcmaster.com/blog/2017/11/13/dotnet-watch-and-docker/
+
+Added watch to web app frontend docker file entrypoint command.
