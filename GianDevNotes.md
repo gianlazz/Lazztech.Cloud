@@ -870,3 +870,12 @@ https://www.cnet.com/how-to/how-to-delete-a-hard-drive-partition-on-a-mac/
 Well I restored the partition size, maybe I don't need to reinstall mac os?
 
 Okay so I need to setup windows 10 pro on the parallels desktop first to be able to be able to install docker.
+
+## Thursday, August 23, 2018
+## Sprint 3, Lazztech Cloud Razor Pages Web Frontend
+***Parallels Windows 10 Experience***
+So it looks like I need both windows pro with hyper v and also parallels pro to be able to run docker in the windows machine. That sucks because that all will be very expensive however I think I can still write all the code in vs2017 in parallels and then just run it on my mac with vs4mac? I'll give it a try and see how far that gets me... That is the point of the containers after all isn't it though that I should be able to launch it in any machine with docker installed?
+
+Added vision nav dropdown and navigation breadcrumbs. I need to figure out how to do pages groups or nested pages with aspnet core razor pages. I think I saw something about it supporting grouped pages in a folder from one of the videos I watched.
+
+Also I'm unsure about the performance of doing development with mac os, the virtualizing linux in mac for docker then windows 10 in parallels all with 8gb of ram... It seems okay but we'll see how it goes.
