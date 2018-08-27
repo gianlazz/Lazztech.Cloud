@@ -991,3 +991,18 @@ Notes for potential leads:
 https://github.com/Kurento/bugtracker/issues/166
 
 https://www.google.com/search?q=91mc%2B%2B%3A+internal+compiler+error%3A+Killed+(program+cc1plus)&rlz=1C1CHBF_enUS811US811&oq=91mc%2B%2B%3A+internal+compiler+error%3A+Killed+(program+cc1plus)&aqs=chrome..69i57.370j0j7&sourceid=chrome&ie=UTF-8
+
+## Monday, August 27, 2018
+## Sprint 4, vs2017 & Vision Microservice REST API
+
+vs2017 was able to launch the docker-compose.dcproj today despite the failure last night. I'm unable to get the vision processing as it's looking for the volume that doesn't
+yet have the images. It may fail anyways since the dlib compilation failed. I'm also noticing that the web frontend doesn't have offline development support for bootstrap and only
+seems to be working via the cdn which isn't what I want. That and it's also rendering slightly weird.
+
+However it launches and all of the unit tests pass so that's a start. I'm also installing CodeMaid to do some MS StyleCop static code analysis and refactoring.
+
+Also I've decided when I get the vs2017 bits sorted and am working on the REST API I'm going to go ahead and just Base64 encode all of the images instead of giving the
+web frontend access to the volume with images. That way I can work towards using docker virtual volumes instead of bind mounting explicit paths to folders on my desktop.
+
+The rest api should be able to return:
+- 
