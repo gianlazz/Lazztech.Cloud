@@ -870,3 +870,21 @@ https://www.cnet.com/how-to/how-to-delete-a-hard-drive-partition-on-a-mac/
 Well I restored the partition size, maybe I don't need to reinstall mac os?
 
 Okay so I need to setup windows 10 pro on the parallels desktop first to be able to be able to install docker.
+
+## Sunday, August 26, 2018
+## Sprint 3, Lazztech Cloud Razor Pages Web Frontend
+***vs2017***
+
+I've refunded parallels desktop home for mac as it doesn't support nested vms that I need for docker. I'm also now thinking that I'll most likely be selling
+my mac and purchasing a more powerful pc laptop instead as I really am tired of fighting against not having proper vs2017 among other reasons. I'm looking at the
+thinkpad x1 carbon.
+
+I'm going through the process now of setting up this project for development on a windows machine again with vs2017 after having had installed bootcamp again
+and perchasing a windows 10 pro license for docker support.
+
+I've gone ahead and accepted the vs2017 community prompts to install docker after opening the solution however those were unsuccesful and I ended up installing 
+docker ce for windows from their site directly. Then upon setup I signed in to the docker desktop app giving it my gianlazzarini@gmail.com username which I recall making this mistake
+before... Docker ce desktop app accepts your email as the username but it causes build issues as the username and email are actually treated as two seperate things which the cli doesn't
+interchange the same way so build will fail. To get/confirm your actual user name sign in to docker's website with your email address where you'll be able to find your username on the ui.
+Sign into the docker desktop app with your username not your email. This applies for both mac and windows.
+
