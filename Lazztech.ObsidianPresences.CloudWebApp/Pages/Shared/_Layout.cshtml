@@ -64,12 +64,22 @@
                     @*<a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>*@
                     <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
                 </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Vision">Vision</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Plants">Plants</a>
-            </li>
+                @*<li class="nav-item">
+                    <a class="nav-link" href="/Vision">Vision</a>
+                </li>*@
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="/Vision" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Vision
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/Vision">Processed</a>
+                        <a class="dropdown-item" href="/Vision">Known</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Plants">Plants</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
