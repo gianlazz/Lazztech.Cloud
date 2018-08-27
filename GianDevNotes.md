@@ -906,3 +906,8 @@ Actually, apperantly just signing out will also allow the docker build to succee
 
 Here's the github issues link talking about this issue:
 https://github.com/docker/hub-feedback/issues/935
+
+I was able to get the docker-compose.dsproj building the images after installing windows pro, docker ce for windows, signing out after signing in and launching the 
+.dsproj which has the dlib cpp dependencies compiling however it seems to have stalled at 96%.
+
+Also vs2017 doesn't seem to be tracking this file properly as it doesn't always see changes.
