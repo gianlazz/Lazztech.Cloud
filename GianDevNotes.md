@@ -914,3 +914,75 @@ Oh also I had to add volume support:
 https://docs.microsoft.com/en-us/azure/vs-azure-tools-docker-troubleshooting-docker-errors
 
 Also vs2017 doesn't seem to be tracking this file properly as it doesn't always see changes.
+
+You'll also get an exception thrown by vs2017 about docker if you open vs right after boot up before docker has finished starting up.
+
+Running this to delete the the image that stalled.
+```
+docker rmi 43354180703a
+```
+
+I then signed into the docker ce windows desktop with the username as appossed to the email.
+
+I've been blocked by some kind of compilation error:
+```
+2>[ 96%] Building CXX object CMakeFiles/dlib_python.dir/src/face_recognition.cpp.o
+2>[91mc++: internal compiler error: Killed (program cc1plus)
+2>Please submit a full bug report,
+2>with preprocessed source if appropriate.
+2>See <file:///usr/share/doc/gcc-6/README.Bugs> for instructions.
+2>[0m[91mmake[2]: *** [CMakeFiles/dlib_python.dir/src/face_recognition.cpp.o] Error 4
+2>[0mCMakeFiles/dlib_python.dir/build.make:518: recipe for target 'CMakeFiles/dlib_python.dir/src/face_recognition.cpp.o' failed
+2>CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/dlib_python.dir/all' failed
+2>[91mmake[1]: *** [CMakeFiles/dlib_python.dir/all] Error 2
+2>[0mMakefile:83: recipe for target 'all' failed
+2>[91mmake: *** [all] Error 2
+2>[0m[91mTraceback (most recent call last):
+2>  File "setup.py", line 257, in <module>
+2>    'Topic :: Software Development',
+2>  File "/usr/lib/python3.5/distutils/core.py", line 148, in setup
+2>    dist.run_commands()
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 955, in run_commands
+2>    self.run_command(cmd)
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+2>    cmd_obj.run()
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/install.py", line 67, in run
+2>    self.do_egg_install()
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/install.py", line 109, in do_egg_install
+2>    self.run_command('bdist_egg')
+2>  File "/usr/lib/python3.5/distutils/cmd.py", line 313, in run_command
+2>    self.distribution.run_command(command)
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+2>    cmd_obj.run()
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/bdist_egg.py", line 161, in run
+2>    cmd = self.call_command('install_lib', warn_dir=0)
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/bdist_egg.py", line 147, in call_command
+2>    self.run_command(cmdname)
+2>  File "/usr/lib/python3.5/distutils/cmd.py", line 313, in run_command
+2>    self.distribution.run_command(command)
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+2>    cmd_obj.run()
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/install_lib.py", line 24, in run
+2>    self.build()
+2>  File "/usr/lib/python3.5/distutils/command/install_lib.py", line 109, in build
+2>    self.run_command('build_ext')
+2>  File "/usr/lib/python3.5/distutils/cmd.py", line 313, in run_command
+2>    self.distribution.run_command(command)
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+2>    cmd_obj.run()
+2>  File "setup.py", line 133, in run
+2>    self.build_extension(ext)
+2>  File "setup.py", line 173, in build_extension
+2>    subprocess.check_call(cmake_build, cwd=build_folder)
+2>  File "/usr/lib/python3.5/subprocess.py", line 271, in check_call
+2>    raise CalledProcessError(retcode, cmd)
+2>subprocess.CalledProcessError: Command '['cmake', '--build', '.', '--config', 'Release', '--', '-j1']' returned non-zero exit status 2
+2>Service 'lazztech.ObsidianPresences.vision.microservice.cli' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get install -y python3-pip &&    pip3 install face_recognition' returned a non-zero code: 1
+2>[0m
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : Building lazztech.ObsidianPresences.vision.microservice.cli
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : Service 'lazztech.ObsidianPresences.vision.microservice.cli' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get install -y python3-pip &&    pip3 install face_recognition' returned a non-zero code: 1.
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : 
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : For more troubleshooting information, go to http://aka.ms/DockerToolsTroubleshooting
+2>Done building project "docker-compose.dcproj" -- FAILED.
+========== Build: 1 succeeded, 1 failed, 3 up-to-date, 0 skipped ==========
+```
