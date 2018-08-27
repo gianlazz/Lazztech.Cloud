@@ -887,7 +887,7 @@ Okay so I need to setup windows 10 pro on the parallels desktop first to be able
 
 ## Sunday, August 26, 2018
 ## Sprint 3, Lazztech Cloud Razor Pages Web Frontend
-***vs2017***
+***vs2017 fresh setup and install for this project***
 
 I've refunded parallels desktop home for mac as it doesn't support nested vms that I need for docker. I'm also now thinking that I'll most likely be selling
 my mac and purchasing a more powerful pc laptop instead as I really am tired of fighting against not having proper vs2017 among other reasons. I'm looking at the
@@ -902,3 +902,7 @@ before... Docker ce desktop app accepts your email as the username but it causes
 interchange the same way so build will fail. To get/confirm your actual user name sign in to docker's website with your email address where you'll be able to find your username on the ui.
 Sign into the docker desktop app with your username not your email. This applies for both mac and windows.
 
+Actually, apperantly just signing out will also allow the docker build to succeed too. That's kinda weird.
+
+Here's the github issues link talking about this issue:
+https://github.com/docker/hub-feedback/issues/935
