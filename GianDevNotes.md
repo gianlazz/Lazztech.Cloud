@@ -986,3 +986,8 @@ I've been blocked by some kind of compilation error:
 2>Done building project "docker-compose.dcproj" -- FAILED.
 ========== Build: 1 succeeded, 1 failed, 3 up-to-date, 0 skipped ==========
 ```
+
+Notes for potential leads:
+https://github.com/Kurento/bugtracker/issues/166
+
+https://www.google.com/search?q=91mc%2B%2B%3A+internal+compiler+error%3A+Killed+(program+cc1plus)&rlz=1C1CHBF_enUS811US811&oq=91mc%2B%2B%3A+internal+compiler+error%3A+Killed+(program+cc1plus)&aqs=chrome..69i57.370j0j7&sourceid=chrome&ie=UTF-8
