@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using static Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models.Snapshot;
 
 namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
@@ -11,6 +9,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
     public class FacialRecognitionManager
     {
         #region properties
+
         public static string knownPath = @"/face/known/";
         public static string unknownPath = @"/face/unknown/";
         public static string noPersonsFoundPath = @"/face/no_persons_found/";
@@ -21,21 +20,25 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
         public List<Snapshot> Known = new List<Snapshot>();
         public List<Snapshot> Unknown = new List<Snapshot>();
 
-        public List<Snapshot> Results { get; set; }    
+        public List<Snapshot> Results { get; set; }
         public List<string> face_recognitionLines = new List<string>();
         public List<string> face_detectionLines = new List<string>();
-        #endregion
+
+        #endregion properties
 
         #region services fields
+
         private IFileServices _fileServices;
         private Iface_detection _face_detection;
         private Iface_recognition _face_recognition;
-        #endregion
+
+        #endregion services fields
 
         #region ctor
+
         public FacialRecognitionManager(
-            Iface_recognition face_recognition, 
-            Iface_detection face_detection, 
+            Iface_recognition face_recognition,
+            Iface_detection face_detection,
             IFileServices fileServices)
         {
             _face_detection = face_detection;
@@ -43,8 +46,9 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             _fileServices = fileServices;
             Results = new List<Snapshot>();
         }
-        #endregion
-        
+
+        #endregion ctor
+
         public List<Snapshot> Process()
         {
             CollectAllImageDirs();
@@ -61,7 +65,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             HandleBoundingBoxes();
 
             return Results;
-         }
+        }
 
         private void HandleBoundingBoxes()
         {
@@ -73,7 +77,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             foreach (var line in lines)
             {
                 var imageDirFromLine = line.Split(',')[0];
-                var imageName = _fileServices.GetFileNameFromDir(imageDirFromLine); 
+                var imageName = _fileServices.GetFileNameFromDir(imageDirFromLine);
                 if (snapsWithPeople.Where(x => x.ImageName == imageName).ToList().Any())
                 {
                     var matchingLines = lines.Where(x => x.Split(',')[0] == imageDirFromLine).ToList();
@@ -91,23 +95,22 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
         private FaceBoundingBox ExtractBoundingBox(string line)
         {
             var csvSplit = line.Split(',').ToList();
-            csvSplit.RemoveAt(0);            
+            csvSplit.RemoveAt(0);
             var leftTopCoordinate = new PixelCoordinateVertex()
-                {
-                    x = int.Parse(csvSplit[0]),
-                    y = int.Parse(csvSplit[1])
-                };
+            {
+                x = int.Parse(csvSplit[0]),
+                y = int.Parse(csvSplit[1])
+            };
             var rightBottomCoordinate = new PixelCoordinateVertex()
             {
                 x = int.Parse(csvSplit[2]),
                 y = int.Parse(csvSplit[3])
             };
-            return new FaceBoundingBox() 
+            return new FaceBoundingBox()
             {
                 LeftTopCoordinate = leftTopCoordinate,
                 RightBottomCoordinate = rightBottomCoordinate
             };
-            
         }
 
         private void HandleIdentities()
@@ -117,7 +120,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
                 var imageDir = GetImageDir(line);
                 var snapshot = Results.Where(x => x.ImageDir == imageDir).FirstOrDefault();
                 if (snapshot == null)
-                   throw new Exception("No snapshot found by that image directory.");
+                    throw new Exception("No snapshot found by that image directory.");
                 var status = SetIdentityOutcome(line);
                 snapshot.Status = status;
                 if (snapshot.Status == Snapshot.SnapshotStatus.known || snapshot.Status == Snapshot.SnapshotStatus.unknown_person)
@@ -129,7 +132,8 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 
         private void AssignIdentifiedPersons(Snapshot snapshot, string line)
         {
-            snapshot.People.Add(new Person(){
+            snapshot.People.Add(new Person()
+            {
                 Name = GetIdentifiedName(line)
             });
         }
@@ -150,7 +154,8 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             {
                 return Snapshot.SnapshotStatus.unknown_person;
             }
-            else {
+            else
+            {
                 return Snapshot.SnapshotStatus.known;
             }
         }

@@ -13,7 +13,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             var x = Environment.ProcessorCount;
 
             var procInfo = new ProcessStartInfo($"face_recognition")
-            { 
+            {
                 RedirectStandardOutput = true,
                 Arguments = $"{FacialRecognitionManager.knownPath} {FacialRecognitionManager.unknownPath}"
             };

@@ -11,7 +11,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             var result = new List<string>();
 
             var procInfo = new ProcessStartInfo($"face_detection")
-            { 
+            {
                 RedirectStandardOutput = true,
                 Arguments = $"{FacialRecognitionManager.unknownPath}"
             };
@@ -25,7 +25,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
                     result.Add(line);
                 Console.WriteLine(line);
             }
-            
+
             return result;
         }
     }

@@ -10,7 +10,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
         public FileServices()
         {
         }
-        
+
         public string[] GetAllImageDirs(string path)
         {
             var result = new List<string>();
