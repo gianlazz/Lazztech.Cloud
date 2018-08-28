@@ -1085,3 +1085,8 @@ But this does:
 ```
 docker run -it -v C:\face_recognition:/face/ --entrypoint /bin/bash 41296ecb09db
 ```
+
+Oddly enough however it still has the exact same problem even when I execute it in the container myself with the corrected volume path:
+```
+OSError: cannot identify image file 'known/._Gian Lazzarini.jpeg'
+``

@@ -349,6 +349,15 @@
       "id": "20180822002529",
       "references": [],
       "title": "Vision should create needed directories completely if they don't exist already."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-28T02:37:28.308Z",
+      "id": "20180822002532",
+      "references": [],
+      "title": "Fix OSError: cannot identify image file 'known/._Gian Lazzarini.jpeg'"
     }
   ],
   "testing": [],
@@ -397,6 +406,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-28T01:48:06.155Z",
+      "id": "20180822002531",
+      "references": [],
+      "title": "Get development/offline bootstrap 4 working as appose to just the cdn for the web frontend."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-16T02:01:07.077Z",
       "id": "20180816020107_108874429_a6ac225d127adc4f148896cc3d280c99",
       "references": [],
@@ -437,15 +455,6 @@
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-28T01:48:06.155Z",
-      "id": "20180822002531",
-      "references": [],
-      "title": "Get development/offline bootstrap 4 working as appose to just the cdn for the web frontend."
     }
   ]
 }
