@@ -1041,3 +1041,20 @@ I'll try `docker system prune -a` then see if I can get it to compile the contai
 Weird yeah after stoping all running docker ps then running `docker system prune -a` it seems to have succesfully compile face_recognition and dlib where it failed before. However the resulting jsons are still empty. I'll have to walk through. I imagine it's just something about it looking for a path with a `/` where windows uses `\` or something like that. All the unit tests still pass so that's good. 
 
 I'll have to look at how I'm naming the jsons which I documented then walk through where the problem is. It's possible that it's somehow configured in a way that assumes macOS or maybe face_detection still isn't working? I'll open a bash terminal to the container and test it.
+
+I talk about the naming convention for the jsons on **Saturday, August 18, 2018**
+
+Okay so the dot in the the begining of the name isn't due to the naming convention as it still has the details it's supposed to. It just also has a prefixing `._` to the name...
+
+Also the the aspnet page is throwing this error:
+```
+Development Mode
+Swapping to Development environment will display more detailed information about the error that occurred.
+
+Development environment should not be enabled in deployed applications, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the ASPNETCORE_ENVIRONMENT environment variable to Development, and restarting the application.
+```
+
+FaceRecognitionProcess is throwing this exception:
+`OSError: cannot identify image file '/face/known/._Gian Lazzarini.jpeg'`
+
+Again with the `._` causing problems. I have to open a bash terminal with the container just to be sure face_recognition is compiled since I think it is... Idk what's causing the `._`
