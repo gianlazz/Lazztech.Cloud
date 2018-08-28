@@ -304,7 +304,44 @@
       "title": "Write the razor cshtml view logic to loop through a layout of 3 cards with the snapshots."
     }
   ],
-  "in-progress": [],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-18T04:43:05.877Z",
+      "id": "20180818044305_144068559_3e086c15277e5bf29ce82c2bb17c0b09",
+      "references": [],
+      "title": "Create containerized vision REST Api in place of the vision Cli container"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-19T19:01:19.256Z",
+      "id": "20180819190119_587898148_b84ea77f6a7e905dc9fd1f4b4d2eb0fb",
+      "references": [],
+      "title": "Look into ASP.NET core controller serialization conventions for interop between web frontend and future REST Api"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-18T04:44:46.175Z",
+      "id": "20180818044446_127911749_8175aa816c83f7ba501c0055a07c168a",
+      "references": [],
+      "title": "Transition the web front end to get the data from the containerized vision Rest Api instead of the volume with jsons"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-28T01:16:52.300Z",
+      "id": "20180822002529",
+      "references": [],
+      "title": "Vision should create needed directories completely if they don't exist already."
+    }
+  ],
   "testing": [],
   "todo": [
     {
@@ -342,15 +379,6 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-18T04:43:05.877Z",
-      "id": "20180818044305_144068559_3e086c15277e5bf29ce82c2bb17c0b09",
-      "references": [],
-      "title": "Create containerized vision REST Api in place of the vision Cli container"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
       "creation_time": "2018-08-21T06:37:35.329Z",
       "id": "20180821063735_163091676_6d8e5b375ec6ca229ffe1b0b2d25c646",
       "references": [],
@@ -369,19 +397,19 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-07T21:21:33.036Z",
-      "id": "20180807212133_484551544_73201493681b9735d36a79f427a47fb9",
+      "creation_time": "2018-08-22T00:24:56.488Z",
+      "id": "20180822002456_87730774_ace889050aaf88ac5968a5e3d65b6b24",
       "references": [],
-      "title": "Learn about docker-compose.debug.yml"
+      "title": "Lazztech Cloud Web Frontend Homepage Dashboard"
     },
     {
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-19T19:01:19.256Z",
-      "id": "20180819190119_587898148_b84ea77f6a7e905dc9fd1f4b4d2eb0fb",
+      "creation_time": "2018-08-07T21:21:33.036Z",
+      "id": "20180807212133_484551544_73201493681b9735d36a79f427a47fb9",
       "references": [],
-      "title": "Look into ASP.NET core controller serialization conventions for interop between web frontend and future REST Api"
+      "title": "Learn about docker-compose.debug.yml"
     },
     {
       "assignedTo": {
@@ -396,37 +424,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-05T03:13:08.746Z",
-      "id": "20180805031308_419208128_6db4fd3deaafabc6a203e26ef329294d",
-      "references": [],
-      "title": "Setup Docker remote debugging launch configuration for Cli project with vscode"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
       "creation_time": "2018-07-28T21:31:12.681Z",
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-18T04:44:46.175Z",
-      "id": "20180818044446_127911749_8175aa816c83f7ba501c0055a07c168a",
-      "references": [],
-      "title": "Transition the web front end to get the data from the containerized vision Rest Api instead of the volume with jsons"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-22T00:24:56.488Z",
-      "id": "20180822002456_87730774_ace889050aaf88ac5968a5e3d65b6b24",
-      "references": [],
-      "title": "Lazztech Cloud Web Frontend Homepage Dashboard"
     }
   ]
 }

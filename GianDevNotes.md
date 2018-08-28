@@ -1011,3 +1011,9 @@ The rest api should be able to:
 - Return all by date range
 
 Interesting note about windows/mac desktop explicit volume path bind mount with docker; it seems that docker is doing something to resolve discrepencies and is able to use the windows path on mac os too... Or maybe the image was already built on my mac with the other volume path set? Idk.
+
+I've gone ahead and transfered over the face_detection folder with the images and jsons from macOS to continue testing with vs2017.
+
+I'm getting an exception about the path being stale that I've never seen:
+`System.IO.IOException: 'Stale file handle'`
+https://stackoverflow.com/questions/20105260/what-does-stale-file-handle-in-linux-means
