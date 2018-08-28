@@ -1058,3 +1058,20 @@ FaceRecognitionProcess is throwing this exception:
 `OSError: cannot identify image file '/face/known/._Gian Lazzarini.jpeg'`
 
 Again with the `._` causing problems. I have to open a bash terminal with the container just to be sure face_recognition is compiled since I think it is... Idk what's causing the `._`
+
+The command to open up the image with volume access and interactive bash is as follows but with actual path and image id value:
+```
+docker run -it -v /Users/gianlazzarini/Desktop/face_recognition:/face/ --entrypoint /bin/bash ba34ace8a4cc
+```
+
+Running the following gives a clue that I may have the volume path for the docker-compose messed up:
+```
+PS C:\Users\Gian Lazzarini> docker run -it -v C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/ --entrypoint /bin/bash 41296ecb09db
+C:\Program Files\Docker\Docker\Resources\bin\docker.exe: invalid reference format.
+See 'C:\Program Files\Docker\Docker\Resources\bin\docker.exe run --help'.
+```
+
+However I was still able to open up an interactive bash and confirm the both `face_recognition` and `face_detection` are responding correctly:
+```
+PS C:\Users\Gian Lazzarini> docker run -it --entrypoint /bin/bash 41296ecb09db
+```
