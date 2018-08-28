@@ -1059,7 +1059,7 @@ FaceRecognitionProcess is throwing this exception:
 
 Again with the `._` causing problems. I have to open a bash terminal with the container just to be sure face_recognition is compiled since I think it is... Idk what's causing the `._`
 
-The command to open up the image with volume access and interactive bash is as follows but with actual path and image id value:
+The command to open up the image with volume access and interactive bash is as follows but with actual path and image id value: **old example**
 ```
 docker run -it -v /Users/gianlazzarini/Desktop/face_recognition:/face/ --entrypoint /bin/bash ba34ace8a4cc
 ```
@@ -1074,4 +1074,14 @@ See 'C:\Program Files\Docker\Docker\Resources\bin\docker.exe run --help'.
 However I was still able to open up an interactive bash and confirm the both `face_recognition` and `face_detection` are responding correctly:
 ```
 PS C:\Users\Gian Lazzarini> docker run -it --entrypoint /bin/bash 41296ecb09db
+```
+
+Okay it I think it was the space in the path that was messing it up as this doesn't work:
+```
+docker run -it -v C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/ --entrypoint /bin/bash 41296ecb09db
+```
+
+But this does:
+```
+docker run -it -v C:\face_recognition:/face/ --entrypoint /bin/bash 41296ecb09db
 ```
