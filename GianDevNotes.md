@@ -1090,4 +1090,11 @@ docker run -it -v C:\face_recognition:/face/ --entrypoint /bin/bash 41296ecb09db
 Oddly enough however it still has the exact same problem even when I execute it in the container myself with the corrected volume path:
 ```
 OSError: cannot identify image file 'known/._Gian Lazzarini.jpeg'
-``
+```
+
+Interesting I seem to have found the issue shown in this output:
+```
+root@d032f645d436:/face/known# ls -a
+.  ..  .DS_Store  ._.DS_Store  ._Gian Lazzarini.jpeg  ._Meghan Markle.jpeg  ._Prince Harry.jpg  ._Scott Hanselman.png  Gian Lazzarini.jpeg  Meghan Markle.jpeg  Prince Harry.jpg  Scott Hanselman.png
+```
+
