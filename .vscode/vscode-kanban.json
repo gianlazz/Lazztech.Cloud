@@ -318,6 +318,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-28T02:37:28.308Z",
+      "id": "20180822002532",
+      "references": [],
+      "title": "Fix OSError: cannot identify image file 'known/._Gian Lazzarini.jpeg'"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-28T01:36:57.050Z",
       "id": "20180822002530",
       "references": [],
@@ -349,15 +358,6 @@
       "id": "20180822002529",
       "references": [],
       "title": "Vision should create needed directories completely if they don't exist already."
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-28T02:37:28.308Z",
-      "id": "20180822002532",
-      "references": [],
-      "title": "Fix OSError: cannot identify image file 'known/._Gian Lazzarini.jpeg'"
     }
   ],
   "testing": [],
@@ -455,6 +455,15 @@
       "id": "20180728213112_285800673_7f55c364f88406eecb20db7720db96ad",
       "references": [],
       "title": "Test to see if adjusting the motion.config resolution settings improves the face_recognition accuracy"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-28T02:40:23.125Z",
+      "id": "20180822002533",
+      "references": [],
+      "title": "Fix bootstrap mobile navbar button that's partially showing up now for some reason when it shouldn't."
     }
   ]
 }
