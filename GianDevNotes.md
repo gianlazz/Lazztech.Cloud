@@ -1009,3 +1009,5 @@ The rest api should be able to:
 - Submit an image to be processed with returned result response
 - Return all snapshots by person name or unkown w/ pagination and total
 - Return all by date range
+
+Interesting note about windows/mac desktop explicit volume path bind mount with docker; it seems that docker is doing something to resolve discrepencies and is able to use the windows path on mac os too... Or maybe the image was already built on my mac with the other volume path set? Idk.
