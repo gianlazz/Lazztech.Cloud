@@ -340,6 +340,15 @@
       "id": "20180822002529",
       "references": [],
       "title": "Vision should create needed directories completely if they don't exist already."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-28T01:36:57.050Z",
+      "id": "20180822002530",
+      "references": [],
+      "title": "Get dlib & face_recognition container to complete compilation in windows 10."
     }
   ],
   "testing": [],
