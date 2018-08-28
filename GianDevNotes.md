@@ -1037,3 +1037,7 @@ Forwhich when I read all the text from that file it looks like:
 However on a positive note I think the path having a period in the beginning is actually from the string enterpolation for the name since there's no face_detection that's what's causing it to break. I'll se if I can get dlib to compile as I need then continue on.
 
 I'll try `docker system prune -a` then see if I can get it to compile the container again while looking up the exception it threw.
+
+Weird yeah after stoping all running docker ps then running `docker system prune -a` it seems to have succesfully compile face_recognition and dlib where it failed before. However the resulting jsons are still empty. I'll have to walk through. I imagine it's just something about it looking for a path with a `/` where windows uses `\` or something like that. All the unit tests still pass so that's good. 
+
+I'll have to look at how I'm naming the jsons which I documented then walk through where the problem is. It's possible that it's somehow configured in a way that assumes macOS or maybe face_detection still isn't working? I'll open a bash terminal to the container and test it.
