@@ -130,6 +130,15 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-22T00:25:28.009Z",
+      "id": "20180822002528_81959084_dd36333be26f9c6489e1907fd3f3eeb6",
+      "references": [],
+      "title": "Lazztech Cloud Frontend Plants page stub"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-01T04:38:44.698Z",
       "id": "20180801043844_125736006_4ad1ed7c1716f890b2261f25358c9817",
       "references": [],
@@ -284,35 +293,6 @@
       "id": "20180819043209_473525162_319dc494c388a24f5218c5a561e7cb04",
       "references": [],
       "title": "Update WebApp to Bootstrap 4"
-    }
-  ],
-  "in-progress": [
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-21T06:35:24.909Z",
-      "id": "20180821063524_440588378_935763489543af4ca02cf397e54d4ee7",
-      "references": [],
-      "title": "Configure aspnet to use the static files instead of converting it to a byte array -> base64 -> passing it as a string parameter for the source."
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-21T06:37:35.329Z",
-      "id": "20180821063735_163091676_6d8e5b375ec6ca229ffe1b0b2d25c646",
-      "references": [],
-      "title": "Draw the bounding box in webpage on the snapshots."
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-22T00:24:56.488Z",
-      "id": "20180822002456_87730774_ace889050aaf88ac5968a5e3d65b6b24",
-      "references": [],
-      "title": "Lazztech Cloud Web Frontend Homepage Dashboard"
     },
     {
       "assignedTo": {
@@ -322,17 +302,9 @@
       "id": "20180821063439_341868655_713d3dd955aa284e2ad0f594dfb6bbdb",
       "references": [],
       "title": "Write the razor cshtml view logic to loop through a layout of 3 cards with the snapshots."
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-22T00:25:28.009Z",
-      "id": "20180822002528_81959084_dd36333be26f9c6489e1907fd3f3eeb6",
-      "references": [],
-      "title": "Lazztech Cloud Frontend Plants page stub"
     }
   ],
+  "in-progress": [],
   "testing": [],
   "todo": [
     {
@@ -361,10 +333,28 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-21T06:35:24.909Z",
+      "id": "20180821063524_440588378_935763489543af4ca02cf397e54d4ee7",
+      "references": [],
+      "title": "Configure aspnet to use the static files instead of converting it to a byte array -> base64 -> passing it as a string parameter for the source."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-18T04:43:05.877Z",
       "id": "20180818044305_144068559_3e086c15277e5bf29ce82c2bb17c0b09",
       "references": [],
       "title": "Create containerized vision REST Api in place of the vision Cli container"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-21T06:37:35.329Z",
+      "id": "20180821063735_163091676_6d8e5b375ec6ca229ffe1b0b2d25c646",
+      "references": [],
+      "title": "Draw the bounding box in webpage on the snapshots."
     },
     {
       "assignedTo": {
@@ -428,6 +418,15 @@
       "id": "20180818044446_127911749_8175aa816c83f7ba501c0055a07c168a",
       "references": [],
       "title": "Transition the web front end to get the data from the containerized vision Rest Api instead of the volume with jsons"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-22T00:24:56.488Z",
+      "id": "20180822002456_87730774_ace889050aaf88ac5968a5e3d65b6b24",
+      "references": [],
+      "title": "Lazztech Cloud Web Frontend Homepage Dashboard"
     }
   ]
 }

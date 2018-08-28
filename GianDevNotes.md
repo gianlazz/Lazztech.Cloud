@@ -1004,5 +1004,8 @@ However it launches and all of the unit tests pass so that's a start. I'm also i
 Also I've decided when I get the vs2017 bits sorted and am working on the REST API I'm going to go ahead and just Base64 encode all of the images instead of giving the
 web frontend access to the volume with images. That way I can work towards using docker virtual volumes instead of bind mounting explicit paths to folders on my desktop.
 
-The rest api should be able to return:
-- 
+The rest api should be able to:
+- Register new known people
+- Submit an image to be processed with returned result response
+- Return all snapshots by person name or unkown w/ pagination and total
+- Return all by date range
