@@ -67,6 +67,24 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
+      "creation_time": "2018-08-28T02:37:28.308Z",
+      "id": "20180822002532",
+      "references": [],
+      "title": "Fix OSError: cannot identify image file 'known/._Gian Lazzarini.jpeg'"
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-28T01:36:57.050Z",
+      "id": "20180822002530",
+      "references": [],
+      "title": "Get dlib & face_recognition container to complete compilation in windows 10."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
       "creation_time": "2018-08-06T00:03:21.097Z",
       "id": "20180806000321_13111963_d690fd191839e5e3a94c86263639c5dc",
       "references": [],
@@ -318,24 +336,6 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-28T02:37:28.308Z",
-      "id": "20180822002532",
-      "references": [],
-      "title": "Fix OSError: cannot identify image file 'known/._Gian Lazzarini.jpeg'"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-28T01:36:57.050Z",
-      "id": "20180822002530",
-      "references": [],
-      "title": "Get dlib & face_recognition container to complete compilation in windows 10."
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
       "creation_time": "2018-08-19T19:01:19.256Z",
       "id": "20180819190119_587898148_b84ea77f6a7e905dc9fd1f4b4d2eb0fb",
       "references": [],
@@ -349,15 +349,6 @@
       "id": "20180818044446_127911749_8175aa816c83f7ba501c0055a07c168a",
       "references": [],
       "title": "Transition the web front end to get the data from the containerized vision Rest Api instead of the volume with jsons"
-    },
-    {
-      "assignedTo": {
-        "name": "Gian Lazzarini"
-      },
-      "creation_time": "2018-08-28T01:16:52.300Z",
-      "id": "20180822002529",
-      "references": [],
-      "title": "Vision should create needed directories completely if they don't exist already."
     }
   ],
   "testing": [],
@@ -401,6 +392,15 @@
       "id": "20180821063735_163091676_6d8e5b375ec6ca229ffe1b0b2d25c646",
       "references": [],
       "title": "Draw the bounding box in webpage on the snapshots."
+    },
+    {
+      "assignedTo": {
+        "name": "Gian Lazzarini"
+      },
+      "creation_time": "2018-08-28T02:40:23.125Z",
+      "id": "20180822002533",
+      "references": [],
+      "title": "Fix bootstrap mobile navbar button that's partially showing up now for some reason when it shouldn't."
     },
     {
       "assignedTo": {
@@ -460,10 +460,10 @@
       "assignedTo": {
         "name": "Gian Lazzarini"
       },
-      "creation_time": "2018-08-28T02:40:23.125Z",
-      "id": "20180822002533",
+      "creation_time": "2018-08-28T01:16:52.300Z",
+      "id": "20180822002529",
       "references": [],
-      "title": "Fix bootstrap mobile navbar button that's partially showing up now for some reason when it shouldn't."
+      "title": "Vision should create needed directories completely if they don't exist already."
     }
   ]
 }

@@ -1103,4 +1103,10 @@ https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-f
 
 I've just deleted all of the files that start with `.` including the	`.DS_Store`.
 
+https://apple.stackexchange.com/questions/69467/consequences-of-deleting-ds-store
+
 Okay yeah that fixed it. I moved it back to the desktop but I'll move the docker-compose.dsproj volume to the C:\ so that it's not specific to my machine only.
+
+I added a 1.6MB zip of the face_recognition folder of example images that I've been using. Hopefully adding that binary won't cause problems for me later...
+
+I've also fixe that weird partially loaded button by commenting out the reference to the _CookieConsentPartial in the _Layout. Idk why that's happening in the first place but it's ugly and I don't really need the cookie consent right now.
