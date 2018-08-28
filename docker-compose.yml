@@ -4,7 +4,8 @@ services:
   lazztech.ObsidianPresences.vision.microservice.cli:
     image: lazztechobsidianpresensevisionmicroservicecli
     volumes:
-      - /Users/gianlazzarini/Desktop/face_recognition:/face/
+#      - /Users/gianlazzarini/Desktop/face_recognition:/face/
+      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
     build:
       context: .
       dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.Cli/Dockerfile
@@ -13,7 +14,8 @@ services:
   lazztech.obsidianpresences.cloudwebapp:
     image: lazztechobsidianpresencescloudwebapp
     volumes:
-      - /Users/gianlazzarini/Desktop/face_recognition:/face/
+#      - /Users/gianlazzarini/Desktop/face_recognition:/face/
+      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
     ports: 
       - 5000:5000
     build:

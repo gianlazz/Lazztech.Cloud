@@ -16,10 +16,11 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models
         public string ImageName { get; set; }
         public DateTime DateTimeWhenCaptured { get; set; }
         public string Location { get; set; }
-        public SnapshotStatus Status { get; set; } 
+        public SnapshotStatus Status { get; set; }
         public List<Person> People { get; set; }
 
-        public enum SnapshotStatus {
+        public enum SnapshotStatus
+        {
             known,
             unknown,
             unknown_person,

@@ -883,6 +883,126 @@ Also I'm unsure about the performance of doing development with mac os, the virt
 https://natemcmaster.com/blog/2017/11/13/dotnet-watch-and-docker/
 
 Added watch to web app frontend docker file entrypoint command.
+Okay so I need to setup windows 10 pro on the parallels desktop first to be able to be able to install docker.
 
-Using folders to group pages & routing:
-https://www.thereformedprogrammer.net/six-things-i-learnt-about-using-asp-net-cores-razor-pages/#routing-using-folders-and-filenames-with-a-different-handling-to-invalid-urls
+## Sunday, August 26, 2018
+## Sprint 3, Lazztech Cloud Razor Pages Web Frontend
+***vs2017 fresh setup and install for this project***
+
+I've refunded parallels desktop home for mac as it doesn't support nested vms that I need for docker. I'm also now thinking that I'll most likely be selling
+my mac and purchasing a more powerful pc laptop instead as I really am tired of fighting against not having proper vs2017 among other reasons. I'm looking at the
+thinkpad x1 carbon.
+
+I'm going through the process now of setting up this project for development on a windows machine again with vs2017 after having had installed bootcamp again
+and perchasing a windows 10 pro license for docker support.
+
+I've gone ahead and accepted the vs2017 community prompts to install docker after opening the solution however those were unsuccesful and I ended up installing 
+docker ce for windows from their site directly. Then upon setup I signed in to the docker desktop app giving it my gianlazzarini@gmail.com username which I recall making this mistake
+before... Docker ce desktop app accepts your email as the username but it causes build issues as the username and email are actually treated as two seperate things which the cli doesn't
+interchange the same way so build will fail. To get/confirm your actual user name sign in to docker's website with your email address where you'll be able to find your username on the ui.
+Sign into the docker desktop app with your username not your email. This applies for both mac and windows.
+
+Actually, apperantly just signing out will also allow the docker build to succeed too. That's kinda weird.
+
+Here's the github issues link talking about this issue:
+https://github.com/docker/hub-feedback/issues/935
+
+I was able to get the docker-compose.dsproj building the images after installing windows pro, docker ce for windows, signing out after signing in and launching the 
+.dsproj which has the dlib cpp dependencies compiling however it seems to have stalled at 96%.
+
+Oh also I had to add volume support:
+https://docs.microsoft.com/en-us/azure/vs-azure-tools-docker-troubleshooting-docker-errors
+
+Also vs2017 doesn't seem to be tracking this file properly as it doesn't always see changes.
+
+You'll also get an exception thrown by vs2017 about docker if you open vs right after boot up before docker has finished starting up.
+
+Running this to delete the the image that stalled.
+```
+docker rmi 43354180703a
+```
+
+I then signed into the docker ce windows desktop with the username as appossed to the email.
+
+I've been blocked by some kind of compilation error:
+```
+2>[ 96%] Building CXX object CMakeFiles/dlib_python.dir/src/face_recognition.cpp.o
+2>[91mc++: internal compiler error: Killed (program cc1plus)
+2>Please submit a full bug report,
+2>with preprocessed source if appropriate.
+2>See <file:///usr/share/doc/gcc-6/README.Bugs> for instructions.
+2>[0m[91mmake[2]: *** [CMakeFiles/dlib_python.dir/src/face_recognition.cpp.o] Error 4
+2>[0mCMakeFiles/dlib_python.dir/build.make:518: recipe for target 'CMakeFiles/dlib_python.dir/src/face_recognition.cpp.o' failed
+2>CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/dlib_python.dir/all' failed
+2>[91mmake[1]: *** [CMakeFiles/dlib_python.dir/all] Error 2
+2>[0mMakefile:83: recipe for target 'all' failed
+2>[91mmake: *** [all] Error 2
+2>[0m[91mTraceback (most recent call last):
+2>  File "setup.py", line 257, in <module>
+2>    'Topic :: Software Development',
+2>  File "/usr/lib/python3.5/distutils/core.py", line 148, in setup
+2>    dist.run_commands()
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 955, in run_commands
+2>    self.run_command(cmd)
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+2>    cmd_obj.run()
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/install.py", line 67, in run
+2>    self.do_egg_install()
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/install.py", line 109, in do_egg_install
+2>    self.run_command('bdist_egg')
+2>  File "/usr/lib/python3.5/distutils/cmd.py", line 313, in run_command
+2>    self.distribution.run_command(command)
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+2>    cmd_obj.run()
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/bdist_egg.py", line 161, in run
+2>    cmd = self.call_command('install_lib', warn_dir=0)
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/bdist_egg.py", line 147, in call_command
+2>    self.run_command(cmdname)
+2>  File "/usr/lib/python3.5/distutils/cmd.py", line 313, in run_command
+2>    self.distribution.run_command(command)
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+2>    cmd_obj.run()
+2>  File "/usr/lib/python3/dist-packages/setuptools/command/install_lib.py", line 24, in run
+2>    self.build()
+2>  File "/usr/lib/python3.5/distutils/command/install_lib.py", line 109, in build
+2>    self.run_command('build_ext')
+2>  File "/usr/lib/python3.5/distutils/cmd.py", line 313, in run_command
+2>    self.distribution.run_command(command)
+2>  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+2>    cmd_obj.run()
+2>  File "setup.py", line 133, in run
+2>    self.build_extension(ext)
+2>  File "setup.py", line 173, in build_extension
+2>    subprocess.check_call(cmake_build, cwd=build_folder)
+2>  File "/usr/lib/python3.5/subprocess.py", line 271, in check_call
+2>    raise CalledProcessError(retcode, cmd)
+2>subprocess.CalledProcessError: Command '['cmake', '--build', '.', '--config', 'Release', '--', '-j1']' returned non-zero exit status 2
+2>Service 'lazztech.ObsidianPresences.vision.microservice.cli' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get install -y python3-pip &&    pip3 install face_recognition' returned a non-zero code: 1
+2>[0m
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : Building lazztech.ObsidianPresences.vision.microservice.cli
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : Service 'lazztech.ObsidianPresences.vision.microservice.cli' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get install -y python3-pip &&    pip3 install face_recognition' returned a non-zero code: 1.
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : 
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : For more troubleshooting information, go to http://aka.ms/DockerToolsTroubleshooting
+2>Done building project "docker-compose.dcproj" -- FAILED.
+========== Build: 1 succeeded, 1 failed, 3 up-to-date, 0 skipped ==========
+```
+
+Notes for potential leads:
+https://github.com/Kurento/bugtracker/issues/166
+
+https://www.google.com/search?q=91mc%2B%2B%3A+internal+compiler+error%3A+Killed+(program+cc1plus)&rlz=1C1CHBF_enUS811US811&oq=91mc%2B%2B%3A+internal+compiler+error%3A+Killed+(program+cc1plus)&aqs=chrome..69i57.370j0j7&sourceid=chrome&ie=UTF-8
+
+## Monday, August 27, 2018
+## Sprint 4, vs2017 & Vision Microservice REST API
+
+vs2017 was able to launch the docker-compose.dcproj today despite the failure last night. I'm unable to get the vision processing as it's looking for the volume that doesn't
+yet have the images. It may fail anyways since the dlib compilation failed. I'm also noticing that the web frontend doesn't have offline development support for bootstrap and only
+seems to be working via the cdn which isn't what I want. That and it's also rendering slightly weird.
+
+However it launches and all of the unit tests pass so that's a start. I'm also installing CodeMaid to do some MS StyleCop static code analysis and refactoring.
+
+Also I've decided when I get the vs2017 bits sorted and am working on the REST API I'm going to go ahead and just Base64 encode all of the images instead of giving the
+web frontend access to the volume with images. That way I can work towards using docker virtual volumes instead of bind mounting explicit paths to folders on my desktop.
+
+The rest api should be able to return:
+- 
