@@ -1098,3 +1098,9 @@ root@d032f645d436:/face/known# ls -a
 .  ..  .DS_Store  ._.DS_Store  ._Gian Lazzarini.jpeg  ._Meghan Markle.jpeg  ._Prince Harry.jpg  ._Scott Hanselman.png  Gian Lazzarini.jpeg  Meghan Markle.jpeg  Prince Harry.jpg  Scott Hanselman.png
 ```
 
+in powershell you can't run `ls -a` but can run `ls -h` however I've also just enabled viewing hidden files etc:
+https://support.microsoft.com/en-us/help/4028316/windows-view-hidden-files-and-folders-in-windows-10
+
+I've just deleted all of the files that start with `.` including the	`.DS_Store`.
+
+Okay yeah that fixed it. I moved it back to the desktop but I'll move the docker-compose.dsproj volume to the C:\ so that it's not specific to my machine only.
