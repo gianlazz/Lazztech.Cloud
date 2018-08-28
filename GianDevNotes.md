@@ -994,6 +994,7 @@ https://www.google.com/search?q=91mc%2B%2B%3A+internal+compiler+error%3A+Killed+
 
 ## Monday, August 27, 2018
 ## Sprint 4, vs2017 & Vision Microservice REST API
+**First time working in the local Bellevue community library to focus.**
 
 vs2017 was able to launch the docker-compose.dcproj today despite the failure last night. I'm unable to get the vision processing as it's looking for the volume that doesn't
 yet have the images. It may fail anyways since the dlib compilation failed. I'm also noticing that the web frontend doesn't have offline development support for bootstrap and only
