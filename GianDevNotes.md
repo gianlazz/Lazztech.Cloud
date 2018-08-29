@@ -1133,5 +1133,12 @@ Is there a way to run/debug individual docker containers in vs2017 as apposed th
 Also why is my web app not launching on it's own?
 - http://iamnotmyself.com/2017/05/07/simplest-possible-asp-net-core-web-application-in-docker-for-windows/
 - https://stackoverflow.com/questions/40221787/asp-net-core-on-docker
+- https://stackoverflow.com/questions/50591908/how-do-i-run-a-visual-studio-docker-container-from-the-command-line-works-in-vs
+- https://stackoverflow.com/questions/40221787/asp-net-core-on-docker
+- https://github.com/aspnet/KestrelHttpServer/issues/2174
 
 I think the reason the web page isn't launching on it's own is most likely the same reason the console output says `Now listening on: http://[::]:80	`.
+
+Anyways that's beside the point of this sprint so I'll set it down for now as I've already spent too much of todays time on it.
+
+Yes so I was testing to see if making a webapi project then adding docker support after the fact would preconfigure the docker-compose.yml like it should and some times did in vs4mac?
