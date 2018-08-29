@@ -1142,3 +1142,5 @@ I think the reason the web page isn't launching on it's own is most likely the s
 Anyways that's beside the point of this sprint so I'll set it down for now as I've already spent too much of todays time on it.
 
 Yes so I was testing to see if making a webapi project then adding docker support after the fact would preconfigure the docker-compose.yml like it should and some times did in vs4mac?
+
+Yeah so adding docker after the fact didin't configure the docker-compose like I'm used to either... Idk whatever.
