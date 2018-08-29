@@ -1126,4 +1126,5 @@ Hmm when I created the webapi project in vs2017 and selected the add docker supp
 - https://www.manning.com/books/microservices-patterns
 
 Asp.net core web api resources:
+- https://www.youtube.com/watch?v=aIkpVzqLuhA
 - https://www.youtube.com/watch?v=ARIsfkhoRts
