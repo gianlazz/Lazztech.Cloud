@@ -31,7 +31,9 @@ services:
 #      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
       - C:\face_recognition:/face/
     ports: 
-      - 5000:5001
+#      - 5000:5001
+      - 5000:44399
+#      - 5001:50660
     build:
       context: .
       dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.WebAPI/Dockerfile

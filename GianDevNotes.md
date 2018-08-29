@@ -1144,3 +1144,5 @@ Anyways that's beside the point of this sprint so I'll set it down for now as I'
 Yes so I was testing to see if making a webapi project then adding docker support after the fact would preconfigure the docker-compose.yml like it should and some times did in vs4mac?
 
 Yeah so adding docker after the fact didin't configure the docker-compose like I'm used to either... Idk whatever.
+
+I'm having trouble connecting to the webapi project from the docker container. I think it may be something about the ports being exposed in the dockerfile, docker-compose & or the env aspnet core variable for the port.
