@@ -31,9 +31,10 @@ services:
 #      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
       - C:\face_recognition:/face/
     ports: 
-#      - 5000:5001
-      - 5000:44399
-      - 5001:50660
+      - 5000:5000
+      - 5001:5001
+      - 6000:44399
+      - 6001:50660
       - 8080:80
     build:
       context: .

@@ -1151,5 +1151,12 @@ I wonder if having had selected yes to use https by default for this webapi proj
 
 ***Webapi Docker Container & Https***
 - https://stackoverflow.com/questions/43338665/this-site-can-t-provide-a-secure-connection
+- https://stackoverflow.com/questions/44186860/net-core-webapi-refuses-connection-in-docker-container
 
 So it looks like the two different ports are one for http and the other for https which is pre-configured in the Properties > launchSettings.json file of the project.
+
+The Output in vs2017 is showing:
+```
+fail: Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware[0]
+Lazztech.ObsidianPresences.Vision.Microservice.WebAPI>       'MS-ASPNETCORE-TOKEN' does not match the expected pairing token '421f95e9-791b-4d67-a848-b49bef5050fc', request rejected.
+```
