@@ -1146,3 +1146,5 @@ Yes so I was testing to see if making a webapi project then adding docker suppor
 Yeah so adding docker after the fact didin't configure the docker-compose like I'm used to either... Idk whatever.
 
 I'm having trouble connecting to the webapi project from the docker container. I think it may be something about the ports being exposed in the dockerfile, docker-compose & or the env aspnet core variable for the port.
+
+I wonder if having had selected yes to use https by default for this webapi project is going to make development difficult in the container?
