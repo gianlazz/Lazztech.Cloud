@@ -1128,3 +1128,7 @@ Hmm when I created the webapi project in vs2017 and selected the add docker supp
 Asp.net core web api resources:
 - https://www.youtube.com/watch?v=aIkpVzqLuhA
 - https://www.youtube.com/watch?v=ARIsfkhoRts
+
+Is there a way to run/debug individual docker containers in vs2017 as apposed the the docker-compose.dcproj?
+
+Also why is my web app not launching on it's own?
