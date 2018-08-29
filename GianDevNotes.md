@@ -1152,6 +1152,8 @@ I wonder if having had selected yes to use https by default for this webapi proj
 ***Webapi Docker Container & Https***
 - https://stackoverflow.com/questions/43338665/this-site-can-t-provide-a-secure-connection
 - https://stackoverflow.com/questions/44186860/net-core-webapi-refuses-connection-in-docker-container
+- https://carlos.mendible.com/2016/11/06/step-by-step-expose-asp-net-core-over-https-with-docker/
+- https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-2.1&tabs=visual-studio
 
 So it looks like the two different ports are one for http and the other for https which is pre-configured in the Properties > launchSettings.json file of the project.
 
@@ -1160,3 +1162,11 @@ The Output in vs2017 is showing:
 fail: Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware[0]
 Lazztech.ObsidianPresences.Vision.Microservice.WebAPI>       'MS-ASPNETCORE-TOKEN' does not match the expected pairing token '421f95e9-791b-4d67-a848-b49bef5050fc', request rejected.
 ```
+
+Maybe I should make a new project for now without https added during the project creation? After all I'm ultimately probably going to only expose an application facade/api gateway/composition api or what ever the patterns called. I could just defer concerns about https for now while I'm learning? 
+
+It feels like bad practice though but this is primarily and educational project after all though...
+
+I'm just going to watch more of this video then tomorrow I'll evaluate whether I should make a project without https just to move on for now.
+
+- Building Web APIs with ASP.NET Core 2.0 https://www.youtube.com/watch?v=aIkpVzqLuhA
