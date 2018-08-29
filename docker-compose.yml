@@ -34,5 +34,5 @@ services:
       - 5000:5001
     build:
       context: .
-      dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
+      dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.WebAPI/Dockerfile
 
