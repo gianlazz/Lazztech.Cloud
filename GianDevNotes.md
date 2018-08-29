@@ -1110,3 +1110,20 @@ Okay yeah that fixed it. I moved it back to the desktop but I'll move the docker
 I added a 1.6MB zip of the face_recognition folder of example images that I've been using. Hopefully adding that binary won't cause problems for me later...
 
 I've also fixe that weird partially loaded button by commenting out the reference to the _CookieConsentPartial in the _Layout. Idk why that's happening in the first place but it's ugly and I don't really need the cookie consent right now.
+
+## Tuesday, August 28, 2018
+## Sprint 4, vs2017 & Vision Microservice REST API
+**At the local library to focus again**
+
+Hmm when I created the webapi project in vs2017 and selected the add docker support check box that's only in vs2017 it didn't add my project to the docker-compose.yml I wonder if this is because something is missconfigured for vs2017? Or maybe it would do this but only if I created the project then after the facted added docker support? Idk I may experiment later to find out but for now I just went ahead and added it in myself.
+
+***Important Microservices Architecture Resource:***
+- https://microservices.io/
+- https://microservices.io/patterns/microservices.html
+- https://microservices.io/patterns/data/database-per-service.html
+- https://microservices.io/patterns/data/saga.html
+- https://microservices.io/patterns/data/api-composition.html
+- https://www.manning.com/books/microservices-patterns
+
+Asp.net core web api resources:
+- https://www.youtube.com/watch?v=ARIsfkhoRts
