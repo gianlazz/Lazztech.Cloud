@@ -1131,3 +1131,7 @@ Asp.net core web api resources:
 Is there a way to run/debug individual docker containers in vs2017 as apposed the the docker-compose.dcproj?
 
 Also why is my web app not launching on it's own?
+- http://iamnotmyself.com/2017/05/07/simplest-possible-asp-net-core-web-application-in-docker-for-windows/
+- https://stackoverflow.com/questions/40221787/asp-net-core-on-docker
+
+I think the reason the web page isn't launching on it's own is most likely the same reason the console output says `Now listening on: http://[::]:80	`.

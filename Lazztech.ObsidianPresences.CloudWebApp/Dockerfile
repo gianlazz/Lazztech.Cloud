@@ -1,10 +1,14 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 #ENV ASPNETCORE_URLS=http://+:5000
+#ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_URLS=http://*:80
 WORKDIR /app
 EXPOSE 80
 
 FROM microsoft/dotnet:2.1-sdk AS build
 #ENV ASPNETCORE_URLS=http://+:5000
+#ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_URLS=http://*:80
 WORKDIR /src
 COPY Lazztech.ObsidianPresences.sln ./
 COPY Lazztech.ObsidianPresences.CloudWebApp/Lazztech.ObsidianPresences.CloudWebApp.csproj Lazztech.ObsidianPresences.CloudWebApp/
