@@ -24,3 +24,15 @@ services:
       context: .
       dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
 
+  lazztech.ObsidianPresences.vision.microservice.webapi:
+    image: lazztechobsidianpresensevisionmicroservicewebapi
+    volumes:
+#      - /Users/gianlazzarini/Desktop/face_recognition:/face/
+#      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
+      - C:\face_recognition:/face/
+    ports: 
+      - 5000:5001
+    build:
+      context: .
+      dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
+
