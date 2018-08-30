@@ -1188,3 +1188,8 @@ Swagger seems really cool and I keep on hearing about it. If I understand correc
 - https://github.com/swagger-api/swagger-ui
 
 **Building Secure Web APIs with ASP.NET Core** https://www.youtube.com/watch?v=e2qZvabmSvo
+
+Resources from the above video:
+- https://github.com/OmniSharp/generator-aspnet Offers other project templates than what come out of the box. This project seems to only support Core 1.1 though. I think it's based on http://yeoman.io/ which could let me make custom templates which could be hugely useful!
+
+**ASP.NET Core 2.0 Security** https://www.youtube.com/watch?v=6LzmEOvzt1A
