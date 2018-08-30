@@ -1169,4 +1169,22 @@ It feels like bad practice though but this is primarily and educational project 
 
 I'm just going to watch more of this video then tomorrow I'll evaluate whether I should make a project without https just to move on for now.
 
-- Building Web APIs with ASP.NET Core 2.0 https://www.youtube.com/watch?v=aIkpVzqLuhA
+**Building Web APIs with ASP.NET Core 2.0** https://www.youtube.com/watch?v=aIkpVzqLuhA
+
+## Wednesday, August 29, 2018
+## Sprint 4, vs2017 & Vision Microservice REST API
+
+Finished watching Building Web APIs with ASP.NET Core 2.0 video and learned about these resources:
+- https://github.com/RSuter/NSwag
+- https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.1&tabs=visual-studio%2Cvisual-studio-xml
+- https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-2.1
+
+I learned a log more about aspnet, webapi's, and even a bit about entity framework core at the end too. It didn't however touch on https at all however there seems to be another video that does which I'll link below and am going to watch to see if it talks about https.
+
+Swagger seems really cool and I keep on hearing about it. If I understand correctly it will help you automatically generate documentation on you webapi's and even stub out a boilerplate UI based on assesing what kind of REST Api routes and options they have. Super cool, I think Sameeze was telling me about it too that they use it at T-Mobile.
+
+- https://swagger.io/
+- https://en.wikipedia.org/wiki/Swagger_(software)
+- https://github.com/swagger-api/swagger-ui
+
+**Building Secure Web APIs with ASP.NET Core** https://www.youtube.com/watch?v=e2qZvabmSvo
