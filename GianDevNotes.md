@@ -1216,9 +1216,9 @@ It looks like it may actually be some kind of an issue with the tooling? That's 
 Weird it works now after stoping and removing the processes. Also it's now at http://localhost:8080/api/values Idk exactly what happened there?..
 
 ## Monday, August 3, 2018
-## ## Sprint 4, vs2017 & Vision Microservice REST API
+### Sprint 4, vs2017 & Vision Microservice REST API
 
-Extending the sprint for laborday.
+***Extending the sprint for laborday.***
 
 I've setup rest api endpoint calling from within the aspnet pages OnGet for the webapi endpoint. I'm having trouble with getting the address correct for the internal ip address.
 
