@@ -1250,3 +1250,19 @@ It returned:
 ```
 
 Trying to solve HttpRequestException: Connection refused
+
+- https://github.com/aspnet/Home/issues/1975
+- https://stackoverflow.com/questions/42915782/httpclient-request-on-networked-docker-container
+- https://forums.docker.com/t/connection-refused-when-you-try-to-connect-to-a-service-port-started-on-host/11508/6
+
+I'm trying adding to docker-compose:
+```
+    networks:
+      - api
+```
+
+docker-compose networking:
+- https://docs.docker.com/compose/networking/
+- https://stackoverflow.com/questions/35708873/how-do-you-define-a-network-in-a-version-2-docker-compose-definition-file
+- https://www.youtube.com/watch?v=rFQqiuFIjms
+- https://www.youtube.com/watch?v=RCG-5N41FpQ
