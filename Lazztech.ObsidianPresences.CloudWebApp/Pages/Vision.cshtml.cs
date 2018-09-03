@@ -26,7 +26,9 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages
         }
 
         //Hosted web API REST Service base url  
-        string Baseurl = "http://192.168.95.1:5555/";
+        //string Baseurl = "http://192.168.95.1:5555/";
+        //string Baseurl = "http://localhost:8080/";
+        string Baseurl = "http://lazztechobsidianpresensevisionmicroservicewebapi:50199/";
         private async Task<List<Snapshot>> CallSnapsEndpoint()
         {
             List<Snapshot> snaps = new List<Snapshot>();
@@ -41,7 +43,7 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.GetAsync("api/Employee/GetAllEmployees");
+                HttpResponseMessage Res = await client.GetAsync("api/values");
 
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
