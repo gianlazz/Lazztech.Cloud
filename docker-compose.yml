@@ -24,18 +24,18 @@ services:
       context: .
       dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
 
-  lazztech.ObsidianPresences.vision.microservice.webapi:
-    image: lazztechobsidianpresensevisionmicroservicewebapi
-    volumes:
-#      - /Users/gianlazzarini/Desktop/face_recognition:/face/
-#      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
-      - C:\face_recognition:/face/
-    ports: 
-      - 5000:5000
-      - 5001:5001
-      - 6000:44399
-      - 6001:50660
-      - 8080:80
-    build:
-      context: .
-      dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.WebAPI/Dockerfile
+#  lazztech.ObsidianPresences.vision.microservice.webapi:
+#    image: lazztechobsidianpresensevisionmicroservicewebapi
+#    volumes:
+##      - /Users/gianlazzarini/Desktop/face_recognition:/face/
+##      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
+#      - C:\face_recognition:/face/
+#    ports: 
+#      - 5000:5000
+#      - 5001:5001
+#      - 6000:44399
+#      - 6001:50660
+#      - 8080:80
+#    build:
+#      context: .
+#      dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.WebAPI/Dockerfile
