@@ -1214,3 +1214,37 @@ Now I'm having issues with aspnet webapi not having access to the files  "Could 
 It looks like it may actually be some kind of an issue with the tooling? That's what stack overflow is suggesting and that configuring the project to use a different version of the compiler can fix it?
 
 Weird it works now after stoping and removing the processes. Also it's now at http://localhost:8080/api/values Idk exactly what happened there?..
+
+## Monday, August 3, 2018
+## ## Sprint 4, vs2017 & Vision Microservice REST API
+
+Extending the sprint for laborday.
+
+I've setup rest api endpoint calling from within the aspnet pages OnGet for the webapi endpoint. I'm having trouble with getting the address correct for the internal ip address.
+
+https://stackoverflow.com/questions/17157721/how-to-get-a-docker-containers-ip-address-from-the-host
+
+I looked at the ip address of the running webapi container with `docker inspect 506da009d30f`.
+It returned:
+```
+"Networks": {
+                "dockercompose18306792969269339587_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "lazztech.ObsidianPresences.vision.microservice.webapi",
+                        "506da009d30f"
+                    ],
+                    "NetworkID": "69c6ec3b66c7ea271db9155defa2c57c7defdc61bfcaf8e010e098ab64ab9d59",
+                    "EndpointID": "cb9380463b3e06ff019ab0907a26e1ecb862ed6847ce82a46c6957c6a08f6c11",
+                    "Gateway": "172.20.0.1",
+                    "IPAddress": "172.20.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:14:00:03",
+                    "DriverOpts": null
+                }
+            }
+```

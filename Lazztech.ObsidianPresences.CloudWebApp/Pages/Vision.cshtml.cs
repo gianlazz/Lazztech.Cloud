@@ -28,7 +28,9 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages
         //Hosted web API REST Service base url  
         //string Baseurl = "http://192.168.95.1:5555/";
         //string Baseurl = "http://localhost:8080/";
-        string Baseurl = "http://lazztechobsidianpresensevisionmicroservicewebapi:50199/";
+        //string Baseurl = "http://localhost:50199/";
+        //string Baseurl = "http://lazztechobsidianpresensevisionmicroservicewebapi:50199/";
+        string Baseurl = "http://localhost:5000/";
         private async Task<List<Snapshot>> CallSnapsEndpoint()
         {
             List<Snapshot> snaps = new List<Snapshot>();
