@@ -1207,3 +1207,8 @@ I've removed the https webapi project and after some configuring was able to acc
 I added some EXPOSE statments to the Dockerfile and also exposed ports on the docker-compose.
 
 I however wasn't able access it at http://localhost:50199/ I have to give the full path to a controller to get any response. This makes me think that maybe I did have the https version working in the docker container and just wasn't hitting the full route?
+
+Now I'm having issues with aspnet webapi not having access to the files  "Could not find a part of the path"
+- https://stackoverflow.com/questions/45600943/azure-web-deploy-could-not-find-a-part-of-the-path-d-home-site-wwwroot-bin-ro
+
+It looks like it may actually be some kind of an issue with the tooling? That's what stack overflow is suggesting and that configuring the project to use a different version of the compiler can fix it?
