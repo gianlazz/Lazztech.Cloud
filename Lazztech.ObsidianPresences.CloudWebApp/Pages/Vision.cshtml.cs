@@ -30,7 +30,8 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages
         //string Baseurl = "http://localhost:8080/";
         //string Baseurl = "http://localhost:50199/";
         //string Baseurl = "http://lazztechobsidianpresensevisionmicroservicewebapi:50199/";
-        string Baseurl = "http://172.20.0.3:5000/";
+        //string Baseurl = "http://172.20.0.3:5000/";
+        string Baseurl = "http://dockercompose18306792969269339587_lazztech.ObsidianPresences.vision.microservice.webapi_1:50199";
         private async Task<List<Snapshot>> CallSnapsEndpoint()
         {
             List<Snapshot> snaps = new List<Snapshot>();
