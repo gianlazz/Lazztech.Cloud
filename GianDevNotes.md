@@ -1266,3 +1266,5 @@ docker-compose networking:
 - https://stackoverflow.com/questions/35708873/how-do-you-define-a-network-in-a-version-2-docker-compose-definition-file
 - https://www.youtube.com/watch?v=rFQqiuFIjms
 - https://www.youtube.com/watch?v=RCG-5N41FpQ
+
+Later I'll probably have a, or a few sprints related just to security but that'll be much later. During that time I'll setup https for the webapi(s) and an aspnet core authentication microservice that will probably use jwt for authentication.
