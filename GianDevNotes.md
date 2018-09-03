@@ -1193,3 +1193,12 @@ Resources from the above video:
 - https://github.com/OmniSharp/generator-aspnet Offers other project templates than what come out of the box. This project seems to only support Core 1.1 though. I think it's based on http://yeoman.io/ which could let me make custom templates which could be hugely useful!
 
 **ASP.NET Core 2.0 Security** https://www.youtube.com/watch?v=6LzmEOvzt1A
+
+## Friday, August 31, 2018
+## Sprint 4, vs2017 & Vision Microservice REST API
+
+Yeah whatever I'm just going to remake the project without.
+
+## Sunday, August 2, 2018
+## Sprint 4, vs2017 & Vision Microservice REST API
+
