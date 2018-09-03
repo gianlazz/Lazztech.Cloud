@@ -1202,3 +1202,8 @@ Yeah whatever I'm just going to remake the project without.
 ## Sunday, August 2, 2018
 ## Sprint 4, vs2017 & Vision Microservice REST API
 
+I've removed the https webapi project and after some configuring was able to access the webapi from the container by hitting http://localhost:50199/api/values
+
+I added some EXPOSE statments to the Dockerfile and also exposed ports on the docker-compose.
+
+I however wasn't able access it at http://localhost:50199/ I have to give the full path to a controller to get any response. This makes me think that maybe I did have the https version working in the docker container and just wasn't hitting the full route?
