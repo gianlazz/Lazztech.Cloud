@@ -1212,3 +1212,5 @@ Now I'm having issues with aspnet webapi not having access to the files  "Could 
 - https://stackoverflow.com/questions/45600943/azure-web-deploy-could-not-find-a-part-of-the-path-d-home-site-wwwroot-bin-ro
 
 It looks like it may actually be some kind of an issue with the tooling? That's what stack overflow is suggesting and that configuring the project to use a different version of the compiler can fix it?
+
+Weird it works now after stoping and removing the processes. Also it's now at http://localhost:8080/api/values Idk exactly what happened there?..
