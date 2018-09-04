@@ -20,6 +20,8 @@ services:
       - C:\face_recognition:/face/
     ports: 
       - 80:80
+    depends_on:
+      - lazztech.ObsidianPresences.vision.microservice.webapi
     build:
       context: .
       dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
