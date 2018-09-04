@@ -1273,3 +1273,14 @@ Later I'll probably have a, or a few sprints related just to security but that'l
 Here's a good open source project example of using multiple languages in microservices: https://github.com/dockersamples/example-voting-app
 
 I'm still having issues with the cross container networking. What I've seen says I should just be able to use the services name I've defined in the docker-compose however that hasn't worked yet. I wonder if it could be from the periods in the name?
+
+I've tried all of these so far:
+```C#
+        //Hosted web API REST Service base url  
+        //string Baseurl = "http://localhost:8080/";
+        //string Baseurl = "http://localhost:50199/";
+        //string Baseurl = "http://lazztechobsidianpresensevisionmicroservicewebapi:50199/";
+        string Baseurl = "http://lazztech.ObsidianPresences.vision.microservice.webapi:8080/";
+        //string Baseurl = "http://172.20.0.3:5000/";
+        //string Baseurl = "http://dockercompose18306792969269339587_lazztech.ObsidianPresences.vision.microservice.webapi_1:8080";
+```
