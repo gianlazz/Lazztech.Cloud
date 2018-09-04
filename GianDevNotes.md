@@ -1,10 +1,13 @@
 ## Docker notes
-- `docker pull gianlazzarini/lazztech_containerizedface_recognition`
-- `docker ps`
-- `docker run -it -v "Full path to images directory without quotes" --entrypoint /bin/bash "Image id without quotes"`
-- `docker run -it -v /Users/gianlazzarini/Desktop/face_recognition:/face/ --entrypoint /bin/bash ba34ace8a4cc`
-- `docker system prune -a`
-- Stop all running containers `docker stop $(docker ps -aq)`
+- **Pull from docker hub** `docker pull gianlazzarini/lazztech_containerizedface_recognition`
+- **List all processes** `docker ps`
+- **Open interactive terminal** `docker run -it -v "Full path to images directory without quotes" --entrypoint /bin/bash "Image id without quotes"`
+- **Open interactive terminal example 2** `docker run -it -v /Users/gianlazzarini/Desktop/face_recognition:/face/ --entrypoint /bin/bash ba34ace8a4cc`
+- **Another shorter way to open an interactive terminal** `docker exec -it f1c767df6163 sh`
+- **Stop all running containers** `docker stop $(docker ps -aq)`
+- **Delete all stopped containers and images** `docker system prune -a`
+- **List docker networks** `docker network ls`
+- **Inspect details about a docker process** `docker inspect "ps id"`
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -1283,4 +1286,52 @@ I've tried all of these so far:
         string Baseurl = "http://lazztech.ObsidianPresences.vision.microservice.webapi:8080/";
         //string Baseurl = "http://172.20.0.3:5000/";
         //string Baseurl = "http://dockercompose18306792969269339587_lazztech.ObsidianPresences.vision.microservice.webapi_1:8080";
+```
+
+**Define Docker Container Networking so Containers can Communicate** - https://www.youtube.com/watch?v=RCG-5N41FpQ
+
+They're both in the same docker network and the aliases look alright.
+```
+"Networks": {
+                "dockercompose18306792969269339587_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "c29edb6f84c8",
+                        "lazztech.ObsidianPresences.vision.microservice.webapi"
+                    ],
+                    "NetworkID": "69c6ec3b66c7ea271db9155defa2c57c7defdc61bfcaf8e010e098ab64ab9d59",
+                    "EndpointID": "47cd3916cd72c33dca8b6a8587e9cad229aced327a87defbf1952bee62da9b74",
+                    "Gateway": "172.20.0.1",
+                    "IPAddress": "172.20.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:14:00:02",
+                    "DriverOpts": null
+                }
+            }
+```
+```
+      "Networks": {
+                "dockercompose18306792969269339587_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "lazztech.obsidianpresences.cloudwebapp",
+                        "f1c767df6163"
+                    ],
+                    "NetworkID": "69c6ec3b66c7ea271db9155defa2c57c7defdc61bfcaf8e010e098ab64ab9d59",
+                    "EndpointID": "34524330b35867e82afce5b4284c3c3b3b93de5bb945d63c58a56b686f06f538",
+                    "Gateway": "172.20.0.1",
+                    "IPAddress": "172.20.0.4",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:14:00:04",
+                    "DriverOpts": null
+                }
+            }
 ```
