@@ -1343,3 +1343,13 @@ Yay! `string Baseurl = "http://c29edb6f84c8/";` worked!
 I messed with the `depends_on` value in the docker-compose by commenting it out to see if it would still work however I also changed the Baseurl to the service name alias and unfortunately after doing both of those it stopped working and I'm not exactly certain. However I do know that I should probably use the service name alias for the networking url instead of using the container id since that can change from run to run.
 
 Here's some more info about the `depends_on` paramter for docker-compose: https://docs.docker.com/compose/compose-file/#depends_on
+
+I wonder if it doesn't work with `lazztech.ObsidianPresences.vision.microservice.webapi` as the network baseurl despite it working with curl from the container terminal because of some aspnet issue with capitalization? Because this network alias does seem to be case sensistive.
+
+Yup so case sensistivity in urls seems to be the issue! When I put a breakpoint in the pages code making a new Uri from the base url it doesn't retain the case sensitivity in most of the fields I saw when I moused over it. And the casing matters.
+
+- https://stackoverflow.com/questions/7996919/should-url-be-case-sensitive
+- https://stackoverflow.com/questions/21001455/should-a-rest-api-be-case-sensitive-or-non-case-sensitive
+- https://stackoverflow.com/questions/11726635/net-uri-case-sensitivity
+
+Okay, so I fixed this by simply making all of the services names in the docker-compose lowercase. Idk if this will always be the best seeming option but it works and is the best I can think of for now. I should run reliably now since it doesn't depend on the transient container id as the network alias. I do still wonder why making a .Net Uri object automatically lowercases the value despite it showing the property for the original as being case sensitive... It must be some kind of implicit convention...

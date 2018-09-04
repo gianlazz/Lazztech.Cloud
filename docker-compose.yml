@@ -21,12 +21,12 @@ services:
     ports: 
       - 80:80
     depends_on:
-      - lazztech.ObsidianPresences.vision.microservice.webapi
+      - lazztech.obsidianpresences.vision.microservice.webapi
     build:
       context: .
       dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
 
-  lazztech.ObsidianPresences.vision.microservice.webapi:
+  lazztech.obsidianpresences.vision.microservice.webapi:
     image: lazztechobsidianpresensevisionmicroservicewebapi
     volumes:
 #      - /Users/gianlazzarini/Desktop/face_recognition:/face/
