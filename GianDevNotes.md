@@ -1339,3 +1339,7 @@ They're both in the same docker network and the aliases look alright.
 Okay so opening an interactive terminal in the webfrontend container with `docker exec -it f1c767df6163 sh` and running `curl c29edb6f84c8/api/values` returns the results from the api in the other contianer. `c29edb6f84c8` is one of the aliases in the network above. Running `curl lazztech.ObsidianPresences.vision.microservice.webapi/api/values` also works! I wonder if the problem is that I was specifying the ports wrong? Because I think it just uses port 80 in the curl statment since port 80 is the default. Yeah if I leave it without a port it works or if I specify port 80 it works but that's it.
 
 Yay! `string Baseurl = "http://c29edb6f84c8/";` worked!
+
+I messed with the `depends_on` value in the docker-compose by commenting it out to see if it would still work however I also changed the Baseurl to the service name alias and unfortunately after doing both of those it stopped working and I'm not exactly certain. However I do know that I should probably use the service name alias for the networking url instead of using the container id since that can change from run to run.
+
+Here's some more info about the `depends_on` paramter for docker-compose: https://docs.docker.com/compose/compose-file/#depends_on
