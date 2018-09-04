@@ -1335,3 +1335,5 @@ They're both in the same docker network and the aliases look alright.
                 }
             }
 ```
+
+Okay so opening an interactive terminal in the webfrontend container with `docker exec -it f1c767df6163 sh` and running `curl c29edb6f84c8/api/values` returns the results from the api in the other contianer. `c29edb6f84c8` is one of the aliases in the network above. Running `curl lazztech.ObsidianPresences.vision.microservice.webapi/api/values` also works!
