@@ -1269,3 +1269,7 @@ docker-compose networking:
 - https://www.youtube.com/watch?v=RCG-5N41FpQ
 
 Later I'll probably have a, or a few sprints related just to security but that'll be much later. During that time I'll setup https for the webapi(s) and an aspnet core authentication microservice that will probably use jwt for authentication.
+
+Here's a good open source project example of using multiple languages in microservices: https://github.com/dockersamples/example-voting-app
+
+I'm still having issues with the cross container networking. What I've seen says I should just be able to use the services name I've defined in the docker-compose however that hasn't worked yet. I wonder if it could be from the periods in the name?
