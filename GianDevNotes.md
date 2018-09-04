@@ -1260,6 +1260,7 @@ I'm trying adding to docker-compose:
     networks:
       - api
 ```
+This however doesn't seem to be enough alone as it throw this build error: `Error		Service "lazztech.ObsidianPresences.vision.microservice.webapi" uses an undefined network "api".`
 
 docker-compose networking:
 - https://docs.docker.com/compose/networking/
