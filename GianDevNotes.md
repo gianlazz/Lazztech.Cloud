@@ -1353,3 +1353,16 @@ Yup so case sensistivity in urls seems to be the issue! When I put a breakpoint 
 - https://stackoverflow.com/questions/11726635/net-uri-case-sensitivity
 
 Okay, so I fixed this by simply making all of the services names in the docker-compose lowercase. Idk if this will always be the best seeming option but it works and is the best I can think of for now. I should run reliably now since it doesn't depend on the transient container id as the network alias. I do still wonder why making a .Net Uri object automatically lowercases the value despite it showing the property for the original as being case sensitive... It must be some kind of implicit convention...
+
+## Tuesday, August 4, 2018
+#### Sprint 5, Further Web frontend/Webapi Improvements & Integrations
+
+Earlier I said:
+
+The rest api should be able to:
+- Register new known people
+- Submit an image to be processed with returned result response
+- Return all snapshots by person name or unkown w/ pagination and total
+- Return all by date range
+
+I also want to sort out Page groups in folders with the aspnet core razor pages routing thing. I need a vision route for both known and processed images along with a way to upload new images to either process or recognize.
