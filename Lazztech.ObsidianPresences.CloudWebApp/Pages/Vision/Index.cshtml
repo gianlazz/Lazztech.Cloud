@@ -41,6 +41,9 @@
                         <div class="col-md-4">
                             @*<div class="col-md-6 d-flex align-items-stretch">*@
                             <div class="card">
+                                <canvas id="canvas" width="300" height="300">
+                                    Sorry, your browser doesn't support the &lt;canvas&gt; element.
+                                </canvas>
                                 <img class="card-img-top" src="@Model.Snapshots[i].ImageDir" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">@Model.Snapshots[i].DateTimeWhenCaptured.ToString()</h5>
@@ -54,6 +57,15 @@
                     }
                 }
             </div>
+            <script>$(document).ready(function () {
+
+                    var c = document.getElementById("canvas");
+                    var ctx = c.getContext("2d");
+                    ctx.beginPath();
+                    ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+                    ctx.stroke();
+
+                });</script>
         </div>
     </div>
 </div>

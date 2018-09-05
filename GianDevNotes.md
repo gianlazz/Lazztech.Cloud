@@ -1355,7 +1355,7 @@ Yup so case sensistivity in urls seems to be the issue! When I put a breakpoint 
 Okay, so I fixed this by simply making all of the services names in the docker-compose lowercase. Idk if this will always be the best seeming option but it works and is the best I can think of for now. I should run reliably now since it doesn't depend on the transient container id as the network alias. I do still wonder why making a .Net Uri object automatically lowercases the value despite it showing the property for the original as being case sensitive... It must be some kind of implicit convention...
 
 ## Tuesday, August 4, 2018
-#### Sprint 5, Further Web frontend/Webapi Improvements & Integrations
+#### Sprint 5, Frontend & Webapi Improvements/Integrations
 
 Earlier I said:
 
@@ -1372,3 +1372,8 @@ Made a bunch of improvments to the frontend including getting the breadcrumbs wo
 Here's an important detail I learned while working on the breadcrumbs, that in aspnet core you use Context.Request instead of Request to get access to the static methods for getting the current url. It's mentioned in a comment on this link: 
 https://stackoverflow.com/questions/43392179/the-name-request-does-not-exist-in-the-current-context
 
+Now I want to draw the bounding box around the persons face from the Snapshot objects with html 5 canvas.
+- http://jsbin.com/ejeyef/1/edit?html,css,js,output
+- https://stackoverflow.com/questions/46528123/how-to-get-bounding-box-coordinates-for-canvas-content
+- https://www.w3schools.com/graphics/canvas_coordinates.asp
+- https://stackoverflow.com/questions/23973932/responsive-canvas-in-bootstrap-column

@@ -47,3 +47,9 @@ for details on configuring this project to bundle and minify static web assets. 
         display: none;
     }
 }
+
+canvas {
+    background-color: blue;
+    width: 100%;
+    height: auto;
+}
