@@ -44,7 +44,7 @@
                                 @*<canvas id="canvas" width="300" height="300">
                                         Sorry, your browser doesn't support the &lt;canvas&gt; element.
                                     </canvas>*@
-                                <img id="@person.Name+@Model.Snapshots[i].ImageDir" class="card-img-top" src="@Model.Snapshots[i].ImageDir" alt="Card image cap">
+                                <img id="@person.Name.Replace(" ", string.Empty)@Model.Snapshots[i].ImageName.Replace(" ", string.Empty)" class="card-img-top" src="@Model.Snapshots[i].ImageDir" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">@Model.Snapshots[i].DateTimeWhenCaptured.ToString()</h5>
                                     <p class="card-text">@person.Name</p>
@@ -71,7 +71,7 @@
                                         $"{person.FaceBoundingBox.RightBottomCoordinate.y},";
                                 }
 
-                                var c = document.getElementById('@person.Name+@Model.Snapshots[i].ImageDir').getContext('2d');
+                                var c = document.getElementById(@person.Name.Replace(" ", string.Empty)@Model.Snapshots[i].ImageName.Replace(" ", string.Empty)).getContext('2d');
                                 c.rect(@bbCoordinateString);
                                 c.fillStyle = '#FFF';
                                 c.fill();
