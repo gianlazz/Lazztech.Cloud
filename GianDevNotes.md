@@ -1366,3 +1366,9 @@ The rest api should be able to:
 - Return all by date range
 
 I also want to sort out Page groups in folders with the aspnet core razor pages routing thing. I need a vision route for both known and processed images along with a way to upload new images to either process or recognize.
+
+Made a bunch of improvments to the frontend including getting the breadcrumbs working, organizing pages in folders and adding new page routes for features I would like to add.
+
+Here's an important detail I learned while working on the breadcrumbs, that in aspnet core you use Context.Request instead of Request to get access to the static methods for getting the current url. It's mentioned in a comment on this link: 
+https://stackoverflow.com/questions/43392179/the-name-request-does-not-exist-in-the-current-context
+
