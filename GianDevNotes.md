@@ -1377,3 +1377,5 @@ Now I want to draw the bounding box around the persons face from the Snapshot ob
 - https://stackoverflow.com/questions/46528123/how-to-get-bounding-box-coordinates-for-canvas-content
 - https://www.w3schools.com/graphics/canvas_coordinates.asp
 - https://stackoverflow.com/questions/23973932/responsive-canvas-in-bootstrap-column
+
+I'm having issues with `Uncaught ReferenceError: $ is not defined` for my javascript canvas bounding box rendering logic and I think it's because it's trying to execute before jquery is loaded...

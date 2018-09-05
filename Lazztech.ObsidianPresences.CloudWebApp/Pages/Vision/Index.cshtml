@@ -71,14 +71,13 @@
                                         $"{person.FaceBoundingBox.RightBottomCoordinate.y},";
                                 }
 
-                                var c = document.getElementById(@person.Name.Replace(" ", string.Empty)@Model.Snapshots[i].ImageName.Replace(" ", string.Empty)).getContext('2d');
+                                var c = document.getElementById("@person.Name.Replace(" ", string.Empty)@Model.Snapshots[i].ImageName.Replace(" ", string.Empty)").getContext('2d');
                                 c.rect(@bbCoordinateString);
                                 c.fillStyle = '#FFF';
                                 c.fill();
                                 c.lineWidth = 1;
                                 c.strokeStyle = 'black';
                                 c.stroke();
-
                             });</script>
                     }
                 }
