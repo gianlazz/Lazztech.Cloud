@@ -41,10 +41,10 @@
                         <div class="col-md-4">
                             @*<div class="col-md-6 d-flex align-items-stretch">*@
                             <div class="card">
-                                <canvas id="canvas" width="300" height="300">
-                                    Sorry, your browser doesn't support the &lt;canvas&gt; element.
-                                </canvas>
-                                <img class="card-img-top" src="@Model.Snapshots[i].ImageDir" alt="Card image cap">
+                                @*<canvas id="canvas" width="300" height="300">
+                                        Sorry, your browser doesn't support the &lt;canvas&gt; element.
+                                    </canvas>*@
+                                <img id="@person.Name+@Model.Snapshots[i].ImageDir" class="card-img-top" src="@Model.Snapshots[i].ImageDir" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">@Model.Snapshots[i].DateTimeWhenCaptured.ToString()</h5>
                                     <p class="card-text">@person.Name</p>
@@ -54,18 +54,35 @@
                             </div>
                             <br />
                         </div>
+
+                        <script>
+                            $(document).ready(function () {
+
+                                //var c = document.getElementById("canvas");
+                                //var ctx = c.getContext("2d");
+                                //ctx.beginPath();
+                                //ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+                                //ctx.stroke();
+
+                                @{
+                                    var bbCoordinateString = $"{person.FaceBoundingBox.LeftTopCoordinate.x}," +
+                                        $"{person.FaceBoundingBox.LeftTopCoordinate.y}," +
+                                        $"{person.FaceBoundingBox.RightBottomCoordinate.x}," +
+                                        $"{person.FaceBoundingBox.RightBottomCoordinate.y},";
+                                }
+
+                                var c = document.getElementById('@person.Name+@Model.Snapshots[i].ImageDir').getContext('2d');
+                                c.rect(@bbCoordinateString);
+                                c.fillStyle = '#FFF';
+                                c.fill();
+                                c.lineWidth = 1;
+                                c.strokeStyle = 'black';
+                                c.stroke();
+
+                            });</script>
                     }
                 }
             </div>
-            <script>$(document).ready(function () {
-
-                    var c = document.getElementById("canvas");
-                    var ctx = c.getContext("2d");
-                    ctx.beginPath();
-                    ctx.arc(95, 50, 40, 0, 2 * Math.PI);
-                    ctx.stroke();
-
-                });</script>
         </div>
     </div>
 </div>
