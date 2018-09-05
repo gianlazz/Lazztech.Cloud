@@ -91,37 +91,41 @@
 
     <div class="container body-content">
         @{
-            var x = Context.Request.Path;
-            var y = Context.Request.PathBase;
             var routes = Context.Request.Path.Value.Split('/');
         }
 
         @if (Context.Request.Path != "/")
         {
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                @for (int i = 0; i < routes.Count(); i++)
-                {
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Vision</a></li>
-                    @if (routes[i] == routes.Last())
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    @for (int i = 0; i < routes.Count(); i++)
                     {
-                        <li class="breadcrumb-item active" aria-current="page">Processed</li>
-                    }
+                        @if (i == 0)
+                        {
+                            <li class="breadcrumb-item"><a href="/">Home</li>
+                        }
 
-                }
-            </ol>
-        </nav>
+                        @if (routes[i] != routes.Last())
+                        {
+                            <li class="breadcrumb-item"><a href="/@routes[i]">@routes[i]</a></li>
+                        }
+                        @if (routes[i] == routes.Last())
+                        {
+                            <li class="breadcrumb-item active" aria-current="page">@routes[i]</li>
+                        }
+                    }
+                </ol>
+            </nav>
             <br />
         }
 
         @*<nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Vision</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Processed</li>
-            </ol>
-        </nav>*@
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Vision</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Processed</li>
+                </ol>
+            </nav>*@
 
         @RenderBody()
     </div>
