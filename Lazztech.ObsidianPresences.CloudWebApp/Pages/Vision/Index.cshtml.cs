@@ -1,15 +1,17 @@
-﻿using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
-namespace Lazztech.ObsidianPresences.CloudWebApp.Pages
+namespace Lazztech.ObsidianPresences.CloudWebApp.Pages.Vision
 {
-    public class VisionModel : PageModel
+    public class IndexModel : PageModel
     {
         //public List<Snapshot> Snapshots => new List<Snapshot>();
         public List<Snapshot> Snapshots { get; set; }
