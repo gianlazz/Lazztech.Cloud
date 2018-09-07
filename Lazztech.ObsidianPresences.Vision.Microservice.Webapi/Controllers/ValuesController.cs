@@ -76,6 +76,35 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             return Snapshots;
         }
 
+        // GET api/values
+        [HttpGet]
+        public ActionResult<List<Snapshot>> Get(bool known)
+        {
+            Snapshots = new List<Snapshot>();
+
+            var dir = string.Empty;
+            if (known)
+                dir = "/face/known/";
+            else
+                dir = "/face/unknown";
+
+            var jsonDirs = Directory.GetFiles(dir).Where(x => x.EndsWith(".json"));
+            foreach (var jsonDir in jsonDirs)
+            {
+                var json = System.IO.File.ReadAllText(jsonDir);
+                var snapshotObject = JsonConvert.DeserializeObject(json);
+                var snapshot = JsonConvert.DeserializeObject<Snapshot>(json);
+                var imageFound = System.IO.File.Exists(snapshot.ImageDir);
+                var imageBytes = System.IO.File.ReadAllBytes(snapshot.ImageDir);
+                var imageBase64 = Convert.ToBase64String(imageBytes);
+                var imageExtension = snapshot.ImageDir.Split('.').Last();
+                snapshot.ImageDir = $"data:image/{imageExtension};base64, {imageBase64}";
+                Snapshots.Add(snapshot);
+            }
+
+            return Snapshots;
+        }
+
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
