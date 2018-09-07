@@ -1391,5 +1391,7 @@ I think I'll have a CI/CD sprint week just for setting up VSTS CI & CD to Azure 
 
 VSTS is the only free continous integration service that lets you use private repos that I can think of... I like TravisCI but it's pretty expensive. Ideally I'd like the entirety of my CI/CD devops architecture and scripts to be open source and maintained as part of this git repo but that can be something to work towards in the future.
 
+Oh also I could look into GitLabs CI/CD options to see if that might be nice but I shouldn't spend to much time as I'll probably get further in a sprint if I just go with VSTS.
+
 **Sprint 5, Frontend & Webapi Improvements/Integrations**
 As for this sprint the next thing I want to do is persist the Known images and expose that data from the web api for which I'll then display on the Vision/Known page. After that I can start implementing uploading of known and unknown snapshots. That all would be plenty for the week.
