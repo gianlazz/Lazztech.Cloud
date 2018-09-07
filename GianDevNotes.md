@@ -1381,3 +1381,15 @@ Now I want to draw the bounding box around the persons face from the Snapshot ob
 I'm having issues with `Uncaught ReferenceError: $ is not defined` for my javascript canvas bounding box rendering logic and I think it's because it's trying to execute before jquery is loaded...
 - https://stackoverflow.com/questions/23973932/responsive-canvas-in-bootstrap-column
 - https://stackoverflow.com/questions/2075337/uncaught-referenceerror-is-not-defined
+
+## Thursday, August 6, 2018
+#### Sprint 5, Frontend & Webapi Improvements/Integrations
+***CI/CD Thoughts & VSTS***
+
+Not getting as much done this week since I needed a down week. Also I'm working on the rfid chip implant push notification project. However while working on that it got me thinking about VSTS and how it could be helpfull in a quick solution for continous integration and hopefully also continous delevery too. 
+I think I'll have a CI/CD sprint week just for setting up VSTS CI & CD to Azure initially... I'm ideally going to still want a pipeline for continous deployment to my ARM cluster but Idk how much longer that will take then deploying to azure. It may be a sprint or more to get it deploying to my arm cluster let alone setting up a continous delivery pipeline for it. Idk though maybe it will just be easy?
+
+VSTS is the only free continous integration service that lets you use private repos that I can think of... I like TravisCI but it's pretty expensive. Ideally I'd like the entirety of my CI/CD devops architecture and scripts to be open source and maintained as part of this git repo but that can be something to work towards in the future.
+
+**Sprint 5, Frontend & Webapi Improvements/Integrations**
+As for this sprint the next thing I want to do is persist the Known images and expose that data from the web api for which I'll then display on the Vision/Known page. After that I can start implementing uploading of known and unknown snapshots. That all would be plenty for the week.
