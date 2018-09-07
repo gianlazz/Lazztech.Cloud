@@ -53,7 +53,8 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages.Vision
                     snaps = JsonConvert.DeserializeObject<List<Snapshot>>(EmpResponse);
                 }
                 //returning the employee list to view
-                return snaps.Where(x => x.ImageDir.Contains("/known/")).ToList();
+                snaps = snaps.Where(x => x.ImageDir.Contains("/known/")).ToList();
+                return snaps;
             }
         }
     }
