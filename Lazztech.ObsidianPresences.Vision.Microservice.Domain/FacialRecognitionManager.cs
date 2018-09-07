@@ -59,7 +59,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 
             Results.AddRange(Known);
             Results.AddRange(Unknown);
-            Results.RemoveAll(x => x.ImageDir.Contains("/known/"));
+            //Results.RemoveAll(x => x.ImageDir.Contains("/known/"));
 
             HandleIdentities();
             HandleBoundingBoxes();
