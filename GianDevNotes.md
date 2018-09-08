@@ -1421,3 +1421,9 @@ I think I actually may have seen face_recognitionLines null which could explain 
 
 I'm able to get it working right now with a combination of a breakpoint(which I'm not sure if makes a difference or not) and having both all of the known and unknown jsons deleted before starting the docker-compose(which I'm also not sure if matters).
 After re-running the docker-compose it thre an exception for face_recognitionLines being at a count of 0.
+
+Adding `depends_on - lazztech.ObsidianPresences.vision.microservice.cli` didn't fix it.
+
+However I wonder if maybe the directories it sees is possibly passing a json into the face_recognition causing it to crash? I should have stderr handeling on the processes. That way I can know if the face_recognition process fails instead of just returning null since it's only returning the stdout not the stderr, right? This would require me to setup event handeling so that I don't have the deadlock issue between the stdout and stderr streams that I solved the other day.
+
+Okay so I don't think I'm passing in the jsons directly however by the fact that I'm passing in the known and unknown paths forwhich I'm also writing out the jsons I bet that's what's causing the issue...
