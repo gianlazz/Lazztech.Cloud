@@ -1406,3 +1406,5 @@ I was thinking about this and the original idea I was having was to deffer any k
 I've introduced some bug where the people on the unknown path snapshots aren't having their people instantiated... It however doesn't show up on the unit tests which is concerning. Or possibly I just pasted over the jsons and never actually got dlib working in the container on this machine when I thought I had?
 
 I'll have to solve this.
+
+Okay so I debugged it and both the face_detectionLines and face_recognitionLines are returninging properly during the docker runtime so idk what's happening to the null people property on the snapshots...
