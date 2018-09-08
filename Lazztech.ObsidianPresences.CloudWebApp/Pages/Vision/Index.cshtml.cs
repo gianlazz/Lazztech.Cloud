@@ -13,7 +13,6 @@ namespace Lazztech.ObsidianPresences.CloudWebApp.Pages.Vision
 {
     public class IndexModel : PageModel
     {
-        //public List<Snapshot> Snapshots => new List<Snapshot>();
         public List<Snapshot> Snapshots { get; set; }
 
         public void OnGet()
