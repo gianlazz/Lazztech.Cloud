@@ -18,6 +18,8 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             var procInfo = new ProcessStartInfo($"face_recognition")
             {
                 RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
                 Arguments = $"{FacialRecognitionManager.knownPath} {FacialRecognitionManager.unknownPath}"
             };
             process = new Process { StartInfo = procInfo };
