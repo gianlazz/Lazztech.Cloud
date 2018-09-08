@@ -19,9 +19,13 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
                 Arguments = $"{FacialRecognitionManager.unknownPath}"
             };
             process = new Process { StartInfo = procInfo };
+            process.Start();
+
             process.OutputDataReceived += new DataReceivedEventHandler(OnProcOutputDataRecieved);
             process.ErrorDataReceived += new DataReceivedEventHandler(OnProcErrorDataRecieved);
-            process.Start();
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
             //while (process.StandardOutput.EndOfStream == false)
             //{
             //    var line = process.StandardOutput.ReadLine();
