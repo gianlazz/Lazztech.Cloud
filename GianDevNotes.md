@@ -1414,3 +1414,5 @@ Okay I found the issue sort of and as it turns out the unit tests were correct i
 However I'm going to try adding the depends_on in the docker-compose for the cli to see if that fixes it.
 
 Also I realised I need to be able to have a way to view and return just snapshots where the enum is unknown_person. Do these snapshots have people instantiated too? Because it's not showing the "webcam.jpg" with an enum of 3, which with actually is no_persons_found so I guess that makes sense actually.
+
+Yeah so it looks like if I go to the vision page, which calls the webapi, which deserializes the jsons and do that all before the cli finishes processing the results and writing to them then somehow it erases the people properties... What is happening?
