@@ -271,7 +271,28 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         [Fact]
         public void KnownSnapshotsShouldHavePersonWithBoundingBoxToo()
         {
+            //Arrange
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(string.Empty),
+                new FaceDetectionProcessMock(string.Empty),
+                new FileServicesMock(knownDirs, unknownDirs));
 
+            var arrangedEmptyBoundingBox = new FaceBoundingBox()
+            {
+                LeftTopCoordinate = new PixelCoordinateVertex() { x = 0, y = 0 },
+                RightBottomCoordinate = new PixelCoordinateVertex() { x = 0, y = 0 }
+            };
+
+            //Act
+            var snapshots = recognition.Process();
+            var giansSnapshot = snapshots.Where(x => x.ImageName == "Gian Lazzarini.jpeg").FirstOrDefault();
+            var scottsSnapshot = snapshots.Where(x => x.ImageName == "Scott Hanselman.png").FirstOrDefault();
+
+            //Assert
+            Assert.True(giansSnapshot.People.Count == 1);
+            Assert.False(giansSnapshot.People.FirstOrDefault().FaceBoundingBox.Equals(arrangedEmptyBoundingBox));
+            Assert.True(scottsSnapshot.People.Count == 1);
+            Assert.False(scottsSnapshot.People.FirstOrDefault().FaceBoundingBox.Equals(arrangedEmptyBoundingBox));
         }
         #endregion
     }
