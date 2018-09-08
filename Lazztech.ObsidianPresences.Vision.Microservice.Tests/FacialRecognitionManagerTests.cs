@@ -294,31 +294,31 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
             Assert.True(scottsSnapshot.People.Count == 1);
         }
 
-        [Fact]
-        public void KnownSnapshotsPeopleShouldHaveProperlySetBoundingBox()
-        {
-            //Arrange
-            var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(string.Empty),
-                //PUT THE FACE DETECTION LINES HERE FROM THE KNOWN
-                new FaceDetectionProcessMock(string.Empty),
-                new FileServicesMock(knownDirs, unknownDirs));
+        //[Fact]
+        //public void KnownSnapshotsPeopleShouldHaveProperlySetBoundingBox()
+        //{
+        //    //Arrange
+        //    var recognition = new FacialRecognitionManager(
+        //        new FaceRecognitionProcessMock(string.Empty),
+        //        //PUT THE FACE DETECTION LINES HERE FROM THE KNOWN
+        //        new FaceDetectionProcessMock(string.Empty),
+        //        new FileServicesMock(knownDirs, unknownDirs));
 
-            var arrangedEmptyBoundingBox = new FaceBoundingBox()
-            {
-                LeftTopCoordinate = new PixelCoordinateVertex() { x = 0, y = 0 },
-                RightBottomCoordinate = new PixelCoordinateVertex() { x = 0, y = 0 }
-            };
+        //    var arrangedEmptyBoundingBox = new FaceBoundingBox()
+        //    {
+        //        LeftTopCoordinate = new PixelCoordinateVertex() { x = 0, y = 0 },
+        //        RightBottomCoordinate = new PixelCoordinateVertex() { x = 0, y = 0 }
+        //    };
 
-            //Act
-            var snapshots = recognition.Process();
-            var giansSnapshot = snapshots.Where(x => x.ImageName == "Gian Lazzarini.jpeg").FirstOrDefault();
-            var scottsSnapshot = snapshots.Where(x => x.ImageName == "Scott Hanselman.png").FirstOrDefault();
+        //    //Act
+        //    var snapshots = recognition.Process();
+        //    var giansSnapshot = snapshots.Where(x => x.ImageName == "Gian Lazzarini.jpeg").FirstOrDefault();
+        //    var scottsSnapshot = snapshots.Where(x => x.ImageName == "Scott Hanselman.png").FirstOrDefault();
 
-            //Assert
-            Assert.False(giansSnapshot.People.FirstOrDefault().FaceBoundingBox.Equals(arrangedEmptyBoundingBox));
-            Assert.False(scottsSnapshot.People.FirstOrDefault().FaceBoundingBox.Equals(arrangedEmptyBoundingBox));
-        }
+        //    //Assert
+        //    Assert.False(giansSnapshot.People.FirstOrDefault().FaceBoundingBox.Equals(arrangedEmptyBoundingBox));
+        //    Assert.False(scottsSnapshot.People.FirstOrDefault().FaceBoundingBox.Equals(arrangedEmptyBoundingBox));
+        //}
 
         #endregion test cases
     }
