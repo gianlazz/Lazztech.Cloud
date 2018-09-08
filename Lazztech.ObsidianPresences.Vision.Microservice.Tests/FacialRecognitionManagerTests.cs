@@ -267,6 +267,12 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
             Assert.True(people.Where(x => x.Name == "Meghan Markle").ToList().Any());
             Assert.Equal(3, people.Count());
         }
+
+        [Fact]
+        public void KnownSnapshotsShouldHavePersonWithBoundingBoxToo()
+        {
+
+        }
         #endregion
     }
 
