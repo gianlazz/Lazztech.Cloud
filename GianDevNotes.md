@@ -1418,3 +1418,6 @@ Also I realised I need to be able to have a way to view and return just snapshot
 Yeah so it looks like if I go to the vision page, which calls the webapi, which deserializes the jsons and do that all before the cli finishes processing the results and writing to them then somehow it erases the people properties... What is happening?
 
 I think I actually may have seen face_recognitionLines null which could explain it? I set it to check both of the process outputs and throw exceptions if their empty.
+
+I'm able to get it working right now with a combination of a breakpoint(which I'm not sure if makes a difference or not) and having both all of the known and unknown jsons deleted before starting the docker-compose(which I'm also not sure if matters).
+After re-running the docker-compose it thre an exception for face_recognitionLines being at a count of 0.
