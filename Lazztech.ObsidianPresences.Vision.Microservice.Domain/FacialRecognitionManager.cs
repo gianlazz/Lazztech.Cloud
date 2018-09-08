@@ -55,7 +55,11 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             InstantiateSnapshotsFromDirs();
             //SetSnapshotsCreationDateTime();
             face_recognitionLines = _face_recognition.FaceRecognition();
+            if (face_recognitionLines.Count == 0)
+                throw new Exception("face_recognition returned no lines");
             face_detectionLines = _face_detection.FaceDetection();
+            if (face_detectionLines.Count == 0)
+                throw new Exception("face_detection returned no lines");
 
             Results.AddRange(Known);
             Results.AddRange(Unknown);
