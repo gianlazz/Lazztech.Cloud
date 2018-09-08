@@ -176,11 +176,18 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             foreach (var imageDir in _knownImageDirs)
             {
                 DateTime creation = _fileServices.GetCreationDateTime(imageDir);
+                var person = new Person()
+                {
+                    Name = _fileServices.GetFileNameFromDir(imageDir).Split('.').First()
+                };
+                var people = new List<Person>();
+                people.Add(person);
                 Known.Add(new Snapshot()
                 {
                     ImageDir = imageDir,
                     DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir),
-                    ImageName = _fileServices.GetFileNameFromDir(imageDir)
+                    ImageName = _fileServices.GetFileNameFromDir(imageDir),
+                    People = people
                 });
             }
 

@@ -269,11 +269,32 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         }
 
         [Fact]
-        public void KnownSnapshotsShouldHavePersonWithBoundingBoxToo()
+        public void KnownSnapshotsShouldHavePersonToo()
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
                 new FaceRecognitionProcessMock(string.Empty),
+                //PUT THE FACE DETECTION LINES HERE FROM THE KNOWN
+                new FaceDetectionProcessMock(string.Empty),
+                new FileServicesMock(knownDirs, unknownDirs));
+
+            //Act
+            var snapshots = recognition.Process();
+            var giansSnapshot = snapshots.Where(x => x.ImageName == "Gian Lazzarini.jpeg").FirstOrDefault();
+            var scottsSnapshot = snapshots.Where(x => x.ImageName == "Scott Hanselman.png").FirstOrDefault();
+
+            //Assert
+            Assert.True(giansSnapshot.People.Count == 1);
+            Assert.True(scottsSnapshot.People.Count == 1);
+        }
+
+        [Fact]
+        public void KnownSnapshotsPeopleShouldHaveProperlySetBoundingBox()
+        {
+            //Arrange
+            var recognition = new FacialRecognitionManager(
+                new FaceRecognitionProcessMock(string.Empty),
+                //PUT THE FACE DETECTION LINES HERE FROM THE KNOWN
                 new FaceDetectionProcessMock(string.Empty),
                 new FileServicesMock(knownDirs, unknownDirs));
 
@@ -289,11 +310,10 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
             var scottsSnapshot = snapshots.Where(x => x.ImageName == "Scott Hanselman.png").FirstOrDefault();
 
             //Assert
-            Assert.True(giansSnapshot.People.Count == 1);
             Assert.False(giansSnapshot.People.FirstOrDefault().FaceBoundingBox.Equals(arrangedEmptyBoundingBox));
-            Assert.True(scottsSnapshot.People.Count == 1);
             Assert.False(scottsSnapshot.People.FirstOrDefault().FaceBoundingBox.Equals(arrangedEmptyBoundingBox));
         }
+
         #endregion
     }
 
