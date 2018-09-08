@@ -1,8 +1,8 @@
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using Xunit;
 
 namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
@@ -10,12 +10,14 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
     public class FacialRecognitionManagerTests
     {
         #region test data
+
         public static string knownPath = @"/face/known/";
         public static string unknownPath = @"/face/unknown/";
         public static string noPersonsFoundPath = @"/face/no_persons_found/";
 
         public static string knownDirs = @"/face/known/Gian Lazzarini.jpeg
 /face/known/Scott Hanselman.png";
+
         public static string unknownDirs = @"/face/unknown/0.jpeg
 /face/unknown/webcam.jpg
 /face/unknown/images.jpeg
@@ -68,16 +70,17 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
 /face/unknown/harry-meghan-15.jpg,294,792,443,642
 /face/unknown/harry-meghan-15.jpg,154,652,333,473";
 
-        #endregion
+        #endregion test data
 
         #region test cases
+
         [Fact]
         public void Test1_BasicSmokeTest()
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
-                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData),
+                new FaceDetectionProcessMock(face_detectionLinesTestData),
                 new FileServicesMock(knownDirs, unknownDirs));
 
             //Act
@@ -88,20 +91,23 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         }
 
         [Fact]
-        public void SnapshotWithStatusOfno_persons_found_PersonShouldStillHaveBB() 
+        public void SnapshotWithStatusOfno_persons_found_PersonShouldStillHaveBB()
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
-                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData),
+                new FaceDetectionProcessMock(face_detectionLinesTestData),
                 new FileServicesMock(knownDirs, unknownDirs));
 
-            var arrangedBb = new FaceBoundingBox(){
-                LeftTopCoordinate = new PixelCoordinateVertex() {
+            var arrangedBb = new FaceBoundingBox()
+            {
+                LeftTopCoordinate = new PixelCoordinateVertex()
+                {
                     x = 0,
                     y = 0
                 },
-                RightBottomCoordinate = new PixelCoordinateVertex() {
+                RightBottomCoordinate = new PixelCoordinateVertex()
+                {
                     x = 0,
                     y = 0
                 }
@@ -124,8 +130,8 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
-                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData),
+                new FaceDetectionProcessMock(face_detectionLinesTestData),
                 new FileServicesMock(knownDirs, unknownDirs));
 
             //Act
@@ -140,8 +146,8 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
-                new FaceDetectionProcessMock(face_detectionLinesTestData), 
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData),
+                new FaceDetectionProcessMock(face_detectionLinesTestData),
                 new FileServicesMock(knownDirs, unknownDirs));
 
             //Act
@@ -166,12 +172,12 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(face_recognitionLinesTestData), 
-                new FaceDetectionProcessMock(face_detectionLinesTestData), 
-                new FileServicesMock(knownDirs, unknownDirs));         
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData),
+                new FaceDetectionProcessMock(face_detectionLinesTestData),
+                new FileServicesMock(knownDirs, unknownDirs));
 
             //54,181,158,77
-            var arrangedBoundingBox = new FaceBoundingBox() 
+            var arrangedBoundingBox = new FaceBoundingBox()
             {
                 LeftTopCoordinate = new PixelCoordinateVertex() { x = 54, y = 181 },
                 RightBottomCoordinate = new PixelCoordinateVertex() { x = 158, y = 77 }
@@ -192,10 +198,10 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(multipersonface_recognitionLinesTestData), 
-                new FaceDetectionProcessMock(multipersonface_detectionLinesTestData), 
+                new FaceRecognitionProcessMock(multipersonface_recognitionLinesTestData),
+                new FaceDetectionProcessMock(multipersonface_detectionLinesTestData),
                 new FileServicesMock(multipersonKnownDirs, multiplepersonunknownDirs));
-            
+
             //Act
             var results = recognition.Process();
             var resultsFromDualPersonImage = results.Where(x => x.ImageName == "harry-meghan-15.jpg").ToList();
@@ -210,23 +216,23 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(multipersonface_recognitionLinesTestData), 
-                new FaceDetectionProcessMock(multipersonface_detectionLinesTestData), 
+                new FaceRecognitionProcessMock(multipersonface_recognitionLinesTestData),
+                new FaceDetectionProcessMock(multipersonface_detectionLinesTestData),
                 new FileServicesMock(multipersonKnownDirs, multiplepersonunknownDirs));
 
             //294,792,443,642
-            var meganArrangedBoundingBox = new FaceBoundingBox() 
+            var meganArrangedBoundingBox = new FaceBoundingBox()
             {
                 LeftTopCoordinate = new PixelCoordinateVertex() { x = 294, y = 792 },
                 RightBottomCoordinate = new PixelCoordinateVertex() { x = 443, y = 642 }
-            }; 
+            };
             //154,652,333,473
-            var harryArrangedBoundingBox = new FaceBoundingBox() 
+            var harryArrangedBoundingBox = new FaceBoundingBox()
             {
                 LeftTopCoordinate = new PixelCoordinateVertex() { x = 154, y = 652 },
                 RightBottomCoordinate = new PixelCoordinateVertex() { x = 333, y = 473 }
-            };                           
-            
+            };
+
             //Act
             var results = recognition.Process();
             var resultsFromDualPersonImage = results.Where(x => x.ImageName == "harry-meghan-15.jpg").ToList();
@@ -253,10 +259,10 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
             var unknownDirs = @"/face/unknown/Prince-Harry_Thomas-Markle_Meghan-Markle.jpg";
 
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(recogLines), 
-                new FaceDetectionProcessMock(detectLines), 
+                new FaceRecognitionProcessMock(recogLines),
+                new FaceDetectionProcessMock(detectLines),
                 new FileServicesMock(knownDirs, unknownDirs));
-            
+
             //Act
             var snapshots = recognition.Process();
             var people = snapshots.Where(x => x.ImageName == "Prince-Harry_Thomas-Markle_Meghan-Markle.jpg").First().People;
@@ -314,11 +320,12 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
             Assert.False(scottsSnapshot.People.FirstOrDefault().FaceBoundingBox.Equals(arrangedEmptyBoundingBox));
         }
 
-        #endregion
+        #endregion test cases
     }
 
     #region interface mocks
-    class FaceRecognitionProcessMock : Iface_recognition
+
+    internal class FaceRecognitionProcessMock : Iface_recognition
     {
         private List<string> output;
 
@@ -326,6 +333,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         {
             output = SplitStdoutLines(lines);
         }
+
         public List<string> FaceRecognition()
         {
             return output;
@@ -346,7 +354,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         }
     }
 
-    class FaceDetectionProcessMock : Iface_detection
+    internal class FaceDetectionProcessMock : Iface_detection
     {
         private List<string> output;
 
@@ -375,7 +383,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         }
     }
 
-    class FileServicesMock : IFileServices
+    internal class FileServicesMock : IFileServices
     {
         private string known;
         private string unknown;
@@ -392,7 +400,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
             {
                 return SplitStdoutLines(known).ToArray();
                 // return FacialRecognitionManagerTests.knownDirs;
-            } 
+            }
             else if (path.Contains("/unknown/"))
             {
                 return SplitStdoutLines(unknown).ToArray();
@@ -433,5 +441,6 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
             return new List<string>(lines);
         }
     }
-    #endregion
+
+    #endregion interface mocks
 }
