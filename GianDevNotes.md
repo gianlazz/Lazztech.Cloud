@@ -1402,3 +1402,7 @@ Up to today all of the processed snapshots were being returned by the FaceRecogn
 
 ***Future Deployment Considerations***
 I was thinking about this and the original idea I was having was to deffer any kind of authentication and instead just hide the whole service behind a vpn, however that posses complications for sending images for processing to the Webapi. It will also complicate the deployment a lot to deploy locally behind a firewall... Idk how I would handle the vpn credentials for the devices sending the images for processing?
+
+I've introduced some bug where the people on the unknown path snapshots aren't having their people instantiated... It however doesn't show up on the unit tests which is concerning. Or possibly I just pasted over the jsons and never actually got dlib working in the container on this machine when I thought I had?
+
+I'll have to solve this.
