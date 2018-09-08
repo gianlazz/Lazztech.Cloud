@@ -4,9 +4,6 @@
     ViewData["Title"] = "Known";
 }
 
-<h2>Known</h2>
-
-
 <div class="container">
     <div class="row">
         <div class="col">
@@ -14,18 +11,11 @@
             <hr>
 
             <div class="row">
-                @*@foreach (var snap in Model.Snapshots)*@
                 @for (int i = 0; i < Model.Snapshots.Count(); i++)
                 {
                     foreach (var person in Model.Snapshots[i].People)
                     {
-                        @*if (i > 0 && i % 2 == 0)
-                            {
-                                // CLOSE AND START A NEW ROW
-                                @:</div>
-                                @:<br />
-                                @:<div class="row">
-                            }*@
+
 
                         <div class="col-md-4">
                             @*<div class="col-md-6 d-flex align-items-stretch">*@
