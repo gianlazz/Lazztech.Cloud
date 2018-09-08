@@ -1396,7 +1396,7 @@ Oh also I could look into GitLabs CI/CD options to see if that might be nice but
 **Sprint 5, Frontend & Webapi Improvements/Integrations**
 As for this sprint the next thing I want to do is persist the Known images and expose that data from the web api for which I'll then display on the Vision/Known page. After that I can start implementing uploading of known and unknown snapshots. That all would be plenty for the week.
 
-## Thursday, August 6, 2018
+## Friday, August 7, 2018
 #### Sprint 5, Frontend & Webapi Improvements/Integrations
 Up to today all of the processed snapshots were being returned by the FaceRecognitionManager class where they were being serialized by the cli into a folder called `/results`. However I want to have seperated results for processed and known. I'm going to remove the results folder and instead just write out the jsons to the `/known	` and `/unknown` directories respectively with their images. I'll then take from those two and return the results respectively in the web api so that I can render or interact with that from whatever client. This will also make uploading/processing new images simpler from the Webapi.
 
@@ -1427,3 +1427,10 @@ Adding `depends_on - lazztech.ObsidianPresences.vision.microservice.cli` didn't 
 However I wonder if maybe the directories it sees is possibly passing a json into the face_recognition causing it to crash? I should have stderr handeling on the processes. That way I can know if the face_recognition process fails instead of just returning null since it's only returning the stdout not the stderr, right? This would require me to setup event handeling so that I don't have the deadlock issue between the stdout and stderr streams that I solved the other day.
 
 Okay so I don't think I'm passing in the jsons directly however by the fact that I'm passing in the known and unknown paths forwhich I'm also writing out the jsons I bet that's what's causing the issue...
+
+## Saturday, August 8, 2018
+#### Sprint 5, Frontend & Webapi Improvements/Integrations
+
+Okay so I opened an interactive terminal with the cli container and confirmed that the face_recognition process is throwing an error when there's jsons in either the /known or /unknown. I tried to get both the stdout and stderr working asynchronously with events to avoid the deadlock but didn't quite get it working. I would still like to do this so that I can catch any face_recognition process failures however to resolve this issue I should probably just have the jsons written out to a seperate directory. 
+
+I will probably also want to be able to pass in a single image directory for the face_recognition so that I can process just single image instead of re-processing all of the images again.
