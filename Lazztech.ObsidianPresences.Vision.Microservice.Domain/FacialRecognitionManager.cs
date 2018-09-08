@@ -187,7 +187,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
                     ImageDir = imageDir,
                     DateTimeWhenCaptured = _fileServices.GetCreationDateTime(imageDir),
                     ImageName = _fileServices.GetFileNameFromDir(imageDir),
-                    //People = people
+                    People = people
                 });
             }
 

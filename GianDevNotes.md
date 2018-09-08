@@ -1408,3 +1408,9 @@ I've introduced some bug where the people on the unknown path snapshots aren't h
 I'll have to solve this.
 
 Okay so I debugged it and both the face_detectionLines and face_recognitionLines are returninging properly during the docker runtime so idk what's happening to the null people property on the snapshots...
+
+Okay I found the issue sort of and as it turns out the unit tests were correct it's still working however something seems to be causing intermitent issues with the output json. Sometimes there fine and sometimes there not, having empty people properties. I wonder if this is from multiple services trying to read and write from them? When I put a break point on the part where the people are being instantiated in the snapshot it ends up writing them out properly. I wonder if this happens from me calling the webapi before their done being written? Idk this is more the domain of an integration test though.
+
+However I'm going to try adding the depends_on in the docker-compose for the cli to see if that fixes it.
+
+Also I realised I need to be able to have a way to view and return just snapshots where the enum is unknown_person. Do these snapshots have people instantiated too? Because it's not showing the "webcam.jpg" with an enum of 3, which with actually is no_persons_found so I guess that makes sense actually.
