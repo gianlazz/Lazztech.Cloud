@@ -13,8 +13,8 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 
         public static string knownPath = @"/face/known/";
         public static string unknownPath = @"/face/unknown/";
-        public static string knownJsonsPath = @"/face/knownResults";
-        public static string unknownJsonsPath = @"/face/unknownResults";
+        public static string knownJsonsPath = @"/face/knownResults/";
+        public static string unknownJsonsPath = @"/face/unknownResults/";
 
         public List<string> _knownImageDirs = new List<string>();
         public List<string> _unknownImageDirs = new List<string>();
