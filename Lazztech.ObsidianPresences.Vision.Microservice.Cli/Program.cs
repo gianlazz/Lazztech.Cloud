@@ -40,10 +40,10 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Cli
                 var json = JsonConvert.SerializeObject(snapshot, Formatting.Indented);
                 var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
                 if (snapshot.ImageDir.Contains("/known"))
-                    File.WriteAllText($"{resultsPath}/known/{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json", json);
+                    File.WriteAllText($"{FacialRecognitionManager.knownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json", json);
                 if (snapshot.ImageDir.Contains("/unknown"))
                 {
-                    File.WriteAllText($"{resultsPath}/unknown/{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json", json);
+                    File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json", json);
                     Console.WriteLine(json);
                 }
             }

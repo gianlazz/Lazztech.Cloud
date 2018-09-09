@@ -1,6 +1,7 @@
 ﻿using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using static Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models.Snapshot;
 
@@ -12,7 +13,8 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 
         public static string knownPath = @"/face/known/";
         public static string unknownPath = @"/face/unknown/";
-        public static string noPersonsFoundPath = @"/face/no_persons_found/";
+        public static string knownJsonsPath = @"/face/knownResults";
+        public static string unknownJsonsPath = @"/face/unknownResults";
 
         public List<string> _knownImageDirs = new List<string>();
         public List<string> _unknownImageDirs = new List<string>();
@@ -45,6 +47,8 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             _face_recognition = face_recognition;
             _fileServices = fileServices;
             Results = new List<Snapshot>();
+
+            StandUpAllNeededDirectories();
         }
 
         #endregion ctor
@@ -68,6 +72,21 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             HandleBoundingBoxes();
 
             return Results;
+        }
+
+        private void StandUpAllNeededDirectories()
+        {
+            if (!Directory.Exists(knownPath))
+                Directory.CreateDirectory(knownPath);
+
+            if (!Directory.Exists(unknownPath))
+                Directory.CreateDirectory(unknownPath);
+
+            if (!Directory.Exists(knownJsonsPath))
+                Directory.CreateDirectory(knownJsonsPath);
+
+            if (!Directory.Exists(unknownJsonsPath))
+                Directory.CreateDirectory(unknownJsonsPath);
         }
 
         private void HandleBoundingBoxes()

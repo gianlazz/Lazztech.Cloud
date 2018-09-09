@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
 using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
         {
             Snapshots = new List<Snapshot>();
 
-            var dir = "/face/known/";
+            var dir = FacialRecognitionManager.knownJsonsPath;
 
             var jsonDirs = Directory.GetFiles(dir).Where(x => x.EndsWith(".json"));
             foreach (var jsonDir in jsonDirs)
