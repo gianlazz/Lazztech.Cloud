@@ -15,8 +15,6 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             StdoutResults = new List<string>();
             StderrResults = new List<string>();
 
-            //var x = Environment.ProcessorCount;
-
             var procInfo = new ProcessStartInfo()
             {
                 RedirectStandardOutput = true,
@@ -33,13 +31,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
-            //while (process.StandardOutput.EndOfStream == false)
-            //{
-            //    var line = process.StandardOutput.ReadLine();
-            //    if (string.IsNullOrEmpty(line) == false)
-            //        results.Add(line);
-            //    Console.WriteLine(line);
-            //}
+
             process.WaitForExit();
 
             if (StderrResults.Count > 0)
@@ -62,7 +54,6 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             if (string.IsNullOrEmpty(line) == false)
                 StderrResults.Add(line);
             Console.WriteLine(line);
-            //throw new Exception(e.Data);
         }
     }
 }

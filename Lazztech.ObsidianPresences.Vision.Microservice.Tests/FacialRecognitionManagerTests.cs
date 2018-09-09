@@ -279,9 +279,9 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Tests
         {
             //Arrange
             var recognition = new FacialRecognitionManager(
-                new FaceRecognitionProcessMock(string.Empty),
+                new FaceRecognitionProcessMock(face_recognitionLinesTestData),
                 //PUT THE FACE DETECTION LINES HERE FROM THE KNOWN
-                new FaceDetectionProcessMock(string.Empty),
+                new FaceDetectionProcessMock(face_detectionLinesTestData),
                 new FileServicesMock(knownDirs, unknownDirs));
 
             //Act

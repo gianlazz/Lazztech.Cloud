@@ -1448,3 +1448,5 @@ Okay so I solved the face_recognition & face_detection failure issue in identify
 7. process.WaitForExit()
 
 You can also enable RedirectStandardInput in the ProcessStartInfo too which does not need event handeling or anything special to do `process.StandardInput.WriteLine()`.
+
+Anyways back to solving the issue that face_recognition was failing on where there's jsons in the /known and /unknown. I want to setup a public static string with the output paths so that refactoring isn't a pain of hunting through the projects to rename strings.

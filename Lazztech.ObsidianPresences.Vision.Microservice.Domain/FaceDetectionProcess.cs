@@ -31,13 +31,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
-            //while (process.StandardOutput.EndOfStream == false)
-            //{
-            //    var line = process.StandardOutput.ReadLine();
-            //    if (string.IsNullOrEmpty(line) == false)
-            //        result.Add(line);
-            //    Console.WriteLine(line);
-            //}
+
             process.WaitForExit();
 
             if (StderrResults.Count > 0)
