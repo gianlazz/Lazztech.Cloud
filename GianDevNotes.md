@@ -1434,3 +1434,17 @@ Okay so I don't think I'm passing in the jsons directly however by the fact that
 Okay so I opened an interactive terminal with the cli container and confirmed that the face_recognition process is throwing an error when there's jsons in either the /known or /unknown. I tried to get both the stdout and stderr working asynchronously with events to avoid the deadlock but didn't quite get it working. I would still like to do this so that I can catch any face_recognition process failures however to resolve this issue I should probably just have the jsons written out to a seperate directory. 
 
 I will probably also want to be able to pass in a single image directory for the face_recognition so that I can process just single image instead of re-processing all of the images again.
+
+Okay so I solved the face_recognition & face_detection failure issue in identifying that it was from the jsons in the folders and I fixed the event driven process stdout & stderr handeling by making some tweaks.
+
+**How to do non-deadlocking stdout & stderr handeling on a process with System.Diagnostic.Process**
+
+1. Enable redirectstdout & redirectstderr in the startinfo object for the process object.
+2. in the startinfo set the filename property to the name of the prcess your calling
+3. Startinfo useshellexecute property should be false
+4. pass args using Arguments property on the Startinfo
+5. Subscribe to the process.OutputDataRecieved & process.ErrorDataRecieved with new DataRecievedEventHandlers
+6. process.BeginOutputReadline() process.BeginErrorReadline() to start the async streams
+7. process.WaitForExit()
+
+You can also enable RedirectStandardInput in the ProcessStartInfo too which does not need event handeling or anything special to do `process.StandardInput.WriteLine()`.
