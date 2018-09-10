@@ -1450,3 +1450,26 @@ Okay so I solved the face_recognition & face_detection failure issue in identify
 You can also enable RedirectStandardInput in the ProcessStartInfo too which does not need event handeling or anything special to do `process.StandardInput.WriteLine()`.
 
 Anyways back to solving the issue that face_recognition was failing on where there's jsons in the /known and /unknown. I want to setup a public static string with the output paths so that refactoring isn't a pain of hunting through the projects to rename strings.
+
+## Sunday, August 9, 2018
+#### Sprint 5, Frontend & Webapi Improvements/Integrations
+
+I need to setup viewing for the unidentified people with the rest api and json persistence.
+
+Also I'm thinking more and more about deployment. I need to do it soon. I'm considering just setting it up on the pc I have first as that would probably be easier than the cluster without the recurring cost. However I'll still need authentication before it can be publically exposed. 
+
+For authentication I'm going to setup and application facade webapi project with the optional authentication.
+
+Also I wonder if it could be more flexible to use ngrok to tunnel to the service locally as apposed to dynamic dns like noip or dyndns? It could be more flexible for early use and since it's mostly just going to be for personal use it may work fine. The advantage I see with this is that it would get around the 48hr time to repopulate dns.
+
+**ngrok localhost tunneling vs dynamic dns for private cloud**
+- https://medium.com/@milanaleksic/ngrok-vs-dynamic-dns-for-remote-linux-home-server-access-1486299502f2
+- https://houtianze.github.io/ddns/ngrok/localtunnel/2017/01/22/ddns-alternative.html
+- https://news.ycombinator.com/item?id=14278703
+- https://ngrok.com/pricing
+- https://discuss.fsftn.org/t/is-it-reliable-to-run-a-service-behind-ngrok/621
+- https://localtunnel.github.io/www/
+- https://www.noip.com/remote-access
+- https://api.slack.com/tutorials/tunneling-with-ngrok
+
+I want to figure out some infrastructer as code, scriptable provisioning deployment and configuring for my lazz.tech domain name. Should I use teraform for this?
