@@ -1509,3 +1509,9 @@ COPY failed: stat /var/lib/docker/tmp/docker-builder483335454/Lazztech.ObsidianP
 ```
 
 Hmm yeah and if I just run `docker-compose up` it fails locally too. I thought I fixed this...
+
+Looking back I seemed to have solved this issue before by modifying the dockerfiles to fix the copy lines or something.
+
+Checkout this days entry for the docker-compose up failure solution:
+## Sunday, August 5, 2018
+## Sprint 0: Unit Tests & Snapshot Coordinates
