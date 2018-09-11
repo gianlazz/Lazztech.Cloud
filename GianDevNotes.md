@@ -1473,3 +1473,19 @@ Also I wonder if it could be more flexible to use ngrok to tunnel to the service
 - https://api.slack.com/tutorials/tunneling-with-ngrok
 
 I want to figure out some infrastructer as code, scriptable provisioning deployment and configuring for my lazz.tech domain name. Should I use teraform for this?
+
+## Monday, August 10, 2018
+#### Sprint 6, Deploying with Azure DevOps CI/CD
+
+I have to deploy my app. As it is right now, authentication is not really very urgent as there's not really any way to do anything but get the data, there's no creating, deleting or updating. There's also not really any super private data yet either. So now would be an okay time to deploy and setup my CI/CD pipeline. After that I'll make a Webapi project with the included optional authentication which will serve as the application facade rest api for all consuming clients. At that point I can add the rest of the data modifying operations to the rest api behind authentication.
+
+Out of the given options I could use:
+- Jenkins
+- TravisCI
+- Azure DevOps(VsTs)
+
+Or any of the other myriad of options. First and formost I do actually want to get this project deployed and some degree of completion so shooting to get everything perfect with a self rolled open source solution may hinder that. And out of the practical solutions Azure DevOps, which was just announced as the successor of VsTs offers everything I need and is the only one that does it all free of charge for private repos. So that's what I'm going to start with. I can always make it an effort to strive towards a more proprietery solution later as I hate vendor lock in but for now it seems perfect as I do want to deliver after all.
+
+I don't really care where it's hosted to start with. Initially it would be okay to use azure as long as I can still lift and shift. Ideally I want to self host and be able to switch between hosting solutions without too much friction.
+
+I think I may still be able to setup my continous deployment pipeline with Azure DevOps to self host but I'm not certain. That may have to be a sprint of it's own. I do see they have a discounted self hosting option which would be a good option however the first project is free anyways so it doesn't matter.
