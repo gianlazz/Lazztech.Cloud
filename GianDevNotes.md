@@ -1489,3 +1489,13 @@ Or any of the other myriad of options. First and formost I do actually want to g
 I don't really care where it's hosted to start with. Initially it would be okay to use azure as long as I can still lift and shift. Ideally I want to self host and be able to switch between hosting solutions without too much friction.
 
 I think I may still be able to setup my continous deployment pipeline with Azure DevOps to self host but I'm not certain. That may have to be a sprint of it's own. I do see they have a discounted self hosting option which would be a good option however the first project is free anyways so it doesn't matter.
+
+- https://docs.microsoft.com/en-us/azure/devops-project/
+- https://docs.microsoft.com/en-us/azure/devops-project/azure-devops-project-aspnet-core
+- https://channel9.msdn.com/Events/Connect/2017/T174/player/
+
+I'm using gianlazzarini@srnd.org account. I need to speak with the team about my confusions surrounding my gianlazzarini@gmail.com msdn account since I think I can use those resources however now I'm not 100% certain so just to be safe for now I'll use gianlazzarini@srnd.org.
+
+I want the master banch to deploy and staging to build. Actually after looking at it more it looks like the srnd account is pretty heavily used and maybe I should just make a new lazz.tech account. I could setup an email address for gian@lazz.tech. Then maybe some day I could use that for other more serious projects too.
+
+I just setup email forwarding only settings for gian@lazz.tech to gianlazzarini@gmail.com with my get.tech account. I should probably actually configure it as a full portal so I can send emails from my gmail with that account too but I'll deal with that later.
