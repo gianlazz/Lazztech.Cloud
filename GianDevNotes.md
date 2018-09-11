@@ -1513,5 +1513,7 @@ Hmm yeah and if I just run `docker-compose up` it fails locally too. I thought I
 Looking back I seemed to have solved this issue before by modifying the dockerfiles to fix the copy lines or something.
 
 Checkout this days entry for the docker-compose up failure solution:
-## Sunday, August 5, 2018
-## Sprint 0: Unit Tests & Snapshot Coordinates
+Sunday, August 5, 2018
+Sprint 0: Unit Tests & Snapshot Coordinates
+
+Yeah if I look at the cli project dockerfile which is the oldest I can take from that. It has copy statments for each of the projects that the solution needs to build so I'll have to model the other ones after that and I think that will fix it.
