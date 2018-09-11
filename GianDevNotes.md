@@ -1499,3 +1499,11 @@ I'm using gianlazzarini@srnd.org account. I need to speak with the team about my
 I want the master banch to deploy and staging to build. Actually after looking at it more it looks like the srnd account is pretty heavily used and maybe I should just make a new lazz.tech account. I could setup an email address for gian@lazz.tech. Then maybe some day I could use that for other more serious projects too.
 
 I just setup email forwarding only settings for gian@lazz.tech to gianlazzarini@gmail.com with my get.tech account. I should probably actually configure it as a full portal so I can send emails from my gmail with that account too but I'll deal with that later.
+
+Azure DevOps failed to build this project due to:
+```
+
+COPY failed: stat /var/lib/docker/tmp/docker-builder483335454/Lazztech.ObsidianPresences.sln: no such file or directory
+
+/usr/local/bin/docker failed with return code: 1
+```
