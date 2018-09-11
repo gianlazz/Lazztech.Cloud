@@ -1507,3 +1507,5 @@ COPY failed: stat /var/lib/docker/tmp/docker-builder483335454/Lazztech.ObsidianP
 
 /usr/local/bin/docker failed with return code: 1
 ```
+
+Hmm yeah and if I just run `docker-compose up` it fails locally too. I thought I fixed this...
