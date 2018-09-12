@@ -1524,3 +1524,33 @@ Yeah if I look at the cli project dockerfile which is the oldest I can take from
 ***Switching to self owned Containerized Jenkins Blue Ocean CI/CD***
 
 Okay I'm changing the plan. I don't like the licensing concerns and vendor lock in with Azure DevOps. I want to have full ownership of my CI/CD Pipeline and do that I'll have to use open source software. I'm going to maintian a dockerized jenkins container in this repo. I want to setup YML configurations for the pipelines and try out the new Blue Ocean UI. This way I won't even have to worry about hosting. I can maintain my CI/CD server locally on my laptop with docker. That way I'll just spin up the container when I want or need and can switch later to self hosting the container however I see fit.
+
+- https://jenkins.io/projects/blueocean/
+- https://jenkins.io/doc/tutorials/create-a-pipeline-in-blue-ocean/
+- https://jenkins.io/doc/book/blueocean/getting-started/
+- https://jenkins.io/blog/2017/04/05/say-hello-blueocean-1-0/
+- https://hub.docker.com/r/jenkinsci/blueocean/
+
+`docker run -p 8080:8080 jenkinsci/blueocean`
+`http://localhost:8080/`
+
+Jenkins Pipelines as YAML:
+- https://jenkins.io/blog/2018/07/17/simple-pull-request-plugin/
+- https://jenkins.io/blog/2018/04/25/configuring-jenkins-pipeline-with-yaml-file/
+- https://news.ycombinator.com/item?id=17558611
+- https://github.com/Jenkinsci/travis-yml-plugin - Designed to run .travis.yml as Jenkins pipeline job.
+"everyone has to continue using Groovy DSL and/or JJB to reinstantiate parameterized jobs or handle jobs that deal with multiple Jenkinsfiles in a project."
+
+"**Jenkins configuration as code lets you define the entire Jenkins configuration in YAML and launch Jenkins as a docker container to do immutable infra. Jenkins Pipeline lets you define your pipeline in your Git repo, so that's the other part of immutable infra**, and between modern pipeline and efforts liek this one, there's no need to write Groovy per se. It's just a configuration syntax based on brackets like nginx, which happens to conform to Groovy syntax, so that when you need to do a little bit of complicated stuff you can, but you don't need to"
+
+- https://docs.openstack.org/infra/jenkins-job-builder/ Jenkins Job Builder takes simple descriptions of Jenkins jobs in YAML or JSON format and uses them to configure Jenkins. You can keep your job descriptions in human readable text format in a version control system to make changes and auditing easier. It also has a flexible template system, so creating many similarly configured jobs is easy.
+
+"Agreed, I love the groovy jenkins job DSL. It's so awesome and simple. Easy to put everything on github and forget about it."
+
+I may need ngrok to tunnel the locally hosted instance of docker on my machine so that the gitlab webhooks can access it. Below is a link that gave me this idea.
+http://thesociablegeek.com/node/github-continuous-deployment-to-a-raspberry-pi/
+
+Also theres this:
+https://pulumi.io/
+
+Okay so it looks like the other good free/open source CI/CD software is actually gitlab. Gitlab uses yml files at the root like TravisCI and CircleCI. I'll stick with jenkins until it doesn't seem to suite my desired needs.
