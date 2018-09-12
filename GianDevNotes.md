@@ -5,6 +5,7 @@
 - **Open interactive terminal example 2** `docker run -it -v /Users/gianlazzarini/Desktop/face_recognition:/face/ --entrypoint /bin/bash ba34ace8a4cc`
 - **Another shorter way to open an interactive terminal** `docker exec -it f1c767df6163 sh`
 - **Stop all running containers** `docker stop $(docker ps -aq)`
+- **Delete all stopped container** `docker rm $(docker ps -aq)`
 - **Delete all stopped containers and images** `docker system prune -a`
 - **List docker networks** `docker network ls`
 - **Inspect details about a docker process** `docker inspect "ps id"`
