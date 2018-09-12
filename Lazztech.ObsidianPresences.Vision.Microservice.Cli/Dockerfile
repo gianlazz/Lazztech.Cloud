@@ -23,6 +23,8 @@ RUN apt-get update -y &&\
     curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 WORKDIR /src
 COPY Lazztech.ObsidianPresences.sln ./
+COPY ["Lazztech.ObsidianPresences.Vision.Microservice.Webapi/Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj", "Lazztech.ObsidianPresences.Vision.Microservice.Webapi/"]
+COPY Lazztech.ObsidianPresences.CloudWebApp/Lazztech.ObsidianPresences.CloudWebApp.csproj Lazztech.ObsidianPresences.CloudWebApp/
 COPY Lazztech.ObsidianPresences.Vision.Microservice.Cli/Lazztech.ObsidianPresences.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresences.Vision.Microservice.Cli/
 COPY Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision/Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision.csproj Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision/
 COPY Lazztech.ObsidianPresences.Vision.Microservice.Domain/Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj Lazztech.ObsidianPresences.Vision.Microservice.Domain/

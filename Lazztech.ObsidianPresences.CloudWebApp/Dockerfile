@@ -12,6 +12,11 @@ ENV ASPNETCORE_URLS=http://+:80
 WORKDIR /src
 COPY Lazztech.ObsidianPresences.sln ./
 COPY Lazztech.ObsidianPresences.CloudWebApp/Lazztech.ObsidianPresences.CloudWebApp.csproj Lazztech.ObsidianPresences.CloudWebApp/
+COPY Lazztech.ObsidianPresences.Vision.Microservice.Cli/Lazztech.ObsidianPresences.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresences.Vision.Microservice.Cli/
+COPY Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision/Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision.csproj Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision/
+COPY Lazztech.ObsidianPresences.Vision.Microservice.Domain/Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj Lazztech.ObsidianPresences.Vision.Microservice.Domain/
+COPY Lazztech.ObsidianPresences.Vision.Microservice.Tests/Lazztech.ObsidianPresences.Vision.Microservice.Tests.csproj Lazztech.ObsidianPresences.Vision.Microservice.Tests/
+COPY docker-compose.dcproj ./
 RUN dotnet restore -nowarn:msb3202,nu1503
 COPY . .
 WORKDIR /src/Lazztech.ObsidianPresences.CloudWebApp
