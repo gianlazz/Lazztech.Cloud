@@ -1475,7 +1475,7 @@ Also I wonder if it could be more flexible to use ngrok to tunnel to the service
 I want to figure out some infrastructer as code, scriptable provisioning deployment and configuring for my lazz.tech domain name. Should I use teraform for this?
 
 ## Monday, August 10, 2018
-#### Sprint 6, Deploying with Azure DevOps CI/CD
+#### Sprint 6, CI/CD
 
 I have to deploy my app. As it is right now, authentication is not really very urgent as there's not really any way to do anything but get the data, there's no creating, deleting or updating. There's also not really any super private data yet either. So now would be an okay time to deploy and setup my CI/CD pipeline. After that I'll make a Webapi project with the included optional authentication which will serve as the application facade rest api for all consuming clients. At that point I can add the rest of the data modifying operations to the rest api behind authentication.
 
@@ -1517,3 +1517,10 @@ Sunday, August 5, 2018
 Sprint 0: Unit Tests & Snapshot Coordinates
 
 Yeah if I look at the cli project dockerfile which is the oldest I can take from that. It has copy statments for each of the projects that the solution needs to build so I'll have to model the other ones after that and I think that will fix it.
+
+## Tuesday, August 11, 2018
+#### Sprint 6, CI/CD
+
+***Switching to self owned Containerized Jenkins Blue Ocean CI/CD***
+
+Okay I'm changing the plan. I don't like the licensing concerns and vendor lock in with Azure DevOps. I want to have full ownership of my CI/CD Pipeline and do that I'll have to use open source software. I'm going to maintian a dockerized jenkins container in this repo. I want to setup YML configurations for the pipelines and try out the new Blue Ocean UI. This way I won't even have to worry about hosting. I can maintain my CI/CD server locally on my laptop with docker. That way I'll just spin up the container when I want or need and can switch later to self hosting the container however I see fit.
