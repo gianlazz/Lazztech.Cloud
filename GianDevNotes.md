@@ -1560,3 +1560,12 @@ Okay so it looks like the other good free/open source CI/CD software is actually
 - https://docs.gitlab.com/omnibus/docker/ GitLab Docker images
 
 Gitlab CI/CD maybe a much simpler answer.
+
+---
+Hmm so I seem to have gotten the docker-compose up working by adding the missing copy statments to all of the dockerfiles foreach project in the solution then also clearing out all of the existing cached images. If I run docker-compose up it works now with minimal warnings.
+
+One of those warnings is:
+`WARNING: Image for service lazztech.obsidianpresences.cloudwebapp was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.`
+
+I think this could be resolved by modifying this line:
+`RUN dotnet restore Lazztech.ObsidianPresences.sln -nowarn:msb3202,nu1503`
