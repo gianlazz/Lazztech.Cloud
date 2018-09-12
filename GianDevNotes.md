@@ -1569,3 +1569,8 @@ One of those warnings is:
 
 I think this could be resolved by modifying this line:
 `RUN dotnet restore Lazztech.ObsidianPresences.sln -nowarn:msb3202,nu1503`
+
+**Jenkins Configuration As Code**
+- https://wiki.jenkins.io/display/JENKINS/Configuration+as+Code+Plugin
+- https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/README.md
+- https://www.praqma.com/stories/jenkins-configuration-as-code/
