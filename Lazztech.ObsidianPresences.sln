@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.CloudWebApp", "Lazztech.ObsidianPresences.CloudWebApp\Lazztech.ObsidianPresences.CloudWebApp.csproj", "{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresences.Vision.Microservice.Webapi", "Lazztech.ObsidianPresences.Vision.Microservice.Webapi\Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj", "{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.Vision.Microservice.Webapi", "Lazztech.ObsidianPresences.Vision.Microservice.Webapi\Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj", "{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
