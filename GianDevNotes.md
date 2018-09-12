@@ -1553,4 +1553,9 @@ http://thesociablegeek.com/node/github-continuous-deployment-to-a-raspberry-pi/
 Also theres this:
 https://pulumi.io/
 
-Okay so it looks like the other good free/open source CI/CD software is actually gitlab. Gitlab uses yml files at the root like TravisCI and CircleCI. I'll stick with jenkins until it doesn't seem to suite my desired needs.
+**Gitlab CI/CD**
+Okay so it looks like the other good free/open source CI/CD software is actually gitlab. Gitlab uses yml files at the root like TravisCI and CircleCI. I'll stick with jenkins until it doesn't seem to suite my desired needs. It looks very much like TravicCI actually.
+- https://www.youtube.com/watch?v=1iXFbchozdY Demo: CI/CD with GitLab
+- https://docs.gitlab.com/omnibus/docker/ GitLab Docker images
+
+Gitlab CI/CD maybe a much simpler answer.
