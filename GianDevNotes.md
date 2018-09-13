@@ -9,6 +9,7 @@
 - **Delete all stopped containers and images** `docker system prune -a`
 - **List docker networks** `docker network ls`
 - **Inspect details about a docker process** `docker inspect "ps id"`
+- **Copy data from docker container virtual volume** `docker cp $ID:/var/jenkins_home`
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -1574,3 +1575,15 @@ I think this could be resolved by modifying this line:
 - https://wiki.jenkins.io/display/JENKINS/Configuration+as+Code+Plugin
 - https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/README.md
 - https://www.praqma.com/stories/jenkins-configuration-as-code/
+
+## Wednesday, August 12, 2018
+#### Sprint 6, CI/CD
+
+- https://www.youtube.com/watch?v=GkGXAPj8wSI Setup Jenkins Blue Ocean with Docker (With .Net Core!)
+- https://github.com/jenkinsci/docker/blob/master/README.md Contains documentation on setting up a conatienr explicit path to save the jenkins configurations. This seems to be the same documentation in the video above.
+- https://hub.docker.com/r/_/jenkins/ This is exaclty the same link.
+
+***Saving Jenkins Docker Container Configration State***
+"NOTE: Avoid using a bind mount from a folder on the host machine into /var/jenkins_home" So it looks like I should not use docker bind mounted explicit paths and instead use virtual volumes? The two options seem to be documented in the links above.
+
+"If your volume is inside a container - you can use `docker cp $ID:/var/jenkins_home` command to extract the data, or other options to find where the volume data is. Note that some symlinks on some OSes may be converted to copies (this can confuse jenkins with lastStableBuild links etc)"
