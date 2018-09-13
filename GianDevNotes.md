@@ -10,6 +10,7 @@
 - **List docker networks** `docker network ls`
 - **Inspect details about a docker process** `docker inspect "ps id"`
 - **Copy data from docker container virtual volume** `docker cp $ID:/var/jenkins_home`
+- **Automatically restart container if it's not running** `docker run INSERT HERE --restart always` https://docs.docker.com/config/containers/start-containers-automatically/
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
