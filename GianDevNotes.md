@@ -11,6 +11,7 @@
 - **Inspect details about a docker process** `docker inspect "ps id"`
 - **Copy data from docker container virtual volume** `docker cp $ID:/var/jenkins_home`
 - **Automatically restart container if it's not running** `docker run INSERT HERE --restart always` https://docs.docker.com/config/containers/start-containers-automatically/
+- **Run in background detateched daemon mode and print id** `docker run -d or --detatch INSERT HERE` https://docs.docker.com/v1.11/engine/reference/commandline/run/
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -1583,8 +1584,31 @@ I think this could be resolved by modifying this line:
 - https://www.youtube.com/watch?v=GkGXAPj8wSI Setup Jenkins Blue Ocean with Docker (With .Net Core!)
 - https://github.com/jenkinsci/docker/blob/master/README.md Contains documentation on setting up a conatienr explicit path to save the jenkins configurations. This seems to be the same documentation in the video above.
 - https://hub.docker.com/r/_/jenkins/ This is exaclty the same link.
+- https://github.com/boxboat/jenkins-demo
+
+Here's the command line argument from the youtube video:
+`docker run -d -p 8080:8080 -p 5000:5000 -v $(pwd):/var/jenkins_home --restart always jenkins:alpine`
+`docker logs -f CONTAINER ID` This is how they seem to get the initial jenkins password in a detatched container
+`ifconfig -a`
+`sudo vi /etc/hosts`
+
+I've added a number of commands to the docker notes section above based on this argument.
 
 ***Saving Jenkins Docker Container Configration State***
 "NOTE: Avoid using a bind mount from a folder on the host machine into /var/jenkins_home" So it looks like I should not use docker bind mounted explicit paths and instead use virtual volumes? The two options seem to be documented in the links above.
 
 "If your volume is inside a container - you can use `docker cp $ID:/var/jenkins_home` command to extract the data, or other options to find where the volume data is. Note that some symlinks on some OSes may be converted to copies (this can confuse jenkins with lastStableBuild links etc)"
+
+https://www.quora.com/What-does-pwd-mean pwd is a system program which just prints current directory, so echo $(pwd) prints that.
+
+Should I set the jenkins container volume to be bind mounted to the git repo? Or will it save a bunch of large plugin binaries? Or maybe it shouldn't even actually be a bind mounted volume at all and a docker virtual volume instead?
+
+Should I expose my locally hosted dockerized jenkins container on the internet? Or just use a vpn? Again with this question, vpn, dynamic dns or localhost tunneling?
+
+- http://get.docker.com
+- http://plugins.jenkins.io/swarm
+- https://wiki.jenkins.io/display/JENKINS/Swarm+Plugin
+
+This video doesn't seem to take advantage of stateless jenkins configuration as code. He installs plugins before the Jenkinsfile can run. Hmm maybe I should still make my own custom Dockerfile to setup my own Jenkins container with any dependencies I may need? Idk or maybe I could script the provisioning of a vm with docker on it? Later possibly.  
+
+- https://www.youtube.com/watch?v=xqxoR7UzF4A Jenkins CD to Docker Swarm (Pt 2 from video above!)
