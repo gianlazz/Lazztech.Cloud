@@ -12,6 +12,7 @@
 - **Copy data from docker container virtual volume** `docker cp $ID:/var/jenkins_home`
 - **Automatically restart container if it's not running** `docker run INSERT HERE --restart always` https://docs.docker.com/config/containers/start-containers-automatically/
 - **Run in background detateched daemon mode so you don't need to keep the terminal open and print id** `docker run -d or --detatch INSERT HERE` https://docs.docker.com/v1.11/engine/reference/commandline/run/
+- **See the container startup stdout in detatched mode** `docker logs CONTAINER_ID`
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -1644,6 +1645,20 @@ docker run \
 #### My own custom docker jenkins blue ocean command to run with bind mount volume to home and always auto restart so that it's always running when you boot up your pc
 ---
 - `docker run -u root -d -p 8888:8080 -p 50000:50000 -v $HOME/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
+
+OR FOR WINDOWS:
+- `docker run -u root -d -p 8888:8080 -p 50000:50000 -v C:\jenkins:/var/jenkins_home -v /var/run/docker.sock:/va
+r/run/docker.sock --restart always jenkinsci/blueocean`
+
+Do this to get the jenkins startup password:
+- `docker logs CONTAINER_ID`
+
+Set Localhost dns mapping host route on linux/unix:
+- `ifconfig -a`
+- `sudo vi /etc/hosts`
+
+For windows host file:
+- https://gist.github.com/zenorocha/18b10a14b2deb214dc4ce43a2d2e2992
 ---
 
 **or multiline for windows:**
@@ -1669,3 +1684,8 @@ agent { docker { …​ } }. Read more about this on the Pipeline Syntax page."
 
 **Accessing the docker jenkins container through terminal:**
 - `docker exec -it jenkins-blueocean bash`
+
+Here's some documentation on setting up a .gitignore to check in your jenkins_home into git:
+- https://gist.github.com/samrocketman/9391439
+- https://gist.github.com/cenkalti/5089392 I think this one is related too
+- https://wiki.jenkins.io/display/JENKINS/SCM+Sync+configuration+plugin
