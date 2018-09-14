@@ -1646,9 +1646,11 @@ docker run \
 ---
 - `docker run -u root -d -p 8888:8080 -p 50000:50000 -v $HOME/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
 
+OR:
+- `docker run -u root -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
+
 OR FOR WINDOWS:
-- `docker run -u root -d -p 8888:8080 -p 50000:50000 -v C:\jenkins:/var/jenkins_home -v /var/run/docker.sock:/va
-r/run/docker.sock --restart always jenkinsci/blueocean`
+- `docker run -u root -d -p 8888:8080 -p 50000:50000 -v C:\jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
 
 Do this to get the jenkins startup password:
 - `docker logs CONTAINER_ID`
@@ -1689,3 +1691,5 @@ Here's some documentation on setting up a .gitignore to check in your jenkins_ho
 - https://gist.github.com/samrocketman/9391439
 - https://gist.github.com/cenkalti/5089392 I think this one is related too
 - https://wiki.jenkins.io/display/JENKINS/SCM+Sync+configuration+plugin
+
+So the auto restart parameter for the jenkins container seems to work just fine however it doesn't seem to maintain the bind mount to the volume on my host machine as it didn't maintain the state after startup.
