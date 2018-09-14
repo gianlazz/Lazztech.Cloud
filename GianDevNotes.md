@@ -11,7 +11,7 @@
 - **Inspect details about a docker process** `docker inspect "ps id"`
 - **Copy data from docker container virtual volume** `docker cp $ID:/var/jenkins_home`
 - **Automatically restart container if it's not running** `docker run INSERT HERE --restart always` https://docs.docker.com/config/containers/start-containers-automatically/
-- **Run in background detateched daemon mode and print id** `docker run -d or --detatch INSERT HERE` https://docs.docker.com/v1.11/engine/reference/commandline/run/
+- **Run in background detateched daemon mode so you don't need to keep the terminal open and print id** `docker run -d or --detatch INSERT HERE` https://docs.docker.com/v1.11/engine/reference/commandline/run/
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -1565,7 +1565,7 @@ Okay so it looks like the other good free/open source CI/CD software is actually
 Gitlab CI/CD maybe a much simpler answer.
 
 ---
-Hmm so I seem to have gotten the docker-compose up working by adding the missing copy statments to all of the dockerfiles foreach project in the solution then also clearing out all of the existing cached images. If I run docker-compose up it works now with minimal warnings.
+Hmm so **I seem to have gotten the docker-compose up working** by adding the missing copy statments to all of the dockerfiles foreach project in the solution then also clearing out all of the existing cached images. If I run docker-compose up it works now with minimal warnings.
 
 One of those warnings is:
 `WARNING: Image for service lazztech.obsidianpresences.cloudwebapp was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.`
@@ -1594,7 +1594,7 @@ Here's the command line argument from the youtube video:
 
 I've added a number of commands to the docker notes section above based on this argument.
 
-***Saving Jenkins Docker Container Configration State***
+***Saving Jenkins Docker Container Configuration State***
 "NOTE: Avoid using a bind mount from a folder on the host machine into /var/jenkins_home" So it looks like I should not use docker bind mounted explicit paths and instead use virtual volumes? The two options seem to be documented in the links above.
 
 "If your volume is inside a container - you can use `docker cp $ID:/var/jenkins_home` command to extract the data, or other options to find where the volume data is. Note that some symlinks on some OSes may be converted to copies (this can confuse jenkins with lastStableBuild links etc)"
@@ -1612,3 +1612,60 @@ Should I expose my locally hosted dockerized jenkins container on the internet? 
 This video doesn't seem to take advantage of stateless jenkins configuration as code. He installs plugins before the Jenkinsfile can run. Hmm maybe I should still make my own custom Dockerfile to setup my own Jenkins container with any dependencies I may need? Idk or maybe I could script the provisioning of a vm with docker on it? Later possibly.  
 
 - https://www.youtube.com/watch?v=xqxoR7UzF4A Jenkins CD to Docker Swarm (Pt 2 from video above!)
+
+## Thursday, August 13, 2018
+#### Sprint 6, CI/CD
+
+"Ensure that /your/home is accessible by the jenkins user in container (jenkins user - uid 1000) or use -u some_other_user parameter with docker run"
+
+In the same updated jenkins docker README it says: "NOTE: Avoid using a bind mount from a folder on the host machine" then "If you bind mount in a volume - you can simply back up that directory (which is jenkins_home) at any time. This is highly recommended."...
+
+I'll look at the jenkins blue ocean documentation and see if there's another take on which to do... I want to bind mount it. Also how can I configure the jenkins_home with the yml I was reading about? I want to check it into my repo.
+
+**This has more documentation on how to run the jenkins blue ocean docker container.**
+- https://jenkins.io/doc/book/installing/#docker ***VERY HELPFUL AND THOROUGH***
+```
+docker run \
+  -u root \
+  --rm \
+  -d \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v jenkins-data:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  jenkinsci/blueocean
+```
+**or in one line:**
+- `docker run -u root --rm -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsci/blueocean`
+
+**or my own spin with auto restart:**
+- `docker run -u root -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
+
+#### My own custom docker jenkins blue ocean command to run with bind mount volume to home and always auto restart so that it's always running when you boot up your pc
+---
+- `docker run -u root -d -p 8888:8080 -p 50000:50000 -v $HOME/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
+---
+
+**or multiline for windows:**
+```
+docker run ^
+  -u root ^
+  --rm ^
+  -d ^
+  -p 8080:8080 ^
+  -p 50000:50000 ^
+  -v jenkins-data:/var/jenkins_home ^
+  -v /var/run/docker.sock:/var/run/docker.sock ^
+  jenkinsci/blueocean
+```
+
+`-p 5000` is optional for if you want to setup other build agents like on a cluster.
+
+"Instead of mapping the `/var/jenkins_home` directory to a Docker volume, you could also map this directory to one on your machine’s local file system. For example, specifying the option
+`-v $HOME/jenkins:/var/jenkins_home` would map the container’s `/var/jenkins_home` directory to the jenkins subdirectory within the $HOME directory on your local machine, which would typically be `/Users/<your-username>/jenkins or /home/<your-username>/jenkins`."
+
+"`/var/run/docker.sock`` represents the Unix-based socket through which the Docker daemon listens on. This mapping allows the jenkinsci/blueocean container to communicate with the Docker daemon, which is required if the `jenkinsci/blueocean` container needs to instantiate other Docker containers. This option is necessary if you run declarative Pipelines whose syntax contains the agent section with the docker parameter - i.e.
+agent { docker { …​ } }. Read more about this on the Pipeline Syntax page."
+
+**Accessing the docker jenkins container through terminal:**
+- `docker exec -it jenkins-blueocean bash`
