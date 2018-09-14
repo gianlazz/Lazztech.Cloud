@@ -1693,3 +1693,5 @@ Here's some documentation on setting up a .gitignore to check in your jenkins_ho
 - https://wiki.jenkins.io/display/JENKINS/SCM+Sync+configuration+plugin
 
 So the auto restart parameter for the jenkins container seems to work just fine however it doesn't seem to maintain the bind mount to the volume on my host machine as it didn't maintain the state after startup.
+
+I think I may need to make a dockerfile with all of the configured build dependencies for the project I'm working on. It'll probably need to have docker installed in it? Or maybe also just .net core and msbuild?
