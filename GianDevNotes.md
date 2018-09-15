@@ -1775,3 +1775,9 @@ Jenkins CD part of the pipeline should?:
 - publish the docker-compose up images?
 - build the docker-compose for an arm processor?
 - ssh into my rpi cluster and deploy?
+
+The official dotnetcore 2.1 docker image has notes about which tag to use for arm processors:
+https://hub.docker.com/r/microsoft/dotnet/
+
+Looks like:
+`microsoft/dotnet:2.1.402-sdk-stretch-arm32v7`
