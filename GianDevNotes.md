@@ -1805,3 +1805,12 @@ docker exec app-dev-dotnet app-test-unit
 
 The Continous Deployment shell scripts are here:
 - https://github.com/boxboat/jenkins-demo/tree/develop/cd
+
+It uses a tool called Vegeta for load stress testing which could be useful (HTTP load testing tool and library. It's over 9000!) It should be easy enough to implement since I have a good example right here.:
+- https://github.com/tsenart/vegeta
+- https://medium.com/@carlosaugustosouzalima/do-you-need-to-run-load-tests-vegeta-to-the-rescue-7e8818127a65
+- https://thisdata.com/blog/load-testing-api-interfaces-with-go-and-vegeta/
+
+It could be nice to include this kind of stress testing and it's plotting output as a report on builds to see what effect my changes may make on the load tolerance of my software infrastructure. It would clue me in right away.
+
+I wonder if for my project I should have a full second set of docker-compose and dockerfiles just for arm cluster deployment? Like docker-compose.rpi.yml and dockerfile.rpi for example? I think that would still work but I also wonder if having the naming for these files changed would cause problems; that or possibly having duplicates could be an issue?
