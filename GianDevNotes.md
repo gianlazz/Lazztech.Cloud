@@ -13,6 +13,7 @@
 - **Automatically restart container if it's not running** `docker run INSERT HERE --restart always` https://docs.docker.com/config/containers/start-containers-automatically/
 - **Run in background detateched daemon mode so you don't need to keep the terminal open and print id** `docker run -d or --detatch INSERT HERE` https://docs.docker.com/v1.11/engine/reference/commandline/run/
 - **See the container startup stdout in detatched mode** `docker logs CONTAINER_ID`
+- **Exit the current container while keeping it running** `Ctrl+p, Ctrl+q`
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -1646,7 +1647,7 @@ docker run \
 ---
 - `docker run -u root -d -p 8888:8080 -p 50000:50000 -v $HOME/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
 
-OR:
+OR WITHOUT BIND MOUNT:
 - `docker run -u root -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
 
 OR FOR WINDOWS:
@@ -1695,3 +1696,82 @@ Here's some documentation on setting up a .gitignore to check in your jenkins_ho
 So the auto restart parameter for the jenkins container seems to work just fine however it doesn't seem to maintain the bind mount to the volume on my host machine as it didn't maintain the state after startup.
 
 I think I may need to make a dockerfile with all of the configured build dependencies for the project I'm working on. It'll probably need to have docker installed in it? Or maybe also just .net core and msbuild?
+Isn't there a way to open an interactive terminal with a docker contianer, execute commands then save the changes into a dockerfile? I need to sort the jenkins dependencies install for building my projects then also learn more about deploying to docker-swarm.
+
+## Friday, August 13, 2018
+#### Sprint 6, CI/CD
+
+Setting up .net core dependencies in the Jenkins container:
+- https://docs.docker.com/engine/reference/commandline/commit/
+- https://stackoverflow.com/questions/19585028/i-lose-my-data-when-the-container-exits
+- https://hackernoon.com/to-commit-or-not-to-commit-5ab72f9a466e
+
+If I commit changes in a container does it save a dockerfile somewhere? Or can I generate a dockerfile from my commited changes? If so that could be really practical for setting up containers instead of just retrying with new changes in a dockerfile everytime.
+
+I see nothing on being able to save commited container changes to a dockerfile so it looks like the only way is to not commit container changes and just use a dockerfile in the first place.
+
+It should be avoided but you can export or save a container or image binary for re-runnig:
+- https://tuhrig.de/difference-between-save-and-export-in-docker/
+
+However continue using dockerfiles so that you can check in your containers state and just rebuild from each change that way your container is repeatable.
+
+So I should probably make my own jenkins dockerfile to have it pre-configured with all of my build dependencies? Or do I just use another container image from dockerhub with all of the build dependencies and specify that in my pipeline?
+
+Containerized Jenkins Blue Ocean Pipeline for .NET Core related links:
+- https://stackoverflow.com/questions/48104954/adding-net-core-to-docker-container-with-jenkins
+
+However installing ngrok inside the jenkins dockerfile container would let me setup webhooks from my git repo right?
+
+Or I can setup the pipeline to poll the repo for changes hourly.
+
+Also should I be writing my build steps as shell scripts? That seems to be what everyone else is doing.
+
+Here's an example build shell script: https://www.pgs-soft.com/blog/cross-platform-application-using-net-core-jenkins-docker/
+```
+dotnet restore
+dotnet publish -c release
+docker build -t dockerhubuser/simplecoreapp:v0.${BUILD_NUMBER} .
+docker login -u dockerhubuser -p dockerhubpassword -e user@domain.com
+docker push dockerhubuser/simplecoreapp:v0.${BUILD_NUMBER}
+```
+
+Here's an example of the official dotnetcore 2.0 dockerfile:
+https://github.com/dotnet/dotnet-docker/blob/1e0a8502922a4a836558e08df1379ce0032988f6/2.0/sdk/stretch/amd64/Dockerfile
+
+Here's a dotnetcore install shell script:
+https://github.com/dotnet/cli/blob/master/scripts/obtain/dotnet-install.sh
+
+Here's a set of commands to run that dotnetcore install shell script:
+Install the latest .NET Core 2.0:
+```
+sudo apt install libunwind8 gettext apt-transport-https
+curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 2.0
+```
+Or LTS version of .NET Core
+```
+sudo apt install libunwind8 gettext apt-transport-https
+curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS
+```
+
+However I should probably just use the official microsoft dotnetcore docker image to build the project right? But what if I want both regular dotnet and aspnet core projects in the solution? Because their's the two different images? Which if either do I use to build the solution? 
+`microsoft/aspnetcore-build`/`microsoft/dotnet:2.1-sdk` vs `microsoft/dotnet:2.1-sdk`
+
+https://hub.docker.com/r/microsoft/aspnetcore-build/
+
+Well it looks like the aspnetcore-build image uses the microsoft/dotnet as the base however it looks like everything builds with `microsoft/dotnet:2.1-sdk`. Also I think the `microsoft/aspnetcore-build` image may be depricated which I learned about when vs4mac's add docker dockerfile wouldn't work. Yeah it's from the change from 2.0 to 2.1. 
+
+So I use `microsoft/dotnet:2.1-sdk` to build my solution in jenkins pipeline. I think so. 
+
+Also I see there's a docker plugin for jenkins?
+
+Jenkins CI part of the pipeline should:
+- restore packages
+- build solution
+- run unit tests
+- run docker-compose up
+- delete everything for the next build
+
+Jenkins CD part of the pipeline should?:
+- publish the docker-compose up images?
+- build the docker-compose for an arm processor?
+- ssh into my rpi cluster and deploy?
