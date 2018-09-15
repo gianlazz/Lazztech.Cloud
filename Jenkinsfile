@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'microsoft/dotnet:2.1-sdk'
+    }
+
+  }
   stages {
     stage('Initialize') {
       steps {
