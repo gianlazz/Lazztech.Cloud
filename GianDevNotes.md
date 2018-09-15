@@ -1781,3 +1781,27 @@ Looks like: `microsoft/dotnet:2.1.402-sdk-stretch-arm32v7`
 - https://hub.docker.com/r/microsoft/dotnet/
 **Official documentation on dotnetcore image on Raspberry Pi:**
 https://github.com/dotnet/dotnet-docker/blob/master/samples/dotnetapp/dotnet-docker-arm32.md
+
+https://youtu.be/GkGXAPj8wSI?t=1003 This is the part of the video from before where he starts talking about the .netcore build pipeline in blue ocean. He has shell scripts for each build step in the pipeline including:
+= Build docker-compose
+- Run Unit tests in docker
+- Run functional tests in docker
+- Run stress test
+- Tear down docker and cleanup
+
+The Continous Integrations shell scripts can be found here:
+- https://github.com/boxboat/jenkins-demo/tree/develop/ci
+- https://github.com/boxboat/jenkins-demo/tree/develop/ci/test
+
+**For example:**
+```
+#!/usr/bin/env bash
+cd $(dirname $0)
+
+set -e
+
+docker exec app-dev-dotnet app-test-unit
+```
+
+The Continous Deployment shell scripts are here:
+- https://github.com/boxboat/jenkins-demo/tree/develop/cd
