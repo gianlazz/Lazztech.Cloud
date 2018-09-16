@@ -1814,3 +1814,20 @@ It uses a tool called Vegeta for load stress testing which could be useful (HTTP
 It could be nice to include this kind of stress testing and it's plotting output as a report on builds to see what effect my changes may make on the load tolerance of my software infrastructure. It would clue me in right away.
 
 I wonder if for my project I should have a full second set of docker-compose and dockerfiles just for arm cluster deployment? Like docker-compose.rpi.yml and dockerfile.rpi for example? I think that would still work but I also wonder if having the naming for these files changed would cause problems; that or possibly having duplicates could be an issue?
+
+## Saturday, August 14, 2018
+#### Sprint 6, CI/CD
+***Got the nfc implant this day.***
+
+Just opened up an interactive terminal with the jenkins container and confirmed that it does have docker installed in it so I ca go ahead and just right my shell build scripts to take advantage of that without any extra work.
+
+## Sunday, August 15, 2018
+#### Sprint 6, CI/CD
+
+Setting up the build shell scripts.
+- https://www.youtube.com/watch?v=v-F3YLd6oMw Shell Scripting Crash Course - Beginner Level
+
+Running dotnet core xunit tests in command line:
+- https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test?tabs=netcore21
+- https://xunit.github.io/docs/getting-started-dotnet-core
+- https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test
