@@ -1890,3 +1890,8 @@ error MSB4236: The SDK 'Microsoft.Docker.Sdk' specified could not be found.
 error MSB4022: The result "" of evaluating the value "$(DockerBuildTasksAssembly)" of the "AssemblyFile" attribute in element is not valid."
 
 Or, you can run `dotnet sln MySolution.sln remove docker-compose.dcproj` for the ci-cd build. Stupid but that should work fine too. I don't think that will cause any issue with the `docker-compose up` part of the ci-cd pipeline either so I'm going to go ahead and do that. I'll have to be sure to re-add it though.
+
+So just adding a shell script command to remove the .dcproj from the solution seems to work. 
+
+Now I'm runnin into this error:
+`error : The current .NET SDK does not support targeting .NET Core 2.1.`
