@@ -1831,3 +1831,17 @@ Running dotnet core xunit tests in command line:
 - https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test?tabs=netcore21
 - https://xunit.github.io/docs/getting-started-dotnet-core
 - https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test
+
+I"m going to enable the linux subsystem for windows so that I can run these shell scripts while I develop them.
+- https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
+Installed Ubuntu.
+
+Installed Hyper Terminal because I like it.
+- https://hyper.is/
+
+Configured with this:
+- https://daverupert.com/2017/03/my-bash-on-windows-developer-environment/
+
+Used this to customize it:
+- http://ezprompt.net/
