@@ -1895,3 +1895,5 @@ So just adding a shell script command to remove the .dcproj from the solution se
 
 Now I'm runnin into this error:
 `error : The current .NET SDK does not support targeting .NET Core 2.1.`
+
+Also something seems to have happened to my jenkins docker container's volume? It's lost all of it's configurations... wtf. Hmm I see multiple jenkins docker container processes and somehow it's been misconfigured to use the docker `jenkins-data` volume; which is still there after checking with `docker volume ls`.
