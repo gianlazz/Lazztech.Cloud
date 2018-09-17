@@ -1908,3 +1908,10 @@ BTW, here's the command example to make a shell script executable:
 ```
 chmod +x prebuild-remove-dcproj.sh
 ```
+
+I've hit some kind of permissions error with my Jenkins build pipeline:
+```
+./ci-cd/prebuild-remove-dcproj.sh: Permission denied
+
+script returned exit code 126
+```
