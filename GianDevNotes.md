@@ -1845,3 +1845,48 @@ Configured with this:
 
 Used this to customize it:
 - http://ezprompt.net/
+
+Install .NET Core SDK on Linux Ubuntu 16.04
+- https://www.microsoft.com/net/download/linux-package-manager/ubuntu16-04/sdk-current
+
+Installed dotnet core on linux with:
+```
+wget -q https://dot.net/v1/dotnet-install.sh
+./dotnet-install.sh -c Current
+rm dotnet-install.sh
+```
+
+Having issues installing dotnetcore on the linux subsystem for windows:
+- https://github.com/dotnet/core-setup/issues/4049
+
+Running this from the github issues link above fixed it:
+```
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main" > /etc/apt/sources.list.d/dotnetdev.list'
+
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install dotnet-sdk-2.1.105
+```
+
+My build-restore.sh script is coming along but I've got an error from running dotnet restore: `/mnt/c/Users/Gian Lazzarini/source/repos/Lazztech.ObsidianPresences/docker-compose.dcproj : error MSB4236: The SDK 'Microsoft.Docker.Sdk' specified could not be found.`
+
+https://github.com/dotnet/cli/issues/6178
+
+"This is an SDK that ships only with VS. It is not supported in the CLI"
+Wow, so yeah this is a real issue because windows hasn't opensourced it's dotnet docker support so the decided way for now is to copy and paste the dependency from a pc with vs2017 installed... That's even how mono did it... Wtf microsoft.
+
+Here's the fix:
+- https://github.com/dotnet/cli/issues/6178#issuecomment-330864290
+"Just to summarize the steps I had to perform to make it work on Windows and Linux (Ubuntu):
+
+Copy the Microsoft.Docker.Sdk folder from C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Sdks (Only the Sdk subfolder. Do not copy build and tools subfolders).
+Then paste it on C:\Program Files\dotnet\sdk\2.0.0\Sdks on Windows or /usr/share/dotnet/sdk/2.0.0./Sdks on Linux (Ubuntu)
+Then dotnet build SolutionName.sln will work fine.
+These steps will fix both errors:
+
+error MSB4236: The SDK 'Microsoft.Docker.Sdk' specified could not be found.
+error MSB4022: The result "" of evaluating the value "$(DockerBuildTasksAssembly)" of the "AssemblyFile" attribute in element is not valid."
+
+Or, you can run `dotnet sln MySolution.sln remove docker-compose.dcproj` for the ci-cd build. Stupid but that should work fine too. I don't think that will cause any issue with the `docker-compose up` part of the ci-cd pipeline either so I'm going to go ahead and do that. I'll have to be sure to re-add it though.
