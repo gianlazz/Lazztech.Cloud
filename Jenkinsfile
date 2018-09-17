@@ -6,21 +6,19 @@ pipeline {
 
   }
   stages {
-    stage('Initialize') {
+    stage('Remove CLI breaking .dcproj') {
       steps {
-        echo 'Setting up pipeline.'
+        sh './ci-cd/prebuild-remove-dcproj.sh'
+      }
+    }
+    stage('Restore and build') {
+      steps {
+        sh './ci-cd/restore-and-build.sh'
       }
     }
     stage('Unit Tests') {
       steps {
-        sh ''': \'
-#!/usr/bin/env bash
-cd $(dirname $0)
-
-set -e
-
-docker exec app-dev-dotnet app-test-unit
-\''''
+        echo 'Placeholder for unit tests'
       }
     }
   }
