@@ -6,8 +6,8 @@ echo "Running dotnet restore."
 dotnet restore ../Lazztech.ObsidianPresences.sln
 echo "Running dotnet build."
 dotnet build ../Lazztech.ObsidianPresences.sln
-echo "Re-adding CLI breaking .dcproj to the solution."
-dotnet sln ../Lazztech.ObsidianPresences.sln add ../docker-compose.dcproj
+#echo "Re-adding CLI breaking .dcproj to the solution."
+#dotnet sln ../Lazztech.ObsidianPresences.sln add ../docker-compose.dcproj
 
 #dotnet publish -c release
 #docker build -t dockerhubuser/simplecoreapp:v0.${BUILD_NUMBER} .

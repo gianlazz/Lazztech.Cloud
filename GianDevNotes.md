@@ -1897,3 +1897,14 @@ Now I'm runnin into this error:
 `error : The current .NET SDK does not support targeting .NET Core 2.1.`
 
 Also something seems to have happened to my jenkins docker container's volume? It's lost all of it's configurations... wtf. Hmm I see multiple jenkins docker container processes and somehow it's been misconfigured to use the docker `jenkins-data` volume; which is still there after checking with `docker volume ls`.
+
+I was able to fix the jenkins container by stopping all jenkins containers and removing them. After that I re-ran
+```
+docker run -u root -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean
+```
+This worked since the jenkins-data volume is still there.
+
+BTW, here's the command example to make a shell script executable:
+```
+chmod +x prebuild-remove-dcproj.sh
+```
