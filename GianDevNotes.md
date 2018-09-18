@@ -1954,3 +1954,7 @@ Fixed directory issues with cd'ing in to the root of the repo:
 - `cd ./$(git rev-parse --show-cdup)`
 
 The build now works and passes!
+
+Jenkins pipeline Unit testing build shell script script worked but throws this error:
+```
+Make sure test project has a nuget reference of package "Microsoft.NET.Test.Sdk" and framework version settings are appropriate. Rerun with /diag option to diagnose further.```
