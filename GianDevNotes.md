@@ -1915,3 +1915,7 @@ I've hit some kind of permissions error with my Jenkins build pipeline:
 
 script returned exit code 126
 ```
+
+## Monday, August 16, 2018
+#### Sprint 7, CI/CD Shell Scripts
+
