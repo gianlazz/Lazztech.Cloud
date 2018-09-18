@@ -23,7 +23,7 @@ pipeline {
     }
     stage('Unit Tests') {
       steps {
-        echo 'unit tests here'
+        sh './ci-cd/run-unit-tests.sh'
       }
     }
   }
