@@ -6,19 +6,24 @@ pipeline {
 
   }
   stages {
-    stage('Remove CLI breaking .dcproj') {
+    stage('cd to Git Root') {
+      steps {
+        sh './ci-cd/cd-to-repo-root.sh'
+      }
+    }
+    stage('Remove .dcproj') {
       steps {
         sh './ci-cd/prebuild-remove-dcproj.sh'
       }
     }
-    stage('Restore and build') {
+    stage('Restore and Build') {
       steps {
         sh './ci-cd/restore-and-build.sh'
       }
     }
     stage('Unit Tests') {
       steps {
-        echo 'Placeholder for unit tests'
+        echo 'unit tests here'
       }
     }
   }
