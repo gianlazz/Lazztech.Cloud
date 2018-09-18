@@ -1929,3 +1929,15 @@ Recursively make the entire directory executable:
 - `chmod --recursive a+rwx /ci-cd/`
 
 Do I have to make the scripts executable every time as part of the build process or can I do it then push the changes to the repo? Or is this executable permission only applicable to local machine users?
+- https://stackoverflow.com/questions/3207728/retaining-file-permissions-with-git
+- https://stackoverflow.com/questions/40978921/how-to-add-chmod-permissions-to-file-in-git/40979016
+
+It looks like you can get git file permission changes checked into git with this following command:
+- `git update-index --chmod=+x check_services.sh`
+
+This can also be maintained with another tool called `git-cache-meta`.
+
+So could I use a combination of the two commands to check into git recursive execution permissions for a whole folder?
+- `git update-index --chmod --recursive a+rwx /ci-cd/`
+
+No that didn't seem to work. I'll just run the individual git update-index permission modifier above.
