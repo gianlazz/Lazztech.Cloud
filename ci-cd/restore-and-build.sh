@@ -3,9 +3,9 @@
 #echo "Removing CLI breaking .dcproj from solution."
 #dotnet sln ../Lazztech.ObsidianPresences.sln remove ../docker-compose.dcproj
 echo "Running dotnet restore."
-dotnet restore ../Lazztech.ObsidianPresences.sln
+dotnet restore Lazztech.ObsidianPresences.sln
 echo "Running dotnet build."
-dotnet build ../Lazztech.ObsidianPresences.sln
+dotnet build Lazztech.ObsidianPresences.sln
 #echo "Re-adding CLI breaking .dcproj to the solution."
 #dotnet sln ../Lazztech.ObsidianPresences.sln add ../docker-compose.dcproj
 

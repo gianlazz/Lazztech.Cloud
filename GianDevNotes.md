@@ -1941,3 +1941,11 @@ So could I use a combination of the two commands to check into git recursive exe
 - `git update-index --chmod --recursive a+rwx /ci-cd/`
 
 No that didn't seem to work. I'll just run the individual git update-index permission modifier above.
+
+The changes above worked to solve the permissions error.
+
+Now I'm having trouble with the directory paths:
+- ```Could not find solution or directory `../Lazztech.ObsidianPresences.sln`.```
+
+Setting the git repo root as the console root will make this all a lot easier on the shell scripts.
+- https://stackoverflow.com/questions/957928/is-there-a-way-to-get-the-git-root-directory-in-one-command
