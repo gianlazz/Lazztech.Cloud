@@ -1919,3 +1919,13 @@ script returned exit code 126
 ## Monday, August 16, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
+Resolving jenkins shell script permissions error:
+- https://stackoverflow.com/questions/26858599/build-failure-while-running-shell-command-from-jenkins
+- https://stackoverflow.com/questions/47191469/jenkinsfile-permission-denied-when-running-sh-step-in-docker-container
+- https://stackoverflow.com/questions/46766121/permission-denied-error-jenkins-shell-script
+- https://aggarwalarpit.wordpress.com/2017/01/18/permission-denied-executing-shell-script-on-remote-host-using-ssh-jenkins/
+
+Recursively make the entire directory executable:
+- `chmod --recursive a+rwx /ci-cd/`
+
+Do I have to make the scripts executable every time as part of the build process or can I do it then push the changes to the repo? Or is this executable permission only applicable to local machine users?
