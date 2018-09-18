@@ -1949,3 +1949,8 @@ Now I'm having trouble with the directory paths:
 
 Setting the git repo root as the console root will make this all a lot easier on the shell scripts.
 - https://stackoverflow.com/questions/957928/is-there-a-way-to-get-the-git-root-directory-in-one-command
+
+Fixed directory issues with cd'ing in to the root of the repo:
+- `cd ./$(git rev-parse --show-cdup)`
+
+The build now works and passes!
