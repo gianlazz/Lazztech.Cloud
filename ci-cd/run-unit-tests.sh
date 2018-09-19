@@ -1,4 +1,4 @@
 #! /bin/bash
 
 echo "Running unit tests."
-dotnet test Lazztech.ObsidianPresences.sln
+dotnet test Lazztech.ObsidianPresences.Vision.Microservice.Tests
