@@ -14,6 +14,7 @@
 - **Run in background detateched daemon mode so you don't need to keep the terminal open and print id** `docker run -d or --detatch INSERT HERE` https://docs.docker.com/v1.11/engine/reference/commandline/run/
 - **See the container startup stdout in detatched mode** `docker logs CONTAINER_ID`
 - **Exit the current container while keeping it running** `Ctrl+p, Ctrl+q`
+- **Run Jenkins** `docker run -u root -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -1916,7 +1917,7 @@ I've hit some kind of permissions error with my Jenkins build pipeline:
 script returned exit code 126
 ```
 
-## Monday, August 16, 2018
+## Monday, August 17, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 Resolving jenkins shell script permissions error:
@@ -1957,4 +1958,7 @@ The build now works and passes!
 
 Jenkins pipeline Unit testing build shell script script worked but throws this error:
 ```
-Make sure test project has a nuget reference of package "Microsoft.NET.Test.Sdk" and framework version settings are appropriate. Rerun with /diag option to diagnose further.```
+Make sure test project has a nuget reference of package "Microsoft.NET.Test.Sdk" and framework version settings are appropriate. Rerun with /diag option to diagnose further.```## Tuesday, August 18, 2018
+#### Sprint 7, CI/CD Shell Scripts
+
+Oh so it looks like it actually did run my unit tests sucessfully but it also ran everyother project as if it was a test and that's why it throws an error. So just running `dotnet test` on just the test project path will probably fix it.
