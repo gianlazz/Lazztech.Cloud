@@ -1973,7 +1973,7 @@ Remaining CI/CD Shell Scripts:
 
 Okay so the build agent docker image that I'm using doesn't have docker or docker-compose installed in it. I may have to make my own custom build image then? Or maybe I'm doing this wrong? This is a lot of nested containers... It's probably still right though.
 
-`./ci-cd/docker-compose-up.sh: line 3: docker-compose: command not found`Making a new docker image with a dockerfile in ci-cd/. It starts with the `microsoft/dotnet:2.1-sdk` image and installs docker. It's called `gianlazzarini/lazztech_cicd_build`I did so with the following commands:```docker build .docker tag lazztech_cicd gianlazzarini/lazztech_cicd_builddocker push gianlazzarini/lazztech_cicd_build```I'll change my jenkins pipeline build agent to this docker image. Then my docker-compose-up.sh should work.It can be seen at:- https://hub.docker.com/r/gianlazzarini/lazztech_cicd_build/
+`./ci-cd/docker-compose-up.sh: line 3: docker-compose: command not found`Making a new docker image with a dockerfile in ci-cd/. It starts with the `microsoft/dotnet:2.1-sdk` image and installs docker. It's called `gianlazzarini/lazztech_cicd_build`I did so with the following commands:```docker build -t gianlazzarini/lazztech_cicd_build .docker push gianlazzarini/lazztech_cicd_build```I'll change my jenkins pipeline build agent to this docker image. Then my docker-compose-up.sh should work.It can be seen at:- https://hub.docker.com/r/gianlazzarini/lazztech_cicd_build/
 
 Okay so I can open an interactive terminal with this image with:
 ```
@@ -1981,3 +1981,6 @@ docker run -it gianlazzarini/lazztech_cicd_build bash
 ```
 
 I then confirmed that docker is installed however docker-compose apparently isn't included with the docker install.
+
+Okay so I got docker-compose-up.sh working with my custom docker build agent in the jenkins pipeline however now I have another error:
+`Named volume "C:\face_recognition:/face/" is used in service "lazztech.ObsidianPresences.vision.microservice.cli" but no declaration was found in the volumes section.`I think I'm going to have to switch from bind mount volumes to docker volumes for this to work?
