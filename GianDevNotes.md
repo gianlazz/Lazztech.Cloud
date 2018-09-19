@@ -1962,3 +1962,11 @@ Make sure test project has a nuget reference of package "Microsoft.NET.Test.Sdk"
 #### Sprint 7, CI/CD Shell Scripts
 
 Oh so it looks like it actually did run my unit tests sucessfully but it also ran everyother project as if it was a test and that's why it throws an error. So just running `dotnet test` on just the test project path will probably fix it.
+
+Changing the path in the shell script was sucessful and the all of the build step shell scripts are working now.
+
+Remaining CI/CD Shell Scripts:
+- Run docker-compose up
+- Stress test with vegeta
+- Connect to deployment server vpn
+- Deploy docker-compose up on rpi cluster
