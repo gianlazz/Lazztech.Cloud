@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'microsoft/dotnet:2.1-sdk'
+      image 'gianlazzarini/lazztech_cicd_build'
     }
 
   }
