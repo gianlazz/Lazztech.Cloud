@@ -1970,3 +1970,7 @@ Remaining CI/CD Shell Scripts:
 - Stress test with vegeta
 - Connect to deployment server vpn
 - Deploy docker-compose up on rpi cluster
+
+Okay so the build agent docker image that I'm using doesn't have docker or docker-compose installed in it. I may have to make my own custom build image then? Or maybe I'm doing this wrong? This is a lot of nested containers... It's probably still right though.
+
+`./ci-cd/docker-compose-up.sh: line 3: docker-compose: command not found`
