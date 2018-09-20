@@ -2028,3 +2028,6 @@ I think this is because I once ran docker-compose on my host machine with --rest
 Also I wonder if I can fix the jenkins container un-reliability issue by making it so that there's always just one container instead of it stopping them and starting new ones without deleting the old ones.
 
 Yeah so stopping and deleting any containers from the docker compose seems to have fixed the jenkins docker-compose-up.sh build step. However it doesn't quite, it actually launches the site and is viewable from my host machine. It then just sits. I want it run the docker-compose to see if it fails then stop and continue.
+
+docker-compose run may be what I actually need. It looks like it allows me to over-ride commands and doesn't respect the port mapping by default so that there isn't any port collisions.
+- https://stackoverflow.com/questions/33066528/should-i-use-docker-compose-up-or-run
