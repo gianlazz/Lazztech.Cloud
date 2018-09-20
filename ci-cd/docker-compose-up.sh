@@ -1,3 +1,3 @@
 #! /bin/bash
 
-docker-compose run
+docker-compose run -d
