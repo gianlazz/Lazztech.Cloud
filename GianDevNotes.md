@@ -2031,3 +2031,7 @@ Yeah so stopping and deleting any containers from the docker compose seems to ha
 
 docker-compose run may be what I actually need. It looks like it allows me to over-ride commands and doesn't respect the port mapping by default so that there isn't any port collisions.
 - https://stackoverflow.com/questions/33066528/should-i-use-docker-compose-up-or-run
+
+Hmm I think I need to learn more about docker-compose run commands. Also I see now that it looks like there isn't actually any nesting of the containers. It all seems to be pretty flat with each just using them by name. So if jenkins container launches new containers then their accesible from my host machine like any other.
+
+So that means that I'm going to have to include in the jenkins pipeline shell scripts a command to tear down / stop the docker-compose. 
