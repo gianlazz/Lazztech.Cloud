@@ -1994,3 +1994,37 @@ I'm having trouble getting the jenkins container to continue reliably after rest
 
 I've run into this error on jenkins after changing the volumes in the docker-compose:
 `Named volume "lazztech-cloud-data:/face:rw" is used in service "lazztech.obsidianpresences.vision.microservice.webapi" but no declaration was found in the volumes section.`Okay so in a docker-compose if I want to use a "named volume" / "docker" volume then I can't just put the volume in the service I also have to have a specific standalone volume section in the docker-compose.- https://github.com/docker/compose/issues/3073- https://docs.docker.com/compose/compose-file/#volume-configuration-reference
+
+Btw here's a really nice look command line based time tracker:
+https://github.com/TailorDev/Watson
+
+After the docker-compose volume fixes it now throws an error about the network driver already being used:
+```
+[Lazztech_master-CIWHUKJKFYLO2NQPN53KIQKP7FZZ44N6BQIA7BOYBHGR6MRUKBYA] Running shell script
+
++ ./ci-cd/docker-compose-up.sh
+
+Creating network "lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_default" with the default driver
+
+Creating volume "lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech-cloud-data" with default driver
+
+Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 ... 
+
+Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 ... error
+
+ERROR: for lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1  Cannot start service lazztech.obsidianpresences.vision.microservice.webapi: driver failed programming external connectivity on endpoint lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 (a43cbfddf15b13aa5cc20913bc74978cc410c29fc43caaf7464d0136c6a52bca): Bind for 0.0.0.0:8081 failed: port is already allocated
+
+
+
+ERROR: for lazztech.obsidianpresences.vision.microservice.webapi  Cannot start service lazztech.obsidianpresences.vision.microservice.webapi: driver failed programming external connectivity on endpoint lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 (a43cbfddf15b13aa5cc20913bc74978cc410c29fc43caaf7464d0136c6a52bca): Bind for 0.0.0.0:8081 failed: port is already allocated
+
+Encountered errors while bringing up the project.
+
+script returned exit code 1
+```
+
+I think this is because I once ran docker-compose on my host machine with --restart always so I think those are conflicting. I'll stop them and see if that fixes it.
+
+Also I wonder if I can fix the jenkins container un-reliability issue by making it so that there's always just one container instead of it stopping them and starting new ones without deleting the old ones.
+
+Yeah so stopping and deleting any containers from the docker compose seems to have fixed the jenkins docker-compose-up.sh build step. However it doesn't quite, it actually launches the site and is viewable from my host machine. It then just sits. I want it run the docker-compose to see if it fails then stop and continue.
