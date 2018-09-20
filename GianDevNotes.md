@@ -1989,3 +1989,8 @@ Okay so I got docker-compose-up.sh working with my custom docker build agent in 
 I need to setup the docker-compose for deployment and that means deciding on the end volume solution. I want to be able to save the results to a drive like a usb drive on the cluster for easy viewing or backup. I'll just go ahead and switch to virtual "docker" volumes for now. But I would like a data export feature.
 
 I'm commenting out the cli from the docker-compose services since I don't really want it for deployment.
+
+I'm having trouble getting the jenkins container to continue reliably after restarts.
+
+I've run into this error on jenkins after changing the volumes in the docker-compose:
+`Named volume "lazztech-cloud-data:/face:rw" is used in service "lazztech.obsidianpresences.vision.microservice.webapi" but no declaration was found in the volumes section.`Okay so in a docker-compose if I want to use a "named volume" / "docker" volume then I can't just put the volume in the service I also have to have a specific standalone volume section in the docker-compose.- https://github.com/docker/compose/issues/3073- https://docs.docker.com/compose/compose-file/#volume-configuration-reference

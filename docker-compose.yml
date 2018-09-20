@@ -12,7 +12,6 @@ services:
 #      context: .
 #      dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.Cli/Dockerfile
 
-
   lazztech.obsidianpresences.cloudwebapp:
     image: lazztechobsidianpresencescloudwebapp
     ports: 
@@ -43,3 +42,6 @@ services:
     build:
       context: .
       dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.Webapi/Dockerfile
+
+volumes:
+  lazztech-cloud-data:
