@@ -2060,3 +2060,11 @@ The above scripts use `docker-compose -p`
 
 Having issues with docker-compose image down part of the script.
 https://forums.docker.com/t/docker-compose-down-doesnt-remove-images/22778
+
+I've got the CI portion mostly to a good working state now. The compose down step now works.
+
+I need need to setup multi branch support:
+- https://jenkins.io/doc/book/pipeline/multibranch/
+- https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/
+- https://wiki.jenkins.io/display/JENKINS/Pipeline+Multibranch+Plugin
+- https://www.youtube.com/watch?v=11z2x3VYO_I
