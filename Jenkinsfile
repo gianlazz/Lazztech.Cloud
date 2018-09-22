@@ -26,9 +26,14 @@ pipeline {
         sh './ci-cd/run-unit-tests.sh'
       }
     }
-    stage('docker-compose up') {
+    stage('compose up') {
       steps {
         sh './ci-cd/docker-compose-up.sh'
+      }
+    }
+    stage('compose down') {
+      steps {
+        sh './ci-cd/docker-compose-down.sh'
       }
     }
   }
