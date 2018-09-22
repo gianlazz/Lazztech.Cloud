@@ -2057,3 +2057,6 @@ The above scripts use `docker-compose -p`
                               (default: directory name)
 ```
 - https://docs.docker.com/compose/reference/overview/
+
+Having issues with docker-compose image down part of the script.
+https://forums.docker.com/t/docker-compose-down-doesnt-remove-images/22778
