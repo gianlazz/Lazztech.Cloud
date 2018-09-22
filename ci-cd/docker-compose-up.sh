@@ -1,3 +1,3 @@
 #! /bin/bash
 
-docker-compose run -d
+docker-compose -p dev up -d

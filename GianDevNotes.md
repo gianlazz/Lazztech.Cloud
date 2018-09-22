@@ -2034,4 +2034,26 @@ docker-compose run may be what I actually need. It looks like it allows me to ov
 
 Hmm I think I need to learn more about docker-compose run commands. Also I see now that it looks like there isn't actually any nesting of the containers. It all seems to be pretty flat with each just using them by name. So if jenkins container launches new containers then their accesible from my host machine like any other.
 
-So that means that I'm going to have to include in the jenkins pipeline shell scripts a command to tear down / stop the docker-compose. 
+So that means that I'm going to have to include in the jenkins pipeline shell scripts a command to tear down / stop the docker-compose.
+
+## Saturday, August 22, 2018
+#### Sprint 7, CI/CD Shell Scripts
+
+I need to setup a jenkins build step to tear down docker-compose. 
+In this video I've been referencing there's an example:
+- https://www.youtube.com/watch?v=GkGXAPj8wSI&feature=youtu.be&t=1003
+
+The shell script can be found here:
+- https://github.com/boxboat/jenkins-demo/blob/develop/ci/docker-up.sh
+- https://github.com/boxboat/jenkins-demo/blob/develop/ci/docker-down.sh 
+
+Also I think I need a multiline jenkins pipeline so that I can have deployment only on the master branch. I also would possibly want different deployment branches for different destinations. Then everything else will just run the continous integration part.
+
+- https://docs.docker.com/v17.09/compose/reference/down/
+
+The above scripts use `docker-compose -p`
+```
+   -p, --project-name NAME     Specify an alternate project name
+                              (default: directory name)
+```
+- https://docs.docker.com/compose/reference/overview/
