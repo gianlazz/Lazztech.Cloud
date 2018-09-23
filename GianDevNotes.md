@@ -2068,3 +2068,8 @@ I need need to setup multi branch support:
 - https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/
 - https://wiki.jenkins.io/display/JENKINS/Pipeline+Multibranch+Plugin
 - https://www.youtube.com/watch?v=11z2x3VYO_I
+
+## Sunday, August 23, 2018
+#### Sprint 7, CI/CD Shell Scripts
+
+https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/
