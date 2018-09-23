@@ -2073,3 +2073,31 @@ I need need to setup multi branch support:
 #### Sprint 7, CI/CD Shell Scripts
 
 https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/
+
+Does each branch just have it's own Jenkinsfile for the pipeline? It seems like that would cause issuew with merges. It would make the most sense for the Jenkinsfile to container the pipeline for all branches an jenkins would just run the correct part depending on the branch.
+
+Oh okay so it looks like you can specify steps that only run based on being in certain branches in the same shared Jenkinsfile with the following example block:
+```
+   stage('Deliver for development') {
+            when {
+                branch 'development'
+            }
+            steps {
+                sh './jenkins/scripts/deliver-for-development.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+        stage('Deploy for production') {
+            when {
+                branch 'production'
+            }
+            steps {
+                sh './jenkins/scripts/deploy-for-production.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+```
+
+I'm not sure if there's a way to specify these settings through the blue ocean ui though. Doesn't really matter as it looks pretty easy to modify.
