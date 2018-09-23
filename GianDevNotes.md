@@ -2116,3 +2116,5 @@ This is definitly from the `docker-compose -p dev up` running on both of them.
 In the earlier video I've been referencing it setup throttling so that only one jenkins pipeline that ran docker could run at a time. That could be a good solution.
 
 How do I handle deployment to my cluster? Should I expose the ssh port to the public? That doesn't seem that secure but I'm not sure. Should I have the jenkins pipeline connect to the vpn then ssh? I think that's what I'll do.
+
+Should I make secondary docker-compose.yml and Dockerfiles for arm deployment?
