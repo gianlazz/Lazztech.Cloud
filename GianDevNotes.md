@@ -2118,3 +2118,15 @@ In the earlier video I've been referencing it setup throttling so that only one 
 How do I handle deployment to my cluster? Should I expose the ssh port to the public? That doesn't seem that secure but I'm not sure. Should I have the jenkins pipeline connect to the vpn then ssh? I think that's what I'll do.
 
 Should I make secondary docker-compose.yml and Dockerfiles for arm deployment?
+
+Should I setup my own private container registry or just use `zcp` to tranfer over the arm compiled dll to the cluster?
+
+This could be used as a way to share the common configuration for the docker-compose.yml but use specific configurations for the the different deployments:
+- https://docs.docker.com/compose/extends/
+
+"For example 
+To deploy with this production Compose file you can run"
+
+`docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
+
+A private registry could be really useful but that's a lot to manage.
