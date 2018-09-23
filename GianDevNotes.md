@@ -21,6 +21,10 @@
 - https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
 - http://blog.baudson.de/blog/stop-and-remove-all-docker-containers-and-images
 
+## Frequently used commands
+
+- **Register in git the excutability of a shell script** `git update-index --chmod=+x check_services.sh`
+
 
 ## Friday July, 27, 2018
 - [x] Finished getting docker-compose.yml configured to bind mount volumes to services by absolute path.
