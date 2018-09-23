@@ -24,6 +24,8 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             Snapshots = new List<Snapshot>();
 
             var dir = FacialRecognitionManager.knownJsonsPath;
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
 
             var jsonDirs = Directory.GetFiles(dir).Where(x => x.EndsWith(".json"));
             foreach (var jsonDir in jsonDirs)
