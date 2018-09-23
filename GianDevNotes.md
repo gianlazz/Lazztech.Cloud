@@ -2105,3 +2105,10 @@ Oh okay so it looks like you can specify steps that only run based on being in c
 ```
 
 I'm not sure if there's a way to specify these settings through the blue ocean ui though. Doesn't really matter as it looks pretty easy to modify.
+
+Okay it seems to be working now. I was having trouble getting jenkins to discover the new branch but I fixed that by trying to edit the pipeline in the classic editor and just clicking, apply, save then going back and the new branch showed up in the blue ocean branches page.
+
+Now that I have the jenkins multi branch pipeline I'm having this issue with the two jobs competing:
+```
+2 matches found based on name: network dev_default is ambiguous
+```
