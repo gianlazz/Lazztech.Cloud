@@ -1,0 +1,22 @@
+FROM microsoft/dotnet:2.1-aspnetcore-runtime-stretch-slim-arm32v7 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 50199
+EXPOSE 5000
+
+FROM microsoft/dotnet:2.1-sdk AS build
+WORKDIR /src
+COPY ["Lazztech.ObsidianPresences.Vision.Microservice.Webapi/Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj", "Lazztech.Ob$COPY Lazztech.ObsidianPresences.CloudWebApp/Lazztech.ObsidianPresences.CloudWebApp.csproj Lazztech.ObsidianPresences.CloudWebApp/
+COPY Lazztech.ObsidianPresences.Vision.Microservice.Cli/Lazztech.ObsidianPresences.Vision.Microservice.Cli.csproj Lazztech.ObsidianPrese$COPY Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision/Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision.c$COPY Lazztech.ObsidianPresences.Vision.Microservice.Domain/Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj Lazztech.Obsidia$COPY Lazztech.ObsidianPresences.Vision.Microservice.Tests/Lazztech.ObsidianPresences.Vision.Microservice.Tests.csproj Lazztech.ObsidianP$COPY docker-compose.dcproj .
+RUN dotnet restore "Lazztech.ObsidianPresences.Vision.Microservice.Webapi/Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj"
+COPY . .
+WORKDIR "/src/Lazztech.ObsidianPresences.Vision.Microservice.Webapi"
+RUN dotnet build "Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj" -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish "Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj" -c Release -o /app -r linux-arm
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "Lazztech.ObsidianPresences.Vision.Microservice.Webapi.dll"]
