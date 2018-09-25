@@ -2130,3 +2130,30 @@ To deploy with this production Compose file you can run"
 `docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
 
 A private registry could be really useful but that's a lot to manage.
+
+## Monday, August 24, 2018
+#### Sprint 8, CI/CD Arm Cluster Build and Deployment
+
+So it looks like it's not actually that complicated to setup a private docker image registry. It's just a container itself that I can pull and manage.
+
+I'm going to setup my own private custom docker image registry that I'll configure with a docker-compose to work with the jenkins container.
+
+Then on the rpi I'll just connect to the vpn then pull it from the custom registry with a command like below:
+- https://stackoverflow.com/questions/33054369/how-to-change-the-default-docker-registry-from-docker-io-to-my-private-registry
+
+Actually maybe I'll just push them publically to the dockerhub? I mean what's the damage it's just the container with the dll who's gonna bother with them? Yeah I'll go for that at least at first then I don't even need to bother with private registry and can probably get it deployed today or soon.
+
+I also need to have some kind of denoting tag or image name variance in the arm32 images from the docker-compose.rpi-cluster-prod.yml so that my development machine doesn't mix them up when I'm developing the regular version.
+- https://stackoverflow.com/questions/33816456/how-to-tag-docker-image-with-docker-compose
+
+Here's what I use to build the rpi compose file that references the Dockerfile.Rpi for the different services that are configured to build and publish as arm32.
+- `docker-compose -f .\docker-compose.rpi-cluster-prod.yml build`
+
+Yup the above line seems to be working as when I run `docker-compose -f .\docker-compose.rpi-cluster-prod.yml up` it returns an error below that makes sense since it's only supposed to run on arm32 architecture
+- `qemu: Unsupported syscall: 389`
+
+Btw incase I do go the private registry route, here's how I would push to a private registry:
+- https://stackoverflow.com/questions/28349392/how-to-push-a-docker-image-to-a-private-repository
+
+I'm trying to push to the docker hub free public registry with `docker-compose -f .\docker-compose.rpi-cluster-prod.yml push` and I'm getting an error:
+- `ERROR: denied: requested access to the resource is denied`
