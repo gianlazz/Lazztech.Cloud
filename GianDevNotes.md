@@ -2157,3 +2157,13 @@ Btw incase I do go the private registry route, here's how I would push to a priv
 
 I'm trying to push to the docker hub free public registry with `docker-compose -f .\docker-compose.rpi-cluster-prod.yml push` and I'm getting an error:
 - `ERROR: denied: requested access to the resource is denied`
+- https://stackoverflow.com/questions/41984399/denied-requested-access-to-the-resource-is-denied-docker
+
+After adding my dockerhub username and a forward slash as the prefix to the image names in the docker-compose the push command works. For example:
+- `image: gianlazzarini/lazztechobsidianpresensevisionmicroservicewebapi:arm32`
+
+Okay so `docker-compose -f .\docker-compose.rpi-cluster-prod.yml push` no succeeds. I guess it's time to connect to the clusters vpn, ssh into the swarm master, clone the repo and run:
+- `docker-compose -f .\docker-compose.rpi-cluster-prod.yml pull`
+- `docker-compose -f .\docker-compose.rpi-cluster-prod.yml up -d`
+
+I'll try it out now.
