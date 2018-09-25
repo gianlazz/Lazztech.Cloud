@@ -15,14 +15,14 @@ services:
     image: gianlazzarini/lazztechobsidianpresensevisionmicroservicewebapi:arm32
     volumes:
       - lazztech-cloud-data:/face/
-    ports:
+#    ports:
 #      - 5000:5000
 #      - 5001:5001
 #      - 6000:44399
 #      - 6001:50660
-      - 8080:80
-      - 8081:50199
-      - 5000:5000
+#      - 8080:80
+#      - 8081:50199
+#      - 5000:5000
     build:
       context: .
       dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.Webapi/Dockerfile.Rpi
