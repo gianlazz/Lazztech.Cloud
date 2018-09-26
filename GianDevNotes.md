@@ -2239,6 +2239,7 @@ Resources on `docker stack deploy`
 
 You can specify docker swarm specifics inside your compose.yml files for each service with deploy section:
 - https://docs.docker.com/compose/compose-file/#deploy
+
 Example:
 ```
 version: '3'
