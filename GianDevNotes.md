@@ -15,6 +15,7 @@
 - **See the container startup stdout in detatched mode** `docker logs CONTAINER_ID`
 - **Exit the current container while keeping it running** `Ctrl+p, Ctrl+q`
 - **Run Jenkins** `docker run -u root -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
+- **Launch Compose on Docker Swarm Cluster** `docker stack deploy`
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -2223,3 +2224,32 @@ Links from when I wasn manually deploying:
 Hmm, the ip address for the router gui is `http://192.168.0.1` however I don't seem to be able to get it to load through the vpn on the pi... I may have to actually go there to configure it. I wonder if this is because the openvpn is configured incorrectly? With how the openvpn is configured right now it doesn't actually route out to the public internet so I'm only able to access the wlan when I connect. Also it seems oddly slow in some cases. 
 
 I'm definitly still interested in switching to wireguard vpn insead of openvpn. Also I really want to script the provisioning of the cluster os images so that I can get a repeatable setup for an arm cluster. I do want to switch to a firepi cluster later with octa core processors and I'd probably enjoy making a custom acrylic enclosure for them and other features I'd like to add.
+
+The message about launching a docker-compose on a swarm cluster instead of just one node was:
+```
+WARNING: The Docker Engine you're using is running in swarm mode.
+Compose does not use swarm mode to deploy services to multiple nodes in a swarm. All containers will be scheduled on the current node.
+To deploy your application across the swarm, use `docker stack deploy`.
+```
+Resources on `docker stack deploy`
+- https://docs.docker.com/v17.12/engine/reference/commandline/stack_deploy/
+- https://docs.docker.com/engine/swarm/stack-deploy/
+- https://docs.docker.com/get-started/part5/
+- https://www.youtube.com/watch?v=RHeuvArNz2Y Docker tip: docker stack deploy
+
+You can specify docker swarm specifics inside your compose.yml files for each service with deploy section:
+- https://docs.docker.com/compose/compose-file/#deploy
+Example:
+```
+version: '3'
+services:
+  redis:
+    image: redis:alpine
+    deploy:
+      replicas: 6
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+```
