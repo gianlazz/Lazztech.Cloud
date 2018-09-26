@@ -2236,6 +2236,7 @@ Resources on `docker stack deploy`
 - https://docs.docker.com/engine/swarm/stack-deploy/
 - https://docs.docker.com/get-started/part5/
 - https://www.youtube.com/watch?v=RHeuvArNz2Y Docker tip: docker stack deploy
+- https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md
 
 You can specify docker swarm specifics inside your compose.yml files for each service with deploy section:
 - https://docs.docker.com/compose/compose-file/#deploy
@@ -2254,3 +2255,11 @@ services:
       restart_policy:
         condition: on-failure
 ```
+
+So for deployment on my docker swarm cluster I should actually run:
+- `docker stack deploy -c docker-compose.rpi-cluster-prod.yml lazztech-cloud`
+
+However I get an exception running that:
+- `failed to create service lazztech-cloud_lazztech.obsidianpresences.cloudwebapp: Error response from daemon: rpc error: code = InvalidArgument desc = name must be valid as a DNS name component`
+
+I'll have to sort this and the port forwarding tomorrow.
