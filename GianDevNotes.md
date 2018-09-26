@@ -1962,7 +1962,10 @@ The build now works and passes!
 
 Jenkins pipeline Unit testing build shell script script worked but throws this error:
 ```
-Make sure test project has a nuget reference of package "Microsoft.NET.Test.Sdk" and framework version settings are appropriate. Rerun with /diag option to diagnose further.```## Tuesday, August 18, 2018
+Make sure test project has a nuget reference of package "Microsoft.NET.Test.Sdk" and framework version settings are appropriate. Rerun with /diag option to diagnose further.
+```
+
+## Tuesday, August 18, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 Oh so it looks like it actually did run my unit tests sucessfully but it also ran everyother project as if it was a test and that's why it throws an error. So just running `dotnet test` on just the test project path will probably fix it.
@@ -1977,7 +1980,22 @@ Remaining CI/CD Shell Scripts:
 
 Okay so the build agent docker image that I'm using doesn't have docker or docker-compose installed in it. I may have to make my own custom build image then? Or maybe I'm doing this wrong? This is a lot of nested containers... It's probably still right though.
 
-`./ci-cd/docker-compose-up.sh: line 3: docker-compose: command not found`Making a new docker image with a dockerfile in ci-cd/. It starts with the `microsoft/dotnet:2.1-sdk` image and installs docker. It's called `gianlazzarini/lazztech_cicd_build`- https://stackoverflow.com/questions/38986057/how-to-set-image-name-in-dockerfileI did so with the following commands:```docker build -t gianlazzarini/lazztech_cicd_build .docker push gianlazzarini/lazztech_cicd_build```I'll change my jenkins pipeline build agent to this docker image. Then my docker-compose-up.sh should work.It can be seen at:- https://hub.docker.com/r/gianlazzarini/lazztech_cicd_build/
+`./ci-cd/docker-compose-up.sh: line 3: docker-compose: command not found`
+
+Making a new docker image with a dockerfile in ci-cd/. It starts with the `microsoft/dotnet:2.1-sdk` image and installs docker. It's called `gianlazzarini/lazztech_cicd_build`
+
+- https://stackoverflow.com/questions/38986057/how-to-set-image-name-in-dockerfile
+
+I did so with the following commands:
+```
+docker build -t gianlazzarini/lazztech_cicd_build .
+docker push gianlazzarini/lazztech_cicd_build
+```
+
+I'll change my jenkins pipeline build agent to this docker image. Then my docker-compose-up.sh should work.
+
+It can be seen at:
+- https://hub.docker.com/r/gianlazzarini/lazztech_cicd_build/
 
 Okay so I can open an interactive terminal with this image with:
 ```
@@ -1987,7 +2005,12 @@ docker run -it gianlazzarini/lazztech_cicd_build bash
 I then confirmed that docker is installed however docker-compose apparently isn't included with the docker install.
 
 Okay so I got docker-compose-up.sh working with my custom docker build agent in the jenkins pipeline however now I have another error:
-`Named volume "C:\face_recognition:/face/" is used in service "lazztech.ObsidianPresences.vision.microservice.cli" but no declaration was found in the volumes section.`I think I'm going to have to switch from bind mount volumes to docker volumes for this to work?## Wednesday, August 18, 2018
+`Named volume "C:\face_recognition:/face/" is used in service "lazztech.ObsidianPresences.vision.microservice.cli" but no declaration was found in the volumes section.
+`
+
+I think I'm going to have to switch from bind mount volumes to docker volumes for this to work?
+
+## Wednesday, August 18, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 I need to setup the docker-compose for deployment and that means deciding on the end volume solution. I want to be able to save the results to a drive like a usb drive on the cluster for easy viewing or backup. I'll just go ahead and switch to virtual "docker" volumes for now. But I would like a data export feature.
@@ -1997,7 +2020,12 @@ I'm commenting out the cli from the docker-compose services since I don't really
 I'm having trouble getting the jenkins container to continue reliably after restarts.
 
 I've run into this error on jenkins after changing the volumes in the docker-compose:
-`Named volume "lazztech-cloud-data:/face:rw" is used in service "lazztech.obsidianpresences.vision.microservice.webapi" but no declaration was found in the volumes section.`Okay so in a docker-compose if I want to use a "named volume" / "docker" volume then I can't just put the volume in the service I also have to have a specific standalone volume section in the docker-compose.- https://github.com/docker/compose/issues/3073- https://docs.docker.com/compose/compose-file/#volume-configuration-reference
+`Named volume "lazztech-cloud-data:/face:rw" is used in service "lazztech.obsidianpresences.vision.microservice.webapi" but no declaration was found in the volumes section.
+`
+
+Okay so in a docker-compose if I want to use a "named volume" / "docker" volume then I can't just put the volume in the service I also have to have a specific standalone volume section in the docker-compose.
+- https://github.com/docker/compose/issues/3073
+- https://docs.docker.com/compose/compose-file/#volume-configuration-reference
 
 Btw here's a really nice look command line based time tracker:
 https://github.com/TailorDev/Watson
@@ -2014,7 +2042,9 @@ Creating volume "lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mr
 
 Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 ... 
 
-Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 ... error
+
+Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 ... error
+
 
 ERROR: for lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1  Cannot start service lazztech.obsidianpresences.vision.microservice.webapi: driver failed programming external connectivity on endpoint lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 (a43cbfddf15b13aa5cc20913bc74978cc410c29fc43caaf7464d0136c6a52bca): Bind for 0.0.0.0:8081 failed: port is already allocated
 
@@ -2182,3 +2212,14 @@ After getting dynamic dns setup to my desired sub domain on my lazz.tech/ domain
 A consideration that I have is that it may pose a difficulty to build and deploy the dotnet arm container with all of the computer vision dependencies compiled. Can I compile it on an x86/x64 machine or would I have to compile that on an arm device? In which case I will have to make my own base image on the rpi cluster and push that to the container registry... I'll cross that bridge soon when I make the vision webapi project solely responsable for the image processing as apposed the cli image I used during development.
 
 After that I'll work on authentication by which time I should have my cluster deployment pipeline all configured for easy deployment during weekly sprints.
+
+Links from when I wasn manually deploying:
+- https://www.raspberrypi.org/forums/viewtopic.php?t=88020
+- https://docs.docker.com/compose/install/#master-builds
+- https://docs.joyent.com/public-cloud/getting-started/ssh-keys/generating-an-ssh-key-manually/manually-generating-your-ssh-key-in-mac-os-x
+- https://www.raspberrypi.org/documentation/linux/usage/users.md
+- https://www.imore.com/how-edit-your-macs-hosts-file-and-why-you-would-want
+
+Hmm, the ip address for the router gui is `http://192.168.0.1` however I don't seem to be able to get it to load through the vpn on the pi... I may have to actually go there to configure it. I wonder if this is because the openvpn is configured incorrectly? With how the openvpn is configured right now it doesn't actually route out to the public internet so I'm only able to access the wlan when I connect. Also it seems oddly slow in some cases. 
+
+I'm definitly still interested in switching to wireguard vpn insead of openvpn. Also I really want to script the provisioning of the cluster os images so that I can get a repeatable setup for an arm cluster. I do want to switch to a firepi cluster later with octa core processors and I'd probably enjoy making a custom acrylic enclosure for them and other features I'd like to add.
