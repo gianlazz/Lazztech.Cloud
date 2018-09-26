@@ -2167,3 +2167,18 @@ Okay so `docker-compose -f .\docker-compose.rpi-cluster-prod.yml push` no succee
 - `docker-compose -f .\docker-compose.rpi-cluster-prod.yml up -d`
 
 I'll try it out now.
+
+## Tuesday, August 25, 2018
+#### Sprint 8, CI/CD Arm Cluster Build and Deployment
+
+I was successful in deploying to my rpi arm cluster yesterday though I didn't document the process. I connected to the vpn running on the cluster, configured to be port forwarded through the router and setup with noip dynamic dns. After getting into the dmz I ssh'd into the master raspberry pi of the docker swarm cluster which I have set statically at `192.168.0.100`, which I mapped into the host file as rpi1 so I run `ssh pi@rpi` to connect. After that installed `python-pip` via `apt-get` so that I could install the most up to date docker-compose with `pip install docker-compose`. I then after changing some ports in the compose.yml was able to run `pull` and `up -d` on `docker-compose.rpi-cluster-prod.yml` which sucessfully launched my services.
+
+Perfomance through openvpn was very poor also I missed a prompt about how to run a docker-compose accross the cluster from swarm. I think it was somthing like `stack up`? I'll need to make sure it's re-run accross the cluster for best performance.
+
+I've gone ahead and paid for a year of noip's premium dynamic dns service "Plus Managed DNS" account so that I can reliably configure to http://cloud.lazz.tech/
+
+After getting dynamic dns setup to my desired sub domain on my lazz.tech/ domain name along with port forwarding then I'll document the setup process of deployment while I configure the jenkins pipeline shell scripts for the deployment branch.
+
+A consideration that I have is that it may pose a difficulty to build and deploy the dotnet arm container with all of the computer vision dependencies compiled. Can I compile it on an x86/x64 machine or would I have to compile that on an arm device? In which case I will have to make my own base image on the rpi cluster and push that to the container registry... I'll cross that bridge soon when I make the vision webapi project solely responsable for the image processing as apposed the cli image I used during development.
+
+After that I'll work on authentication by which time I should have my cluster deployment pipeline all configured for easy deployment during weekly sprints.
