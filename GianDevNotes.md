@@ -2268,5 +2268,15 @@ I'll have to sort this and the port forwarding tomorrow.
 #### Sprint 8, CI/CD Arm Cluster Build and Deployment
 
 Working on `deploy-to-cluster.sh`. 
-
+ 
 I didn't make it to the apartment to configure the port forwarding for the cluster and dynamic dns so I'll have to do that tomorrow.
+
+In `deploy-to-cluster.sh` I want it to build the `docker-compose.rpi-cluster-prod.yml` on jenkins then push the images to the dockerhub. Then ssh into the cluster, pull the images, and launch the compose.yml accross the cluster. The issue is that I need to configure the jenkins machine to have login credentials to the docker hub so that I can push the images. I'm not sure how to have the login credential secrets managed for this since... Private registry? I'm using my own custom container image for the build agent on jenkins so that it can have docker-compose installed, if I had id on a custom registry then I could go ahead and just have them already logged in?
+
+It looks like docker may have some tools/solutions for credential managment in containers with "secrets":
+- https://docs.docker.com/engine/swarm/secrets/
+- https://docs.docker.com/engine/reference/commandline/secret/
+- https://blog.docker.com/2017/02/docker-secrets-management/
+- https://medium.com/lucjuggery/from-env-variables-to-docker-secrets-bc8802cacdfd
+
+Also when looking again into dynamic dns vs localhost tunneling like ngrok I ruled out ngrok as it has a very limited number of connections per minute at a high cost so that certainly isn't actually acceptable for my desired usecase. However when comparing noip to dyndns I did notice that dyndns was advertising 1 minute dns propagation so different propagation times may be worth considering when picking a dynamic dns service. I went with noip though since it was much cheaper.
