@@ -2263,3 +2263,10 @@ However I get an exception running that:
 - `failed to create service lazztech-cloud_lazztech.obsidianpresences.cloudwebapp: Error response from daemon: rpc error: code = InvalidArgument desc = name must be valid as a DNS name component`
 
 I'll have to sort this and the port forwarding tomorrow.
+
+## Wednesday, August 26, 2018
+#### Sprint 8, CI/CD Arm Cluster Build and Deployment
+
+Working on `deploy-to-cluster.sh`. 
+
+I didn't make it to the apartment to configure the port forwarding for the cluster and dynamic dns so I'll have to do that tomorrow.
