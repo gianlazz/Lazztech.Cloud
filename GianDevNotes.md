@@ -2300,3 +2300,6 @@ Okay so I've got the compose up accross the swarm as a service "stack" however i
 - https://docs.docker.com/engine/swarm/services/#publish-ports
 
 It looks like I need to use the load balancing features built into docker swarm.
+
+I've also moved my cluster and am running into issues with it not showing up on the network. It appears that it may be due to the static ip addresses:
+- https://community.netgear.com/t5/Nighthawk-WiFi-Routers/No-Internet-on-LAN-Ports-WiFi-fully-connectivity/td-p/1369205
