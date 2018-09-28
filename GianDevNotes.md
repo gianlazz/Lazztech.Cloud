@@ -15,6 +15,7 @@
 - **See the container startup stdout in detatched mode** `docker logs CONTAINER_ID`
 - **Exit the current container while keeping it running** `Ctrl+p, Ctrl+q`
 - **Run Jenkins** `docker run -u root -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
+- **Launch Compose on Docker Swarm Cluster** `docker stack deploy`
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -1962,7 +1963,10 @@ The build now works and passes!
 
 Jenkins pipeline Unit testing build shell script script worked but throws this error:
 ```
-Make sure test project has a nuget reference of package "Microsoft.NET.Test.Sdk" and framework version settings are appropriate. Rerun with /diag option to diagnose further.```## Tuesday, August 18, 2018
+Make sure test project has a nuget reference of package "Microsoft.NET.Test.Sdk" and framework version settings are appropriate. Rerun with /diag option to diagnose further.
+```
+
+## Tuesday, August 18, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 Oh so it looks like it actually did run my unit tests sucessfully but it also ran everyother project as if it was a test and that's why it throws an error. So just running `dotnet test` on just the test project path will probably fix it.
@@ -1977,7 +1981,22 @@ Remaining CI/CD Shell Scripts:
 
 Okay so the build agent docker image that I'm using doesn't have docker or docker-compose installed in it. I may have to make my own custom build image then? Or maybe I'm doing this wrong? This is a lot of nested containers... It's probably still right though.
 
-`./ci-cd/docker-compose-up.sh: line 3: docker-compose: command not found`Making a new docker image with a dockerfile in ci-cd/. It starts with the `microsoft/dotnet:2.1-sdk` image and installs docker. It's called `gianlazzarini/lazztech_cicd_build`- https://stackoverflow.com/questions/38986057/how-to-set-image-name-in-dockerfileI did so with the following commands:```docker build -t gianlazzarini/lazztech_cicd_build .docker push gianlazzarini/lazztech_cicd_build```I'll change my jenkins pipeline build agent to this docker image. Then my docker-compose-up.sh should work.It can be seen at:- https://hub.docker.com/r/gianlazzarini/lazztech_cicd_build/
+`./ci-cd/docker-compose-up.sh: line 3: docker-compose: command not found`
+
+Making a new docker image with a dockerfile in ci-cd/. It starts with the `microsoft/dotnet:2.1-sdk` image and installs docker. It's called `gianlazzarini/lazztech_cicd_build`
+
+- https://stackoverflow.com/questions/38986057/how-to-set-image-name-in-dockerfile
+
+I did so with the following commands:
+```
+docker build -t gianlazzarini/lazztech_cicd_build .
+docker push gianlazzarini/lazztech_cicd_build
+```
+
+I'll change my jenkins pipeline build agent to this docker image. Then my docker-compose-up.sh should work.
+
+It can be seen at:
+- https://hub.docker.com/r/gianlazzarini/lazztech_cicd_build/
 
 Okay so I can open an interactive terminal with this image with:
 ```
@@ -1987,7 +2006,12 @@ docker run -it gianlazzarini/lazztech_cicd_build bash
 I then confirmed that docker is installed however docker-compose apparently isn't included with the docker install.
 
 Okay so I got docker-compose-up.sh working with my custom docker build agent in the jenkins pipeline however now I have another error:
-`Named volume "C:\face_recognition:/face/" is used in service "lazztech.ObsidianPresences.vision.microservice.cli" but no declaration was found in the volumes section.`I think I'm going to have to switch from bind mount volumes to docker volumes for this to work?## Wednesday, August 18, 2018
+`Named volume "C:\face_recognition:/face/" is used in service "lazztech.ObsidianPresences.vision.microservice.cli" but no declaration was found in the volumes section.
+`
+
+I think I'm going to have to switch from bind mount volumes to docker volumes for this to work?
+
+## Wednesday, August 18, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 I need to setup the docker-compose for deployment and that means deciding on the end volume solution. I want to be able to save the results to a drive like a usb drive on the cluster for easy viewing or backup. I'll just go ahead and switch to virtual "docker" volumes for now. But I would like a data export feature.
@@ -1997,7 +2021,12 @@ I'm commenting out the cli from the docker-compose services since I don't really
 I'm having trouble getting the jenkins container to continue reliably after restarts.
 
 I've run into this error on jenkins after changing the volumes in the docker-compose:
-`Named volume "lazztech-cloud-data:/face:rw" is used in service "lazztech.obsidianpresences.vision.microservice.webapi" but no declaration was found in the volumes section.`Okay so in a docker-compose if I want to use a "named volume" / "docker" volume then I can't just put the volume in the service I also have to have a specific standalone volume section in the docker-compose.- https://github.com/docker/compose/issues/3073- https://docs.docker.com/compose/compose-file/#volume-configuration-reference
+`Named volume "lazztech-cloud-data:/face:rw" is used in service "lazztech.obsidianpresences.vision.microservice.webapi" but no declaration was found in the volumes section.
+`
+
+Okay so in a docker-compose if I want to use a "named volume" / "docker" volume then I can't just put the volume in the service I also have to have a specific standalone volume section in the docker-compose.
+- https://github.com/docker/compose/issues/3073
+- https://docs.docker.com/compose/compose-file/#volume-configuration-reference
 
 Btw here's a really nice look command line based time tracker:
 https://github.com/TailorDev/Watson
@@ -2014,7 +2043,9 @@ Creating volume "lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mr
 
 Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 ... 
 
-Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 ... error
+
+Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 ... error
+
 
 ERROR: for lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1  Cannot start service lazztech.obsidianpresences.vision.microservice.webapi: driver failed programming external connectivity on endpoint lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.obsidianpresences.vision.microservice.webapi_1 (a43cbfddf15b13aa5cc20913bc74978cc410c29fc43caaf7464d0136c6a52bca): Bind for 0.0.0.0:8081 failed: port is already allocated
 
@@ -2167,3 +2198,85 @@ Okay so `docker-compose -f .\docker-compose.rpi-cluster-prod.yml push` no succee
 - `docker-compose -f .\docker-compose.rpi-cluster-prod.yml up -d`
 
 I'll try it out now.
+
+## Tuesday, August 25, 2018
+#### Sprint 8, CI/CD Arm Cluster Build and Deployment
+
+I was successful in deploying to my rpi arm cluster yesterday though I didn't document the process. I connected to the vpn running on the cluster, configured to be port forwarded through the router and setup with noip dynamic dns. After getting into the dmz I ssh'd into the master raspberry pi of the docker swarm cluster which I have set statically at `192.168.0.100`, which I mapped into the host file as rpi1 so I run `ssh pi@rpi` to connect. After that installed `python-pip` via `apt-get` so that I could install the most up to date docker-compose with `pip install docker-compose`. I then after changing some ports in the compose.yml was able to run `pull` and `up -d` on `docker-compose.rpi-cluster-prod.yml` which sucessfully launched my services.
+
+Perfomance through openvpn was very poor also I missed a prompt about how to run a docker-compose accross the cluster from swarm. I think it was somthing like `stack up`? I'll need to make sure it's re-run accross the cluster for best performance.
+
+I've gone ahead and paid for a year of noip's premium dynamic dns service "Plus Managed DNS" account so that I can reliably configure to http://cloud.lazz.tech/
+
+After getting dynamic dns setup to my desired sub domain on my lazz.tech/ domain name along with port forwarding then I'll document the setup process of deployment while I configure the jenkins pipeline shell scripts for the deployment branch.
+
+A consideration that I have is that it may pose a difficulty to build and deploy the dotnet arm container with all of the computer vision dependencies compiled. Can I compile it on an x86/x64 machine or would I have to compile that on an arm device? In which case I will have to make my own base image on the rpi cluster and push that to the container registry... I'll cross that bridge soon when I make the vision webapi project solely responsable for the image processing as apposed the cli image I used during development.
+
+After that I'll work on authentication by which time I should have my cluster deployment pipeline all configured for easy deployment during weekly sprints.
+
+Links from when I wasn manually deploying:
+- https://www.raspberrypi.org/forums/viewtopic.php?t=88020
+- https://docs.docker.com/compose/install/#master-builds
+- https://docs.joyent.com/public-cloud/getting-started/ssh-keys/generating-an-ssh-key-manually/manually-generating-your-ssh-key-in-mac-os-x
+- https://www.raspberrypi.org/documentation/linux/usage/users.md
+- https://www.imore.com/how-edit-your-macs-hosts-file-and-why-you-would-want
+
+Hmm, the ip address for the router gui is `http://192.168.0.1` however I don't seem to be able to get it to load through the vpn on the pi... I may have to actually go there to configure it. I wonder if this is because the openvpn is configured incorrectly? With how the openvpn is configured right now it doesn't actually route out to the public internet so I'm only able to access the wlan when I connect. Also it seems oddly slow in some cases. 
+
+I'm definitly still interested in switching to wireguard vpn insead of openvpn. Also I really want to script the provisioning of the cluster os images so that I can get a repeatable setup for an arm cluster. I do want to switch to a firepi cluster later with octa core processors and I'd probably enjoy making a custom acrylic enclosure for them and other features I'd like to add.
+
+The message about launching a docker-compose on a swarm cluster instead of just one node was:
+```
+WARNING: The Docker Engine you're using is running in swarm mode.
+Compose does not use swarm mode to deploy services to multiple nodes in a swarm. All containers will be scheduled on the current node.
+To deploy your application across the swarm, use `docker stack deploy`.
+```
+Resources on `docker stack deploy`
+- https://docs.docker.com/v17.12/engine/reference/commandline/stack_deploy/
+- https://docs.docker.com/engine/swarm/stack-deploy/
+- https://docs.docker.com/get-started/part5/
+- https://www.youtube.com/watch?v=RHeuvArNz2Y Docker tip: docker stack deploy
+- https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md
+
+You can specify docker swarm specifics inside your compose.yml files for each service with deploy section:
+- https://docs.docker.com/compose/compose-file/#deploy
+
+Example:
+```
+version: '3'
+services:
+  redis:
+    image: redis:alpine
+    deploy:
+      replicas: 6
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+```
+
+So for deployment on my docker swarm cluster I should actually run:
+- `docker stack deploy -c docker-compose.rpi-cluster-prod.yml lazztech-cloud`
+
+However I get an exception running that:
+- `failed to create service lazztech-cloud_lazztech.obsidianpresences.cloudwebapp: Error response from daemon: rpc error: code = InvalidArgument desc = name must be valid as a DNS name component`
+
+I'll have to sort this and the port forwarding tomorrow.
+
+## Wednesday, August 26, 2018
+#### Sprint 8, CI/CD Arm Cluster Build and Deployment
+
+Working on `deploy-to-cluster.sh`. 
+ 
+I didn't make it to the apartment to configure the port forwarding for the cluster and dynamic dns so I'll have to do that tomorrow.
+
+In `deploy-to-cluster.sh` I want it to build the `docker-compose.rpi-cluster-prod.yml` on jenkins then push the images to the dockerhub. Then ssh into the cluster, pull the images, and launch the compose.yml accross the cluster. The issue is that I need to configure the jenkins machine to have login credentials to the docker hub so that I can push the images. I'm not sure how to have the login credential secrets managed for this since... Private registry? I'm using my own custom container image for the build agent on jenkins so that it can have docker-compose installed, if I had id on a custom registry then I could go ahead and just have them already logged in?
+
+It looks like docker may have some tools/solutions for credential managment in containers with "secrets":
+- https://docs.docker.com/engine/swarm/secrets/
+- https://docs.docker.com/engine/reference/commandline/secret/
+- https://blog.docker.com/2017/02/docker-secrets-management/
+- https://medium.com/lucjuggery/from-env-variables-to-docker-secrets-bc8802cacdfd
+
+Also when looking again into dynamic dns vs localhost tunneling like ngrok I ruled out ngrok as it has a very limited number of connections per minute at a high cost so that certainly isn't actually acceptable for my desired usecase. However when comparing noip to dyndns I did notice that dyndns was advertising 1 minute dns propagation so different propagation times may be worth considering when picking a dynamic dns service. I went with noip though since it was much cheaper.
