@@ -11,7 +11,7 @@ services:
       context: .
       dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile.Rpi
 
-  lazztech-obsidianpresences-vision-microservice-webapi:
+  lazztech-obsidianpresences-vision--webapi:
     image: gianlazzarini/lazztechobsidianpresensevisionmicroservicewebapi:arm32
     volumes:
       - lazztech-cloud-data:/face/
