@@ -16,6 +16,8 @@
 - **Exit the current container while keeping it running** `Ctrl+p, Ctrl+q`
 - **Run Jenkins** `docker run -u root -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
 - **Launch Compose on Docker Swarm Cluster** `docker stack deploy`
+- **List all docker services** `docker service ls`
+- **Remove docker service** `docker service rm ID`
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -2280,3 +2282,21 @@ It looks like docker may have some tools/solutions for credential managment in c
 - https://medium.com/lucjuggery/from-env-variables-to-docker-secrets-bc8802cacdfd
 
 Also when looking again into dynamic dns vs localhost tunneling like ngrok I ruled out ngrok as it has a very limited number of connections per minute at a high cost so that certainly isn't actually acceptable for my desired usecase. However when comparing noip to dyndns I did notice that dyndns was advertising 1 minute dns propagation so different propagation times may be worth considering when picking a dynamic dns service. I went with noip though since it was much cheaper.
+
+## Thursday, August 27, 2018
+#### Sprint 8, CI/CD Arm Cluster Build and Deployment
+
+https://github.com/moby/moby/issues/31564
+
+failed to create service lazztechcloud_lazztech-obsidianpresences-vision-microservice-webapi: Error response from daemon: rpc error: code = InvalidArgument desc = name must be 63 characters or fewer
+
+failed to create service lazztechcloud_lazztech-obsidianpresences-cloudwebapp: Error response from daemon: rpc error: code = InvalidArgument desc = port '80' is already in use by service 'lazztech-cloud_lazztech-obsidianpresences-cloudwebapp' (q6njhx9zr9qfhr6fclq80hqoy) as
+an ingress port
+
+Okay so I've got the compose up accross the swarm as a service "stack" however it's on the second pi at 192.168.0.101. How do I handle port forwarding from my router when it could transiently execute on either machine?
+
+- https://stackoverflow.com/questions/38830782/docker-1-12-port-fowarding-services-across-nodes
+- https://technologyconversations.com/2016/08/01/integrating-proxy-with-docker-swarm-tour-around-docker-1-12-series/
+- https://docs.docker.com/engine/swarm/services/#publish-ports
+
+It looks like I need to use the load balancing features built into docker swarm.
