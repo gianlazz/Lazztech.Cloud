@@ -1216,7 +1216,7 @@ Resources from the above video:
 
 Yeah whatever I'm just going to remake the project without.
 
-## Sunday, August 2, 2018
+## Sunday, September 2, 2018
 ## Sprint 4, vs2017 & Vision Microservice REST API
 
 I've removed the https webapi project and after some configuring was able to access the webapi from the container by hitting http://localhost:50199/api/values
@@ -1232,7 +1232,7 @@ It looks like it may actually be some kind of an issue with the tooling? That's 
 
 Weird it works now after stoping and removing the processes. Also it's now at http://localhost:8080/api/values Idk exactly what happened there?..
 
-## Monday, August 3, 2018
+## Monday, September 3, 2018
 ### Sprint 4, vs2017 & Vision Microservice REST API
 
 ***Extending the sprint for laborday.***
@@ -1368,7 +1368,7 @@ Yup so case sensistivity in urls seems to be the issue! When I put a breakpoint 
 
 Okay, so I fixed this by simply making all of the services names in the docker-compose lowercase. Idk if this will always be the best seeming option but it works and is the best I can think of for now. I should run reliably now since it doesn't depend on the transient container id as the network alias. I do still wonder why making a .Net Uri object automatically lowercases the value despite it showing the property for the original as being case sensitive... It must be some kind of implicit convention...
 
-## Tuesday, August 4, 2018
+## Tuesday, September 4, 2018
 #### Sprint 5, Frontend & Webapi Improvements/Integrations
 
 Earlier I said:
@@ -1396,7 +1396,7 @@ I'm having issues with `Uncaught ReferenceError: $ is not defined` for my javasc
 - https://stackoverflow.com/questions/23973932/responsive-canvas-in-bootstrap-column
 - https://stackoverflow.com/questions/2075337/uncaught-referenceerror-is-not-defined
 
-## Thursday, August 6, 2018
+## Thursday, September 6, 2018
 #### Sprint 5, Frontend & Webapi Improvements/Integrations
 ***CI/CD Thoughts & VSTS***
 
@@ -1410,7 +1410,7 @@ Oh also I could look into GitLabs CI/CD options to see if that might be nice but
 **Sprint 5, Frontend & Webapi Improvements/Integrations**
 As for this sprint the next thing I want to do is persist the Known images and expose that data from the web api for which I'll then display on the Vision/Known page. After that I can start implementing uploading of known and unknown snapshots. That all would be plenty for the week.
 
-## Friday, August 7, 2018
+## Friday, September 7, 2018
 #### Sprint 5, Frontend & Webapi Improvements/Integrations
 Up to today all of the processed snapshots were being returned by the FaceRecognitionManager class where they were being serialized by the cli into a folder called `/results`. However I want to have seperated results for processed and known. I'm going to remove the results folder and instead just write out the jsons to the `/known	` and `/unknown` directories respectively with their images. I'll then take from those two and return the results respectively in the web api so that I can render or interact with that from whatever client. This will also make uploading/processing new images simpler from the Webapi.
 
@@ -1442,7 +1442,7 @@ However I wonder if maybe the directories it sees is possibly passing a json int
 
 Okay so I don't think I'm passing in the jsons directly however by the fact that I'm passing in the known and unknown paths forwhich I'm also writing out the jsons I bet that's what's causing the issue...
 
-## Saturday, August 8, 2018
+## Saturday, September 8, 2018
 #### Sprint 5, Frontend & Webapi Improvements/Integrations
 
 Okay so I opened an interactive terminal with the cli container and confirmed that the face_recognition process is throwing an error when there's jsons in either the /known or /unknown. I tried to get both the stdout and stderr working asynchronously with events to avoid the deadlock but didn't quite get it working. I would still like to do this so that I can catch any face_recognition process failures however to resolve this issue I should probably just have the jsons written out to a seperate directory. 
@@ -1465,7 +1465,7 @@ You can also enable RedirectStandardInput in the ProcessStartInfo too which does
 
 Anyways back to solving the issue that face_recognition was failing on where there's jsons in the /known and /unknown. I want to setup a public static string with the output paths so that refactoring isn't a pain of hunting through the projects to rename strings.
 
-## Sunday, August 9, 2018
+## Sunday, September 9, 2018
 #### Sprint 5, Frontend & Webapi Improvements/Integrations
 
 I need to setup viewing for the unidentified people with the rest api and json persistence.
@@ -1488,7 +1488,7 @@ Also I wonder if it could be more flexible to use ngrok to tunnel to the service
 
 I want to figure out some infrastructer as code, scriptable provisioning deployment and configuring for my lazz.tech domain name. Should I use teraform for this?
 
-## Monday, August 10, 2018
+## Monday, September 10, 2018
 #### Sprint 6, CI/CD
 
 I have to deploy my app. As it is right now, authentication is not really very urgent as there's not really any way to do anything but get the data, there's no creating, deleting or updating. There's also not really any super private data yet either. So now would be an okay time to deploy and setup my CI/CD pipeline. After that I'll make a Webapi project with the included optional authentication which will serve as the application facade rest api for all consuming clients. At that point I can add the rest of the data modifying operations to the rest api behind authentication.
@@ -1532,7 +1532,7 @@ Sprint 0: Unit Tests & Snapshot Coordinates
 
 Yeah if I look at the cli project dockerfile which is the oldest I can take from that. It has copy statments for each of the projects that the solution needs to build so I'll have to model the other ones after that and I think that will fix it.
 
-## Tuesday, August 11, 2018
+## Tuesday, September 11, 2018
 #### Sprint 6, CI/CD
 
 ***Switching to self owned Containerized Jenkins Blue Ocean CI/CD***
@@ -1588,7 +1588,7 @@ I think this could be resolved by modifying this line:
 - https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/README.md
 - https://www.praqma.com/stories/jenkins-configuration-as-code/
 
-## Wednesday, August 12, 2018
+## Wednesday, September 12, 2018
 #### Sprint 6, CI/CD
 
 - https://www.youtube.com/watch?v=GkGXAPj8wSI Setup Jenkins Blue Ocean with Docker (With .Net Core!)
@@ -1623,7 +1623,7 @@ This video doesn't seem to take advantage of stateless jenkins configuration as 
 
 - https://www.youtube.com/watch?v=xqxoR7UzF4A Jenkins CD to Docker Swarm (Pt 2 from video above!)
 
-## Thursday, August 13, 2018
+## Thursday, September 13, 2018
 #### Sprint 6, CI/CD
 
 "Ensure that /your/home is accessible by the jenkins user in container (jenkins user - uid 1000) or use -u some_other_user parameter with docker run"
@@ -1706,7 +1706,7 @@ So the auto restart parameter for the jenkins container seems to work just fine 
 I think I may need to make a dockerfile with all of the configured build dependencies for the project I'm working on. It'll probably need to have docker installed in it? Or maybe also just .net core and msbuild?
 Isn't there a way to open an interactive terminal with a docker contianer, execute commands then save the changes into a dockerfile? I need to sort the jenkins dependencies install for building my projects then also learn more about deploying to docker-swarm.
 
-## Friday, August 13, 2018
+## Friday, September 13, 2018
 #### Sprint 6, CI/CD
 
 Setting up .net core dependencies in the Jenkins container:
@@ -1823,13 +1823,13 @@ It could be nice to include this kind of stress testing and it's plotting output
 
 I wonder if for my project I should have a full second set of docker-compose and dockerfiles just for arm cluster deployment? Like docker-compose.rpi.yml and dockerfile.rpi for example? I think that would still work but I also wonder if having the naming for these files changed would cause problems; that or possibly having duplicates could be an issue?
 
-## Saturday, August 14, 2018
+## Saturday, September 14, 2018
 #### Sprint 6, CI/CD
 ***Got the nfc implant this day.***
 
 Just opened up an interactive terminal with the jenkins container and confirmed that it does have docker installed in it so I ca go ahead and just right my shell build scripts to take advantage of that without any extra work.
 
-## Sunday, August 15, 2018
+## Sunday, September 15, 2018
 #### Sprint 6, CI/CD
 
 Setting up the build shell scripts.
@@ -1924,7 +1924,7 @@ I've hit some kind of permissions error with my Jenkins build pipeline:
 script returned exit code 126
 ```
 
-## Monday, August 17, 2018
+## Monday, September 17, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 Resolving jenkins shell script permissions error:
@@ -1968,7 +1968,7 @@ Jenkins pipeline Unit testing build shell script script worked but throws this e
 Make sure test project has a nuget reference of package "Microsoft.NET.Test.Sdk" and framework version settings are appropriate. Rerun with /diag option to diagnose further.
 ```
 
-## Tuesday, August 18, 2018
+## Tuesday, September 18, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 Oh so it looks like it actually did run my unit tests sucessfully but it also ran everyother project as if it was a test and that's why it throws an error. So just running `dotnet test` on just the test project path will probably fix it.
@@ -2013,7 +2013,7 @@ Okay so I got docker-compose-up.sh working with my custom docker build agent in 
 
 I think I'm going to have to switch from bind mount volumes to docker volumes for this to work?
 
-## Wednesday, August 18, 2018
+## Wednesday, September 18, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 I need to setup the docker-compose for deployment and that means deciding on the end volume solution. I want to be able to save the results to a drive like a usb drive on the cluster for easy viewing or backup. I'll just go ahead and switch to virtual "docker" volumes for now. But I would like a data export feature.
@@ -2073,7 +2073,7 @@ Hmm I think I need to learn more about docker-compose run commands. Also I see n
 
 So that means that I'm going to have to include in the jenkins pipeline shell scripts a command to tear down / stop the docker-compose.
 
-## Saturday, August 22, 2018
+## Saturday, September 22, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 I need to setup a jenkins build step to tear down docker-compose. 
@@ -2106,7 +2106,7 @@ I need need to setup multi branch support:
 - https://wiki.jenkins.io/display/JENKINS/Pipeline+Multibranch+Plugin
 - https://www.youtube.com/watch?v=11z2x3VYO_I
 
-## Sunday, August 23, 2018
+## Sunday, September 23, 2018
 #### Sprint 7, CI/CD Shell Scripts
 
 https://jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/
@@ -2164,7 +2164,7 @@ To deploy with this production Compose file you can run"
 
 A private registry could be really useful but that's a lot to manage.
 
-## Monday, August 24, 2018
+## Monday, September 24, 2018
 #### Sprint 8, CI/CD Arm Cluster Build and Deployment
 
 So it looks like it's not actually that complicated to setup a private docker image registry. It's just a container itself that I can pull and manage.
@@ -2201,7 +2201,7 @@ Okay so `docker-compose -f .\docker-compose.rpi-cluster-prod.yml push` no succee
 
 I'll try it out now.
 
-## Tuesday, August 25, 2018
+## Tuesday, September 25, 2018
 #### Sprint 8, CI/CD Arm Cluster Build and Deployment
 
 I was successful in deploying to my rpi arm cluster yesterday though I didn't document the process. I connected to the vpn running on the cluster, configured to be port forwarded through the router and setup with noip dynamic dns. After getting into the dmz I ssh'd into the master raspberry pi of the docker swarm cluster which I have set statically at `192.168.0.100`, which I mapped into the host file as rpi1 so I run `ssh pi@rpi` to connect. After that installed `python-pip` via `apt-get` so that I could install the most up to date docker-compose with `pip install docker-compose`. I then after changing some ports in the compose.yml was able to run `pull` and `up -d` on `docker-compose.rpi-cluster-prod.yml` which sucessfully launched my services.
@@ -2266,7 +2266,7 @@ However I get an exception running that:
 
 I'll have to sort this and the port forwarding tomorrow.
 
-## Wednesday, August 26, 2018
+## Wednesday, September 26, 2018
 #### Sprint 8, CI/CD Arm Cluster Build and Deployment
 
 Working on `deploy-to-cluster.sh`. 
@@ -2283,7 +2283,7 @@ It looks like docker may have some tools/solutions for credential managment in c
 
 Also when looking again into dynamic dns vs localhost tunneling like ngrok I ruled out ngrok as it has a very limited number of connections per minute at a high cost so that certainly isn't actually acceptable for my desired usecase. However when comparing noip to dyndns I did notice that dyndns was advertising 1 minute dns propagation so different propagation times may be worth considering when picking a dynamic dns service. I went with noip though since it was much cheaper.
 
-## Thursday, August 27, 2018
+## Thursday, September 27, 2018
 #### Sprint 8, CI/CD Arm Cluster Build and Deployment
 
 https://github.com/moby/moby/issues/31564
@@ -2304,7 +2304,7 @@ It looks like I need to use the load balancing features built into docker swarm.
 I've also moved my cluster and am running into issues with it not showing up on the network. It appears that it may be due to the static ip addresses:
 - https://community.netgear.com/t5/Nighthawk-WiFi-Routers/No-Internet-on-LAN-Ports-WiFi-fully-connectivity/m-p/1369238/highlight/true#M66375
 
-## Friday, August 28, 2018
+## Friday, September 28, 2018
 #### Sprint 8, CI/CD Arm Cluster Build and Deployment
 
 I'm still having trouble with getting the cluster to show up on the netgear router. I've also purchaced an ethernet over power adapter which wasn't to fix the problem but provide more connectivity options. I think that the issue is coming from the raspberry pi's having self configured static ip addresses.
@@ -2323,3 +2323,96 @@ I ended up purchasing one of these:
 I'm unable to connect to the raspberry pi's since they won't show up on the router. The new router is coming in two days and I'm unsure if the static ip's will cause issues with tit too. I think the better rought is to use dhcp on the router and reserve ip's from the router. This means I need to re-flash the raspberry pi's and re-configure them which will be a pain but is good because I can practice it and better document the setup process.
 
 After I've got all this done I can resume to setting up load balancing between the swarm cluster "service stack" and configure port forwarding with noip ddns. Idealy soon I'll have it all configured and in order to do deployments through my jenkins pipeline at the end of my weekly sprints.
+
+## Saturday, September 29, 2018
+#### Sprint 8, CI/CD Arm Cluster Build and Deployment
+
+I'm reflashing the rapsberry pi's to practice provisioning the nodes and cluster and to fix the issue with the router not recognizing them due to the self assigned ip addresses.
+
+I'm using:
+2018-06-27-raspbian-stretch-lite
+
+I'm flashing it with etcher.
+
+I wonder if I could script the pre-provisioning of the cluster node images with Hashicorps https://www.packer.io
+- https://www.packer.io
+- https://folio.brighton.ac.uk/user/adampietrzycki/pi-gen
+- https://github.com/hashicorp/packer/issues/2922
+- https://github.com/solo-io/packer-builder-arm-image
+- https://github.com/Demonsthere/raspberry-packer_scripts
+- https://wilsonmar.github.io/packer/
+- https://www.youtube.com/watch?v=LGwlXBC9TjY
+- https://www.youtube.com/watch?v=6-7WjA-hHvg
+
+Looks like I can definitly script the provisioning of raspberry pi images so that they're already re-producibly pre-configured and just need to be flashed to be in a working state.
+
+Hmm it looks like I could also run a command line based arm emulator from jenkins for compiling any arm related code for deployment.
+
+1) FLASH RASPBIAN LITE
+2) cd /Volumes/boot && touch ssh && cd .. && diskutil unmount /boot
+3) Install sd card, ethernet and power to the pi to boot it up
+4) ifconfig | grep broadcast && arp -a
+5) sudo ssh pi@192.168.0.6
+
+After reflashing the sd cards, creating the ssh file in the root I'm able to see the two raspberrypi's on the wired connected devices on the router. It even works throught the tplink ethernet over power adapter! Looks like it was the static ip that was causing the issue.
+
+Inside of the netgear config portal at 192.168.1.1 I'm configuring the assigned ip addresses for the two pi's:
+Advanced > Setup > LAN Setup > Address Reservation, Add > Pick the rpi, set the ip, name it then click Apply when returned to the prior page.
+
+After re-assigning the ip addresss it reboots then takes a while to show connected devices.
+`ifconfig | grep broadcast && arp -a`
+
+Hmm the ip addresses haven't seemed to have changed...
+Okay after ssh'ing into the raspberry pi and running `sudo rebot` it came back with the correct ip. However one isn't showing up now after rebooting the router... I'll pull the plug on the cluster and reboot it to see if they both show up correctly. 
+Yup that did the trick. Both are showing up as wired, with the correct ip address via the ethernet over power adapter!
+
+They can be reached at `ssh pi@192.168.1.100` and `ssh pi@192.168.1.101`.
+
+I then ssh in to both of them and run: `sudo curl -sSL get.docker.com | sh`
+It takes a while, however the .101 pi is considerably faster despite being executed later. That must be the model 3 with the faster processor.
+
+Running `cat /proc/cpuinfo` will expose details about the hardware to tell what version it is.
+
+Actually maybe one just has a much slower sd card and that's why it's taking so much longer to install docker? Yeah that must be it because running `cat /proc/cpuinfo` on both of them shows that the one that took less than half the time to install it was the ARMv7 Processor rev 4 rpi2 and the slower one was the ARMv7 Processor rev 5 rpi3... It's either the sd card, networking issue or the install for one is just actually more involved than the other but I should keep an eye on that performance discrepency.
+
+So pi@192.168.1.101 B8:27:EB:2A:D8:97 is rpi2 and pi@192.168.1.100 B8:27:EB:6F:5C:DA is rpi3. Maybe the rpi3 boots and connects faster so that was why it had the lower ip in the beginning?
+
+Enable docker to run as root:
+`sudo usermod pi -aG docker`
+Then reconnect to the ssh by running `exit` then reconnecting. This step is important or the docker swarm join won't work.
+
+Swarm comes pre-installed with docker these days so that's taken care of already.
+To initialize it run:
+`sudo docker swarm init --advertise-addr 192.168.1.100`
+
+This will output the command for the other pi: pi@192.168.0.101
+docker swarm join --token SWMTKN-1-3kzr1o6q4ikk2vjb4ycoim1qsis1ssojaqrvmq8dmblmxmd2la-68svxgm4bwvijy0th0sykixuw 192.168.1.100:2377
+
+Also as a note I had issues connecting to the swarm until I realised the ip address was wrong. I had to run `docker swarm leave --force` on both of the raspberry pi's then repeat the docker swarm init with the correct advertised address.
+
+So I guess I'll have to maintain these ip addresses on the new router when it arrives for this to continue working. Again they can be reached at `ssh pi@192.168.1.100` and `ssh pi@192.168.1.101`.
+
+I noticed again a performance discrepency during troubleshooting the swarm join when I ran `sudo reboot` the rpi3 took considerably longer for the ssh to be available... I think I need a better flash card.
+
+I then need to re-install docker-compose, I went ahead and ran this on both:
+```
+sudo apt-get update
+sudo apt-get install python-pip -y
+pip install docker-compose
+```
+
+I install git, again on both machines for consistency:
+```
+sudo apt-get install git -y
+```
+
+To launch my project on the swarm for the I run on the fist raspberry pi that initialized the swarm:
+```
+git clone https://gitlab.com/lazztech/Lazztech.ObsidianPresences.git
+cd Lazztech.ObsidianPresences/
+docker stack deploy -c docker-compose.rpi-cluster-prod.yml lazztech-cloud
+```
+
+It can then be confirmed with: `docker stack ls`. Run `docker service ls` periodically until you see the replicas full: 1/1. After that point it can be seen in the browser at: http://192.168.1.100
+
+And now back to needing to setup the load balancer and port forwarding.
