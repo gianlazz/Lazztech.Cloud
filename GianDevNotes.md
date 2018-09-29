@@ -2303,3 +2303,23 @@ It looks like I need to use the load balancing features built into docker swarm.
 
 I've also moved my cluster and am running into issues with it not showing up on the network. It appears that it may be due to the static ip addresses:
 - https://community.netgear.com/t5/Nighthawk-WiFi-Routers/No-Internet-on-LAN-Ports-WiFi-fully-connectivity/m-p/1369238/highlight/true#M66375
+
+## Friday, August 28, 2018
+#### Sprint 8, CI/CD Arm Cluster Build and Deployment
+
+I'm still having trouble with getting the cluster to show up on the netgear router. I've also purchaced an ethernet over power adapter which wasn't to fix the problem but provide more connectivity options. I think that the issue is coming from the raspberry pi's having self configured static ip addresses.
+
+I've decided to get the cluster it's own router. I'm now looking at these GL-Inet travel routers as there are many great looking options. They mostly seem to have openwrt pre-installed which is good, they have wifi, lan ports and some even have ethernet switches & antenna ports. They also seem to support usb gsm modems.
+- https://store.gl-inet.com/
+- https://www.amazon.com/GL-iNet-Pre-installed-Performance-Compatible-Programmable/dp/B01G6FJM8I?ref_=w_bl_hsx_s_pa_web_13180420011&th=1
+- https://www.youtube.com/watch?v=reb5nAmLx54
+- https://www.amazon.com/GL-iNet-Pre-installed-Performance-Compatible-Programmable/dp/B01FJ4S9JK?ref_=w_bl_hsx_s_pa_web_13180420011
+- http://cocoontech.com/forums/blog/29/entry-431-tweaking-a-tp-link-tl-wr710n-glinet-6416a-microrouter/
+
+I ended up purchasing one of these:
+- https://www.amazon.com/gp/product/B07794JRC5/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1
+- https://store.gl-inet.com/collections/travel-routers/products/gl-ar300m-mini-smart-router?variant=3097496944667
+
+I'm unable to connect to the raspberry pi's since they won't show up on the router. The new router is coming in two days and I'm unsure if the static ip's will cause issues with tit too. I think the better rought is to use dhcp on the router and reserve ip's from the router. This means I need to re-flash the raspberry pi's and re-configure them which will be a pain but is good because I can practice it and better document the setup process.
+
+After I've got all this done I can resume to setting up load balancing between the swarm cluster "service stack" and configure port forwarding with noip ddns. Idealy soon I'll have it all configured and in order to do deployments through my jenkins pipeline at the end of my weekly sprints.
