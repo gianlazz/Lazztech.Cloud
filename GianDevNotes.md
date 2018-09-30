@@ -2416,3 +2416,20 @@ docker stack deploy -c docker-compose.rpi-cluster-prod.yml lazztech-cloud
 It can then be confirmed with: `docker stack ls`. Run `docker service ls` periodically until you see the replicas full: 1/1. After that point it can be seen in the browser at: http://192.168.1.100
 
 And now back to needing to setup the load balancer and port forwarding.
+Do I need nginx? It sounds like inside the swarm it'll handle the dns for the services but to get a single entry point I need a load balancing service that I'll do the port forwarding on the router with? Also it looks like this is called a "Swarm mode routing mesh".
+- https://www.upcloud.com/support/load-balancing-docker-swarm-mode/
+- https://docs.docker.com/engine/swarm/key-concepts/#services-and-tasks
+- 
+
+It looks like a swarm stack has a "published port" that I'll either have to use or configure.
+
+Hmm, actually now I'm able to access my website on either of the nodes... It also shows when I run docker ps that the webapi is running on rpi3 and the webfrontend is running on rpi2 but I'm able to access the webfrontend from either. Maybe I can just forward the port to either?
+
+Port forwarding can be enabled by going to the netgear portal at 192.168.1.1 > Advanced > Advanced Setup > Port Fowarding / Port Triggering, then add the ip address of the node, so 192.168.1.100 with the Service Name as HTTP.
+
+Here's documentation on how to configure dynamic dns with the netgear router:
+- https://kb.netgear.com/23860/How-to-Setup-a-NETGEAR-Dynamic-DNS-account
+
+It looks like the router I have only supports dyndns.org however there is a firmware update so I'll try to update the router to see if that fixes it.
+
+Interesting, it mentions a "Added SOAP API 2.0 support." feature of the update. The current version I have is 1.0.1.20_2.1.17.1 gui & firmware 1.0.1.20 and I'm updating to 1.0.1.46_2.1.17.1 gui and 1.0.1.46_1.0.76 firmware.
