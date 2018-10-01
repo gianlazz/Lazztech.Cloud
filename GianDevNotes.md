@@ -2497,3 +2497,36 @@ config host
 ```
 
 So this means that I'm going to have to tear down / leave the swarm then re-initialize it with the correclty advertiesed ip address.
+To do so I've run:
+On swarm manager @ 192.168.8.100:
+```
+docker stack rm lazztech-cloud
+```
+On both 
+```
+docker swarm leave --force
+```
+Reinitialize the swarm on the desired swarm manager @ 192.168.8.100:
+```
+sudo docker swarm init --advertise-addr 192.168.8.100
+```
+On the node @ 192.168.8.101:
+```
+docker swarm join --token SWMTKN-1-4yj1ovb03ptvzbjahee5suk5yeww7r23kme7u5atw4limrw116-8ufwszqvtbde1pgq2luqnsdlk 192.168.8.100:2377
+```
+
+Then on the swarm manager again @ 192.168.8.100:
+```
+cd Lazztech.ObsidianPresences/
+docker stack deploy -c docker-compose.rpi-cluster-prod.yml lazztech-cloud
+```
+
+You can then check on the running state of it from the swarm manager with: `docker stack ps lazztech-cloud`, `docker stack ls`, and `docker service ls`.
+
+I also verify that it can be accessed at http://192.168.8.100/ & http://192.168.8.101/
+
+I now need to setup portforwarding on the glinet router either through the web ui or ssh.
+- https://forum.gl-inet.com/t/gl-mt300n-v2-port-forwarding-and-ssh/3842
+
+Don't forget to click add after inputing the data before clicking apply and save.
+
