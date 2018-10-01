@@ -2446,3 +2446,54 @@ Also here's documentation on setting up wireguard vpn on the glinet openwrt rout
 - https://docs.gl-inet.com/en/2/app/wireguard/
 - https://docs.gl-inet.com/en/3/app/wireguard/
 It looks super easy and already pretty much pre-configured if you have the newer version!
+
+## Sunday, September 30, 2018
+#### Sprint 8, CI/CD Arm Cluster Build and Deployment
+
+Configuring the static ip lease throught the glinet router:
+- https://forum.openwrt.org/t/lede-17-x-static-dhcp-lease-not-working/3977/7
+
+I'm having trouble setting the ip leasing through the gui so I'm trying it through the command line.
+
+```
+ssh root@192.168.8.1
+vi /etc/config/dhcp
+```
+Add the following based on this : "So pi@192.168.1.101 B8:27:EB:2A:D8:97 is rpi2 and pi@192.168.1.100 B8:27:EB:6F:5C:DA is rpi3. "
+```
+config host
+	option name 'raspberrypi1'
+	option mac 'b8:27:eb:6f:5c:da'
+	option ip '192.168.1.100'
+	option leasetime infinite
+
+config host
+	option name 'raspberrypi2'
+	option mac 'b8:27:eb:2a:d8:97'
+	option ip '192.168.1.101'
+	option leasetime infinite
+```
+
+Then delete the existing leases with:
+`vi /tmp/dhcp.leases`
+
+https://medium.com/openwrt-iot/lede-openwrt-defining-static-dhcp-leases-eacba2a02c8b
+
+Interesting so the above doesn't quite work however I think the lowest limit is the ip address of the router at 192.168.8.1.
+Addint this instead works after rebooting from the router shell, then ssh'ing into both of the rpi's and running sudo reboot on them too. Then in the `/tmp/dhcp.leases` on the router after the raspberry pi's reboot they'll show up in that file with the correctly assigned ip addresses.
+
+```
+config host
+	option name 'raspberrypi1'
+	option mac 'b8:27:eb:6f:5c:da'
+	option ip '192.168.8.100'
+	option leasetime infinite
+
+config host
+	option name 'raspberrypi2'
+	option mac 'b8:27:eb:2a:d8:97'
+	option ip '192.168.8.101'
+	option leasetime infinite
+```
+
+So this means that I'm going to have to tear down / leave the swarm then re-initialize it with the correclty advertiesed ip address.

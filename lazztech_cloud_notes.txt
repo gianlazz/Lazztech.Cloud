@@ -37,11 +37,12 @@ https://www.ansible.com/resources/videos/quick-start-video
 3) Install sd card, ethernet and power to the pi to boot it up
 4) ifconfig | grep broadcast && arp -a
 5) sudo ssh pi@192.168.0.6
-6) SET STATIC IP ADDRESS & Change 100 for 101, 102, 103 etc.sudo swapon --summary
+6) SET STATIC IP ADDRESS & Change 100 for 101, 102, 103 etc.
+sudo swapon --summary
 cat >> /etc/dhcpcd.conf
 
 profile static_eth0
-static ip_address=192.168.0.100/24
+static ip_address=192.168.1.100/24
 static routers=192.168.0.1
 static domain_name_servers=8.8.8.8
 
