@@ -2593,3 +2593,15 @@ Also the glinet router comes preconfigured with free ddns. The address is pk387f
 - expose the ip and port for the router that the glinet router is connected to so that the ddns can make it out.
 
 However this build in glinet free ddns service only seems to support the router terminal. So this really probably isn't that helpful and is actually a pretty significant security vulnerability so I may just turn it off.
+
+To setup no-ip.com ddns on the glinet openwrt do the following:
+```
+ssh root@192.168.8.1
+opkg update
+opkg install ddns-scripts
+opkg install ddns-scripts_no-ip_com
+```
+
+In my http://get.tech I added a domain name forwarding for subdomain cloud. to lazz.tech pointed at http://lazztech.ddns.net/
+
+I've also purchased a premium no-ip account that I'm having trouble with the hostname with.
