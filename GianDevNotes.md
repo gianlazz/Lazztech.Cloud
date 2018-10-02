@@ -2534,6 +2534,9 @@ Don't forget to click add after inputing the data before clicking apply and save
 #### Sprint 8, CI/CD ARM face_recognition compilation / deployment & dynamic dns config
 
 Today I setup a wireguard vpn on the glinet router doing the folowing:
+- https://docs.gl-inet.com/en/2/app/wireguard/
+- https://www.wireguard.com/quickstart/
+- https://wiki.debian.org/Wireguard#A3._Import_by_reading_a_QR_code_.28most_secure_method.29
 
 ```
 ssh root@192.168.8.1
@@ -2572,3 +2575,19 @@ The rest can be left blank then click add peer.
 This however doesn't reflect how the addresses section will be after configuring dynamic dns and port forwarding it.
 
 No I'm going to setup noip ddns on the glinet router.
+
+- https://forum.gl-inet.com/t/accessing-ddns-via-aoxxxxxx-gl-inet-com/1568
+- https://wiki.openwrt.org/doc/howto/ddns.client
+- https://forum.gl-inet.com/t/ddns-and-port-forwarding/4531
+- https://forum.gl-inet.com/t/gl-ar300m-have-ddns-service/3201
+
+ALso as an aside this link documents fixing a bricked glinet router:
+- https://wiki.openwrt.org/toh/gl-inet/gl.inet_gl-mt300n_v1
+
+Default wireguard udp port 51820
+- https://www.stavros.io/posts/how-to-configure-wireguard/
+
+Also the glinet router comes preconfigured with free ddns. The address is pk387f8.gl-inet.com and I was able to enable it with the following:
+- go to http://192.168.8.1
+- Enable wan acces at port 83
+- expose the ip and port for the router that the glinet router is connected to so that the ddns can make it out.
