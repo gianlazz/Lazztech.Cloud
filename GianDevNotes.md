@@ -2574,7 +2574,7 @@ The rest can be left blank then click add peer.
 
 This however doesn't reflect how the addresses section will be after configuring dynamic dns and port forwarding it.
 
-No I'm going to setup noip ddns on the glinet router.
+Now I'm going to setup noip ddns on the glinet router.
 
 - https://forum.gl-inet.com/t/accessing-ddns-via-aoxxxxxx-gl-inet-com/1568
 - https://wiki.openwrt.org/doc/howto/ddns.client
@@ -2591,3 +2591,5 @@ Also the glinet router comes preconfigured with free ddns. The address is pk387f
 - go to http://192.168.8.1
 - Enable wan acces at port 83
 - expose the ip and port for the router that the glinet router is connected to so that the ddns can make it out.
+
+However this build in glinet free ddns service only seems to support the router terminal. So this really probably isn't that helpful and is actually a pretty significant security vulnerability so I may just turn it off.
