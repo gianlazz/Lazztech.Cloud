@@ -2632,3 +2632,8 @@ The jenkins pipeline has the following challenges:
 - Multiple concurrent docker jobs causing pipeline failures
 
 For now to temporarily fix the collision between the multi branch docker pipeline I'm going to comment out that section of the Jenkinsfile. I've restored the jenkins pipeline to the last most functional state it's been so that I can continue to do basic integration testing on the project until I make more progress on it.
+
+I really don't like how the docker proccess interfere between jobs. I wish they were all in isolated temporary enviroments.
+
+I've gone ahead and added the face_recognition dependency build commands to the webapi dockerfile and dockerfile.rpi. Now I'm trying to build on the cluster but depsite installing docker-compose it's saying that it's still not installed.
+Okay weird after running `pip install docker-compose` then `sudo pip install docker-compose` it finally then worked... I've not really run into this sort of problem many times before.

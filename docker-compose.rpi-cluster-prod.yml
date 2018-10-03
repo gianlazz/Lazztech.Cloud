@@ -6,7 +6,7 @@ services:
     ports:
       - 80:80
     depends_on:
-      - lazztech.obsidianpresences.vision.microservice.webapi
+      - lazztech-obsidianpresences-vision--webapi
     build:
       context: .
       dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile.Rpi
