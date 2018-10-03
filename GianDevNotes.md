@@ -2631,4 +2631,4 @@ The jenkins pipeline has the following challenges:
 - compiling the docker base image for arm with qemu
 - Multiple concurrent docker jobs causing pipeline failures
 
-For now to temporarily fix the collision between the multi branch docker pipeline I'm going to comment out that section of the Jenkinsfile.
+For now to temporarily fix the collision between the multi branch docker pipeline I'm going to comment out that section of the Jenkinsfile. I've restored the jenkins pipeline to the last most functional state it's been so that I can continue to do basic integration testing on the project until I make more progress on it.
