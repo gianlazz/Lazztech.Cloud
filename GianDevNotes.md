@@ -2530,7 +2530,7 @@ I now need to setup portforwarding on the glinet router either through the web u
 
 Don't forget to click add after inputing the data before clicking apply and save.
 
-## Sunday, September 30, 2018
+## Monday, October 1, 2018
 #### Sprint 8, CI/CD ARM face_recognition compilation / deployment & dynamic dns config
 
 Today I setup a wireguard vpn on the glinet router doing the folowing:
@@ -2605,3 +2605,10 @@ opkg install ddns-scripts_no-ip_com
 In my http://get.tech I added a domain name forwarding for subdomain cloud. to lazz.tech pointed at http://lazztech.ddns.net/
 
 I've also purchased a premium no-ip account that I'm having trouble with the hostname with.
+
+## Tuesday, October 2, 2018
+#### Sprint 8, CI/CD ARM face_recognition compilation / deployment & dynamic dns config
+
+Today I switched from domain name forwarding and masking for the free no-ip lazztech.ddns.net hostname to a CNAME record pointing at that domain on the cloud.lazz.tech subdomain. I'm still waiting and hoping that the dns will propagate successfully on that configuration. I looked into the A name records and it looks like that only accepts an ip address and is responsable for the root of the domain name so either domain name forwarding or CNAME seems like the only applicable configuration options for my lazz.tech domain name through get.tech.
+
+I'm also having trouble with my wireguard configuration and not actually getting tunneled through. I think I need to make an actual .conf file for the wireguard clients and I'm not sure how. In the mean time I enabled the pre-installed openvpn on the glinet router, exported the connection configuration file, edited it to change the ip from 192.168.1.16 which it's seen as in the netgear router to lazztech.ddns.net/ . Then after that I exposed the 1194 port for openvpn which I found in the exported client.txt on the outer netgear router. Oh I also changed the exported file from client.txt to client.ovpn. I then emailed it to my android phone and was able to import and successfully connect with the android client from cellular.
