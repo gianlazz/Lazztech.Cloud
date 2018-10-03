@@ -2619,3 +2619,16 @@ For now I'll just continue with the openvpn solution since it's working well for
 
 I still need to finish configuring ddns updating from my glinet router. I wonder if it will try to update it with 192.168.1.16 as it shows up as from the outer netgear router? That would be an issue. 
 - https://wiki.openwrt.org/doc/howto/ddns.client
+
+Okay so upon actually setting up the existing camera system it doesn't seem like it's going to work with for my use case. I'm not able to access the cameras directly through the ethernet without a client software. Also the web portal is terrible so that dvr doesn't seem like it's going to help me much. I may end up rolling my own camera solution with raspberry pi 0w's. Or just an actual ip camera system would probably suffice.
+
+I'm still waiting hours later for the cloud.lazz.tech CNAME to resolve to the noip lazztech.ddns.net ddns service... Hopefully it'll be working some time tomorrow.
+
+I need to continue with development and deploying the software to the cluster. I need to compile the face_recognition dependencies for the cluster too. Then I also really need to setup authentication. I've also been thinking I may use qemu to emulate the raspberry pi so that I can compile software for it in the jenkins pipeline from an x86 since the .netcore requires x86 to compile for arm and I'd rather do the emulation on dedicated machine or my laptop so it doesn't disrupt the web services on the cluster.
+
+The jenkins pipeline has the following challenges:
+- Managing secrets for deployment
+- compiling the docker base image for arm with qemu
+- Multiple concurrent docker jobs causing pipeline failures
+
+For now to temporarily fix the collision between the multi branch docker pipeline I'm going to comment out that section of the Jenkinsfile.
