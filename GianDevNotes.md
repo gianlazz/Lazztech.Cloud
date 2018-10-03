@@ -2612,3 +2612,10 @@ I've also purchased a premium no-ip account that I'm having trouble with the hos
 Today I switched from domain name forwarding and masking for the free no-ip lazztech.ddns.net hostname to a CNAME record pointing at that domain on the cloud.lazz.tech subdomain. I'm still waiting and hoping that the dns will propagate successfully on that configuration. I looked into the A name records and it looks like that only accepts an ip address and is responsable for the root of the domain name so either domain name forwarding or CNAME seems like the only applicable configuration options for my lazz.tech domain name through get.tech.
 
 I'm also having trouble with my wireguard configuration and not actually getting tunneled through. I think I need to make an actual .conf file for the wireguard clients and I'm not sure how. In the mean time I enabled the pre-installed openvpn on the glinet router, exported the connection configuration file, edited it to change the ip from 192.168.1.16 which it's seen as in the netgear router to lazztech.ddns.net/ . Then after that I exposed the 1194 port for openvpn which I found in the exported client.txt on the outer netgear router. Oh I also changed the exported file from client.txt to client.ovpn. I then emailed it to my android phone and was able to import and successfully connect with the android client from cellular.
+- https://openvpn.net/index.php/open-source/downloads.html
+- https://swupdate.openvpn.org/community/releases/openvpn-install-2.4.6-I602.exe
+
+For now I'll just continue with the openvpn solution since it's working well for my needs however I have been wanting to use wireguard for a while so I'll work on that more later.
+
+I still need to finish configuring ddns updating from my glinet router. I wonder if it will try to update it with 192.168.1.16 as it shows up as from the outer netgear router? That would be an issue. 
+- https://wiki.openwrt.org/doc/howto/ddns.client
