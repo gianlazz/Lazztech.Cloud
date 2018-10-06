@@ -2655,6 +2655,7 @@ I finally got the http://cloud.lazz.tech working. Here's the post mortem and wha
 4. I stopped using noip ddns and instead made another A name record on cloudflare for my lazz.tech domain with the cloud name and pointed it to the public ip address of my cluster. I set the ttl to 30 minutes and will probably just be updating the cloudflare record instead of using noip. This seems to be covered in the openwrt ddns updating scripts I was looking into.
 
 Here's what I have to do.
+- Setup ddns update script for cloudflare dns record
 - Setup my docker services to expose port 443
 - Setup aspnetcore projects to handle https ssl
 - Asses if I can just have cloudflare responsable for my ssl or if I need to manage it in my dotnet code
