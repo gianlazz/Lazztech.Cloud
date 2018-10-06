@@ -2662,3 +2662,57 @@ Here's what I have to do.
 - Finish setting up the vision webapi project to do all of the face_recognition work and data access
 - Get vision webapi project compile and deployed on arm (Do I want to compile it and push to the docker hub as a base image from jenkins with qemu arm emulation?)
 - Setup authentication / application facade webapi for secure public facing rest api and authentication server for clients
+
+Also I've now confirmed that the face_recognition dependency build process is failing on that arm. It doesn't fail until the very end. Here's the result of the build failure.
+```
+  ^~~
+virtual memory exhausted: Cannot allocate memory
+make[2]: *** [CMakeFiles/dlib_python.dir/src/face_recognition.cpp.o] Error 1
+CMakeFiles/dlib_python.dir/build.make:518: recipe for target 'CMakeFiles/dlib_python.dir/src/face_recognition.cpp.o' failed
+make[1]: *** [CMakeFiles/dlib_python.dir/all] Error 2
+CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/dlib_python.dir/all' failed
+make: *** [all] Error 2
+Makefile:83: recipe for target 'all' failed
+Traceback (most recent call last):
+  File "setup.py", line 257, in <module>
+    'Topic :: Software Development',
+  File "/usr/lib/python3.5/distutils/core.py", line 148, in setup
+    dist.run_commands()
+  File "/usr/lib/python3.5/distutils/dist.py", line 955, in run_commands
+    self.run_command(cmd)
+  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+    cmd_obj.run()
+  File "/usr/lib/python3/dist-packages/setuptools/command/install.py", line 67, in run
+    self.do_egg_install()
+  File "/usr/lib/python3/dist-packages/setuptools/command/install.py", line 109, in do_egg_install
+    self.run_command('bdist_egg')
+  File "/usr/lib/python3.5/distutils/cmd.py", line 313, in run_command
+    self.distribution.run_command(command)
+  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+    cmd_obj.run()
+  File "/usr/lib/python3/dist-packages/setuptools/command/bdist_egg.py", line 161, in run
+    cmd = self.call_command('install_lib', warn_dir=0)
+  File "/usr/lib/python3/dist-packages/setuptools/command/bdist_egg.py", line 147, in call_command
+    self.run_command(cmdname)
+  File "/usr/lib/python3.5/distutils/cmd.py", line 313, in run_command
+    self.distribution.run_command(command)
+  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+    cmd_obj.run()
+  File "/usr/lib/python3/dist-packages/setuptools/command/install_lib.py", line 24, in run
+    self.build()
+  File "/usr/lib/python3.5/distutils/command/install_lib.py", line 109, in build
+    self.run_command('build_ext')
+  File "/usr/lib/python3.5/distutils/cmd.py", line 313, in run_command
+    self.distribution.run_command(command)
+  File "/usr/lib/python3.5/distutils/dist.py", line 974, in run_command
+    cmd_obj.run()
+  File "setup.py", line 133, in run
+    self.build_extension(ext)
+  File "setup.py", line 173, in build_extension
+    subprocess.check_call(cmake_build, cwd=build_folder)
+  File "/usr/lib/python3.5/subprocess.py", line 271, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['cmake', '--build', '.', '--config', 'Release', '--', '-j1']' returned non-zero exit status 2
+ERROR: Service 'lazztech-obsidianpresences-vision--webapi' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get
+install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get
+```
