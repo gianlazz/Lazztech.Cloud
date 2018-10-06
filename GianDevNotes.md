@@ -2637,3 +2637,9 @@ I really don't like how the docker proccess interfere between jobs. I wish they 
 
 I've gone ahead and added the face_recognition dependency build commands to the webapi dockerfile and dockerfile.rpi. Now I'm trying to build on the cluster but depsite installing docker-compose it's saying that it's still not installed.
 Okay weird after running `pip install docker-compose` then `sudo pip install docker-compose` it finally then worked... I've not really run into this sort of problem many times before.
+
+Now that compose is working on the docker manager pi@192.168.8.100 I was then to run `docker-compose -f docker-compose.rpi-cluster-prod.yml build` after first fixing a naming issue with the depends on parameter in the compose file. This now contians the face_recognition dependencies on the ARM cluster.
+
+Also as a note I really don't like maintaining divergent docker-compose.yml's and dockerfiles between the regular pc development version and the raspberry pi ARM deployment version... I wonder if I can setup some kind of single source of truth for the files so I could just pass and argument to build it for the different configurations?
+
+Also does building the docker-compose on the swarm manager allow the slave nodes to have access to the container images? How does that work?
