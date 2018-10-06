@@ -2643,3 +2643,21 @@ Now that compose is working on the docker manager pi@192.168.8.100 I was then to
 Also as a note I really don't like maintaining divergent docker-compose.yml's and dockerfiles between the regular pc development version and the raspberry pi ARM deployment version... I wonder if I can setup some kind of single source of truth for the files so I could just pass and argument to build it for the different configurations?
 
 Also does building the docker-compose on the swarm manager allow the slave nodes to have access to the container images? How does that work?
+
+## Friday, October 5, 2018
+#### Sprint 8, CI/CD ARM face_recognition compilation / deployment & dynamic dns config
+
+I finally got the http://cloud.lazz.tech working. Here's the post mortem and what's left to do.
+
+1. I was trying to change my dns records through get.tech where I registered the domain and didn't remember that I'd pointed that registrars nameserver to cloudflare dns
+2. I tried pointing the lazz.tech cloud cname record to noip's ddns at http://lazztech.ddns.net and got an error 522. This ended up being because of cloudflares https redirect to port 443. I was able to see this in a wget to cloud.lazz.tech where the port 80 was working then when it went to port 443 it would fail.
+3. I exposed port 443 on the routers and it failed with error 521 because my docker service doesn't handle https or expose it right now. I fixed this temporarily by turning off cloudflare https redirect.
+4. I stopped using noip ddns and instead made another A name record on cloudflare for my lazz.tech domain with the cloud name and pointed it to the public ip address of my cluster. I set the ttl to 30 minutes and will probably just be updating the cloudflare record instead of using noip. This seems to be covered in the openwrt ddns updating scripts I was looking into.
+
+Here's what I have to do.
+- Setup my docker services to expose port 443
+- Setup aspnetcore projects to handle https ssl
+- Asses if I can just have cloudflare responsable for my ssl or if I need to manage it in my dotnet code
+- Finish setting up the vision webapi project to do all of the face_recognition work and data access
+- Get vision webapi project compile and deployed on arm (Do I want to compile it and push to the docker hub as a base image from jenkins with qemu arm emulation?)
+- Setup authentication / application facade webapi for secure public facing rest api and authentication server for clients
