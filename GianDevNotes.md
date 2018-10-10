@@ -2762,3 +2762,6 @@ start .
 
 Ran the following to get the dockerized project to actually prompt for ssl permisions:
 - `dotnet dev-certs https --clean`
+
+This resource may also be helpful in understanding how dotnet cli manages certs:
+- https://blogs.msdn.microsoft.com/webdev/2018/02/27/asp-net-core-2-1-https-improvements/
