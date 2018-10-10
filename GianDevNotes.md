@@ -2747,3 +2747,5 @@ Here's what I've found about this error online:
 - https://github.com/Microsoft/DockerTools/issues/147
 - https://stackoverflow.com/questions/47413183/visual-studio-2017-gives-adding-the-certificate-to-the-trusted-root-certificate
 - https://www.google.com/search?q=Adding+the+certificate+to+the+Trusted+Root+Certificates+store+failed+with+the+following+error%3A+Failed+with+a+critical+error.&rlz=1C1CHBF_enUS811US811&oq=Adding+the+certificate+to+the+Trusted+Root+Certificates+store+failed+with+the+following+error%3A+Failed+with+a+critical+error.&aqs=chrome..69i57.218638j0j7&sourceid=chrome&ie=UTF-8
+
+It looks like this could be caused by a bug in VS. I'm at version 15.8.1 right now and there's an update available to 15.8.6 so I'll see if that fixes it.
