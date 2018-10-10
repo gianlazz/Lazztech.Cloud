@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.Vision.Microservice.Webapi", "Lazztech.ObsidianPresences.Vision.Microservice.Webapi\Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj", "{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresences.ClientFacade", "Lazztech.ObsidianPresences.ClientFacade\Lazztech.ObsidianPresences.ClientFacade.csproj", "{EE9BDD93-BBC6-44BD-AA70-55722D9548AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE9BDD93-BBC6-44BD-AA70-55722D9548AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE9BDD93-BBC6-44BD-AA70-55722D9548AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE9BDD93-BBC6-44BD-AA70-55722D9548AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE9BDD93-BBC6-44BD-AA70-55722D9548AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

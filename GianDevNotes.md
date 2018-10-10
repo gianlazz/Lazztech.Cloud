@@ -2726,9 +2726,15 @@ Here's the article by scott hanselman that talks about how you can now compile .
 - https://www.hanselman.com/blog/BuildingRunningAndTestingNETCoreAndASPNETCore21InDockerOnARaspberryPiARM32.aspx
 
 Also I've decided the way I'm going to implement the authentication and facade webapi is actually to take advantage of the fact that all of the aspnetcore web projects all use the same codebase so I can actually have one razer pages project with in app authentication also serve as the web api. This is what I'm going to do. I think it will help consolidate complexity on this subject by having it in one project as they're all pretty relitive. Also I was having trouble getting an aspnetcore webapi project with in app authentication as it only had an option for cloud stored authenticaiton which is what got me wondering in the first place if this was an option.
+- http://www.binaryintellect.net/articles/e6557104-d06a-418c-a1a9-b8ce248f60b1.aspx (Use Razor Pages, MVC, And Web API In A Single ASP.NET Core Application)
+
+And here's an interesting article about building clusters https://blog.hackster.io/should-you-build-or-buy-a-cluster-of-single-board-computers-5931119384e8
 
 Also as for the raspberry pi build failure for face_recognition here's a github issue that looks similar that solved it by increasing the swap:
 - https://github.com/ageitgey/face_recognition/issues/488
 
 Also I may be able to just install face_recognition with pip more easily?
 - https://pypi.org/project/face_recognition/
+
+Aspnetcore Webapi Authentication:
+- https://youtu.be/e2qZvabmSvo?t=2054
