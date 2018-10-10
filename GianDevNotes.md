@@ -2749,3 +2749,16 @@ Here's what I've found about this error online:
 - https://www.google.com/search?q=Adding+the+certificate+to+the+Trusted+Root+Certificates+store+failed+with+the+following+error%3A+Failed+with+a+critical+error.&rlz=1C1CHBF_enUS811US811&oq=Adding+the+certificate+to+the+Trusted+Root+Certificates+store+failed+with+the+following+error%3A+Failed+with+a+critical+error.&aqs=chrome..69i57.218638j0j7&sourceid=chrome&ie=UTF-8
 
 It looks like this could be caused by a bug in VS. I'm at version 15.8.1 right now and there's an update available to 15.8.6 so I'll see if that fixes it.
+
+Okay so it looks like the update didn't fix it either. It may be a bug that's happening from my account having a space in it's name as mentioned in one of the github issues?
+
+Okay I'm able to see the certs in `C:\Users\Gian Lazzarini\AppData\Roaming\ASP.NET\Https`
+This can be accessed from command prompt by:
+```
+cd "%APPDATA%\ASP.NET\
+cd Https
+start .
+```
+
+Ran the following to get the dockerized project to actually prompt for ssl permisions:
+- `dotnet dev-certs https --clean`
