@@ -2738,3 +2738,12 @@ Also I may be able to just install face_recognition with pip more easily?
 
 Aspnetcore Webapi Authentication:
 - https://youtu.be/e2qZvabmSvo?t=2054
+
+So I've gone ahead and made a new project for what I'm calling the "ClientFacade", it's a aspnetcore web application project with in app individual user authentication, ssl, and linux docker. The first thing I've noticed is that the https/ssl works just fine when running it with IIS Express or as the dotnet proccess however whe I run it as the docker option it throws the following error:
+- `Adding the certificate to the Trusted Root Certificates store failed with the following error: Failed with a critical error.`
+
+Here's what I've found about this error online:
+- https://github.com/Microsoft/DockerTools/issues/99
+- https://github.com/Microsoft/DockerTools/issues/147
+- https://stackoverflow.com/questions/47413183/visual-studio-2017-gives-adding-the-certificate-to-the-trusted-root-certificate
+- https://www.google.com/search?q=Adding+the+certificate+to+the+Trusted+Root+Certificates+store+failed+with+the+following+error%3A+Failed+with+a+critical+error.&rlz=1C1CHBF_enUS811US811&oq=Adding+the+certificate+to+the+Trusted+Root+Certificates+store+failed+with+the+following+error%3A+Failed+with+a+critical+error.&aqs=chrome..69i57.218638j0j7&sourceid=chrome&ie=UTF-8
