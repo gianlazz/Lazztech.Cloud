@@ -2716,3 +2716,19 @@ subprocess.CalledProcessError: Command '['cmake', '--build', '.', '--config', 'R
 ERROR: Service 'lazztech-obsidianpresences-vision--webapi' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get
 install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get
 ```
+
+## Tuesday, October 9, 2018
+#### Sprint 9, Authenticated Client Facade
+
+I found out today that you can actually compile .netcore and aspnetcore code on the raspberry pi. This is greate news as it means that I'll be able to run/host jenkins right on the cluster along with the other services for continous integration and continous deployment which will make the whole process a lot more convenient.
+
+Here's the article by scott hanselman that talks about how you can now compile .netcore code on arm devices like the raspberry pi:
+- https://www.hanselman.com/blog/BuildingRunningAndTestingNETCoreAndASPNETCore21InDockerOnARaspberryPiARM32.aspx
+
+Also I've decided the way I'm going to implement the authentication and facade webapi is actually to take advantage of the fact that all of the aspnetcore web projects all use the same codebase so I can actually have one razer pages project with in app authentication also serve as the web api. This is what I'm going to do. I think it will help consolidate complexity on this subject by having it in one project as they're all pretty relitive. Also I was having trouble getting an aspnetcore webapi project with in app authentication as it only had an option for cloud stored authenticaiton which is what got me wondering in the first place if this was an option.
+
+Also as for the raspberry pi build failure for face_recognition here's a github issue that looks similar that solved it by increasing the swap:
+- https://github.com/ageitgey/face_recognition/issues/488
+
+Also I may be able to just install face_recognition with pip more easily?
+- https://pypi.org/project/face_recognition/
