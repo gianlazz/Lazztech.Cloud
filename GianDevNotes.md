@@ -2791,10 +2791,24 @@ The original command I came up with to launch the jenkins container was: `docker
 
 The docker swarm service version is:
 ```
-docker service create --name jenkinsci -u root -d -p 8888:8080/tcp --constraint node.role==manager --mount type=volume,source=jenkins-data,destination=/var/jenkins_home --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock jenkinsci/blueocean
+docker service create --name jenkinsci -u root -d -p 8888:8080/tcp --mount type=volume,source=jenkins-data,destination=/var/jenkins_home --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock jenkinsci/blueocean
 ```
 
 Here's more information about docker services since I'm still learning:
 - https://docs.docker.com/get-started/part3/#prerequisites
 Here's documentation on docker service volumes:
 - https://docs.docker.com/engine/reference/commandline/service_create/#add-bind-mounts-volumes-or-memory-filesystems
+
+However running the service without the `-d` detached daemon mode arg shows that it's outputing an error trying to start the service:
+```
+docker service create --name jenkinsci -u root -d -p 8888:8080/tcp --constraint node.role==manager --mount type=volume,source=jenkins-data,destination=/var/jenkins_home --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock jenkinsci/blueocean
+```
+Seen here:
+```
+gg8f8synjmri1k40is1shqny7
+overall progress: 0 out of 1 tasks
+1/1: no suitable node (scheduling constraints not satisfied on 1 node; unsuppor…
+```
+I see this is from two factors, one it shows 1/1 because of the `--constraint` arg saying it should only be on the manager node and the other reason is that this is most likely for an x86/x64 chipset not ARM. I need the arm jenkinsci/blueocean image if ther is one.
+It doesn't look like there is an ARM version of that container on the hub...
+Yeah so running `docker run -p 8080:8080 jenkinsci/blueocean` causes a similar failure reporting `docker run -p 8080:8080 jenkinsci/blueocean`.
