@@ -2791,5 +2791,10 @@ The original command I came up with to launch the jenkins container was: `docker
 
 The docker swarm service version is:
 ```
-docker service create -u root -d -p 8888:8080/tcp -v jenkins-data:/var/jenkins_home --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock jenkinsci/blueocean
+docker service create --name jenkinsci -u root -d -p 8888:8080/tcp --constraint node.role==manager --mount type=volume,source=jenkins-data,destination=/var/jenkins_home --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock jenkinsci/blueocean
 ```
+
+Here's more information about docker services since I'm still learning:
+- https://docs.docker.com/get-started/part3/#prerequisites
+Here's documentation on docker service volumes:
+- https://docs.docker.com/engine/reference/commandline/service_create/#add-bind-mounts-volumes-or-memory-filesystems
