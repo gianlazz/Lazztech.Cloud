@@ -2765,3 +2765,31 @@ Ran the following to get the dockerized project to actually prompt for ssl permi
 
 This resource may also be helpful in understanding how dotnet cli manages certs:
 - https://blogs.msdn.microsoft.com/webdev/2018/02/27/asp-net-core-2-1-https-improvements/
+
+## Wednesday, October 10, 2018
+#### Sprint 9, Authenticated Client Facade
+
+Here's documentation on moving a docker container volume to another host:
+- https://www.guidodiepen.nl/2016/05/transfer-docker-data-volume-to-another-host/
+This could be helpful for moving jenkins data to the raspberry pi if I want.
+
+Here's a good example of how to launch a docker container as a service on a raspberry pi cluster with the example for the swarm visualizing service:
+- https://howchoo.com/g/njy4zdm3mwy/how-to-run-a-raspberry-pi-cluster-with-docker-swarm
+From this I can extrapolate how to create a service which I suspect will be load balanced accross the swarm as apposed to just launching a container. This way I can have a distributed, transient jenkins service accross the cluster.
+This is the service starting command I'm basing it off of:
+```
+sudo docker service create \
+        --name viz \
+        --publish 8080:8080/tcp \
+        --constraint node.role==manager \
+        --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+        alexellis2/visualizer-arm:latest
+```
+
+
+The original command I came up with to launch the jenkins container was: `docker run -u root -d -p 8888:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart always jenkinsci/blueocean`
+
+The docker swarm service version is:
+```
+docker service create -u root -d -p 8888:8080/tcp -v jenkins-data:/var/jenkins_home --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock jenkinsci/blueocean
+```
