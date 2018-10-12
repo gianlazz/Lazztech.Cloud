@@ -2822,3 +2822,9 @@ I'm unsure if the sqlserver that the aspnet in app authentication depends on wil
 However for now I need to stop being concerned with either deployment, jenkins or overly concerned with ARM compatability and focus on developing my services or I won't have much to show. I'm going to see how far I can get porting over the existing bootstrap 4 webfront end service to the ClientFacade project with just running it through iis or whatever until I absolutely have to solve the docker runtime ssl cert issue.
 
 Also on a side note I did research running the jenkins container on the raspberry pi and did see people doing it so I can probably figure out how to get that working with more time later.
+
+Alright, I've moved over all of the resources I made from the old webfont end project and got the new authenticated ClientFacade project working. That was pretty easy. I just moved the pages over, adjusted namespaces, switched to bootstrap 4 and styled a couple of login links.
+
+I think I need to get the containerized ssl working so that I can test it integrated with the other services and start building out the api controllers that I want.
+
+Then I can focus on building out the micro services, unity front end for oculus go and focus on deployment and jenkins.
