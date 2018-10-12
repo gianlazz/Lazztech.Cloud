@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Pages
+namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Crawler
 {
     public class IndexModel : PageModel
     {
-
         public void OnGet()
         {
+
         }
     }
 }

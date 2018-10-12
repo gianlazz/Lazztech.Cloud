@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages
 {
-    public class IndexModel : PageModel
+    public class PlantsModel : PageModel
     {
-
         public void OnGet()
         {
         }

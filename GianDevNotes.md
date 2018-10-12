@@ -2812,3 +2812,13 @@ overall progress: 0 out of 1 tasks
 I see this is from two factors, one it shows 1/1 because of the `--constraint` arg saying it should only be on the manager node and the other reason is that this is most likely for an x86/x64 chipset not ARM. I need the arm jenkinsci/blueocean image if ther is one.
 It doesn't look like there is an ARM version of that container on the hub...
 Yeah so running `docker run -p 8080:8080 jenkinsci/blueocean` causes a similar failure reporting `docker run -p 8080:8080 jenkinsci/blueocean`.
+
+## Thursday, October 11, 2018
+#### Sprint 9, Authenticated Client Facade
+
+I'm unsure if the sqlserver that the aspnet in app authentication depends on will work on the ARM raspberrypi. I however found a guide on switching it to postressql on the raspberry pi so that may be what I end up doing.
+- https://blog.nordicdev.io/build-a-dotnet-core-2-1-mvc-app-using-postgresql-for-raspberry-pi-78f93a252c0b
+
+However for now I need to stop being concerned with either deployment, jenkins or overly concerned with ARM compatability and focus on developing my services or I won't have much to show. I'm going to see how far I can get porting over the existing bootstrap 4 webfront end service to the ClientFacade project with just running it through iis or whatever until I absolutely have to solve the docker runtime ssl cert issue.
+
+Also on a side note I did research running the jenkins container on the raspberry pi and did see people doing it so I can probably figure out how to get that working with more time later.

@@ -1,0 +1,92 @@
+﻿@page
+@model Lazztech.ObsidianPresences.ClientFacade.Pages.Vision.KnownModel
+@{
+    ViewData["Title"] = "Known";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4>Registered Known Snapshots</h4>
+            <hr>
+
+            <div class="row">
+                @for (int i = 0; i < Model.Snapshots.Count(); i++)
+                {
+                    foreach (var person in Model.Snapshots[i].People)
+                    {
+
+
+                        <div class="col-md-4">
+                            @*<div class="col-md-6 d-flex align-items-stretch">*@
+                            <div class="card">
+                                @*<canvas id="canvas" width="300" height="300">
+                                        Sorry, your browser doesn't support the &lt;canvas&gt; element.
+                                    </canvas>*@
+                                <img id="@person.Name.Replace(" ", string.Empty)@Model.Snapshots[i].ImageName.Replace(" ", string.Empty)" class="card-img-top" src="@Model.Snapshots[i].ImageDir" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model.Snapshots[i].DateTimeWhenCaptured.ToString()</h5>
+                                    <p class="card-text">@person.Name</p>
+                                    @*<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>*@
+                                    <a href="#" class="btn btn-primary">Show All Occurences</a>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+
+                        @*<script>
+                            $(document).ready(function () {
+
+                                //var c = document.getElementById("canvas");
+                                //var ctx = c.getContext("2d");
+                                //ctx.beginPath();
+                                //ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+                                //ctx.stroke();
+
+                                @{
+                                    var bbCoordinateString = $"{person.FaceBoundingBox.LeftTopCoordinate.x}," +
+                                        $"{person.FaceBoundingBox.LeftTopCoordinate.y}," +
+                                        $"{person.FaceBoundingBox.RightBottomCoordinate.x}," +
+                                        $"{person.FaceBoundingBox.RightBottomCoordinate.y},";
+                                }
+
+                                var c = document.getElementById("@person.Name.Replace(" ", string.Empty)@Model.Snapshots[i].ImageName.Replace(" ", string.Empty)").getContext('2d');
+                                c.rect(@bbCoordinateString);
+                                c.fillStyle = '#FFF';
+                                c.fill();
+                                c.lineWidth = 1;
+                                c.strokeStyle = 'black';
+                                c.stroke();
+                            });</script>*@
+
+                        <script>
+                            (function () {
+
+                                //var c = document.getElementById("canvas");
+                                //var ctx = c.getContext("2d");
+                                //ctx.beginPath();
+                                //ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+                                //ctx.stroke();
+
+                                @{
+                                    var bbCoordinateString = $"{person.FaceBoundingBox.LeftTopCoordinate.x}," +
+                                        $"{person.FaceBoundingBox.LeftTopCoordinate.y}," +
+                                        $"{person.FaceBoundingBox.RightBottomCoordinate.x}," +
+                                        $"{person.FaceBoundingBox.RightBottomCoordinate.y},";
+                                }
+                                console.log("test");
+
+                                var c = document.getElementById("@person.Name.Replace(" ", string.Empty)@Model.Snapshots[i].ImageName.Replace(" ", string.Empty)").getContext('2d');
+                                c.rect(@bbCoordinateString);
+                                c.fillStyle = '#FFF';
+                                c.fill();
+                                c.lineWidth = 1;
+                                c.strokeStyle = 'black';
+                                c.stroke();
+                            });</script>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
