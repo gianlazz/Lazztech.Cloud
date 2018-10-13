@@ -2875,3 +2875,8 @@ docker run -dt \
 #? I think this ensures that the container stays running as apposed to just shutting down after launch
 	-f /dev/null
 ```
+
+Here's my suspicions on what might be causing this failure:
+- IIS Express puts and looks for the certificates in [Console Root\Certificates (Local Computer)\Personl\Certificates] however the docker container mounts C:\Users\Gian Lazzarini\AppData\Roaming\ASP.NET\Https
+- Possibly the password for the cert in C:\Users\Gian Lazzarini\AppData\Roaming\ASP.NET\Https doesn't match the password in the C:\Users\Gian Lazzarini\AppData\Roaming\Microsoft\UserSecrets
+- All of the documentation said that there should have been the cert added in to the same location as the IIS Express cert however I've never been able to get it in there.
