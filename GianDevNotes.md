@@ -2880,3 +2880,17 @@ Here's my suspicions on what might be causing this failure:
 - IIS Express puts and looks for the certificates in [Console Root\Certificates (Local Computer)\Personl\Certificates] however the docker container mounts C:\Users\Gian Lazzarini\AppData\Roaming\ASP.NET\Https
 - Possibly the password for the cert in C:\Users\Gian Lazzarini\AppData\Roaming\ASP.NET\Https doesn't match the password in the C:\Users\Gian Lazzarini\AppData\Roaming\Microsoft\UserSecrets
 - All of the documentation said that there should have been the cert added in to the same location as the IIS Express cert however I've never been able to get it in there.
+
+Here's the path for the user secrets:
+- C:\Users\Gian Lazzarini\AppData\Roaming\Microsoft\UserSecrets\aspnet-Lazztech.ObsidianPresences.ClientFacade-F0D117F3-0EC4-4600-8843-FDB198DDFBBC
+Here's the path for the https cert:
+- C:\Users\Gian Lazzarini\AppData\Roaming\ASP.NET\Https
+
+https://github.com/dotnet/dotnet-docker/blob/master/samples/aspnetapp/aspnetcore-docker-https.md
+
+I need to see the log from the dotnet proccess in the container to see what the output about the ssl cert is. I suspect it may be throwing an error and it could possibly be due to it not having the expected name?
+
+## Friday, October 12, 2018
+#### Sprint 9, Authenticated Client Facade
+
+`dotnet dev-certs https --trust -ep "%APPDATA%\ASP.NET\https\Lazztech.ObsidianPresences.ClientFacade.pfx" -p TestPassword`
