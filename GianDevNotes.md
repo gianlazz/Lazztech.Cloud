@@ -2828,3 +2828,50 @@ Alright, I've moved over all of the resources I made from the old webfont end pr
 I think I need to get the containerized ssl working so that I can test it integrated with the other services and start building out the api controllers that I want.
 
 Then I can focus on building out the micro services, unity front end for oculus go and focus on deployment and jenkins.
+
+## Friday, October 12, 2018
+#### Sprint 9, Authenticated Client Facade
+
+As a result of the changes I'd tried to make the other day to get the dockerized ssl working I broke the certificate for IIS Express. I was able to get it working again by uninstalling and reinstalling it again which prompted me to re-add the certificate.
+
+Through trying to debug why the docker ssl was failing I found this detailed output of how visual studio is actually launching the container and attaching the debugger, nuget packages, ssl certs etc. This could be really helpful to reference:
+```
+docker run -dt -v "C:\Users\Gian Lazzarini\vsdbg\vs2017u5:/remote_debugger:rw" -v "C:\Users\Gian Lazzarini\source\repos\Lazztech.ObsidianPresences\Lazztech.ObsidianPresences.ClientFacade:/app" -v "C:\Users\Gian Lazzarini\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro" -v "C:\Users\Gian Lazzarini\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro" -v "C:\Users\Gian Lazzarini\.nuget\packages\:/root/.nuget/fallbackpackages2" -v "C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages" -e "DOTNET_USE_POLLING_FILE_WATCHER=1" -e "ASPNETCORE_ENVIRONMENT=Development" -e "ASPNETCORE_URLS=https://+:443;http://+:80" -e "ASPNETCORE_HTTPS_PORT=44362" -e "NUGET_PACKAGES=/root/.nuget/fallbackpackages2" -e "NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages;/root/.nuget/fallbackpackages2" -p 50472:80 -p 44362:443 --entrypoint tail lazztechobsidianpresencesclientfacade:dev -f /dev/null
+```
+Here it is on multiple lines with comments:
+```
+#Run dockerfile in current directory in detached mode
+docker run -dt \
+#Volume bind mount the host machines vsdbg to the container at /remote_debugger with read/write privaleges
+	-v "C:\Users\Gian Lazzarini\vsdbg\vs2017u5:/remote_debugger:rw" \
+#Volume bind mount the contents of the project from the host to the container at /app
+	-v "C:\Users\Gian Lazzarini\source\repos\Lazztech.ObsidianPresences\Lazztech.ObsidianPresences.ClientFacade:/app" \
+#Volume bind mount the host machines https certs to the container at /root/.aspnet/https with readonly privaleges
+	-v "C:\Users\Gian Lazzarini\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro" \
+#Volume bind mount the host machines secrets to the containers /root/.microsoft/usersecrets directory with readonly privaleges
+	-v "C:\Users\Gian Lazzarini\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro" \
+#Volume bind mount the nuget packages from the host machine
+	-v "C:\Users\Gian Lazzarini\.nuget\packages\:/root/.nuget/fallbackpackages2" \
+#Volume bind mount the dotnet sdk nuget fallback packages?
+	-v "C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages" \
+#Enviroment variable to enable the recompiling of the project on file changes?
+	-e "DOTNET_USE_POLLING_FILE_WATCHER=1" \
+#Enviroment variable to put aspnet into development mode for more detailed error output on site
+	-e "ASPNETCORE_ENVIRONMENT=Development" \
+#Enviroment variable for setting aspnet ports for http and https?
+	-e "ASPNETCORE_URLS=https://+:443;http://+:80" \
+#Enviroment variable for another https port setting? Is this for configuring the ssl cert?
+	-e "ASPNETCORE_HTTPS_PORT=44362" \
+#Enviroment variable for nuget fallbackpackages
+	-e "NUGET_PACKAGES=/root/.nuget/fallbackpackages2" \
+#Enviroment variable for nuget packages?
+	-e "NUGET_FALLBACK_PACKAGES=/root/.nuget/fallbackpackages;/root/.nuget/fallbackpackages2" \
+#Exposing mapped port for http from the containers port 80 to access from the host at 50472 
+	-p 50472:80 \
+#Exposing mapped port for https from the containers port 443 to access from the host at 44362 
+	-p 44362:443 \
+#?
+	--entrypoint tail lazztechobsidianpresencesclientfacade:dev \
+#? I think this ensures that the container stays running as apposed to just shutting down after launch
+	-f /dev/null
+```
