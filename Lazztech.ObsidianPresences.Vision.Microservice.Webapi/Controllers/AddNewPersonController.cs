@@ -44,9 +44,9 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             //var snapshotObject = JsonConvert.DeserializeObject(json);
             //var snapshot = JsonConvert.DeserializeObject<Snapshot>(json);
             //var imageFound = System.IO.File.Exists(snapshot.ImageDir);
-
+            var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
             var imageBytes = Convert.FromBase64String(base64Image);
-            System.IO.File.WriteAllBytesAsync(dir + $"{name}", imageBytes);
+            System.IO.File.WriteAllBytesAsync(dir + $"{name}.{imageExtension}", imageBytes);
 
             //snapshot.ImageDir = $"data:image/{imageExtension};base64, {imageBase64}";
         }
