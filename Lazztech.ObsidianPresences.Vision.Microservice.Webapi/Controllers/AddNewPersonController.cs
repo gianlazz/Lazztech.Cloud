@@ -35,9 +35,13 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
         {
             var snapshot = new Snapshot();
 
-            var dir = FacialRecognitionManager.knownPath;
-            if (!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
+            var knownImagesDir = FacialRecognitionManager.knownPath;
+            if (!Directory.Exists(knownImagesDir))
+                Directory.CreateDirectory(knownImagesDir);
+
+            var knownJsonsDir = FacialRecognitionManager.knownJsonsPath;
+            if (!Directory.Exists(knownJsonsDir))
+                Directory.CreateDirectory(knownJsonsDir);
 
             //var jsonDirs = Directory.GetFiles(dir).Where(x => x.EndsWith(".json"));
             //var json = System.IO.File.ReadAllText(jsonDir);
@@ -46,7 +50,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             //var imageFound = System.IO.File.Exists(snapshot.ImageDir);
             var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
             var imageBytes = Convert.FromBase64String(base64Image);
-            System.IO.File.WriteAllBytesAsync(dir + $"{name}.{imageExtension}", imageBytes);
+            System.IO.File.WriteAllBytesAsync(knownImagesDir + $"{name}.{imageExtension}", imageBytes);
 
             //snapshot.ImageDir = $"data:image/{imageExtension};base64, {imageBase64}";
         }
