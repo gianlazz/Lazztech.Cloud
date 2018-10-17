@@ -12,15 +12,25 @@ services:
 #      context: .
 #      dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.Cli/Dockerfile
 
-  lazztech.obsidianpresences.cloudwebapp:
-    image: lazztechobsidianpresencescloudwebapp
+  # lazztech.obsidianpresences.cloudwebapp:
+  #   image: lazztechobsidianpresencescloudwebapp
+  #   ports: 
+  #     - 80:80
+  #   depends_on:
+  #     - lazztech.obsidianpresences.vision.microservice.webapi
+  #   build:
+  #     context: .
+  #     dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
+
+  lazztech.obsidianpresences.clientfacade:
+    image: lazztechobsidianpresencesclientfacade
     ports: 
       - 80:80
     depends_on:
       - lazztech.obsidianpresences.vision.microservice.webapi
     build:
       context: .
-      dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
+      dockerfile: Lazztech.ObsidianPresences.ClientFacade/Dockerfile
 
   lazztech.obsidianpresences.vision.microservice.webapi:
     image: lazztechobsidianpresensevisionmicroservicewebapi
