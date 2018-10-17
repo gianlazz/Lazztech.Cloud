@@ -2936,6 +2936,7 @@ PlatformNotSupportedException: LocalDB is not supported on this platform.
 So it may also be time soon to go ahead and follow along with the tutorial about deploying the mvc web app project to the raspberry pi enviroment with postgresql since I'm in need of an sql solution for this service anyways.
 Or I could also try to configure the docker-compose.override.yml to mount the LocalDB volume during development? I'm not sure. For now I'll trust that I can get that working and continue on with the face_recognition front end
 and REST api features.
+- https://blog.nordicdev.io/build-a-dotnet-core-2-1-mvc-app-using-postgresql-for-raspberry-pi-78f93a252c0b
 
 It looks like I already have the vision webapi project setup with face_recognition installed however I haven't setup the controllers for execution of a new image and other such api queries which will then need to be configured
 in the ClientFacade's front end buttons etc and then later exposed in the ClientFacade's REST Api for other consuming or interacting clients.
