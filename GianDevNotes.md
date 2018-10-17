@@ -2894,3 +2894,13 @@ I need to see the log from the dotnet proccess in the container to see what the 
 #### Sprint 9, Authenticated Client Facade
 
 `dotnet dev-certs https --trust -ep "%APPDATA%\ASP.NET\https\Lazztech.ObsidianPresences.ClientFacade.pfx" -p TestPassword`
+
+## Tuesday, October 16, 2018
+#### Sprint 10, Authenticated Client Facade Api Integrations
+
+Since I'm having trouble with the ssl certificate right now I'm going to go with on of the options mentioned in the github issues thread and have a docker-compose.override.yml with configurations to not use ssl.
+This will be helpful for development. Also below is a link to where I was doing some reading on overridden docker-compose.yml files for different development enviroments or ci-cd configs. This seems like what I 
+should also be using for the raspberry pi deployment config. I think that it will allow me to build on configs and avoid having duplicate code to maintain?
+
+Notes about docker-compose.override.yml
+https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/multi-container-applications-docker-compose
