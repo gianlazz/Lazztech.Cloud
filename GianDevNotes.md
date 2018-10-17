@@ -2903,7 +2903,7 @@ This will be helpful for development. Also below is a link to where I was doing 
 should also be using for the raspberry pi deployment config. I think that it will allow me to build on configs and avoid having duplicate code to maintain?
 
 Notes about docker-compose.override.yml
-https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/multi-container-applications-docker-compose
+- https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/multi-container-applications-docker-compose
 
 Note to self:
 Clean the solution after making changes to the docker-compose.yml or docker-compose.override.yml files as this will re-generate the visual studio debug versions of them if it doesn't already.
@@ -2911,3 +2911,12 @@ Clean the solution after making changes to the docker-compose.yml or docker-comp
 I've gone ahead and replace the CloudWebApp service in the compose files with the new authenticated ClientFacade versions. Running the .dcproj now works as desired and I can continue experimenting
 with the docker-compose.override.yml and other versions of the compose for the different enviroments. This means I can continue developing the service interactions and experiment with having a 
 deployable compose file for the cluster that includes https.
+
+I've just verified that I can specify that the docker-compose.override.yml uses a bind mount volume for development and it will be respected by launching the dcproj in visual studio. This is very helpful
+but I've got questions about how visual studio handles other versions of the docker-compose files like the compose.ci.build.yml mentioned in the link above.
+
+Here's the section about using multiple compose files to target different enviroments:
+- https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/multi-container-applications-docker-compose#using-multiple-docker-compose-files-to-handle-several-environments
+
+I now need to continue with adding face_recognition processing abilities to the Lazztech.ObsidianPresences.Vision.Microservice.Webapi so that I can process new images through the ClientFacade website and expose these features 
+through the ClientFacades REST Api.
