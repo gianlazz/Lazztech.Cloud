@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
 {
@@ -27,8 +31,24 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
 
         // POST: api/AddNewPerson
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] string base64Image, string name)
         {
+            var snapshot = new Snapshot();
+
+            var dir = FacialRecognitionManager.knownPath;
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            //var jsonDirs = Directory.GetFiles(dir).Where(x => x.EndsWith(".json"));
+            //var json = System.IO.File.ReadAllText(jsonDir);
+            //var snapshotObject = JsonConvert.DeserializeObject(json);
+            //var snapshot = JsonConvert.DeserializeObject<Snapshot>(json);
+            //var imageFound = System.IO.File.Exists(snapshot.ImageDir);
+
+            var imageBytes = Convert.FromBase64String(base64Image);
+            System.IO.File.WriteAllBytesAsync(dir + $"{name}", imageBytes);
+
+            //snapshot.ImageDir = $"data:image/{imageExtension};base64, {imageBase64}";
         }
 
         // PUT: api/AddNewPerson/5
