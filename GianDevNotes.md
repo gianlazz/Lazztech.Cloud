@@ -2904,3 +2904,10 @@ should also be using for the raspberry pi deployment config. I think that it wil
 
 Notes about docker-compose.override.yml
 https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/multi-container-applications-docker-compose
+
+Note to self:
+Clean the solution after making changes to the docker-compose.yml or docker-compose.override.yml files as this will re-generate the visual studio debug versions of them if it doesn't already.
+
+I've gone ahead and replace the CloudWebApp service in the compose files with the new authenticated ClientFacade versions. Running the .dcproj now works as desired and I can continue experimenting
+with the docker-compose.override.yml and other versions of the compose for the different enviroments. This means I can continue developing the service interactions and experiment with having a 
+deployable compose file for the cluster that includes https.
