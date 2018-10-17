@@ -24,6 +24,8 @@ services:
 
   lazztech.obsidianpresences.clientfacade:
     image: lazztechobsidianpresencesclientfacade
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     ports: 
       - 80:80
     depends_on:

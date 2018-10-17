@@ -2920,3 +2920,10 @@ Here's the section about using multiple compose files to target different enviro
 
 I now need to continue with adding face_recognition processing abilities to the Lazztech.ObsidianPresences.Vision.Microservice.Webapi so that I can process new images through the ClientFacade website and expose these features 
 through the ClientFacades REST Api.
+
+Also another detail is that the docker-compose doesn't have a localdb instance for the authentication to work with so I think that's why it's throwing an error. Also I want to specify in the docker-compose.override.yml that it should
+have the development enviroment variable so that it will output errors. I can reference how to do this by the breakdown of what visual studio does when it launches dockerfiles from the last sprint.
+- https://docs.docker.com/compose/environment-variables/
+
+I also just realised that having these multiple docker-compose files for the different enviroments will allow me to have non competine service container names / tags so that could have the ci-cd pipeline build them on the same docker
+host and not have a collision.
