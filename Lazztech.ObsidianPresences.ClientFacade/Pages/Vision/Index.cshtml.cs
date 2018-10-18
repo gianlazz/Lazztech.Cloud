@@ -13,6 +13,9 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 {
     public class IndexModel : PageModel
     {
+        //Hosted web API REST Service base url
+        private string baseurl = "http://lazztech.obsidianpresences.vision.microservice.webapi/";
+
         public List<Snapshot> Snapshots { get; set; }
 
         public void OnGet()
@@ -23,8 +26,10 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
             Snapshots = snaps.Result;
         }
 
-        //Hosted web API REST Service base url
-        private string baseurl = "http://lazztech.obsidianpresences.vision.microservice.webapi/";
+        public void OnPost(string base64)
+        {
+            //Upload image to baseurl/AddNewPersonController Post method by passing base64
+        }
 
         private async Task<List<Snapshot>> CallSnapsEndpoint()
         {
