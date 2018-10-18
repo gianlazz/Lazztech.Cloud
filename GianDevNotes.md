@@ -2940,3 +2940,9 @@ and REST api features.
 
 It looks like I already have the vision webapi project setup with face_recognition installed however I haven't setup the controllers for execution of a new image and other such api queries which will then need to be configured
 in the ClientFacade's front end buttons etc and then later exposed in the ClientFacade's REST Api for other consuming or interacting clients.
+
+## Wednesday, October 17, 2018
+#### Sprint 10, Authenticated Client Facade Api Integrations
+
+I need to get the image uploading working the ClientFacade for both known and unknown people through the views and the rest api to the vision service.
+- https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-2.1 File uploads in ASP.NET Core
