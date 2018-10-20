@@ -4,6 +4,15 @@
     ViewData["Title"] = "Known";
 }
 
+@{
+    if (!Model.ConnectedToServices)
+    {
+        <div class="alert alert-danger" role="alert">
+            Unable to connect to depending services.
+        </div>
+    }
+}
+
 <div class="container">
     <div class="row">
         <div class="col">

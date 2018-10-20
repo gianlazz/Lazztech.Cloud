@@ -4,6 +4,15 @@
     ViewData["Title"] = "Index";
 }
 
+@{
+    if (!Model.ConnectedToServices)
+    {
+        <div class="alert alert-danger" role="alert">
+            Unable to connect to depending services.
+        </div>
+    }
+}
+
 <form method="post" enctype="multipart/form-data" asp-controller="UploadFiles" asp-action="Index">
     <div class="form-group">
         <div class="col-md-10">
@@ -45,19 +54,19 @@
                     foreach (var person in Model.Snapshots[i].People)
                     {
                         @*if (i > 0 && i % 2 == 0)
-                {
-                    // CLOSE AND START A NEW ROW
-                    @:</div>
-                    @:<br />
-                    @:<div class="row">
-                }*@
+                            {
+                                // CLOSE AND START A NEW ROW
+                                @:</div>
+                                @:<br />
+                                @:<div class="row">
+                            }*@
 
                         <div class="col-md-4">
                             @*<div class="col-md-6 d-flex align-items-stretch">*@
                             <div class="card">
                                 @*<canvas id="canvas" width="300" height="300">
-                            Sorry, your browser doesn't support the &lt;canvas&gt; element.
-                        </canvas>*@
+                                        Sorry, your browser doesn't support the &lt;canvas&gt; element.
+                                    </canvas>*@
                                 <img id="@person.Name.Replace(" ", string.Empty)@Model.Snapshots[i].ImageName.Replace(" ", string.Empty)" class="card-img-top" src="@Model.Snapshots[i].ImageDir" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">@Model.Snapshots[i].DateTimeWhenCaptured.ToString()</h5>
