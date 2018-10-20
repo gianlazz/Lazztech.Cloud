@@ -2955,3 +2955,6 @@ the whole site. This way I can go ahead and develope individual services in isol
 between changes to the source code.
 
 Also I think it's time to delete the old CloudWebApp project since I've replaced it with the better ClientFacade project. However It would still be useful to keep the Dockerfile for reference.
+I've deleted the CloudWebApp project after copying over the dockerfiles and renaming them so tha I can reference them later.
+
+I need to replace the responsability of the Cli project in processing the images and finish implementing it through the client facade in the UI and REST Api to the vision service REST Api.
