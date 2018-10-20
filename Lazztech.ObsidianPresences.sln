@@ -19,11 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.Vision.Microservice.Tests", "Lazztech.ObsidianPresences.Vision.Microservice.Tests\Lazztech.ObsidianPresences.Vision.Microservice.Tests.csproj", "{8BA375AD-E3EA-4528-8596-CFF53EFFBC97}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.CloudWebApp", "Lazztech.ObsidianPresences.CloudWebApp\Lazztech.ObsidianPresences.CloudWebApp.csproj", "{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.Vision.Microservice.Webapi", "Lazztech.ObsidianPresences.Vision.Microservice.Webapi\Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj", "{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.ObsidianPresences.ClientFacade", "Lazztech.ObsidianPresences.ClientFacade\Lazztech.ObsidianPresences.ClientFacade.csproj", "{EE9BDD93-BBC6-44BD-AA70-55722D9548AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.ClientFacade", "Lazztech.ObsidianPresences.ClientFacade\Lazztech.ObsidianPresences.ClientFacade.csproj", "{EE9BDD93-BBC6-44BD-AA70-55722D9548AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +49,6 @@ Global
 		{8BA375AD-E3EA-4528-8596-CFF53EFFBC97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BA375AD-E3EA-4528-8596-CFF53EFFBC97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BA375AD-E3EA-4528-8596-CFF53EFFBC97}.Release|Any CPU.Build.0 = Release|Any CPU
-		{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{210EE7AF-8F0E-4FA9-8E50-AB00C4DDC367}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B2AA8B0-7211-40FC-AA42-7FD8BEFF2C94}.Release|Any CPU.ActiveCfg = Release|Any CPU

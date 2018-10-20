@@ -2946,3 +2946,12 @@ in the ClientFacade's front end buttons etc and then later exposed in the Client
 
 I need to get the image uploading working the ClientFacade for both known and unknown people through the views and the rest api to the vision service.
 - https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-2.1 File uploads in ASP.NET Core
+
+## Saturday, October 20, 2018
+#### Sprint 10, Authenticated Client Facade Api Integrations
+
+I'm adding a try catch to all of the calls to the vision service from the ClientFacade so that I can get it to handle connection failures by reporting on the UI instead of just crashing
+the whole site. This way I can go ahead and develope individual services in isolation without needing everything running at once since the docker-compose proj can take a while to launch
+between changes to the source code.
+
+Also I think it's time to delete the old CloudWebApp project since I've replaced it with the better ClientFacade project. However It would still be useful to keep the Dockerfile for reference.
