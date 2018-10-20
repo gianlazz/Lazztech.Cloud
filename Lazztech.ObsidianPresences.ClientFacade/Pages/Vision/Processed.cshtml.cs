@@ -14,6 +14,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
     public class ProcessedModel : PageModel
     {
         public List<Snapshot> Snapshots { get; set; }
+        public bool ConnectedToServices = false;
 
         public void OnGet()
         {
@@ -55,14 +56,16 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                     }
                     //returning the employee list to view
 
-                    return snaps;
+                    ConnectedToServices = true;
                 }
             }
             catch (Exception)
             {
 
-                throw;
+                //throw;
             }
+
+            return snaps;
         }
     }
 }

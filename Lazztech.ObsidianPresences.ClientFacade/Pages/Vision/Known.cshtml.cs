@@ -15,6 +15,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
     {
         //public List<Snapshot> Snapshots => new List<Snapshot>();
         public List<Snapshot> Snapshots { get; set; }
+        public bool ConnectedToServices = false;
 
         public void OnGet()
         {
@@ -55,14 +56,16 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                         snaps = JsonConvert.DeserializeObject<List<Snapshot>>(EmpResponse);
                     }
 
-                    return snaps;
+                    ConnectedToServices = true;
                 }
             }
             catch (Exception)
             {
 
-                throw;
+                //throw;
             }
+
+            return snaps;
         }
     }
 }

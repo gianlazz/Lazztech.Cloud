@@ -17,6 +17,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
         private string baseurl = "http://lazztech.obsidianpresences.vision.microservice.webapi/";
 
         public List<Snapshot> Snapshots { get; set; }
+        public bool ConnectedToServices = false;
 
         public void OnGet()
         {
@@ -59,15 +60,16 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                         snaps = JsonConvert.DeserializeObject<List<Snapshot>>(EmpResponse);
                     }
 
-                    return snaps;
+                    ConnectedToServices = true;
                 }
             }
             catch (Exception)
             {
 
-                throw;
+                //throw;
             }
 
+            return snaps;
         }
     }
 }
