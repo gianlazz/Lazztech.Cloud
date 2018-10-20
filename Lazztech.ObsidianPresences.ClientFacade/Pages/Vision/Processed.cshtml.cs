@@ -30,30 +30,38 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
         {
             List<Snapshot> snaps = new List<Snapshot>();
 
-            using (var client = new HttpClient())
+            try
             {
-                //Passing service base url
-                client.BaseAddress = new Uri(baseurl);
-
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient
-                HttpResponseMessage Res = await client.GetAsync("api/ProcessedSnapshots");
-
-                //Checking the response is successful or not which is sent using HttpClient
-                if (Res.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    //Storing the response details recieved from web api
-                    var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                    //Passing service base url
+                    client.BaseAddress = new Uri(baseurl);
 
-                    //Deserializing the response recieved from web api and storing into the Employee list
-                    snaps = JsonConvert.DeserializeObject<List<Snapshot>>(EmpResponse);
+                    client.DefaultRequestHeaders.Clear();
+                    //Define request data format
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient
+                    HttpResponseMessage Res = await client.GetAsync("api/ProcessedSnapshots");
+
+                    //Checking the response is successful or not which is sent using HttpClient
+                    if (Res.IsSuccessStatusCode)
+                    {
+                        //Storing the response details recieved from web api
+                        var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+
+                        //Deserializing the response recieved from web api and storing into the Employee list
+                        snaps = JsonConvert.DeserializeObject<List<Snapshot>>(EmpResponse);
+                    }
+                    //returning the employee list to view
+
+                    return snaps;
                 }
-                //returning the employee list to view
+            }
+            catch (Exception)
+            {
 
-                return snaps;
+                throw;
             }
         }
     }
