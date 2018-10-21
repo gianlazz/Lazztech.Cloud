@@ -45,13 +45,15 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 
         private async Task UploadPhoto()
         {
-            var uploadsDirectoryPath = Path.Combine(_environment.WebRootPath, "Uploads");
-            var uploadedfilePath = Path.Combine(uploadsDirectoryPath, Customer.Phote.FileName);
+            //var uploadsDirectoryPath = Path.Combine(_environment.WebRootPath, "Uploads");
+            //var uploadedfilePath = Path.Combine(uploadsDirectoryPath, Customer.Phote.FileName);
 
-            using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
-            {
-                await Customer.Phote.CopyToAsync(fileStream);
-            }
+            //using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+            //{
+            //    await Customer.Phote.CopyToAsync(fileStream);
+            //}
+
+            //HERE I WOULD BASE64 ENCODE THE FILESTREAM AND POST IT TO THE VISION SERVICE'S NEW ADDNEWPERSON API CONTROLLER
         }
     }
 

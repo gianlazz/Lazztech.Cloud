@@ -2964,3 +2964,5 @@ I need to replace the responsability of the Cli project in processing the images
 
 Made an upload page in the vision section of the ClientFacade project. I'm following along with this tutorial for uploading files through aspnetcore razer pages:
 - http://www.hishambinateya.com/uploading-files-in-razor-pages
+
+This all seems to work through something called the IFormFile used in aspnetcore.
