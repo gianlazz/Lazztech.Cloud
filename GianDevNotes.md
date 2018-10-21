@@ -2958,3 +2958,9 @@ Also I think it's time to delete the old CloudWebApp project since I've replaced
 I've deleted the CloudWebApp project after copying over the dockerfiles and renaming them so tha I can reference them later.
 
 I need to replace the responsability of the Cli project in processing the images and finish implementing it through the client facade in the UI and REST Api to the vision service REST Api.
+
+## Sunday, October 21, 2018
+#### Sprint 10, Authenticated Client Facade Api Integrations
+
+Made an upload page in the vision section of the ClientFacade project. I'm following along with this tutorial for uploading files through aspnetcore razer pages:
+- http://www.hishambinateya.com/uploading-files-in-razor-pages
