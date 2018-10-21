@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -14,6 +17,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
         public Person Person { get; set; }
         public string Base64Photo { get; set; }
         public Snapshot Snapshot { get; set; }
+        public Customer Customer { get; set; }
 
         public void OnGet()
         {
@@ -22,6 +26,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 
         public async Task<IActionResult> OnPost()
         {
+            Snapshot = new Snapshot();
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -29,10 +35,10 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 
             Customer.PhotePath = Customer.Phote.FileName;
             await UploadPhoto();
-            _db.Customers.Add(Customer);
-            await _db.SaveChangesAsync();
+            //_db.Customers.Add(Customer);
+            //await _db.SaveChangesAsync();
 
-            Message = "New customer created successfully!";
+            //Message = "New customer created successfully!";
 
             return RedirectToPage("./Index");
         }
@@ -47,5 +53,19 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                 await Customer.Phote.CopyToAsync(fileStream);
             }
         }
+    }
+
+    public class Customer
+    {
+        public int Id { get; set; }
+
+        [Required, StringLength(100)]
+        public string Name { get; set; }
+
+        public string PhotePath { get; set; }
+
+        [Required]
+        [NotMapped]
+        public IFormFile Phote { get; set; }
     }
 }
