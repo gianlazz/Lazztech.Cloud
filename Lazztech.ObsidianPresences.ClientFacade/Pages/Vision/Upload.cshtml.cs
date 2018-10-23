@@ -6,11 +6,13 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 {
@@ -59,14 +61,12 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                     client.DefaultRequestHeaders.Clear();
                     //Define request data format
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    //Sending request to find web api REST service resource GetAllEmployees using HttpClient
-                    var content = new FormUrlEncodedContent(new[]
-                    {
-                        new KeyValuePair<string, string>("base64Image", ImageBase64),
-                        new KeyValuePair<string, string>("name", Name)
-                    });
-                    var Res = await client.PostAsync("api/AddNewPerson", content);
+                    var dictionary = new Dictionary<string, string>();
+                    dictionary.Add("base64Image", ImageBase64);
+                    dictionary.Add("name", "ExampleName");
+                    var json = JsonConvert.SerializeObject(dictionary);
+                    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                    var Res = await client.PostAsync("api/AddNewPerson", httpContent);
 
                     //Checking the response is successful or not which is sent using HttpClient
                     if (Res.IsSuccessStatusCode)
@@ -83,7 +83,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
             catch (Exception)
             {
 
-                //throw;
+                throw;
             }
 
             //HERE I WOULD BASE64 ENCODE THE FILESTREAM AND POST IT TO THE VISION SERVICE'S NEW ADDNEWPERSON API CONTROLLER

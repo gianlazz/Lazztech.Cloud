@@ -2975,3 +2975,7 @@ I'm using the following example code to turn the IFormFile into a base64 string
 
 Here's example code for how to post data to a rest api endpoint:
 - https://stackoverflow.com/questions/15176538/net-httpclient-how-to-post-string-value
+However it looks like this exact implementation won't work as it throws the following exception: `UriFormatException: Invalid URI: The Uri string is too long.`
+I think this is because I need to post the base64 as the body and not the url key value pair.
+
+- https://code.msdn.microsoft.com/windowsapps/How-to-use-HttpClient-to-b9289836
