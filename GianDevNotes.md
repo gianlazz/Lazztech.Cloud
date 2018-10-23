@@ -2972,3 +2972,6 @@ This all seems to work through something called the IFormFile used in aspnetcore
 
 I'm using the following example code to turn the IFormFile into a base64 string
 - https://stackoverflow.com/questions/36432028/how-to-convert-a-file-into-byte-array-directly-without-its-pathwithout-saving-f
+
+Here's example code for how to post data to a rest api endpoint:
+- https://stackoverflow.com/questions/15176538/net-httpclient-how-to-post-string-value
