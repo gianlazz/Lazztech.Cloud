@@ -15,9 +15,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
     public class UploadModel : PageModel
     {
         public Person Person { get; set; }
-        public string Base64Photo { get; set; }
         public Snapshot Snapshot { get; set; }
-        public Customer Customer { get; set; }
+        public IFormFile Photo { get; set; }
 
         public void OnGet()
         {
@@ -27,13 +26,14 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
         public async Task<IActionResult> OnPost()
         {
             Snapshot = new Snapshot();
+            //Customer = new Customer();
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            Customer.PhotePath = Customer.Phote.FileName;
+            //Customer.PhotePath = Customer.Phote.FileName;
             await UploadPhoto();
             //_db.Customers.Add(Customer);
             //await _db.SaveChangesAsync();
@@ -46,12 +46,21 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
         private async Task UploadPhoto()
         {
             //var uploadsDirectoryPath = Path.Combine(_environment.WebRootPath, "Uploads");
+            //var uploadsDirectoryPath = Path.Combine(_environment.WebRootPath, "Uploads");
+
             //var uploadedfilePath = Path.Combine(uploadsDirectoryPath, Customer.Phote.FileName);
 
             //using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
             //{
             //    await Customer.Phote.CopyToAsync(fileStream);
             //}
+
+            using (var ms = new MemoryStream())
+            {
+                await Photo.CopyToAsync(ms);
+                var imageBytes = ms.ToArray();
+                var imageBase64 = Convert.ToBase64String(imageBytes);
+            }
 
             //HERE I WOULD BASE64 ENCODE THE FILESTREAM AND POST IT TO THE VISION SERVICE'S NEW ADDNEWPERSON API CONTROLLER
         }

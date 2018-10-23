@@ -2966,3 +2966,9 @@ Made an upload page in the vision section of the ClientFacade project. I'm follo
 - http://www.hishambinateya.com/uploading-files-in-razor-pages
 
 This all seems to work through something called the IFormFile used in aspnetcore.
+
+## Monday, October 22, 2018
+#### Sprint 11, ClientFacade image uploading to vision service
+
+I'm using the following example code to turn the IFormFile into a base64 string
+- https://stackoverflow.com/questions/36432028/how-to-convert-a-file-into-byte-array-directly-without-its-pathwithout-saving-f
