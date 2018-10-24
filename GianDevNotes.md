@@ -3004,3 +3004,33 @@ Action: 'Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers.ScanN
 ```
 
 Okay so I was able to fix this issue by commenting out unused controller methods in ProcessedSnapshotsController and ScanNewImageController.
+
+I'm now getting an error message from the image uploading to the vision service:
+```
+{StatusCode: 400, ReasonPhrase: 'Bad Request', Version: 1.1, Content: System.Net.Http.HttpConnection+HttpConnectionResponseContent, Headers:
+{
+  Date: Wed, 24 Oct 2018 04:31:33 GMT
+  Server: Kestrel
+  Transfer-Encoding: chunked
+  Content-Type: application/json; charset=utf-8
+}}
+```
+
+I've run into another error from trying to have two paramters as frombody in the Post() for the vision AddNewPersonController:
+```
+System.InvalidOperationException: Action 'Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers.AddNewPersonController.Post (Lazztech.ObsidianPresences.Vision.Microservice.Webapi)' has more than one parameter that was specified or inferred as bound from request body. Only one parameter per action may be bound from body. Inspect the following parameters, and use 'FromQueryAttribute' to specify bound from query, 'FromRouteAttribute' to specify bound from route, and 'FromBodyAttribute' for parameters to be bound from body:
+string base64Image
+string name
+   at Microsoft.AspNetCore.Mvc.Internal.ApiBehaviorApplicationModelProvider.InferParameterBindingSources(ActionModel actionModel)
+   at Microsoft.AspNetCore.Mvc.Internal.ApiBehaviorApplicationModelProvider.OnProvidersExecuting(ApplicationModelProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorProvider.BuildModel()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorProvider.GetDescriptors()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorProvider.OnProvidersExecuting(ActionDescriptorProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.UpdateCollection()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.get_ActionDescriptors()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetTreeRouter()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+```

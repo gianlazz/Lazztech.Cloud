@@ -31,7 +31,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
 
         // POST: api/AddNewPerson
         [HttpPost]
-        public void Post([FromBody] string base64Image, string name)
+        public void Post([FromBody] string base64Image, [FromBody] string name)
         {
             var snapshot = new Snapshot();
 
