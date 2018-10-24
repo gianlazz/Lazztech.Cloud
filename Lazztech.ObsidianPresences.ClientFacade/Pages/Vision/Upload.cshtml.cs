@@ -61,8 +61,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                     client.DefaultRequestHeaders.Clear();
                     //Define request data format
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    var dictionary = new List<string>();
-                    dictionary.Add(ImageBase64);
+                    var dictionary = new Dictionary<string, string>();
+                    dictionary.Add("base64Image", ImageBase64);
                     //dictionary.Add("ExampleName");
                     var json = JsonConvert.SerializeObject(dictionary);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -77,8 +77,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                         //Deserializing the response recieved from web api and storing into the Employee list
                         ConnectedToServices = true;
                     }
-
-                    //ConnectedToServices = true;
                 }
             }
             catch (Exception)
