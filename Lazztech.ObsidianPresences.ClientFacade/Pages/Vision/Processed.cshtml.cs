@@ -53,10 +53,9 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 
                         //Deserializing the response recieved from web api and storing into the Employee list
                         snaps = JsonConvert.DeserializeObject<List<Snapshot>>(EmpResponse);
+                        ConnectedToServices = true;
                     }
                     //returning the employee list to view
-
-                    ConnectedToServices = true;
                 }
             }
             catch (Exception)

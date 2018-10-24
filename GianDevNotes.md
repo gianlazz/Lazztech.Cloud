@@ -2979,3 +2979,7 @@ However it looks like this exact implementation won't work as it throws the foll
 I think this is because I need to post the base64 as the body and not the url key value pair.
 
 - https://code.msdn.microsoft.com/windowsapps/How-to-use-HttpClient-to-b9289836
+
+## Tuesday, October 23, 2018
+#### Sprint 11, ClientFacade image uploading to vision service
+

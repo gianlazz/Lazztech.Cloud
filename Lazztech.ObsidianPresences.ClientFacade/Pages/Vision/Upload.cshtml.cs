@@ -22,7 +22,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
         public IFormFile Photo { get; set; }
         public string ImageBase64 { get; private set; }
 
-        //public bool ConnectedToServices = false;
+        public bool ConnectedToServices = false;
 
         public void OnGet()
         {
@@ -75,6 +75,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                         var EmpResponse = Res.Content.ReadAsStringAsync().Result;
 
                         //Deserializing the response recieved from web api and storing into the Employee list
+                        ConnectedToServices = true;
                     }
 
                     //ConnectedToServices = true;
