@@ -44,29 +44,29 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             return Snapshots;
         }
 
-        // GET: api/ProcessedSnapshots/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// GET: api/ProcessedSnapshots/5
+        //[HttpGet("{id}", Name = "Get")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
-        // POST: api/ProcessedSnapshots
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //// POST: api/ProcessedSnapshots
+        //[HttpPost]
+        //public void Post([FromBody] string value)
+        //{
+        //}
 
-        // PUT: api/ProcessedSnapshots/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT: api/ProcessedSnapshots/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE: api/ApiWithActions/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

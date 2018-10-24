@@ -2983,3 +2983,24 @@ I think this is because I need to post the base64 as the body and not the url ke
 ## Tuesday, October 23, 2018
 #### Sprint 11, ClientFacade image uploading to vision service
 
+Communication to the vision service webapi of all sort are returning error 500 for some reason right now and I'm not sure when it happened.
+I'm going to have to fix it before I can continue working on any improvments as for all I know the image upload is already in a working state programatically.
+
+Here's what I'm seeing in the output when I curl a controller:
+```
+Attribute routes with the same name 'Get' must have the same template:
+Action: 'Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers.ProcessedSnapshotsController.Get (Lazztech.ObsidianPresences.Vision.Microservice.Webapi)' - Template: 'api/ProcessedSnapshots/{id}'
+Action: 'Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers.ScanNewImageController.Get (Lazztech.ObsidianPresences.Vision.Microservice.Webapi)' - Template: 'api/ScanNewImage/{id}'
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorBuilder.Build(ApplicationModel application)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorProvider.GetDescriptors()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorProvider.OnProvidersExecuting(ActionDescriptorProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.UpdateCollection()
+   at Microsoft.AspNetCore.Mvc.Internal.ActionDescriptorCollectionProvider.get_ActionDescriptors()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.GetTreeRouter()
+   at Microsoft.AspNetCore.Mvc.Internal.AttributeRoute.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Routing.RouteCollection.RouteAsync(RouteContext context)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+```
+
+Okay so I was able to fix this issue by commenting out unused controller methods in ProcessedSnapshotsController and ScanNewImageController.
