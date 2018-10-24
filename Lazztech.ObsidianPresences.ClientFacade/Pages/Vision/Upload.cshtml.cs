@@ -63,7 +63,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var dictionary = new List<string>();
                     dictionary.Add(ImageBase64);
-                    dictionary.Add("ExampleName");
+                    //dictionary.Add("ExampleName");
                     var json = JsonConvert.SerializeObject(dictionary);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
                     var Res = await client.PostAsync("api/AddNewPerson", httpContent);

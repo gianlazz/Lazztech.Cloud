@@ -31,9 +31,10 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
 
         // POST: api/AddNewPerson
         [HttpPost]
-        public void Post([FromBody] string base64Image, [FromBody] string name)
+        public void Post([FromBody] string base64Image)
         {
             var snapshot = new Snapshot();
+            var name = "asdfasdf";
 
             var knownImagesDir = FacialRecognitionManager.knownPath;
             if (!Directory.Exists(knownImagesDir))
