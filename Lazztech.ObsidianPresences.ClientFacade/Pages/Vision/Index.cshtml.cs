@@ -27,11 +27,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
             Snapshots = snaps.Result;
         }
 
-        public void OnPost(string base64)
-        {
-            //Upload image to baseurl/AddNewPersonController Post method by passing base64
-        }
-
         private async Task<List<Snapshot>> CallSnapsEndpoint()
         {
             List<Snapshot> snaps = new List<Snapshot>();
