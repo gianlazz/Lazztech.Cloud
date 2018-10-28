@@ -47,8 +47,10 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
             using (var ms = new MemoryStream())
             {
                 await Photo.CopyToAsync(ms);
+                var extension = Path.GetExtension(Photo.FileName).Replace(".", string.Empty);
                 var imageBytes = ms.ToArray();
-                ImageBase64 = Convert.ToBase64String(imageBytes);
+                var prefix = $"data:image/{extension};base64,";
+                ImageBase64 = prefix + Convert.ToBase64String(imageBytes);
             }
 
             try
@@ -62,9 +64,10 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                     //Define request data format
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var dictionary = new Dictionary<string, string>();
-                    dictionary.Add("base64Image", ImageBase64);
+                    dictionary.Add("Name", Name);
+                    dictionary.Add("Base64Image", ImageBase64);
                     //dictionary.Add("ExampleName");
-                    var json = JsonConvert.SerializeObject(dictionary);
+                    var json = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
                     var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
                     var Res = await client.PostAsync("api/AddNewPerson", httpContent);
 
