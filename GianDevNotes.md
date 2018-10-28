@@ -3043,6 +3043,8 @@ the docker-compose.override.yml to expose the ports for the vision service so th
 
 - https://www.youtube.com/watch?v=u9iBjM-x5Jc Post Request .Net Core API And PostMany
 - https://medium.com/@pielegacy/an-in-depth-guide-into-a-ridiculously-simple-api-using-net-core-8f5edd427b0
+- https://medium.com/all-technology-feeds/testing-your-asp-net-core-webapi-secured-with-identityserver4-in-postman-97eee976aa16
+- https://medium.com/@zedogas/poc-webapi-jwt-netcore-2-0-52b6e1a3dd33
 
 I'm trying to test the vision services controllers with hitting http://localhost/api/Values:8080 however it's not working. I'm not sure how to hit and test just the vision service.
 I'm sometimes still confused whether the compose.override settings are being respected when I launch in vs. However it seems like they are as it's useing the bind mounted volume for the data.
@@ -3065,3 +3067,10 @@ the ClientFacade front end and through it's api which will call the other servic
 Okay, so in the docker-compose.override.yml I've left only the port 8080:80 for the vision service for development and in
 the regular docker-compose.yml I've commented out all exposed port mappings for the vision service as I think that's only for outside the compose
 and shouldn't be needed as I'll never want the vision services publically accessable.
+
+Here's info on exporting and checking postman collections into git:
+- https://stackoverflow.com/questions/30437988/how-to-store-postman-collections-in-source-control/31149431#31149431
+- http://blog.getpostman.com/2015/06/05/travelogue-of-postman-collection-format-v2/
+
+Also for later I still want to setup a graphql web api in the ClientFacade wrapped around the rest api in it. Here's info on how:
+- https://medium.com/@fleekdeveloper/asp-net-core-2-api-with-graphql-e6e78d6da81f
