@@ -18,15 +18,18 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 {
     public class UploadModel : PageModel
     {
-        public string Name { get; set; }
-        public IFormFile Photo { get; set; }
         public string ImageBase64 { get; private set; }
+        [BindProperty]
+        public NewPerson NewPerson { get; set; }
+        [BindProperty]
+        public Customer Customer { get; set; }
 
         public bool ConnectedToServices = false;
 
         public void OnGet()
         {
-
+            Customer = new Customer();
+            NewPerson = new NewPerson();
         }
 
         public async Task<IActionResult> OnPost()
@@ -46,8 +49,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
         {
             using (var ms = new MemoryStream())
             {
-                await Photo.CopyToAsync(ms);
-                var extension = Path.GetExtension(Photo.FileName).Replace(".", string.Empty);
+                await NewPerson.Photo.CopyToAsync(ms);
+                var extension = Path.GetExtension(NewPerson.Photo.FileName).Replace(".", string.Empty);
                 var imageBytes = ms.ToArray();
                 var prefix = $"data:image/{extension};base64,";
                 ImageBase64 = prefix + Convert.ToBase64String(imageBytes);
@@ -64,7 +67,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                     //Define request data format
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     var dictionary = new Dictionary<string, string>();
-                    dictionary.Add("Name", Name);
+                    dictionary.Add("Name", NewPerson.Name);
                     dictionary.Add("Base64Image", ImageBase64);
                     //dictionary.Add("ExampleName");
                     var json = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
@@ -90,6 +93,14 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 
             //HERE I WOULD BASE64 ENCODE THE FILESTREAM AND POST IT TO THE VISION SERVICE'S NEW ADDNEWPERSON API CONTROLLER
         }
+    }
+
+    public class NewPerson
+    {
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        public IFormFile Photo { get; set; }
     }
 
     public class Customer

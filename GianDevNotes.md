@@ -3077,3 +3077,13 @@ Also for later I still want to setup a graphql web api in the ClientFacade wrapp
 
 I switched the vision controller to inherit from : Controller instead of ControllerBase so be able to return a JsonResult Json success message.
 - https://stackoverflow.com/questions/45291281/icontroller-vs-controllerbase-vs-controller-vs-mycontroller
+
+Okay so after much struggling I figured out why the pagemodel properties were still null except for the IFormFile after submitting them.
+To get your view to bind to the razor page properties successfully you have to add the [BindProperty] attribute above them or it will be null
+on OnPost().
+
+Here's the example code repo from the IFormFile tutorial where I figured it out:
+https://github.com/hishamco/RazorPagesSample/blob/master/RazorPagesSample/Pages/Customers/SeparatePageModels/New.cshtml.cs
+
+Here's more info on this page about the requirement for the [BindProperty] attribute:
+- https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-2.1&tabs=visual-studio#writing-a-basic-form
