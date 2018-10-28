@@ -41,7 +41,7 @@ services:
       - lazztech-cloud-data:/face/
 #    networks:
 #      - api
-    ports: 
+#    ports: 
 #      - 5000:5000
 #      - 5001:5001
 #      - 6000:44399
