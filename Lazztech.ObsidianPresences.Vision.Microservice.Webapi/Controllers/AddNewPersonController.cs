@@ -13,7 +13,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AddNewPersonController : ControllerBase
+    public class AddNewPersonController : Controller
     {
         // GET: api/AddNewPerson
         [HttpGet]
@@ -31,10 +31,11 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
 
         // POST: api/AddNewPerson
         [HttpPost]
-        public void Post([FromBody] string base64Image)
+        public JsonResult Post([FromBody]NewPersonModel person)
         {
             var snapshot = new Snapshot();
-            var name = "asdfasdf";
+            var name = person.Name;
+            var base64Image = person.Base64Image;
 
             var knownImagesDir = FacialRecognitionManager.knownPath;
             if (!Directory.Exists(knownImagesDir))
@@ -54,6 +55,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             System.IO.File.WriteAllBytesAsync(knownImagesDir + $"{name}.{imageExtension}", imageBytes);
 
             //snapshot.ImageDir = $"data:image/{imageExtension};base64, {imageBase64}";
+            return Json(new { success = true });
         }
 
         // PUT: api/AddNewPerson/5

@@ -3074,3 +3074,6 @@ Here's info on exporting and checking postman collections into git:
 
 Also for later I still want to setup a graphql web api in the ClientFacade wrapped around the rest api in it. Here's info on how:
 - https://medium.com/@fleekdeveloper/asp-net-core-2-api-with-graphql-e6e78d6da81f
+
+I switched the vision controller to inherit from : Controller instead of ControllerBase so be able to return a JsonResult Json success message.
+- https://stackoverflow.com/questions/45291281/icontroller-vs-controllerbase-vs-controller-vs-mycontroller
