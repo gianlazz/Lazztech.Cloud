@@ -3061,3 +3061,7 @@ Yup so I can hit it with the compose from http://localhost:8080/api/AddNewPerson
 However http://cloud.lazz.tech:8080/api/values won't resolve as I haven't exposed port 8080 on the port forwarding which is probably good
 and how I'll keep it as I don't want the services directly accessable from the public. I want all of the public facing interaction to go through
 the ClientFacade front end and through it's api which will call the other services's api's as I want them publically exposed.
+
+Okay, so in the docker-compose.override.yml I've left only the port 8080:80 for the vision service for development and in
+the regular docker-compose.yml I've commented out all exposed port mappings for the vision service as I think that's only for outside the compose
+and shouldn't be needed as I'll never want the vision services publically accessable.
