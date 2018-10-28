@@ -3087,3 +3087,6 @@ https://github.com/hishamco/RazorPagesSample/blob/master/RazorPagesSample/Pages/
 
 Here's more info on this page about the requirement for the [BindProperty] attribute:
 - https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-2.1&tabs=visual-studio#writing-a-basic-form
+
+I should probably read through all of this article to get up to speed with Razor Pages:
+- https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-2.1&tabs=visual-studio

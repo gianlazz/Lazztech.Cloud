@@ -9,40 +9,17 @@
 <form method="post" class="form-horizontal" enctype="multipart/form-data">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="NewPerson.Name" class="col-md-2 control-label"></label>
+        <label asp-for="Name" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="NewPerson.Name" class="form-control" />
-            <span asp-validation-for="NewPerson.Name" class="text-danger"></span>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
-        <label asp-for="NewPerson.Photo" class="col-md-2 control-label"></label>
+        <label asp-for="Photo" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="NewPerson.Photo" type="file" class="form-control" style="height:auto" />
-            <span asp-validation-for="NewPerson.Photo" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button id="btnSave" type="submit" class="btn btn-primary">Save</button>
-        </div>
-    </div>
-</form>
-
-<form method="post" class="form-horizontal" enctype="multipart/form-data">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Customer.Name" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Customer.Name" class="form-control" />
-            <span asp-validation-for="Customer.Name" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Customer.Phote" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Customer.Phote" type="file" class="form-control" style="height:auto" />
-            <span asp-validation-for="Customer.Phote" class="text-danger"></span>
+            <input asp-for="Photo" type="file" class="form-control" style="height:auto" />
+            <span asp-validation-for="Photo" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
