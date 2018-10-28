@@ -3034,3 +3034,30 @@ string name
    at Microsoft.AspNetCore.Builder.RouterMiddleware.Invoke(HttpContext httpContext)
    at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
 ```
+
+## Sunday, October 28, 2018
+#### Sprint 11, ClientFacade image uploading to vision service
+
+Still getting the image post requst from the client facade to the vision service working. I've been in the process of moving still so work is going slowly. I think that it would be a good time to configure
+the docker-compose.override.yml to expose the ports for the vision service so that I can experiement and debug the controller requests with Postman.
+
+- https://www.youtube.com/watch?v=u9iBjM-x5Jc Post Request .Net Core API And PostMany
+- https://medium.com/@pielegacy/an-in-depth-guide-into-a-ridiculously-simple-api-using-net-core-8f5edd427b0
+
+I'm trying to test the vision services controllers with hitting http://localhost/api/Values:8080 however it's not working. I'm not sure how to hit and test just the vision service.
+I'm sometimes still confused whether the compose.override settings are being respected when I launch in vs. However it seems like they are as it's useing the bind mounted volume for the data.
+I can however for now just go ahead and run only the vision service through IIS Express or whatever and test the controllers that way
+with postman etc.
+
+Also as a note taking advantage of Docker's reset option is really helpful for shutting down services when I need the port
+for something else.
+
+When running the vision service with kestral I can hit the endpoint I want with http://localhost:5000/api/AddNewPerson
+Based on this it looks like I was likely constructing the url wrong. I'll try again with compose also I'm going to comment out the port
+5000 on the compose as I think that it only actually uses port 80 which is mapped to port 8080.
+
+Yup so I can hit it with the compose from http://localhost:8080/api/AddNewPerson or whatever controller I want like also http://localhost:8080/api/Values for example.
+
+However http://cloud.lazz.tech:8080/api/values won't resolve as I haven't exposed port 8080 on the port forwarding which is probably good
+and how I'll keep it as I don't want the services directly accessable from the public. I want all of the public facing interaction to go through
+the ClientFacade front end and through it's api which will call the other services's api's as I want them publically exposed.
