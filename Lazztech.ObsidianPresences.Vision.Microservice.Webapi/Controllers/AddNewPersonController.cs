@@ -52,6 +52,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             var knownJsonsDir = FacialRecognitionManager.knownJsonsPath;
             if (!Directory.Exists(knownJsonsDir))
                 Directory.CreateDirectory(knownJsonsDir);
+            snapshot.DateTimeWhenCaptured = DateTime.Now;
             var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
             var jsonPath = $"{FacialRecognitionManager.knownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json";
             System.IO.File.WriteAllText(jsonPath, JsonConvert.SerializeObject(snapshot, Formatting.Indented));
