@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
+﻿using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
 using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
 {
@@ -16,7 +13,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
     public class AddNewPersonController : Controller
     {
         // GET: api/AddNewPerson
-        [HttpGet]
+        //[HttpGet]
         //public IEnumerable<string> Get()
         //{
         //    return new string[] { "value1", "value2" };
@@ -57,7 +54,6 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             var jsonPath = $"{FacialRecognitionManager.knownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json";
             System.IO.File.WriteAllText(jsonPath, JsonConvert.SerializeObject(snapshot, Formatting.Indented));
 
-            //snapshot.ImageDir = $"data:image/{imageExtension};base64, {imageBase64}";
             return Json(new { success = true });
         }
 

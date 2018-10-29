@@ -1,27 +1,26 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 {
     public class UploadModel : PageModel
     {
         public string ImageBase64 { get; private set; }
+
         [BindProperty]
         [Required]
         public string Name { get; set; }
+
         [BindProperty]
         [Required]
         public IFormFile Photo { get; set; }
@@ -30,7 +29,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 
         public void OnGet()
         {
-
         }
 
         public async Task<IActionResult> OnPost()
@@ -41,7 +39,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
             }
 
             await UploadPhoto();
-            //Message = "New customer created successfully!";
 
             return RedirectToPage("./Known");
         }
@@ -88,11 +85,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
             }
             catch (Exception)
             {
-
                 throw;
             }
-
-            //HERE I WOULD BASE64 ENCODE THE FILESTREAM AND POST IT TO THE VISION SERVICE'S NEW ADDNEWPERSON API CONTROLLER
         }
     }
 }
