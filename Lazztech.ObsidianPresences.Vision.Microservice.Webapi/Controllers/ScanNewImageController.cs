@@ -42,30 +42,25 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess(), new FaceDetectionProcess(), new FileServices());
             snapshot = facialRecognition.Process(snapshot.ImageDir);
 
-            var json = JsonConvert.SerializeObject(snap, Formatting.Indented);
-            if (snap.ImageDir.Contains("/unknown"))
-                System.IO.File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{dateExample}_{snap.ImageName}_{snap.GetHashCode()}.json", json);
+            //var unknownImagesDir = FacialRecognitionManager.unknownPath;
+            //if (!Directory.Exists(unknownImagesDir))
+            //    Directory.CreateDirectory(unknownImagesDir);
 
-            var person = new Person() { Name = name };
-            snapshot.People.Add(person);
+            //var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
+            //var imageBytes = Convert.FromBase64String(base64Image.Substring(base64Image.IndexOf("base64,") + "base64,".Length));
+            //snapshot.ImageDir = unknownImagesDir + $"{name}.{imageExtension}";
+            //snapshot.ImageName = person.Name + "." + imageExtension;
+            //System.IO.File.WriteAllBytesAsync(snapshot.ImageDir, imageBytes);
 
-            var unknownImagesDir = FacialRecognitionManager.unknownPath;
-            if (!Directory.Exists(unknownImagesDir))
-                Directory.CreateDirectory(unknownImagesDir);
+            //var knownJsonsDir = FacialRecognitionManager.knownJsonsPath;
+            //if (!Directory.Exists(knownJsonsDir))
+            //    Directory.CreateDirectory(knownJsonsDir);
+            //snapshot.DateTimeWhenCaptured = DateTime.Now;
+            //var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
+            //var jsonPath = $"{FacialRecognitionManager.knownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json";
+            //System.IO.File.WriteAllText(jsonPath, JsonConvert.SerializeObject(snapshot, Formatting.Indented));
 
-            var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
-            var imageBytes = Convert.FromBase64String(base64Image.Substring(base64Image.IndexOf("base64,") + "base64,".Length));
-            snapshot.ImageDir = unknownImagesDir + $"{name}.{imageExtension}";
-            snapshot.ImageName = person.Name + "." + imageExtension;
-            System.IO.File.WriteAllBytesAsync(snapshot.ImageDir, imageBytes);
-
-            var knownJsonsDir = FacialRecognitionManager.knownJsonsPath;
-            if (!Directory.Exists(knownJsonsDir))
-                Directory.CreateDirectory(knownJsonsDir);
-            snapshot.DateTimeWhenCaptured = DateTime.Now;
-            var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
-            var jsonPath = $"{FacialRecognitionManager.knownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json";
-            System.IO.File.WriteAllText(jsonPath, JsonConvert.SerializeObject(snapshot, Formatting.Indented));
+            //System.IO.File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{dateExample}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json", json);
 
             return Json(new { success = true });
         }

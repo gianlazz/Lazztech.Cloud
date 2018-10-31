@@ -17,6 +17,9 @@ RUN apt-get update -y &&\
     apt-get install -y python3-pip &&\
     pip3 install face_recognition
 
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
 COPY ["Lazztech.ObsidianPresences.Vision.Microservice.Webapi/Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj", "Lazztech.ObsidianPresences.Vision.Microservice.Webapi/"]
