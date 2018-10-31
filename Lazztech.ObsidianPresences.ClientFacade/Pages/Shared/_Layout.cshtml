@@ -123,12 +123,11 @@
                         {
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
                         }
-
-                        @if (routes[i] != routes.Last())
+                        else if (routes[i] != routes.Last())
                         {
                             <li class="breadcrumb-item"><a href="/@routes[i]">@routes[i]</a></li>
                         }
-                        @if (routes[i] == routes.Last())
+                        else if (routes[i] == routes.Last())
                         {
                             <li class="breadcrumb-item active" aria-current="page">@routes[i]</li>
                         }
