@@ -76,7 +76,23 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 
         public Snapshot Process(string path)
         {
-            return null;
+            _knownImageDirs.Add(path);
+
+            face_recognitionLines = _face_recognition.FaceRecognition();
+            if (face_recognitionLines.Count == 0)
+                throw new Exception("face_recognition returned no lines");
+            face_detectionLines = _face_detection.FaceDetection();
+            if (face_detectionLines.Count == 0)
+                throw new Exception("face_detection returned no lines");
+
+            HandleIdentities();
+            HandleBoundingBoxes();
+
+            if (Results.Count > 1)
+                throw new Exception();
+
+            var result = Results.FirstOrDefault();
+            return result;
         }
 
         private void StandUpAllNeededDirectories()
