@@ -3094,3 +3094,5 @@ I should probably read through all of this article to get up to speed with Razor
 ## Tuesday, October 30, 2018
 #### Sprint 12, ClientFacade face_recognition against new upload image
 
+Now that I'm working on the ScanNewImageController api endpoint on the vision service it's finally time to refactor
+the vision domain so that it can process individual images instead of everything in the directory as it was with the cli.

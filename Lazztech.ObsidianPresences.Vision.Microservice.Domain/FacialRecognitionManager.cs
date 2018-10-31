@@ -74,6 +74,11 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             return Results;
         }
 
+        public Snapshot Process(string path)
+        {
+            return null;
+        }
+
         private void StandUpAllNeededDirectories()
         {
             if (!Directory.Exists(knownPath))
