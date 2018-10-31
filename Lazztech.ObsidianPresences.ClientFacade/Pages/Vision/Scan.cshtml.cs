@@ -36,7 +36,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 
             await UploadPhoto();
 
-            return RedirectToPage("./Known");
+            //return RedirectToPage("./Known");
+            return Page();
         }
 
         private async Task UploadPhoto()

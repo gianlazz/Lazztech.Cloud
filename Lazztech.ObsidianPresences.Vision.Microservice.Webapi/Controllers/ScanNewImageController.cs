@@ -31,21 +31,42 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
 
         //// POST: api/ScanNewImage
         [HttpPost]
-        public JsonResult Post([FromBody]NewPersonModel newPersonModel)
+        public JsonResult Post([FromBody]NewImageModel newImage)
         {
             var snapshot = new Snapshot();
-            var name = newPersonModel.Name;
-            var base64Image = newPersonModel.Base64Image;
+            var base64Image = newImage.Base64Image;
+
+            var name = "";
+
+            //PROCESS NEW ONES
+            var Results = new List<Snapshot>();
+            var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess(), new FaceDetectionProcess(), new FileServices());
+            Results = facialRecognition.Process();
+
+            //WRITE OUT/PERSIST THE JSON RESULTS TO DISK
+            foreach (var snap in Results)
+            {
+                var json = JsonConvert.SerializeObject(snap, Formatting.Indented);
+                var dateExample = snap.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
+                if (snap.ImageDir.Contains("/known"))
+                    System.IO.File.WriteAllText($"{FacialRecognitionManager.knownJsonsPath}{dateExample}_{snap.ImageName}_{snap.GetHashCode()}.json", json);
+                if (snap.ImageDir.Contains("/unknown"))
+                {
+                    System.IO.File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{dateExample}_{snap.ImageName}_{snap.GetHashCode()}.json", json);
+                    Console.WriteLine(json);
+                }
+            }
+
             var person = new Person() { Name = name };
             snapshot.People.Add(person);
 
-            var knownImagesDir = FacialRecognitionManager.knownPath;
-            if (!Directory.Exists(knownImagesDir))
-                Directory.CreateDirectory(knownImagesDir);
+            var unknownImagesDir = FacialRecognitionManager.unknownPath;
+            if (!Directory.Exists(unknownImagesDir))
+                Directory.CreateDirectory(unknownImagesDir);
 
             var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
             var imageBytes = Convert.FromBase64String(base64Image.Substring(base64Image.IndexOf("base64,") + "base64,".Length));
-            snapshot.ImageDir = knownImagesDir + $"{name}.{imageExtension}";
+            snapshot.ImageDir = unknownImagesDir + $"{name}.{imageExtension}";
             snapshot.ImageName = person.Name + "." + imageExtension;
             System.IO.File.WriteAllBytesAsync(snapshot.ImageDir, imageBytes);
 
@@ -71,5 +92,10 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
         //public void Delete(int id)
         //{
         //}
+    }
+
+    public class NewImageModel
+    {
+        public string Base64Image { get; set; }
     }
 }
