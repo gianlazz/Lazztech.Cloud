@@ -3090,3 +3090,7 @@ Here's more info on this page about the requirement for the [BindProperty] attri
 
 I should probably read through all of this article to get up to speed with Razor Pages:
 - https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-2.1&tabs=visual-studio
+
+## Tuesday, October 30, 2018
+#### Sprint 12, ClientFacade face_recognition against new upload image
+
