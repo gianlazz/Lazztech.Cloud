@@ -39,23 +39,12 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             var name = "";
 
             //PROCESS NEW ONES
-            var Results = new List<Snapshot>();
             var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess(), new FaceDetectionProcess(), new FileServices());
-            Results = facialRecognition.Process();
+            snapshot = facialRecognition.Process(snapshot.ImageDir);
 
-            //WRITE OUT/PERSIST THE JSON RESULTS TO DISK
-            foreach (var snap in Results)
-            {
-                var json = JsonConvert.SerializeObject(snap, Formatting.Indented);
-                var dateExample = snap.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
-                if (snap.ImageDir.Contains("/known"))
-                    System.IO.File.WriteAllText($"{FacialRecognitionManager.knownJsonsPath}{dateExample}_{snap.ImageName}_{snap.GetHashCode()}.json", json);
-                if (snap.ImageDir.Contains("/unknown"))
-                {
-                    System.IO.File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{dateExample}_{snap.ImageName}_{snap.GetHashCode()}.json", json);
-                    Console.WriteLine(json);
-                }
-            }
+            var json = JsonConvert.SerializeObject(snap, Formatting.Indented);
+            if (snap.ImageDir.Contains("/unknown"))
+                System.IO.File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{dateExample}_{snap.ImageName}_{snap.GetHashCode()}.json", json);
 
             var person = new Person() { Name = name };
             snapshot.People.Add(person);

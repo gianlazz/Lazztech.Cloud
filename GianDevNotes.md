@@ -3096,3 +3096,7 @@ I should probably read through all of this article to get up to speed with Razor
 
 Now that I'm working on the ScanNewImageController api endpoint on the vision service it's finally time to refactor
 the vision domain so that it can process individual images instead of everything in the directory as it was with the cli.
+
+I think I really need a new freshly re-written implementation of FacialRecognitionManager in the vision service domain as it's highly coupled
+and has far too many responsabilities in one class. It's not flexible to my use case of processing just one new image and suppling a known set of people
+to work against.
