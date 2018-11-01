@@ -33,9 +33,9 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
         [HttpPost]
         public JsonResult Post([FromBody]NewImageModel newImage)
         {
+            var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess(), new FaceDetectionProcess(), new FileServices());
+
             var unknownImagesDir = FacialRecognitionManager.unknownPath;
-            if (!Directory.Exists(unknownImagesDir))
-                Directory.CreateDirectory(unknownImagesDir);
 
             var base64Image = newImage.Base64Image;
             var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
@@ -45,19 +45,14 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             var imageDirectory = unknownImagesDir + imageName;
             System.IO.File.WriteAllBytes(imageDirectory, imageBytes);
 
-            //PROCESS NEW ONES
-            var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess(), new FaceDetectionProcess(), new FileServices());
             var snapshot = facialRecognition.Process(imageDirectory);
-            //snapshot.ImageDir = unknownImagesDir + $"{imageName}.{imageExtension}";
-            //snapshot.ImageName = Guid.NewGuid().ToString() + "." + imageExtension;
 
-            //var knownJsonsDir = FacialRecognitionManager.knownJsonsPath;
-            //if (!Directory.Exists(knownJsonsDir))
-            //    Directory.CreateDirectory(knownJsonsDir);
-            //snapshot.DateTimeWhenCaptured = DateTime.Now;
-            //var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
-            //var jsonPath = $"{FacialRecognitionManager.knownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json";
-            //System.IO.File.WriteAllText(jsonPath, JsonConvert.SerializeObject(snapshot, Formatting.Indented));
+            var unknownJsonsDir = FacialRecognitionManager.unknownJsonsPath;
+
+            snapshot.DateTimeWhenCaptured = DateTime.Now;
+            var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
+            var jsonPath = $"{FacialRecognitionManager.unknownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json";
+            System.IO.File.WriteAllText(jsonPath, JsonConvert.SerializeObject(snapshot, Formatting.Indented));
 
             //System.IO.File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{dateExample}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json", json);
 
