@@ -76,7 +76,9 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
 
         public Snapshot Process(string path)
         {
-            _knownImageDirs.Add(path);
+            //_knownImageDirs.Add(path);
+            CollectAllImageDirs();
+            InstantiateSnapshotsFromDirs();
 
             face_recognitionLines = _face_recognition.FaceRecognition();
             if (face_recognitionLines.Count == 0)
@@ -85,13 +87,17 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain
             if (face_detectionLines.Count == 0)
                 throw new Exception("face_detection returned no lines");
 
+            Results.AddRange(Known);
+            Results.AddRange(Unknown);
+
             HandleIdentities();
             HandleBoundingBoxes();
 
-            if (Results.Count > 1)
+            var result = Results.Where(x => x.ImageDir == path).FirstOrDefault();
+
+            if (result == null)
                 throw new Exception();
 
-            var result = Results.FirstOrDefault();
             return result;
         }
 

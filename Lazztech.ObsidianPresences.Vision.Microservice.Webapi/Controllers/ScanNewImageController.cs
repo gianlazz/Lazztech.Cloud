@@ -33,24 +33,23 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
         [HttpPost]
         public JsonResult Post([FromBody]NewImageModel newImage)
         {
-            var snapshot = new Snapshot();
-            var base64Image = newImage.Base64Image;
+            var unknownImagesDir = FacialRecognitionManager.unknownPath;
+            if (!Directory.Exists(unknownImagesDir))
+                Directory.CreateDirectory(unknownImagesDir);
 
-            var name = "";
+            var base64Image = newImage.Base64Image;
+            var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
+            var imageBytes = Convert.FromBase64String(base64Image.Substring(base64Image.IndexOf("base64,") + "base64,".Length));
+            var imageName = Guid.NewGuid().ToString() + "." + imageExtension;
+
+            var imageDirectory = unknownImagesDir + imageName;
+            System.IO.File.WriteAllBytes(imageDirectory, imageBytes);
 
             //PROCESS NEW ONES
             var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess(), new FaceDetectionProcess(), new FileServices());
-            snapshot = facialRecognition.Process(snapshot.ImageDir);
-
-            //var unknownImagesDir = FacialRecognitionManager.unknownPath;
-            //if (!Directory.Exists(unknownImagesDir))
-            //    Directory.CreateDirectory(unknownImagesDir);
-
-            //var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
-            //var imageBytes = Convert.FromBase64String(base64Image.Substring(base64Image.IndexOf("base64,") + "base64,".Length));
-            //snapshot.ImageDir = unknownImagesDir + $"{name}.{imageExtension}";
-            //snapshot.ImageName = person.Name + "." + imageExtension;
-            //System.IO.File.WriteAllBytesAsync(snapshot.ImageDir, imageBytes);
+            var snapshot = facialRecognition.Process(imageDirectory);
+            //snapshot.ImageDir = unknownImagesDir + $"{imageName}.{imageExtension}";
+            //snapshot.ImageName = Guid.NewGuid().ToString() + "." + imageExtension;
 
             //var knownJsonsDir = FacialRecognitionManager.knownJsonsPath;
             //if (!Directory.Exists(knownJsonsDir))
