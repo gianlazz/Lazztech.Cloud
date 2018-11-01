@@ -3100,3 +3100,19 @@ the vision domain so that it can process individual images instead of everything
 I think I really need a new freshly re-written implementation of FacialRecognitionManager in the vision service domain as it's highly coupled
 and has far too many responsabilities in one class. It's not flexible to my use case of processing just one new image and suppling a known set of people
 to work against.
+
+## Wednesday, October 31, 2018
+#### Sprint 12, ClientFacade face_recognition against new upload image
+
+I got the scan new person page working today. I definitly need to do a re-write for a new optimization of the vision domain. It's just architected weird and assumed
+to just be a supporting process run in companion with the cli once instead of for processing images as they come.
+
+Upcoming to-do:
+- Get the ClientFacade api setup to handle the Scan page and Upload page use cases to foward the data to the vision service
+- Finish implementing the front end bounding box rendering on the images
+- Re-architect the vision domain implementation
+- Start storing the data in a more sensibly organized way in postgreSQL
+- Setup the ClientFacade to use the postgreSQL db with entity framework adapter for it's authentication
+- Create a Person page on the ClientFacade with supporting backend code
+- Implement Person search
+- Implement bounding box clicking to go to the Person's page
