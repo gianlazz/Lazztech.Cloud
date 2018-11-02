@@ -3116,3 +3116,10 @@ Upcoming to-do:
 - Create a Person page on the ClientFacade with supporting backend code
 - Implement Person search
 - Implement bounding box clicking to go to the Person's page
+
+## Thursday, November 1, 2018
+#### Sprint 12, ClientFacade face_recognition against new upload image
+
+More to-do:
+- Snapshot page with id url paramter
+- Consolidate snapshot view to show every persons name for the snapshot instead of multiple names
