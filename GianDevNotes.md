@@ -3123,3 +3123,11 @@ Upcoming to-do:
 More to-do:
 - Snapshot page with id url paramter
 - Consolidate snapshot view to show every persons name for the snapshot instead of multiple names
+
+## Friday, November 2, 2018
+#### Sprint 12, ClientFacade face_recognition against new upload image
+
+[x] - Implemented Snapshot page that gets by the guid id from the OnGet() param
+
+Note for later reference, if I'm going to deserialize an object make sure that the properties
+are not private or it won't deserialize properly leaving it null or left to the ctor.
