@@ -5,25 +5,24 @@
 }
 
 <h2>Snapshot</h2>
-
-<div class="col-md-4">
-    @*<div class="col-md-6 d-flex align-items-stretch">*@
-    <div class="card">
-        @*<canvas id="canvas" width="300" height="300">
-                Sorry, your browser doesn't support the &lt;canvas&gt; element.
-            </canvas>*@
-        <img class="card-img-top" src="@Model.Snap.ImageDir" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">@Model.Snap.DateTimeWhenCaptured.ToString()</h5>
-            <p class="card-text">
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <img class="rounded img-fluid" src="@Model.Snap.ImageDir" alt="Card image cap">
+        </div>
+        <div class="col">
+            <h4 class="card-title">@Model.Snap.DateTimeWhenCaptured.ToString()</h4>
+            <br />
+            <p>People: 
                 @foreach (var person in Model.Snap.People)
                 {
                     @person.Name<text> </text>
                 }
             </p>
-            @*<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>*@
-            <a href="#" class="btn btn-primary">Show All Occurences</a>
+            <p>Image Name: @Model.Snap.ImageName</p>
+            <p>Location: @Model.Snap.Location</p>
+            <p>Status: @Model.Snap.Status</p>
         </div>
     </div>
-    <br />
 </div>
