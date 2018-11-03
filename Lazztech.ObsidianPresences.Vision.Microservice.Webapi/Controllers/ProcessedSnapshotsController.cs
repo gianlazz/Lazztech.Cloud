@@ -31,9 +31,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
             foreach (var jsonDir in jsonDirs)
             {
                 var json = System.IO.File.ReadAllText(jsonDir);
-                var snapshotObject = JsonConvert.DeserializeObject(json);
                 var snapshot = JsonConvert.DeserializeObject<Snapshot>(json);
-                var imageFound = System.IO.File.Exists(snapshot.ImageDir);
                 var imageBytes = System.IO.File.ReadAllBytes(snapshot.ImageDir);
                 var imageBase64 = Convert.ToBase64String(imageBytes);
                 var imageExtension = snapshot.ImageDir.Split('.').Last();
