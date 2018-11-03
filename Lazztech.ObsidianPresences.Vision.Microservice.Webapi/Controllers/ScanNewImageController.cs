@@ -56,7 +56,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
 
             //System.IO.File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{dateExample}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json", json);
 
-            return Json(new { success = true });
+            return Json(new { success = true, id = snapshot.GuidId });
         }
 
         //// PUT: api/ScanNewImage/5

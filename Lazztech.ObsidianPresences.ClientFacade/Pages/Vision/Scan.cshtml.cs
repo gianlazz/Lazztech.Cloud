@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 {
@@ -17,14 +17,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
     {
         [BindProperty]
         public IFormFile Photo { get; set; }
+        public string Id { get; set; }
 
         public string ImageBase64 { get; set; }
-
         public bool ConnectedToServices = false;
 
         public void OnGet()
         {
-
         }
 
         public async Task<IActionResult> OnPost()
@@ -36,7 +35,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 
             await UploadPhoto();
 
-            return RedirectToPage("./Processed");
+            return RedirectToPage($"./Snapshot/", new { id = Id });
             //return Page();
         }
 
@@ -68,7 +67,9 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                     if (Res.IsSuccessStatusCode)
                     {
                         var EmpResponse = Res.Content.ReadAsStringAsync().Result;
-
+                        var responseDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(EmpResponse);
+                        responseDictionary.TryGetValue("id", out string result);
+                        Id = result;
                         ConnectedToServices = true;
                     }
                 }
