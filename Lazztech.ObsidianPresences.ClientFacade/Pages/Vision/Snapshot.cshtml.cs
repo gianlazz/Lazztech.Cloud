@@ -61,7 +61,17 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
                 //throw;
             }
 
-            var result = snaps.Where(x => x.GuidId.ToString() == id).FirstOrDefault();
+            //var result = snaps.Where(x => x.GuidId.ToString() == Guid.Parse(id).ToString()).FirstOrDefault();
+
+            Snapshot result = new Snapshot();
+            var guid = Guid.Parse(id);
+            foreach (var snap in snaps)
+            {
+                //if (snap.ImageName == "ad84274b-68f6-441d-bcf1-6f7690b1ccbe.jpg")
+                //    result = snap;
+                if (snap.GuidId == guid)
+                    result = snap;
+            }
 
             return result;
         }
