@@ -58,7 +58,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
             catch (Exception)
             {
 
-                //throw;
+                throw;
             }
 
             //var result = snaps.Where(x => x.GuidId.ToString() == Guid.Parse(id).ToString()).FirstOrDefault();

@@ -11,7 +11,7 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models
             GuidId = Guid.NewGuid();
         }
 
-        public Guid GuidId { get; private set; }
+        public Guid GuidId { get; set; }
         public string ImageDir { get; set; }
         public string ImageName { get; set; }
         public DateTime DateTimeWhenCaptured { get; set; }
