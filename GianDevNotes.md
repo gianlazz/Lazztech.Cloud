@@ -3131,3 +3131,7 @@ More to-do:
 
 Note for later reference, if I'm going to deserialize an object make sure that the properties
 are not private or it won't deserialize properly leaving it null or left to the ctor.
+
+## Tuesday, November 13, 2018
+#### Sprint 13, Lazztech Events (HackathonHandler) & Postgresql First Steps
+
