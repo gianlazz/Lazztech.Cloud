@@ -3135,3 +3135,12 @@ are not private or it won't deserialize properly leaving it null or left to the 
 ## Tuesday, November 13, 2018
 #### Sprint 13, Lazztech Events (HackathonHandler) & Postgresql First Steps
 
+I'm following along with this tutorial for setting up prostgresql:
+- https://blog.nordicdev.io/build-a-dotnet-core-2-1-mvc-app-using-postgresql-for-raspberry-pi-78f93a252c0b
+
+Installing postgresql at:
+- https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+Also I think I'm going to move away from microservices as I don't actually thinking it's adding much to my project and it's increasing the amount of work a lot.
+I'm going to move away from microservices for the vision service as part of refactoring it for individual image processing and setting up the rest api for the clientfacade.
+
