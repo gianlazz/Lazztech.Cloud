@@ -3145,5 +3145,21 @@ Also I think I'm going to move away from microservices as I don't actually think
 I'm going to move away from microservices for the vision service as part of refactoring it for individual image processing and setting up the rest api for the clientfacade.
 
 "take advantage of the user-secrets functionality in our fancy new dotnet core app. This lets us keep an appsettings.json file unique to our machine"
+- https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.1&tabs=windows
 
 To manage secrets for a dotnetcore project right click on it in the solution explorer and select > manage secrets
+
+I've run into an issue with the postgresql credentials while following along with the tutorial:
+PostgresException: 28P01: password authentication failed for user "dotnetCorePostgresPi"
+
+- https://stackoverflow.com/questions/7695962/postgresql-password-authentication-failed-for-user-postgres
+- https://stackoverflow.com/questions/14564644/postgres-password-authentication-fails
+- https://stackoverflow.com/questions/50475293/error-28p01-password-authentication-failed
+
+Changing the role name to lowercase in the connection string located in the secrets.json to lowercase seems to have fixed the issue with the connection not working.
+
+Making the database and username both lowercase in the connection string seems to make it work much better however I'm still running into issues running the migrations
+prompted with `PM> Update-Database`
+
+42601: syntax error at or near "["
+- https://stackoverflow.com/questions/37752836/postgresql-npgsql-returning-42601-syntax-error-at-or-near-1
