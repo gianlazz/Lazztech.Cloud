@@ -3144,3 +3144,6 @@ Installing postgresql at:
 Also I think I'm going to move away from microservices as I don't actually thinking it's adding much to my project and it's increasing the amount of work a lot.
 I'm going to move away from microservices for the vision service as part of refactoring it for individual image processing and setting up the rest api for the clientfacade.
 
+"take advantage of the user-secrets functionality in our fancy new dotnet core app. This lets us keep an appsettings.json file unique to our machine"
+
+To manage secrets for a dotnetcore project right click on it in the solution explorer and select > manage secrets
