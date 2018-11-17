@@ -31,8 +31,6 @@ services:
       - lazztech-cloud-data:/face/
     ports: 
       - 80:80
-    depends_on:
-      - lazztech.obsidianpresences.vision.microservice.webapi
     build:
       context: .
       dockerfile: Lazztech.ObsidianPresences.ClientFacade/Dockerfile
