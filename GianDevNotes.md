@@ -3163,3 +3163,21 @@ prompted with `PM> Update-Database`
 
 42601: syntax error at or near "["
 - https://stackoverflow.com/questions/37752836/postgresql-npgsql-returning-42601-syntax-error-at-or-near-1
+
+## Tuesday, November 16, 2018
+#### Sprint 13, Lazztech Events (HackathonHandler) & Postgresql First Steps
+
+I've decided that I'm definitly going to move away from microservices and instead just load balance the entire site.
+
+I want to figure out how to package c++ dependencies into nuget packages so that I don't have to depend on having certain tools installed in the docker container.
+I've found nuget packages for dlib and I think I should move towards using them instead of the cli setup with docker I have right now.
+
+DlibDotNet
+- https://github.com/takuya-takeuchi/DlibDotNet
+FaceRecognitionDotNet
+- https://github.com/takuya-takeuchi/FaceRecognitionDotNet
+EmotionDetectionAsset
+- https://github.com/rageappliedgame/EmotionDetectionAsset
+
+Using PostgreSQL with .NET Core 2.0
+- https://www.youtube.com/watch?v=md20lQut9EE
