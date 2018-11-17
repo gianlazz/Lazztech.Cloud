@@ -3181,3 +3181,13 @@ EmotionDetectionAsset
 
 Using PostgreSQL with .NET Core 2.0
 - https://www.youtube.com/watch?v=md20lQut9EE
+
+So it looks like it doesn't matter if I try to kick off the migration myself of let the code in Program.cs do it either way it returns:
+Npgsql.PostgresException (0x80004005): 42601: syntax error at or near "["
+
+Here's documentation on the issue:
+- https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL/issues/404
+
+The link above lead me to the solution to this issue. Essentially there was already a migration added from when the Startup was still configured to use SqlServer and that was what
+was causing the error. I fixed the issue by deleting all of the classes in the migrations folder and running `dotnet ef migrations add InitialMigration` on the project.
+Then when I went to register it all just worked as expected.
