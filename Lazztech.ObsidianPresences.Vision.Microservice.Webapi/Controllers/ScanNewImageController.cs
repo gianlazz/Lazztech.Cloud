@@ -30,34 +30,34 @@ namespace Lazztech.ObsidianPresences.Vision.Microservice.Webapi.Controllers
         //}
 
         //// POST: api/ScanNewImage
-        [HttpPost]
-        public JsonResult Post([FromBody]NewImageModel newImage)
-        {
-            var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess(), new FaceDetectionProcess(), new FileServices());
+        //[HttpPost]
+        //public JsonResult Post([FromBody]NewImageModel newImage)
+        //{
+        //    var facialRecognition = new FacialRecognitionManager(new FaceRecognitionProcess(), new FaceDetectionProcess(), new FileServices());
 
-            var unknownImagesDir = FacialRecognitionManager.unknownPath;
+        //    var unknownImagesDir = FacialRecognitionManager.unknownPath;
 
-            var base64Image = newImage.Base64Image;
-            var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
-            var imageBytes = Convert.FromBase64String(base64Image.Substring(base64Image.IndexOf("base64,") + "base64,".Length));
-            var imageName = Guid.NewGuid().ToString() + "." + imageExtension;
+        //    var base64Image = newImage.Base64Image;
+        //    var imageExtension = base64Image.TrimStart("data:image/".ToArray()).Split(';').First();
+        //    var imageBytes = Convert.FromBase64String(base64Image.Substring(base64Image.IndexOf("base64,") + "base64,".Length));
+        //    var imageName = Guid.NewGuid().ToString() + "." + imageExtension;
 
-            var imageDirectory = unknownImagesDir + imageName;
-            System.IO.File.WriteAllBytes(imageDirectory, imageBytes);
+        //    var imageDirectory = unknownImagesDir + imageName;
+        //    System.IO.File.WriteAllBytes(imageDirectory, imageBytes);
 
-            var snapshot = facialRecognition.Process(imageDirectory);
+        //    var snapshot = facialRecognition.Process(imageDirectory);
 
-            var unknownJsonsDir = FacialRecognitionManager.unknownJsonsPath;
+        //    var unknownJsonsDir = FacialRecognitionManager.unknownJsonsPath;
 
-            snapshot.DateTimeWhenCaptured = DateTime.Now;
-            var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
-            var jsonPath = $"{FacialRecognitionManager.unknownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json";
-            System.IO.File.WriteAllText(jsonPath, JsonConvert.SerializeObject(snapshot, Formatting.Indented));
+        //    snapshot.DateTimeWhenCaptured = DateTime.Now;
+        //    var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
+        //    var jsonPath = $"{FacialRecognitionManager.unknownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json";
+        //    System.IO.File.WriteAllText(jsonPath, JsonConvert.SerializeObject(snapshot, Formatting.Indented));
 
-            //System.IO.File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{dateExample}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json", json);
+        //    //System.IO.File.WriteAllText($"{FacialRecognitionManager.unknownJsonsPath}{dateExample}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json", json);
 
-            return Json(new { success = true, id = snapshot.GuidId });
-        }
+        //    return Json(new { success = true, id = snapshot.GuidId });
+        //}
 
         //// PUT: api/ScanNewImage/5
         //[HttpPut("{id}")]
