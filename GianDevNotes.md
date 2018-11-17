@@ -3199,3 +3199,5 @@ After that I'll switch the vision service to use Postgresql db as the persistenc
 Then there after I should refactor the vision domain to use the nuget packages above instead of system.diagnostic.process against the docker container install.
 
 Then I need to configure authentication roles and insure that only certain roles have access to the appropriate pages or rest api controllers.
+
+This evening I removed the vision microservice Webapi project and moved over all of it's responsabilities to the clientfacade project. I've also deleted all docker references to the webapi service.
