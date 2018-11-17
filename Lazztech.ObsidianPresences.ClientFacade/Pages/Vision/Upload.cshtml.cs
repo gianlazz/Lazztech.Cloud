@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
+using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -6,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -15,8 +18,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 {
     public class UploadModel : PageModel
     {
-        public string ImageBase64 { get; private set; }
-
         [BindProperty]
         [Required]
         public string Name { get; set; }
@@ -45,46 +46,40 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 
         private async Task UploadPhoto()
         {
-            using (var ms = new MemoryStream())
-            {
-                await Photo.CopyToAsync(ms);
-                var extension = Path.GetExtension(Photo.FileName).Replace(".", string.Empty);
-                var imageBytes = ms.ToArray();
-                var prefix = $"data:image/{extension};base64,";
-                ImageBase64 = prefix + Convert.ToBase64String(imageBytes);
-            }
-
             try
             {
-                using (var client = new HttpClient())
+                using (var ms = new MemoryStream())
                 {
-                    //Passing service base url
-                    client.BaseAddress = new Uri(StaticStrings.VisionWebapiService);
+                    await Photo.CopyToAsync(ms);
+                    var extension = Path.GetExtension(Photo.FileName).Replace(".", string.Empty);
+                    var imageBytes = ms.ToArray();
 
-                    client.DefaultRequestHeaders.Clear();
-                    //Define request data format
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    var dictionary = new Dictionary<string, string>();
-                    dictionary.Add("Name", Name);
-                    dictionary.Add("Base64Image", ImageBase64);
-                    //dictionary.Add("ExampleName");
-                    var json = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
-                    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                    var Res = await client.PostAsync("api/AddNewPerson", httpContent);
+                    var snapshot = new Snapshot();
+                    var person = new Person() { Name = Name };
+                    snapshot.People.Add(person);
 
-                    //Checking the response is successful or not which is sent using HttpClient
-                    if (Res.IsSuccessStatusCode)
-                    {
-                        //Storing the response details recieved from web api
-                        var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+                    var knownImagesDir = FacialRecognitionManager.knownPath;
+                    if (!Directory.Exists(knownImagesDir))
+                        Directory.CreateDirectory(knownImagesDir);
 
-                        //Deserializing the response recieved from web api and storing into the Employee list
-                        ConnectedToServices = true;
-                    }
+                    snapshot.ImageDir = knownImagesDir + $"{Name}.{extension}";
+                    snapshot.ImageName = person.Name + "." + extension;
+                    System.IO.File.WriteAllBytes(snapshot.ImageDir, imageBytes);
+
+                    var knownJsonsDir = FacialRecognitionManager.knownJsonsPath;
+                    if (!Directory.Exists(knownJsonsDir))
+                        Directory.CreateDirectory(knownJsonsDir);
+                    snapshot.DateTimeWhenCaptured = DateTime.Now;
+                    var date = snapshot.DateTimeWhenCaptured.ToString("dd-MM-yyyy-hh-mm-ss-tt");
+                    var jsonPath = $"{FacialRecognitionManager.knownJsonsPath}{date}_{snapshot.ImageName}_{snapshot.GetHashCode()}.json";
+                    System.IO.File.WriteAllText(jsonPath, JsonConvert.SerializeObject(snapshot, Formatting.Indented));
                 }
+
+                ConnectedToServices = true;
             }
             catch (Exception)
             {
+
                 throw;
             }
         }
