@@ -3191,3 +3191,11 @@ Here's documentation on the issue:
 The link above lead me to the solution to this issue. Essentially there was already a migration added from when the Startup was still configured to use SqlServer and that was what
 was causing the error. I fixed the issue by deleting all of the classes in the migrations folder and running `dotnet ef migrations add InitialMigration` on the project.
 Then when I went to register it all just worked as expected.
+
+Now I need to delete the vision microservice and refactor it over to just be executed from within the ClientFacade project.
+
+After that I'll switch the vision service to use Postgresql db as the persistence technology with jsonb instead of just writing to disk the jsons in the vision microservice container.
+
+Then there after I should refactor the vision domain to use the nuget packages above instead of system.diagnostic.process against the docker container install.
+
+Then I need to configure authentication roles and insure that only certain roles have access to the appropriate pages or rest api controllers.
