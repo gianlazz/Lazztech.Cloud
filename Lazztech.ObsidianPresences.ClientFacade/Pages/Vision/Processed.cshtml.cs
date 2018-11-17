@@ -27,6 +27,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
             try
             {
                 Snapshots = GetSnapshots();
+                ConnectedToServices = true;
             }
             catch (Exception)
             {
