@@ -15,8 +15,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 {
     public class IndexModel : PageModel
     {
-        //Hosted web API REST Service base url
-        private string baseurl = "http://lazztech.obsidianpresences.vision.microservice.webapi/";
 
         public List<Snapshot> Snapshots { get; set; }
         public bool ConnectedToServices = false;
