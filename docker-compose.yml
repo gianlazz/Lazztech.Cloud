@@ -35,5 +35,11 @@ services:
       context: .
       dockerfile: Lazztech.ObsidianPresences.ClientFacade/Dockerfile
 
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+
 volumes:
   lazztech-cloud-data:
