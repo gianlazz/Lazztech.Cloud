@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Lazztech.ObsidianPresences.ClientFacade
 {
@@ -43,6 +44,14 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Simple demo", Version = "v1" });
+                //var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                //var xmlPath = Path.Combine(basePath, $"{PlatformServices.Default.Application.ApplicationName}.xml");
+                //c.IncludeXmlComments(xmlPath);
+            });
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -60,6 +69,9 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My simple API"); });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

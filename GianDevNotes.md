@@ -3202,10 +3202,22 @@ Then I need to configure authentication roles and insure that only certain roles
 
 This evening I removed the vision microservice Webapi project and moved over all of it's responsabilities to the clientfacade project. I've also deleted all docker references to the webapi service.
 
-## Tuesday, November 16, 2018
+## Monday, November 19, 2018
 #### Sprint 14, Postgresql authentication for pages and docker compose configuration
 
 
 - https://stackoverflow.com/questions/51442323/connection-string-for-postgresql-in-docker-compose-yml-file
 - https://hub.docker.com/_/adminer/
 - https://www.adminer.org/
+
+## Tuesday, November 20, 2018
+#### Sprint 14, Postgresql authentication for pages and docker compose configuration
+
+This guide looks good for the basics of getting aspnetcore and postgresql to play nice in docker compose configurations.
+
+https://helpercode.com/2017/09/26/develop-and-test-a-dockerized-postgresql-backed-asp-net-core-microservice-in-less-than-an-hour/
+
+The guide above suggests adding swashbuckle for swagger rest api ui so I'm going to go ahead and do that however it seems to be out of date so here's some documentation on the current version:
+- https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.1&tabs=visual-studio
+
+I had issues with a couple lines from the tutorial about xml comments but was able to replicate the link above by commenting them out and got it working.
