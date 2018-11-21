@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Lazztech.ObsidianPresences.ClientFacade.Dal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Api
 {
@@ -24,6 +25,12 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Api
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            var r = new Random();
+            var x = new SimpleValue() { Id = r.Next(), Value = "testvalue" };
+            var json = JsonConvert.SerializeObject(x, Formatting.Indented);
+            _dataAccess.AddNewValue(x);
+            //var id = _dataAccess.AddNewValue(json);
+
             return _dataAccess.GetAllValues();
         }
 

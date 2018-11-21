@@ -3226,3 +3226,6 @@ I'm going to go ahead and use Marten DB nuget package for using postgresql as a 
 - http://jasperfx.github.io/marten/
 - http://jasperfx.github.io/marten/documentation/documents/
 - http://jasperfx.github.io/marten/documentation/
+
+I'm having issues now with marten db and it throwing an exception when doing operations in the SimpleDataAccess:
+Marten.Schema.InvalidDocumentException: 'Could not determine an 'id/Id' field or property for requested document type
