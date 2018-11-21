@@ -1,27 +1,6 @@
 version: '3.4'
 
 services:
-#  lazztech.ObsidianPresences.vision.microservice.cli:
-#    image: lazztechobsidianpresensevisionmicroservicecli
-#    volumes:
-##      - /Users/gianlazzarini/Desktop/face_recognition:/face/
-##      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
-##      - C:\face_recognition:/face/
-#      - lazztech-cloud-data:/face/
-#    build:
-#      context: .
-#      dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.Cli/Dockerfile
-
-  # lazztech.obsidianpresences.cloudwebapp:
-  #   image: lazztechobsidianpresencescloudwebapp
-  #   ports: 
-  #     - 80:80
-  #   depends_on:
-  #     - lazztech.obsidianpresences.vision.microservice.webapi
-  #   build:
-  #     context: .
-  #     dockerfile: Lazztech.ObsidianPresences.CloudWebApp/Dockerfile
-
   lazztech.obsidianpresences.clientfacade:
     image: lazztechobsidianpresencesclientfacade
     volumes:
@@ -29,17 +8,22 @@ services:
 #      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
 #      - C:\face_recognition:/face/
       - lazztech-cloud-data:/face/
+    environment:
+      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=values_db;username=dbuser;password=dbpwd"
     ports: 
       - 80:80
     build:
       context: .
       dockerfile: Lazztech.ObsidianPresences.ClientFacade/Dockerfile
 
-  db:
-    image: postgres
-    restart: always
+  postgres_image:
+    image: postgres:alpine
+#    ports:
+#      - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_USER: "dbuser"
+      POSTGRES_PASSWORD: "dbpwd"
+      POSTGRES_DB: "values_db"
 
 volumes:
   lazztech-cloud-data:
