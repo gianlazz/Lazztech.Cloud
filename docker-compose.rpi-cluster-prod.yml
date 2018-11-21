@@ -27,5 +27,29 @@ services:
       context: .
       dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.Webapi/Dockerfile.Rpi
 
+  lazztech.obsidianpresences.clientfacade:
+    image: lazztechobsidianpresencesclientfacade
+    volumes:
+#      - /Users/gianlazzarini/Desktop/face_recognition:/face/
+#      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
+#      - C:\face_recognition:/face/
+      - lazztech-cloud-data:/face/
+    environment:
+      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=values_db;username=dbuser;password=dbpwd"
+    ports: 
+      - 80:80
+    build:
+      context: .
+      dockerfile: Lazztech.ObsidianPresences.ClientFacade/Dockerfile.Rpi
+
+  postgres_image:
+    image: postgres:alpine
+#    ports:
+#      - "5432:5432"
+    environment:
+      POSTGRES_USER: "dbuser"
+      POSTGRES_PASSWORD: "dbpwd"
+      POSTGRES_DB: "values_db"
+
 volumes:
   lazztech-cloud-data:
