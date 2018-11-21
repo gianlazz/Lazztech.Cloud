@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lazztech.ObsidianPresences.ClientFacade.Dal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,13 +10,21 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DefaultController : ControllerBase
+    public class DefaultController : Controller
     {
+        private readonly SimpleDataAccess _dataAccess;
+
+        public DefaultController()
+        {
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            _dataAccess = new SimpleDataAccess(connectionString);
+        }
+
         // GET: api/Default
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _dataAccess.GetAllValues();
         }
 
         // GET: api/Default/5
