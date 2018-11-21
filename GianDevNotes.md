@@ -3221,3 +3221,8 @@ The guide above suggests adding swashbuckle for swagger rest api ui so I'm going
 - https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.1&tabs=visual-studio
 
 I had issues with a couple lines from the tutorial about xml comments but was able to replicate the link above by commenting them out and got it working.
+
+I'm going to go ahead and use Marten DB nuget package for using postgresql as a document database with .Net. Here's more documentation:
+- http://jasperfx.github.io/marten/
+- http://jasperfx.github.io/marten/documentation/documents/
+- http://jasperfx.github.io/marten/documentation/
