@@ -40,13 +40,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             //        Configuration.GetConnectionString("DefaultConnection")));
 
             var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(
-                    connectionString));
-
             //services.AddDbContext<ApplicationDbContext>(options =>
             //    options.UseNpgsql(
-            //        Configuration.GetConnectionString("DefaultConnection")));
+            //        connectionString));
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

@@ -3239,3 +3239,6 @@ I don't really need to do that until later.
 
 - https://github.com/aspnet/Docs/issues/6301
 - https://docs.microsoft.com/en-us/aspnet/core/security/authorization/razor-pages-authorization?view=aspnetcore-2.1#require-authorization-to-access-a-folder-of-pages
+
+Okay now that I have that working later I'll setup some kind of invite system for the registration
+or just temporarily disable it without a password.
