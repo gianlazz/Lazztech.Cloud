@@ -3242,3 +3242,9 @@ I don't really need to do that until later.
 
 Okay now that I have that working later I'll setup some kind of invite system for the registration
 or just temporarily disable it without a password.
+
+## Thursday, November 22, 2018
+#### Sprint 14, Postgresql authentication for pages and docker compose configuration
+
+Yesteday I transfered over most of the projects from the HackathonHandler and now need to transfer over the web front end
+for the event, admin controls and also setup the api endpoint for twilio to post to.

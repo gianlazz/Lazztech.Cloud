@@ -62,12 +62,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             services.AddMvc()
                     .AddRazorPagesOptions(options =>
                     {
-                        options.Conventions.AuthorizeFolder("/Cogneat");
-                        options.Conventions.AuthorizeFolder("/Crawler");
-                        options.Conventions.AuthorizeFolder("/Events");
-                        options.Conventions.AuthorizeFolder("/Garden");
-                        options.Conventions.AuthorizeFolder("/Notifications");
-                        options.Conventions.AuthorizeFolder("/Vision");
+                        //options.Conventions.AuthorizeFolder("/Cogneat");
+                        //options.Conventions.AuthorizeFolder("/Crawler");
+                        //options.Conventions.AuthorizeFolder("/Events");
+                        //options.Conventions.AuthorizeFolder("/Garden");
+                        //options.Conventions.AuthorizeFolder("/Notifications");
+                        //options.Conventions.AuthorizeFolder("/Vision");
+
                         //options.Conventions.AllowAnonymousToPage("/Private/PublicPage");
                         //options.Conventions.AllowAnonymousToFolder("/Private/PublicPages");
                     })
