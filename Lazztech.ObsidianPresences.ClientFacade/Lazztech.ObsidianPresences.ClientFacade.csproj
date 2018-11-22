@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.csproj" />
     <ProjectReference Include="..\Lazztech.ObsidianPresences.Vision.Microservice.Domain\Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj" />
   </ItemGroup>
 
@@ -54,6 +55,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Pages\Events\" />
   </ItemGroup>
 
 </Project>

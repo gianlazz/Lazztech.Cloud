@@ -3248,3 +3248,6 @@ or just temporarily disable it without a password.
 
 Yesteday I transfered over most of the projects from the HackathonHandler and now need to transfer over the web front end
 for the event, admin controls and also setup the api endpoint for twilio to post to.
+
+I'm unable to get visual studio to scaffold a crud page...
+- https://stackoverflow.com/questions/40335705/error-when-running-crud-scaffolding-for-dotnet-core-asp-net
