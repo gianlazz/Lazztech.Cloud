@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.csproj" />
+    <ProjectReference Include="..\Lazztech.MongoDB\Lazztech.MongoDB.csproj" />
+    <ProjectReference Include="..\Lazztech.Sms\Lazztech.Sms.csproj" />
+  </ItemGroup>
+
+</Project>
