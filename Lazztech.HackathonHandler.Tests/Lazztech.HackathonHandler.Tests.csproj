@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lazztech.DIContext\Lazztech.DIContext.csproj" />
+    <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.csproj" />
+    <ProjectReference Include="..\Lazztech.SmsDaemon\Lazztech.SmsDaemon.csproj" />
+  </ItemGroup>
+
+</Project>
