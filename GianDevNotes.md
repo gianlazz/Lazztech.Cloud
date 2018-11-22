@@ -3229,3 +3229,13 @@ I'm going to go ahead and use Marten DB nuget package for using postgresql as a 
 
 I'm having issues now with marten db and it throwing an exception when doing operations in the SimpleDataAccess:
 Marten.Schema.InvalidDocumentException: 'Could not determine an 'id/Id' field or property for requested document type
+
+## Wednesday, November 21, 2018
+#### Sprint 14, Postgresql authentication for pages and docker compose configuration
+
+Today I'm going to setup required authentication on all the pages that shouldn't be public.
+I also want to setup authenticated user roles so that only certain users have certain permissions but I guess
+I don't really need to do that until later.
+
+- https://github.com/aspnet/Docs/issues/6301
+- https://docs.microsoft.com/en-us/aspnet/core/security/authorization/razor-pages-authorization?view=aspnetcore-2.1#require-authorization-to-access-a-folder-of-pages

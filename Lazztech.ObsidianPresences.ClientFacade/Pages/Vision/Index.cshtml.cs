@@ -15,7 +15,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
 {
     public class IndexModel : PageModel
     {
-
         public List<Snapshot> Snapshots { get; set; }
         public bool ConnectedToServices = false;
 

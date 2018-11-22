@@ -59,7 +59,19 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                    .AddRazorPagesOptions(options =>
+                    {
+                        options.Conventions.AuthorizeFolder("/Cogneat");
+                        options.Conventions.AuthorizeFolder("/Crawler");
+                        options.Conventions.AuthorizeFolder("/Events");
+                        options.Conventions.AuthorizeFolder("/Garden");
+                        options.Conventions.AuthorizeFolder("/Notifications");
+                        options.Conventions.AuthorizeFolder("/Vision");
+                        //options.Conventions.AllowAnonymousToPage("/Private/PublicPage");
+                        //options.Conventions.AllowAnonymousToFolder("/Private/PublicPages");
+                    })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

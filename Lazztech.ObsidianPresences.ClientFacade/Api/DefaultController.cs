@@ -27,9 +27,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Api
         {
             var r = new Random();
             var x = new SimpleValue() { Id = r.Next(), Value = "testvalue" };
-            var json = JsonConvert.SerializeObject(x, Formatting.Indented);
-            _dataAccess.AddNewValue(x);
-            //var id = _dataAccess.AddNewValue(json);
+            //_dataAccess.AddNewValue(x);
+            var id = _dataAccess.AddNewValue("testvalue");
 
             return _dataAccess.GetAllValues();
         }
