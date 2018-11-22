@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.DIContext", "Lazzt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Sms", "Lazztech.Sms\Lazztech.Sms.csproj", "{0390E467-3158-460A-B85A-BF21E7EC0DA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.SmsDaemon", "Lazztech.SmsDaemon\Lazztech.SmsDaemon.csproj", "{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
