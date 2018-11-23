@@ -13,14 +13,25 @@ using Lazztech.ObsidianPresences.ClientFacade.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using HackathonManager.Interfaces;
 
 namespace Lazztech.ObsidianPresences.ClientFacade
 {
     public class Startup
     {
+        public static HackathonManager.RepositoryPattern.IRepository _dbRepo = HackathonManager.DIContext.Context.GetMLabsMongoDbRepo();
+        public static ISmsService _smsService = HackathonManager.DIContext.Context.GetTwilioSmsService();
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            //HackathonManager.SmsDaemon.Program._responder = new Util.Responder();
+            //HackathonManager.SmsDaemon.Program.Main(new string[] { });
+            //AreaRegistration.RegisterAllAreas();
+            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
         public IConfiguration Configuration { get; }
@@ -40,13 +51,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             //        Configuration.GetConnectionString("DefaultConnection")));
 
             var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseNpgsql(
-            //        connectionString));
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    connectionString));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseNpgsql(
+            //        Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
