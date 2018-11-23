@@ -3260,3 +3260,5 @@ I'm also going to have to setup Url Masking for the http://hackathonhandler.com 
 - https://stackoverflow.com/questions/30273133/how-to-mask-the-domain-forward-from-google-domains-without-google-app
 
 Currently however I need to get the HackathonHandler _Layout working on just the events page so I can have all of the old team login functionality and navbar setup.
+Here's documentation that led me to the solution:
+- https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-2.1
