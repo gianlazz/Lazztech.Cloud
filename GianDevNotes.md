@@ -3251,3 +3251,12 @@ for the event, admin controls and also setup the api endpoint for twilio to post
 
 I'm unable to get visual studio to scaffold a crud page...
 - https://stackoverflow.com/questions/40335705/error-when-running-crud-scaffolding-for-dotnet-core-asp-net
+
+I've got a lot more setup for individual event managment with a landing page for events, and have an individual event page which can be navigated to from the list of
+events. I'm going to require authentication for everything but the the actual event page which will be loaded form a list of events in mongodb and gotten on a per event
+basis.
+
+I'm also going to have to setup Url Masking for the http://hackathonhandler.com domain name which is registered through google domains. Below is some documentation on how:
+- https://stackoverflow.com/questions/30273133/how-to-mask-the-domain-forward-from-google-domains-without-google-app
+
+Currently however I need to get the HackathonHandler _Layout working on just the events page so I can have all of the old team login functionality and navbar setup.
