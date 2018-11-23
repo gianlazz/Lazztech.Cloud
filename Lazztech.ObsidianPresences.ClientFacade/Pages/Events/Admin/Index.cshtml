@@ -1,0 +1,27 @@
+﻿@page
+@model Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Mentors</h2>
+        <p>
+            Number of Mentors: @Model.Mentors.Count()
+        </p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Teams</h2>
+        <p>Number of registered Teams: @Model.Teams.Count()</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Judges</h2>
+        <p>Number registered Judges: @Model.Judges.Count()</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
