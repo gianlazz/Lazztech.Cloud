@@ -34,7 +34,7 @@
                     foreach (var mentor in Model.Mentors)
                     {
                         <tr>
-                            <td><a class="btn btn-primary" href="/Mentors/Edit?id=@mentor.GuidId">Edit</a></td>
+                            <td><a class="btn btn-primary" href="Mentors/Edit?id=@mentor.GuidId">Edit</a></td>
                             @foreach (var value in mentor.GetType().GetProperties())
                             {
                                 <td>@value.GetValue(mentor, null)</td>

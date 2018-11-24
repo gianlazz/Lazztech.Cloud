@@ -6,3 +6,34 @@
 
 <h2>Create</h2>
 
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Edit", "Mentors", FormMethod.Post, new { transaction = Model }))
+            {
+                foreach (var prop in ViewData.ModelMetadata.Properties)
+                {
+                    <div class="form-group">
+                        @Html.Label(prop.PropertyName)
+                        @Html.Editor(prop.PropertyName, new { attributes = new { @class = "form-control" } })
+                    </div>
+                }
+                <p>
+                    <input class="btn btn-primary" type="submit" value="Save" />
+                </p>
+            }
+        </div>
+        <div class="col-lg-6">
+            @using (Html.BeginForm("Delete", "Mentors", FormMethod.Post, new { transaction = Model }))
+            {
+                foreach (var prop in ViewData.ModelMetadata.Properties)
+                {
+                    <div class="form-group">
+                        @Html.Hidden(prop.PropertyName)
+                    </div>
+                }
+                <input class="btn btn-danger" type="submit" value="Delete" />
+            }
+        </div>
+    </div>
+</div>
