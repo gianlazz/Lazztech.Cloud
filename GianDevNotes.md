@@ -3262,3 +3262,11 @@ I'm also going to have to setup Url Masking for the http://hackathonhandler.com 
 Currently however I need to get the HackathonHandler _Layout working on just the events page so I can have all of the old team login functionality and navbar setup.
 Here's documentation that led me to the solution:
 - https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-2.1
+
+## Friday, November 22, 2018
+#### Sprint 14, Postgresql authentication for pages and docker compose configuration
+
+Got a lot of work done on implementing over the HackathonHandler site improving it while I'm at it.
+
+Also here's an importent note I learned about how to make an anchor tag href that appends to the current url:
+- https://stackoverflow.com/questions/7271591/html-urls-how-to-append-to-the-existing-url
