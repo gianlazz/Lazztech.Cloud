@@ -23,7 +23,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Event
             //var hubContext = GlobalHost.ConnectionManager.GetHubContext<ProgressHub>();
             //string id = (string)hubContext.Clients.All.GetConnectionId().Result;
 
-            var Db = Startup._dbRepo;
+            var Db = Startup.DbRepo;
 
             //var db = Context.GetMLabsMongoDbRepo();
             Mentors = Db.All<Mentor>().Where(x => x.IsPresent == true).ToList().OrderBy(e => e.IsAvailable ? 0 : 1).ToList();

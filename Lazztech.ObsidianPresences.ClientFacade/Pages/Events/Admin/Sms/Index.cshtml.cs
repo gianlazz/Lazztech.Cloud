@@ -11,7 +11,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Sms
 {
     public class IndexModel : PageModel
     {
-        private IRepository _repo = Startup._dbRepo;
+        private IRepository _repo = Startup.DbRepo;
 
         public List<SmsDto> Messages { get; set; }
 

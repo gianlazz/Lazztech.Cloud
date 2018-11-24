@@ -26,7 +26,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin
         public void OnGet()
         {
             //var repo = MvcApplication.DbRepo;
-            var repo = Startup._dbRepo;
+            var repo = Startup.DbRepo;
 
 
             //overView.Mentors.AddRange(repo.All<Mentor>().Where(x => x.Event == "seattle-eastside"));

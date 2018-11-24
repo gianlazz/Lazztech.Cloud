@@ -2,7 +2,46 @@
 @model Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams.IndexModel
 @{
     ViewData["Title"] = "Index";
+    var properties = typeof(HackathonManager.PocoModels.Team).GetProperties();
 }
 
-<h2>Index</h2>
+<h2>Teams</h2>
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+<div class="col">
+    <a class="btn btn-primary" href="/Teams/Create">Add New</a>
+    <br />
+    <br />
+    <table class="table table-striped table-dark table-responsive">
+        <thead>
+            <tr>
+                <td></td>
+                @{
+                    foreach (var property in properties)
+                    {
+                        <th>@property.Name</th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var judge in Model.Teams)
+                {
+                    <tr>
+                        <td><a class="btn btn-primary" href="/Teams/Edit?id=@judge.GuidId">Edit</a></td>
+                        @foreach (var value in judge.GetType().GetProperties())
+                        {
+                            <td>@value.GetValue(judge, null)</td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+}
 

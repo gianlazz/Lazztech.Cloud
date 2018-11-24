@@ -11,8 +11,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class IndexModel : PageModel
     {
-        private IRepository _repo = Startup._dbRepo;
-        private List<Mentor> _srndMentors;
+        private IRepository _repo = Startup.DbRepo;
         public List<Mentor> Mentors { get; set; }
 
         public IndexModel()
