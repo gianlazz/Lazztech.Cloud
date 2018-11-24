@@ -2,7 +2,46 @@
 @model Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Judges.IndexModel
 @{
     ViewData["Title"] = "Index";
+    var properties = typeof(HackathonManager.Judge).GetProperties();
 }
 
-<h2>Index</h2>
+<h2>Judges</h2>
+<br />
+<br />
 
+@using (Html.BeginForm())
+{
+    <div class="col">
+        <a class="btn btn-primary" href="/Judges/Create">Add New</a>
+        <br />
+        <br />
+
+        <table class="table table-striped table-dark table-responsive">
+            <thead>
+                <tr>
+                    <td></td>
+                    @{
+                        foreach (var property in properties)
+                        {
+                            <th>@property.Name</th>
+                        }
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var judge in Model.Judges)
+                    {
+                        <tr>
+                            <td><a class="btn btn-primary" href="/Judges/Edit?id=@judge.GuidId">Edit</a></td>
+                            @foreach (var value in judge.GetType().GetProperties())
+                            {
+                                <td>@value.GetValue(judge, null)</td>
+                            }
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}
