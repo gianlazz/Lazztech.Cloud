@@ -1,0 +1,43 @@
+﻿@page
+@model Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    var properties = typeof(HackathonManager.DTO.Mentor).GetProperties();
+}
+
+<h2>Mentors</h2>
+<p>Number of mentors: @Model.Mentors.Count()</p>
+<a class="btn btn-primary" href="/Mentors/Create">Add New</a>
+@*<a class="btn btn-primary" href="/Mentors/PullMentors">@ViewBag.MentorsToPull New Mentors To Pull From SRND</a>*@
+@using (Html.BeginForm())
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td></td>
+                @{
+                    foreach (var property in properties)
+                    {
+                        <th>@property.Name</th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var mentor in Model.Mentors)
+                {
+                    <tr>
+                        <td><a class="btn btn-primary" href="/Mentors/Edit?id=@mentor.GuidId">Edit</a></td>
+                        @foreach (var value in mentor.GetType().GetProperties())
+                        {
+                            <td>@value.GetValue(mentor, null)</td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+
+
