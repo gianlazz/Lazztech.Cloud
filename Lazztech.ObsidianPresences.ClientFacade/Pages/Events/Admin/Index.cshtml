@@ -2,28 +2,64 @@
 @model Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.IndexModel
 @{
     ViewData["Title"] = "Index";
+    var properties = typeof(HackathonManager.DTO.SmsDto).GetProperties();
 }
 
 <h2>Manage Event</h2>
 <br />
 <br />
-
 <div class="row">
-    <div class="col-md-4">
-        <h2>Mentors</h2>
+    <div class="col">
+        <h3>Mentors</h3>
         <p>
             Number of Mentors: @Model.Mentors.Count()
         </p>
-        <button type="button" class="btn btn-dark"><a href="Admin/Mentors">Manage Mentors</a></button>
+        <button type="button" class="btn btn-dark"><text href="Admin/Mentors">Manage Mentors</text></button>
     </div>
-    <div class="col-md-4">
-        <h2>Teams</h2>
+    <div class="col">
+        <h3>Teams</h3>
         <p>Number of registered Teams: @Model.Teams.Count()</p>
-        <button type="button" class="btn btn-dark"><a href="Admin/Teams">Manage Teams</a></button>
+        <button type="button" class="btn btn-dark"><text href="Admin/Teams">Manage Teams</text></button>
     </div>
-    <div class="col-md-4">
-        <h2>Judges</h2>
+    <div class="col">
+        <h3>Judges</h3>
         <p>Number registered Judges: @Model.Judges.Count()</p>
-        <button type="button" class="btn btn-dark"><a href="Admin/Judges">Manage Judges</a></button>
+        <button type="button" class="btn btn-dark"><text href="Admin/Judges">Manage Judges</text></button>
+    </div>
+</div>
+<br />
+<hr>
+<h2>10 Recent Sms Messages</h2>
+<br />
+<div class="row">
+    <div class="col">
+        @using (Html.BeginForm())
+        {
+            <table class="table table-striped table-dark table-responsive">
+                <thead>
+                    <tr>
+                        @{
+                            foreach (var property in properties)
+                            {
+                                <th>@property.Name</th>
+                            }
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var sms in Model.Messages)
+                        {
+                            <tr>
+                                @foreach (var value in sms.GetType().GetProperties())
+                                {
+                                    <td>@value.GetValue(sms, null)</td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
     </div>
 </div>
