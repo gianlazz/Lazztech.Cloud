@@ -19,9 +19,9 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
             Mentor = new Mentor();
         }
 
-        public void OnPost(FormCollection collection)
-        {
+        //public void OnPost(FormCollection collection)
+        //{
 
-        }
+        //}
     }
 }

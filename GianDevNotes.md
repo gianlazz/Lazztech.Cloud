@@ -3270,3 +3270,7 @@ Got a lot of work done on implementing over the HackathonHandler site improving 
 
 Also here's an importent note I learned about how to make an anchor tag href that appends to the current url:
 - https://stackoverflow.com/questions/7271591/html-urls-how-to-append-to-the-existing-url
+
+## Tuesday, November 27, 2018
+#### Sprint 15, Get HackathonHandler Admin CRUD operation working again
+
