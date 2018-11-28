@@ -2,6 +2,7 @@
 @model Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors.CreateModel
 @{
     ViewData["Title"] = "Create";
+    var properties = typeof(HackathonManager.DTO.Mentor).GetProperties();
 }
 
 <h2>Create</h2>
@@ -11,11 +12,11 @@
         <div class="col-lg-6">
             @using (Html.BeginForm("Edit", "Mentors", FormMethod.Post, new { transaction = Model }))
             {
-                foreach (var prop in ViewData.ModelMetadata.Properties)
+                foreach (var prop in properties)
                 {
                     <div class="form-group">
-                        @Html.Label(prop.PropertyName)
-                        @Html.Editor(prop.PropertyName, new { attributes = new { @class = "form-control" } })
+                        @Html.Label(prop.Name)
+                        @Html.Editor(prop.Name, new { attributes = new { @class = "form-control" } })
                     </div>
                 }
                 <p>
