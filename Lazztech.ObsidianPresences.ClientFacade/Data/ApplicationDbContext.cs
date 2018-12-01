@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager.DTO;
 using HackathonManager;
+using HackathonManager.PocoModels;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Data
 {
@@ -16,5 +17,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Data
         }
         public DbSet<HackathonManager.DTO.Mentor> Mentor { get; set; }
         public DbSet<HackathonManager.Judge> Judge { get; set; }
+        public DbSet<HackathonManager.PocoModels.Team> Team { get; set; }
     }
 }

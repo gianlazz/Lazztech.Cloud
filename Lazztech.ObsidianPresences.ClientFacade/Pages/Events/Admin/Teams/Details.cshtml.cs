@@ -10,20 +10,31 @@ using Lazztech.ObsidianPresences.ClientFacade.Data;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
 {
-    public class IndexModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
 
-        public IndexModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        public DetailsModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<Team> Team { get;set; }
+        public Team Team { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            Team = await _context.Team.ToListAsync();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Team = await _context.Team.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (Team == null)
+            {
+                return NotFound();
+            }
+            return Page();
         }
     }
 }
