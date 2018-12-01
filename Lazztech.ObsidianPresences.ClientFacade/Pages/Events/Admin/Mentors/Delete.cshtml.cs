@@ -7,29 +7,33 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager.DTO;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
+using HackathonManager.RepositoryPattern;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class DeleteModel : PageModel
     {
-        private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
+        //private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
 
-        public DeleteModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        //public DeleteModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        //{
+        //    _context = context;
+        //}
+
+        private IRepository _repo = Startup.DbRepo;
 
         [BindProperty]
         public Mentor Mentor { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async Task<IActionResult> OnGet(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Mentor = await _context.Mentor.FirstOrDefaultAsync(m => m.Id == id);
+            //Mentor = await _context.Mentor.FirstOrDefaultAsync(m => m.Id == id);
+            Mentor = _repo.All<Mentor>().FirstOrDefault(x => x.Id == id);
 
             if (Mentor == null)
             {
@@ -38,19 +42,21 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid? id)
+        public async Task<IActionResult> OnPost(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Mentor = await _context.Mentor.FindAsync(id);
+            //Mentor = await _context.Mentor.FindAsync(id);
+            Mentor = _repo.All<Mentor>().FirstOrDefault(x => x.Id == id);
 
             if (Mentor != null)
             {
-                _context.Mentor.Remove(Mentor);
-                await _context.SaveChangesAsync();
+                //_context.Mentor.Remove(Mentor);
+                //await _context.SaveChangesAsync();
+                _repo.Delete<Mentor>(Mentor);
             }
 
             return RedirectToPage("./Index");
