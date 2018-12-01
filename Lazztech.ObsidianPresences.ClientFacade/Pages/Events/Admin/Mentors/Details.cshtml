@@ -1,0 +1,91 @@
+﻿@page
+@model Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Mentor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.Event)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Event)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Image)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.Age)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Age)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.ProfessionalTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.ProfessionalTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.PhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.PhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.IsAvailable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.IsAvailable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.IsPresent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.IsPresent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.MentorType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.MentorType)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Mentor.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

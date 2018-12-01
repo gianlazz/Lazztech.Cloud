@@ -10,7 +10,7 @@ namespace HackathonManager.DTO
     {
         //public System.Guid GuidId { get; set { this.GuidId = Guid.NewGuid(); } }
         //public Guid GuidId { get; set; } = Guid.NewGuid();
-        public System.Guid GuidId { get; set; }
+        public System.Guid Id { get; set; }
         public string Event { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -26,7 +26,7 @@ namespace HackathonManager.DTO
 
         public Mentor()
         {
-            GuidId = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
     }
 }

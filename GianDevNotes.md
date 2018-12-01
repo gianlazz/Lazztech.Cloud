@@ -3281,3 +3281,6 @@ I'm unsure how to port over the Html.BeginForm("Edit", "Mentors") code that is m
 
 To setup toggling between razor page view and code behind:
 Tools > Options > Keyboard > ToggleRazorView
+
+Okay so it looks like the reason I couldn't generate EF CRUD scaffolding for a dto was because it didn't have a property named Id. After changing
+the property on the Mentor from GuidId to Id it then works.

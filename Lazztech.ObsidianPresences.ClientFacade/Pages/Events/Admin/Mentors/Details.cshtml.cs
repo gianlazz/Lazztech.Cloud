@@ -4,40 +4,37 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using HackathonManager.DTO;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
 {
-    public class CreateModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
 
-        public CreateModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        public DetailsModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
-
-        [BindProperty]
         public Mentor Mentor { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            _context.Mentor.Add(Mentor);
-            await _context.SaveChangesAsync();
+            Mentor = await _context.Mentor.FirstOrDefaultAsync(m => m.Id == id);
 
-            return RedirectToPage("./Index");
+            if (Mentor == null)
+            {
+                return NotFound();
+            }
+            return Page();
         }
     }
 }

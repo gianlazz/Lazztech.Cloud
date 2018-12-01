@@ -4,18 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager.DTO;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
 {
-    public class EditModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
 
-        public EditModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        public DeleteModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
         {
             _context = context;
         }
@@ -39,37 +38,22 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(Guid? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            _context.Attach(Mentor).State = EntityState.Modified;
+            Mentor = await _context.Mentor.FindAsync(id);
 
-            try
+            if (Mentor != null)
             {
+                _context.Mentor.Remove(Mentor);
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MentorExists(Mentor.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
             }
 
             return RedirectToPage("./Index");
-        }
-
-        private bool MentorExists(Guid id)
-        {
-            return _context.Mentor.Any(e => e.Id == id);
         }
     }
 }

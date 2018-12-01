@@ -48,7 +48,7 @@ namespace HackathonManager
                 var lineValues = line.Split(',').ToArray();
                 var mentor = new Mentor()
                 {
-                    GuidId = Guid.NewGuid(),
+                    Id = Guid.NewGuid(),
                     FirstName = lineValues[3],
                     LastName = lineValues[2],
                     Age = (lineValues[5] != string.Empty) ? int.Parse(lineValues[5]) : 0,
