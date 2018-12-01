@@ -3274,3 +3274,10 @@ Also here's an importent note I learned about how to make an anchor tag href tha
 ## Tuesday, November 27, 2018
 #### Sprint 15, Get HackathonHandler Admin CRUD operation working again
 
+I'm unsure how to port over the Html.BeginForm("Edit", "Mentors") code that is meant for just mvc to razor pages
+
+## Saturday, December 1, 2018
+#### Sprint 15, Get HackathonHandler Admin CRUD operation working again
+
+To setup toggling between razor page view and code behind:
+Tools > Options > Keyboard > ToggleRazorView
