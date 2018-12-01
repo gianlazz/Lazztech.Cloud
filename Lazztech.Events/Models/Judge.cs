@@ -4,7 +4,7 @@ namespace HackathonManager
 {
     public class Judge
     {
-        public System.Guid GuidId { get; set; }
+        public System.Guid Id { get; set; }
         public string Event { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -15,7 +15,7 @@ namespace HackathonManager
 
         public Judge()
         {
-            GuidId = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
     }
 }
