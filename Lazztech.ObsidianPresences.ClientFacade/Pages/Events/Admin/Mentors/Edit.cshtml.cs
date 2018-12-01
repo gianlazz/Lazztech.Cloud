@@ -8,17 +8,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager.DTO;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
+using HackathonManager.RepositoryPattern;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class EditModel : PageModel
     {
-        private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
+        //private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
 
-        public EditModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        //public EditModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        //{
+        //    _context = context;
+        //}
+        private IRepository _repo = Startup.DbRepo;
 
         [BindProperty]
         public Mentor Mentor { get; set; }
@@ -30,7 +32,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
                 return NotFound();
             }
 
-            Mentor = await _context.Mentor.FirstOrDefaultAsync(m => m.Id == id);
+            //Mentor = await _context.Mentor.FirstOrDefaultAsync(m => m.Id == id);
+            Mentor = _repo.All<Mentor>().FirstOrDefault(m => m.Id == id);
 
             if (Mentor == null)
             {
@@ -46,11 +49,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
                 return Page();
             }
 
-            _context.Attach(Mentor).State = EntityState.Modified;
+            //_context.Attach(Mentor).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                _repo.Delete<Mentor>(x => x.Id == Mentor.Id);
+                _repo.Add<Mentor>(Mentor);
+                //await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -69,7 +74,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
 
         private bool MentorExists(Guid id)
         {
-            return _context.Mentor.Any(e => e.Id == id);
+            return _repo.All<Mentor>().Any(x => x.Id == id);
+            //return _context.Mentor.Any(e => e.Id == id);
         }
     }
 }
