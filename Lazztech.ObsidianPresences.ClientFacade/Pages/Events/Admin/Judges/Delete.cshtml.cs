@@ -7,17 +7,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
+using HackathonManager.RepositoryPattern;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Judges
 {
     public class DeleteModel : PageModel
     {
-        private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
+        //private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
 
-        public DeleteModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        //public DeleteModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        //{
+        //    _context = context;
+        //}
+        private IRepository _repo = Startup.DbRepo;
 
         [BindProperty]
         public Judge Judge { get; set; }
@@ -29,7 +31,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Judges
                 return NotFound();
             }
 
-            Judge = await _context.Judge.FirstOrDefaultAsync(m => m.Id == id);
+            //Judge = await _context.Judge.FirstOrDefaultAsync(m => m.Id == id);
+            Judge = _repo.All<Judge>().FirstOrDefault(x => x.Id == id);
 
             if (Judge == null)
             {
@@ -45,12 +48,14 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Judges
                 return NotFound();
             }
 
-            Judge = await _context.Judge.FindAsync(id);
+            //Judge = await _context.Judge.FindAsync(id);
+            Judge = _repo.All<Judge>().FirstOrDefault(x => x.Id == id);
 
             if (Judge != null)
             {
-                _context.Judge.Remove(Judge);
-                await _context.SaveChangesAsync();
+                //_context.Judge.Remove(Judge);
+                //await _context.SaveChangesAsync();
+                _repo.Delete<Judge>(Judge);
             }
 
             return RedirectToPage("./Index");
