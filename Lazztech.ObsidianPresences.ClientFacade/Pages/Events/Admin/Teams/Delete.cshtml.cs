@@ -7,17 +7,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager.PocoModels;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
+using HackathonManager.RepositoryPattern;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
 {
     public class DeleteModel : PageModel
     {
-        private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
+        //private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
 
-        public DeleteModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        //public DeleteModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        //{
+        //    _context = context;
+        //}
+
+        private IRepository _repo = Startup.DbRepo;
 
         [BindProperty]
         public Team Team { get; set; }
@@ -29,7 +32,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
                 return NotFound();
             }
 
-            Team = await _context.Team.FirstOrDefaultAsync(m => m.Id == id);
+            //Team = await _context.Team.FirstOrDefaultAsync(m => m.Id == id);
+            Team = _repo.All<Team>().FirstOrDefault(m => m.Id == id);
 
             if (Team == null)
             {
@@ -45,12 +49,14 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
                 return NotFound();
             }
 
-            Team = await _context.Team.FindAsync(id);
+            //Team = await _context.Team.FindAsync(id);
+            Team = _repo.All<Team>().FirstOrDefault(x => x.Id == id);
 
             if (Team != null)
             {
-                _context.Team.Remove(Team);
-                await _context.SaveChangesAsync();
+                //_context.Team.Remove(Team);
+                //await _context.SaveChangesAsync();
+                _repo.Delete<Team>(Team);
             }
 
             return RedirectToPage("./Index");
