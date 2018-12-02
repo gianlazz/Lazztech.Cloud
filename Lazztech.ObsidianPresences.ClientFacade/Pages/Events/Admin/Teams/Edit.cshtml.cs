@@ -8,17 +8,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager.PocoModels;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
+using HackathonManager.RepositoryPattern;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
 {
     public class EditModel : PageModel
     {
-        private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
+        //private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
 
-        public EditModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        //public EditModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        //{
+        //    _context = context;
+        //}
+        private IRepository _repo = Startup.DbRepo;
 
         [BindProperty]
         public Team Team { get; set; }
@@ -30,7 +32,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
                 return NotFound();
             }
 
-            Team = await _context.Team.FirstOrDefaultAsync(m => m.Id == id);
+            //Team = await _context.Team.FirstOrDefaultAsync(m => m.Id == id);
+            Team = _repo.All<Team>().FirstOrDefault(m => m.Id == id);
 
             if (Team == null)
             {
@@ -46,11 +49,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
                 return Page();
             }
 
-            _context.Attach(Team).State = EntityState.Modified;
+            //_context.Attach(Team).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                _repo.Delete<Team>(x => x.Id == Team.Id);
+                _repo.Add<Team>(Team);
+                //await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -69,7 +74,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
 
         private bool TeamExists(Guid id)
         {
-            return _context.Team.Any(e => e.Id == id);
+            return _repo.All<Team>().Any(x => x.Id == id);
+            //return _context.Team.Any(e => e.Id == id);
         }
     }
 }
