@@ -7,17 +7,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager.PocoModels;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
+using HackathonManager.RepositoryPattern;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
 {
     public class DetailsModel : PageModel
     {
-        private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
+        //private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
 
-        public DetailsModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        //public DetailsModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        //{
+        //    _context = context;
+        //}
+        private IRepository _repo = Startup.DbRepo;
 
         public Team Team { get; set; }
 
@@ -28,7 +30,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
                 return NotFound();
             }
 
-            Team = await _context.Team.FirstOrDefaultAsync(m => m.Id == id);
+            //Team = await _context.Team.FirstOrDefaultAsync(m => m.Id == id);
+            Team = _repo.All<Team>().FirstOrDefault(m => m.Id == id);
 
             if (Team == null)
             {
