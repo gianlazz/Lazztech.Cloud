@@ -6,3 +6,33 @@
 
 <h2>Judges</h2>
 
+<div class="row">
+    @for (int i = 0; i < Model.Judges.Count; i++)
+    {
+        if (i > 0 && i % 3 == 0)
+        {
+
+        @:</div><br /><div class="row">
+            // close and start new row
+        }
+        <div class="col-md-4 col-sm-1">
+            <div class="card">
+                <!--         <img class="card-img-top" src="@Model.Judges[i].Image" alt="Card image cap"> -->
+                @if (Model.Judges[i].Image != null)
+                {
+                    <img class="card-img-top" src="@Model.Judges[i].Image" alt="Card image cap">
+                }
+                else
+                {
+                    <img class="card-img-top" src="~/Content/blank-profile-picture.png" alt="Card image cap">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Judges[i].FirstName</h5>
+                    <p>@Model.Judges[i].ProfessionalTitle</p>
+                </div>
+            </div>
+            <br />
+        </div>
+    }
+</div>
+
