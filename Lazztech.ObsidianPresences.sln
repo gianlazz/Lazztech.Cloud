@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.SrndResourcesManag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.HackathonHandler.Tests", "Lazztech.HackathonHandler.Tests\Lazztech.HackathonHandler.Tests.csproj", "{2FE06807-37FC-4228-AB9A-56146CC1E6D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Dal", "..\Lazztech.Dal\Lazztech.Dal.csproj", "{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Dal", "Lazztech.Dal\Lazztech.Dal.csproj", "{85F33720-456B-44B0-ADF7-39D98AADD197}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,10 +95,10 @@ Global
 		{2FE06807-37FC-4228-AB9A-56146CC1E6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FE06807-37FC-4228-AB9A-56146CC1E6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FE06807-37FC-4228-AB9A-56146CC1E6D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85F33720-456B-44B0-ADF7-39D98AADD197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85F33720-456B-44B0-ADF7-39D98AADD197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85F33720-456B-44B0-ADF7-39D98AADD197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85F33720-456B-44B0-ADF7-39D98AADD197}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
