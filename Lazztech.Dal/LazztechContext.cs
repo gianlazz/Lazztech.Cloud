@@ -12,5 +12,10 @@ namespace Lazztech.Dal
         DbSet<Location> Locations { get; set; }
         DbSet<Mentor> Mentors { get; set; }
         DbSet<Judge> Judges { get; set; }
+
+        public LazztechContext() : base("name=DefaultConnection")
+        {
+
+        }
     }
 }
