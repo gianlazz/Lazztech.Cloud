@@ -3284,3 +3284,15 @@ Tools > Options > Keyboard > ToggleRazorView
 
 Okay so it looks like the reason I couldn't generate EF CRUD scaffolding for a dto was because it didn't have a property named Id. After changing
 the property on the Mentor from GuidId to Id it then works.
+
+## Thursday, December 6, 2018
+#### Sprint 16, Get HackathonHandler Event Location Entry CRUD working
+
+I've gotten the CRUD pages working for the event managment but I really want it to be on a per event basis also for now I have to setup selection of the venue location
+on a Team by Team basis as that doesn't seem to be working also I really don't want to leave it as an enum as that's not really a solution.
+
+It seems that the aspnet crud pages are made for normalized data as I'm not able to get it to scaffold an Event object with nested data properties.
+
+It seems like I should just use sql and learn how to use the code first generation to get this working.
+
+I've gone ahead and subscriped to a paid for series about entity framework and code first database development.

@@ -11,6 +11,7 @@ namespace Lazztech.Events
     {
         public Guid Id { get; set; }
         public string Location { get; set; }
+        public List<string> VenueLocations { get; set; }
         public List<Mentor> Mentors { get; set; }
         public List<Judge> Judges { get; set; }
         public List<Team> Teams { get; set; }

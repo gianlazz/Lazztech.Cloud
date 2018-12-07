@@ -57,6 +57,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Pages\Events\Admin\Events\" />
   </ItemGroup>
 
 </Project>
