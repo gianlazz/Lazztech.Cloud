@@ -3301,3 +3301,5 @@ In the tutorial it talks about generating tables by convention for many to many 
 
 I think I've got the Data Access Layer project models normalized in a way that will work for code first based on the video above and now I need to go ahead and try to run
 the initial migrations.
+
+I'm downloading Sql Server Managment Server so that I can assess the output of the codefirst database generation to make sure it's all setup right.
