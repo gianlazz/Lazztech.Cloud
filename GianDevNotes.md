@@ -3298,3 +3298,6 @@ It seems like I should just use sql and learn how to use the code first generati
 I've gone ahead and subscriped to a paid for series about entity framework and code first database development.
 In the tutorial it talks about generating tables by convention for many to many relationships.
 - https://codewithmosh.com/courses/236371/lectures/3685800
+
+I think I've got the Data Access Layer project models normalized in a way that will work for code first based on the video above and now I need to go ahead and try to run
+the initial migrations.
