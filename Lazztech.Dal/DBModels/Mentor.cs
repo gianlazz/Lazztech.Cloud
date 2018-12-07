@@ -7,6 +7,6 @@ namespace Lazztech.Dal.DBModels
     class Mentor
     {
         public int Id { get; set; }
-        public int Person_Id { get; set; }
+        public Person Person { get; set; }
     }
 }

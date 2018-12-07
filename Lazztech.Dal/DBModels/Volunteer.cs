@@ -4,10 +4,9 @@ using System.Text;
 
 namespace Lazztech.Dal.DBModels
 {
-    class Team
+    class Volunteer
     {
         public int Id { get; set; }
-        public string Event_Id { get; set; }
-        public VenueRoom VenueRoom { get; set; }
+        public Person Person { get; set; }
     }
 }

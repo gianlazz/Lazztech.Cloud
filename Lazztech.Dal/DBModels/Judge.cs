@@ -7,6 +7,6 @@ namespace Lazztech.Dal.DBModels
     class Judge
     {
         public int Id { get; set; }
-        public int Person_Id { get; set; }
+        public Person Person { get; set; }
     }
 }
