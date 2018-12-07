@@ -21,19 +21,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.ObsidianPresences.ClientFacade", "Lazztech.ObsidianPresences.ClientFacade\Lazztech.ObsidianPresences.ClientFacade.csproj", "{EE9BDD93-BBC6-44BD-AA70-55722D9548AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Events", "Lazztech.Events\Lazztech.Events.csproj", "{E797B447-4C17-414D-B11C-A42D0A21E7F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events", "Lazztech.Events\Lazztech.Events.csproj", "{E797B447-4C17-414D-B11C-A42D0A21E7F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.MongoDB", "Lazztech.MongoDB\Lazztech.MongoDB.csproj", "{171A65AF-B92F-4080-B44C-C9CB9769A2BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.MongoDB", "Lazztech.MongoDB\Lazztech.MongoDB.csproj", "{171A65AF-B92F-4080-B44C-C9CB9769A2BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.DIContext", "Lazztech.DIContext\Lazztech.DIContext.csproj", "{89B0373E-DDE3-4331-8CBE-77ECC6357DB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.DIContext", "Lazztech.DIContext\Lazztech.DIContext.csproj", "{89B0373E-DDE3-4331-8CBE-77ECC6357DB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Sms", "Lazztech.Sms\Lazztech.Sms.csproj", "{0390E467-3158-460A-B85A-BF21E7EC0DA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Sms", "Lazztech.Sms\Lazztech.Sms.csproj", "{0390E467-3158-460A-B85A-BF21E7EC0DA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.SmsDaemon", "Lazztech.SmsDaemon\Lazztech.SmsDaemon.csproj", "{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.SmsDaemon", "Lazztech.SmsDaemon\Lazztech.SmsDaemon.csproj", "{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.SrndResourcesManager", "Lazztech.SrndResourcesManager\Lazztech.SrndResourcesManager.csproj", "{74215587-FBDD-4061-A192-983CF0FE03A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.SrndResourcesManager", "Lazztech.SrndResourcesManager\Lazztech.SrndResourcesManager.csproj", "{74215587-FBDD-4061-A192-983CF0FE03A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.HackathonHandler.Tests", "Lazztech.HackathonHandler.Tests\Lazztech.HackathonHandler.Tests.csproj", "{2FE06807-37FC-4228-AB9A-56146CC1E6D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.HackathonHandler.Tests", "Lazztech.HackathonHandler.Tests\Lazztech.HackathonHandler.Tests.csproj", "{2FE06807-37FC-4228-AB9A-56146CC1E6D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Dal", "..\Lazztech.Dal\Lazztech.Dal.csproj", "{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{2FE06807-37FC-4228-AB9A-56146CC1E6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FE06807-37FC-4228-AB9A-56146CC1E6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FE06807-37FC-4228-AB9A-56146CC1E6D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32DA4E88-DD29-49E9-BCD6-8A784CDDFCD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
