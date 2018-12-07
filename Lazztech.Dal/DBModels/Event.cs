@@ -9,6 +9,8 @@ namespace Lazztech.Dal.DBModels
         public int Id { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public Location Location_Id { get; set; }
+        public IList<Person> People { get; set; }
+        public IList<Team> Teams { get; set; }
+        public Location Location { get; set; }
     }
 }
