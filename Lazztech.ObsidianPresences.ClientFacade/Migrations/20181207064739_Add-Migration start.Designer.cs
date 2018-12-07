@@ -3,23 +3,97 @@ using System;
 using Lazztech.ObsidianPresences.ClientFacade.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181117021941_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20181207064739_Add-Migration start")]
+    partial class AddMigrationstart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("HackathonManager.DTO.Mentor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Event");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("Image");
+
+                    b.Property<bool>("IsAvailable");
+
+                    b.Property<bool>("IsPresent");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("MentorType");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<string>("ProfessionalTitle");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Mentor");
+                });
+
+            modelBuilder.Entity("HackathonManager.Judge", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Event");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("Image");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("ProfessionalTitle");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Judge");
+                });
+
+            modelBuilder.Entity("HackathonManager.PocoModels.Team", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Location");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("PinNumber");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Team");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -39,7 +113,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex");
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -47,7 +122,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType");
 
@@ -108,7 +184,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex");
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -116,7 +193,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType");
 
