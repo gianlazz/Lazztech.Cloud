@@ -3296,3 +3296,5 @@ It seems that the aspnet crud pages are made for normalized data as I'm not able
 It seems like I should just use sql and learn how to use the code first generation to get this working.
 
 I've gone ahead and subscriped to a paid for series about entity framework and code first database development.
+In the tutorial it talks about generating tables by convention for many to many relationships.
+- https://codewithmosh.com/courses/236371/lectures/3685800
