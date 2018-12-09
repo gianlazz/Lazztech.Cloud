@@ -3320,3 +3320,9 @@ I want to have the dbcontext and everything in it's own project seperate from th
 really setup to be run that way.
 
 https://stackoverflow.com/questions/43392179/the-name-request-does-not-exist-in-the-current-context
+
+## Saturday, December 8, 2018
+#### Sprint 16, Get HackathonHandler Event Location Entry CRUD working
+
+Today I got the dropdownlist working for the team location enum. It needed a using statement for the enum and asp-items="Html.GetEnumSelectList<RoomNameEnum>()
+- https://stackoverflow.com/questions/41740638/using-enum-for-dropdown-list-in-asp-net-mvc-core/41740828
