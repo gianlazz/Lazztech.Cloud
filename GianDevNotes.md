@@ -3315,3 +3315,6 @@ I removed postgresql db context and connection string setup that used the docker
 I need to register the LazztechContext with the ClientFacade startup.
 
 The Mosh video says that aspnet doesn't really work well with migrations and multiple dbcontext.
+
+I want to have the dbcontext and everything in it's own project seperate from the aspnet project but I'm not sure it's
+really setup to be run that way.

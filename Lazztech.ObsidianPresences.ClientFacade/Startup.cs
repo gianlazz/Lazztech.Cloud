@@ -54,9 +54,9 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<Lazztech.Dal.LazztechContext>(options =>
-    options.UseNpgsql(
-        Configuration.GetConnectionString("DefaultConnection")));
+    //        services.AddDbContext<Lazztech.Dal.LazztechContext>(options =>
+    //options.UseNpgsql(
+    //    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();

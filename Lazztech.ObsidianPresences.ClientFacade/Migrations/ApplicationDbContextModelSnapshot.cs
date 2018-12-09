@@ -19,78 +19,146 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Migrations
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("HackathonManager.DTO.Mentor", b =>
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Event", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Age");
+                    b.Property<DateTime>("EndTime");
 
-                    b.Property<string>("Description");
+                    b.Property<int?>("LocationId");
 
-                    b.Property<string>("Email");
+                    b.Property<DateTime>("StartTime");
 
-                    b.Property<string>("Event");
+                    b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Judge", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("EventId");
+
+                    b.Property<int?>("PersonId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Judges");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Location", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("City");
+
+                    b.Property<string>("State");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Mentor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("EventId");
+
+                    b.Property<int?>("PersonId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Mentors");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Company");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<int>("Description");
 
                     b.Property<string>("FirstName");
 
                     b.Property<string>("Image");
 
-                    b.Property<bool>("IsAvailable");
-
-                    b.Property<bool>("IsPresent");
-
                     b.Property<string>("LastName");
 
-                    b.Property<string>("MentorType");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<string>("ProfessionalTitle");
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Mentor");
+                    b.ToTable("People");
                 });
 
-            modelBuilder.Entity("HackathonManager.Judge", b =>
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Team", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
+                    b.Property<int?>("EventId");
 
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Event");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("Image");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<string>("ProfessionalTitle");
+                    b.Property<int?>("VenueRoomId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Judge");
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("VenueRoomId");
+
+                    b.ToTable("Team");
                 });
 
-            modelBuilder.Entity("HackathonManager.PocoModels.Team", b =>
+            modelBuilder.Entity("Lazztech.Dal.DBModels.VenueRoom", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Location");
+                    b.Property<string>("Location");
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("PinNumber");
+                    b.HasKey("Id");
+
+                    b.ToTable("VenueRooms");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Volunteer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("EventId");
+
+                    b.Property<int?>("PersonId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Team");
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Volunteer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -252,6 +320,57 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Event", b =>
+                {
+                    b.HasOne("Lazztech.Dal.DBModels.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Judge", b =>
+                {
+                    b.HasOne("Lazztech.Dal.DBModels.Event")
+                        .WithMany("Judges")
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("Lazztech.Dal.DBModels.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Mentor", b =>
+                {
+                    b.HasOne("Lazztech.Dal.DBModels.Event")
+                        .WithMany("Mentors")
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("Lazztech.Dal.DBModels.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Team", b =>
+                {
+                    b.HasOne("Lazztech.Dal.DBModels.Event")
+                        .WithMany("Teams")
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("Lazztech.Dal.DBModels.VenueRoom", "VenueRoom")
+                        .WithMany()
+                        .HasForeignKey("VenueRoomId");
+                });
+
+            modelBuilder.Entity("Lazztech.Dal.DBModels.Volunteer", b =>
+                {
+                    b.HasOne("Lazztech.Dal.DBModels.Event")
+                        .WithMany("Volunteers")
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("Lazztech.Dal.DBModels.Person", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
