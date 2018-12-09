@@ -113,15 +113,41 @@
         if (teamCookieValue == "")
         {
             <script type="text/javascript">
-    $(function () {
+                $(function () {
                     $('#TeamLoginModal').modal('show');
                 });</script>
         }
     }
     <div class="modal fade" id="TeamLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-center" role="document">
+                @using (Html.BeginForm("TeamLogin", "Home"))
+                {
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Enter your supplied team pin to enable real time updates and continue</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                @Html.TextBox("teamPin", null, htmlAttributes: new { @class = "form-control", @placeholder = "Enter Team Pin", @type = "number" })
+                                <br />
+                                <small id="emailHelp" class="form-text text-muted">Doing so will allow you to see your respective teams real time updates. You will however still have to re-enter your pin upon requests.</small>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit">Submit</button>
+                            <script type="text/javascript">
+                                $('#teamPin').keypress(function () {
+                                    if (this.value.length >= 4) // allowing you to enter only 4 chars.
+                                        return false;
+                                });</script>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    @*<div class="modal fade" id="TeamLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-dialog-center" role="document">
-            @using (Html.BeginForm("TeamLogin", "Home"))
-            {
+            <form asp-controller="Home" asp-action="TeamLogin" asp-anti-forgery="false">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Enter your supplied team pin to enable real time updates and continue</h5>
@@ -136,15 +162,20 @@
                     <div class="modal-footer">
                         <button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit">Submit</button>
                         <script type="text/javascript">
-    $('#teamPin').keypress(function () {
+                            $('#teamPin').keypress(function () {
                                 if (this.value.length >= 4) // allowing you to enter only 4 chars.
                                     return false;
                             });</script>
                     </div>
                 </div>
-            }
+            </form>
         </div>
-    </div>
+    </div>*@
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
     @*
           <div class="modal fade" id="mentorRequestUpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -185,7 +216,7 @@
     </div>
     @*SIGNALR EXAMPLE CODE BELOW HERE------------*@
     <script type="text/javascript">
-    $(function () {
+        $(function () {
 
             // Reference the auto-generated proxy for the hub.
             var progress = $.connection.progressHub;
