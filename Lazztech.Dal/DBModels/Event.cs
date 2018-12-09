@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lazztech.Dal.DBModels
 {
-    class Event
+    public class Event
     {
         public int Id { get; set; }
         public DateTime StartTime { get; set; }

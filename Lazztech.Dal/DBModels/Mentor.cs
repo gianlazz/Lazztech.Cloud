@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lazztech.Dal.DBModels
 {
-    class Mentor
+    public class Mentor
     {
         public int Id { get; set; }
         public Person Person { get; set; }
