@@ -6,20 +6,20 @@
 
 <!DOCTYPE html>
 <html>
-@*<head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Hackathon Handler</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
     @{
         string teamCookieValue = "";
-        if (Request.Cookies["team"] != null)
+        if (Context.Request.Cookies["team"] != null)
         {
-            teamCookieValue = Request.Cookies["team"].Value;
+            teamCookieValue = Context.Request.Cookies["team"];
         }
     }
-</head>*@
+</head>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

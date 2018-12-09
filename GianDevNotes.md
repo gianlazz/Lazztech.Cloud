@@ -3318,3 +3318,5 @@ The Mosh video says that aspnet doesn't really work well with migrations and mul
 
 I want to have the dbcontext and everything in it's own project seperate from the aspnet project but I'm not sure it's
 really setup to be run that way.
+
+https://stackoverflow.com/questions/43392179/the-name-request-does-not-exist-in-the-current-context
