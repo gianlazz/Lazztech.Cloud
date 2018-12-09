@@ -75,20 +75,20 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Event
             return RedirectToAction("Index");
         }
 
-        public ActionResult LogOut()
-        {
-            HttpCookie cookie = Request.Cookies["team"];
-            if (cookie != null)
-            {
-                Response.Cookies["team"].Value = "";
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+        //public ActionResult LogOut()
+        //{
+        //    HttpCookie cookie = Request.Cookies["team"];
+        //    if (cookie != null)
+        //    {
+        //        Response.Cookies["team"].Value = "";
+        //    }
+        //    else
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
         [HttpPost]
         public ActionResult MentorRequest(int teamPin, Guid mentorGuidId)

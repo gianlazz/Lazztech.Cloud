@@ -2,6 +2,11 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    string teamCookieValue = "";
+    if (Context.Request.Cookies["team"] != null)
+    {
+        teamCookieValue = Context.Request.Cookies["team"];
+    }
 }
 
 <!DOCTYPE html>
@@ -12,13 +17,6 @@
     <title>@ViewBag.Title - Hackathon Handler</title>
     @*@Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")*@
-    @{
-        string teamCookieValue = "";
-        if (Context.Request.Cookies["team"] != null)
-        {
-            teamCookieValue = Context.Request.Cookies["team"];
-        }
-    }
 </head>
 <head>
     <meta charset="utf-8" />
@@ -60,11 +58,11 @@
                     <li class="nav-item"><a href="Event/Teams/" class="nav-link">Teams</a></li>
                     <li class="nav-item"><a href="Event/Judges/" class="nav-link">Judges</a></li>
                 </ul>
-                @*@if (teamCookieValue != "")*@
+                @if (teamCookieValue != "")
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a id="registerLink" class="nav-link">Team: @*@teamCookieValue*@</a></li>
-                        <li class="nav-item"><a href="/Home/LogOut" class="nav-link">Log Out</a></li>
+                        <li class="nav-item"><a id="registerLink" class="nav-link">Team: @teamCookieValue</a></li>
+                        <li class="nav-item"><a href="LogOut" class="nav-link">Log Out</a></li>
                     </ul>
                 }
             </div>
@@ -85,14 +83,14 @@
     <script src="~/Scripts/Helper.js" type="text/javascript"></script>
     @RenderSection("scripts", required: false)*@
     @*CHECK IF THEY'RE LOGGED IN FOR THEIR TEAM AN PROMPT IF NOT*@
-    @*@{
+    @{
         if (teamCookieValue == "")
         {
             <script type="text/javascript">$(function () {
                     $('#TeamLoginModal').modal('show');
                 });</script>
         }
-    }*@
+    }
     <div class="modal fade" id="TeamLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-dialog-center" role="document">
             @using (Html.BeginForm("TeamLogin", "Home"))
