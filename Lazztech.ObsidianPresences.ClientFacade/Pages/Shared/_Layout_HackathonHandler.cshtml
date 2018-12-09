@@ -76,17 +76,44 @@
         </footer>
     </div>
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/jquery.signalR-2.2.3.min.js" type="text/javascript"></script>
-    <script src="/signalr/hubs"></script>
-    <script src="~/signalr/hubs"></script>
-    <script src="~/Scripts/Helper.js" type="text/javascript"></script>
-    @RenderSection("scripts", required: false)*@
+        @Scripts.Render("~/bundles/bootstrap")
+        <script src="~/Scripts/jquery.signalR-2.2.3.min.js" type="text/javascript"></script>
+        <script src="/signalr/hubs"></script>
+        <script src="~/signalr/hubs"></script>
+        <script src="~/Scripts/Helper.js" type="text/javascript"></script>
+        @RenderSection("scripts", required: false)*@
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
     @*CHECK IF THEY'RE LOGGED IN FOR THEIR TEAM AN PROMPT IF NOT*@
     @{
         if (teamCookieValue == "")
         {
-            <script type="text/javascript">$(function () {
+            <script type="text/javascript">
+    $(function () {
                     $('#TeamLoginModal').modal('show');
                 });</script>
         }
@@ -108,7 +135,8 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit">Submit</button>
-                        <script type="text/javascript">$('#teamPin').keypress(function () {
+                        <script type="text/javascript">
+    $('#teamPin').keypress(function () {
                                 if (this.value.length >= 4) // allowing you to enter only 4 chars.
                                     return false;
                             });</script>
@@ -156,7 +184,8 @@
         </div>
     </div>
     @*SIGNALR EXAMPLE CODE BELOW HERE------------*@
-    <script type="text/javascript">$(function () {
+    <script type="text/javascript">
+    $(function () {
 
             // Reference the auto-generated proxy for the hub.
             var progress = $.connection.progressHub;
