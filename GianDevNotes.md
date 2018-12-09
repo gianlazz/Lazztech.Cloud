@@ -3307,7 +3307,9 @@ I'm downloading Sql Server Managment Server so that I can assess the output of t
 ## Saturday, December 8, 2018
 #### Sprint 16, Get HackathonHandler Event Location Entry CRUD working
 
-
-
 To setup ef migrations:
 `Add-Migration initial`
+
+I removed postgresql db context and connection string setup that used the docker enviroment variable in place of just using the configuration.
+
+I need to register the LazztechContext with the ClientFacade startup.
