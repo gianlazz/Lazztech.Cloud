@@ -20,7 +20,6 @@ services:
      - C:\face_recognition:/face/
       # - lazztech-cloud-data:/face/
     environment:
-      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=values_db;username=dbuser;password=dbpwd"
       ASPNETCORE_ENVIRONMENT: "Development"
     ports: 
       - 80:80
