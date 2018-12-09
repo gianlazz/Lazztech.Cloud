@@ -29,8 +29,8 @@ services:
 
   postgres_image:
     image: postgres:alpine
-#    ports:
-#      - "5432:5432"
+    ports:
+      - "5433:5432"
     environment:
       POSTGRES_USER: "dbuser"
       POSTGRES_PASSWORD: "dbpwd"
