@@ -3303,3 +3303,11 @@ I think I've got the Data Access Layer project models normalized in a way that w
 the initial migrations.
 
 I'm downloading Sql Server Managment Server so that I can assess the output of the codefirst database generation to make sure it's all setup right.
+
+## Saturday, December 8, 2018
+#### Sprint 16, Get HackathonHandler Event Location Entry CRUD working
+
+
+
+To setup ef migrations:
+`Add-Migration initial`
