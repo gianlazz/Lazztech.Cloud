@@ -3326,3 +3326,23 @@ https://stackoverflow.com/questions/43392179/the-name-request-does-not-exist-in-
 
 Today I got the dropdownlist working for the team location enum. It needed a using statement for the enum and asp-items="Html.GetEnumSelectList<RoomNameEnum>()
 - https://stackoverflow.com/questions/41740638/using-enum-for-dropdown-list-in-asp-net-mvc-core/41740828
+
+I'm trying to get the form working to post to the login method for the team login on the event page:
+- https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms?view=aspnetcore-2.2
+
+Okay so I figured out how to fix the Html.BeginForm() not working. It wasn't generating the action route for the form so after doing some research I found that you have
+to configure this in the Startup.
+- https://exceptionnotfound.net/asp-net-core-demystified-routing-in-mvc/
+
+I fixed it with this:
+```
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}");
+            });
+```
+
+Also it looks like using Html.BeginForms is no longer the current best way and instead using form aspnet tags:
+- https://www.davepaquette.com/archive/2015/05/18/mvc-6-form-tag-helper.aspx

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using HackathonManager.Interfaces;
+using Microsoft.AspNetCore.Routing;
 
 namespace Lazztech.ObsidianPresences.ClientFacade
 {
@@ -109,7 +110,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade
 
             app.UseAuthentication();
 
-            app.UseMvc();
+            //app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}");
+            });
         }
     }
 }

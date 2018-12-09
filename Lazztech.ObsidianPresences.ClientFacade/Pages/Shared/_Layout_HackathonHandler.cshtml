@@ -1,6 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     string teamCookieValue = "";
     if (Context.Request.Cookies["team"] != null)
@@ -16,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Hackathon Handler</title>
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
 </head>
 <head>
     <meta charset="utf-8" />
@@ -147,7 +148,7 @@
         </div>
     @*<div class="modal fade" id="TeamLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-dialog-center" role="document">
-            <form asp-controller="Home" asp-action="TeamLogin" asp-anti-forgery="false">
+            <form asp-controller="Home" asp-action="TeamLogin" asp-anti-forgery="false" method="post">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Enter your supplied team pin to enable real time updates and continue</h5>
@@ -172,9 +173,9 @@
         </div>
     </div>*@
 
-    @section Scripts {
+    @*@section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+    }*@
 
     @*
           <div class="modal fade" id="mentorRequestUpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
