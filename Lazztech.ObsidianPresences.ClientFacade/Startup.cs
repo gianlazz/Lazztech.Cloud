@@ -20,7 +20,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
     public class Startup
     {
         public static HackathonManager.RepositoryPattern.IRepository DbRepo = HackathonManager.DIContext.Context.GetMLabsMongoDbRepo();
-        public static ISmsService _smsService = HackathonManager.DIContext.Context.GetTwilioSmsService();
+        public static ISmsService SmsService = HackathonManager.DIContext.Context.GetTwilioSmsService();
 
         public Startup(IConfiguration configuration)
         {
