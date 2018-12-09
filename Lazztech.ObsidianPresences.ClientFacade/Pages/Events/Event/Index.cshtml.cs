@@ -6,6 +6,7 @@ using HackathonManager.DTO;
 using HackathonManager.Models;
 using HackathonManager.PocoModels;
 using HackathonManager.Sms;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -41,7 +42,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Event
         {
             var Db = Startup.DbRepo;
 
-            HttpCookie cookie = Request.Cookies["team"];
+            var cookie = Request.Cookies["team"];
 
             //CHECK IF A TEAM BY THAT PIN NUMBER EXSISTS
             if (Db.Single<Team>(x => x.PinNumber == teamPin) != null)
@@ -50,14 +51,25 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Event
 
                 if (cookie == null)
                 {
-                    Response.Cookies["team"].Value = team.Name;
-                    Response.Cookies["team"].Expires = DateTime.UtcNow.AddDays(3);
+                    //var option = new CookieOptions();
+                    //option.Expires = DateTime.UtcNow.AddDays(3);
+                    //Response.Cookies["team"].Value = team.Name;
+                    //Response.Cookies.Append("string", team.Name, option);
+                    Response.Cookies.Append("team", team.Name, new CookieOptions() { Expires = DateTime.UtcNow.AddDays(3) });
+
+                    //Response.Cookies["team"].Expires = DateTime.UtcNow.AddDays(3);
                 }
-                if (cookie != null && cookie.Value == "")
+                if (cookie != null && cookie.ToString() == "")
                 {
-                    Response.Cookies["team"].Value = team.Name;
-                    Response.Cookies["team"].Expires = DateTime.UtcNow.AddDays(3);
+                    //Response.Cookies["team"].Value = team.Name;
+                    //Response.Cookies["team"].Expires = DateTime.UtcNow.AddDays(3);
+                    Response.Cookies.Append("team", team.Name, new CookieOptions() { Expires = DateTime.UtcNow.AddDays(3) });
                 }
+                //if (cookie != null && cookie.Value == "")
+                //{
+                //    Response.Cookies["team"].Value = team.Name;
+                //    Response.Cookies["team"].Expires = DateTime.UtcNow.AddDays(3);
+                //}
             }
 
             return RedirectToAction("Index");
