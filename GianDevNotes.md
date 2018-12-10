@@ -3346,3 +3346,49 @@ I fixed it with this:
 
 Also it looks like using Html.BeginForms is no longer the current best way and instead using form aspnet tags:
 - https://www.davepaquette.com/archive/2015/05/18/mvc-6-form-tag-helper.aspx
+
+Next CodeDay is Febuary 16-17 so there's about 10 more weeks to get everything ready. Here's the plan:
+
+Sameez's input:
+- Have it done two weeks before to start testing
+- Getting rid of team pins
+- Self serve mentor sign up
+- Dedicated sign up computer
+- Sign up image upload
+- Webcam image option for mentors
+- Automatic mentor availability based on schedule
+- Event Schedule with CRUD (Like codeday.org/washington schedule)
+- Form for Team registration with exel sheet export and are only used for export (Team Name, Venue Loacation, & Number of team members)
+- Mentor request requires student name and venue location field which will both be strings entered each time of request and sent to mentor
+- Remove Mentor request prompt and replace with 15 minute time out before available again
+
+Mandatory:
+ - Get signalr working again
+ - Deploy
+ - Remove judges since it's not being used
+
+Stretch Goals:
+ - Real time list of mentor requests on the home page
+
+- Week 1 (Dec 10 - 16)
+	- 
+- Week 2 (Dec 17 - 23)
+	- 
+- Week 3 (Dec 24 - 30)
+	- 
+- Week 4 (Dec 31 - Jan 6 2018)
+	- 
+- Week 5 (Jan 7 - 13)
+	- 
+- Week 6 (Jan 14 - 20)
+	- 
+- Week 7 (Jan 21 - 27)
+	- 
+- Week 8 (Jan 28 - Feb 3)
+	- 
+- Week 9 (Feb 4 - 10)
+	- 
+
+Week of Codeday weekend on 16 & 17
+- Week 10 (Feb 11 - 17)
+	- 

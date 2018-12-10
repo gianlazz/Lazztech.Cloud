@@ -52,8 +52,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Controllers
                 //    Response.Cookies["team"].Expires = DateTime.UtcNow.AddDays(3);
                 //}
             }
-
-            return RedirectToAction("Index");
+            //return Redirect("");
+            return RedirectToPage("/Events/Event/Index");
         }
 
         //public ActionResult LogOut()
