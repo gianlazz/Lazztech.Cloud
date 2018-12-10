@@ -3349,6 +3349,9 @@ Also it looks like using Html.BeginForms is no longer the current best way and i
 
 Next CodeDay is Febuary 16-17 so there's about 10 more weeks to get everything ready. Here's the plan:
 
+CodeDay will have weekly meetings on Wednesdays.
+I'll be working with James Gan as he's working as the Mentor Manager.
+
 Sameez's input:
 - Have it done two weeks before to start testing
 - Getting rid of team pins
@@ -3363,32 +3366,33 @@ Sameez's input:
 - Remove Mentor request prompt and replace with 15 minute time out before available again
 
 Mandatory:
- - Get signalr working again
- - Deploy
- - Remove judges since it's not being used
+- Get signalr working again
+- Deploy
+- Remove judges since it's not being used
 
 Stretch Goals:
- - Real time list of mentor requests on the home page
+- Real time list of mentor requests on the home page
+- Form for Team registration with exel sheet export and are only used for export (Team Name, Venue Loacation, & Number of team members)
 
 - Week 1 (Dec 10 - 16)
-	- 
+	- Add mentor request form for team name and location description, remove judges, & Team(s) sign in
 - Week 2 (Dec 17 - 23)
-	- 
+	- Get Signalr working & SMS
 - Week 3 (Dec 24 - 30)
-	- 
+	- Test SMS
 - Week 4 (Dec 31 - Jan 6 2018)
-	- 
+	- Public Mentor Sign Up with Profile Picture upload
 - Week 5 (Jan 7 - 13)
-	- 
+	- Setup Mentor availablility
 - Week 6 (Jan 14 - 20)
-	- 
+	- Mentor sign up webcam option for profile picture
 - Week 7 (Jan 21 - 27)
-	- 
+	-  Deployment
 - Week 8 (Jan 28 - Feb 3)
-	- 
+	- Deployment
 - Week 9 (Feb 4 - 10)
-	- 
+	- Testing
 
 Week of Codeday weekend on 16 & 17
 - Week 10 (Feb 11 - 17)
-	- 
+	- Testing & Deployment
