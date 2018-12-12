@@ -9,7 +9,8 @@ namespace HackathonManager.Models
         public readonly DateTime DateTimeOfRequest;
         public readonly Guid GuidId;
         public Mentor Mentor { get; set; }
-        public Team Team { get; set; }
+        //public Team Team { get; set; }
+        public string TeamName { get; set; }
         public bool RequestAccepted { get; internal set; }
         public DateTime? DateTimeWhenProcessed { get; set; }
 

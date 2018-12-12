@@ -72,26 +72,17 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Controllers
         //}
 
         [HttpPost]
-        public ActionResult MentorRequest(int teamPin, Guid mentorGuidId)
+        public ActionResult MentorRequest(string teamName, string teamLocation, Guid mentorGuidId)
         {
             var Db = Startup.DbRepo;
             var sms = Startup.SmsService;
             var request = new MentorRequest();
-            Team team = null;
             Mentor mentor = null;
-            try
-            {
-                team = Db.Single<Team>(x => x.PinNumber == teamPin);
-                mentor = Db.Single<Mentor>(x => x.Id == mentorGuidId);
-            }
-            catch (Exception ex)
-            {
-                Db.Add<Log>(new Log() { Details = ex.ToString() });
-            }
+            mentor = Db.Single<Mentor>(x => x.Id == mentorGuidId);
 
-            request.Team = team;
+            request.TeamName = teamName;
             request.Mentor = mentor;
-            var message = $"🔥 { mentor.FirstName}, team { team.Name}, located in { team.Location}, has requested your assistance.\n\n" +
+            var message = $"🔥 { mentor.FirstName}, team { teamName }, located in { teamLocation }, has requested your assistance.\n\n" +
     $"Reply with:\n" +
     $"Y to accept " +
     $"\nor\n " +
@@ -121,5 +112,56 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Controllers
 
             return RedirectToAction("Index");
         }
+
+    //    [HttpPost]
+    //    public ActionResult MentorRequest(string teamPin, Guid mentorGuidId)
+    //    {
+    //        var Db = Startup.DbRepo;
+    //        var sms = Startup.SmsService;
+    //        var request = new MentorRequest();
+    //        Team team = null;
+    //        Mentor mentor = null;
+    //        try
+    //        {
+    //            team = Db.Single<Team>(x => x.PinNumber == teamPin);
+    //            mentor = Db.Single<Mentor>(x => x.Id == mentorGuidId);
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            Db.Add<Log>(new Log() { Details = ex.ToString() });
+    //        }
+
+    //        request.Team = team;
+    //        request.Mentor = mentor;
+    //        var message = $"🔥 { mentor.FirstName}, team { team.Name}, located in { team.Location}, has requested your assistance.\n\n" +
+    //$"Reply with:\n" +
+    //$"Y to accept " +
+    //$"\nor\n " +
+    //$"N to reject the request";
+
+    //        try
+    //        {
+    //            request.OutboundSms = sms.SendSms(mentor.PhoneNumber, message);
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            //IS THROWING EXCEPTION FOR NOT HAVING CORRECTLY SETUP NEWTONSOFT.JSON DEPENDENCY
+    //            Db.Add<Log>(new Log() { Details = ex.ToString() });
+    //        }
+
+    //        try
+    //        {
+    //            SmsRoutingConductor.MentorRequests.Add(request);
+
+    //            //THIS SHOULD BE HANDLED BY THE SMSROUTINGCONDUCTOR
+    //            Db.Add<MentorRequest>(request);
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            Db.Add<Log>(new Log() { Details = ex.ToString() });
+    //        }
+
+    //        return RedirectToAction("Index");
+    //    }
     }
 }
