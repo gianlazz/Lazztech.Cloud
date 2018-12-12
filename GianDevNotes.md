@@ -3396,3 +3396,6 @@ Stretch Goals:
 Week of Codeday weekend on 16 & 17
 - Week 10 (Feb 11 - 17)
 	- Testing & Deployment
+
+## Tuesday, December 11, 2018
+#### Sprint 17, Add mentor request form for team name and location description, remove judges, & Team(s) sign in
