@@ -1,9 +1,9 @@
 ﻿namespace HackathonManager.Sms
 {
-    internal class TwilioCredentials
+    public class TwilioCredentials
     {
-        internal static string accountSid = "";
-        internal static string authToken = "";
-        internal static string fromTwilioNumber = "2065086735";
+        public static string accountSid = "";
+        public static string authToken = "";
+        public static string fromTwilioNumber = "2065086735";
     }
 }

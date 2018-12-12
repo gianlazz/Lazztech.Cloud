@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using HackathonManager.Interfaces;
 using Microsoft.AspNetCore.Routing;
+using HackathonManager.Sms;
 
 namespace Lazztech.ObsidianPresences.ClientFacade
 {
@@ -40,6 +41,11 @@ namespace Lazztech.ObsidianPresences.ClientFacade
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var twillioConfigSection = Configuration.GetSection("TwilioCredentials");
+            TwilioCredentials.accountSid = twillioConfigSection["AccountSid"];
+            TwilioCredentials.authToken = twillioConfigSection["AuthToken"];
+            TwilioCredentials.fromTwilioNumber = twillioConfigSection["TwilioFromNumber"];
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
