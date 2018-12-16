@@ -3407,3 +3407,8 @@ Got the modal and mvc configured for the new mentor request format.
 
 I went ahead and followed along with the apsnet core signalr tutorial and got chat setup:
 - https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-2.2&tabs=visual-studio
+
+Now I need to configure the twilio secrets, get a request sent, then configure the signalr for it.
+
+I also just added the twilio credentials to the secrets and now the sms mentor request is working.
+Also the username is gianlazzarini@srnd.org for the twilio account.
