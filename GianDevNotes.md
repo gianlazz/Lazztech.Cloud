@@ -3399,3 +3399,11 @@ Week of Codeday weekend on 16 & 17
 
 ## Tuesday, December 11, 2018
 #### Sprint 17, Add mentor request form for team name and location description, remove judges, & Team(s) sign in
+
+Got the modal and mvc configured for the new mentor request format.
+
+## Sunday, December 16, 2018
+#### Sprint 17, Add mentor request form for team name and location description, remove judges, & Team(s) sign in
+
+I went ahead and followed along with the apsnet core signalr tutorial and got chat setup:
+- https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?view=aspnetcore-2.2&tabs=visual-studio
