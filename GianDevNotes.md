@@ -3412,3 +3412,6 @@ Now I need to configure the twilio secrets, get a request sent, then configure t
 
 I also just added the twilio credentials to the secrets and now the sms mentor request is working.
 Also the username is gianlazzarini@srnd.org for the twilio account.
+
+To test the SmsRoutingConductor I'll have to configure twilio to use this project with ngrok.
+Also to get this working I think I have to add over the controller for recieving the http posts from twilio when it recieves a message.
