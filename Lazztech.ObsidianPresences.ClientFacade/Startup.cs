@@ -16,6 +16,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using HackathonManager.Interfaces;
 using Microsoft.AspNetCore.Routing;
 using HackathonManager.Sms;
+using Lazztech.ObsidianPresences.ClientFacade.Hubs;
 
 namespace Lazztech.ObsidianPresences.ClientFacade
 {
@@ -91,6 +92,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                         //options.Conventions.AllowAnonymousToFolder("/Private/PublicPages");
                     })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -122,6 +125,11 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action}");
+            });
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
             });
         }
     }

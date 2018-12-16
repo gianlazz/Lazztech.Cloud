@@ -11,7 +11,33 @@
 </div>
 
 @*<h4>Dashboard</h4>
-<hr>
+    <hr>
 
-<p>Graph about vision</p>
-<p>Graph about plants</p>*@
+    <p>Graph about vision</p>
+    <p>Graph about plants</p>*@
+
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            User..........<input type="text" id="userInput" />
+            <br />
+            Message...<input type="text" id="messageInput" />
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+</div>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
