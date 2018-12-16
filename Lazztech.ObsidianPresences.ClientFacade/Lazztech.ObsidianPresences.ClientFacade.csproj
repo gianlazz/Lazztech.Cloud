@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Lazztech.ObsidianPresences.ClientFacade-F0D117F3-0EC4-4600-8843-FDB198DDFBBC</UserSecretsId>
     <DockerTargetOS>Linux</DockerTargetOS>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
