@@ -3423,3 +3423,16 @@ Here's another blog post about scaling out with apsnetcore and redis:
 - https://rolandguijt.com/scaling-out-your-asp-net-core-signalr-application/
 
 It looks like I may have to upgrade the project to apsnetcore 2.2 to get it working.
+
+Actually here's the details for setting up signalr scaleout redis backplane with aspnet core 2.1:
+- https://docs.microsoft.com/en-us/aspnet/core/signalr/redis-backplane?view=aspnetcore-2.1
+
+Here's how to migrate to 2.2 from 2.1:
+https://docs.microsoft.com/en-us/aspnet/core/migration/21-to-22?view=aspnetcore-2.2&tabs=visual-studio
+
+I had to install:
+Microsoft.Extensions.DependencyInjection.Abstractions 2.2.0 > 
+Microsoft.Extensions.Logging.Abstractions 2.2.0 > 
+Microsoft.Extensions.Primitives 2.2.0 > 
+Microsoft.Extensions.Options 2.2.0 >
+Microsoft.AspNetCore.Authorization 2.2.0 >
