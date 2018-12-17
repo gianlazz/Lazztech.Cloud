@@ -3415,3 +3415,11 @@ Also the username is gianlazzarini@srnd.org for the twilio account.
 
 To test the SmsRoutingConductor I'll have to configure twilio to use this project with ngrok.
 Also to get this working I think I have to add over the controller for recieving the http posts from twilio when it recieves a message.
+
+Also it looks like setup for cluster support with signalr is pretty simple with a redis backplane
+- https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-with-redis
+
+Here's another blog post about scaling out with apsnetcore and redis:
+- https://rolandguijt.com/scaling-out-your-asp-net-core-signalr-application/
+
+It looks like I may have to upgrade the project to apsnetcore 2.2 to get it working.
