@@ -131,10 +131,9 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             });
 
             var defaultAdminSection = Configuration.GetSection("DefaultAdminUser");
-            var userName = defaultAdminSection["Username"];
             var email = defaultAdminSection["Email"];
             var password = defaultAdminSection["Password"];
-            ApplicationDbInitializer.SeedUser(userManager, roleManager, userName, email, password);
+            ApplicationDbInitializer.SeedAdminUser(userManager, roleManager, email, password);
         }
     }
 }

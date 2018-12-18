@@ -8,13 +8,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade
 {
     public static class ApplicationDbInitializer
     {
-        public static void SeedUser(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, string userName, string email, string password)
+        public static void SeedAdminUser(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, string email, string password)
         {
             if (userManager.FindByEmailAsync(email).Result == null)
             {
                 IdentityUser user = new IdentityUser
                 {
-                    UserName = userName,
+                    UserName = email,
                     Email = email
                 };
 
