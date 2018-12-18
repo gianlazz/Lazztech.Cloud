@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lazztech.Dal.DBModels
+namespace Lazztech.ObsidianPresences.ClientFacade.Data.Entities
 {
     public class Location
     {
