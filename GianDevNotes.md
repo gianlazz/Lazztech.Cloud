@@ -3453,3 +3453,5 @@ I could use the secrets.json for the configuration of the users credentials.
 
 In learing how to seed the admin I found that the login looks up users by username which is treated as the email:
 - https://stackoverflow.com/questions/23614121/identity-2-0-invalid-login-attempt
+
+http://hishambinateya.com/role-based-authorization-in-razor-pages
