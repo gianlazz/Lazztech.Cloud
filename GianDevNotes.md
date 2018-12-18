@@ -3430,9 +3430,16 @@ Actually here's the details for setting up signalr scaleout redis backplane with
 Here's how to migrate to 2.2 from 2.1:
 https://docs.microsoft.com/en-us/aspnet/core/migration/21-to-22?view=aspnetcore-2.2&tabs=visual-studio
 
+Here's the 2.2 installers:
+- https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.101-windows-x64-installer
+- https://dotnet.microsoft.com/download/thank-you/dotnet-runtime-2.2.0-windows-hosting-bundle-installer
+
 I had to install:
 Microsoft.Extensions.DependencyInjection.Abstractions 2.2.0 > 
 Microsoft.Extensions.Logging.Abstractions 2.2.0 > 
 Microsoft.Extensions.Primitives 2.2.0 > 
 Microsoft.Extensions.Options 2.2.0 >
 Microsoft.AspNetCore.Authorization 2.2.0 >
+
+## Tuesday, December 18, 2018
+#### Sprint 18, Add mentor request form for team name and location description, remove judges, & Team(s) sign in
