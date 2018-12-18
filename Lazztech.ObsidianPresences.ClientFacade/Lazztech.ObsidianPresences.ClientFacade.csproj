@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lazztech.Dal\Lazztech.Dal.csproj" />
     <ProjectReference Include="..\Lazztech.DIContext\Lazztech.DIContext.csproj" />
     <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.csproj" />
     <ProjectReference Include="..\Lazztech.ObsidianPresences.Vision.Microservice.Domain\Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj" />
