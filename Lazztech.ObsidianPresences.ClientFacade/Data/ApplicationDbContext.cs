@@ -6,8 +6,7 @@ using Microsoft.EntityFrameworkCore;
 //using HackathonManager.DTO;
 //using HackathonManager;
 using HackathonManager.PocoModels;
-using Lazztech.Dal.DBModels;
-
+using Lazztech.ObsidianPresences.ClientFacade.Data.Entities;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Data
 {

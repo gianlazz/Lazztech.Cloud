@@ -54,17 +54,15 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection")));
-
+            // SqlServer Entity Framework Data Adapter Setup
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(
+                options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-    //        services.AddDbContext<Lazztech.Dal.LazztechContext>(options =>
-    //options.UseNpgsql(
-    //    Configuration.GetConnectionString("DefaultConnection")));
+            // PostgreSql Entity Framework Data Adapter Setup
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseNpgsql(
+            //        Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
