@@ -95,7 +95,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -134,7 +134,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             var userName = defaultAdminSection["Username"];
             var email = defaultAdminSection["Email"];
             var password = defaultAdminSection["Password"];
-            ApplicationDbInitializer.SeedUser(userManager, userName, email, password);
+            ApplicationDbInitializer.SeedUser(userManager, roleManager, userName, email, password);
         }
     }
 }

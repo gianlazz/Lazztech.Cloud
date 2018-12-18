@@ -8,7 +8,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
 {
     public static class ApplicationDbInitializer
     {
-        public static void SeedUser(UserManager<IdentityUser> userManager, string userName, string email, string password)
+        public static void SeedUser(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, string userName, string email, string password)
         {
             if (userManager.FindByEmailAsync(email).Result == null)
             {
@@ -18,11 +18,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                     Email = email
                 };
 
-                IdentityResult result = userManager.CreateAsync(user, password).Result;
+                IdentityResult identitySuceeded = userManager.CreateAsync(user, password).Result;
 
-                if (result.Succeeded)
+                if (identitySuceeded.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user, "Admin").Wait();
+                    var roleName = "Admin";
+                    var roleSucceded = roleManager.CreateAsync(new IdentityRole(roleName)).Result;
+                    userManager.AddToRoleAsync(user, roleName).Wait();
                 }
             }
         }
