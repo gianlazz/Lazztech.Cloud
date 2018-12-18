@@ -8,5 +8,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Data.Entities
     {
         public int Id { get; set; }
         public Person Person { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

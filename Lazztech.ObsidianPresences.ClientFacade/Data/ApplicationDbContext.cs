@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-//using HackathonManager.DTO;
-//using HackathonManager;
 using HackathonManager.PocoModels;
 using Lazztech.ObsidianPresences.ClientFacade.Data.Entities;
 
@@ -16,9 +14,15 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Data
             : base(options)
         {
         }
-        //public DbSet<HackathonManager.DTO.Mentor> Mentor { get; set; }
-        //public DbSet<HackathonManager.Judge> Judge { get; set; }
-        //public DbSet<HackathonManager.PocoModels.Team> Team { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Mentor>()
+                .Property(b => b.PhoneNumber)
+                .IsRequired();
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         DbSet<VenueRoom> VenueRooms { get; set; }
         DbSet<Event> Events { get; set; }
