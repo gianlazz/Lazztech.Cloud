@@ -75,16 +75,20 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                 //c.IncludeXmlComments(xmlPath);
             });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdministratorRole", policy => policy.RequireRole("Admin"));
+            });
 
             services.AddMvc()
                     .AddRazorPagesOptions(options =>
                     {
                         //options.Conventions.AuthorizeFolder("/Cogneat");
                         //options.Conventions.AuthorizeFolder("/Crawler");
-                        //options.Conventions.AuthorizeFolder("/Events");
+                        options.Conventions.AuthorizeFolder("/Events", "RequireAdministratorRole");
                         //options.Conventions.AuthorizeFolder("/Garden");
                         //options.Conventions.AuthorizeFolder("/Notifications");
-                        //options.Conventions.AuthorizeFolder("/Vision");
+                        options.Conventions.AuthorizeFolder("/Vision", "RequireAdministratorRole");
 
                         //options.Conventions.AllowAnonymousToPage("/Private/PublicPage");
                         //options.Conventions.AllowAnonymousToFolder("/Private/PublicPages");
