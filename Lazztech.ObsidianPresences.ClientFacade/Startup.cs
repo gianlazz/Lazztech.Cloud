@@ -64,7 +64,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             //    options.UseNpgsql(
             //        Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddSwaggerGen(c =>
@@ -95,7 +95,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -129,6 +129,12 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             {
                 routes.MapHub<ChatHub>("/chatHub");
             });
+
+            var defaultAdminSection = Configuration.GetSection("DefaultAdminUser");
+            var userName = defaultAdminSection["Username"];
+            var email = defaultAdminSection["Email"];
+            var password = defaultAdminSection["Password"];
+            ApplicationDbInitializer.SeedUser(userManager, userName, email, password);
         }
     }
 }

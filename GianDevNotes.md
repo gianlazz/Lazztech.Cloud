@@ -3443,3 +3443,10 @@ Microsoft.AspNetCore.Authorization 2.2.0 >
 
 ## Tuesday, December 18, 2018
 #### Sprint 18, Add mentor request form for team name and location description, remove judges, & Team(s) sign in
+
+It could be useful to seed the database with a default admin account upon creation. That way I could just have certain
+details hidden to only admins or such. It would be good for the initial admin to be able to make other admins.
+I could use the secrets.json for the configuration of the users credentials.
+- https://stackoverflow.com/questions/39737554/create-default-user-admin-when-website-initialize-identity
+- http://www.binaryintellect.net/articles/5e180dfa-4438-45d8-ac78-c7cc11735791.aspx
+- https://stackoverflow.com/questions/50785009/how-to-seed-an-admin-user-in-ef-core-2-1-0
