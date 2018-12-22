@@ -3499,3 +3499,6 @@ responder class and I'm not sure if that will cause problems.
 Soon I'm going to have to setup twilio's webhook to point to my local machine with a ngrock tunnel to start testing the signalr
 setup. I'm also going to need to consider how to handle the lack of on reconnected and refactore over to the proper nomenclature to
 how I'm now handeling requests on a per connection, or device rather, basis.
+
+It looks like this is how aspnetcore handels dependency injection for signalr hubs and may be what I want to do:
+- https://docs.microsoft.com/en-us/aspnet/core/signalr/hubcontext?view=aspnetcore-2.2#get-an-instance-of-ihubcontext-in-middleware
