@@ -3491,3 +3491,7 @@ For handeling aspnetcore signalr hub connection events:
 
 It also looks like the api for calling clientside js has changed where before you would just invoke the js method on a client or group
 without strong typing. You now have to call SendAsync and the params are first the js method name, then each object arg.
+
+I've moved the UpdateTeamOfMentorRequest() from the hackathanmanager Functions class to the ProgressHub class and made it non static.
+I'm not sure if I should be using some kind of buit in aspnetcore di to request that hub but for now I'm just newing it up in the 
+responder class and I'm not sure if that will cause problems.
