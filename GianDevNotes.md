@@ -3476,3 +3476,12 @@ Also it looks like the Clients.Group() now only taks the string for the name of 
 a paramter of string[] for excluded.
 
 Another thing is that I'll have to switch over how cookies are handled as the api has changed a bit for aspnetcore.
+So it looks like I can't just call up cookies the same way. Okay so it looks like I have to get the HttpContext
+from the current Context and from there I can get to the cookies.
+- https://docs.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-2.2
+- https://stackoverflow.com/questions/51749088/how-to-read-headers-data-in-hub-signalr-asp-net-core-2-1
+
+```
+            //Cookie cookie = Context.Request.Cookies["team"];
+            var cookie = Context.GetHttpContext().Request.Cookies["team"];
+```

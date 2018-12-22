@@ -29,12 +29,11 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
 
         public void AddConnectionToTeamGroup()
         {
-            Cookie cookie = Context.Request.Cookies["team"];
-            //HttpCookie cookie = HttpContext.Request.Cookies.Get("team");
-            //HttpCookie cookie = HttpContext.Current.Request.Cookies["team"];
-            if (cookie != null)
+            var teamCookieValue = Context.GetHttpContext().Request.Cookies["team"];
+
+            if (!string.IsNullOrWhiteSpace(teamCookieValue))
             {
-                Groups.AddToGroupAsync(Context.ConnectionId, cookie.Value);
+                Groups.AddToGroupAsync(Context.ConnectionId, teamCookieValue);
             }
 
         }
@@ -60,6 +59,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
         public override Task OnConnected()
         {
             Cookie usersTeamCookie = null;
+            var cookie = Context.
             if (Context.Request.Cookies.ContainsKey("team"))
                 usersTeamCookie = Context.Request.Cookies["team"];
             if (usersTeamCookie != null)
