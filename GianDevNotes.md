@@ -3488,3 +3488,6 @@ from the current Context and from there I can get to the cookies.
 
 For handeling aspnetcore signalr hub connection events:
 - https://docs.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-2.2#handle-events-for-a-connection
+
+It also looks like the api for calling clientside js has changed where before you would just invoke the js method on a client or group
+without strong typing. You now have to call SendAsync and the params are first the js method name, then each object arg.

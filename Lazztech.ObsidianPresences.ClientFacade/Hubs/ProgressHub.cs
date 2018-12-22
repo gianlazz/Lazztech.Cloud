@@ -15,7 +15,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
         {
             if (request.RequestAccepted)
             {
-                Clients.Group(request.TeamName).RequestUpdate(request, "Mentor Accepted Request.");
+                Clients.Group(request.TeamName).SendAsync("RequestUpdate", request, "Mentor Accepted Request.");
             }
         }
 
@@ -40,7 +40,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
 
         public void MessageTeam(Team team, string message)
         {
-            Clients.Group(team.Name).message(message);
+            Clients.Group(team.Name).SendAsync("message", message);
         }
 
         //https://docs.microsoft.com/en-us/aspnet/signalr/overview/guide-to-the-api/working-with-groups
@@ -115,13 +115,14 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
         //    return base.OnReconnected();
         //}
 
-        public static void UpdateTeamOfMentorRequest(string teamName, bool accepted, string message = null)
+        public void UpdateTeamOfMentorRequest(string teamName, bool accepted, string message = null)
         {
             var percentage = (20 * 100) / 100;
 
             //PUSHING DATA TO ALL CLIENTS
 
-            Clients.Group(teamName).requestUpdate(message, percentage);
+            //Clients.Group(teamName).requestUpdate(message, percentage);
+            Clients.Group(teamName).SendAsync("requestUpdate", message, percentage);
         }
     }
 }

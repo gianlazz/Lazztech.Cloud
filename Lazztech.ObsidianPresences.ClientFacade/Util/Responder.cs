@@ -15,12 +15,14 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Util
             if (mentorRequest.RequestAccepted == true && mentorRequest.DateTimeWhenProcessed != null)
             {
                 var message = $"{mentorRequest.Mentor.FirstName} accepted your request!";
-                ProgressHub.UpdateTeamOfMentorRequest(mentorRequest.TeamName, true, message);
+                var hub = new ProgressHub();
+                hub.UpdateTeamOfMentorRequest(mentorRequest.TeamName, true, message);
             }
             if (mentorRequest.RequestAccepted == false && mentorRequest.DateTimeWhenProcessed != null)
             {
                 var message = $"{mentorRequest.Mentor.FirstName} is not available right now";
-                ProgressHub.UpdateTeamOfMentorRequest(mentorRequest.TeamName, true, message);
+                var hub = new ProgressHub();
+                hub.UpdateTeamOfMentorRequest(mentorRequest.TeamName, true, message);
             }
         }
     }
