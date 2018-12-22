@@ -15,7 +15,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
         {
             if (request.RequestAccepted)
             {
-                Clients.Group(request.Team.Name).RequestUpdate(request, "Mentor Accepted Request.");
+                Clients.Group(request.TeamName).RequestUpdate(request, "Mentor Accepted Request.");
             }
         }
 
@@ -58,27 +58,26 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
 
         public override Task OnConnected()
         {
-            Cookie usersTeamCookie = null;
-            var cookie = Context.
-            if (Context.Request.Cookies.ContainsKey("team"))
-                usersTeamCookie = Context.Request.Cookies["team"];
+            string usersTeamCookie = null;
+            if (Context.GetHttpContext().Request.Cookies.ContainsKey("team"))
+                usersTeamCookie = Context.GetHttpContext().Request.Cookies["team"];
             if (usersTeamCookie != null)
             {
-                MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = usersTeamCookie.Value });
+                MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = usersTeamCookie });
                 //string name = Context.User.Identity.Name;
 
                 //Groups.Add(Context.ConnectionId, name);
-                Groups.Add(Context.ConnectionId, usersTeamCookie.Value);
+                Groups.AddToGroupAsync(Context.ConnectionId, usersTeamCookie);
 
-                if (usersTeamCookie.Value != null)
+                if (usersTeamCookie != null)
                 {
-                    MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = usersTeamCookie.Value });
+                    MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = usersTeamCookie });
                     //string name = Context.User.Identity.Name;
 
                     //Groups.Add(Context.ConnectionId, name);
 
                     //Groups.Add(Context.ConnectionId, cookie.Value);
-                    Groups.Add(Context.ConnectionId, usersTeamCookie.Value);
+                    Groups.AddToGroupAsync(Context.ConnectionId, usersTeamCookie);
                 }
             }
 
