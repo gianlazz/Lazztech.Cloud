@@ -3495,3 +3495,7 @@ without strong typing. You now have to call SendAsync and the params are first t
 I've moved the UpdateTeamOfMentorRequest() from the hackathanmanager Functions class to the ProgressHub class and made it non static.
 I'm not sure if I should be using some kind of buit in aspnetcore di to request that hub but for now I'm just newing it up in the 
 responder class and I'm not sure if that will cause problems.
+
+Soon I'm going to have to setup twilio's webhook to point to my local machine with a ngrock tunnel to start testing the signalr
+setup. I'm also going to need to consider how to handle the lack of on reconnected and refactore over to the proper nomenclature to
+how I'm now handeling requests on a per connection, or device rather, basis.
