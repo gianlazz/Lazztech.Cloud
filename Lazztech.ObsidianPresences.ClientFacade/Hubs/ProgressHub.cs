@@ -43,17 +43,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
             Clients.Group(team.Name).SendAsync("message", message);
         }
 
-        //https://docs.microsoft.com/en-us/aspnet/signalr/overview/guide-to-the-api/working-with-groups
-        //public Task JoinRoom(string roomName)
-        //{
-        //    return Groups.Add(Context.ConnectionId, roomName);
-        //}
-
-        //public Task LeaveRoom(string roomName)
-        //{
-        //    return Groups.Remove(Context.ConnectionId, roomName);
-        //}
-
         public static ConcurrentDictionary<string, Team> MyUsers = new ConcurrentDictionary<string, Team>();
 
         public override Task OnConnectedAsync()
@@ -84,11 +73,11 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
             return base.OnConnectedAsync();
         }
 
-        public override Task OnDisconnected(bool stopCalled)
+        public override Task OnDisconnectedAsync(Exception exception)
         {
             Team team;
             MyUsers.TryRemove(Context.ConnectionId, out team);
-            return base.OnDisconnected(stopCalled);
+            return base.OnDisconnectedAsync(exception);
         }
 
         //public override Task OnReconnected()
