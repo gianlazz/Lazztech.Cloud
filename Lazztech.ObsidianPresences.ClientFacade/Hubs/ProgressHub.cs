@@ -115,13 +115,13 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
         //    return base.OnReconnected();
         //}
 
-        public static void UpdateTeamOfMentorRequest(Team team, bool accepted, string message = null)
+        public static void UpdateTeamOfMentorRequest(string teamName, bool accepted, string message = null)
         {
             var percentage = (20 * 100) / 100;
 
             //PUSHING DATA TO ALL CLIENTS
 
-            Clients.Group($"{team.Name}").requestUpdate(message, percentage);
+            Clients.Group(teamName).requestUpdate(message, percentage);
         }
     }
 }
