@@ -3502,3 +3502,9 @@ how I'm now handeling requests on a per connection, or device rather, basis.
 
 It looks like this is how aspnetcore handels dependency injection for signalr hubs and may be what I want to do:
 - https://docs.microsoft.com/en-us/aspnet/core/signalr/hubcontext?view=aspnetcore-2.2#get-an-instance-of-ihubcontext-in-middleware
+
+Okay so I got the ProgressHub signalr connections to work by adding over the chat.js example to a new js file called eventManagement.js
+which builds a connection with the progressHub, from there I referenced it in the layout for the event page in a script tag to execute it.
+
+The next things to consider are the lack of a hub OnReconnected() event and manual testing to sort out the last of the work that needs
+to be done.
