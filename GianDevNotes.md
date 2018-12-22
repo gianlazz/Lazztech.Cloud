@@ -3474,3 +3474,5 @@ don't need to use the GlobalHots.ConnectionManager.GetHubContext<>();
 
 Also it looks like the Clients.Group() now only taks the string for the name of the group and doesn't have
 a paramter of string[] for excluded.
+
+Another thing is that I'll have to switch over how cookies are handled as the api has changed a bit for aspnetcore.

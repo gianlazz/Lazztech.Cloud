@@ -132,7 +132,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             app.UseSignalR(routes =>
             {
                 routes.MapHub<ChatHub>("/chatHub");
-                routes.MapHub<ProgressHub>()
+                routes.MapHub<ProgressHub>("/progressHub");
             });
 
             var defaultAdminSection = Configuration.GetSection("DefaultAdminUser");
