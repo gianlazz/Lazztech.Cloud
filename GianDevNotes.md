@@ -3442,7 +3442,7 @@ Microsoft.Extensions.Options 2.2.0 >
 Microsoft.AspNetCore.Authorization 2.2.0 >
 
 ## Tuesday, December 18, 2018
-#### Sprint 18, Add mentor request form for team name and location description, remove judges, & Team(s) sign in
+#### Sprint 18, Get Signalr working & SMS
 
 It could be useful to seed the database with a default admin account upon creation. That way I could just have certain
 details hidden to only admins or such. It would be good for the initial admin to be able to make other admins.
@@ -3455,3 +3455,22 @@ In learing how to seed the admin I found that the login looks up users by userna
 - https://stackoverflow.com/questions/23614121/identity-2-0-invalid-login-attempt
 
 http://hishambinateya.com/role-based-authorization-in-razor-pages
+
+## Friday, December 18, 2018
+#### Sprint 18, Get Signalr working & SMS
+
+I've added over the ProgressHub that I was using for the signalr in Hackathon Handler.
+There's a couple of things I'm going to have to consider while setting it up:
+- Differences between asp.net framework signalr and aspnetcore signalr
+- Aspnetcore signalr no longer has an OnReconnect()
+- I'm no longer using Team login so I'll need some kind of cookie to keep track client side of specific users
+for the case by case signalr notifications to work. This is from the result of removing the Team property 
+from the MentorRequest object for the SmsRoutingConductor.
+
+The first problem I see is that the references to GlobalHost.ConnectionManager doesn't seem to port over.
+- https://stackoverflow.com/questions/27299289/how-to-get-signalr-hub-context-in-a-asp-net-core/46319153
+So it looks like this is solved by registering the context in the startup Configure method. The you
+don't need to use the GlobalHots.ConnectionManager.GetHubContext<>();
+
+Also it looks like the Clients.Group() now only taks the string for the name of the group and doesn't have
+a paramter of string[] for excluded.
