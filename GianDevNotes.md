@@ -3485,3 +3485,6 @@ from the current Context and from there I can get to the cookies.
             //Cookie cookie = Context.Request.Cookies["team"];
             var cookie = Context.GetHttpContext().Request.Cookies["team"];
 ```
+
+For handeling aspnetcore signalr hub connection events:
+- https://docs.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-2.2#handle-events-for-a-connection

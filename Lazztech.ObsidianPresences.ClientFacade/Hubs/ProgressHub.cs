@@ -56,7 +56,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
 
         public static ConcurrentDictionary<string, Team> MyUsers = new ConcurrentDictionary<string, Team>();
 
-        public override Task OnConnected()
+        public override Task OnConnectedAsync()
         {
             string usersTeamCookie = null;
             if (Context.GetHttpContext().Request.Cookies.ContainsKey("team"))
@@ -81,7 +81,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
                 }
             }
 
-            return base.OnConnected();
+            return base.OnConnectedAsync();
         }
 
         public override Task OnDisconnected(bool stopCalled)
