@@ -85,7 +85,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                     {
                         //options.Conventions.AuthorizeFolder("/Cogneat");
                         //options.Conventions.AuthorizeFolder("/Crawler");
-                        options.Conventions.AuthorizeFolder("/Events", "RequireAdministratorRole");
+                        options.Conventions.AuthorizeFolder("/Events");
                         //options.Conventions.AuthorizeFolder("/Garden");
                         //options.Conventions.AuthorizeFolder("/Notifications");
                         options.Conventions.AuthorizeFolder("/Vision", "RequireAdministratorRole");

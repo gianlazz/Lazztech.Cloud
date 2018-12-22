@@ -60,12 +60,12 @@
                     @*<li class="nav-item"><a href="Event/Judges/" class="nav-link">Judges</a></li>*@
                 </ul>
                 @*@if (teamCookieValue != "")
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a id="registerLink" class="nav-link">Team: @teamCookieValue</a></li>
-                        <li class="nav-item"><a href="LogOut" class="nav-link">Log Out</a></li>
-                    </ul>
-                }*@
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item"><a id="registerLink" class="nav-link">Team: @teamCookieValue</a></li>
+                            <li class="nav-item"><a href="LogOut" class="nav-link">Log Out</a></li>
+                        </ul>
+                    }*@
             </div>
         </div>
     </nav>
@@ -111,14 +111,14 @@
 
     @*CHECK IF THEY'RE LOGGED IN FOR THEIR TEAM AN PROMPT IF NOT*@
     @*@{
-        if (teamCookieValue == "")
-        {
-            <script type="text/javascript">
-                $(function () {
-                    $('#TeamLoginModal').modal('show');
-                });</script>
-        }
-    }*@
+            if (teamCookieValue == "")
+            {
+                <script type="text/javascript">
+                    $(function () {
+                        $('#TeamLoginModal').modal('show');
+                    });</script>
+            }
+        }*@
 
     <div class="modal fade" id="TeamLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-dialog-center" role="document">
@@ -148,8 +148,8 @@
     </div>
 
     @*@section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }*@
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }*@
 
     @*
           <div class="modal fade" id="mentorRequestUpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
@@ -190,6 +190,8 @@
         </div>
     </div>
     @*SIGNALR EXAMPLE CODE BELOW HERE------------*@
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/eventManagement.js"></script>
     <script type="text/javascript">
         $(function () {
 
