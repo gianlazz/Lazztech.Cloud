@@ -3509,7 +3509,7 @@ which builds a connection with the progressHub, from there I referenced it in th
 The next things to consider are the lack of a hub OnReconnected() event and manual testing to sort out the last of the work that needs
 to be done.
 
-## Friday, December 22, 2018
+## Sunday, December 22, 2018
 #### Sprint 18, Get Signalr working & SMS
 
 I'm adding over the hackmathanhandler InboundSmsController for the Twilio inbound sms webhook posts.
@@ -3524,3 +3524,17 @@ As apposed to the old aspnet.framework packeges:
 Now I have to setup the ngrok extension for visual studio so that I can test out the inbound sms and SmsRoutingConductor.
 Here's details on how to get the ngrok extension installed:
 - https://stackoverflow.com/questions/48334215/vs-2017-ngrok-reports-not-installed-after-installing
+
+## Sunday, December 23, 2018
+#### Sprint 18, Get Signalr working & SMS
+
+I was having issue getting the ngrok tunnel working but was able to by turning off ssl on the clientfacade project.
+
+I think that there's something wrong with the mvc routing configuration because the InboundSmsController is not able
+to be hit.
+I was able to fix it by adding the following attribute to the InboundSmsController:
+```
+    [Route("api/[controller]")]
+```
+
+I then set the /api/InboundSms url on the twilio webhook and got it working.

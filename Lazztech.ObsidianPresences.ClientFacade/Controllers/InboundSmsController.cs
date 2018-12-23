@@ -9,6 +9,7 @@ using Twilio.AspNet.Common;
 
 namespace Lazztech.ObsidianPresences.ClientFacade.Controllers
 {
+    [Route("api/[controller]")]
     public class InboundSmsController : Controller
     {
         public IActionResult Index()
