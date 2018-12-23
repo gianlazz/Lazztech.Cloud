@@ -3456,7 +3456,7 @@ In learing how to seed the admin I found that the login looks up users by userna
 
 http://hishambinateya.com/role-based-authorization-in-razor-pages
 
-## Friday, December 18, 2018
+## Friday, December 21, 2018
 #### Sprint 18, Get Signalr working & SMS
 
 I've added over the ProgressHub that I was using for the signalr in Hackathon Handler.
@@ -3508,3 +3508,15 @@ which builds a connection with the progressHub, from there I referenced it in th
 
 The next things to consider are the lack of a hub OnReconnected() event and manual testing to sort out the last of the work that needs
 to be done.
+
+## Friday, December 22, 2018
+#### Sprint 18, Get Signalr working & SMS
+
+I'm adding over the hackmathanhandler InboundSmsController for the Twilio inbound sms webhook posts.
+It requires the following nuget packages:
+- Twilio
+- Twilio.AspNet.Core
+
+As apposed to the old aspnet.framework packeges:
+- Twilio
+- Twilio.AspNet.Common
