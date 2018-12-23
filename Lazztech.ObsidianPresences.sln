@@ -29,8 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.DIContext", "Lazzt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Sms", "Lazztech.Sms\Lazztech.Sms.csproj", "{0390E467-3158-460A-B85A-BF21E7EC0DA2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.SmsDaemon", "Lazztech.SmsDaemon\Lazztech.SmsDaemon.csproj", "{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.SrndResourcesManager", "Lazztech.SrndResourcesManager\Lazztech.SrndResourcesManager.csproj", "{74215587-FBDD-4061-A192-983CF0FE03A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.HackathonHandler.Tests", "Lazztech.HackathonHandler.Tests\Lazztech.HackathonHandler.Tests.csproj", "{2FE06807-37FC-4228-AB9A-56146CC1E6D5}"
@@ -81,10 +79,6 @@ Global
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68FF0A5D-D3CA-41B3-9BCC-6E1840D66A80}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74215587-FBDD-4061-A192-983CF0FE03A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74215587-FBDD-4061-A192-983CF0FE03A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74215587-FBDD-4061-A192-983CF0FE03A7}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -22,7 +22,6 @@
     <ProjectReference Include="..\Lazztech.DIContext\Lazztech.DIContext.csproj" />
     <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.csproj" />
     <ProjectReference Include="..\Lazztech.ObsidianPresences.Vision.Microservice.Domain\Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj" />
-    <ProjectReference Include="..\Lazztech.SmsDaemon\Lazztech.SmsDaemon.csproj" />
   </ItemGroup>
 
   <ItemGroup>
