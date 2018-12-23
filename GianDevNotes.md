@@ -3520,3 +3520,5 @@ It requires the following nuget packages:
 As apposed to the old aspnet.framework packeges:
 - Twilio
 - Twilio.AspNet.Common
+
+Now I have to setup the ngrok extension for visual studio so that I can test out the inbound sms and SmsRoutingConductor.
