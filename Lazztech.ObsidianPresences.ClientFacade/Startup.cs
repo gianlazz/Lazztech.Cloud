@@ -48,6 +48,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                     }
 
                     Thread.Sleep(500);
+                    //Task.Delay(10000);
                 }
             });
             smsThread.Start();

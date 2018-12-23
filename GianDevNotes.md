@@ -3547,3 +3547,8 @@ also it shold be a task not a thread so that I'm not trying to manage all of tha
 Another consideration that I have is that I'm going to run into issues with the public static concurrent bag
 of requests that get processed when I'm scaling this out. That would probably work best if if was hooked up to redis
 also so that they can all work of of the single redis server instead otherwise requests will get out of sync.
+
+Here's information on C# tasks vs threads:
+- https://stackoverflow.com/questions/13429129/task-vs-thread-differences
+
+However the Task.Delay() doesn't work just as the Thread.Sleep so I'm going to leave it as a thread for right now.
