@@ -42,13 +42,9 @@ namespace Lazztech.ObsidianPresences.ClientFacade
                 var conductor = new SmsRoutingConductor(DbRepo, SmsService, _responder);
                 while (2 > 1)
                 {
-                    if (SmsRoutingConductor.InboundMessages.Where(x => x.DateTimeWhenProcessed == null).Any())
-                    {
+                    if (SmsRoutingConductor.InboundMessages.Any(x => x.DateTimeWhenProcessed == null))
                         conductor.ProcessMentorRequests();
-                    }
-
                     Thread.Sleep(500);
-                    //Task.Delay(10000);
                 }
             });
             smsThread.Start();
