@@ -3538,3 +3538,12 @@ I was able to fix it by adding the following attribute to the InboundSmsControll
 ```
 
 I then set the /api/InboundSms url on the twilio webhook and got it working.
+
+One thing that I'm looking at that needs to be redone is SmsDaemon works.
+I really don't need a whole project for that. Instead I just took the thread block and starting code and put it 
+in the Startup of the ClientFacade. Idk why I thought it needed it's own cli... I'll go ahead and delete that
+also it shold be a task not a thread so that I'm not trying to manage all of that myself.
+
+Another consideration that I have is that I'm going to run into issues with the public static concurrent bag
+of requests that get processed when I'm scaling this out. That would probably work best if if was hooked up to redis
+also so that they can all work of of the single redis server instead otherwise requests will get out of sync.
