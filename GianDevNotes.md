@@ -3561,3 +3561,7 @@ Here's details on it:
 I fixed it by commenting out the requirement for the policy that requires concent being needed in the
 startup. I may want to handle this later to consider the GDPR but for now since this is so small of a project
 it doesn't seem that important.
+
+I had many references to a magic string for the "team" cookie so I went ahead and added a field to the StaticStrings
+class for it called eventUserIdCookieName to ease the refactoring process as I transistion it's responsability from
+a team identifier cookie to a user device id cookie.
