@@ -7,6 +7,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade
 {
     public class StaticStrings
     {
-        public static string VisionWebapiService => "http://lazztech.obsidianpresences.vision.microservice.webapi/";
+        public static string eventUserIdCookieName => "team";
     }
 }

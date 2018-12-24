@@ -4,22 +4,22 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @*@{
         string teamCookieValue = "";
-        if (Context.Request.Cookies["team"] != null)
+        if (Context.Request.Cookies[StaticStrings.eventUserIdCookieName] != null)
         {
-            teamCookieValue = Context.Request.Cookies["team"];
+            teamCookieValue = Context.Request.Cookies[StaticStrings.eventUserIdCookieName];
         }
     }*@
 @{
     string teamCookieValue = "";
-    if (Context.Request.Cookies["team"] == null)
+    if (Context.Request.Cookies[StaticStrings.eventUserIdCookieName] == null)
     {
         var guid = Guid.NewGuid().ToString();
         teamCookieValue = guid;
-        Context.Response.Cookies.Append("team", teamCookieValue);
+        Context.Response.Cookies.Append(StaticStrings.eventUserIdCookieName, teamCookieValue);
     }
     else
     {
-        teamCookieValue = Context.Request.Cookies["team"];
+        teamCookieValue = Context.Request.Cookies[StaticStrings.eventUserIdCookieName];
     }
 }
 

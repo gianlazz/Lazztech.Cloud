@@ -23,7 +23,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Controllers
         {
             var Db = Startup.DbRepo;
 
-            var cookie = Request.Cookies["team"];
+            var cookie = Request.Cookies[StaticStrings.eventUserIdCookieName];
 
             //CHECK IF A TEAM BY THAT PIN NUMBER EXSISTS
             if (Db.Single<Team>(x => x.PinNumber == teamPin) != null)
@@ -34,22 +34,22 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Controllers
                 {
                     //var option = new CookieOptions();
                     //option.Expires = DateTime.UtcNow.AddDays(3);
-                    //Response.Cookies["team"].Value = team.Name;
+                    //Response.Cookies[StaticStrings.eventUserIdCookieName].Value = team.Name;
                     //Response.Cookies.Append("string", team.Name, option);
-                    Response.Cookies.Append("team", team.Name, new CookieOptions() { Expires = DateTime.UtcNow.AddDays(3) });
+                    Response.Cookies.Append(StaticStrings.eventUserIdCookieName, team.Name, new CookieOptions() { Expires = DateTime.UtcNow.AddDays(3) });
 
-                    //Response.Cookies["team"].Expires = DateTime.UtcNow.AddDays(3);
+                    //Response.Cookies[StaticStrings.eventUserIdCookieName].Expires = DateTime.UtcNow.AddDays(3);
                 }
                 if (cookie != null && cookie.ToString() == "")
                 {
-                    //Response.Cookies["team"].Value = team.Name;
-                    //Response.Cookies["team"].Expires = DateTime.UtcNow.AddDays(3);
-                    Response.Cookies.Append("team", team.Name, new CookieOptions() { Expires = DateTime.UtcNow.AddDays(3) });
+                    //Response.Cookies[StaticStrings.eventUserIdCookieName].Value = team.Name;
+                    //Response.Cookies[StaticStrings.eventUserIdCookieName].Expires = DateTime.UtcNow.AddDays(3);
+                    Response.Cookies.Append(StaticStrings.eventUserIdCookieName, team.Name, new CookieOptions() { Expires = DateTime.UtcNow.AddDays(3) });
                 }
                 //if (cookie != null && cookie.Value == "")
                 //{
-                //    Response.Cookies["team"].Value = team.Name;
-                //    Response.Cookies["team"].Expires = DateTime.UtcNow.AddDays(3);
+                //    Response.Cookies[StaticStrings.eventUserIdCookieName].Value = team.Name;
+                //    Response.Cookies[StaticStrings.eventUserIdCookieName].Expires = DateTime.UtcNow.AddDays(3);
                 //}
             }
             //return Redirect("");
@@ -58,10 +58,10 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Controllers
 
         //public ActionResult LogOut()
         //{
-        //    HttpCookie cookie = Request.Cookies["team"];
+        //    HttpCookie cookie = Request.Cookies[StaticStrings.eventUserIdCookieName];
         //    if (cookie != null)
         //    {
-        //        Response.Cookies["team"].Value = "";
+        //        Response.Cookies[StaticStrings.eventUserIdCookieName].Value = "";
         //    }
         //    else
         //    {

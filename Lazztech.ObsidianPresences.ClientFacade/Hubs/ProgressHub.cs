@@ -29,7 +29,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
 
         public void AddConnectionToTeamGroup()
         {
-            var teamCookieValue = Context.GetHttpContext().Request.Cookies["team"];
+            var teamCookieValue = Context.GetHttpContext().Request.Cookies[StaticStrings.eventUserIdCookieName];
 
             if (!string.IsNullOrWhiteSpace(teamCookieValue))
             {
@@ -48,8 +48,8 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
         public override Task OnConnectedAsync()
         {
             string usersTeamCookie = null;
-            if (Context.GetHttpContext().Request.Cookies.ContainsKey("team"))
-                usersTeamCookie = Context.GetHttpContext().Request.Cookies["team"];
+            if (Context.GetHttpContext().Request.Cookies.ContainsKey(StaticStrings.eventUserIdCookieName))
+                usersTeamCookie = Context.GetHttpContext().Request.Cookies[StaticStrings.eventUserIdCookieName];
             if (usersTeamCookie != null)
             {
                 MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = usersTeamCookie });
@@ -82,7 +82,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
 
         //public override Task OnReconnected()
         //{
-        //    Cookie cookie = Context.Request.Cookies["team"];
+        //    Cookie cookie = Context.Request.Cookies[StaticStrings.eventUserIdCookieName];
         //    if (cookie != null)
         //    {
         //        MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = cookie.Value });
