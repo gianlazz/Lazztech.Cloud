@@ -3552,3 +3552,12 @@ Here's information on C# tasks vs threads:
 - https://stackoverflow.com/questions/13429129/task-vs-thread-differences
 
 However the Task.Delay() doesn't work just as the Thread.Sleep so I'm going to leave it as a thread for right now.
+
+I'm currently having issues getting my cookies to save to the clients browser.
+Okay so I solved the cookie issue. It looks like there's a configuration for the cookie policy in the startup.
+This seems like it's for the is for the GDPR law.
+Here's details on it:
+- https://stackoverflow.com/questions/52407647/net-core-response-cookies-append-not-working-as-some-station
+I fixed it by commenting out the requirement for the policy that requires concent being needed in the
+startup. I may want to handle this later to consider the GDPR but for now since this is so small of a project
+it doesn't seem that important.

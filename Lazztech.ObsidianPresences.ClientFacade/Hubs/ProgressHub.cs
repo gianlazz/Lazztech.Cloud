@@ -47,6 +47,19 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
 
         public override Task OnConnectedAsync()
         {
+            string deviceConnectionId = "";
+            if (Context.GetHttpContext().Request.Cookies["team"] == null)
+            {
+                var guid = Guid.NewGuid().ToString();
+                deviceConnectionId = guid;
+                Context.GetHttpContext().Response.Cookies.Append("team", deviceConnectionId);
+            }
+            else
+            {
+                deviceConnectionId = Context.GetHttpContext().Request.Cookies["team"];
+            }
+
+
             string usersTeamCookie = null;
             if (Context.GetHttpContext().Request.Cookies.ContainsKey("team"))
                 usersTeamCookie = Context.GetHttpContext().Request.Cookies["team"];

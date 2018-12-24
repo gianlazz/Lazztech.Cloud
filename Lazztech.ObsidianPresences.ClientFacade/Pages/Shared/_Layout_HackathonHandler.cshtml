@@ -3,12 +3,27 @@
 *@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @*@{
+        string teamCookieValue = "";
+        if (Context.Request.Cookies["team"] != null)
+        {
+            teamCookieValue = Context.Request.Cookies["team"];
+        }
+    }*@
+@{
     string teamCookieValue = "";
-    if (Context.Request.Cookies["team"] != null)
+    if (Context.Request.Cookies["team"] == null)
+    {
+        var guid = Guid.NewGuid().ToString();
+        teamCookieValue = guid;
+        Context.Response.Cookies.Append("team", teamCookieValue,
+            new Microsoft.AspNetCore.Http.CookieOptions()
+            { Expires = DateTime.Now.AddDays(3)});
+    }
+    else
     {
         teamCookieValue = Context.Request.Cookies["team"];
     }
-}*@
+}
 
 <!DOCTYPE html>
 <html>
