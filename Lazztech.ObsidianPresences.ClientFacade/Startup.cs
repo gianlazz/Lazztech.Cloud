@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Routing;
 using HackathonManager.Sms;
 using Lazztech.ObsidianPresences.ClientFacade.Hubs;
 using System.Threading;
+using Lazztech.ObsidianPresences.ClientFacade.Util;
 
 namespace Lazztech.ObsidianPresences.ClientFacade
 {
@@ -25,7 +26,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
     {
         public static HackathonManager.RepositoryPattern.IRepository DbRepo = HackathonManager.DIContext.Context.GetMLabsMongoDbRepo();
         public static ISmsService SmsService = HackathonManager.DIContext.Context.GetTwilioSmsService();
-        public static IRequestResponder _responder;
+        public static IRequestResponder _responder = new Responder();
 
         public Startup(IConfiguration configuration)
         {
