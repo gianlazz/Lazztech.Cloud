@@ -15,9 +15,7 @@
     {
         var guid = Guid.NewGuid().ToString();
         teamCookieValue = guid;
-        Context.Response.Cookies.Append("team", teamCookieValue,
-            new Microsoft.AspNetCore.Http.CookieOptions()
-            { Expires = DateTime.Now.AddDays(3)});
+        Context.Response.Cookies.Append("team", teamCookieValue);
     }
     else
     {
