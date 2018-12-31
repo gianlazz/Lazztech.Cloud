@@ -17,8 +17,6 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
     {
         public Snapshot Snap { get; set; }
 
-        private string VisionServiceUrl => StaticStrings.VisionWebapiService;
-
         public bool ConnectedToServices = false;
 
         public void OnGet(string id)
