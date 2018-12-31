@@ -119,6 +119,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.AddEfDiagrams<ApplicationDbContext>();
             }
             else
             {
