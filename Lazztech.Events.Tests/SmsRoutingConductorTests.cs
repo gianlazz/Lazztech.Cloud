@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Lazztech.Events.Tests
 {
-    public class UnitTest1
+    public class SmsRoutingConductorTests
     {
         [Fact]
         public void Test1()
