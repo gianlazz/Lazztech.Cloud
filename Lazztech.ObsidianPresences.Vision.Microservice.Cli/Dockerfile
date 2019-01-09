@@ -23,17 +23,17 @@ RUN apt-get update -y &&\
     curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 WORKDIR /src
 COPY Lazztech.Cloud.sln ./
-COPY ["Lazztech.Cloud.Vision.Microservice.Webapi/Lazztech.Cloud.Vision.Microservice.Webapi.csproj", "Lazztech.Cloud.Vision.Microservice.Webapi/"]
+COPY ["Lazztech.Cloud.Vision.Webapi/Lazztech.Cloud.Vision.Webapi.csproj", "Lazztech.Cloud.Vision.Webapi/"]
 COPY Lazztech.Cloud.CloudWebApp/Lazztech.Cloud.CloudWebApp.csproj Lazztech.Cloud.CloudWebApp/
-COPY Lazztech.Cloud.Vision.Microservice.Cli/Lazztech.Cloud.Vision.Microservice.Cli.csproj Lazztech.Cloud.Vision.Microservice.Cli/
-COPY Lazztech.Cloud.Vision.Microservice.GoogleCloudVision/Lazztech.Cloud.Vision.Microservice.GoogleCloudVision.csproj Lazztech.Cloud.Vision.Microservice.GoogleCloudVision/
-COPY Lazztech.Cloud.Vision.Microservice.Domain/Lazztech.Cloud.Vision.Microservice.Domain.csproj Lazztech.Cloud.Vision.Microservice.Domain/
-COPY Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj Lazztech.Cloud.Vision.Microservice.Tests/
+COPY Lazztech.Cloud.Vision.Cli/Lazztech.Cloud.Vision.Cli.csproj Lazztech.Cloud.Vision.Cli/
+COPY Lazztech.Cloud.Vision.GoogleCloudVision/Lazztech.Cloud.Vision.GoogleCloudVision.csproj Lazztech.Cloud.Vision.GoogleCloudVision/
+COPY Lazztech.Cloud.Vision.Domain/Lazztech.Cloud.Vision.Domain.csproj Lazztech.Cloud.Vision.Domain/
+COPY Lazztech.Cloud.Vision.Tests/Lazztech.Cloud.Vision.Tests.csproj Lazztech.Cloud.Vision.Tests/
 COPY docker-compose.dcproj ./
 # RUN dotnet restore -nowarn:msb3202,nu1503
 RUN dotnet restore Lazztech.Cloud.sln -nowarn:msb3202,nu1503
 COPY . .
-WORKDIR /src/Lazztech.Cloud.Vision.Microservice.Cli
+WORKDIR /src/Lazztech.Cloud.Vision.Cli
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
@@ -42,4 +42,4 @@ RUN dotnet publish -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Lazztech.Cloud.Vision.Microservice.Cli.dll"]
+ENTRYPOINT ["dotnet", "Lazztech.Cloud.Vision.Cli.dll"]

@@ -1,5 +1,5 @@
-﻿using Lazztech.Cloud.Vision.Microservice.Domain;
-using Lazztech.Cloud.Vision.Microservice.Domain.Models;
+﻿using Lazztech.Cloud.Vision.Domain;
+using Lazztech.Cloud.Vision.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

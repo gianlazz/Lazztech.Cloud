@@ -5,8 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Lazztech.Cloud.Vision.Microservice.Domain;
-using Lazztech.Cloud.Vision.Microservice.Domain.Models;
+using Lazztech.Cloud.Vision.Domain;
+using Lazztech.Cloud.Vision.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
@@ -60,7 +60,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Vision
         }
 
         ////Hosted web API REST Service base url
-        //private string baseurl = "http://lazztech.Cloud.vision.microservice.webapi/";
+        //private string baseurl = "http://lazztech.Cloud.vision.webapi/";
 
         //private async Task<List<Snapshot>> CallSnapsEndpoint()
         //{

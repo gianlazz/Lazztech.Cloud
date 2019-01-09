@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-#  lazztech.Cloud.vision.microservice.cli:
+#  lazztech.Cloud.vision.cli:
 #    image: lazztechobsidianpresensevisionmicroservicecli
 #    volumes:
 ##      - /Users/gianlazzarini/Desktop/face_recognition:/face/
@@ -10,7 +10,7 @@ services:
 #      - lazztech-cloud-data:/face/
 #    build:
 #      context: .
-#      dockerfile: Lazztech.Cloud.Vision.Microservice.Cli/Dockerfile
+#      dockerfile: Lazztech.Cloud.Vision.Cli/Dockerfile
 
   lazztech.Cloud.clientfacade:
     image: lazztechCloudclientfacade

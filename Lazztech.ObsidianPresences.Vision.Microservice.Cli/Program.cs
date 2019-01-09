@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Lazztech.Cloud.Vision.Microservice.Domain;
-using Lazztech.Cloud.Vision.Microservice.Domain.Models;
-using Lazztech.Cloud.Vision.Microservice.GoogleCloudVision;
+using Lazztech.Cloud.Vision.Domain;
+using Lazztech.Cloud.Vision.Domain.Models;
 using Newtonsoft.Json;
 
-namespace Lazztech.Cloud.Vision.Microservice.Cli
+namespace Lazztech.Cloud.Vision.Cli
 {
     public class Program
     {

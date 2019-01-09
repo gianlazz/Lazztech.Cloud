@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Lazztech.Cloud.Vision.Microservice.Domain
+namespace Lazztech.Cloud.Vision.Domain
 {
     public class FaceRecognitionProcess : Iface_recognition
     {

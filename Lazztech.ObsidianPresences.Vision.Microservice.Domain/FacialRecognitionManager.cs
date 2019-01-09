@@ -1,11 +1,11 @@
-﻿using Lazztech.Cloud.Vision.Microservice.Domain.Models;
+﻿using Lazztech.Cloud.Vision.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using static Lazztech.Cloud.Vision.Microservice.Domain.Models.Snapshot;
+using static Lazztech.Cloud.Vision.Domain.Models.Snapshot;
 
-namespace Lazztech.Cloud.Vision.Microservice.Domain
+namespace Lazztech.Cloud.Vision.Domain
 {
     public class FacialRecognitionManager
     {

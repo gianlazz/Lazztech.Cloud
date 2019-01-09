@@ -75,7 +75,7 @@ Setup interface for FacialRecognitionManager and a unit test against the resulti
 
 Adding reference to domain to the testing layer requires a kind of long chaned command:
 
-`dotnet add Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj reference Lazztech.Cloud.Vision.Microservice.Domain/Lazztech.Cloud.Vision.Microservice.Domain.csproj`
+`dotnet add Lazztech.Cloud.Vision.Tests/Lazztech.Cloud.Vision.Tests.csproj reference Lazztech.Cloud.Vision.Domain/Lazztech.Cloud.Vision.Domain.csproj`
 
 `dotnet add [Project to be added] reference [project to get reference to other project]`
 
@@ -103,14 +103,14 @@ Maybe it would be easier to just use xunit instead? I'm having some issues debug
 Yeah it looks like I'm going to have a smoother development experience if I transistion to using xunit instead of NUnit with with dotnet core.
 https://xunit.github.io/docs/why-did-we-build-xunit-1.0.html
 ```
-dotnet sln remove Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj
-rm -r Lazztech.Cloud.Vision.Microservice.Tests/
-mkdir Lazztech.Cloud.Vision.Microservice.Tests/
-cd Lazztech.Cloud.Vision.Microservice.Tests
+dotnet sln remove Lazztech.Cloud.Vision.Tests/Lazztech.Cloud.Vision.Tests.csproj
+rm -r Lazztech.Cloud.Vision.Tests/
+mkdir Lazztech.Cloud.Vision.Tests/
+cd Lazztech.Cloud.Vision.Tests
 dotnet new xunit
 cd ..
-dotnet sln add Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj
-dotnet add Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj reference Lazztech.Cloud.Vision.Microservice.Domain/Lazztech.Cloud.Vision.Microservice.Domain.csproj
+dotnet sln add Lazztech.Cloud.Vision.Tests/Lazztech.Cloud.Vision.Tests.csproj
+dotnet add Lazztech.Cloud.Vision.Tests/Lazztech.Cloud.Vision.Tests.csproj reference Lazztech.Cloud.Vision.Domain/Lazztech.Cloud.Vision.Domain.csproj
 ```
 I then clicked restore on the vscode prompt.
 
@@ -129,7 +129,7 @@ Okay the .NET TEST EXPLORERER: issue "Please open or set the test project..." co
 https://github.com/formulahendry/vscode-dotnet-test-explorer/issues/39
 
 https://github.com/formulahendry/vscode-dotnet-test-explorer
-Trying adding `"dotnet-test-explorer.testProjectPath": "Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj",` to the workspace settings.
+Trying adding `"dotnet-test-explorer.testProjectPath": "Lazztech.Cloud.Vision.Tests/Lazztech.Cloud.Vision.Tests.csproj",` to the workspace settings.
 
 ## Thursday August 2, 2018
 ## Sprint 0: Unit Tests & Snapshot Coordinates
@@ -320,19 +320,19 @@ Alright to do this it's time to get the docker-compose.dcsproj running in vscode
 ```
 Step 12/21 : RUN dotnet restore -nowarn:msb3202,nu1503
  ---> Running in c0fe86f9318e
-/usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj" was not found. [/src/Lazztech.Cloud.sln]
+/usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/Lazztech.Cloud.Vision.Tests/Lazztech.Cloud.Vision.Tests.csproj" was not found. [/src/Lazztech.Cloud.sln]
 /usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/docker-compose.dcproj" was not found. [/src/Lazztech.Cloud.sln]
-ERROR: Service 'lazztech.Cloud.vision.microservice.cli' failed to build: The command '/bin/sh -c dotnet restore -nowarn:msb3202,nu1503' returned a non-zero code: 1
+ERROR: Service 'lazztech.Cloud.vision.cli' failed to build: The command '/bin/sh -c dotnet restore -nowarn:msb3202,nu1503' returned a non-zero code: 1
 ```
 Hmm it also looks like vs4mac can't run it in release either, only debug. I wonder if that could be related? Yup it looks like it is... vs4mac build error output says:
 ```
 Step 12/21 : RUN dotnet restore -nowarn:msb3202,nu1503
      ---> Running in 03ee26a83aea
-    /usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj" was not found. [/src/Lazztech.Cloud.sln]
+    /usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/Lazztech.Cloud.Vision.Tests/Lazztech.Cloud.Vision.Tests.csproj" was not found. [/src/Lazztech.Cloud.sln]
     /usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/docker-compose.dcproj" was not found. [/src/Lazztech.Cloud.sln]
-    Service 'lazztech.Cloud.vision.microservice.cli' failed to build: The command '/bin/sh -c dotnet restore -nowarn:msb3202,nu1503' returned a non-zero code: 1
-    /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : Building lazztech.Cloud.vision.microservice.cli
-    /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : Service 'lazztech.Cloud.vision.microservice.cli' failed to build: The command '/bin/sh -c dotnet restore -nowarn:msb3202,nu1503' returned a non-zero code: 1.
+    Service 'lazztech.Cloud.vision.cli' failed to build: The command '/bin/sh -c dotnet restore -nowarn:msb3202,nu1503' returned a non-zero code: 1
+    /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : Building lazztech.Cloud.vision.cli
+    /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : Service 'lazztech.Cloud.vision.cli' failed to build: The command '/bin/sh -c dotnet restore -nowarn:msb3202,nu1503' returned a non-zero code: 1.
     /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : 
     /Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/docker/MonoDevelop.Docker/MSbuild/Sdks/Microsoft.Docker.Sdk/build/Microsoft.Docker.targets(111,5): error : For more troubleshooting information, go to http://aka.ms/DockerToolsTroubleshooting
 Done building target "DockerComposeBuild" in project "docker-compose.dcproj" -- FAILED.
@@ -351,7 +351,7 @@ https://github.com/dotnet/dotnet-docker/pull/430
 Okay so it failing when running `docker-compose up` could be related to the version of the base image.
 
 No actually it looks like it's just throwing an error because it can't find the .Tests project? Oh okay after adding this line below it resolved that issue and now is back to a familiar one.
-```COPY Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj Lazztech.Cloud.Vision.Microservice.Tests/```
+```COPY Lazztech.Cloud.Vision.Tests/Lazztech.Cloud.Vision.Tests.csproj Lazztech.Cloud.Vision.Tests/```
 Now it says this which looks to me like I need to make sure that docker file copies over every project in the solution file? I'm not sure it would sense for one file to have the docker-compose but I'll give it a try.
 ```/usr/share/dotnet/sdk/2.1.302/NuGet.targets(239,5): error MSB3202: The project file "/src/docker-compose.dcproj" was not found. [/src/Lazztech.Cloud.sln]```
 
@@ -467,7 +467,7 @@ dockerfile build output:
 Downloading https://vsdebugger.azureedge.net/vsdbg-15-7-20425-2/vsdbg-linux-x64.zip
 
 ERROR: Command 'unzip' not found. Install 'unzip' for this script to work.
-ERROR: Service 'lazztech.Cloud.vision.microservice.cli' failed to build: The command '/bin/sh -c curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg' returned a non-zero code: 1
+ERROR: Service 'lazztech.Cloud.vision.cli' failed to build: The command '/bin/sh -c curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg' returned a non-zero code: 1
 ```
 The launch configuration seems to be coming along however the container runs and then closes on completion. I believe from the documentation that I need to add a command to keep it running.
 I think that it's just missing the build task.
@@ -799,7 +799,7 @@ So yeah to get it working roughly to build out the front end I'm going to create
 
 Created temporary coupling issue with:
 ```
-dotnet add Lazztech.Cloud.CloudWebApp/Lazztech.Cloud.CloudWebApp.csproj reference Lazztech.Cloud.Vision.Microservice.Domain/Lazztech.Cloud.Vision.Microservice.Domain.csproj
+dotnet add Lazztech.Cloud.CloudWebApp/Lazztech.Cloud.CloudWebApp.csproj reference Lazztech.Cloud.Vision.Domain/Lazztech.Cloud.Vision.Domain.csproj
 ```
 
 Hmm now it could be convenient to move the serialization and deserialization code to the domain... But I want to keep it pure. idk. Doesn't aspnet core mvc/razor projects have built in serialization/deserialization by convention?
@@ -993,10 +993,10 @@ I've been blocked by some kind of compilation error:
 2>  File "/usr/lib/python3.5/subprocess.py", line 271, in check_call
 2>    raise CalledProcessError(retcode, cmd)
 2>subprocess.CalledProcessError: Command '['cmake', '--build', '.', '--config', 'Release', '--', '-j1']' returned non-zero exit status 2
-2>Service 'lazztech.Cloud.vision.microservice.cli' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get install -y python3-pip &&    pip3 install face_recognition' returned a non-zero code: 1
+2>Service 'lazztech.Cloud.vision.cli' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get install -y python3-pip &&    pip3 install face_recognition' returned a non-zero code: 1
 2>[0m
-2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : Building lazztech.Cloud.vision.microservice.cli
-2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : Service 'lazztech.Cloud.vision.microservice.cli' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get install -y python3-pip &&    pip3 install face_recognition' returned a non-zero code: 1.
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : Building lazztech.Cloud.vision.cli
+2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : Service 'lazztech.Cloud.vision.cli' failed to build: The command '/bin/sh -c apt-get update -y &&    apt-get install -y python3 &&    apt-get install -y python3-setuptools &&    apt-get install -y python3-dev &&    apt-get install -y build-essential cmake &&    apt-get install -y libopenblas-dev liblapack-dev &&    apt-get install -y git &&    git clone https://github.com/davisking/dlib.git &&    cd dlib && ls &&    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --no DLIB_USE_CUDA &&    apt-get install -y python3-pip &&    pip3 install face_recognition' returned a non-zero code: 1.
 2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : 
 2>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\build\Microsoft.VisualStudio.Docker.Compose.targets(365,5): error : For more troubleshooting information, go to http://aka.ms/DockerToolsTroubleshooting
 2>Done building project "docker-compose.dcproj" -- FAILED.
@@ -1177,7 +1177,7 @@ So it looks like the two different ports are one for http and the other for http
 The Output in vs2017 is showing:
 ```
 fail: Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware[0]
-Lazztech.Cloud.Vision.Microservice.WebAPI>       'MS-ASPNETCORE-TOKEN' does not match the expected pairing token '421f95e9-791b-4d67-a848-b49bef5050fc', request rejected.
+Lazztech.Cloud.Vision.WebAPI>       'MS-ASPNETCORE-TOKEN' does not match the expected pairing token '421f95e9-791b-4d67-a848-b49bef5050fc', request rejected.
 ```
 
 Maybe I should make a new project for now without https added during the project creation? After all I'm ultimately probably going to only expose an application facade/api gateway/composition api or what ever the patterns called. I could just defer concerns about https for now while I'm learning? 
@@ -1249,7 +1249,7 @@ It returned:
                     "IPAMConfig": null,
                     "Links": null,
                     "Aliases": [
-                        "lazztech.Cloud.vision.microservice.webapi",
+                        "lazztech.Cloud.vision.webapi",
                         "506da009d30f"
                     ],
                     "NetworkID": "69c6ec3b66c7ea271db9155defa2c57c7defdc61bfcaf8e010e098ab64ab9d59",
@@ -1277,7 +1277,7 @@ I'm trying adding to docker-compose:
     networks:
       - api
 ```
-This however doesn't seem to be enough alone as it throw this build error: `Error		Service "lazztech.Cloud.vision.microservice.webapi" uses an undefined network "api".`
+This however doesn't seem to be enough alone as it throw this build error: `Error		Service "lazztech.Cloud.vision.webapi" uses an undefined network "api".`
 
 docker-compose networking:
 - https://docs.docker.com/compose/networking/
@@ -1297,9 +1297,9 @@ I've tried all of these so far:
         //string Baseurl = "http://localhost:8080/";
         //string Baseurl = "http://localhost:50199/";
         //string Baseurl = "http://lazztechobsidianpresensevisionmicroservicewebapi:50199/";
-        string Baseurl = "http://lazztech.Cloud.vision.microservice.webapi:8080/";
+        string Baseurl = "http://lazztech.Cloud.vision.webapi:8080/";
         //string Baseurl = "http://172.20.0.3:5000/";
-        //string Baseurl = "http://dockercompose18306792969269339587_lazztech.Cloud.vision.microservice.webapi_1:8080";
+        //string Baseurl = "http://dockercompose18306792969269339587_lazztech.Cloud.vision.webapi_1:8080";
 ```
 
 **Define Docker Container Networking so Containers can Communicate** - https://www.youtube.com/watch?v=RCG-5N41FpQ
@@ -1312,7 +1312,7 @@ They're both in the same docker network and the aliases look alright.
                     "Links": null,
                     "Aliases": [
                         "c29edb6f84c8",
-                        "lazztech.Cloud.vision.microservice.webapi"
+                        "lazztech.Cloud.vision.webapi"
                     ],
                     "NetworkID": "69c6ec3b66c7ea271db9155defa2c57c7defdc61bfcaf8e010e098ab64ab9d59",
                     "EndpointID": "47cd3916cd72c33dca8b6a8587e9cad229aced327a87defbf1952bee62da9b74",
@@ -1350,7 +1350,7 @@ They're both in the same docker network and the aliases look alright.
             }
 ```
 
-Okay so opening an interactive terminal in the webfrontend container with `docker exec -it f1c767df6163 sh` and running `curl c29edb6f84c8/api/values` returns the results from the api in the other contianer. `c29edb6f84c8` is one of the aliases in the network above. Running `curl lazztech.Cloud.vision.microservice.webapi/api/values` also works! I wonder if the problem is that I was specifying the ports wrong? Because I think it just uses port 80 in the curl statment since port 80 is the default. Yeah if I leave it without a port it works or if I specify port 80 it works but that's it.
+Okay so opening an interactive terminal in the webfrontend container with `docker exec -it f1c767df6163 sh` and running `curl c29edb6f84c8/api/values` returns the results from the api in the other contianer. `c29edb6f84c8` is one of the aliases in the network above. Running `curl lazztech.Cloud.vision.webapi/api/values` also works! I wonder if the problem is that I was specifying the ports wrong? Because I think it just uses port 80 in the curl statment since port 80 is the default. Yeah if I leave it without a port it works or if I specify port 80 it works but that's it.
 
 Yay! `string Baseurl = "http://c29edb6f84c8/";` worked!
 
@@ -1358,7 +1358,7 @@ I messed with the `depends_on` value in the docker-compose by commenting it out 
 
 Here's some more info about the `depends_on` paramter for docker-compose: https://docs.docker.com/compose/compose-file/#depends_on
 
-I wonder if it doesn't work with `lazztech.Cloud.vision.microservice.webapi` as the network baseurl despite it working with curl from the container terminal because of some aspnet issue with capitalization? Because this network alias does seem to be case sensistive.
+I wonder if it doesn't work with `lazztech.Cloud.vision.webapi` as the network baseurl despite it working with curl from the container terminal because of some aspnet issue with capitalization? Because this network alias does seem to be case sensistive.
 
 Yup so case sensistivity in urls seems to be the issue! When I put a breakpoint in the pages code making a new Uri from the base url it doesn't retain the case sensitivity in most of the fields I saw when I moused over it. And the casing matters.
 
@@ -1436,7 +1436,7 @@ I think I actually may have seen face_recognitionLines null which could explain 
 I'm able to get it working right now with a combination of a breakpoint(which I'm not sure if makes a difference or not) and having both all of the known and unknown jsons deleted before starting the docker-compose(which I'm also not sure if matters).
 After re-running the docker-compose it thre an exception for face_recognitionLines being at a count of 0.
 
-Adding `depends_on - lazztech.Cloud.vision.microservice.cli` didn't fix it.
+Adding `depends_on - lazztech.Cloud.vision.cli` didn't fix it.
 
 However I wonder if maybe the directories it sees is possibly passing a json into the face_recognition causing it to crash? I should have stderr handeling on the processes. That way I can know if the face_recognition process fails instead of just returning null since it's only returning the stdout not the stderr, right? This would require me to setup event handeling so that I don't have the deadlock issue between the stdout and stderr streams that I solved the other day.
 
@@ -2008,7 +2008,7 @@ docker run -it gianlazzarini/lazztech_cicd_build bash
 I then confirmed that docker is installed however docker-compose apparently isn't included with the docker install.
 
 Okay so I got docker-compose-up.sh working with my custom docker build agent in the jenkins pipeline however now I have another error:
-`Named volume "C:\face_recognition:/face/" is used in service "lazztech.Cloud.vision.microservice.cli" but no declaration was found in the volumes section.
+`Named volume "C:\face_recognition:/face/" is used in service "lazztech.Cloud.vision.cli" but no declaration was found in the volumes section.
 `
 
 I think I'm going to have to switch from bind mount volumes to docker volumes for this to work?
@@ -2023,7 +2023,7 @@ I'm commenting out the cli from the docker-compose services since I don't really
 I'm having trouble getting the jenkins container to continue reliably after restarts.
 
 I've run into this error on jenkins after changing the volumes in the docker-compose:
-`Named volume "lazztech-cloud-data:/face:rw" is used in service "lazztech.Cloud.vision.microservice.webapi" but no declaration was found in the volumes section.
+`Named volume "lazztech-cloud-data:/face:rw" is used in service "lazztech.Cloud.vision.webapi" but no declaration was found in the volumes section.
 `
 
 Okay so in a docker-compose if I want to use a "named volume" / "docker" volume then I can't just put the volume in the service I also have to have a specific standalone volume section in the docker-compose.
@@ -2043,17 +2043,17 @@ Creating network "lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6m
 
 Creating volume "lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech-cloud-data" with default driver
 
-Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.microservice.webapi_1 ... 
+Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.webapi_1 ... 
 
 
-Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.microservice.webapi_1 ... error
+Creating lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.webapi_1 ... error
 
 
-ERROR: for lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.microservice.webapi_1  Cannot start service lazztech.Cloud.vision.microservice.webapi: driver failed programming external connectivity on endpoint lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.microservice.webapi_1 (a43cbfddf15b13aa5cc20913bc74978cc410c29fc43caaf7464d0136c6a52bca): Bind for 0.0.0.0:8081 failed: port is already allocated
+ERROR: for lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.webapi_1  Cannot start service lazztech.Cloud.vision.webapi: driver failed programming external connectivity on endpoint lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.webapi_1 (a43cbfddf15b13aa5cc20913bc74978cc410c29fc43caaf7464d0136c6a52bca): Bind for 0.0.0.0:8081 failed: port is already allocated
 
 
 
-ERROR: for lazztech.Cloud.vision.microservice.webapi  Cannot start service lazztech.Cloud.vision.microservice.webapi: driver failed programming external connectivity on endpoint lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.microservice.webapi_1 (a43cbfddf15b13aa5cc20913bc74978cc410c29fc43caaf7464d0136c6a52bca): Bind for 0.0.0.0:8081 failed: port is already allocated
+ERROR: for lazztech.Cloud.vision.webapi  Cannot start service lazztech.Cloud.vision.webapi: driver failed programming external connectivity on endpoint lazztech_master-ciwhukjkfylo2nqpn53kiqkp7fzz44n6bqia7boybhgr6mrukbya_lazztech.Cloud.vision.webapi_1 (a43cbfddf15b13aa5cc20913bc74978cc410c29fc43caaf7464d0136c6a52bca): Bind for 0.0.0.0:8081 failed: port is already allocated
 
 Encountered errors while bringing up the project.
 
@@ -2918,7 +2918,7 @@ but I've got questions about how visual studio handles other versions of the doc
 Here's the section about using multiple compose files to target different enviroments:
 - https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/multi-container-applications-docker-compose#using-multiple-docker-compose-files-to-handle-several-environments
 
-I now need to continue with adding face_recognition processing abilities to the Lazztech.Cloud.Vision.Microservice.Webapi so that I can process new images through the ClientFacade website and expose these features 
+I now need to continue with adding face_recognition processing abilities to the Lazztech.Cloud.Vision.Webapi so that I can process new images through the ClientFacade website and expose these features 
 through the ClientFacades REST Api.
 
 Also another detail is that the docker-compose doesn't have a localdb instance for the authentication to work with so I think that's why it's throwing an error. Also I want to specify in the docker-compose.override.yml that it should
@@ -2989,8 +2989,8 @@ I'm going to have to fix it before I can continue working on any improvments as 
 Here's what I'm seeing in the output when I curl a controller:
 ```
 Attribute routes with the same name 'Get' must have the same template:
-Action: 'Lazztech.Cloud.Vision.Microservice.Webapi.Controllers.ProcessedSnapshotsController.Get (Lazztech.Cloud.Vision.Microservice.Webapi)' - Template: 'api/ProcessedSnapshots/{id}'
-Action: 'Lazztech.Cloud.Vision.Microservice.Webapi.Controllers.ScanNewImageController.Get (Lazztech.Cloud.Vision.Microservice.Webapi)' - Template: 'api/ScanNewImage/{id}'
+Action: 'Lazztech.Cloud.Vision.Webapi.Controllers.ProcessedSnapshotsController.Get (Lazztech.Cloud.Vision.Webapi)' - Template: 'api/ProcessedSnapshots/{id}'
+Action: 'Lazztech.Cloud.Vision.Webapi.Controllers.ScanNewImageController.Get (Lazztech.Cloud.Vision.Webapi)' - Template: 'api/ScanNewImage/{id}'
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorBuilder.Build(ApplicationModel application)
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorProvider.GetDescriptors()
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionDescriptorProvider.OnProvidersExecuting(ActionDescriptorProviderContext context)
@@ -3018,7 +3018,7 @@ I'm now getting an error message from the image uploading to the vision service:
 
 I've run into another error from trying to have two paramters as frombody in the Post() for the vision AddNewPersonController:
 ```
-System.InvalidOperationException: Action 'Lazztech.Cloud.Vision.Microservice.Webapi.Controllers.AddNewPersonController.Post (Lazztech.Cloud.Vision.Microservice.Webapi)' has more than one parameter that was specified or inferred as bound from request body. Only one parameter per action may be bound from body. Inspect the following parameters, and use 'FromQueryAttribute' to specify bound from query, 'FromRouteAttribute' to specify bound from route, and 'FromBodyAttribute' for parameters to be bound from body:
+System.InvalidOperationException: Action 'Lazztech.Cloud.Vision.Webapi.Controllers.AddNewPersonController.Post (Lazztech.Cloud.Vision.Webapi)' has more than one parameter that was specified or inferred as bound from request body. Only one parameter per action may be bound from body. Inspect the following parameters, and use 'FromQueryAttribute' to specify bound from query, 'FromRouteAttribute' to specify bound from route, and 'FromBodyAttribute' for parameters to be bound from body:
 string base64Image
 string name
    at Microsoft.AspNetCore.Mvc.Internal.ApiBehaviorApplicationModelProvider.InferParameterBindingSources(ActionModel actionModel)

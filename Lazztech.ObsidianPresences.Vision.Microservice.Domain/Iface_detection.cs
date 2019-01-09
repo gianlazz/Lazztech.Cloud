@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Lazztech.Cloud.Vision.Microservice.Domain
+namespace Lazztech.Cloud.Vision.Domain
 {
     public interface Iface_detection
     {
