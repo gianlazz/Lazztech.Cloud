@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lazztech.ObsidianPresences.Vision.Microservice.Domain\Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj" />
+    <ProjectReference Include="..\Lazztech.ObsidianPresences.Vision.Microservice.Domain\Lazztech.Vision.Domain.csproj" />
   </ItemGroup>
 
 </Project>
