@@ -1,10 +1,6 @@
-﻿using HackathonManager.Models;
-using HackathonManager.Sms;
-using Lazztech.Cloud.ClientFacade.Hubs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Lazztech.Cloud.ClientFacade.Hubs;
+using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
 
 namespace Lazztech.Cloud.ClientFacade.Util
 {

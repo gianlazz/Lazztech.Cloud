@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HackathonManager.DTO;
-using HackathonManager.Models;
-using HackathonManager.PocoModels;
-using HackathonManager.Sms;
+﻿using HackathonManager.Sms;
+using Lazztech.Cloud.ClientFacade.Data.Entities;
+using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace Lazztech.Cloud.ClientFacade.Controllers
 {

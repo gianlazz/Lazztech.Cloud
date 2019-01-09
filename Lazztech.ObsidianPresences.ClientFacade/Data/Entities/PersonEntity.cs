@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lazztech.Cloud.ClientFacade.Data.Entities
 {
-    public class Person
+    public class PersonEntity
     {
         public int Id { get; set; }
         public DateTime CreationDate { get; set; }

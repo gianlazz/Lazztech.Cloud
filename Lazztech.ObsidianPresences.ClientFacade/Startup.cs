@@ -1,26 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using HackathonManager.Sms;
+using Lazztech.Cloud.ClientFacade.Data;
+using Lazztech.Cloud.ClientFacade.Hubs;
+using Lazztech.Cloud.ClientFacade.Util;
+using Lazztech.Events.Dto.Interfaces;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
-using Lazztech.Cloud.ClientFacade.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
-using HackathonManager.Interfaces;
-using Microsoft.AspNetCore.Routing;
-using HackathonManager.Sms;
-using Lazztech.Cloud.ClientFacade.Hubs;
-using System.Threading;
-using Lazztech.Cloud.ClientFacade.Util;
-using MongoDB.Driver;
 using MongoDB.Bson.Serialization.Conventions;
+using MongoDB.Driver;
+using Swashbuckle.AspNetCore.Swagger;
+using System.Linq;
+using System.Threading;
 
 namespace Lazztech.Cloud.ClientFacade
 {
@@ -28,7 +24,7 @@ namespace Lazztech.Cloud.ClientFacade
     {
         public IConfiguration Configuration { get; }
 
-        public static HackathonManager.RepositoryPattern.IRepository DbRepo;
+        public static IRepository DbRepo;
         public static ISmsService SmsService;
         public static IRequestResponder Responder = new Responder();
         public static IMongoDatabase Db;
@@ -37,7 +33,8 @@ namespace Lazztech.Cloud.ClientFacade
         {
             Configuration = configuration;
 
-            var smsThread = new Thread(() => {
+            var smsThread = new Thread(() =>
+            {
                 var conductor = new SmsRoutingConductor(DbRepo, SmsService, Responder);
                 while (2 > 1)
                 {

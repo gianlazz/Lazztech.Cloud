@@ -13,7 +13,7 @@ namespace Lazztech.Events.Dto.Models
         /// A string that uniquely identifies this message
         /// </summary>
         public string Sid { get; set; }
-        public DateTime? DateTimeWhenProcessed { get; internal set; }
+        public DateTime? DateTimeWhenProcessed { get; set; }
 
         public SmsDto()
         {

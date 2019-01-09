@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using HackathonManager.DTO;
-using Lazztech.Cloud.ClientFacade.Data;
-using HackathonManager.RepositoryPattern;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 {

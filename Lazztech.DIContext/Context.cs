@@ -1,8 +1,6 @@
-﻿using System;
-using HackathonManager.RepositoryPattern;
-using HackathonManager.MongoDB;
-using HackathonManager.Interfaces;
+﻿using HackathonManager.MongoDB;
 using HackathonManager.Sms;
+using Lazztech.Events.Dto.Interfaces;
 
 namespace HackathonManager.DIContext
 {

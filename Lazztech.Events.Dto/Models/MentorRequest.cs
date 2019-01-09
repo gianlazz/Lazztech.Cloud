@@ -9,7 +9,7 @@ namespace Lazztech.Events.Dto.Models
         public Mentor Mentor { get; set; }
         //public Team Team { get; set; }
         public string TeamName { get; set; }
-        public bool RequestAccepted { get; internal set; }
+        public bool RequestAccepted { get; set; }
         public DateTime? DateTimeWhenProcessed { get; set; }
 
         public bool? OverTaskTimeLimit { get; set; }

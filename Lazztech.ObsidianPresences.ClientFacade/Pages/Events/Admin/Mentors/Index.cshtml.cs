@@ -1,13 +1,8 @@
-﻿using System;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using HackathonManager.DTO;
-using Lazztech.Cloud.ClientFacade.Data;
-using HackathonManager.RepositoryPattern;
 
 namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 {
@@ -21,7 +16,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             _context = context;
         }
 
-        public IList<Mentor> Mentor { get;set; }
+        public IList<Mentor> Mentor { get; set; }
 
         public void OnGet()
         {

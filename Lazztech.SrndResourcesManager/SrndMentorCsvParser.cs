@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Lazztech.Events.Dto.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using HackathonManager.DTO;
 
 namespace HackathonManager
 {

@@ -1,13 +1,8 @@
-﻿using System;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using HackathonManager;
-using HackathonManager.DTO;
-using HackathonManager.PocoModels;
-using HackathonManager.RepositoryPattern;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
 {

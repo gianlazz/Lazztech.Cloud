@@ -1,23 +1,19 @@
-﻿using HackathonManager.DTO;
-using HackathonManager.Interfaces;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
-
 
 namespace HackathonManager.Sms
 {
     public class TwilioSmsService : ISmsService
     {
         // Find your Account Sid and Auth Token at twilio.com/console
-        string _accountSid;
-        string _authToken;
-        string _fromNumber;
+        private string _accountSid;
+
+        private string _authToken;
+        private string _fromNumber;
 
         public TwilioSmsService(string accountSid, string authToken, string fromNumber)
         {
@@ -52,6 +48,5 @@ namespace HackathonManager.Sms
 
             return smsDto;
         }
-
     }
 }

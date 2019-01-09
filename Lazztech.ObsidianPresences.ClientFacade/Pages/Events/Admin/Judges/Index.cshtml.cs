@@ -1,13 +1,9 @@
-﻿using System;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using HackathonManager;
-using Lazztech.Cloud.ClientFacade.Data;
-using HackathonManager.RepositoryPattern;
 
 namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Judges
 {
@@ -21,7 +17,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Judges
         //    _context = context;
         //}
 
-        public IList<Judge> Judge { get;set; }
+        public IList<Judge> Judge { get; set; }
 
         public async Task OnGetAsync()
         {

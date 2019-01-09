@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HackathonManager.DTO;
-using HackathonManager.Sms;
+﻿using HackathonManager.Sms;
+using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using Twilio.AspNet.Common;
 
 namespace Lazztech.Cloud.ClientFacade.Controllers

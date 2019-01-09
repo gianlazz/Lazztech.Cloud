@@ -1,13 +1,11 @@
-﻿using HackathonManager;
-using HackathonManager.Models;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lazztech.MongoDB
 {
-    class MongoDBLogger : ILogger
+    internal class MongoDBLogger : ILogger
     {
         private IMongoDatabase _db;
 
@@ -23,7 +21,7 @@ namespace Lazztech.MongoDB
 
         public void Log(string s)
         {
-            _db.GetCollection<Log>(typeof(Log).Name).InsertOne(new Log() { Details = s});
+            _db.GetCollection<Log>(typeof(Log).Name).InsertOne(new Log() { Details = s });
         }
     }
 }

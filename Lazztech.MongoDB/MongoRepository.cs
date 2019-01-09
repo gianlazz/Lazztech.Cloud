@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Lazztech.Events.Dto.Interfaces;
+using MongoDB.Bson.Serialization.Conventions;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using HackathonManager.RepositoryPattern;
-using MongoDB.Bson.Serialization.Conventions;
-using MongoDB.Driver;
 
 namespace HackathonManager.MongoDB
 {

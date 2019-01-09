@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Lazztech.Cloud.ClientFacade.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using HackathonManager.PocoModels;
-using Lazztech.Cloud.ClientFacade.Data.Entities;
 
 namespace Lazztech.Cloud.ClientFacade.Data
 {
@@ -17,18 +13,18 @@ namespace Lazztech.Cloud.ClientFacade.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Mentor>()
+            modelBuilder.Entity<MentorEntity>()
                 .Property(b => b.PhoneNumber)
                 .IsRequired();
 
             base.OnModelCreating(modelBuilder);
         }
 
-        DbSet<VenueRoom> VenueRooms { get; set; }
-        DbSet<Event> Events { get; set; }
-        DbSet<Person> People { get; set; }
-        DbSet<Location> Locations { get; set; }
-        DbSet<Mentor> Mentors { get; set; }
-        DbSet<Judge> Judges { get; set; }
+        private DbSet<VenueRoomEntity> VenueRooms { get; set; }
+        private DbSet<EventEntity> Events { get; set; }
+        private DbSet<PersonEntity> People { get; set; }
+        private DbSet<LocationEntity> Locations { get; set; }
+        private DbSet<MentorEntity> Mentors { get; set; }
+        private DbSet<JudgeEntity> Judges { get; set; }
     }
 }

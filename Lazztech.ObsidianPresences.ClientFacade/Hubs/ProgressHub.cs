@@ -1,10 +1,7 @@
-﻿using HackathonManager.Models;
-using HackathonManager.PocoModels;
+﻿using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lazztech.Cloud.ClientFacade.Hubs
@@ -35,7 +32,6 @@ namespace Lazztech.Cloud.ClientFacade.Hubs
             {
                 Groups.AddToGroupAsync(Context.ConnectionId, teamCookieValue);
             }
-
         }
 
         public void MessageTeam(Team team, string message)

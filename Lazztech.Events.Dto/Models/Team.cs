@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lazztech.Events.Dto.Enums;
+using System;
 
 namespace Lazztech.Events.Dto.Models
 {

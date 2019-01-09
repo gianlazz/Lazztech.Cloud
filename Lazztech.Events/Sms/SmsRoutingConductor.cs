@@ -1,10 +1,7 @@
-﻿using HackathonManager.DTO;
-using HackathonManager.Interfaces;
-using HackathonManager.Models;
-using HackathonManager.RepositoryPattern;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace HackathonManager.Sms
@@ -12,26 +9,29 @@ namespace HackathonManager.Sms
     public class SmsRoutingConductor
     {
         #region fields
-        //THE GOAL IS TO HANDLE EACH ITEM, SAVE IT TO THE DB, AND DEQUEUE IT
-        //STACK, QUEUE OR BAG??
+
         public static ConcurrentBag<SmsDto> InboundMessages = new ConcurrentBag<SmsDto>();
         public static ConcurrentBag<MentorRequest> MentorRequests = new ConcurrentBag<MentorRequest>();
 
         private readonly IRepository _db;
         private readonly ISmsService _sms;
         private readonly IRequestResponder _recResponder;
-        #endregion
+
+        #endregion fields
 
         #region ctor
+
         public SmsRoutingConductor(IRepository repository, ISmsService sms, IRequestResponder requestResponder)
         {
             _db = repository;
             _sms = sms;
             _recResponder = requestResponder;
         }
-        #endregion
+
+        #endregion ctor
 
         #region Public Methods
+
         public void ProcessMentorRequests()
         {
             foreach (var inboundSms in InboundMessages.Where(x => x.DateTimeWhenProcessed == null))
@@ -101,17 +101,20 @@ namespace HackathonManager.Sms
                 }
             }
         }
-        #endregion
+
+        #endregion Public Methods
 
         #region Helper Methods
+
         private bool IsAcceptanceResponse(SmsDto sms)
         {
-            if(sms.MessageBody.Trim().ToLower() == "y" ||
+            if (sms.MessageBody.Trim().ToLower() == "y" ||
                 sms.MessageBody.Trim().ToLower() == "yes")
                 return true;
 
             return false;
         }
+
         private bool IsRejectionResponse(SmsDto sms)
         {
             if (sms.MessageBody.Trim().ToLower() == "n" ||
@@ -120,6 +123,7 @@ namespace HackathonManager.Sms
 
             return false;
         }
+
         private bool IsCompletionResponse(SmsDto sms)
         {
             if (sms.MessageBody.Trim().ToLower() == "done")
@@ -127,11 +131,13 @@ namespace HackathonManager.Sms
 
             return false;
         }
+
         private void ResponseProcessedConfirmation(SmsDto sms)
         {
             string message = $"Response confirmed.";
             _sms.SendSms(sms.FromPhoneNumber, message);
         }
+
         private void UnIdentifiedResponse(SmsDto smsResponse, SmsDto lastSmsSent = null)
         {
             string message = $"Uncertain how to execute your objective.";
@@ -141,8 +147,8 @@ namespace HackathonManager.Sms
                 _sms.SendSms(smsResponse.FromPhoneNumber, lastSmsSent.MessageBody);
             //SHOULD IT BE ADDED TO THE OUTBOUND MESSAGES?
         }
-        #endregion
 
+        #endregion Helper Methods
     }
 
     public enum MatchType

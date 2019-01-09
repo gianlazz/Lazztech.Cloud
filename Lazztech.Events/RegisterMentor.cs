@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HackathonManager.DTO;
-using HackathonManager.RepositoryPattern;
-using HackathonManager.Interfaces;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
+using System;
 
 namespace HackathonManager
 {
@@ -24,7 +19,7 @@ namespace HackathonManager
         {
             _Repository.Add(mentor);
 
-            var mentorFromDb = _Repository.Single<DTO.Mentor>(x => x.FirstName == mentor.FirstName);
+            var mentorFromDb = _Repository.Single<Mentor>(x => x.FirstName == mentor.FirstName);
 
             _SmsService.SendSms(mentorFromDb.PhoneNumber,
             $"🔥 {mentorFromDb.FirstName}, you've been added in and registered as a mentor for this event. 🔥" +

@@ -1,10 +1,5 @@
-﻿using HackathonManager.PocoModels;
-using HackathonManager.RepositoryPattern;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
 
 namespace HackathonManager
 {
@@ -12,6 +7,7 @@ namespace HackathonManager
     {
         private int _pinNumber;
         private readonly IRepository _Db;
+
         public UniqueTeamFactory(IRepository repository)
         {
             _Db = repository;

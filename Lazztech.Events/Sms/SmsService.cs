@@ -1,10 +1,5 @@
-﻿using HackathonManager.DTO;
-using HackathonManager.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Events.Dto.Models;
 
 namespace HackathonManager
 {

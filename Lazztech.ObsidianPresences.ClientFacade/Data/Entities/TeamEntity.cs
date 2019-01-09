@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Lazztech.Cloud.ClientFacade.Data.Entities
 {
-    public class Volunteer
+    public class TeamEntity
     {
         public int Id { get; set; }
-        public Person Person { get; set; }
+        public VenueRoomEntity VenueRoom { get; set; }
+        public string Name { get; internal set; }
     }
 }
