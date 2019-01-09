@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.csproj" />
+    <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.Domain.csproj" />
   </ItemGroup>
 
 </Project>

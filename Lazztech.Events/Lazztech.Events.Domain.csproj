@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Sms\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Lazztech.Events.Dto\Lazztech.Events.Dto.csproj" />
   </ItemGroup>
 

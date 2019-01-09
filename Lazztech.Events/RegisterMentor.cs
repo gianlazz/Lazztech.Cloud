@@ -2,7 +2,7 @@
 using Lazztech.Events.Dto.Models;
 using System;
 
-namespace HackathonManager
+namespace Lazztech.Events.Domain
 {
     public class RegisterMentor
     {

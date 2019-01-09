@@ -1,7 +1,7 @@
 ﻿using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 
-namespace HackathonManager
+namespace Lazztech.Events.Domain.Sms
 {
     public class SmsService : ISmsService
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HackathonManager
+namespace Lazztech.Events.Domain
 {
     public class PinGenerator
     {

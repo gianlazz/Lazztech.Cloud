@@ -4,7 +4,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Linq;
 
-namespace HackathonManager.Sms
+namespace Lazztech.Events.Domain.Sms
 {
     public class SmsRoutingConductor
     {

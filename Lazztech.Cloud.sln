@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Vision.Tests", "La
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Cloud.ClientFacade", "Lazztech.ObsidianPresences.ClientFacade\Lazztech.Cloud.ClientFacade.csproj", "{EE9BDD93-BBC6-44BD-AA70-55722D9548AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events", "Lazztech.Events\Lazztech.Events.csproj", "{E797B447-4C17-414D-B11C-A42D0A21E7F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.Domain", "Lazztech.Events\Lazztech.Events.Domain.csproj", "{E797B447-4C17-414D-B11C-A42D0A21E7F9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.MongoDB", "Lazztech.MongoDB\Lazztech.MongoDB.csproj", "{171A65AF-B92F-4080-B44C-C9CB9769A2BE}"
 EndProject
@@ -29,9 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Sms", "Lazztech.Sm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.SrndResourcesManager", "Lazztech.SrndResourcesManager\Lazztech.SrndResourcesManager.csproj", "{74215587-FBDD-4061-A192-983CF0FE03A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Events.Tests", "Lazztech.Events.Tests\Lazztech.Events.Tests.csproj", "{CF34E0F5-D271-472D-9441-DD1EF330A7C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.Tests", "Lazztech.Events.Tests\Lazztech.Events.Tests.csproj", "{CF34E0F5-D271-472D-9441-DD1EF330A7C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Events.Dto", "Lazztech.Events.Dto\Lazztech.Events.Dto.csproj", "{6AA017D3-CCBB-4197-AA45-32B4B26D56F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.Dto", "Lazztech.Events.Dto\Lazztech.Events.Dto.csproj", "{6AA017D3-CCBB-4197-AA45-32B4B26D56F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

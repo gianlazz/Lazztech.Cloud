@@ -1,7 +1,8 @@
-﻿using Lazztech.Events.Dto.Interfaces;
+﻿using Lazztech.Events.Domain;
+using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 
-namespace HackathonManager
+namespace Lazztech.Events.Domain
 {
     public class UniqueTeamFactory
     {
