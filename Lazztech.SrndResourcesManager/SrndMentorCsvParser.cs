@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 
-namespace HackathonManager
+namespace Lazztech.Events.StudentRND
 {
     public class SrndMentorCsvParser
     {

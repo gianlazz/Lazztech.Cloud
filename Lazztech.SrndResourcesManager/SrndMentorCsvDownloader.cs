@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HackathonManager.SrndResourcesManager
+namespace Lazztech.Events.StudentRND
 {
     public class SrndMentorCsvDownloader
     {

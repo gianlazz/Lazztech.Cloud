@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.DIContext", "Lazzt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Sms", "Lazztech.Sms\Lazztech.Sms.csproj", "{0390E467-3158-460A-B85A-BF21E7EC0DA2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.SrndResourcesManager", "Lazztech.SrndResourcesManager\Lazztech.SrndResourcesManager.csproj", "{74215587-FBDD-4061-A192-983CF0FE03A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.StudentRND", "Lazztech.SrndResourcesManager\Lazztech.Events.StudentRND.csproj", "{74215587-FBDD-4061-A192-983CF0FE03A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.Tests", "Lazztech.Events.Tests\Lazztech.Events.Tests.csproj", "{CF34E0F5-D271-472D-9441-DD1EF330A7C9}"
 EndProject
