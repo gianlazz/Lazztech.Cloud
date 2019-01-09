@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Migrations
+namespace Lazztech.Cloud.ClientFacade.Migrations
 {
     public partial class InitialCreate : Migration
     {

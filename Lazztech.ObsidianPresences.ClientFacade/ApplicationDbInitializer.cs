@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lazztech.ObsidianPresences.ClientFacade
+namespace Lazztech.Cloud.ClientFacade
 {
     public static class ApplicationDbInitializer
     {

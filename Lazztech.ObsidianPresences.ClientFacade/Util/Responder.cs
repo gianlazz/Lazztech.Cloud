@@ -1,12 +1,12 @@
 ﻿using HackathonManager.Models;
 using HackathonManager.Sms;
-using Lazztech.ObsidianPresences.ClientFacade.Hubs;
+using Lazztech.Cloud.ClientFacade.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Util
+namespace Lazztech.Cloud.ClientFacade.Util
 {
     public class Responder : IRequestResponder
     {

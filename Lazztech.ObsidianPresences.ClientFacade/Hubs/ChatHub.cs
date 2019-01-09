@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Hubs
+namespace Lazztech.Cloud.ClientFacade.Hubs
 {
     public class ChatHub : Hub
     {

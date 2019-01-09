@@ -1,4 +1,4 @@
-﻿namespace Lazztech.ObsidianPresences.ClientFacade.Dal
+﻿namespace Lazztech.Cloud.ClientFacade.Dal
 {
     public class SimpleValue
     {

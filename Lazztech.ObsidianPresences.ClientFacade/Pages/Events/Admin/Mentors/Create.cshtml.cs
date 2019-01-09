@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using HackathonManager.DTO;
-using Lazztech.ObsidianPresences.ClientFacade.Data;
+using Lazztech.Cloud.ClientFacade.Data;
 using HackathonManager.RepositoryPattern;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Mentors
+namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class CreateModel : PageModel
     {
-        private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
+        private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
         private IRepository _repo = Startup.DbRepo;
 
-        public CreateModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        public CreateModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
         {
             _context = context;
         }

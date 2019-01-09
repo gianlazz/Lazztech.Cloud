@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Crawler
+namespace Lazztech.Cloud.ClientFacade.Pages.Crawler
 {
     public class IndexModel : PageModel
     {

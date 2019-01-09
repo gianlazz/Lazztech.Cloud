@@ -9,7 +9,7 @@ using HackathonManager.RepositoryPattern;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin
+namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
 {
     public class IndexModel : PageModel
     {

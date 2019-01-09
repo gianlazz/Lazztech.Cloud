@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  lazztech.obsidianpresences.clientfacade:
-    image: lazztechobsidianpresencesclientfacade:arm32
+  lazztech.Cloud.clientfacade:
+    image: lazztechCloudclientfacade:arm32
     volumes:
 #      - /Users/gianlazzarini/Desktop/face_recognition:/face/
 #      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
@@ -13,7 +13,7 @@ services:
       - 80:80
     build:
       context: .
-      dockerfile: Lazztech.ObsidianPresences.ClientFacade/Dockerfile.Rpi
+      dockerfile: Lazztech.Cloud.ClientFacade/Dockerfile.Rpi
 
   postgres_image:
     image: postgres:alpine

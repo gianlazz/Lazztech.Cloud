@@ -7,7 +7,7 @@ using HackathonManager.Sms;
 using Microsoft.AspNetCore.Mvc;
 using Twilio.AspNet.Common;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Controllers
+namespace Lazztech.Cloud.ClientFacade.Controllers
 {
     [Route("api/[controller]")]
     public class InboundSmsController : Controller

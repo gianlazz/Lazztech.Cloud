@@ -1,5 +1,5 @@
-﻿using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
+﻿using Lazztech.Cloud.Vision.Microservice.Domain;
+using Lazztech.Cloud.Vision.Microservice.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,7 +14,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
+namespace Lazztech.Cloud.ClientFacade.Pages.Vision
 {
     public class UploadModel : PageModel
     {

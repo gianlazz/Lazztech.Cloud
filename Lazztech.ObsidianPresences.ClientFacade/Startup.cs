@@ -9,18 +9,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Lazztech.ObsidianPresences.ClientFacade.Data;
+using Lazztech.Cloud.ClientFacade.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using HackathonManager.Interfaces;
 using Microsoft.AspNetCore.Routing;
 using HackathonManager.Sms;
-using Lazztech.ObsidianPresences.ClientFacade.Hubs;
+using Lazztech.Cloud.ClientFacade.Hubs;
 using System.Threading;
-using Lazztech.ObsidianPresences.ClientFacade.Util;
+using Lazztech.Cloud.ClientFacade.Util;
 
-namespace Lazztech.ObsidianPresences.ClientFacade
+namespace Lazztech.Cloud.ClientFacade
 {
     public class Startup
     {

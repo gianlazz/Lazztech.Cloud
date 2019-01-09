@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Dal
+namespace Lazztech.Cloud.ClientFacade.Dal
 {
     public class SimpleDataAccess
     {

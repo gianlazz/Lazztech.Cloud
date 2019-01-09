@@ -22,18 +22,18 @@ RUN apt-get update -y &&\
     apt-get install -y unzip &&\
     curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l ~/vsdbg
 WORKDIR /src
-COPY Lazztech.ObsidianPresences.sln ./
-COPY ["Lazztech.ObsidianPresences.Vision.Microservice.Webapi/Lazztech.ObsidianPresences.Vision.Microservice.Webapi.csproj", "Lazztech.ObsidianPresences.Vision.Microservice.Webapi/"]
-COPY Lazztech.ObsidianPresences.CloudWebApp/Lazztech.ObsidianPresences.CloudWebApp.csproj Lazztech.ObsidianPresences.CloudWebApp/
-COPY Lazztech.ObsidianPresences.Vision.Microservice.Cli/Lazztech.ObsidianPresences.Vision.Microservice.Cli.csproj Lazztech.ObsidianPresences.Vision.Microservice.Cli/
-COPY Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision/Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision.csproj Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision/
-COPY Lazztech.ObsidianPresences.Vision.Microservice.Domain/Lazztech.ObsidianPresences.Vision.Microservice.Domain.csproj Lazztech.ObsidianPresences.Vision.Microservice.Domain/
-COPY Lazztech.ObsidianPresences.Vision.Microservice.Tests/Lazztech.ObsidianPresences.Vision.Microservice.Tests.csproj Lazztech.ObsidianPresences.Vision.Microservice.Tests/
+COPY Lazztech.Cloud.sln ./
+COPY ["Lazztech.Cloud.Vision.Microservice.Webapi/Lazztech.Cloud.Vision.Microservice.Webapi.csproj", "Lazztech.Cloud.Vision.Microservice.Webapi/"]
+COPY Lazztech.Cloud.CloudWebApp/Lazztech.Cloud.CloudWebApp.csproj Lazztech.Cloud.CloudWebApp/
+COPY Lazztech.Cloud.Vision.Microservice.Cli/Lazztech.Cloud.Vision.Microservice.Cli.csproj Lazztech.Cloud.Vision.Microservice.Cli/
+COPY Lazztech.Cloud.Vision.Microservice.GoogleCloudVision/Lazztech.Cloud.Vision.Microservice.GoogleCloudVision.csproj Lazztech.Cloud.Vision.Microservice.GoogleCloudVision/
+COPY Lazztech.Cloud.Vision.Microservice.Domain/Lazztech.Cloud.Vision.Microservice.Domain.csproj Lazztech.Cloud.Vision.Microservice.Domain/
+COPY Lazztech.Cloud.Vision.Microservice.Tests/Lazztech.Cloud.Vision.Microservice.Tests.csproj Lazztech.Cloud.Vision.Microservice.Tests/
 COPY docker-compose.dcproj ./
 # RUN dotnet restore -nowarn:msb3202,nu1503
-RUN dotnet restore Lazztech.ObsidianPresences.sln -nowarn:msb3202,nu1503
+RUN dotnet restore Lazztech.Cloud.sln -nowarn:msb3202,nu1503
 COPY . .
-WORKDIR /src/Lazztech.ObsidianPresences.Vision.Microservice.Cli
+WORKDIR /src/Lazztech.Cloud.Vision.Microservice.Cli
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
@@ -42,4 +42,4 @@ RUN dotnet publish -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Lazztech.ObsidianPresences.Vision.Microservice.Cli.dll"]
+ENTRYPOINT ["dotnet", "Lazztech.Cloud.Vision.Microservice.Cli.dll"]

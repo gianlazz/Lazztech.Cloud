@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager.PocoModels;
-using Lazztech.ObsidianPresences.ClientFacade.Data;
+using Lazztech.Cloud.ClientFacade.Data;
 using HackathonManager.RepositoryPattern;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Teams
+namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Teams
 {
     public class IndexModel : PageModel
     {
-        //private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
+        //private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
 
-        //public IndexModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        //public IndexModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
         //{
         //    _context = context;
         //}

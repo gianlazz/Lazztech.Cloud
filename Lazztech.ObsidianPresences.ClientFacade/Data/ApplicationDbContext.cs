@@ -4,9 +4,9 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager.PocoModels;
-using Lazztech.ObsidianPresences.ClientFacade.Data.Entities;
+using Lazztech.Cloud.ClientFacade.Data.Entities;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Data
+namespace Lazztech.Cloud.ClientFacade.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

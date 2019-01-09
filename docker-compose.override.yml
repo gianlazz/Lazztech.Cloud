@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-#  lazztech.ObsidianPresences.vision.microservice.cli:
+#  lazztech.Cloud.vision.microservice.cli:
 #    image: lazztechobsidianpresensevisionmicroservicecli
 #    volumes:
 ##      - /Users/gianlazzarini/Desktop/face_recognition:/face/
@@ -10,10 +10,10 @@ services:
 #      - lazztech-cloud-data:/face/
 #    build:
 #      context: .
-#      dockerfile: Lazztech.ObsidianPresences.Vision.Microservice.Cli/Dockerfile
+#      dockerfile: Lazztech.Cloud.Vision.Microservice.Cli/Dockerfile
 
-  lazztech.obsidianpresences.clientfacade:
-    image: lazztechobsidianpresencesclientfacade
+  lazztech.Cloud.clientfacade:
+    image: lazztechCloudclientfacade
     volumes:
 #      - /Users/gianlazzarini/Desktop/face_recognition:/face/
 #      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
@@ -25,7 +25,7 @@ services:
       - 80:80
     build:
       context: .
-      dockerfile: Lazztech.ObsidianPresences.ClientFacade/Dockerfile
+      dockerfile: Lazztech.Cloud.ClientFacade/Dockerfile
 
   postgres_image:
     image: postgres:alpine

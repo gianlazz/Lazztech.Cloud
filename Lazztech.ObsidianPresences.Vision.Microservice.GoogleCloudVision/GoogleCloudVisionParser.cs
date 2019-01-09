@@ -5,9 +5,9 @@ using System.Text;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
+using Lazztech.Cloud.Vision.Microservice.Domain.Models;
 
-namespace Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision
+namespace Lazztech.Cloud.Vision.Microservice.GoogleCloudVision
 {
     public class GoogleCloudVisionParser
     {

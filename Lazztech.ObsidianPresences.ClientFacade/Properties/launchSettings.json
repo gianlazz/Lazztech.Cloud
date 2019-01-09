@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Lazztech.ObsidianPresences.ClientFacade": {
+    "Lazztech.Cloud.ClientFacade": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HackathonManager;
-using Lazztech.ObsidianPresences.ClientFacade.Data;
+using Lazztech.Cloud.ClientFacade.Data;
 using HackathonManager.RepositoryPattern;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Events.Admin.Judges
+namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Judges
 {
     public class DeleteModel : PageModel
     {
-        //private readonly Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext _context;
+        //private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
 
-        //public DeleteModel(Lazztech.ObsidianPresences.ClientFacade.Data.ApplicationDbContext context)
+        //public DeleteModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
         //{
         //    _context = context;
         //}

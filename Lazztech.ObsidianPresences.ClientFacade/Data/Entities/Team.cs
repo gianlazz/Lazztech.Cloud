@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Data.Entities
+namespace Lazztech.Cloud.ClientFacade.Data.Entities
 {
     public class Team
     {

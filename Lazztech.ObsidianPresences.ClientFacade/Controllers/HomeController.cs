@@ -9,7 +9,7 @@ using HackathonManager.Sms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Controllers
+namespace Lazztech.Cloud.ClientFacade.Controllers
 {
     public class HomeController : Controller
     {

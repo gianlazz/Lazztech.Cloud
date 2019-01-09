@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
+namespace Lazztech.Cloud.ClientFacade.Pages.Vision
 {
     public class SettingsModel : PageModel
     {

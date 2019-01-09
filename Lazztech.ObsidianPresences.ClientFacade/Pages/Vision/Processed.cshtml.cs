@@ -5,13 +5,13 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain;
-using Lazztech.ObsidianPresences.Vision.Microservice.Domain.Models;
+using Lazztech.Cloud.Vision.Microservice.Domain;
+using Lazztech.Cloud.Vision.Microservice.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
+namespace Lazztech.Cloud.ClientFacade.Pages.Vision
 {
     public class ProcessedModel : PageModel
     {
@@ -60,7 +60,7 @@ namespace Lazztech.ObsidianPresences.ClientFacade.Pages.Vision
         }
 
         ////Hosted web API REST Service base url
-        //private string baseurl = "http://lazztech.obsidianpresences.vision.microservice.webapi/";
+        //private string baseurl = "http://lazztech.Cloud.vision.microservice.webapi/";
 
         //private async Task<List<Snapshot>> CallSnapsEndpoint()
         //{

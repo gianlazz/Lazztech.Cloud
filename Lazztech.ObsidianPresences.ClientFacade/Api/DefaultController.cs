@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Lazztech.ObsidianPresences.ClientFacade.Dal;
+using Lazztech.Cloud.ClientFacade.Dal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace Lazztech.ObsidianPresences.ClientFacade.Api
+namespace Lazztech.Cloud.ClientFacade.Api
 {
     [Route("api/[controller]")]
     [ApiController]
