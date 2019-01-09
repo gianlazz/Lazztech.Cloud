@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Vision.Domain", "Lazztech.ObsidianPresences.Vision.Microservice.Domain\Lazztech.Vision.Domain.csproj", "{0E35707E-04F4-4360-AE0D-5C6024A75A5E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Vision.GoogleCloudVision", "Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision\Lazztech.Vision.GoogleCloudVision.csproj", "{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Vision.Cli", "Lazztech.ObsidianPresences.Vision.Microservice.Cli\Lazztech.Vision.Cli.csproj", "{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{78BC127E-1A83-4FB1-B029-569F972CD01F}"
@@ -43,10 +41,6 @@ Global
 		{0E35707E-04F4-4360-AE0D-5C6024A75A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E35707E-04F4-4360-AE0D-5C6024A75A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E35707E-04F4-4360-AE0D-5C6024A75A5E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2042059-3BFE-4E8A-BA53-1F9095A3A71C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A16D11D6-D97D-4B1D-95B6-31C5C39EB4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU

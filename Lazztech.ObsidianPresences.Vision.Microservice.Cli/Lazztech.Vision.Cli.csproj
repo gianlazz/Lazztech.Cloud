@@ -10,8 +10,4 @@
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0004" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0004" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Lazztech.ObsidianPresences.Vision.Microservice.GoogleCloudVision\Lazztech.Vision.GoogleCloudVision.csproj" />
-  </ItemGroup>
 </Project>
