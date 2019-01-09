@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HackathonManager
+namespace Lazztech.Events.Dto.Interfaces
 {
     public interface ILogger
     {

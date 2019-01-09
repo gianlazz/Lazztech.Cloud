@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HackathonManager.Models
+namespace Lazztech.Events.Dto.Models
 {
     public class Log
     {

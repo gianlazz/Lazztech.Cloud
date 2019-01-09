@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HackathonManager.RepositoryPattern
+namespace Lazztech.Events.Dto.Interfaces
 {
     public interface IRepository
     {

@@ -1,8 +1,6 @@
-﻿using HackathonManager.DTO;
-using HackathonManager.PocoModels;
-using System;
+﻿using System;
 
-namespace HackathonManager.Models
+namespace Lazztech.Events.Dto.Models
 {
     public class MentorRequest
     {

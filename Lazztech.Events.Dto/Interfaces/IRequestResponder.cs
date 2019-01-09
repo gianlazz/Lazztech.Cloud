@@ -1,6 +1,6 @@
-﻿using HackathonManager.Models;
+﻿using Lazztech.Events.Dto.Models;
 
-namespace HackathonManager.Sms
+namespace Lazztech.Events.Dto.Interfaces
 {
     public interface IRequestResponder
     {

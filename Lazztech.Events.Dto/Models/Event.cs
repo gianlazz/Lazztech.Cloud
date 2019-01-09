@@ -1,11 +1,8 @@
-﻿using HackathonManager;
-using HackathonManager.DTO;
-using HackathonManager.PocoModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lazztech.Events
+namespace Lazztech.Events.Dto.Models
 {
     class Event
     {

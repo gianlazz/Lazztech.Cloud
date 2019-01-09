@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace HackathonManager
+namespace Lazztech.Events.Dto.Models
 {
     public class Judge
     {
-        public System.Guid Id { get; set; }
+        public Guid Id { get; set; }
         public string Event { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
