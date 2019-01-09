@@ -19,28 +19,26 @@ using HackathonManager.Sms;
 using Lazztech.Cloud.ClientFacade.Hubs;
 using System.Threading;
 using Lazztech.Cloud.ClientFacade.Util;
+using MongoDB.Driver;
+using MongoDB.Bson.Serialization.Conventions;
 
 namespace Lazztech.Cloud.ClientFacade
 {
     public class Startup
     {
-        public static HackathonManager.RepositoryPattern.IRepository DbRepo = HackathonManager.DIContext.Context.GetMLabsMongoDbRepo();
-        public static ISmsService SmsService = HackathonManager.DIContext.Context.GetTwilioSmsService();
-        public static IRequestResponder _responder = new Responder();
+        public IConfiguration Configuration { get; }
+
+        public static HackathonManager.RepositoryPattern.IRepository DbRepo;
+        public static ISmsService SmsService;
+        public static IRequestResponder Responder = new Responder();
+        public static IMongoDatabase Db;
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
 
-            //HackathonManager.SmsDaemon.Program._responder = new Util.Responder();
-            //HackathonManager.SmsDaemon.Program.Main(new string[] { });
-            //AreaRegistration.RegisterAllAreas();
-            //FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            //RouteConfig.RegisterRoutes(RouteTable.Routes);
-            //BundleConfig.RegisterBundles(BundleTable.Bundles);
-
             var smsThread = new Thread(() => {
-                var conductor = new SmsRoutingConductor(DbRepo, SmsService, _responder);
+                var conductor = new SmsRoutingConductor(DbRepo, SmsService, Responder);
                 while (2 > 1)
                 {
                     if (SmsRoutingConductor.InboundMessages.Any(x => x.DateTimeWhenProcessed == null))
@@ -49,18 +47,36 @@ namespace Lazztech.Cloud.ClientFacade
                 }
             });
             smsThread.Start();
+
+            SetupTwilioClient();
+            SetupMongoDBClient();
         }
 
-        public IConfiguration Configuration { get; }
+        private void SetupTwilioClient()
+        {
+            var twillioConfigSection = Configuration.GetSection("TwilioCredentials");
+            var accountSid = twillioConfigSection["AccountSid"];
+            var authToken = twillioConfigSection["AuthToken"];
+            var fromTwilioNumber = twillioConfigSection["TwilioFromNumber"];
+            SmsService = HackathonManager.DIContext.Context.GetTwilioSmsService(accountSid, authToken, fromTwilioNumber);
+        }
+
+        private void SetupMongoDBClient()
+        {
+            var connectionString = Configuration.GetConnectionString("MongoDBConnection");
+            var client = new MongoClient(connectionString);
+            Db = client.GetDatabase("hackathonmanager");
+
+            var pack = new ConventionPack();
+            pack.Add(new IgnoreExtraElementsConvention(true));
+            ConventionRegistry.Register("My Solution Conventions", pack, t => true);
+
+            DbRepo = HackathonManager.DIContext.Context.GetMLabsMongoDbRepo(connectionString);
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var twillioConfigSection = Configuration.GetSection("TwilioCredentials");
-            TwilioCredentials.accountSid = twillioConfigSection["AccountSid"];
-            TwilioCredentials.authToken = twillioConfigSection["AuthToken"];
-            TwilioCredentials.fromTwilioNumber = twillioConfigSection["TwilioFromNumber"];
-
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

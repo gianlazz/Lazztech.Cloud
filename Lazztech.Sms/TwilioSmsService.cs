@@ -15,15 +15,21 @@ namespace HackathonManager.Sms
     public class TwilioSmsService : ISmsService
     {
         // Find your Account Sid and Auth Token at twilio.com/console
-        string accountSid = TwilioCredentials.accountSid;
-        string authToken = TwilioCredentials.authToken;
-        string fromNumber = TwilioCredentials.fromTwilioNumber;
+        string _accountSid;
+        string _authToken;
+        string _fromNumber;
 
+        public TwilioSmsService(string accountSid, string authToken, string fromNumber)
+        {
+            _accountSid = accountSid;
+            _authToken = authToken;
+            _fromNumber = fromNumber;
+        }
 
         public SmsDto SendSms(string toPhoneNumber, string messageBody)
         {
             string preparedNumber;
-            TwilioClient.Init(accountSid, authToken);
+            TwilioClient.Init(_accountSid, _authToken);
             if (toPhoneNumber.StartsWith("+1"))
                 preparedNumber = toPhoneNumber;
             else
@@ -34,13 +40,13 @@ namespace HackathonManager.Sms
             var to = new PhoneNumber(preparedNumber);
             var message = MessageResource.Create(
                 to,
-                from: new PhoneNumber($"+1{fromNumber}"),
+                from: new PhoneNumber($"+1{_fromNumber}"),
                 body: messageBody);
 
             SmsDto smsDto = new SmsDto();
             smsDto.DateCreated = DateTime.Now;
             smsDto.ToPhoneNumber = $"+1{toPhoneNumber}";
-            smsDto.FromPhoneNumber = $"+1{fromNumber}";
+            smsDto.FromPhoneNumber = $"+1{_fromNumber}";
             smsDto.MessageBody = messageBody;
             smsDto.Sid = message.Sid;
 

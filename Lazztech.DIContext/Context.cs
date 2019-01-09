@@ -18,22 +18,15 @@ namespace HackathonManager.DIContext
             return repository;
         }
 
-        public static IRepository GetMLabsMongoDbRepo()
+        public static IRepository GetMLabsMongoDbRepo(string connectionString)
         {
-            //var connectionString = $@"mongodb://<{Credentials.MLabsUsername}>:<{Credentials.MLabsPassword}>@ds014658.mlab.com:14658/hackathonmanager";
-            var connectionString = $@"mongodb://{Credentials.MLabsUsername}:{Credentials.MLabsPassword}@ds014658.mlab.com:14658/hackathonmanager";
             var repository = new MongoRepository(connectionString);
             return repository;
         }
 
-        //public static IRequestResponder GetRequestResponder()
-        //{
-        //    //return new 
-        //}
-
-        public static ISmsService GetTwilioSmsService()
+        public static ISmsService GetTwilioSmsService(string accountSid, string authToken, string fromNumber)
         {
-            var smsProvider = new TwilioSmsService();
+            var smsProvider = new TwilioSmsService(accountSid, authToken, fromNumber);
             return smsProvider;
         }
     }
