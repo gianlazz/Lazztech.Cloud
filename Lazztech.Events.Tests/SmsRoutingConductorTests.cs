@@ -32,8 +32,7 @@ namespace Lazztech.Events.Tests
                 OutboundSms = new SmsDto(
                     EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
                     toNumber: "GiansNumber123", 
-                    fromNumber: "TwilioNumber123"
-                    ),
+                    fromNumber: "TwilioNumber123"),
             };
 
             var smsResponse = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
