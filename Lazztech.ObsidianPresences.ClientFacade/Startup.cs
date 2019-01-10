@@ -1,7 +1,7 @@
-using HackathonManager.Sms;
 using Lazztech.Cloud.ClientFacade.Data;
 using Lazztech.Cloud.ClientFacade.Hubs;
 using Lazztech.Cloud.ClientFacade.Util;
+using Lazztech.Events.Domain.Sms;
 using Lazztech.Events.Dto.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

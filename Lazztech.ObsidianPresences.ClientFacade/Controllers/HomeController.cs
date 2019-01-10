@@ -1,5 +1,6 @@
 ﻿using HackathonManager.Sms;
 using Lazztech.Cloud.ClientFacade.Data.Entities;
+using Lazztech.Events.Domain.Sms;
 using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
