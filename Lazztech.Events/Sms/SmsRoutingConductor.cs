@@ -8,8 +8,6 @@ namespace Lazztech.Events.Domain.Sms
 {
     public class SmsRoutingConductor
     {
-        #region fields
-
         public static ConcurrentBag<SmsDto> InboundMessages = new ConcurrentBag<SmsDto>();
         public static ConcurrentBag<MentorRequest> MentorRequests = new ConcurrentBag<MentorRequest>();
 
@@ -17,20 +15,12 @@ namespace Lazztech.Events.Domain.Sms
         private readonly ISmsService _sms;
         private readonly IRequestResponder _recResponder;
 
-        #endregion fields
-
-        #region ctor
-
         public SmsRoutingConductor(IRepository repository, ISmsService sms, IRequestResponder requestResponder)
         {
             _db = repository;
             _sms = sms;
             _recResponder = requestResponder;
         }
-
-        #endregion ctor
-
-        #region Public Methods
 
         public void ProcessMentorRequests()
         {
@@ -102,10 +92,6 @@ namespace Lazztech.Events.Domain.Sms
             }
         }
 
-        #endregion Public Methods
-
-        #region Helper Methods
-
         private bool IsAcceptanceResponse(SmsDto sms)
         {
             if (sms.MessageBody.Trim().ToLower() == "y" ||
@@ -147,14 +133,5 @@ namespace Lazztech.Events.Domain.Sms
                 _sms.SendSms(smsResponse.FromPhoneNumber, lastSmsSent.MessageBody);
             //SHOULD IT BE ADDED TO THE OUTBOUND MESSAGES?
         }
-
-        #endregion Helper Methods
-    }
-
-    public enum MatchType
-    {
-        None,
-        MentorRequest,
-        JudgingVote
     }
 }
