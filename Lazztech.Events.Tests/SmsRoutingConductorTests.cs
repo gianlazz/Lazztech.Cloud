@@ -19,7 +19,7 @@ namespace Lazztech.Events.Tests
             var responder = new Mock<IRequestResponder>();
             var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
             var request = MentorRequestHelper("exampleTeam");
-            var smsResponse = SmsHelper(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+            var smsResponse = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
             SmsRoutingConductor.MentorRequests.Add(request);
@@ -28,18 +28,6 @@ namespace Lazztech.Events.Tests
 
             //Assert
             //Assert.True();
-        }
-
-        public SmsDto SmsHelper(string message, string toNumber, string fromNumber)
-        {
-            var smsDto = new SmsDto();
-            smsDto.Sid = "sid123";
-            smsDto.DateCreated = DateTime.Now;
-            smsDto.ToPhoneNumber = toNumber;
-            smsDto.FromPhoneNumber = fromNumber;
-            smsDto.MessageBody = message;
-
-            return smsDto;
         }
 
         public MentorRequest MentorRequestHelper(string team)
@@ -53,7 +41,7 @@ namespace Lazztech.Events.Tests
                 PhoneNumber = "GiansNumber123",
             };
             var message = EventStrings.OutBoundRequestSms("Gian", team, "Example Room");
-            request.OutboundSms = SmsHelper(message: message, toNumber: "GiansNumber123", fromNumber: "TwilioNumber123");
+            request.OutboundSms = new SmsDto(message: message, toNumber: "GiansNumber123", fromNumber: "TwilioNumber123");
 
             return request;
         }

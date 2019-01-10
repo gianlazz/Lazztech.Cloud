@@ -19,5 +19,13 @@ namespace Lazztech.Events.Dto.Models
         {
             GuidId = Guid.NewGuid();
         }
+
+        public SmsDto(string message, string toNumber, string fromNumber)
+        {
+            GuidId = Guid.NewGuid();
+            MessageBody = message;
+            ToPhoneNumber = toNumber;
+            FromPhoneNumber = fromNumber;
+        }
     }
 }
