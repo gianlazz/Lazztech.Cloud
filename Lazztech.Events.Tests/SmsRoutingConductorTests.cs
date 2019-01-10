@@ -1,4 +1,5 @@
 using Lazztech.Events.Domain.Sms;
+using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using Moq;
@@ -17,8 +18,8 @@ namespace Lazztech.Events.Tests
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestResponder>();
             var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
-            var request = MentorRequestHelper();
-            var smsResponse = InboundSmsHelper(message: "Y");
+            var request = MentorRequestHelper("exampleTeam");
+            var smsResponse = SmsHelper(message: "Y");
 
             //Act
             SmsRoutingConductor.MentorRequests.Add(request);
@@ -29,7 +30,7 @@ namespace Lazztech.Events.Tests
             //Assert.True();
         }
 
-        public SmsDto InboundSmsHelper(string message)
+        public SmsDto SmsHelper(string message)
         {
             var smsDto = new SmsDto();
             smsDto.Sid = "sid123";
@@ -41,12 +42,7 @@ namespace Lazztech.Events.Tests
             return smsDto;
         }
 
-        public SmsDto OutBoundSmsHelper()
-        {
-
-        }
-
-        public MentorRequest MentorRequestHelper()
+        public MentorRequest MentorRequestHelper(string team)
         {
             var request = new MentorRequest();
             request.TeamName = "TestTeamName123";
@@ -56,6 +52,8 @@ namespace Lazztech.Events.Tests
                 LastName = "Lazzarini",
                 PhoneNumber = "GiansNumber123",
             };
+            var message = EventStrings.OutBoundRequestSms("Gian", team, "Example Room");
+            request.OutboundSms = SmsHelper(message);
 
             return request;
         }

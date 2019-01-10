@@ -86,22 +86,13 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             try
             {
                 request.OutboundSms = sms.SendSms(mentor.PhoneNumber, message);
-            }
-            catch (Exception ex)
-            {
-                //IS THROWING EXCEPTION FOR NOT HAVING CORRECTLY SETUP NEWTONSOFT.JSON DEPENDENCY
-                Db.Add<Log>(new Log() { Details = ex.ToString() });
-            }
-
-            try
-            {
                 SmsRoutingConductor.MentorRequests.Add(request);
 
-                //THIS SHOULD BE HANDLED BY THE SMSROUTINGCONDUCTOR
                 Db.Add<MentorRequest>(request);
             }
             catch (Exception ex)
             {
+                //IS THROWING EXCEPTION FOR NOT HAVING CORRECTLY SETUP NEWTONSOFT.JSON DEPENDENCY
                 Db.Add<Log>(new Log() { Details = ex.ToString() });
             }
 
