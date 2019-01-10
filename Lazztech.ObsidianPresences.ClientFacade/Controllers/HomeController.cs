@@ -1,6 +1,7 @@
 ﻿using HackathonManager.Sms;
 using Lazztech.Cloud.ClientFacade.Data.Entities;
 using Lazztech.Events.Domain.Sms;
+using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -80,11 +81,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
 
             request.TeamName = teamName;
             request.Mentor = mentor;
-            var message = $"🔥 { mentor.FirstName}, team { teamName }, located in { teamLocation }, has requested your assistance.\n\n" +
-    $"Reply with:\n" +
-    $"Y to accept " +
-    $"\nor\n " +
-    $"N to reject the request";
+            var message = EventStrings.OutBoundRequestSms(mentor.FirstName, teamName, teamLocation);
 
             try
             {

@@ -41,6 +41,11 @@ namespace Lazztech.Events.Tests
             return smsDto;
         }
 
+        public SmsDto OutBoundSmsHelper()
+        {
+
+        }
+
         public MentorRequest MentorRequestHelper()
         {
             var request = new MentorRequest();
