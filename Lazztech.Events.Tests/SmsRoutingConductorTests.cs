@@ -18,6 +18,7 @@ namespace Lazztech.Events.Tests
             var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
 
             //Act
+            conductor.ProcessMentorRequests();
 
             //Assert
         }
