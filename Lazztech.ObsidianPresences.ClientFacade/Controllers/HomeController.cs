@@ -1,12 +1,8 @@
-﻿using HackathonManager.Sms;
-using Lazztech.Cloud.ClientFacade.Data.Entities;
-using Lazztech.Events.Domain.Sms;
-using Lazztech.Events.Dto;
+﻿using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 
 namespace Lazztech.Cloud.ClientFacade.Controllers
 {
@@ -80,8 +76,6 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             var mentor = Db.Single<Mentor>(x => x.Id == mentorGuidId);
             if (mentor != null)
             {
-
-
                 try
                 {
                     var message = EventStrings.OutBoundRequestSms(mentor.FirstName, teamName, teamLocation);
@@ -100,7 +94,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
                     Db.Add<Log>(new Log() { Details = ex.ToString() });
                 }
             }
-            
+
             if (succeded)
                 return RedirectToPage("/Events/Event/Index");
             else
