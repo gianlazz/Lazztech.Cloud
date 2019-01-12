@@ -96,9 +96,9 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             }
 
             if (succeded)
-                return RedirectToPage("/Events/Event/Index");
+                return RedirectToPage("/Events/Event/Index", new { message = "Your request has been sent! Please wait for your reply." });
             else
-                return RedirectToPage("/Events/Event/Index", new { message = "" });
+                return RedirectToPage("/Events/Event/Index", new { message = "The mentor you selected is currently helping someone else! Please select another." });
         }
 
         //    [HttpPost]

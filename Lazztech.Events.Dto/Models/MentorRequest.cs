@@ -19,7 +19,7 @@ namespace Lazztech.Events.Dto.Models
             DateTimeOfRequest = DateTime.Now;
             GuidId = Guid.NewGuid();
 
-            Timeout = new TimeSpan(hours: 0, minutes: 15, seconds: 0);
+            Timeout = new TimeSpan(hours: 0, minutes: 1, seconds: 0);
         }
     }
 }

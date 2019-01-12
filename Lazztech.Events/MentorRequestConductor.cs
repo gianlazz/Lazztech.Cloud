@@ -62,16 +62,24 @@ namespace Lazztech.Events.Domain
 
         private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
         {
-            await Task.Run(async () => 
+            //await Task.Run(async () => 
+            //{
+            //    if (request.Timeout != null)
+            //    {
+            //        await Task.Delay(request.Timeout);
+            //        request.Mentor.IsAvailable = true;
+            //        _db.Delete(request.Mentor);
+            //        _db.Add(request.Mentor);
+            //    }
+            //});
+
+            if (request.Timeout != null)
             {
-                if (request.Timeout != null)
-                {
-                    await Task.Delay(request.Timeout);
-                    request.Mentor.IsAvailable = true;
-                    _db.Delete(request.Mentor);
-                    _db.Add(request.Mentor);
-                }
-            });
+                await Task.Delay(request.Timeout);
+                request.Mentor.IsAvailable = true;
+                _db.Delete(request.Mentor);
+                _db.Add(request.Mentor);
+            }
         }
 
         private void HandleResponseWithNoRequest(SmsDto inboundSms)
