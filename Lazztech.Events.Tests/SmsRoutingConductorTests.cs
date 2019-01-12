@@ -38,13 +38,10 @@ namespace Lazztech.Events.Tests
             var smsResponse = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
-            //SmsRoutingConductor._unprocessedRequests.Add(request);
-            //SmsRoutingConductor.InboundMessages.Add(smsResponse);
             var succeded = conductor.TryAddRequest(request);
             conductor.ProcessInboundSms(smsResponse);
 
             //Assert
-            //Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
             Assert.DoesNotContain(conductor._unprocessedRequests.Values, x => x.DateTimeWhenProcessed == null);
             Assert.True(conductor._unprocessedRequests.Values.FirstOrDefault().RequestAccepted == true);
         }
@@ -76,8 +73,6 @@ namespace Lazztech.Events.Tests
             var smsResponse = new SmsDto(message: "YES", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
-            //SmsRoutingConductor._unprocessedRequests.Add(request);
-            //SmsRoutingConductor.InboundMessages.Add(smsResponse);
             var succeded = conductor.TryAddRequest(request);
             conductor.ProcessInboundSms(smsResponse);
 
@@ -114,8 +109,6 @@ namespace Lazztech.Events.Tests
             var smsResponse = new SmsDto(message: "N", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
-            //SmsRoutingConductor._unprocessedRequests.Add(request);
-            //SmsRoutingConductor.InboundMessages.Add(smsResponse);
             var succeded = conductor.TryAddRequest(request);
             conductor.ProcessInboundSms(smsResponse);
 
@@ -152,8 +145,6 @@ namespace Lazztech.Events.Tests
             var smsResponse = new SmsDto(message: "NO", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
-            //SmsRoutingConductor._unprocessedRequests.Add(request);
-            //SmsRoutingConductor.InboundMessages.Add(smsResponse);
             var succeded = conductor.TryAddRequest(request);
             conductor.ProcessInboundSms(smsResponse);
 
@@ -205,18 +196,11 @@ namespace Lazztech.Events.Tests
             var smsResponseFromGian = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             ////Act
-            //SmsRoutingConductor._unprocessedRequests.Add(requestForGian);
-            //SmsRoutingConductor._unprocessedRequests.Add(requestForMark);
-            //SmsRoutingConductor.InboundMessages.Add(smsResponseFromGian);
-            //conductor.Process_unprocessedRequests();
-
             var succededForGian = conductor.TryAddRequest(requestForGian);
             var succededForMark = conductor.TryAddRequest(requestForMark);
             conductor.ProcessInboundSms(smsResponseFromGian);
 
             //Assert
-            //Assert.DoesNotContain(SmsRoutingConductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
-            //Assert.DoesNotContain(SmsRoutingConductor._unprocessedRequests, x => x.DateTimeWhenProcessed == null);
             Assert.True(conductor._unprocessedRequests.Values.FirstOrDefault(x => x.Mentor.FirstName == "Gian").RequestAccepted == true);
             Assert.True(conductor._unprocessedRequests.Values.FirstOrDefault(x => x.Mentor.FirstName == "Mark").RequestAccepted == false);
         }
@@ -248,15 +232,59 @@ namespace Lazztech.Events.Tests
             var smsResponse = new SmsDto(message: "asdf", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
-            //SmsRoutingConductor._unprocessedRequests.Add(request);
-            //SmsRoutingConductor.InboundMessages.Add(smsResponse);
             var succeded = conductor.TryAddRequest(request);
             conductor.ProcessInboundSms(smsResponse);
 
             //Assert
-            //Assert.DoesNotContain(SmsRoutingConductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
             Assert.Null(conductor._unprocessedRequests.Values.FirstOrDefault().DateTimeWhenProcessed);
             Assert.True(conductor._unprocessedRequests.Values.FirstOrDefault().RequestAccepted == false);
+        }
+
+        [Fact]
+        public void ShouldNotBeAbleToAddTwoRequestsForOneMentor()
+        {
+            //Arrange
+            var repo = new Mock<IRepository>();
+            var sms = new Mock<ISmsService>();
+            var responder = new Mock<IRequestResponder>();
+            var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
+
+            var request1 = new MentorRequest()
+            {
+                TeamName = "TestTeamName123",
+                Mentor = new Mentor()
+                {
+                    FirstName = "Gian",
+                    LastName = "Lazzarini",
+                    PhoneNumber = "GiansNumber123",
+                },
+                OutboundSms = new SmsDto(
+                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
+                    toNumber: "GiansNumber123",
+                    fromNumber: "TwilioNumber123"),
+            };
+
+            var request2 = new MentorRequest()
+            {
+                TeamName = "TestTeam0",
+                Mentor = new Mentor()
+                {
+                    FirstName = "Gian",
+                    LastName = "Lazzarini",
+                    PhoneNumber = "GiansNumber123",
+                },
+                OutboundSms = new SmsDto(
+                    message: EventStrings.OutBoundRequestSms("Gian", "TestTeam0", "Example Room"),
+                    toNumber: "GiansNumber123",
+                    fromNumber: "TwilioNumber123"),
+            };
+
+            //Act
+            var succeded = conductor.TryAddRequest(request1);
+            succeded = conductor.TryAddRequest(request2);
+
+            //Assert
+            Assert.False(succeded);
         }
 
     }

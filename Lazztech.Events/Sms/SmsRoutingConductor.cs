@@ -12,7 +12,7 @@ namespace Lazztech.Events.Domain.Sms
         public static ConcurrentBag<SmsDto> InboundMessages = new ConcurrentBag<SmsDto>();
         public static ConcurrentBag<MentorRequest> MentorRequests = new ConcurrentBag<MentorRequest>();
 
-        public Dictionary<Guid, MentorRequest> _unprocessedRequests = new Dictionary<Guid, MentorRequest>();
+        public Dictionary<string, MentorRequest> _unprocessedRequests = new Dictionary<string, MentorRequest>();
 
         private readonly IRepository _db;
         private readonly ISmsService _sms;
@@ -27,11 +27,14 @@ namespace Lazztech.Events.Domain.Sms
 
         public bool TryAddRequest(MentorRequest request)
         {
-            var requestedMentorId = request.Mentor.Id;
+            var requestedMentorId = request.Mentor.PhoneNumber;
             if (_unprocessedRequests.ContainsKey(requestedMentorId))
                 return false;
-            _unprocessedRequests.Add(requestedMentorId, request);
-            return true;
+            else
+            {
+                _unprocessedRequests.Add(requestedMentorId, request);
+                return true;
+            }
         }
 
         public void ProcessInboundSms(SmsDto inboundSms)
@@ -53,6 +56,7 @@ namespace Lazztech.Events.Domain.Sms
                 HandleResponseWithNoRequest(inboundSms);
         }
 
+        //REMOVE THIS
         public void ProcessMentorRequests()
         {
             foreach (var inboundSms in InboundMessages.Where(x => x.DateTimeWhenProcessed == null))
