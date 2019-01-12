@@ -67,6 +67,9 @@ namespace Lazztech.Events.Domain
                 request.Mentor.IsAvailable = true;
                 _db.Delete(request.Mentor);
                 _db.Add(request.Mentor);
+                _sms.SendSms(request.Mentor.PhoneNumber,
+                    "Your reserved time is up and you've been marked as available. " +
+                    "You may continue helping person(s) though until you've recieved another request.");
             }
         }
 
@@ -118,7 +121,7 @@ namespace Lazztech.Events.Domain
             mentorRequest.Mentor.IsAvailable = false;
             _db.Add<Mentor>(mentorRequest.Mentor);
             //NOTIFY SIGNALR TEAM
-            _recResponder.MentorRequestResponse(mentorRequest);
+            //_recResponder.MentorRequestResponse(mentorRequest);
         }
 
         private bool IsAcceptanceResponse(SmsDto sms)
