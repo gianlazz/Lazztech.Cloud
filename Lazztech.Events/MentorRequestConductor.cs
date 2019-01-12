@@ -45,7 +45,10 @@ namespace Lazztech.Events.Domain
                 if (mentorRequest.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber)
                 {
                     if (IsAcceptanceResponse(inboundSms))
+                    {
                         HandleRequestAcceptance(inboundSms, mentorRequest);
+                        StartMentorReservationTimeoutAsync(mentorRequest);
+                    }
                     else if (IsRejectionResponse(inboundSms))
                         HandleRequestRejection(inboundSms, mentorRequest);
                     else
@@ -59,12 +62,15 @@ namespace Lazztech.Events.Domain
 
         private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
         {
-            await Task.Run(() => 
+            await Task.Run(async () => 
             {
-                Task.Delay(request.Timeout);
-                request.Mentor.IsAvailable = true;
-                _db.Delete(request.Mentor);
-                _db.Add(request.Mentor);
+                if (request.Timeout != null)
+                {
+                    await Task.Delay(request.Timeout);
+                    request.Mentor.IsAvailable = true;
+                    _db.Delete(request.Mentor);
+                    _db.Add(request.Mentor);
+                }
             });
         }
 
