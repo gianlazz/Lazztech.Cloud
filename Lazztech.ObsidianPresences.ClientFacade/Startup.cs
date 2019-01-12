@@ -23,6 +23,7 @@ namespace Lazztech.Cloud.ClientFacade
     public class Startup
     {
         public IConfiguration Configuration { get; }
+        public static SmsRoutingConductor RequestConductor { get; private set; }
 
         public static IRepository DbRepo;
         public static ISmsService SmsService;
@@ -33,18 +34,7 @@ namespace Lazztech.Cloud.ClientFacade
         {
             Configuration = configuration;
 
-            var smsThread = new Thread(() =>
-            {
-                var conductor = new SmsRoutingConductor(DbRepo, SmsService, Responder);
-                while (2 > 1)
-                {
-                    if (SmsRoutingConductor.InboundMessages.Any(x => x.DateTimeWhenProcessed == null))
-                        conductor.ProcessMentorRequests();
-                    Thread.Sleep(500);
-                }
-            });
-            smsThread.Start();
-
+            RequestConductor = new SmsRoutingConductor(DbRepo, SmsService, Responder);
             SetupTwilioClient();
             SetupMongoDBClient();
         }

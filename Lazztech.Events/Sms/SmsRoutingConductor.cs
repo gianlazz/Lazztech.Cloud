@@ -9,10 +9,8 @@ namespace Lazztech.Events.Domain.Sms
 {
     public class SmsRoutingConductor
     {
-        public static ConcurrentBag<SmsDto> InboundMessages = new ConcurrentBag<SmsDto>();
-        public static ConcurrentBag<MentorRequest> MentorRequests = new ConcurrentBag<MentorRequest>();
-
-        public Dictionary<string, MentorRequest> _unprocessedRequests = new Dictionary<string, MentorRequest>();
+        public ConcurrentBag<SmsDto> InboundMessages { get; private set; }
+        public Dictionary<string, MentorRequest> UnprocessedRequests { get; private set; }
 
         private readonly IRepository _db;
         private readonly ISmsService _sms;
@@ -23,23 +21,25 @@ namespace Lazztech.Events.Domain.Sms
             _db = repository;
             _sms = sms;
             _recResponder = requestResponder;
+            InboundMessages = new ConcurrentBag<SmsDto>();
+            UnprocessedRequests = new Dictionary<string, MentorRequest>();
         }
 
         public bool TryAddRequest(MentorRequest request)
         {
             var requestedMentorId = request.Mentor.PhoneNumber;
-            if (_unprocessedRequests.ContainsKey(requestedMentorId))
+            if (UnprocessedRequests.ContainsKey(requestedMentorId))
                 return false;
             else
             {
-                _unprocessedRequests.Add(requestedMentorId, request);
+                UnprocessedRequests.Add(requestedMentorId, request);
                 return true;
             }
         }
 
         public void ProcessInboundSms(SmsDto inboundSms)
         {
-            foreach (var mentorRequest in _unprocessedRequests.Values.Where(x => x.DateTimeWhenProcessed == null))
+            foreach (var mentorRequest in UnprocessedRequests.Values.Where(x => x.DateTimeWhenProcessed == null))
             {
                 if (mentorRequest.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber)
                 {
@@ -54,29 +54,6 @@ namespace Lazztech.Events.Domain.Sms
 
             if (inboundSms.DateTimeWhenProcessed == null)
                 HandleResponseWithNoRequest(inboundSms);
-        }
-
-        //REMOVE THIS
-        public void ProcessMentorRequests()
-        {
-            foreach (var inboundSms in InboundMessages.Where(x => x.DateTimeWhenProcessed == null))
-            {
-                foreach (var mentorRequest in MentorRequests.Where(x => x.DateTimeWhenProcessed == null))
-                {
-                    if (mentorRequest.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber)
-                    {
-                        if (IsAcceptanceResponse(inboundSms))
-                            HandleRequestAcceptance(inboundSms, mentorRequest);
-                        else if (IsRejectionResponse(inboundSms))
-                            HandleRequestRejection(inboundSms, mentorRequest);
-                        else
-                            HandleUnidentifiedRequestResponse(inboundSms, mentorRequest);
-                    }
-                }
-
-                if (inboundSms.DateTimeWhenProcessed == null)
-                    HandleResponseWithNoRequest(inboundSms);
-            }
         }
 
         private void HandleResponseWithNoRequest(SmsDto inboundSms)

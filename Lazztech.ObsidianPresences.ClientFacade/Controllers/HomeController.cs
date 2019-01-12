@@ -86,7 +86,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             try
             {
                 request.OutboundSms = sms.SendSms(mentor.PhoneNumber, message);
-                SmsRoutingConductor.MentorRequests.Add(request);
+                var succeded = Startup.RequestConductor.TryAddRequest(request);
 
                 Db.Add<MentorRequest>(request);
             }
