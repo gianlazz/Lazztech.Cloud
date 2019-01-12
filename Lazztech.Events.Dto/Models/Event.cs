@@ -12,5 +12,10 @@ namespace Lazztech.Events.Dto.Models
         public List<Mentor> Mentors { get; set; }
         public List<Judge> Judges { get; set; }
         public List<Team> Teams { get; set; }
+
+        public Event()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }
