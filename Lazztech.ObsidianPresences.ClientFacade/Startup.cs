@@ -32,9 +32,9 @@ namespace Lazztech.Cloud.ClientFacade
         {
             Configuration = configuration;
 
-            RequestConductor = new MentorRequestConductor(DbRepo, SmsService, Responder);
             SetupTwilioClient();
             SetupMongoDBClient();
+            RequestConductor = new MentorRequestConductor(DbRepo, SmsService, Responder);
         }
 
         private void SetupTwilioClient()

@@ -34,14 +34,14 @@ namespace Lazztech.Events.Domain
             else
             {
                 Requests.Add(requestedMentorId, request);
-                _db.Add<MentorRequest>(request);
+                //_db.Add<MentorRequest>(request);
                 return true;
             }
         }
 
         public void ProcessInboundSms(SmsDto inboundSms)
         {
-            _db.Add<SmsDto>(inboundSms);
+            //_db.Add<SmsDto>(inboundSms);
             foreach (var mentorRequest in Requests.Values.Where(x => x.DateTimeWhenProcessed == null && x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber))
             {
                 if (IsAcceptanceResponse(inboundSms))
