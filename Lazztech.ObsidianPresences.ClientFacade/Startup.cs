@@ -1,7 +1,7 @@
 using Lazztech.Cloud.ClientFacade.Data;
 using Lazztech.Cloud.ClientFacade.Hubs;
 using Lazztech.Cloud.ClientFacade.Util;
-using Lazztech.Events.Domain.Sms;
+using Lazztech.Events.Domain;
 using Lazztech.Events.Dto.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,15 +15,13 @@ using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using Swashbuckle.AspNetCore.Swagger;
-using System.Linq;
-using System.Threading;
 
 namespace Lazztech.Cloud.ClientFacade
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public static SmsRoutingConductor RequestConductor { get; private set; }
+        public static MentorRequestConductor RequestConductor { get; private set; }
 
         public static IRepository DbRepo;
         public static ISmsService SmsService;
@@ -34,7 +32,7 @@ namespace Lazztech.Cloud.ClientFacade
         {
             Configuration = configuration;
 
-            RequestConductor = new SmsRoutingConductor(DbRepo, SmsService, Responder);
+            RequestConductor = new MentorRequestConductor(DbRepo, SmsService, Responder);
             SetupTwilioClient();
             SetupMongoDBClient();
         }

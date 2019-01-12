@@ -5,9 +5,9 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Lazztech.Events.Domain.Sms
+namespace Lazztech.Events.Domain
 {
-    public class SmsRoutingConductor
+    public class MentorRequestConductor
     {
         public ConcurrentBag<SmsDto> InboundMessages { get; private set; }
         public Dictionary<string, MentorRequest> Requests { get; private set; }
@@ -16,7 +16,7 @@ namespace Lazztech.Events.Domain.Sms
         private readonly ISmsService _sms;
         private readonly IRequestResponder _recResponder;
 
-        public SmsRoutingConductor(IRepository repository, ISmsService sms, IRequestResponder requestResponder)
+        public MentorRequestConductor(IRepository repository, ISmsService sms, IRequestResponder requestResponder)
         {
             _db = repository;
             _sms = sms;

@@ -1,11 +1,10 @@
-using Lazztech.Events.Domain.Sms;
+using Lazztech.Events.Domain;
 using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using Moq;
-using System;
-using Xunit;
 using System.Linq;
+using Xunit;
 
 namespace Lazztech.Events.Tests
 {
@@ -18,7 +17,7 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestResponder>();
-            var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
             {
@@ -31,7 +30,7 @@ namespace Lazztech.Events.Tests
                 },
                 OutboundSms = new SmsDto(
                     message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
-                    toNumber: "GiansNumber123", 
+                    toNumber: "GiansNumber123",
                     fromNumber: "TwilioNumber123"),
             };
 
@@ -53,7 +52,7 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestResponder>();
-            var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
             {
@@ -89,7 +88,7 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestResponder>();
-            var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
             {
@@ -125,7 +124,7 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestResponder>();
-            var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
             {
@@ -161,7 +160,7 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestResponder>();
-            var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var requestForGian = new MentorRequest()
             {
@@ -212,7 +211,7 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestResponder>();
-            var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
             {
@@ -247,7 +246,7 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestResponder>();
-            var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request1 = new MentorRequest()
             {
@@ -286,6 +285,5 @@ namespace Lazztech.Events.Tests
             //Assert
             Assert.False(succeded);
         }
-
     }
 }
