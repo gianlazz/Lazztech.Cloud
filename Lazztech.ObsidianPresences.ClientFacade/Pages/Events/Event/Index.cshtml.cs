@@ -17,13 +17,10 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Event
             Mentors = new List<Mentor>();
         }
 
-        public IndexModel(string message)
+        public void OnGet(string message)
         {
-            Mentors = new List<Mentor>();
-        }
+            Message = message;
 
-        public void OnGet()
-        {
             //var hubContext = GlobalHost.ConnectionManager.GetHubContext<ProgressHub>();
             //string id = (string)hubContext.Clients.All.GetConnectionId().Result;
 
