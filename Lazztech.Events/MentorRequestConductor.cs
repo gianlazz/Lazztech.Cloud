@@ -47,10 +47,15 @@ namespace Lazztech.Events.Domain
                 if (IsAcceptanceResponse(inboundSms))
                 {
                     HandleRequestAcceptance(inboundSms, mentorRequest);
+                    AcceptanceResponseConfirmation(inboundSms, mentorRequest);
+                    ResponseProcessedConfirmation(inboundSms);
                     StartMentorReservationTimeoutAsync(mentorRequest);
                 }
                 else if (IsRejectionResponse(inboundSms))
+                {
+                    ResponseProcessedConfirmation(inboundSms);
                     HandleRequestRejection(inboundSms, mentorRequest);
+                }
                 else
                     HandleUnidentifiedRequestResponse(inboundSms, mentorRequest);
             }
@@ -100,7 +105,6 @@ namespace Lazztech.Events.Domain
             _db.Add<MentorRequest>(mentorRequest);
             _db.Add<SmsDto>(inboundSms);
             //follow-up steps:
-            ResponseProcessedConfirmation(inboundSms);
             //NOTIFY SIGNALR TEAM
             _recResponder.MentorRequestResponse(mentorRequest);
         }
@@ -116,7 +120,6 @@ namespace Lazztech.Events.Domain
             _db.Add<MentorRequest>(mentorRequest);
             _db.Add<SmsDto>(inboundSms);
             //follow-up steps:
-            ResponseProcessedConfirmation(inboundSms);
             _db.Delete<Mentor>(mentorRequest.Mentor);
             mentorRequest.Mentor.IsAvailable = false;
             _db.Add<Mentor>(mentorRequest.Mentor);
@@ -140,6 +143,14 @@ namespace Lazztech.Events.Domain
                 return true;
 
             return false;
+        }
+
+        private void AcceptanceResponseConfirmation(SmsDto inboundSms, MentorRequest mentorRequest)
+        {
+            string message = $"Response confirmed. " +
+                $"You've been marked as busy for {mentorRequest.Timeout.Minutes} minutes" +
+                $" and will automatically be set as available again after.";
+            _sms.SendSms(inboundSms.FromPhoneNumber, message);
         }
 
         private void ResponseProcessedConfirmation(SmsDto sms)
