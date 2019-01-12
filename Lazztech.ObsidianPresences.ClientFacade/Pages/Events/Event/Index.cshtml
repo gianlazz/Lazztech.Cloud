@@ -9,12 +9,6 @@
 
     ViewBag.Title = "Home";
 }
-@if (Model.Message != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @Model.Message
-    </div>
-}
 
 <div class="background-container">
     <div class="jumbotron">
@@ -22,6 +16,12 @@
         <p class="lead">Browse through the selection of on premise mentors. If they're available you can request their assistance; doing so will send the mentor an sms message alerting them to come meet up with you.</p>
         <p class="lead">If the mentor accepts the request to help their card will be greyed out until they are finished.</p>
     </div>
+    @if (Model.Message != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.Message
+        </div>
+    }
     <h2>Present Mentors</h2>
     <hr />
     <div class="row">
