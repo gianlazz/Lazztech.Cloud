@@ -10,7 +10,7 @@ namespace Lazztech.Events.Domain.Sms
     public class SmsRoutingConductor
     {
         public ConcurrentBag<SmsDto> InboundMessages { get; private set; }
-        public Dictionary<string, MentorRequest> UnprocessedRequests { get; private set; }
+        public Dictionary<string, MentorRequest> Requests { get; private set; }
 
         private readonly IRepository _db;
         private readonly ISmsService _sms;
@@ -22,24 +22,24 @@ namespace Lazztech.Events.Domain.Sms
             _sms = sms;
             _recResponder = requestResponder;
             InboundMessages = new ConcurrentBag<SmsDto>();
-            UnprocessedRequests = new Dictionary<string, MentorRequest>();
+            Requests = new Dictionary<string, MentorRequest>();
         }
 
         public bool TryAddRequest(MentorRequest request)
         {
             var requestedMentorId = request.Mentor.PhoneNumber;
-            if (UnprocessedRequests.ContainsKey(requestedMentorId))
+            if (Requests.ContainsKey(requestedMentorId))
                 return false;
             else
             {
-                UnprocessedRequests.Add(requestedMentorId, request);
+                Requests.Add(requestedMentorId, request);
                 return true;
             }
         }
 
         public void ProcessInboundSms(SmsDto inboundSms)
         {
-            foreach (var mentorRequest in UnprocessedRequests.Values.Where(x => x.DateTimeWhenProcessed == null))
+            foreach (var mentorRequest in Requests.Values.Where(x => x.DateTimeWhenProcessed == null))
             {
                 if (mentorRequest.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber)
                 {

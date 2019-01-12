@@ -78,15 +78,15 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             var request = new MentorRequest();
             Mentor mentor = null;
             mentor = Db.Single<Mentor>(x => x.Id == mentorGuidId);
-
             request.TeamName = teamName;
             request.Mentor = mentor;
             var message = EventStrings.OutBoundRequestSms(mentor.FirstName, teamName, teamLocation);
 
+            bool succeded = false;
             try
             {
                 request.OutboundSms = sms.SendSms(mentor.PhoneNumber, message);
-                var succeded = Startup.RequestConductor.TryAddRequest(request);
+                succeded = Startup.RequestConductor.TryAddRequest(request);
 
                 Db.Add<MentorRequest>(request);
             }
