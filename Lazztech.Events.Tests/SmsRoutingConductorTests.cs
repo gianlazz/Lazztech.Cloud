@@ -213,5 +213,42 @@ namespace Lazztech.Events.Tests
             Assert.True(SmsRoutingConductor.MentorRequests.FirstOrDefault(x => x.Mentor.FirstName == "Mark").RequestAccepted == false);
         }
 
+        [Fact]
+        public void PairedRequest_GibberishResponse_RequestShouldBeMarkeNotAcceptedButResponseShouldStillBeProccessed()
+        {
+            //Arrange
+            var repo = new Mock<IRepository>();
+            var sms = new Mock<ISmsService>();
+            var responder = new Mock<IRequestResponder>();
+            var conductor = new SmsRoutingConductor(repo.Object, sms.Object, responder.Object);
+
+            var request = new MentorRequest()
+            {
+                TeamName = "TestTeamName123",
+                Mentor = new Mentor()
+                {
+                    FirstName = "Gian",
+                    LastName = "Lazzarini",
+                    PhoneNumber = "GiansNumber123",
+                },
+                OutboundSms = new SmsDto(
+                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
+                    toNumber: "GiansNumber123",
+                    fromNumber: "TwilioNumber123"),
+            };
+
+            var smsResponse = new SmsDto(message: "asdf", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+
+            //Act
+            SmsRoutingConductor.MentorRequests.Add(request);
+            SmsRoutingConductor.InboundMessages.Add(smsResponse);
+            conductor.ProcessMentorRequests();
+
+            //Assert
+            Assert.NotNull(SmsRoutingConductor.InboundMessages.FirstOrDefault().DateTimeWhenProcessed);
+            Assert.Null(SmsRoutingConductor.MentorRequests.FirstOrDefault().DateTimeWhenProcessed);
+            Assert.True(SmsRoutingConductor.MentorRequests.FirstOrDefault().RequestAccepted == false);
+        }
+
     }
 }

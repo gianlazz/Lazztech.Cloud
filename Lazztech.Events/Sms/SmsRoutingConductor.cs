@@ -39,19 +39,17 @@ namespace Lazztech.Events.Domain.Sms
                     }
                 }
 
-                HandleResponseWithNoRequest(inboundSms);
+                if (inboundSms.DateTimeWhenProcessed == null)
+                    HandleResponseWithNoRequest(inboundSms);
             }
         }
 
         private void HandleResponseWithNoRequest(SmsDto inboundSms)
         {
-            if (inboundSms.DateTimeWhenProcessed == null)
-            {
-                _db.Delete<SmsDto>(inboundSms);
-                inboundSms.DateTimeWhenProcessed = DateTime.Now;
-                UnIdentifiedResponse(inboundSms);
-                _db.Add<SmsDto>(inboundSms);
-            }
+            _db.Delete<SmsDto>(inboundSms);
+            inboundSms.DateTimeWhenProcessed = DateTime.Now;
+            UnIdentifiedResponse(inboundSms);
+            _db.Add<SmsDto>(inboundSms);
         }
 
         private void HandleUnidentifiedRequestResponse(SmsDto inboundSms, MentorRequest mentorRequest)
