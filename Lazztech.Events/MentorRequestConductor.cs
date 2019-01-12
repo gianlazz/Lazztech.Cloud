@@ -34,26 +34,25 @@ namespace Lazztech.Events.Domain
             else
             {
                 Requests.Add(requestedMentorId, request);
+                _db.Add<MentorRequest>(request);
                 return true;
             }
         }
 
         public void ProcessInboundSms(SmsDto inboundSms)
         {
-            foreach (var mentorRequest in Requests.Values.Where(x => x.DateTimeWhenProcessed == null))
+            _db.Add<SmsDto>(inboundSms);
+            foreach (var mentorRequest in Requests.Values.Where(x => x.DateTimeWhenProcessed == null && x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber))
             {
-                if (mentorRequest.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber)
+                if (IsAcceptanceResponse(inboundSms))
                 {
-                    if (IsAcceptanceResponse(inboundSms))
-                    {
-                        HandleRequestAcceptance(inboundSms, mentorRequest);
-                        StartMentorReservationTimeoutAsync(mentorRequest);
-                    }
-                    else if (IsRejectionResponse(inboundSms))
-                        HandleRequestRejection(inboundSms, mentorRequest);
-                    else
-                        HandleUnidentifiedRequestResponse(inboundSms, mentorRequest);
+                    HandleRequestAcceptance(inboundSms, mentorRequest);
+                    StartMentorReservationTimeoutAsync(mentorRequest);
                 }
+                else if (IsRejectionResponse(inboundSms))
+                    HandleRequestRejection(inboundSms, mentorRequest);
+                else
+                    HandleUnidentifiedRequestResponse(inboundSms, mentorRequest);
             }
 
             if (inboundSms.DateTimeWhenProcessed == null)
@@ -62,17 +61,6 @@ namespace Lazztech.Events.Domain
 
         private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
         {
-            //await Task.Run(async () => 
-            //{
-            //    if (request.Timeout != null)
-            //    {
-            //        await Task.Delay(request.Timeout);
-            //        request.Mentor.IsAvailable = true;
-            //        _db.Delete(request.Mentor);
-            //        _db.Add(request.Mentor);
-            //    }
-            //});
-
             if (request.Timeout != null)
             {
                 await Task.Delay(request.Timeout);
