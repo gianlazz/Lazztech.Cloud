@@ -75,29 +75,36 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
         {
             var Db = Startup.DbRepo;
             var sms = Startup.SmsService;
-            var request = new MentorRequest();
-            Mentor mentor = null;
-            mentor = Db.Single<Mentor>(x => x.Id == mentorGuidId);
-            request.UniqueRequesteeId = teamName;
-            request.Mentor = mentor;
-            var message = EventStrings.OutBoundRequestSms(mentor.FirstName, teamName, teamLocation);
-
             bool succeded = false;
-            try
-            {
-                request.OutboundSms = sms.SendSms(mentor.PhoneNumber, message);
-                succeded = Startup.RequestConductor.TryAddRequest(request);
 
-                Db.Add<MentorRequest>(request);
-            }
-            catch (Exception ex)
+            var mentor = Db.Single<Mentor>(x => x.Id == mentorGuidId);
+            if (mentor != null)
             {
-                //IS THROWING EXCEPTION FOR NOT HAVING CORRECTLY SETUP NEWTONSOFT.JSON DEPENDENCY
-                Db.Add<Log>(new Log() { Details = ex.ToString() });
-            }
 
-            return RedirectToPage("/Events/Event/Index");
-            //return RedirectToAction("Index");
+
+                try
+                {
+                    var message = EventStrings.OutBoundRequestSms(mentor.FirstName, teamName, teamLocation);
+                    var request = new MentorRequest()
+                    {
+                        UniqueRequesteeId = teamName,
+                        Mentor = mentor,
+                        OutboundSms = sms.SendSms(mentor.PhoneNumber, message)
+                    };
+                    succeded = Startup.RequestConductor.TryAddRequest(request);
+                    if (succeded)
+                        Db.Add<MentorRequest>(request);
+                }
+                catch (Exception ex)
+                {
+                    Db.Add<Log>(new Log() { Details = ex.ToString() });
+                }
+            }
+            
+            if (succeded)
+                return RedirectToPage("/Events/Event/Index");
+            else
+                return RedirectToPage("/Events/Event/Index", new { message = "" });
         }
 
         //    [HttpPost]

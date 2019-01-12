@@ -10,8 +10,14 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Event
     {
         [BindProperty]
         public List<Mentor> Mentors { get; set; }
+        public string Message { get; set; }
 
         public IndexModel()
+        {
+            Mentors = new List<Mentor>();
+        }
+
+        public IndexModel(string message)
         {
             Mentors = new List<Mentor>();
         }

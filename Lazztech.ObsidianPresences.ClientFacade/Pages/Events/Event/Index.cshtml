@@ -9,7 +9,13 @@
 
     ViewBag.Title = "Home";
 }
-@*@model List<HackathonManager.DTO.Mentor>*@
+@if (Model.Message != null)
+{
+    <div class="alert alert-danger" role="alert">
+        The mentor you selected is currently helping someone else! Please select another.
+    </div>
+}
+
 <div class="background-container">
     <div class="jumbotron">
         <h1>Mentors On The Seattle-Eastside Premise</h1>
