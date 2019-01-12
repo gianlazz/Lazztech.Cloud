@@ -31,56 +31,70 @@ namespace Lazztech.Events.Domain.Sms
                     if (mentorRequest.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber)
                     {
                         if (IsAcceptanceResponse(inboundSms))
-                        {
-                            _db.Delete<MentorRequest>(mentorRequest);
-                            _db.Delete<SmsDto>(inboundSms);
-                            mentorRequest.RequestAccepted = true;
-                            inboundSms.DateTimeWhenProcessed = DateTime.Now;
-                            mentorRequest.DateTimeWhenProcessed = DateTime.Now;
-                            mentorRequest.InboundSms = inboundSms;
-                            _db.Add<MentorRequest>(mentorRequest);
-                            _db.Add<SmsDto>(inboundSms);
-                            //follow-up steps:
-                            ResponseProcessedConfirmation(inboundSms);
-                            _db.Delete<Mentor>(mentorRequest.Mentor);
-                            mentorRequest.Mentor.IsAvailable = false;
-                            _db.Add<Mentor>(mentorRequest.Mentor);
-                            //NOTIFY SIGNALR TEAM
-                            _recResponder.MentorRequestResponse(mentorRequest);
-                        }
+                            HandleRequestAcceptance(inboundSms, mentorRequest);
                         else if (IsRejectionResponse(inboundSms))
-                        {
-                            _db.Delete<MentorRequest>(mentorRequest);
-                            _db.Delete<SmsDto>(inboundSms);
-                            mentorRequest.RequestAccepted = false;
-                            inboundSms.DateTimeWhenProcessed = DateTime.Now;
-                            mentorRequest.DateTimeWhenProcessed = DateTime.Now;
-                            mentorRequest.InboundSms = inboundSms;
-                            _db.Add<MentorRequest>(mentorRequest);
-                            _db.Add<SmsDto>(inboundSms);
-                            //follow-up steps:
-                            ResponseProcessedConfirmation(inboundSms);
-                            //NOTIFY SIGNALR TEAM
-                            _recResponder.MentorRequestResponse(mentorRequest);
-                        }
+                            HandleRequestRejection(inboundSms, mentorRequest);
                         else
-                        {
-                            _db.Delete<SmsDto>(inboundSms);
-                            inboundSms.DateTimeWhenProcessed = DateTime.Now;
-                            UnIdentifiedResponse(inboundSms, mentorRequest.OutboundSms);
-                            _db.Add<SmsDto>(inboundSms);
-                        }
+                            HandleUnidentifiedRequestResponse(inboundSms, mentorRequest);
                     }
                 }
 
-                if (inboundSms.DateTimeWhenProcessed == null)
-                {
-                    _db.Delete<SmsDto>(inboundSms);
-                    inboundSms.DateTimeWhenProcessed = DateTime.Now;
-                    UnIdentifiedResponse(inboundSms);
-                    _db.Add<SmsDto>(inboundSms);
-                }
+                HandleResponseWithNoRequest(inboundSms);
             }
+        }
+
+        private void HandleResponseWithNoRequest(SmsDto inboundSms)
+        {
+            if (inboundSms.DateTimeWhenProcessed == null)
+            {
+                _db.Delete<SmsDto>(inboundSms);
+                inboundSms.DateTimeWhenProcessed = DateTime.Now;
+                UnIdentifiedResponse(inboundSms);
+                _db.Add<SmsDto>(inboundSms);
+            }
+        }
+
+        private void HandleUnidentifiedRequestResponse(SmsDto inboundSms, MentorRequest mentorRequest)
+        {
+            _db.Delete<SmsDto>(inboundSms);
+            inboundSms.DateTimeWhenProcessed = DateTime.Now;
+            UnIdentifiedResponse(inboundSms, mentorRequest.OutboundSms);
+            _db.Add<SmsDto>(inboundSms);
+        }
+
+        private void HandleRequestRejection(SmsDto inboundSms, MentorRequest mentorRequest)
+        {
+            _db.Delete<MentorRequest>(mentorRequest);
+            _db.Delete<SmsDto>(inboundSms);
+            mentorRequest.RequestAccepted = false;
+            inboundSms.DateTimeWhenProcessed = DateTime.Now;
+            mentorRequest.DateTimeWhenProcessed = DateTime.Now;
+            mentorRequest.InboundSms = inboundSms;
+            _db.Add<MentorRequest>(mentorRequest);
+            _db.Add<SmsDto>(inboundSms);
+            //follow-up steps:
+            ResponseProcessedConfirmation(inboundSms);
+            //NOTIFY SIGNALR TEAM
+            _recResponder.MentorRequestResponse(mentorRequest);
+        }
+
+        private void HandleRequestAcceptance(SmsDto inboundSms, MentorRequest mentorRequest)
+        {
+            _db.Delete<MentorRequest>(mentorRequest);
+            _db.Delete<SmsDto>(inboundSms);
+            mentorRequest.RequestAccepted = true;
+            inboundSms.DateTimeWhenProcessed = DateTime.Now;
+            mentorRequest.DateTimeWhenProcessed = DateTime.Now;
+            mentorRequest.InboundSms = inboundSms;
+            _db.Add<MentorRequest>(mentorRequest);
+            _db.Add<SmsDto>(inboundSms);
+            //follow-up steps:
+            ResponseProcessedConfirmation(inboundSms);
+            _db.Delete<Mentor>(mentorRequest.Mentor);
+            mentorRequest.Mentor.IsAvailable = false;
+            _db.Add<Mentor>(mentorRequest.Mentor);
+            //NOTIFY SIGNALR TEAM
+            _recResponder.MentorRequestResponse(mentorRequest);
         }
 
         private bool IsAcceptanceResponse(SmsDto sms)
