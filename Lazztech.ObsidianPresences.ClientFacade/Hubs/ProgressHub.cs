@@ -12,7 +12,7 @@ namespace Lazztech.Cloud.ClientFacade.Hubs
         {
             if (request.RequestAccepted)
             {
-                Clients.Group(request.TeamName).SendAsync("RequestUpdate", request, "Mentor Accepted Request.");
+                Clients.Group(request.UniqueRequesteeId).SendAsync("RequestUpdate", request, "Mentor Accepted Request.");
             }
         }
 

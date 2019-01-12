@@ -12,13 +12,13 @@ namespace Lazztech.Cloud.ClientFacade.Util
             {
                 var message = $"{mentorRequest.Mentor.FirstName} accepted your request!";
                 var hub = new ProgressHub();
-                hub.UpdateTeamOfMentorRequest(mentorRequest.TeamName, true, message);
+                hub.UpdateTeamOfMentorRequest(mentorRequest.UniqueRequesteeId, true, message);
             }
             if (mentorRequest.RequestAccepted == false && mentorRequest.DateTimeWhenProcessed != null)
             {
                 var message = $"{mentorRequest.Mentor.FirstName} is not available right now";
                 var hub = new ProgressHub();
-                hub.UpdateTeamOfMentorRequest(mentorRequest.TeamName, true, message);
+                hub.UpdateTeamOfMentorRequest(mentorRequest.UniqueRequesteeId, true, message);
             }
         }
     }

@@ -78,7 +78,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             var request = new MentorRequest();
             Mentor mentor = null;
             mentor = Db.Single<Mentor>(x => x.Id == mentorGuidId);
-            request.TeamName = teamName;
+            request.UniqueRequesteeId = teamName;
             request.Mentor = mentor;
             var message = EventStrings.OutBoundRequestSms(mentor.FirstName, teamName, teamLocation);
 

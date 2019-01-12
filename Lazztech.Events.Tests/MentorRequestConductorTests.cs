@@ -21,7 +21,7 @@ namespace Lazztech.Events.Tests
 
             var request = new MentorRequest()
             {
-                TeamName = "TestTeamName123",
+                UniqueRequesteeId = "TestTeamName123",
                 Mentor = new Mentor()
                 {
                     FirstName = "Gian",
@@ -56,7 +56,7 @@ namespace Lazztech.Events.Tests
 
             var request = new MentorRequest()
             {
-                TeamName = "TestTeamName123",
+                UniqueRequesteeId = "TestTeamName123",
                 Mentor = new Mentor()
                 {
                     FirstName = "Gian",
@@ -92,7 +92,7 @@ namespace Lazztech.Events.Tests
 
             var request = new MentorRequest()
             {
-                TeamName = "TestTeamName123",
+                UniqueRequesteeId = "TestTeamName123",
                 Mentor = new Mentor()
                 {
                     FirstName = "Gian",
@@ -128,7 +128,7 @@ namespace Lazztech.Events.Tests
 
             var request = new MentorRequest()
             {
-                TeamName = "TestTeamName123",
+                UniqueRequesteeId = "TestTeamName123",
                 Mentor = new Mentor()
                 {
                     FirstName = "Gian",
@@ -164,7 +164,7 @@ namespace Lazztech.Events.Tests
 
             var requestForGian = new MentorRequest()
             {
-                TeamName = "TestTeamName123",
+                UniqueRequesteeId = "TestTeamName123",
                 Mentor = new Mentor()
                 {
                     FirstName = "Gian",
@@ -179,7 +179,7 @@ namespace Lazztech.Events.Tests
 
             var requestForMark = new MentorRequest()
             {
-                TeamName = "TestTeam0",
+                UniqueRequesteeId = "TestTeam0",
                 Mentor = new Mentor()
                 {
                     FirstName = "Mark",
@@ -215,7 +215,7 @@ namespace Lazztech.Events.Tests
 
             var request = new MentorRequest()
             {
-                TeamName = "TestTeamName123",
+                UniqueRequesteeId = "TestTeamName123",
                 Mentor = new Mentor()
                 {
                     FirstName = "Gian",
@@ -250,7 +250,7 @@ namespace Lazztech.Events.Tests
 
             var request1 = new MentorRequest()
             {
-                TeamName = "TestTeamName123",
+                UniqueRequesteeId = "TestTeamName123",
                 Mentor = new Mentor()
                 {
                     FirstName = "Gian",
@@ -265,7 +265,7 @@ namespace Lazztech.Events.Tests
 
             var request2 = new MentorRequest()
             {
-                TeamName = "TestTeam0",
+                UniqueRequesteeId = "TestTeam0",
                 Mentor = new Mentor()
                 {
                     FirstName = "Gian",
@@ -284,6 +284,42 @@ namespace Lazztech.Events.Tests
 
             //Assert
             Assert.False(succeded);
+        }
+
+        [Fact]
+        public void MentorRequestShouldMarkMentorAsAvailableAfterSetTimeout()
+        {
+            //Arrange
+            var repo = new Mock<IRepository>();
+            var sms = new Mock<ISmsService>();
+            var responder = new Mock<IRequestResponder>();
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+
+            var request = new MentorRequest()
+            {
+                UniqueRequesteeId = "TestTeamName123",
+                Mentor = new Mentor()
+                {
+                    FirstName = "Gian",
+                    LastName = "Lazzarini",
+                    PhoneNumber = "GiansNumber123",
+                },
+                OutboundSms = new SmsDto(
+                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
+                    toNumber: "GiansNumber123",
+                    fromNumber: "TwilioNumber123"),
+            };
+
+            var smsResponse = new SmsDto(message: "YES", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+
+            //Act
+            var succeded = conductor.TryAddRequest(request);
+            conductor.ProcessInboundSms(smsResponse);
+
+            //Assert
+            Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
+            Assert.DoesNotContain(conductor.Requests.Values, x => x.DateTimeWhenProcessed == null);
+            Assert.True(conductor.Requests.Values.FirstOrDefault().RequestAccepted == true);
         }
     }
 }

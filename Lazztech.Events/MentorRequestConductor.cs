@@ -4,6 +4,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Lazztech.Events.Domain
 {
@@ -54,6 +55,17 @@ namespace Lazztech.Events.Domain
 
             if (inboundSms.DateTimeWhenProcessed == null)
                 HandleResponseWithNoRequest(inboundSms);
+        }
+
+        private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
+        {
+            await Task.Run(() => 
+            {
+                Task.Delay(request.Timeout);
+                request.Mentor.IsAvailable = true;
+                _db.Delete(request.Mentor);
+                _db.Add(request.Mentor);
+            });
         }
 
         private void HandleResponseWithNoRequest(SmsDto inboundSms)
