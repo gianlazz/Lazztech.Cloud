@@ -21,13 +21,6 @@ namespace Lazztech.Events.Domain.Sms
             _logger = logger;
         }
 
-        //public void Process(SmsDto incomingSmsDto)
-        //{
-        //    if (CheckIfTheyreValidUser(incomingSmsDto))
-        //        return;
-        //    Isfinished(incomingSmsDto);
-        //}
-
         private bool Isfinished(SmsDto incomingSmsDto)
         {
             if (incomingSmsDto.MessageBody.ToLower().Contains("finished"))
