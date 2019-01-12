@@ -2,6 +2,7 @@
 using Lazztech.Events.Dto.Models;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Lazztech.Events.Domain.Sms
@@ -10,6 +11,8 @@ namespace Lazztech.Events.Domain.Sms
     {
         public static ConcurrentBag<SmsDto> InboundMessages = new ConcurrentBag<SmsDto>();
         public static ConcurrentBag<MentorRequest> MentorRequests = new ConcurrentBag<MentorRequest>();
+
+        public Dictionary<Guid, MentorRequest> _unprocessedRequests = new Dictionary<Guid, MentorRequest>();
 
         private readonly IRepository _db;
         private readonly ISmsService _sms;
@@ -20,6 +23,34 @@ namespace Lazztech.Events.Domain.Sms
             _db = repository;
             _sms = sms;
             _recResponder = requestResponder;
+        }
+
+        public bool TryAddRequest(MentorRequest request)
+        {
+            var requestedMentorId = request.Mentor.Id;
+            if (_unprocessedRequests.ContainsKey(requestedMentorId))
+                return false;
+            _unprocessedRequests.Add(requestedMentorId, request);
+            return true;
+        }
+
+        public void ProcessInboundSms(SmsDto inboundSms)
+        {
+            foreach (var mentorRequest in _unprocessedRequests.Values.Where(x => x.DateTimeWhenProcessed == null))
+            {
+                if (mentorRequest.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber)
+                {
+                    if (IsAcceptanceResponse(inboundSms))
+                        HandleRequestAcceptance(inboundSms, mentorRequest);
+                    else if (IsRejectionResponse(inboundSms))
+                        HandleRequestRejection(inboundSms, mentorRequest);
+                    else
+                        HandleUnidentifiedRequestResponse(inboundSms, mentorRequest);
+                }
+            }
+
+            if (inboundSms.DateTimeWhenProcessed == null)
+                HandleResponseWithNoRequest(inboundSms);
         }
 
         public void ProcessMentorRequests()
