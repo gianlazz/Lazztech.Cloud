@@ -48,7 +48,6 @@ namespace Lazztech.Events.Domain
                 {
                     HandleRequestAcceptance(inboundSms, mentorRequest);
                     AcceptanceResponseConfirmation(inboundSms, mentorRequest);
-                    ResponseProcessedConfirmation(inboundSms);
                     StartMentorReservationTimeoutAsync(mentorRequest);
                 }
                 else if (IsRejectionResponse(inboundSms))
@@ -69,9 +68,11 @@ namespace Lazztech.Events.Domain
             if (request.Timeout != null)
             {
                 await Task.Delay(request.Timeout);
-                request.Mentor.IsAvailable = true;
-                _db.Delete(request.Mentor);
-                _db.Add(request.Mentor);
+                var mentor = request.Mentor;
+                Requests.Remove(mentor.PhoneNumber);
+                mentor.IsAvailable = true;
+                _db.Delete<Mentor>(x => x.Id == request.Mentor.Id);
+                _db.Add<Mentor>(mentor);
                 _sms.SendSms(request.Mentor.PhoneNumber,
                     "Your reserved time is up and you've been marked as available. " +
                     "You may continue helping person(s) though until you've recieved another request.");
