@@ -107,6 +107,7 @@ namespace Lazztech.Events.Domain
             _db.Add<SmsDto>(inboundSms);
             //follow-up steps:
             //NOTIFY SIGNALR TEAM
+            Requests.Remove(mentorRequest.Mentor.PhoneNumber);
             _recResponder.MentorRequestResponse(mentorRequest);
         }
 
