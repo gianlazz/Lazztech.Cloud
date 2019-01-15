@@ -235,8 +235,8 @@ namespace Lazztech.Events.Tests
             conductor.ProcessInboundSms(smsResponse);
 
             //Assert
-            Assert.Null(conductor.ProcessedRequests.FirstOrDefault().DateTimeWhenProcessed);
-            Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == false);
+            Assert.Null(conductor.UnprocessedRequests.Values.FirstOrDefault().DateTimeWhenProcessed);
+            Assert.True(conductor.UnprocessedRequests.Values.FirstOrDefault().RequestAccepted == false);
         }
 
         [Fact]
