@@ -65,9 +65,9 @@ namespace Lazztech.Events.Domain
 
         private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
         {
-            if (request.Timeout != null)
+            if (request.MentoringDuration != null)
             {
-                await Task.Delay(request.Timeout);
+                await Task.Delay(request.MentoringDuration);
                 var mentor = request.Mentor;
                 Requests.Remove(mentor.PhoneNumber);
                 mentor.IsAvailable = true;
@@ -150,7 +150,7 @@ namespace Lazztech.Events.Domain
         private void AcceptanceResponseConfirmation(SmsDto inboundSms, MentorRequest mentorRequest)
         {
             string message = $"Response confirmed. " +
-                $"You've been marked as busy for {mentorRequest.Timeout.Minutes} minutes" +
+                $"You've been marked as busy for {mentorRequest.MentoringDuration.Minutes} minutes" +
                 $" and will automatically be set as available again after.";
             _sms.SendSms(inboundSms.FromPhoneNumber, message);
         }
