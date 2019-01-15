@@ -4,6 +4,6 @@ namespace Lazztech.Events.Dto.Interfaces
 {
     public interface IRequestResponder
     {
-        void MentorRequestResponse(MentorRequest mentorRequest);
+        void UpdateMentorRequestee(MentorRequest mentorRequest);
     }
 }

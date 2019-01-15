@@ -117,7 +117,7 @@ namespace Lazztech.Events.Domain
             UpdateMentoRequestDb(mentorRequest);
             UpdateSmsDb(inboundSms);
 
-            _recResponder.MentorRequestResponse(mentorRequest);
+            _recResponder.UpdateMentorRequestee(mentorRequest);
         }
 
         private void HandleRequestAcceptance(SmsDto inboundSms, MentorRequest mentorRequest)
@@ -132,7 +132,7 @@ namespace Lazztech.Events.Domain
             UpdateMentorDb(mentorRequest.Mentor);
             UpdateMentoRequestDb(mentorRequest);
 
-            //_recResponder.MentorRequestResponse(mentorRequest);
+            _recResponder.UpdateMentorRequestee(mentorRequest);
         }
 
         private void UpdateMentoRequestDb(MentorRequest request)
@@ -192,7 +192,6 @@ namespace Lazztech.Events.Domain
             //RESEND THE INITAL PROMPT SMS
             if (lastSmsSent != null)
                 _sms.SendSms(smsResponse.FromPhoneNumber, lastSmsSent.MessageBody);
-            //SHOULD IT BE ADDED TO THE OUTBOUND MESSAGES?
         }
     }
 }

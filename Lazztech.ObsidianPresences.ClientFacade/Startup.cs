@@ -25,7 +25,7 @@ namespace Lazztech.Cloud.ClientFacade
 
         public static IRepository DbRepo;
         public static ISmsService SmsService;
-        public static IRequestResponder Responder = new Responder();
+        public static IRequestResponder Responder = new SignalRResponder();
         public static IMongoDatabase Db;
 
         public Startup(IConfiguration configuration)

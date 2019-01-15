@@ -4,7 +4,7 @@ using Lazztech.Events.Dto.Models;
 
 namespace Lazztech.Cloud.ClientFacade.Util
 {
-    public class Responder : IRequestResponder
+    public class SignalRResponder : IRequestResponder
     {
         public void MentorRequestResponse(MentorRequest mentorRequest)
         {
