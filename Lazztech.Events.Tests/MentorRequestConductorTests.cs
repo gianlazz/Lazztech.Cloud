@@ -41,8 +41,8 @@ namespace Lazztech.Events.Tests
             conductor.ProcessInboundSms(smsResponse);
 
             //Assert
-            Assert.DoesNotContain(conductor.Requests.Values, x => x.DateTimeWhenProcessed == null);
-            Assert.True(conductor.Requests.Values.FirstOrDefault().RequestAccepted == true);
+            Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
+            Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == true);
         }
 
         [Fact]
@@ -77,8 +77,8 @@ namespace Lazztech.Events.Tests
 
             //Assert
             Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
-            Assert.DoesNotContain(conductor.Requests.Values, x => x.DateTimeWhenProcessed == null);
-            Assert.True(conductor.Requests.Values.FirstOrDefault().RequestAccepted == true);
+            Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
+            Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == true);
         }
 
         [Fact]
@@ -113,8 +113,8 @@ namespace Lazztech.Events.Tests
 
             //Assert
             Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
-            Assert.DoesNotContain(conductor.Requests.Values, x => x.DateTimeWhenProcessed == null);
-            Assert.True(conductor.Requests.Values.FirstOrDefault().RequestAccepted == false);
+            Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
+            Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == false);
         }
 
         [Fact]
@@ -149,8 +149,8 @@ namespace Lazztech.Events.Tests
 
             //Assert
             Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
-            Assert.DoesNotContain(conductor.Requests.Values, x => x.DateTimeWhenProcessed == null);
-            Assert.True(conductor.Requests.Values.FirstOrDefault().RequestAccepted == false);
+            Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
+            Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == false);
         }
 
         [Fact]
@@ -200,8 +200,8 @@ namespace Lazztech.Events.Tests
             conductor.ProcessInboundSms(smsResponseFromGian);
 
             //Assert
-            Assert.True(conductor.Requests.Values.FirstOrDefault(x => x.Mentor.FirstName == "Gian").RequestAccepted == true);
-            Assert.True(conductor.Requests.Values.FirstOrDefault(x => x.Mentor.FirstName == "Mark").RequestAccepted == false);
+            Assert.True(conductor.ProcessedRequests.FirstOrDefault(x => x.Mentor.FirstName == "Gian").RequestAccepted == true);
+            Assert.True(conductor.UnprocessedRequests.Values.FirstOrDefault(x => x.Mentor.FirstName == "Mark").RequestAccepted == false);
         }
 
         [Fact]
@@ -235,8 +235,8 @@ namespace Lazztech.Events.Tests
             conductor.ProcessInboundSms(smsResponse);
 
             //Assert
-            Assert.Null(conductor.Requests.Values.FirstOrDefault().DateTimeWhenProcessed);
-            Assert.True(conductor.Requests.Values.FirstOrDefault().RequestAccepted == false);
+            Assert.Null(conductor.ProcessedRequests.FirstOrDefault().DateTimeWhenProcessed);
+            Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == false);
         }
 
         [Fact]
@@ -318,8 +318,8 @@ namespace Lazztech.Events.Tests
 
             //Assert
             Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
-            Assert.DoesNotContain(conductor.Requests.Values, x => x.DateTimeWhenProcessed == null);
-            Assert.True(conductor.Requests.Values.FirstOrDefault().RequestAccepted == true);
+            Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
+            Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == true);
         }
     }
 }

@@ -11,7 +11,8 @@ namespace Lazztech.Events.Domain
     public class MentorRequestConductor
     {
         public ConcurrentBag<SmsDto> InboundMessages { get; private set; }
-        public Dictionary<string, MentorRequest> Requests { get; private set; }
+        public Dictionary<string, MentorRequest> UnprocessedRequests { get; private set; }
+        public List<MentorRequest> ProcessedRequests { get; set; }
 
         private readonly IRepository _db;
         private readonly ISmsService _sms;
@@ -23,17 +24,18 @@ namespace Lazztech.Events.Domain
             _sms = sms;
             _recResponder = requestResponder;
             InboundMessages = new ConcurrentBag<SmsDto>();
-            Requests = new Dictionary<string, MentorRequest>();
+            UnprocessedRequests = new Dictionary<string, MentorRequest>();
+            ProcessedRequests = new List<MentorRequest>();
         }
 
         public bool TryAddRequest(MentorRequest request)
         {
             var requestedMentorId = request.Mentor.PhoneNumber;
-            if (Requests.ContainsKey(requestedMentorId))
+            if (UnprocessedRequests.ContainsKey(requestedMentorId))
                 return false;
             else
             {
-                Requests.Add(requestedMentorId, request);
+                UnprocessedRequests.Add(requestedMentorId, request);
                 //_db.Add<MentorRequest>(request);
                 return true;
             }
@@ -42,21 +44,29 @@ namespace Lazztech.Events.Domain
         public void ProcessInboundSms(SmsDto inboundSms)
         {
             //_db.Add<SmsDto>(inboundSms);
-            foreach (var mentorRequest in Requests.Values.Where(x => x.DateTimeWhenProcessed == null && x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber))
+            var requestsToEvaluate = UnprocessedRequests.Values
+                .Where(x => x.DateTimeWhenProcessed == null 
+                && 
+                x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber).ToList();
+            foreach (var mentorRequest in requestsToEvaluate)
             {
                 if (IsAcceptanceResponse(inboundSms))
                 {
                     HandleRequestAcceptance(inboundSms, mentorRequest);
                     AcceptanceResponseConfirmation(inboundSms, mentorRequest);
                     StartMentorReservationTimeoutAsync(mentorRequest);
+                    MoveToProcessed(mentorRequest);
                 }
                 else if (IsRejectionResponse(inboundSms))
                 {
                     ResponseProcessedConfirmation(inboundSms);
                     HandleRequestRejection(inboundSms, mentorRequest);
+                    MoveToProcessed(mentorRequest);
                 }
                 else
+                {
                     HandleUnidentifiedRequestResponse(inboundSms, mentorRequest);
+                }
             }
 
             if (inboundSms.DateTimeWhenProcessed == null)
@@ -69,7 +79,7 @@ namespace Lazztech.Events.Domain
             {
                 await Task.Delay(request.MentoringDuration);
                 var mentor = request.Mentor;
-                Requests.Remove(mentor.PhoneNumber);
+                UnprocessedRequests.Remove(mentor.PhoneNumber);
                 mentor.IsAvailable = true;
                 _db.Delete<Mentor>(x => x.Id == request.Mentor.Id);
                 _db.Add<Mentor>(mentor);
@@ -77,6 +87,12 @@ namespace Lazztech.Events.Domain
                     "Your reserved time is up and you've been marked as available. " +
                     "You may continue helping person(s) though until you've recieved another request.");
             }
+        }
+
+        private void MoveToProcessed(MentorRequest request)
+        {
+            UnprocessedRequests.Remove(request.Mentor.PhoneNumber);
+            ProcessedRequests.Add(request);
         }
 
         private void HandleResponseWithNoRequest(SmsDto inboundSms)
@@ -107,7 +123,7 @@ namespace Lazztech.Events.Domain
             _db.Add<SmsDto>(inboundSms);
             //follow-up steps:
             //NOTIFY SIGNALR TEAM
-            Requests.Remove(mentorRequest.Mentor.PhoneNumber);
+            UnprocessedRequests.Remove(mentorRequest.Mentor.PhoneNumber);
             _recResponder.MentorRequestResponse(mentorRequest);
         }
 
