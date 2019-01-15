@@ -36,14 +36,14 @@ namespace Lazztech.Events.Domain
             else
             {
                 UnprocessedRequests.Add(requestedMentorId, request);
-                //_db.Add<MentorRequest>(request);
+                _db.Add<MentorRequest>(request);
                 return true;
             }
         }
 
         public void ProcessInboundSms(SmsDto inboundSms)
         {
-            //_db.Add<SmsDto>(inboundSms);
+            _db.Add<SmsDto>(inboundSms);
             var requestsToEvaluate = UnprocessedRequests.Values
                 .Where(x => x.DateTimeWhenProcessed == null 
                 && 
@@ -79,10 +79,8 @@ namespace Lazztech.Events.Domain
             {
                 await Task.Delay(request.MentoringDuration);
                 var mentor = request.Mentor;
-                UnprocessedRequests.Remove(mentor.PhoneNumber);
                 mentor.IsAvailable = true;
-                _db.Delete<Mentor>(x => x.Id == request.Mentor.Id);
-                _db.Add<Mentor>(mentor);
+                UpdateMentorDb(mentor);
                 _sms.SendSms(request.Mentor.PhoneNumber,
                     "Your reserved time is up and you've been marked as available. " +
                     "You may continue helping person(s) though until you've recieved another request.");
@@ -97,52 +95,62 @@ namespace Lazztech.Events.Domain
 
         private void HandleResponseWithNoRequest(SmsDto inboundSms)
         {
-            _db.Delete<SmsDto>(inboundSms);
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
             UnIdentifiedResponse(inboundSms);
-            _db.Add<SmsDto>(inboundSms);
+            UpdateSmsDb(inboundSms);
         }
 
         private void HandleUnidentifiedRequestResponse(SmsDto inboundSms, MentorRequest mentorRequest)
         {
-            _db.Delete<SmsDto>(inboundSms);
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
             UnIdentifiedResponse(inboundSms, mentorRequest.OutboundSms);
-            _db.Add<SmsDto>(inboundSms);
+            UpdateSmsDb(inboundSms);
         }
 
         private void HandleRequestRejection(SmsDto inboundSms, MentorRequest mentorRequest)
         {
-            _db.Delete<MentorRequest>(mentorRequest);
-            _db.Delete<SmsDto>(inboundSms);
             mentorRequest.RequestAccepted = false;
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
             mentorRequest.DateTimeWhenProcessed = DateTime.Now;
             mentorRequest.InboundSms = inboundSms;
-            _db.Add<MentorRequest>(mentorRequest);
-            _db.Add<SmsDto>(inboundSms);
-            //follow-up steps:
-            //NOTIFY SIGNALR TEAM
-            UnprocessedRequests.Remove(mentorRequest.Mentor.PhoneNumber);
+
+            UpdateMentoRequestDb(mentorRequest);
+            UpdateSmsDb(inboundSms);
+
             _recResponder.MentorRequestResponse(mentorRequest);
         }
 
         private void HandleRequestAcceptance(SmsDto inboundSms, MentorRequest mentorRequest)
         {
-            _db.Delete<MentorRequest>(mentorRequest);
-            _db.Delete<SmsDto>(inboundSms);
             mentorRequest.RequestAccepted = true;
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
             mentorRequest.DateTimeWhenProcessed = DateTime.Now;
             mentorRequest.InboundSms = inboundSms;
-            _db.Add<MentorRequest>(mentorRequest);
-            _db.Add<SmsDto>(inboundSms);
-            //follow-up steps:
-            _db.Delete<Mentor>(mentorRequest.Mentor);
             mentorRequest.Mentor.IsAvailable = false;
-            _db.Add<Mentor>(mentorRequest.Mentor);
-            //NOTIFY SIGNALR TEAM
+
+            UpdateSmsDb(inboundSms);
+            UpdateMentorDb(mentorRequest.Mentor);
+            UpdateMentoRequestDb(mentorRequest);
+
             //_recResponder.MentorRequestResponse(mentorRequest);
+        }
+
+        private void UpdateMentoRequestDb(MentorRequest request)
+        {
+            _db.Delete<MentorRequest>(x => x.Id == request.Id);
+            _db.Add<MentorRequest>(request);
+        }
+
+        private void UpdateMentorDb(Mentor mentor)
+        {
+            _db.Delete<Mentor>(x => x.Id == mentor.Id);
+            _db.Add<Mentor>(mentor);
+        }
+
+        private void UpdateSmsDb(SmsDto inboundSms)
+        {
+            _db.Delete<SmsDto>(x => x.Id == inboundSms.Id);
+            _db.Add<SmsDto>(inboundSms);
         }
 
         private bool IsAcceptanceResponse(SmsDto sms)

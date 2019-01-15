@@ -308,6 +308,8 @@ namespace Lazztech.Events.Tests
                     message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
                     toNumber: "GiansNumber123",
                     fromNumber: "TwilioNumber123"),
+                RequestTimeout = new System.TimeSpan(hours: 0, minutes: 0, seconds: 1),
+                MentoringDuration = new System.TimeSpan(hours: 0, minutes: 0, seconds: 0)
             };
 
             var smsResponse = new SmsDto(message: "YES", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
