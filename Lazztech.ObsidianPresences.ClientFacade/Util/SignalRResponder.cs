@@ -6,7 +6,7 @@ namespace Lazztech.Cloud.ClientFacade.Util
 {
     public class SignalRResponder : IRequestResponder
     {
-        public void MentorRequestResponse(MentorRequest mentorRequest)
+        public void UpdateMentorRequestee(MentorRequest mentorRequest)
         {
             if (mentorRequest.RequestAccepted == true && mentorRequest.DateTimeWhenProcessed != null)
             {
