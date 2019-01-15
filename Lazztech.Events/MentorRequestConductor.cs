@@ -41,7 +41,7 @@ namespace Lazztech.Events.Domain
             }
         }
 
-        public void ProcessInboundSms(SmsDto inboundSms)
+        public List<MentorRequest> ProcessSmsRequestResponse(SmsDto inboundSms)
         {
             _db.Add<SmsDto>(inboundSms);
             var requestsToEvaluate = UnprocessedRequests.Values
@@ -71,6 +71,10 @@ namespace Lazztech.Events.Domain
 
             if (inboundSms.DateTimeWhenProcessed == null)
                 HandleResponseWithNoRequest(inboundSms);
+
+            var requestResults = ProcessedRequests.ToList();
+            ProcessedRequests = new List<MentorRequest>();
+            return requestResults;
         }
 
         private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
