@@ -154,7 +154,7 @@ namespace Lazztech.Events.Tests
         }
 
         [Fact]
-        public void TwoDifferentRequests_OneResponse_Y_CorrectRequestShouldBeMarkedAccepted()
+        public void TryAddRequestANDProcessResponse_TwoDifferentRequestsWithOneAcceptance_CorrectRequestShouldBeMarkedAccepted()
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -197,11 +197,11 @@ namespace Lazztech.Events.Tests
             ////Act
             var succededForGian = conductor.TryAddRequest(requestForGian);
             var succededForMark = conductor.TryAddRequest(requestForMark);
-            conductor.ProcessResponse(smsResponseFromGian);
+            var result = conductor.ProcessResponse(smsResponseFromGian);
 
             //Assert
-            //Assert.True(conductor.ProcessedRequests.FirstOrDefault(x => x.Mentor.FirstName == "Gian").RequestAccepted == true);
-            //Assert.True(conductor.PendingRequests.Values.FirstOrDefault(x => x.Mentor.FirstName == "Mark").RequestAccepted == false);
+            Assert.True(result.Mentor.FirstName == "Gian" && result.RequestAccepted);
+            Assert.True(conductor.PendingRequests.Values.FirstOrDefault(x => x.Mentor.FirstName == "Mark").RequestAccepted == false);
         }
 
         [Fact]
