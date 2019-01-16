@@ -240,7 +240,7 @@ namespace Lazztech.Events.Tests
         }
 
         [Fact]
-        public void ShouldNotBeAbleToAddTwoRequestsForOneMentor()
+        public void TryAddRequest_AddTwoRequestsForOneMentor_ShouldNotSucceed()
         {
             //Arrange
             var repo = new Mock<IRepository>();
