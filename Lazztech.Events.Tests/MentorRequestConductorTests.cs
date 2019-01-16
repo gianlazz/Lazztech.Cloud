@@ -198,7 +198,7 @@ namespace Lazztech.Events.Tests
 
             //Assert
             Assert.True(result.Mentor.FirstName == "Gian" && result.RequestAccepted);
-            Assert.True(conductor.PendingRequests.Values.FirstOrDefault(x => x.Mentor.FirstName == "Mark").RequestAccepted == false);
+            Assert.True(conductor.Requests.Values.FirstOrDefault(x => x.Mentor.FirstName == "Mark").RequestAccepted == false);
         }
 
         [Fact]
@@ -232,8 +232,8 @@ namespace Lazztech.Events.Tests
             conductor.ProcessResponse(smsResponse);
 
             //Assert
-            Assert.Null(conductor.PendingRequests.Values.FirstOrDefault().DateTimeWhenProcessed);
-            Assert.True(conductor.PendingRequests.Values.FirstOrDefault().RequestAccepted == false);
+            Assert.Null(conductor.Requests.Values.FirstOrDefault().DateTimeWhenProcessed);
+            Assert.True(conductor.Requests.Values.FirstOrDefault().RequestAccepted == false);
         }
 
         [Fact]
@@ -314,7 +314,7 @@ namespace Lazztech.Events.Tests
 
             //Assert
             repo.Verify(x => x.Add(It.Is<MentorRequest>(m => m.TimedOut == true)));
-            Assert.Empty(conductor.PendingRequests);
+            Assert.Empty(conductor.Requests);
         }
     }
 }

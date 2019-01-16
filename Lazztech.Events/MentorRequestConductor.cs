@@ -9,7 +9,7 @@ namespace Lazztech.Events.Domain
 {
     public class MentorRequestConductor
     {
-        public Dictionary<string, MentorRequest> PendingRequests { get; private set; }
+        public Dictionary<string, MentorRequest> Requests { get; private set; }
 
         private readonly IRepository _db;
         private readonly ISmsService _sms;
@@ -20,17 +20,17 @@ namespace Lazztech.Events.Domain
             _db = repository;
             _sms = sms;
             _Notifier = requestResponder;
-            PendingRequests = new Dictionary<string, MentorRequest>();
+            Requests = new Dictionary<string, MentorRequest>();
         }
 
         public bool TryAddRequest(MentorRequest request)
         {
             var requestedMentorId = request.Mentor.PhoneNumber;
-            if (PendingRequests.ContainsKey(requestedMentorId))
+            if (Requests.ContainsKey(requestedMentorId))
                 return false;
             else
             {
-                PendingRequests.Add(requestedMentorId, request);
+                Requests.Add(requestedMentorId, request);
                 AddMenorRequestDb(request);
                 StartRequestTimeOutAsync(request);
                 return true;
@@ -66,7 +66,7 @@ namespace Lazztech.Events.Domain
 
         private MentorRequest FindResponseRequest(SmsDto inboundSms)
         {
-            var MatchingRequests = PendingRequests.Values.Where(x => x.DateTimeWhenProcessed == null
+            var MatchingRequests = Requests.Values.Where(x => x.DateTimeWhenProcessed == null
                 &&
                 x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber).ToList();
 
@@ -81,6 +81,7 @@ namespace Lazztech.Events.Domain
             request.TimedOut = true;
             request.DateTimeWhenProcessed = DateTime.Now;
             UpdateMentoRequestDb(request);
+            Requests.Remove(request.Mentor.PhoneNumber);
         }
 
         private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
