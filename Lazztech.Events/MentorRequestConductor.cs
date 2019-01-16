@@ -36,17 +36,17 @@ namespace Lazztech.Events.Domain
             else
             {
                 UnprocessedRequests.Add(requestedMentorId, request);
-                _db.Add<MentorRequest>(request);
+                AddMenorRequestDb(request);
                 return true;
             }
         }
 
         public void ProcessInboundSms(SmsDto inboundSms)
         {
-            _db.Add<SmsDto>(inboundSms);
+            AddSmsDb(inboundSms);
             var requestsToEvaluate = UnprocessedRequests.Values
-                .Where(x => x.DateTimeWhenProcessed == null 
-                && 
+                .Where(x => x.DateTimeWhenProcessed == null
+                &&
                 x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber).ToList();
             foreach (var mentorRequest in requestsToEvaluate)
             {
@@ -81,9 +81,7 @@ namespace Lazztech.Events.Domain
                 var mentor = request.Mentor;
                 mentor.IsAvailable = true;
                 UpdateMentorDb(mentor);
-                _sms.SendSms(request.Mentor.PhoneNumber,
-                    "Your reserved time is up and you've been marked as available. " +
-                    "You may continue helping person(s) though until you've recieved another request.");
+                SendResponseTimeUpMessage(request);
             }
         }
 
@@ -135,23 +133,7 @@ namespace Lazztech.Events.Domain
             _recResponder.UpdateMentorRequestee(mentorRequest);
         }
 
-        private void UpdateMentoRequestDb(MentorRequest request)
-        {
-            _db.Delete<MentorRequest>(x => x.Id == request.Id);
-            _db.Add<MentorRequest>(request);
-        }
-
-        private void UpdateMentorDb(Mentor mentor)
-        {
-            _db.Delete<Mentor>(x => x.Id == mentor.Id);
-            _db.Add<Mentor>(mentor);
-        }
-
-        private void UpdateSmsDb(SmsDto inboundSms)
-        {
-            _db.Delete<SmsDto>(x => x.Id == inboundSms.Id);
-            _db.Add<SmsDto>(inboundSms);
-        }
+        #region MessageInterpretationHelperMethods
 
         private bool IsAcceptanceResponse(SmsDto sms)
         {
@@ -171,6 +153,10 @@ namespace Lazztech.Events.Domain
             return false;
         }
 
+        #endregion
+
+        #region MessageResponseHelperMethods
+    
         private void AcceptanceResponseConfirmation(SmsDto inboundSms, MentorRequest mentorRequest)
         {
             string message = $"Response confirmed. " +
@@ -193,5 +179,46 @@ namespace Lazztech.Events.Domain
             if (lastSmsSent != null)
                 _sms.SendSms(smsResponse.FromPhoneNumber, lastSmsSent.MessageBody);
         }
+
+        private void SendResponseTimeUpMessage(MentorRequest request)
+        {
+            _sms.SendSms(request.Mentor.PhoneNumber,
+                                "Your reserved time is up and you've been marked as available. " +
+                                "You may continue helping person(s) though until you've recieved another request.");
+        }
+
+        #endregion
+
+        #region DbHelperMethods
+
+        private void AddSmsDb(SmsDto inboundSms)
+        {
+            _db.Add<SmsDto>(inboundSms);
+        }
+
+        private void AddMenorRequestDb(MentorRequest request)
+        {
+            _db.Add<MentorRequest>(request);
+        }
+
+        private void UpdateMentoRequestDb(MentorRequest request)
+        {
+            _db.Delete<MentorRequest>(x => x.Id == request.Id);
+            _db.Add<MentorRequest>(request);
+        }
+
+        private void UpdateMentorDb(Mentor mentor)
+        {
+            _db.Delete<Mentor>(x => x.Id == mentor.Id);
+            _db.Add<Mentor>(mentor);
+        }
+
+        private void UpdateSmsDb(SmsDto inboundSms)
+        {
+            _db.Delete<SmsDto>(x => x.Id == inboundSms.Id);
+            _db.Add<SmsDto>(inboundSms);
+        }
+
+        #endregion
     }
 }
