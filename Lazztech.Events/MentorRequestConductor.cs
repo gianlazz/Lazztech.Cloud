@@ -10,8 +10,7 @@ namespace Lazztech.Events.Domain
     public class MentorRequestConductor
     {
         public List<SmsDto> InboundMessages { get; private set; }
-        public Dictionary<string, MentorRequest> UnprocessedRequests { get; private set; }
-        public List<MentorRequest> ProcessedRequests { get; set; }
+        public Dictionary<string, MentorRequest> PendingRequests { get; private set; }
 
         private readonly IRepository _db;
         private readonly ISmsService _sms;
@@ -23,25 +22,24 @@ namespace Lazztech.Events.Domain
             _sms = sms;
             _Notifier = requestResponder;
             InboundMessages = new List<SmsDto>();
-            UnprocessedRequests = new Dictionary<string, MentorRequest>();
-            ProcessedRequests = new List<MentorRequest>();
+            PendingRequests = new Dictionary<string, MentorRequest>();
         }
 
         public bool TryAddRequest(MentorRequest request)
         {
             var requestedMentorId = request.Mentor.PhoneNumber;
-            if (UnprocessedRequests.ContainsKey(requestedMentorId))
+            if (PendingRequests.ContainsKey(requestedMentorId))
                 return false;
             else
             {
-                UnprocessedRequests.Add(requestedMentorId, request);
+                PendingRequests.Add(requestedMentorId, request);
                 AddMenorRequestDb(request);
                 StartRequestTimeOutAsync(request);
                 return true;
             }
         }
 
-        public void ProcessRequestResponseMessage(SmsDto inboundSms)
+        public MentorRequest ProcessResponse(SmsDto inboundSms)
         {
             AddSmsDb(inboundSms);
             
@@ -51,13 +49,11 @@ namespace Lazztech.Events.Domain
                 HandleRequestAcceptance(inboundSms, matchingRequest);
                 AcceptanceResponseConfirmation(inboundSms, matchingRequest);
                 StartMentorReservationTimeoutAsync(matchingRequest);
-                MoveToProcessed(matchingRequest);
             }
             else if (IsRejectionResponse(inboundSms))
             {
                 ResponseProcessedConfirmation(inboundSms);
                 HandleRequestRejection(inboundSms, matchingRequest);
-                MoveToProcessed(matchingRequest);
             }
             else
             {
@@ -66,11 +62,13 @@ namespace Lazztech.Events.Domain
             
             if (inboundSms.DateTimeWhenProcessed == null)
                 HandleResponseWithNoRequest(inboundSms);
+
+            return matchingRequest;
         }
 
         private MentorRequest FindResponseRequest(SmsDto inboundSms)
         {
-            var MatchingRequests = UnprocessedRequests.Values.Where(x => x.DateTimeWhenProcessed == null
+            var MatchingRequests = PendingRequests.Values.Where(x => x.DateTimeWhenProcessed == null
                 &&
                 x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber).ToList();
 
@@ -84,7 +82,6 @@ namespace Lazztech.Events.Domain
             await Task.Delay(request.RequestTimeout);
             request.TimedOut = true;
             request.DateTimeWhenProcessed = DateTime.Now;
-            MoveToProcessed(request);
             UpdateMentoRequestDb(request);
         }
 
@@ -98,12 +95,6 @@ namespace Lazztech.Events.Domain
                 UpdateMentorDb(mentor);
                 SendResponseTimeUpMessage(request);
             }
-        }
-
-        private void MoveToProcessed(MentorRequest request)
-        {
-            UnprocessedRequests.Remove(request.Mentor.PhoneNumber);
-            ProcessedRequests.Add(request);
         }
 
         private void HandleResponseWithNoRequest(SmsDto inboundSms)
