@@ -82,6 +82,7 @@ namespace Lazztech.Events.Domain
             request.DateTimeWhenProcessed = DateTime.Now;
             UpdateMentoRequestDb(request);
             Requests.Remove(request.Mentor.PhoneNumber);
+            NotifyMentorOfRequestTimeout(request.Mentor);
         }
 
         private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
@@ -92,7 +93,7 @@ namespace Lazztech.Events.Domain
                 var mentor = request.Mentor;
                 mentor.IsAvailable = true;
                 UpdateMentorDb(mentor);
-                SendResponseTimeUpMessage(request);
+                NotifyResponseTimeUp(request);
             }
         }
 
@@ -185,11 +186,18 @@ namespace Lazztech.Events.Domain
                 _sms.SendSms(smsResponse.FromPhoneNumber, lastSmsSent.MessageBody);
         }
 
-        private void SendResponseTimeUpMessage(MentorRequest request)
+        private void NotifyResponseTimeUp(MentorRequest request)
         {
             _sms.SendSms(request.Mentor.PhoneNumber,
                                 "Your reserved time is up and you've been marked as available. " +
                                 "You may continue helping person(s) though until you've recieved another request.");
+        }
+
+        private void NotifyMentorOfRequestTimeout(Mentor mentor)
+        {
+            _sms.SendSms(mentor.PhoneNumber,
+                "The request timeout duration has passed and you have been made available for other requests." +
+                "Please notify the responsable party if you would like to be marked as unavailable or busy");
         }
 
         #endregion MessageResponseHelperMethods
