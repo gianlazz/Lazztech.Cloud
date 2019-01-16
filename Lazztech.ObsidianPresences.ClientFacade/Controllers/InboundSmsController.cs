@@ -28,7 +28,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             var Db = Startup.DbRepo;
 
             Db.Add<SmsDto>(smsDto);
-            Startup.RequestConductor.ProcessSmsRequestResponse(smsDto);
+            Startup.RequestConductor.ProcessInboundSms(smsDto);
         }
     }
 }
