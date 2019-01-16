@@ -118,7 +118,7 @@ namespace Lazztech.Events.Tests
         }
 
         [Fact]
-        public void PairedRequestResponse_NO_RequestShouldBeMarkeNotAccepted()
+        public void TryAddRequestANDProcessResponse_NegativeResponse_ShouldBeMarkedNotAccepted()
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -145,12 +145,12 @@ namespace Lazztech.Events.Tests
 
             //Act
             var succeded = conductor.TryAddRequest(request);
-            conductor.ProcessResponse(smsResponse);
+            var result = conductor.ProcessResponse(smsResponse);
 
             //Assert
-            //Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
-            //Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
-            //Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == false);
+            Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
+            Assert.False(result.RequestAccepted);
+            Assert.NotNull(result.DateTimeWhenProcessed);
         }
 
         [Fact]
