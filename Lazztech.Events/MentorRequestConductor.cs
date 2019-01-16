@@ -1,7 +1,6 @@
 ﻿using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -42,36 +41,42 @@ namespace Lazztech.Events.Domain
             }
         }
 
-        public void ProcessInboundSms(SmsDto inboundSms)
+        public void ProcessRequestResponseMessage(SmsDto inboundSms)
         {
             AddSmsDb(inboundSms);
-            var requestsToEvaluate = UnprocessedRequests.Values
-                .Where(x => x.DateTimeWhenProcessed == null
-                &&
-                x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber).ToList();
-            foreach (var mentorRequest in requestsToEvaluate)
+            
+            var matchingRequest = FindResponseRequest(inboundSms);
+            if (IsAcceptanceResponse(inboundSms))
             {
-                if (IsAcceptanceResponse(inboundSms))
-                {
-                    HandleRequestAcceptance(inboundSms, mentorRequest);
-                    AcceptanceResponseConfirmation(inboundSms, mentorRequest);
-                    StartMentorReservationTimeoutAsync(mentorRequest);
-                    MoveToProcessed(mentorRequest);
-                }
-                else if (IsRejectionResponse(inboundSms))
-                {
-                    ResponseProcessedConfirmation(inboundSms);
-                    HandleRequestRejection(inboundSms, mentorRequest);
-                    MoveToProcessed(mentorRequest);
-                }
-                else
-                {
-                    HandleUnidentifiedRequestResponse(inboundSms, mentorRequest);
-                }
+                HandleRequestAcceptance(inboundSms, matchingRequest);
+                AcceptanceResponseConfirmation(inboundSms, matchingRequest);
+                StartMentorReservationTimeoutAsync(matchingRequest);
+                MoveToProcessed(matchingRequest);
             }
-
+            else if (IsRejectionResponse(inboundSms))
+            {
+                ResponseProcessedConfirmation(inboundSms);
+                HandleRequestRejection(inboundSms, matchingRequest);
+                MoveToProcessed(matchingRequest);
+            }
+            else
+            {
+                HandleUnidentifiedRequestResponse(inboundSms, matchingRequest);
+            }
+            
             if (inboundSms.DateTimeWhenProcessed == null)
                 HandleResponseWithNoRequest(inboundSms);
+        }
+
+        private MentorRequest FindResponseRequest(SmsDto inboundSms)
+        {
+            var MatchingRequests = UnprocessedRequests.Values.Where(x => x.DateTimeWhenProcessed == null
+                &&
+                x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber).ToList();
+
+            if (MatchingRequests.Count() > 1) { throw new Exception(); }
+
+            return MatchingRequests.FirstOrDefault();
         }
 
         private async Task StartRequestTimeOutAsync(MentorRequest request)
@@ -163,10 +168,10 @@ namespace Lazztech.Events.Domain
             return false;
         }
 
-        #endregion
+        #endregion MessageInterpretationHelperMethods
 
         #region MessageResponseHelperMethods
-    
+
         private void AcceptanceResponseConfirmation(SmsDto inboundSms, MentorRequest mentorRequest)
         {
             string message = $"Response confirmed. " +
@@ -197,7 +202,7 @@ namespace Lazztech.Events.Domain
                                 "You may continue helping person(s) though until you've recieved another request.");
         }
 
-        #endregion
+        #endregion MessageResponseHelperMethods
 
         #region DbHelperMethods
 
@@ -229,6 +234,6 @@ namespace Lazztech.Events.Domain
             _db.Add<SmsDto>(inboundSms);
         }
 
-        #endregion
+        #endregion DbHelperMethods
     }
 }

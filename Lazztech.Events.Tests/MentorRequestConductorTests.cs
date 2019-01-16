@@ -38,7 +38,7 @@ namespace Lazztech.Events.Tests
 
             //Act
             var succeded = conductor.TryAddRequest(request);
-            conductor.ProcessInboundSms(smsResponse);
+            conductor.ProcessRequestResponseMessage(smsResponse);
 
             //Assert
             Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
@@ -73,7 +73,7 @@ namespace Lazztech.Events.Tests
 
             //Act
             var succeded = conductor.TryAddRequest(request);
-            conductor.ProcessInboundSms(smsResponse);
+            conductor.ProcessRequestResponseMessage(smsResponse);
 
             //Assert
             Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
@@ -109,7 +109,7 @@ namespace Lazztech.Events.Tests
 
             //Act
             var succeded = conductor.TryAddRequest(request);
-            conductor.ProcessInboundSms(smsResponse);
+            conductor.ProcessRequestResponseMessage(smsResponse);
 
             //Assert
             Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
@@ -145,7 +145,7 @@ namespace Lazztech.Events.Tests
 
             //Act
             var succeded = conductor.TryAddRequest(request);
-            conductor.ProcessInboundSms(smsResponse);
+            conductor.ProcessRequestResponseMessage(smsResponse);
 
             //Assert
             Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
@@ -197,7 +197,7 @@ namespace Lazztech.Events.Tests
             ////Act
             var succededForGian = conductor.TryAddRequest(requestForGian);
             var succededForMark = conductor.TryAddRequest(requestForMark);
-            conductor.ProcessInboundSms(smsResponseFromGian);
+            conductor.ProcessRequestResponseMessage(smsResponseFromGian);
 
             //Assert
             Assert.True(conductor.ProcessedRequests.FirstOrDefault(x => x.Mentor.FirstName == "Gian").RequestAccepted == true);
@@ -232,7 +232,7 @@ namespace Lazztech.Events.Tests
 
             //Act
             var succeded = conductor.TryAddRequest(request);
-            conductor.ProcessInboundSms(smsResponse);
+            conductor.ProcessRequestResponseMessage(smsResponse);
 
             //Assert
             Assert.Null(conductor.UnprocessedRequests.Values.FirstOrDefault().DateTimeWhenProcessed);
