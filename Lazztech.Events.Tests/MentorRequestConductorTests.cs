@@ -76,7 +76,6 @@ namespace Lazztech.Events.Tests
             var result = conductor.ProcessResponse(smsResponse);
 
             //Assert
-            Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
             Assert.NotNull(result.DateTimeWhenProcessed);
             Assert.True(result.RequestAccepted);
         }
@@ -112,7 +111,6 @@ namespace Lazztech.Events.Tests
             var result = conductor.ProcessResponse(smsResponse);
 
             //Assert
-            Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
             Assert.NotNull(result.DateTimeWhenProcessed);
             Assert.False(result.RequestAccepted);
         }
@@ -148,7 +146,6 @@ namespace Lazztech.Events.Tests
             var result = conductor.ProcessResponse(smsResponse);
 
             //Assert
-            Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
             Assert.False(result.RequestAccepted);
             Assert.NotNull(result.DateTimeWhenProcessed);
         }

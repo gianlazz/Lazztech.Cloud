@@ -9,7 +9,6 @@ namespace Lazztech.Events.Domain
 {
     public class MentorRequestConductor
     {
-        public List<SmsDto> InboundMessages { get; private set; }
         public Dictionary<string, MentorRequest> PendingRequests { get; private set; }
 
         private readonly IRepository _db;
@@ -21,7 +20,6 @@ namespace Lazztech.Events.Domain
             _db = repository;
             _sms = sms;
             _Notifier = requestResponder;
-            InboundMessages = new List<SmsDto>();
             PendingRequests = new Dictionary<string, MentorRequest>();
         }
 
