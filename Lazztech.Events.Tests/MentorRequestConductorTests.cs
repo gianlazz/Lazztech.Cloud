@@ -16,7 +16,7 @@ namespace Lazztech.Events.Tests
             //Arrange
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestResponder>();
+            var responder = new Mock<IRequestNotifier>();
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
@@ -51,7 +51,7 @@ namespace Lazztech.Events.Tests
             //Arrange
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestResponder>();
+            var responder = new Mock<IRequestNotifier>();
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
@@ -87,7 +87,7 @@ namespace Lazztech.Events.Tests
             //Arrange
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestResponder>();
+            var responder = new Mock<IRequestNotifier>();
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
@@ -123,7 +123,7 @@ namespace Lazztech.Events.Tests
             //Arrange
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestResponder>();
+            var responder = new Mock<IRequestNotifier>();
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
@@ -159,7 +159,7 @@ namespace Lazztech.Events.Tests
             //Arrange
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestResponder>();
+            var responder = new Mock<IRequestNotifier>();
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var requestForGian = new MentorRequest()
@@ -210,7 +210,7 @@ namespace Lazztech.Events.Tests
             //Arrange
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestResponder>();
+            var responder = new Mock<IRequestNotifier>();
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()
@@ -245,7 +245,7 @@ namespace Lazztech.Events.Tests
             //Arrange
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestResponder>();
+            var responder = new Mock<IRequestNotifier>();
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request1 = new MentorRequest()
@@ -292,7 +292,7 @@ namespace Lazztech.Events.Tests
             //Arrange
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestResponder>();
+            var responder = new Mock<IRequestNotifier>();
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var request = new MentorRequest()

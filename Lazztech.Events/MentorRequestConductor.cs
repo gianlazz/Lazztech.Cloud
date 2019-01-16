@@ -16,13 +16,13 @@ namespace Lazztech.Events.Domain
 
         private readonly IRepository _db;
         private readonly ISmsService _sms;
-        private readonly IRequestResponder _recResponder;
+        private readonly IRequestNotifier _Notifier;
 
-        public MentorRequestConductor(IRepository repository, ISmsService sms, IRequestResponder requestResponder)
+        public MentorRequestConductor(IRepository repository, ISmsService sms, IRequestNotifier requestResponder)
         {
             _db = repository;
             _sms = sms;
-            _recResponder = requestResponder;
+            _Notifier = requestResponder;
             InboundMessages = new ConcurrentBag<SmsDto>();
             UnprocessedRequests = new Dictionary<string, MentorRequest>();
             ProcessedRequests = new List<MentorRequest>();
@@ -115,7 +115,7 @@ namespace Lazztech.Events.Domain
             UpdateMentoRequestDb(mentorRequest);
             UpdateSmsDb(inboundSms);
 
-            _recResponder.UpdateMentorRequestee(mentorRequest);
+            _Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         private void HandleRequestAcceptance(SmsDto inboundSms, MentorRequest mentorRequest)
@@ -130,7 +130,7 @@ namespace Lazztech.Events.Domain
             UpdateMentorDb(mentorRequest.Mentor);
             UpdateMentoRequestDb(mentorRequest);
 
-            _recResponder.UpdateMentorRequestee(mentorRequest);
+            _Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         #region MessageInterpretationHelperMethods

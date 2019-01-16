@@ -2,7 +2,7 @@
 
 namespace Lazztech.Events.Dto.Interfaces
 {
-    public interface IRequestResponder
+    public interface IRequestNotifier
     {
         void UpdateMentorRequestee(MentorRequest mentorRequest);
     }
