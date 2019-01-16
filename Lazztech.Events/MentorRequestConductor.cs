@@ -10,7 +10,7 @@ namespace Lazztech.Events.Domain
 {
     public class MentorRequestConductor
     {
-        public ConcurrentBag<SmsDto> InboundMessages { get; private set; }
+        public List<SmsDto> InboundMessages { get; private set; }
         public Dictionary<string, MentorRequest> UnprocessedRequests { get; private set; }
         public List<MentorRequest> ProcessedRequests { get; set; }
 
@@ -23,7 +23,7 @@ namespace Lazztech.Events.Domain
             _db = repository;
             _sms = sms;
             _Notifier = requestResponder;
-            InboundMessages = new ConcurrentBag<SmsDto>();
+            InboundMessages = new List<SmsDto>();
             UnprocessedRequests = new Dictionary<string, MentorRequest>();
             ProcessedRequests = new List<MentorRequest>();
         }
@@ -40,15 +40,6 @@ namespace Lazztech.Events.Domain
                 StartRequestTimeOutAsync(request);
                 return true;
             }
-        }
-
-        private async Task StartRequestTimeOutAsync(MentorRequest request)
-        {
-            await Task.Delay(request.RequestTimeout);
-            request.TimedOut = true;
-            request.DateTimeWhenProcessed = DateTime.Now;
-            MoveToProcessed(request);
-            UpdateMentoRequestDb(request);
         }
 
         public void ProcessInboundSms(SmsDto inboundSms)
@@ -81,6 +72,15 @@ namespace Lazztech.Events.Domain
 
             if (inboundSms.DateTimeWhenProcessed == null)
                 HandleResponseWithNoRequest(inboundSms);
+        }
+
+        private async Task StartRequestTimeOutAsync(MentorRequest request)
+        {
+            await Task.Delay(request.RequestTimeout);
+            request.TimedOut = true;
+            request.DateTimeWhenProcessed = DateTime.Now;
+            MoveToProcessed(request);
+            UpdateMentoRequestDb(request);
         }
 
         private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
