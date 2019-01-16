@@ -11,7 +11,7 @@ namespace Lazztech.Events.Tests
     public class SmsRoutingConductorTests
     {
         [Fact]
-        public void PairedRequestResponse_Y_RequestShouldBeMarkedAccepted()
+        public void TryAddRequestANDProcessResponse_PositiveResponseY_ShouldBeMarkedAccepted()
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -46,7 +46,7 @@ namespace Lazztech.Events.Tests
         }
 
         [Fact]
-        public void PairedRequestResponse_YES_RequestShouldBeMarkedAccepted()
+        public void TryAddRequestANDProcessResponse_PositiveResponseYES_ShouldBeMarkedAccepted()
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -73,16 +73,16 @@ namespace Lazztech.Events.Tests
 
             //Act
             var succeded = conductor.TryAddRequest(request);
-            conductor.ProcessResponse(smsResponse);
+            var result = conductor.ProcessResponse(smsResponse);
 
             //Assert
-            //Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
-            //Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
-            //Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == true);
+            Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
+            Assert.NotNull(result.DateTimeWhenProcessed);
+            Assert.True(result.RequestAccepted);
         }
 
         [Fact]
-        public void PairedRequestResponse_N_RequestShouldBeMarkeNotAccepted()
+        public void TryAddRequestANDProcessResponse_NegativeResponseN_ShouldBeMarkedNotAccepted()
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -109,16 +109,16 @@ namespace Lazztech.Events.Tests
 
             //Act
             var succeded = conductor.TryAddRequest(request);
-            conductor.ProcessResponse(smsResponse);
+            var result = conductor.ProcessResponse(smsResponse);
 
             //Assert
-            //Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
-            //Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
-            //Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == false);
+            Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
+            Assert.NotNull(result.DateTimeWhenProcessed);
+            Assert.False(result.RequestAccepted);
         }
 
         [Fact]
-        public void TryAddRequestANDProcessResponse_NegativeResponse_ShouldBeMarkedNotAccepted()
+        public void TryAddRequestANDProcessResponse_NegativeResponseNO_ShouldBeMarkedNotAccepted()
         {
             //Arrange
             var repo = new Mock<IRepository>();
