@@ -14,6 +14,7 @@ namespace Lazztech.Events.Dto.Models
         public SmsDto InboundSms { get; set; }
         public TimeSpan MentoringDuration { get; set; }
         public TimeSpan RequestTimeout { get; set; }
+        public bool TimedOut { get; set; }
 
         public MentorRequest()
         {

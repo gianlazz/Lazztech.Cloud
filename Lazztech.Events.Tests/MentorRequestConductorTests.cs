@@ -287,41 +287,37 @@ namespace Lazztech.Events.Tests
         }
 
         [Fact]
-        public void MentorRequestShouldMarkMentorAsAvailableAfterSetTimeout()
+        public void TryAddRequest_RequestWithoutResponse_ShouldBeMarkedAvailableAfterTimeout()
         {
             //Arrange
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-
+            var mentor = new Mentor()
+            {
+                FirstName = "Gian",
+                LastName = "Lazzarini",
+                PhoneNumber = "GiansNumber123",
+            };
             var request = new MentorRequest()
             {
                 UniqueRequesteeId = "TestTeamName123",
-                Mentor = new Mentor()
-                {
-                    FirstName = "Gian",
-                    LastName = "Lazzarini",
-                    PhoneNumber = "GiansNumber123",
-                },
+                Mentor = mentor,
                 OutboundSms = new SmsDto(
                     message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
                     toNumber: "GiansNumber123",
                     fromNumber: "TwilioNumber123"),
-                RequestTimeout = new System.TimeSpan(hours: 0, minutes: 0, seconds: 1),
+                RequestTimeout = new System.TimeSpan(hours: 0, minutes: 0, seconds: 0),
                 MentoringDuration = new System.TimeSpan(hours: 0, minutes: 0, seconds: 0)
             };
 
-            var smsResponse = new SmsDto(message: "YES", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
-
             //Act
             var succeded = conductor.TryAddRequest(request);
-            conductor.ProcessInboundSms(smsResponse);
 
             //Assert
-            Assert.DoesNotContain(conductor.InboundMessages, x => x.DateTimeWhenProcessed == null);
-            Assert.DoesNotContain(conductor.ProcessedRequests, x => x.DateTimeWhenProcessed == null);
-            Assert.True(conductor.ProcessedRequests.FirstOrDefault().RequestAccepted == true);
+            repo.Verify(x => x.Add(It.Is<MentorRequest>(m => m.TimedOut == true)));
+            Assert.Empty(conductor.UnprocessedRequests);
         }
     }
 }

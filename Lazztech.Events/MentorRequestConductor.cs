@@ -37,8 +37,18 @@ namespace Lazztech.Events.Domain
             {
                 UnprocessedRequests.Add(requestedMentorId, request);
                 AddMenorRequestDb(request);
+                StartRequestTimeOutAsync(request);
                 return true;
             }
+        }
+
+        private async Task StartRequestTimeOutAsync(MentorRequest request)
+        {
+            await Task.Delay(request.RequestTimeout);
+            request.TimedOut = true;
+            request.DateTimeWhenProcessed = DateTime.Now;
+            MoveToProcessed(request);
+            UpdateMentoRequestDb(request);
         }
 
         public void ProcessInboundSms(SmsDto inboundSms)
