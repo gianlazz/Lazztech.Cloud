@@ -47,7 +47,7 @@ namespace Lazztech.Events.Domain
             AddSmsDb(inboundSms);
             
             var matchingRequest = FindResponseRequest(inboundSms);
-            var mentorFromDb = _db.Single<Mentor>(x => x.PhoneNumber == inboundSms.FromPhoneNumber);
+            var mentorFromDb = _db.Single<Mentor>(x => x.PhoneNumber.Contains(inboundSms.FromPhoneNumber.TrimStart("+1".ToCharArray())));
             if (IsAcceptanceResponse(inboundSms))
             {
                 HandleRequestAcceptance(inboundSms, matchingRequest);
@@ -61,8 +61,8 @@ namespace Lazztech.Events.Domain
             }
             else if (IsBusyResponse(inboundSms))
             {
+                HandleBusyResponse(mentorFromDb, inboundSms);
                 ResponseProcessedBusy(inboundSms);
-                HandleBusyResponse(mentorFromDb);
             }
             else
             {
@@ -75,10 +75,12 @@ namespace Lazztech.Events.Domain
             return matchingRequest;
         }
 
-        private void HandleBusyResponse(Mentor mentor)
+        private void HandleBusyResponse(Mentor mentor, SmsDto sms)
         {
             mentor.IsAvailable = false;
             UpdateMentorDb(mentor);
+            sms.DateTimeWhenProcessed = DateTime.Now;
+            UpdateSmsDb(sms);
         }
 
         private MentorRequest FindResponseRequest(SmsDto inboundSms)
@@ -232,7 +234,7 @@ namespace Lazztech.Events.Domain
         private void ResponseProcessedBusy(SmsDto inboundSms)
         {
             _sms.SendSms(inboundSms.FromPhoneNumber,
-                "Response recieved and you've ben marked as unavailable.");
+                "Response recieved and you've been marked as unavailable.");
         }
 
         #endregion MessageResponseHelperMethods

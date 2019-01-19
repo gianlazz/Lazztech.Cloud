@@ -316,7 +316,6 @@ namespace Lazztech.Events.Tests
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(mentor);
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
- 
 
             //Act
             var result = conductor.ProcessResponse(smsResponse);
@@ -324,6 +323,7 @@ namespace Lazztech.Events.Tests
 
             //Assert
             repo.Verify(x => x.Add<Mentor>(mentor));
+            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 
         [Fact]

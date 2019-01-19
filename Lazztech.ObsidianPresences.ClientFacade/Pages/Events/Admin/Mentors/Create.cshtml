@@ -14,11 +14,6 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Mentor.Event" class="control-label"></label>
-                <input asp-for="Mentor.Event" class="form-control" />
-                <span asp-validation-for="Mentor.Event" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Mentor.FirstName" class="control-label"></label>
                 <input asp-for="Mentor.FirstName" class="form-control" />
                 <span asp-validation-for="Mentor.FirstName" class="text-danger"></span>
@@ -32,11 +27,6 @@
                 <label asp-for="Mentor.Image" class="control-label"></label>
                 <input asp-for="Mentor.Image" class="form-control" />
                 <span asp-validation-for="Mentor.Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mentor.Age" class="control-label"></label>
-                <input asp-for="Mentor.Age" class="form-control" />
-                <span asp-validation-for="Mentor.Age" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Mentor.Description" class="control-label"></label>
@@ -71,11 +61,6 @@
                         <input asp-for="Mentor.IsPresent" /> @Html.DisplayNameFor(model => model.Mentor.IsPresent))
                     </label>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mentor.MentorType" class="control-label"></label>
-                <input asp-for="Mentor.MentorType" class="form-control" />
-                <span asp-validation-for="Mentor.MentorType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
