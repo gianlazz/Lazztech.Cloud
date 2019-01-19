@@ -10,8 +10,10 @@ namespace Lazztech.Events.Tests
 {
     public class SmsRoutingConductorTests
     {
-        [Fact]
-        public void TryAddRequestANDProcessResponse_PositiveResponseY_ShouldBeMarkedAccepted()
+        [Theory]
+        [InlineData("Y")]
+        [InlineData("YES")]
+        public void TryAddRequestANDProcessResponse_PositiveResponse_ShouldBeMarkedAccepted(string response)
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -34,7 +36,7 @@ namespace Lazztech.Events.Tests
                     fromNumber: "TwilioNumber123"),
             };
 
-            var smsResponse = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+            var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
             var succeded = conductor.TryAddRequest(request);
@@ -45,8 +47,10 @@ namespace Lazztech.Events.Tests
             Assert.True(result.RequestAccepted);
         }
 
-        [Fact]
-        public void TryAddRequestANDProcessResponse_PositiveResponseYES_ShouldBeMarkedAccepted()
+        [Theory]
+        [InlineData("N")]
+        [InlineData("NO")]
+        public void TryAddRequestANDProcessResponse_NegativeResponse_ShouldBeMarkedNotAccepted(string response)
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -69,42 +73,7 @@ namespace Lazztech.Events.Tests
                     fromNumber: "TwilioNumber123"),
             };
 
-            var smsResponse = new SmsDto(message: "YES", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
-
-            //Act
-            var succeded = conductor.TryAddRequest(request);
-            var result = conductor.ProcessResponse(smsResponse);
-
-            //Assert
-            Assert.NotNull(result.DateTimeWhenProcessed);
-            Assert.True(result.RequestAccepted);
-        }
-
-        [Fact]
-        public void TryAddRequestANDProcessResponse_NegativeResponseN_ShouldBeMarkedNotAccepted()
-        {
-            //Arrange
-            var repo = new Mock<IRepository>();
-            var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestNotifier>();
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-
-            var request = new MentorRequest()
-            {
-                UniqueRequesteeId = "TestTeamName123",
-                Mentor = new Mentor()
-                {
-                    FirstName = "Gian",
-                    LastName = "Lazzarini",
-                    PhoneNumber = "GiansNumber123",
-                },
-                OutboundSms = new SmsDto(
-                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
-                    toNumber: "GiansNumber123",
-                    fromNumber: "TwilioNumber123"),
-            };
-
-            var smsResponse = new SmsDto(message: "N", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+            var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
             var succeded = conductor.TryAddRequest(request);
@@ -113,41 +82,6 @@ namespace Lazztech.Events.Tests
             //Assert
             Assert.NotNull(result.DateTimeWhenProcessed);
             Assert.False(result.RequestAccepted);
-        }
-
-        [Fact]
-        public void TryAddRequestANDProcessResponse_NegativeResponseNO_ShouldBeMarkedNotAccepted()
-        {
-            //Arrange
-            var repo = new Mock<IRepository>();
-            var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestNotifier>();
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-
-            var request = new MentorRequest()
-            {
-                UniqueRequesteeId = "TestTeamName123",
-                Mentor = new Mentor()
-                {
-                    FirstName = "Gian",
-                    LastName = "Lazzarini",
-                    PhoneNumber = "GiansNumber123",
-                },
-                OutboundSms = new SmsDto(
-                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
-                    toNumber: "GiansNumber123",
-                    fromNumber: "TwilioNumber123"),
-            };
-
-            var smsResponse = new SmsDto(message: "NO", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
-
-            //Act
-            var succeded = conductor.TryAddRequest(request);
-            var result = conductor.ProcessResponse(smsResponse);
-
-            //Assert
-            Assert.False(result.RequestAccepted);
-            Assert.NotNull(result.DateTimeWhenProcessed);
         }
 
         [Fact]
