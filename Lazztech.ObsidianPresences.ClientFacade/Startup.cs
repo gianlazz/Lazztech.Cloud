@@ -35,19 +35,6 @@ namespace Lazztech.Cloud.ClientFacade
             //RequestConductor = new MentorRequestConductor(DbRepo, SmsService, Responder);
         }
 
-        private void SetupMongoDBClient()
-        {
-            var connectionString = Configuration.GetConnectionString("MongoDBConnection");
-            var client = new MongoClient(connectionString);
-            Db = client.GetDatabase("hackathonmanager");
-
-            var pack = new ConventionPack();
-            pack.Add(new IgnoreExtraElementsConvention(true));
-            ConventionRegistry.Register("My Solution Conventions", pack, t => true);
-
-            DbRepo = HackathonManager.DIContext.Context.GetMLabsMongoDbRepo(connectionString);
-        }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -102,19 +89,18 @@ namespace Lazztech.Cloud.ClientFacade
             services.AddSignalR();
 
             //public static IRepository DbRepo;
-            //public static ISmsService SmsService;
             //public static IRequestNotifier Responder = new SignalRNotifier();
-            //public static IMongoDatabase Db;
 
 
             var twillioConfigSection = Configuration.GetSection("TwilioCredentials");
             var accountSid = twillioConfigSection["AccountSid"];
             var authToken = twillioConfigSection["AuthToken"];
             var fromTwilioNumber = twillioConfigSection["TwilioFromNumber"];
-            //SmsService = HackathonManager.DIContext.Context.GetTwilioSmsService(accountSid, authToken, fromTwilioNumber);
-
             services.AddScoped<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
-            services.AddScoped<IRepository, MongoRepository>();
+
+            var mongoDbConnectionString = Configuration.GetConnectionString("MongoDBConnection");
+            services.AddScoped<IRepository>(s => new MongoRepository(mongoDbConnectionString));
+
             services.AddScoped<IRequestNotifier, SignalRNotifier>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
 
