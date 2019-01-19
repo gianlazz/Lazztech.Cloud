@@ -326,6 +326,59 @@ namespace Lazztech.Events.Tests
             sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 
+        [Theory]
+        [InlineData("Available")]
+        [InlineData("available")]
+        [InlineData("AVAILABLE")]
+        public void ProcessResponse_AvailableResponse_MentorShouldBeMarkedAsNotAvailable(string response)
+        {
+            //Arrange
+            var repo = new Mock<IRepository>();
+            var sms = new Mock<ISmsService>();
+            var responder = new Mock<IRequestNotifier>();
+            var mentor = new Mentor()
+            {
+                FirstName = "Gian",
+                LastName = "Lazzarini",
+                PhoneNumber = "GiansNumber123",
+            };
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+
+            //Act
+            var result = conductor.ProcessResponse(smsResponse);
+
+            //Assert
+            mentor.IsAvailable = true;
+            repo.Verify(x => x.Add<Mentor>(mentor));
+            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
+        }
+
+        [Fact]
+        public void ProcessResponse_NoMatchingRequest_UnIdentifiedResponseShouldNotBeTriggered()
+        {
+            //Arrange
+            var repo = new Mock<IRepository>();
+            var sms = new Mock<ISmsService>();
+            var responder = new Mock<IRequestNotifier>();
+            var mentor = new Mentor()
+            {
+                FirstName = "Gian",
+                LastName = "Lazzarini",
+                PhoneNumber = "GiansNumber123",
+            };
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var smsResponse = new SmsDto(message: "asdf", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+
+            //Act
+            var result = conductor.ProcessResponse(smsResponse);
+
+            //Assert
+            repo.Verify(x => x.Add<SmsDto>(It.IsAny<SmsDto>()));
+            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
+        }
+
         [Fact]
         public void TryAddRequest_MentorNotAvailableOrPresent_RequestShouldNotGoThrough()
         {

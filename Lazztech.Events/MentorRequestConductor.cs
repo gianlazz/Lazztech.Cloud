@@ -64,7 +64,7 @@ namespace Lazztech.Events.Domain
                 HandleBusyResponse(mentorFromDb, inboundSms);
                 ResponseProcessedBusy(inboundSms);
             }
-            else
+            else if (mentorFromDb != null)
             {
                 HandleUnidentifiedRequestResponse(inboundSms, matchingRequest);
             }
