@@ -59,6 +59,11 @@ namespace Lazztech.Events.Domain
                 ResponseProcessedConfirmation(inboundSms);
                 HandleRequestRejection(inboundSms, matchingRequest);
             }
+            else if (IsAvailableResponse(inboundSms))
+            {
+                HandleAvailableResponse(mentorFromDb, inboundSms);
+                ResponseProcessedAvailable(inboundSms);
+            }
             else if (IsBusyResponse(inboundSms))
             {
                 HandleBusyResponse(mentorFromDb, inboundSms);
@@ -75,13 +80,7 @@ namespace Lazztech.Events.Domain
             return matchingRequest;
         }
 
-        private void HandleBusyResponse(Mentor mentor, SmsDto sms)
-        {
-            mentor.IsAvailable = false;
-            UpdateMentorDb(mentor);
-            sms.DateTimeWhenProcessed = DateTime.Now;
-            UpdateSmsDb(sms);
-        }
+        #region HelperMethods
 
         private MentorRequest FindResponseRequest(SmsDto inboundSms)
         {
@@ -119,6 +118,10 @@ namespace Lazztech.Events.Domain
             }
         }
 
+        #endregion
+
+        #region ResponseHandlers
+
         private void HandleResponseWithNoRequest(SmsDto inboundSms)
         {
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
@@ -129,7 +132,6 @@ namespace Lazztech.Events.Domain
         private void HandleUnidentifiedRequestResponse(SmsDto inboundSms, MentorRequest mentorRequest)
         {
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
-            //Can throw exception if mentorRequest doesn't 
             UnIdentifiedResponse(inboundSms, mentorRequest.OutboundSms);
             UpdateSmsDb(inboundSms);
         }
@@ -162,6 +164,24 @@ namespace Lazztech.Events.Domain
             //_Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
+        private void HandleBusyResponse(Mentor mentor, SmsDto sms)
+        {
+            mentor.IsAvailable = false;
+            UpdateMentorDb(mentor);
+            sms.DateTimeWhenProcessed = DateTime.Now;
+            UpdateSmsDb(sms);
+        }
+
+        private void HandleAvailableResponse(Mentor mentor, SmsDto inboundSms)
+        {
+            mentor.IsAvailable = true;
+            UpdateMentorDb(mentor);
+            inboundSms.DateTimeWhenProcessed = DateTime.Now;
+            UpdateSmsDb(inboundSms);
+        }
+
+        #endregion
+
         #region MessageInterpretationHelperMethods
 
         private bool IsAcceptanceResponse(SmsDto sms)
@@ -185,6 +205,14 @@ namespace Lazztech.Events.Domain
         private bool IsBusyResponse(SmsDto inboundSms)
         {
             if (inboundSms.MessageBody.Trim().ToLower() == "busy")
+                return true;
+
+            return false;
+        }
+
+        private bool IsAvailableResponse(SmsDto inboundSms)
+        {
+            if (inboundSms.MessageBody.Trim().ToLower() == "available")
                 return true;
 
             return false;
@@ -235,6 +263,12 @@ namespace Lazztech.Events.Domain
         {
             _sms.SendSms(inboundSms.FromPhoneNumber,
                 "Response recieved and you've been marked as unavailable.");
+        }
+
+        private void ResponseProcessedAvailable(SmsDto inboundSms)
+        {
+            _sms.SendSms(inboundSms.FromPhoneNumber,
+                "Response recieved and you've been marked as available again.");
         }
 
         #endregion MessageResponseHelperMethods
