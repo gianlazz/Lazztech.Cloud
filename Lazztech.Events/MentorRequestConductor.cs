@@ -47,6 +47,7 @@ namespace Lazztech.Events.Domain
             AddSmsDb(inboundSms);
             
             var matchingRequest = FindResponseRequest(inboundSms);
+            var mentorFromDb = _db.Single<Mentor>(x => x.PhoneNumber == inboundSms.FromPhoneNumber);
             if (IsAcceptanceResponse(inboundSms))
             {
                 HandleRequestAcceptance(inboundSms, matchingRequest);
@@ -58,6 +59,11 @@ namespace Lazztech.Events.Domain
                 ResponseProcessedConfirmation(inboundSms);
                 HandleRequestRejection(inboundSms, matchingRequest);
             }
+            else if (IsBusyResponse(inboundSms))
+            {
+                ResponseProcessedBusy(inboundSms);
+                HandleBusyResponse(mentorFromDb);
+            }
             else
             {
                 HandleUnidentifiedRequestResponse(inboundSms, matchingRequest);
@@ -67,6 +73,12 @@ namespace Lazztech.Events.Domain
                 HandleResponseWithNoRequest(inboundSms);
 
             return matchingRequest;
+        }
+
+        private void HandleBusyResponse(Mentor mentor)
+        {
+            mentor.IsAvailable = false;
+            UpdateMentorDb(mentor);
         }
 
         private MentorRequest FindResponseRequest(SmsDto inboundSms)
@@ -115,6 +127,7 @@ namespace Lazztech.Events.Domain
         private void HandleUnidentifiedRequestResponse(SmsDto inboundSms, MentorRequest mentorRequest)
         {
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
+            //Can throw exception if mentorRequest doesn't 
             UnIdentifiedResponse(inboundSms, mentorRequest.OutboundSms);
             UpdateSmsDb(inboundSms);
         }
@@ -167,6 +180,14 @@ namespace Lazztech.Events.Domain
             return false;
         }
 
+        private bool IsBusyResponse(SmsDto inboundSms)
+        {
+            if (inboundSms.MessageBody.Trim().ToLower() == "busy")
+                return true;
+
+            return false;
+        }
+
         #endregion MessageInterpretationHelperMethods
 
         #region MessageResponseHelperMethods
@@ -205,7 +226,13 @@ namespace Lazztech.Events.Domain
         {
             _sms.SendSms(mentor.PhoneNumber,
                 "The request timeout duration has passed and you have been made available for other requests. " +
-                "Please notify the responsable party if you would like to be marked as unavailable or busy");
+                "Please notify the responsable party if you would like to be marked as unavailable or busy.");
+        }
+
+        private void ResponseProcessedBusy(SmsDto inboundSms)
+        {
+            _sms.SendSms(inboundSms.FromPhoneNumber,
+                "Response recieved and you've ben marked as unavailable.");
         }
 
         #endregion MessageResponseHelperMethods

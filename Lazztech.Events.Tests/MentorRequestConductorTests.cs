@@ -307,31 +307,23 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
-            var request = new MentorRequest()
+            var mentor = new Mentor()
             {
-                UniqueRequesteeId = "TestTeamName123",
-                Mentor = new Mentor()
-                {
-                    FirstName = "Gian",
-                    LastName = "Lazzarini",
-                    PhoneNumber = "GiansNumber123",
-                },
-                OutboundSms = new SmsDto(
-                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
-                    toNumber: "GiansNumber123",
-                    fromNumber: "TwilioNumber123"),
+                FirstName = "Gian",
+                LastName = "Lazzarini",
+                PhoneNumber = "GiansNumber123",
             };
-            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(mentor);
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+ 
 
             //Act
-            var succeded = conductor.TryAddRequest(request);
             var result = conductor.ProcessResponse(smsResponse);
+            mentor.IsAvailable = false;
 
             //Assert
-            Assert.NotNull(result.DateTimeWhenProcessed);
-            Assert.False(result.RequestAccepted);
+            repo.Verify(x => x.Add<Mentor>(mentor));
         }
 
         [Fact]
