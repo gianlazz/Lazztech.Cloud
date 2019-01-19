@@ -96,19 +96,19 @@ namespace Lazztech.Cloud.ClientFacade
             var accountSid = twillioConfigSection["AccountSid"];
             var authToken = twillioConfigSection["AuthToken"];
             var fromTwilioNumber = twillioConfigSection["TwilioFromNumber"];
-            services.AddScoped<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
 
             var mongoDbConnectionString = Configuration.GetConnectionString("MongoDBConnection");
-            services.AddScoped<IRepository>(s => new MongoRepository(mongoDbConnectionString));
 
+            services.AddScoped<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
+            services.AddScoped<IRepository>(s => new MongoRepository(mongoDbConnectionString));
             services.AddScoped<IRequestNotifier, SignalRNotifier>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
 
             var provider = services.BuildServiceProvider();
             var sms = provider.GetService<ISmsService>();
-            provider.GetRequiredService<IRepository>();
-            provider.GetRequiredService<IRepository>();
-            provider.GetRequiredService<IMentorRequestConductor>();
+            var repo = provider.GetService<IRepository>();
+            var notifier = provider.GetService<IRequestNotifier>();
+            var conductor = provider.GetRequiredService<IMentorRequestConductor>();
 
             sms.SendSms("4254434290", "this is a test");
         }
