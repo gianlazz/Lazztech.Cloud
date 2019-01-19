@@ -78,11 +78,14 @@ namespace Lazztech.Events.Domain
         private async Task StartRequestTimeOutAsync(MentorRequest request)
         {
             await Task.Delay(request.RequestTimeout);
-            request.TimedOut = true;
-            request.DateTimeWhenProcessed = DateTime.Now;
-            UpdateMentoRequestDb(request);
-            Requests.Remove(request.Mentor.PhoneNumber);
-            NotifyMentorOfRequestTimeout(request.Mentor);
+            if (!request.RequestAccepted)
+            {
+                request.TimedOut = true;
+                request.DateTimeWhenProcessed = DateTime.Now;
+                UpdateMentoRequestDb(request);
+                Requests.Remove(request.Mentor.PhoneNumber);
+                NotifyMentorOfRequestTimeout(request.Mentor);
+            }
         }
 
         private async Task StartMentorReservationTimeoutAsync(MentorRequest request)
@@ -90,13 +93,10 @@ namespace Lazztech.Events.Domain
             if (request.MentoringDuration != null)
             {
                 await Task.Delay(request.MentoringDuration);
-                if (!request.RequestAccepted)
-                {
-                    var mentor = request.Mentor;
-                    mentor.IsAvailable = true;
-                    UpdateMentorDb(mentor);
-                    NotifyResponseTimeUp(request);
-                }
+                var mentor = request.Mentor;
+                mentor.IsAvailable = true;
+                UpdateMentorDb(mentor);
+                NotifyResponseTimeUp(request);
             }
         }
 
