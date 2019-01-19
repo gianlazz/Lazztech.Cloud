@@ -33,18 +33,8 @@ namespace Lazztech.Cloud.ClientFacade
         {
             Configuration = configuration;
 
-            SetupTwilioClient();
             SetupMongoDBClient();
             //RequestConductor = new MentorRequestConductor(DbRepo, SmsService, Responder);
-        }
-
-        private void SetupTwilioClient()
-        {
-            var twillioConfigSection = Configuration.GetSection("TwilioCredentials");
-            var accountSid = twillioConfigSection["AccountSid"];
-            var authToken = twillioConfigSection["AuthToken"];
-            var fromTwilioNumber = twillioConfigSection["TwilioFromNumber"];
-            SmsService = HackathonManager.DIContext.Context.GetTwilioSmsService(accountSid, authToken, fromTwilioNumber);
         }
 
         private void SetupMongoDBClient()
@@ -118,19 +108,26 @@ namespace Lazztech.Cloud.ClientFacade
             //public static IRequestNotifier Responder = new SignalRNotifier();
             //public static IMongoDatabase Db;
 
-            var serviceProvider = services.BuildServiceProvider();
 
-            services.AddScoped<ISmsService, TwilioSmsService>();
-            serviceProvider.GetRequiredService<ISmsService>();
+            var twillioConfigSection = Configuration.GetSection("TwilioCredentials");
+            var accountSid = twillioConfigSection["AccountSid"];
+            var authToken = twillioConfigSection["AuthToken"];
+            var fromTwilioNumber = twillioConfigSection["TwilioFromNumber"];
+            //SmsService = HackathonManager.DIContext.Context.GetTwilioSmsService(accountSid, authToken, fromTwilioNumber);
 
+            services.AddScoped<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
             services.AddScoped<IRepository, MongoRepository>();
-            serviceProvider.GetRequiredService<IRepository>();
-
             services.AddScoped<IRequestNotifier, SignalRNotifier>();
-            serviceProvider.GetRequiredService<IRepository>();
-
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
-            serviceProvider.GetRequiredService<IMentorRequestConductor>();
+
+            var provider = services.BuildServiceProvider();
+            var sms = provider.GetService<ISmsService>();
+            provider.GetRequiredService<IRepository>();
+            provider.GetRequiredService<IRepository>();
+            provider.GetRequiredService<IMentorRequestConductor>();
+
+            sms.SendSms("4254434290", "this is a test");
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
