@@ -121,7 +121,7 @@ namespace Lazztech.Events.Domain
             UpdateMentoRequestDb(mentorRequest);
             UpdateSmsDb(inboundSms);
 
-            _Notifier.UpdateMentorRequestee(mentorRequest);
+            //_Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         private void HandleRequestAcceptance(SmsDto inboundSms, MentorRequest mentorRequest)
@@ -136,7 +136,7 @@ namespace Lazztech.Events.Domain
             UpdateMentorDb(mentorRequest.Mentor);
             UpdateMentoRequestDb(mentorRequest);
 
-            _Notifier.UpdateMentorRequestee(mentorRequest);
+            //_Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         #region MessageInterpretationHelperMethods
@@ -216,7 +216,7 @@ namespace Lazztech.Events.Domain
 
         private void UpdateMentoRequestDb(MentorRequest request)
         {
-            _db.Delete<MentorRequest>(x => x.GuidId == request.GuidId);
+            _db.Delete<MentorRequest>(x => x.Id == request.Id);
             _db.Add<MentorRequest>(request);
         }
 
@@ -228,7 +228,7 @@ namespace Lazztech.Events.Domain
 
         private void UpdateSmsDb(SmsDto inboundSms)
         {
-            _db.Delete<SmsDto>(x => x.GuidId == inboundSms.GuidId);
+            _db.Delete<SmsDto>(x => x.Id == inboundSms.Id);
             _db.Add<SmsDto>(inboundSms);
         }
 
