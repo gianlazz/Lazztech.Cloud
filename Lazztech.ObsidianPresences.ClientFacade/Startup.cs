@@ -118,10 +118,19 @@ namespace Lazztech.Cloud.ClientFacade
             //public static IRequestNotifier Responder = new SignalRNotifier();
             //public static IMongoDatabase Db;
 
+            var serviceProvider = services.BuildServiceProvider();
+
             services.AddScoped<ISmsService, TwilioSmsService>();
+            serviceProvider.GetRequiredService<ISmsService>();
+
             services.AddScoped<IRepository, MongoRepository>();
+            serviceProvider.GetRequiredService<IRepository>();
+
             services.AddScoped<IRequestNotifier, SignalRNotifier>();
+            serviceProvider.GetRequiredService<IRepository>();
+
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
+            serviceProvider.GetRequiredService<IMentorRequestConductor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
