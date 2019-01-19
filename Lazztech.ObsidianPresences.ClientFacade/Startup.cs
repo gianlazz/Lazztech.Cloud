@@ -32,8 +32,6 @@ namespace Lazztech.Cloud.ClientFacade
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            SetupMongoDBClient();
             //RequestConductor = new MentorRequestConductor(DbRepo, SmsService, Responder);
         }
 
@@ -127,7 +125,6 @@ namespace Lazztech.Cloud.ClientFacade
             provider.GetRequiredService<IMentorRequestConductor>();
 
             sms.SendSms("4254434290", "this is a test");
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

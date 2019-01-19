@@ -15,11 +15,5 @@ namespace HackathonManager.DIContext
             var repository = new MongoRepository();
             return repository;
         }
-
-        public static IRepository GetMLabsMongoDbRepo(string connectionString)
-        {
-            var repository = new MongoRepository(connectionString);
-            return repository;
-        }
     }
 }
