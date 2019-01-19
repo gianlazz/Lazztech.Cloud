@@ -31,9 +31,6 @@ namespace HackathonManager.MongoDB
         /// <param name="connectionString"></param>
         public MongoRepository(string connectionString)
         {
-            if (string.IsNullOrEmpty(connectionString))
-                throw new Exception("MongoRepository ctor connection string param is empty");
-
             var client = new MongoClient(connectionString);
             _db = client.GetDatabase("hackathonmanager");
 
