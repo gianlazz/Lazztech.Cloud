@@ -1,4 +1,5 @@
 ﻿using HackathonManager.Sms;
+using Lazztech.Events.Domain;
 using Lazztech.Events.Domain.Sms;
 using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,13 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
     [Route("api/[controller]")]
     public class InboundSmsController : Controller
     {
+        private readonly IMentorRequestConductor _conductor;
+
+        public InboundSmsController(IMentorRequestConductor conductor)
+        {
+            _conductor = conductor;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -28,7 +36,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             var Db = Startup.DbRepo;
 
             Db.Add<SmsDto>(smsDto);
-            Startup.RequestConductor.ProcessResponse(smsDto);
+            _conductor.ProcessResponse(smsDto);
         }
     }
 }

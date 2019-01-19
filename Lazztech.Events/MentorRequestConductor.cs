@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lazztech.Events.Domain
 {
-    public class MentorRequestConductor
+    public class MentorRequestConductor : IMentorRequestConductor
     {
         public Dictionary<string, MentorRequest> Requests { get; private set; }
 

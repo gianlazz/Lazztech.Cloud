@@ -1,4 +1,5 @@
-﻿using Lazztech.Events.Dto;
+﻿using Lazztech.Events.Domain;
+using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,13 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
 {
     public class HomeController : Controller
     {
+        private IMentorRequestConductor _conductor;
+
+        public HomeController(IMentorRequestConductor conductor)
+        {
+            _conductor = conductor;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -85,7 +93,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
                         Mentor = mentor,
                         OutboundSms = sms.SendSms(mentor.PhoneNumber, message)
                     };
-                    succeded = Startup.RequestConductor.TryAddRequest(request);
+                    succeded = _conductor.TryAddRequest(request);
                     if (succeded)
                         Db.Add<MentorRequest>(request);
                 }

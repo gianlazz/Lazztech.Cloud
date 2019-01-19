@@ -1,3 +1,5 @@
+using HackathonManager.MongoDB;
+using HackathonManager.Sms;
 using Lazztech.Cloud.ClientFacade.Data;
 using Lazztech.Cloud.ClientFacade.Hubs;
 using Lazztech.Cloud.ClientFacade.Util;
@@ -21,7 +23,6 @@ namespace Lazztech.Cloud.ClientFacade
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public static MentorRequestConductor RequestConductor { get; private set; }
 
         public static IRepository DbRepo;
         public static ISmsService SmsService;
@@ -34,7 +35,7 @@ namespace Lazztech.Cloud.ClientFacade
 
             SetupTwilioClient();
             SetupMongoDBClient();
-            RequestConductor = new MentorRequestConductor(DbRepo, SmsService, Responder);
+            //RequestConductor = new MentorRequestConductor(DbRepo, SmsService, Responder);
         }
 
         private void SetupTwilioClient()
@@ -111,6 +112,16 @@ namespace Lazztech.Cloud.ClientFacade
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSignalR();
+
+            //public static IRepository DbRepo;
+            //public static ISmsService SmsService;
+            //public static IRequestNotifier Responder = new SignalRNotifier();
+            //public static IMongoDatabase Db;
+
+            services.AddScoped<ISmsService, TwilioSmsService>();
+            services.AddScoped<IRepository, MongoRepository>();
+            services.AddScoped<IRequestNotifier, SignalRNotifier>();
+            services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
