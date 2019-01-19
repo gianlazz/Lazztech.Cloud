@@ -216,7 +216,7 @@ namespace Lazztech.Events.Domain
 
         private void UpdateMentoRequestDb(MentorRequest request)
         {
-            _db.Delete<MentorRequest>(x => x.Id == request.Id);
+            _db.Delete<MentorRequest>(x => x.GuidId == request.GuidId);
             _db.Add<MentorRequest>(request);
         }
 
@@ -228,7 +228,7 @@ namespace Lazztech.Events.Domain
 
         private void UpdateSmsDb(SmsDto inboundSms)
         {
-            _db.Delete<SmsDto>(x => x.Id == inboundSms.Id);
+            _db.Delete<SmsDto>(x => x.GuidId == inboundSms.GuidId);
             _db.Add<SmsDto>(inboundSms);
         }
 

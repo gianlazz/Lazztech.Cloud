@@ -5,7 +5,7 @@ namespace Lazztech.Events.Dto.Models
     public class SmsDto
     {
         public DateTime DateCreated { get; set; }
-        public Guid Id { get; set; }
+        public Guid GuidId { get; set; }
         public string ToPhoneNumber { get; set; }
         public string FromPhoneNumber { get; set; }
         public string MessageBody { get; set; }
@@ -14,12 +14,12 @@ namespace Lazztech.Events.Dto.Models
 
         public SmsDto()
         {
-            Id = Guid.NewGuid();
+            GuidId = Guid.NewGuid();
         }
 
         public SmsDto(string message, string toNumber, string fromNumber)
         {
-            Id = Guid.NewGuid();
+            GuidId = Guid.NewGuid();
             MessageBody = message;
             ToPhoneNumber = toNumber;
             FromPhoneNumber = fromNumber;
