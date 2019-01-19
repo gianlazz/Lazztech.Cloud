@@ -26,8 +26,13 @@ namespace Lazztech.Events.Domain
         public bool TryAddRequest(MentorRequest request)
         {
             var requestedMentorId = request.Mentor.PhoneNumber;
+            var mentorFromDb = _db.Single<Mentor>(x => x.Id == request.Mentor.Id);
             if (Requests.ContainsKey(requestedMentorId))
                 return false;
+            else if (!mentorFromDb.IsAvailable || !mentorFromDb.IsPresent)
+            {
+                return false;
+            }
             else
             {
                 Requests.Add(requestedMentorId, request);

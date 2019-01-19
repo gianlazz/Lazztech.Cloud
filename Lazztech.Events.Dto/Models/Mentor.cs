@@ -22,6 +22,8 @@ namespace Lazztech.Events.Dto.Models
         public Mentor()
         {
             Id = Guid.NewGuid();
+            IsAvailable = true;
+            IsPresent = true;
         }
     }
 }

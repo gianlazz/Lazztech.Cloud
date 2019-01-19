@@ -3,8 +3,10 @@ using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using Moq;
+using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using Xunit;
 
 namespace Lazztech.Events.Tests
@@ -23,8 +25,6 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-
             var request = new MentorRequest()
             {
                 UniqueRequesteeId = "TestTeamName123",
@@ -41,7 +41,8 @@ namespace Lazztech.Events.Tests
             };
 
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
-
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
             //Act
             var succeded = conductor.TryAddRequest(request);
             var result = conductor.ProcessResponse(smsResponse);
@@ -63,8 +64,6 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-
             var request = new MentorRequest()
             {
                 UniqueRequesteeId = "TestTeamName123",
@@ -79,7 +78,8 @@ namespace Lazztech.Events.Tests
                     toNumber: "GiansNumber123",
                     fromNumber: "TwilioNumber123"),
             };
-
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
@@ -98,8 +98,6 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-
             var requestForGian = new MentorRequest()
             {
                 UniqueRequesteeId = "TestTeamName123",
@@ -129,7 +127,9 @@ namespace Lazztech.Events.Tests
                     toNumber: "MarksPhoneNumber123",
                     fromNumber: "TwilioNumber123"),
             };
-
+            repo.SetupSequence(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>()))
+                .Returns(requestForGian.Mentor).Returns(requestForMark.Mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
             var smsResponseFromGian = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             ////Act
@@ -149,8 +149,6 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-
             var request = new MentorRequest()
             {
                 UniqueRequesteeId = "TestTeamName123",
@@ -165,6 +163,8 @@ namespace Lazztech.Events.Tests
                     toNumber: "GiansNumber123",
                     fromNumber: "TwilioNumber123"),
             };
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             var smsResponse = new SmsDto(message: "asdf", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
@@ -184,8 +184,6 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-
             var request1 = new MentorRequest()
             {
                 UniqueRequesteeId = "TestTeamName123",
@@ -215,6 +213,9 @@ namespace Lazztech.Events.Tests
                     toNumber: "GiansNumber123",
                     fromNumber: "TwilioNumber123"),
             };
+            repo.SetupSequence(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>()))
+                .Returns(request1.Mentor).Returns(request2.Mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             //Act
             var succeded = conductor.TryAddRequest(request1);
@@ -231,7 +232,6 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
             var mentor = new Mentor()
             {
                 FirstName = "Gian",
@@ -249,6 +249,8 @@ namespace Lazztech.Events.Tests
                 RequestTimeout = new System.TimeSpan(hours: 0, minutes: 0, seconds: 0),
                 MentoringDuration = new System.TimeSpan(hours: 0, minutes: 0, seconds: 0)
             };
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
 
             //Act
             var succeded = conductor.TryAddRequest(request);
@@ -266,7 +268,6 @@ namespace Lazztech.Events.Tests
             var repo = new Mock<IRepository>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
             var mentor = new Mentor()
             {
                 FirstName = "Gian",
@@ -284,7 +285,8 @@ namespace Lazztech.Events.Tests
                 RequestTimeout = new System.TimeSpan(hours: 0, minutes: 0, seconds: 1),
                 MentoringDuration = new System.TimeSpan(hours: 0, minutes: 0, seconds: 0)
             };
-
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
@@ -293,6 +295,76 @@ namespace Lazztech.Events.Tests
 
             //Assert
             repo.Verify(x => x.Add(It.Is<MentorRequest>(m => m.TimedOut == false)));
+        }
+
+        [Theory]
+        [InlineData("Busy")]
+        [InlineData("busy")]
+        [InlineData("BUSY")]
+        public void ProcessResponse_BusyResponse_MentorShouldBeMarkedAsNotAvailable(string response)
+        {
+            //Arrange
+            var repo = new Mock<IRepository>();
+            var sms = new Mock<ISmsService>();
+            var responder = new Mock<IRequestNotifier>();
+            var request = new MentorRequest()
+            {
+                UniqueRequesteeId = "TestTeamName123",
+                Mentor = new Mentor()
+                {
+                    FirstName = "Gian",
+                    LastName = "Lazzarini",
+                    PhoneNumber = "GiansNumber123",
+                },
+                OutboundSms = new SmsDto(
+                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
+                    toNumber: "GiansNumber123",
+                    fromNumber: "TwilioNumber123"),
+            };
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+
+            //Act
+            var succeded = conductor.TryAddRequest(request);
+            var result = conductor.ProcessResponse(smsResponse);
+
+            //Assert
+            Assert.NotNull(result.DateTimeWhenProcessed);
+            Assert.False(result.RequestAccepted);
+        }
+
+        [Fact]
+        public void TryAddRequest_MentorNotAvailableOrPresent_RequestShouldNotGoThrough()
+        {
+            //Arrange
+            var repo = new Mock<IRepository>();
+            var sms = new Mock<ISmsService>();
+            var responder = new Mock<IRequestNotifier>();
+            var request = new MentorRequest()
+            {
+                UniqueRequesteeId = "TestTeamName123",
+                Mentor = new Mentor()
+                {
+                    FirstName = "Gian",
+                    LastName = "Lazzarini",
+                    PhoneNumber = "GiansNumber123",
+                    IsAvailable = false,
+                    IsPresent = false
+                },
+                OutboundSms = new SmsDto(
+                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
+                    toNumber: "GiansNumber123",
+                    fromNumber: "TwilioNumber123"),
+            };
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+
+            //Act
+            var succeded = conductor.TryAddRequest(request);
+
+            //Assert
+            Assert.False(succeded);
         }
     }
 }
