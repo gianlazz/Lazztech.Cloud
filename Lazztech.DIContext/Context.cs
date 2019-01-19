@@ -21,11 +21,5 @@ namespace HackathonManager.DIContext
             var repository = new MongoRepository(connectionString);
             return repository;
         }
-
-        public static ISmsService GetTwilioSmsService(string accountSid, string authToken, string fromNumber)
-        {
-            var smsProvider = new TwilioSmsService(accountSid, authToken, fromNumber);
-            return smsProvider;
-        }
     }
 }
