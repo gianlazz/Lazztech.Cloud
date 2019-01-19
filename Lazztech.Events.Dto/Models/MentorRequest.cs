@@ -21,7 +21,7 @@ namespace Lazztech.Events.Dto.Models
             DateTimeOfRequest = DateTime.Now;
             Id = Guid.NewGuid();
 
-            MentoringDuration = new TimeSpan(hours: 0, minutes: 0, seconds: 30);
+            MentoringDuration = new TimeSpan(hours: 0, minutes: 0, seconds: 15);
             RequestTimeout = new TimeSpan(hours: 0, minutes: 0, seconds: 30);
         }
     }
