@@ -8,9 +8,14 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Sms
 {
     public class IndexModel : PageModel
     {
-        private IRepository _repo = Startup.DbRepo;
-
         public List<SmsDto> Messages { get; set; }
+
+        private readonly IRepository _repo;
+
+        public IndexModel(IRepository repository)
+        {
+            _repo = repository;
+        }
 
         public void OnGet()
         {

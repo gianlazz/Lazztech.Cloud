@@ -8,12 +8,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class IndexModel : PageModel
     {
-        private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
-        private IRepository _repo = Startup.DbRepo;
+        private readonly IRepository _repo;
 
-        public IndexModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
+        public IndexModel(IRepository repository)
         {
-            _context = context;
+            _repo = repository;
         }
 
         public IList<Mentor> Mentor { get; set; }

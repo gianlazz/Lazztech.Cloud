@@ -8,12 +8,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Judges
 {
     public class CreateModel : PageModel
     {
-        private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
-        private IRepository _repo = Startup.DbRepo;
+        private readonly IRepository _repo;
 
-        public CreateModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
+        public CreateModel(IRepository repository)
         {
-            _context = context;
+            _repo = repository;
         }
 
         public IActionResult OnGet()

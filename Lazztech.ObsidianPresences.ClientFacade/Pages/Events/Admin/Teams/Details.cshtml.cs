@@ -10,15 +10,15 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Teams
 {
     public class DetailsModel : PageModel
     {
-        //private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
-
-        //public DetailsModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
-        private IRepository _repo = Startup.DbRepo;
 
         public Team Team { get; set; }
+
+        private readonly IRepository _repo;
+
+        public DetailsModel(IRepository repository)
+        {
+            _repo = repository;
+        }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

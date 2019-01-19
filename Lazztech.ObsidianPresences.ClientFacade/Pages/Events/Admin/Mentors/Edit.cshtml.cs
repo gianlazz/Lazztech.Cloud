@@ -11,16 +11,15 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class EditModel : PageModel
     {
-        //private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
-
-        //public EditModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
-        private IRepository _repo = Startup.DbRepo;
+        private readonly IRepository _repo;
 
         [BindProperty]
         public Mentor Mentor { get; set; }
+
+        public EditModel(IRepository repository)
+        {
+            _repo = repository;
+        }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {

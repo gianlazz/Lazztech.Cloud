@@ -1,5 +1,6 @@
 ﻿using Lazztech.Events.Domain;
 using Lazztech.Events.Dto;
+using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
     public class HomeController : Controller
     {
         private IMentorRequestConductor _conductor;
+        private readonly IRepository _repo;
 
-        public HomeController(IMentorRequestConductor conductor)
+        public HomeController(IMentorRequestConductor conductor, IRepository repository)
         {
             _conductor = conductor;
+            _repo = repository;
         }
 
         public IActionResult Index()
@@ -24,14 +27,12 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
         [HttpPost]
         public ActionResult TeamLogin(int teamPin)
         {
-            var Db = Startup.DbRepo;
-
             var cookie = Request.Cookies[StaticStrings.eventUserIdCookieName];
 
             //CHECK IF A TEAM BY THAT PIN NUMBER EXSISTS
-            if (Db.Single<Team>(x => x.PinNumber == teamPin) != null)
+            if (_repo.Single<Team>(x => x.PinNumber == teamPin) != null)
             {
-                Team team = Db.Single<Team>(x => x.PinNumber == teamPin);
+                Team team = _repo.Single<Team>(x => x.PinNumber == teamPin);
 
                 if (cookie == null)
                 {
@@ -77,11 +78,10 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
         [HttpPost]
         public ActionResult MentorRequest(string teamName, string teamLocation, Guid mentorGuidId)
         {
-            var Db = Startup.DbRepo;
             var sms = Startup.SmsService;
             bool succeded = false;
 
-            var mentor = Db.Single<Mentor>(x => x.Id == mentorGuidId);
+            var mentor = _repo.Single<Mentor>(x => x.Id == mentorGuidId);
             if (mentor != null)
             {
                 try
@@ -95,11 +95,11 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
                     };
                     succeded = _conductor.TryAddRequest(request);
                     if (succeded)
-                        Db.Add<MentorRequest>(request);
+                        _repo.Add<MentorRequest>(request);
                 }
                 catch (Exception ex)
                 {
-                    Db.Add<Log>(new Log() { Details = ex.ToString() });
+                    _repo.Add<Log>(new Log() { Details = ex.ToString() });
                 }
             }
 

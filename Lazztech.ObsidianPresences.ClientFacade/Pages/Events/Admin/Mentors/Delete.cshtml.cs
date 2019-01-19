@@ -10,17 +10,15 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class DeleteModel : PageModel
     {
-        //private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
-
-        //public DeleteModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
-
-        private IRepository _repo = Startup.DbRepo;
-
         [BindProperty]
         public Mentor Mentor { get; set; }
+
+        private readonly IRepository _repo;
+
+        public DeleteModel(IRepository repository)
+        {
+            _repo = repository;
+        }
 
         public async Task<IActionResult> OnGet(Guid? id)
         {

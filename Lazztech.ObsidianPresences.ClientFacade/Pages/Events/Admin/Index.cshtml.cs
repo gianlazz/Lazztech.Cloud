@@ -13,10 +13,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
         public List<Team> Teams { get; set; }
         public List<SmsDto> Messages { get; set; }
 
-        private IRepository _repo = Startup.DbRepo;
+        private readonly IRepository _repo;
 
-        public IndexModel()
+        public IndexModel(IRepository repository)
         {
+            _repo = repository;
             Mentors = new List<Mentor>();
             Judges = new List<Judge>();
             Teams = new List<Team>();

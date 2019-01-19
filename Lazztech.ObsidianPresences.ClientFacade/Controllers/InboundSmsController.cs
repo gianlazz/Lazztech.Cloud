@@ -33,9 +33,6 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             smsDto.FromPhoneNumber = From;
             smsDto.MessageBody = Body;
 
-            var Db = Startup.DbRepo;
-
-            Db.Add<SmsDto>(smsDto);
             _conductor.ProcessResponse(smsDto);
         }
     }

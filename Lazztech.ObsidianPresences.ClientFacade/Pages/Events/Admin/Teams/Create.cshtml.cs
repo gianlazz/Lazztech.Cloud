@@ -8,13 +8,12 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Teams
 {
     public class CreateModel : PageModel
     {
-        //private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
+        private readonly IRepository _repo;
 
-        //public CreateModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
-        private IRepository _repo = Startup.DbRepo;
+        public CreateModel(IRepository repository)
+        {
+            _repo = repository;
+        }
 
         public IActionResult OnGet()
         {

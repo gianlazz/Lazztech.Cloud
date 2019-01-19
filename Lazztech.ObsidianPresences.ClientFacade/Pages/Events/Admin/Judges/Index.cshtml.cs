@@ -9,15 +9,14 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Judges
 {
     public class IndexModel : PageModel
     {
-        //private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
-        private IRepository _repo = Startup.DbRepo;
-
-        //public IndexModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
+        private readonly IRepository _repo;
 
         public IList<Judge> Judge { get; set; }
+
+        public IndexModel(IRepository repository)
+        {
+            _repo = repository;
+        }
 
         public async Task OnGetAsync()
         {

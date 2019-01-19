@@ -10,13 +10,12 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Judges
 {
     public class DeleteModel : PageModel
     {
-        //private readonly Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext _context;
+        private readonly IRepository _repo;
 
-        //public DeleteModel(Lazztech.Cloud.ClientFacade.Data.ApplicationDbContext context)
-        //{
-        //    _context = context;
-        //}
-        private IRepository _repo = Startup.DbRepo;
+        public DeleteModel(IRepository repository)
+        {
+            _repo = repository;
+        }
 
         [BindProperty]
         public Judge Judge { get; set; }
