@@ -12,7 +12,10 @@ namespace Lazztech.Events.Tests
     {
         [Theory]
         [InlineData("Y")]
+        [InlineData("y")]
         [InlineData("YES")]
+        [InlineData("Yes")]
+        [InlineData("yes")]
         public void TryAddRequestANDProcessResponse_PositiveResponse_ShouldBeMarkedAccepted(string response)
         {
             //Arrange
@@ -49,7 +52,10 @@ namespace Lazztech.Events.Tests
 
         [Theory]
         [InlineData("N")]
+        [InlineData("n")]
         [InlineData("NO")]
+        [InlineData("No")]
+        [InlineData("no")]
         public void TryAddRequestANDProcessResponse_NegativeResponse_ShouldBeMarkedNotAccepted(string response)
         {
             //Arrange
