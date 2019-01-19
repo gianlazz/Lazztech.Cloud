@@ -109,8 +109,6 @@ namespace Lazztech.Cloud.ClientFacade
             var repo = provider.GetService<IRepository>();
             var notifier = provider.GetService<IRequestNotifier>();
             var conductor = provider.GetRequiredService<IMentorRequestConductor>();
-
-            sms.SendSms("4254434290", "this is a test");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
