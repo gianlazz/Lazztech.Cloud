@@ -196,7 +196,7 @@ namespace Lazztech.Events.Domain
         private void NotifyMentorOfRequestTimeout(Mentor mentor)
         {
             _sms.SendSms(mentor.PhoneNumber,
-                "The request timeout duration has passed and you have been made available for other requests." +
+                "The request timeout duration has passed and you have been made available for other requests. " +
                 "Please notify the responsable party if you would like to be marked as unavailable or busy");
         }
 
