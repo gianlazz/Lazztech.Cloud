@@ -17,6 +17,9 @@ namespace HackathonManager.Sms
 
         public TwilioSmsService(string accountSid, string authToken, string fromNumber)
         {
+            if (string.IsNullOrEmpty(accountSid) || string.IsNullOrEmpty(authToken) || string.IsNullOrEmpty(fromNumber))
+                throw new Exception("A TwilioSmsService string param is null or empty");
+
             _accountSid = accountSid;
             _authToken = authToken;
             _fromNumber = fromNumber;
