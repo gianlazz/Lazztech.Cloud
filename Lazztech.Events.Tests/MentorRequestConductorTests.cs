@@ -3,6 +3,7 @@ using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using Moq;
+using System.ComponentModel;
 using System.Linq;
 using Xunit;
 
@@ -255,6 +256,43 @@ namespace Lazztech.Events.Tests
             //Assert
             repo.Verify(x => x.Add(It.Is<MentorRequest>(m => m.TimedOut == true)));
             Assert.Empty(conductor.Requests);
+        }
+
+        [Category("Unrealiable Test")]
+        [Fact]
+        public void TryAddRequestANDProcessResponse_AcceptanceResponse_ShouldNotTimeoutAfterAcceptance()
+        {
+            //Arrange
+            var repo = new Mock<IRepository>();
+            var sms = new Mock<ISmsService>();
+            var responder = new Mock<IRequestNotifier>();
+            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var mentor = new Mentor()
+            {
+                FirstName = "Gian",
+                LastName = "Lazzarini",
+                PhoneNumber = "GiansNumber123",
+            };
+            var request = new MentorRequest()
+            {
+                UniqueRequesteeId = "TestTeamName123",
+                Mentor = mentor,
+                OutboundSms = new SmsDto(
+                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
+                    toNumber: "GiansNumber123",
+                    fromNumber: "TwilioNumber123"),
+                RequestTimeout = new System.TimeSpan(hours: 0, minutes: 0, seconds: 1),
+                MentoringDuration = new System.TimeSpan(hours: 0, minutes: 0, seconds: 0)
+            };
+
+            var smsResponse = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+
+            //Act
+            var succeded = conductor.TryAddRequest(request);
+            var result = conductor.ProcessResponse(smsResponse);
+
+            //Assert
+            repo.Verify(x => x.Add(It.Is<MentorRequest>(m => m.TimedOut == false)));
         }
     }
 }

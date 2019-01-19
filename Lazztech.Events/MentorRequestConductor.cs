@@ -90,10 +90,13 @@ namespace Lazztech.Events.Domain
             if (request.MentoringDuration != null)
             {
                 await Task.Delay(request.MentoringDuration);
-                var mentor = request.Mentor;
-                mentor.IsAvailable = true;
-                UpdateMentorDb(mentor);
-                NotifyResponseTimeUp(request);
+                if (!request.RequestAccepted)
+                {
+                    var mentor = request.Mentor;
+                    mentor.IsAvailable = true;
+                    UpdateMentorDb(mentor);
+                    NotifyResponseTimeUp(request);
+                }
             }
         }
 
