@@ -25,13 +25,11 @@ namespace Lazztech.Cloud.ClientFacade
         public IConfiguration Configuration { get; }
 
         public static ISmsService SmsService;
-        public static IRequestNotifier Responder = new SignalRNotifier();
-        public static IMongoDatabase Db;
+        public static IRequestNotifier Responder;
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            //RequestConductor = new MentorRequestConductor(DbRepo, SmsService, Responder);
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -98,15 +96,15 @@ namespace Lazztech.Cloud.ClientFacade
 
             var mongoDbConnectionString = Configuration.GetConnectionString("MongoDBConnection");
 
-            services.AddScoped<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
-            services.AddScoped<IRepository>(s => new MongoRepository(mongoDbConnectionString));
-            services.AddScoped<IRequestNotifier, SignalRNotifier>();
+            services.AddSingleton<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
+            services.AddSingleton<IRepository>(s => new MongoRepository(mongoDbConnectionString));
+            services.AddSingleton<IRequestNotifier, SignalRNotifier>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
 
             var provider = services.BuildServiceProvider();
-            var sms = provider.GetService<ISmsService>();
+            SmsService = provider.GetService<ISmsService>();
             var repo = provider.GetService<IRepository>();
-            var notifier = provider.GetService<IRequestNotifier>();
+            Responder = provider.GetService<IRequestNotifier>();
             var conductor = provider.GetRequiredService<IMentorRequestConductor>();
         }
 
