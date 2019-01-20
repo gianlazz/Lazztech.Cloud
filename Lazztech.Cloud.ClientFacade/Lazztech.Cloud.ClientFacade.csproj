@@ -22,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Lazztech.DIContext\Lazztech.DIContext.csproj" />
     <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.Domain.csproj" />
-    <ProjectReference Include="..\Lazztech.ObsidianPresences.Vision.Microservice.Domain\Lazztech.Vision.Domain.csproj" />
+    <ProjectReference Include="..\Lazztech.Vision.Domain\Lazztech.Vision.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lazztech.ObsidianPresences.ClientFacade\Lazztech.Cloud.ClientFacade.csproj" />
+    <ProjectReference Include="..\Lazztech.Cloud.ClientFacade\Lazztech.Cloud.ClientFacade.csproj" />
   </ItemGroup>
 
   <ItemGroup>
