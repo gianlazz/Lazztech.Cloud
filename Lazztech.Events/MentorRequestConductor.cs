@@ -56,8 +56,8 @@ namespace Lazztech.Events.Domain
             }
             else if (IsRejectionResponse(inboundSms))
             {
-                ResponseProcessedConfirmation(inboundSms);
                 HandleRequestRejection(inboundSms, matchingRequest);
+                ResponseProcessedConfirmation(inboundSms);
             }
             else if (IsAvailableResponse(inboundSms))
             {
@@ -69,11 +69,17 @@ namespace Lazztech.Events.Domain
                 HandleBusyResponse(mentorFromDb, inboundSms);
                 ResponseProcessedBusy(inboundSms);
             }
-            else if (mentorFromDb != null)
+            else if (IsHelpResponse(inboundSms))
+            {
+                HandleHelpResponse(inboundSms);
+                ResponseProcessedHelp(inboundSms);
+            }
+            else if (mentorFromDb != null && matchingRequest != null)
             {
                 HandleUnidentifiedRequestResponse(inboundSms, matchingRequest);
+                ResponseUnIdentified(inboundSms, matchingRequest.OutboundSms);
             }
-            
+
             if (inboundSms.DateTimeWhenProcessed == null)
                 HandleResponseWithNoRequest(inboundSms);
 
@@ -125,14 +131,13 @@ namespace Lazztech.Events.Domain
         private void HandleResponseWithNoRequest(SmsDto inboundSms)
         {
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
-            UnIdentifiedResponse(inboundSms);
+            ResponseUnIdentified(inboundSms);
             UpdateSmsDb(inboundSms);
         }
 
         private void HandleUnidentifiedRequestResponse(SmsDto inboundSms, MentorRequest mentorRequest)
         {
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
-            UnIdentifiedResponse(inboundSms, mentorRequest.OutboundSms);
             UpdateSmsDb(inboundSms);
         }
 
@@ -162,6 +167,12 @@ namespace Lazztech.Events.Domain
             UpdateMentoRequestDb(mentorRequest);
 
             //_Notifier.UpdateMentorRequestee(mentorRequest);
+        }
+
+        private void HandleHelpResponse(SmsDto inboundSms)
+        {
+            inboundSms.DateTimeWhenProcessed = DateTime.Now;
+            UpdateSmsDb(inboundSms);
         }
 
         private void HandleBusyResponse(Mentor mentor, SmsDto sms)
@@ -202,6 +213,14 @@ namespace Lazztech.Events.Domain
             return false;
         }
 
+        private bool IsHelpResponse(SmsDto inboundSms)
+        {
+            if (inboundSms.MessageBody.Trim().ToLower() == "help")
+                return true;
+
+            return false;
+        }
+
         private bool IsBusyResponse(SmsDto inboundSms)
         {
             if (inboundSms.MessageBody.Trim().ToLower() == "busy")
@@ -236,7 +255,7 @@ namespace Lazztech.Events.Domain
             _sms.SendSms(sms.FromPhoneNumber, message);
         }
 
-        private void UnIdentifiedResponse(SmsDto smsResponse, SmsDto lastSmsSent = null)
+        private void ResponseUnIdentified(SmsDto smsResponse, SmsDto lastSmsSent = null)
         {
             string message = $"Uncertain how to execute your objective.";
             _sms.SendSms(smsResponse.FromPhoneNumber, message);
@@ -257,6 +276,15 @@ namespace Lazztech.Events.Domain
             _sms.SendSms(mentor.PhoneNumber,
                 "The request timeout duration has passed and you have been made available for other requests. " +
                 "Please notify the responsable party if you would like to be marked as unavailable or busy.");
+        }
+
+        private void ResponseProcessedHelp(SmsDto inboundSms)
+        {
+            _sms.SendSms(inboundSms.FromPhoneNumber,
+                "You may enter the following at any time." + Environment.NewLine +
+                "Help: Reads out valid responses" + Environment.NewLine +
+                "Busy: Sets you as unavailable" + Environment.NewLine + 
+                "Available: Sets you as available");
         }
 
         private void ResponseProcessedBusy(SmsDto inboundSms)
