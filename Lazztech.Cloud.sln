@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.Domain", "L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.MongoDB", "Lazztech.MongoDB\Lazztech.MongoDB.csproj", "{171A65AF-B92F-4080-B44C-C9CB9769A2BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.DIContext", "Lazztech.DIContext\Lazztech.DIContext.csproj", "{89B0373E-DDE3-4331-8CBE-77ECC6357DB3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Sms", "Lazztech.Sms\Lazztech.Sms.csproj", "{0390E467-3158-460A-B85A-BF21E7EC0DA2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.StudentRND", "Lazztech.SrndResourcesManager\Lazztech.Events.StudentRND.csproj", "{74215587-FBDD-4061-A192-983CF0FE03A7}"
@@ -61,10 +59,6 @@ Global
 		{171A65AF-B92F-4080-B44C-C9CB9769A2BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{171A65AF-B92F-4080-B44C-C9CB9769A2BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{171A65AF-B92F-4080-B44C-C9CB9769A2BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89B0373E-DDE3-4331-8CBE-77ECC6357DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89B0373E-DDE3-4331-8CBE-77ECC6357DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89B0373E-DDE3-4331-8CBE-77ECC6357DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89B0373E-DDE3-4331-8CBE-77ECC6357DB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
