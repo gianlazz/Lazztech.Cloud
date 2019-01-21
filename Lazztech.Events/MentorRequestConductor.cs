@@ -69,10 +69,10 @@ namespace Lazztech.Events.Domain
                 HandleBusyResponse(mentorFromDb, inboundSms);
                 ResponseProcessedBusy(inboundSms);
             }
-            else if (IsHelpResponse(inboundSms))
+            else if (IsGuideResponse(inboundSms))
             {
-                HandleHelpResponse(inboundSms);
-                ResponseProcessedHelp(inboundSms);
+                HandleGuideResponse(inboundSms);
+                ResponseProcessedGuide(inboundSms);
             }
             else if (mentorFromDb != null && matchingRequest != null)
             {
@@ -169,7 +169,7 @@ namespace Lazztech.Events.Domain
             //_Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
-        private void HandleHelpResponse(SmsDto inboundSms)
+        private void HandleGuideResponse(SmsDto inboundSms)
         {
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
             UpdateSmsDb(inboundSms);
@@ -213,9 +213,9 @@ namespace Lazztech.Events.Domain
             return false;
         }
 
-        private bool IsHelpResponse(SmsDto inboundSms)
+        private bool IsGuideResponse(SmsDto inboundSms)
         {
-            if (inboundSms.MessageBody.Trim().ToLower() == "help")
+            if (inboundSms.MessageBody.Trim().ToLower() == "guide")
                 return true;
 
             return false;
@@ -278,11 +278,11 @@ namespace Lazztech.Events.Domain
                 "Please notify the responsable party if you would like to be marked as unavailable or busy.");
         }
 
-        private void ResponseProcessedHelp(SmsDto inboundSms)
+        private void ResponseProcessedGuide(SmsDto inboundSms)
         {
             _sms.SendSms(inboundSms.FromPhoneNumber,
                 "You may enter the following at any time." + Environment.NewLine +
-                "Help: Reads out valid responses" + Environment.NewLine +
+                "Guide: Reads out valid responses" + Environment.NewLine +
                 "Busy: Sets you as unavailable" + Environment.NewLine + 
                 "Available: Sets you as available");
         }

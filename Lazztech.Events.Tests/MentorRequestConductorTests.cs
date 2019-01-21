@@ -356,10 +356,10 @@ namespace Lazztech.Events.Tests
         }
 
         [Theory]
-        [InlineData("Help")]
-        [InlineData("help")]
-        [InlineData("HELP")]
-        public void ProcessResponse_HelpResponse_MentorShouldBeMarkedAsNotAvailable(string response)
+        [InlineData("Guide")]
+        [InlineData("guide")]
+        [InlineData("GUIDE")]
+        public void ProcessResponse_GuideResponse_MentorShouldBeMarkedAsNotAvailable(string response)
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -379,7 +379,7 @@ namespace Lazztech.Events.Tests
             var result = conductor.ProcessResponse(smsResponse);
 
             //Assert
-            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.Is<string>(y => y.ToLower().Contains("help"))), Times.Once());
+            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.Is<string>(y => y.ToLower().Contains("guide"))), Times.Once());
         }
 
         [Fact]

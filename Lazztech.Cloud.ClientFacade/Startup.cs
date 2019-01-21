@@ -14,8 +14,6 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Bson.Serialization.Conventions;
-using MongoDB.Driver;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Lazztech.Cloud.ClientFacade
