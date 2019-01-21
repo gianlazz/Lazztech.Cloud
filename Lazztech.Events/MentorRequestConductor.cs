@@ -151,7 +151,7 @@ namespace Lazztech.Events.Domain
             UpdateMentoRequestDb(mentorRequest);
             UpdateSmsDb(inboundSms);
 
-            //_Notifier.UpdateMentorRequestee(mentorRequest);
+            _Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         private void HandleRequestAcceptance(SmsDto inboundSms, MentorRequest mentorRequest)
@@ -166,7 +166,7 @@ namespace Lazztech.Events.Domain
             UpdateMentorDb(mentorRequest.Mentor);
             UpdateMentoRequestDb(mentorRequest);
 
-            //_Notifier.UpdateMentorRequestee(mentorRequest);
+            _Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         private void HandleGuideResponse(SmsDto inboundSms)
@@ -185,6 +185,8 @@ namespace Lazztech.Events.Domain
 
         private void HandleAvailableResponse(Mentor mentor, SmsDto inboundSms)
         {
+            if (Requests.ContainsKey(mentor.PhoneNumber))
+                Requests.Remove(mentor.PhoneNumber);
             mentor.IsAvailable = true;
             UpdateMentorDb(mentor);
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
