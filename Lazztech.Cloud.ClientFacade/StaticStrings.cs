@@ -11,6 +11,6 @@ namespace Lazztech.Cloud.ClientFacade
         /// Used for the key name for cookies when identifing the device of the user
         /// for event requests.
         /// </summary>
-        public static string eventUserIdCookieName => "team";
+        public static string eventUserIdCookieName => "uniqueUserId";
     }
 }
