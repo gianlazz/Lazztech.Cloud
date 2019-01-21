@@ -11,6 +11,8 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Event
     {
         [BindProperty]
         public List<Mentor> Mentors { get; set; }
+        [BindProperty]
+        public string UniqueUserId { get; set; }
         public string Message { get; set; }
         public string Alert { get; set; }
 
