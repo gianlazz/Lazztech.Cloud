@@ -439,39 +439,41 @@ namespace Lazztech.Events.Tests
             Assert.False(succeded);
         }
 
-        [Fact]
-        public void TryAddRequestANDProcessResponse_PositiveResponseThenAvailableResponse_ShouldRemoveMentorsRequest()
-        {
-            //Arrange
-            var repo = new Mock<IRepository>();
-            var sms = new Mock<ISmsService>();
-            var responder = new Mock<IRequestNotifier>();
-            var request = new MentorRequest()
-            {
-                UniqueRequesteeId = "TestTeamName123",
-                Mentor = new Mentor()
-                {
-                    FirstName = "Gian",
-                    LastName = "Lazzarini",
-                    PhoneNumber = "GiansNumber123",
-                },
-                OutboundSms = new SmsDto(
-                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
-                    toNumber: "GiansNumber123",
-                    fromNumber: "TwilioNumber123"),
-            };
-            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-            var smsResponse = new SmsDto(message: "y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
-            var smsAvailableResponse = new SmsDto(message: "Available", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+        //[Fact]
+        //public void TryAddRequestANDProcessResponse_PositiveResponseThenAvailableResponse_ShouldRemoveMentorsRequest()
+        //{
+        //    //Arrange
+        //    var repo = new Mock<IRepository>();
+        //    var sms = new Mock<ISmsService>();
+        //    var responder = new Mock<IRequestNotifier>();
+        //    var request = new MentorRequest()
+        //    {
+        //        UniqueRequesteeId = "TestTeamName123",
+        //        Mentor = new Mentor()
+        //        {
+        //            FirstName = "Gian",
+        //            LastName = "Lazzarini",
+        //            PhoneNumber = "GiansNumber123",
+        //        },
+        //        OutboundSms = new SmsDto(
+        //            message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
+        //            toNumber: "GiansNumber123",
+        //            fromNumber: "TwilioNumber123"),
+        //        MentoringDuration = new TimeSpan(hours: 0, minutes: 0, seconds: 1)
+        //    };
+        //    repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+        //    var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+        //    var smsResponse = new SmsDto(message: "y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+        //    var smsAvailableResponse = new SmsDto(message: "Available", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
-            //Act
-            var succeeded = conductor.TryAddRequest(request);
-            var result = conductor.ProcessResponse(smsResponse);
-            var result2 = conductor.ProcessResponse(smsAvailableResponse);
+        //    //Act
+        //    var succeeded = conductor.TryAddRequest(request);
+        //    var result = conductor.ProcessResponse(smsResponse);
+        //    var result2 = conductor.ProcessResponse(smsAvailableResponse);
 
-            //Assert
-            Assert.Equal(expected: 0, actual: conductor.Requests.Count);
-        }
+        //    //Assert
+        //    Assert.Equal(expected: 0, actual: conductor.Requests.Count);
+        //    sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
+        //}
     }
 }

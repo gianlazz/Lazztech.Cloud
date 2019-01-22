@@ -117,10 +117,13 @@ namespace Lazztech.Events.Domain
             if (request.MentoringDuration != null)
             {
                 await Task.Delay(request.MentoringDuration);
-                var mentor = request.Mentor;
-                mentor.IsAvailable = true;
-                UpdateMentorDb(mentor);
-                NotifyResponseTimeUp(request);
+                if (Requests.ContainsKey(request.Mentor.PhoneNumber))
+                {
+                    var mentor = request.Mentor;
+                    mentor.IsAvailable = true;
+                    UpdateMentorDb(mentor);
+                    NotifyResponseTimeUp(request);
+                }
             }
         }
 
@@ -151,7 +154,7 @@ namespace Lazztech.Events.Domain
             UpdateMentoRequestDb(mentorRequest);
             UpdateSmsDb(inboundSms);
 
-            _Notifier.UpdateMentorRequestee(mentorRequest);
+            //_Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         private void HandleRequestAcceptance(SmsDto inboundSms, MentorRequest mentorRequest)
@@ -166,7 +169,7 @@ namespace Lazztech.Events.Domain
             UpdateMentorDb(mentorRequest.Mentor);
             UpdateMentoRequestDb(mentorRequest);
 
-            _Notifier.UpdateMentorRequestee(mentorRequest);
+            //_Notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         private void HandleGuideResponse(SmsDto inboundSms)
