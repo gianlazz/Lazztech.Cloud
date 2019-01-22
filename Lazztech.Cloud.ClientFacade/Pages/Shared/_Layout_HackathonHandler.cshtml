@@ -35,18 +35,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @*<title>@ViewData["Title"] - Lazztech.Cloud.CloudWebApp</title>*@
-
-    <!-- <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment> -->
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -204,15 +192,17 @@
     @*SIGNALR EXAMPLE CODE BELOW HERE------------*@
     <script src="~/lib/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/eventManagement.js"></script>
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         $(function () {
 
             // Reference the auto-generated proxy for the hub.
-            var progress = $.connection.progressHub;
-            console.log(progress);
+            //var progress = $.connection.progressHub;
+            //console.log(progress);
+            var connection = new signalR.HubConnectionBuilder().withUrl("/progressHub").build();
+            console.log(connection);
 
             // Create a function that the hub can call back to display messages.
-            progress.client.addProgress = function (message, percentage) {
+            connection.client.addProgress = function (message, percentage) {
                 //at this point server side had send message and percentage back to the client
                 //and then we handle progress bar any way we want it
 
@@ -230,7 +220,7 @@
             };
 
             //MENTOR REQUEST UPDATE
-            progress.client.requestUpdate = function (message) {
+            connection.client.requestUpdate = function (message) {
                 MentorRequestUpdateModal(message);
             };
 
@@ -240,10 +230,10 @@
                 //getting the connection ID in case you want to display progress to the specific user
                 //that started the process in the first place.
                 var connectionId = $.connection.hub.id;
-                console.log(connectionId);
+                console.log(new { Message:"Connection Id:", connectionId });
             });
 
-        });</script>
+        });</script>*@
     @*PROGRESS BAR MODAL*@
     <div class="modal fade in" id="mod-progress" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog">
         <div class="modal-dialog">
