@@ -48,13 +48,13 @@ namespace Lazztech.Events.Domain
             
             var matchingRequest = FindResponseRequest(inboundSms);
             var mentorFromDb = _db.Single<Mentor>(x => x.PhoneNumber.Contains(inboundSms.FromPhoneNumber.TrimStart("+1".ToCharArray())));
-            if (IsAcceptanceResponse(inboundSms))
+            if (IsAcceptanceResponse(inboundSms) && matchingRequest != null)
             {
                 HandleRequestAcceptance(inboundSms, matchingRequest);
                 AcceptanceResponseConfirmation(inboundSms, matchingRequest);
                 StartMentorReservationTimeoutAsync(matchingRequest);
             }
-            else if (IsRejectionResponse(inboundSms))
+            else if (IsRejectionResponse(inboundSms) && matchingRequest != null)
             {
                 HandleRequestRejection(inboundSms, matchingRequest);
                 ResponseProcessedConfirmation(inboundSms);
@@ -264,9 +264,13 @@ namespace Lazztech.Events.Domain
         {
             string message = $"Uncertain how to execute your objective.";
             _sms.SendSms(smsResponse.FromPhoneNumber, message);
+            
+            //Will not currently be null because there's nothing being passed in as the lastSmsSent param
             //RESEND THE INITAL PROMPT SMS
             if (lastSmsSent != null)
                 _sms.SendSms(smsResponse.FromPhoneNumber, lastSmsSent.MessageBody);
+            else
+                ResponseProcessedGuide(smsResponse);
         }
 
         private void NotifyResponseTimeUp(MentorRequest request)

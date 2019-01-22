@@ -477,8 +477,10 @@ namespace Lazztech.Events.Tests
             //sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
         }
 
-        [Fact]
-        public void ProcessResponse_RequestResponseWithNoRequest_HandleResponseWithNoRequest()
+        [Theory]
+        [InlineData("y")]
+        [InlineData("n")]
+        public void ProcessResponse_RequestResponseWithNoRequest_HandleResponseWithNoRequest(string response)
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -492,12 +494,14 @@ namespace Lazztech.Events.Tests
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(mentor);
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
-            var smsResponse = new SmsDto(message: "y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+            var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
             conductor.ProcessResponse(smsResponse);
 
             //Assert
+            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.Is<string>(message => message.ToLower().Contains("uncertain"))));
+            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.Is<string>(message => message.ToLower().Contains("guide"))));
         }
     }
 }
