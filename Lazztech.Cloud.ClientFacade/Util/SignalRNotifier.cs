@@ -21,26 +21,15 @@ namespace Lazztech.Cloud.ClientFacade.Util
             {
                 if (mentorRequest.UniqueRequesteeId == null) { throw new Exception(); }
 
-
-                var percentage = (20 * 100) / 100;
                 var message = $"{mentorRequest.Mentor.FirstName} accepted your request!";
-                //PUSHING DATA TO ALL CLIENTS
-                _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("requestUpdate", message, percentage);
-
-                //var hub = new ProgressHub();
-                //hub.UpdateTeamOfMentorRequest(mentorRequest.UniqueRequesteeId, true, message);
+                _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("requestUpdate", message);
             }
             if (mentorRequest.RequestAccepted == false && mentorRequest.DateTimeWhenProcessed != null)
             {
                 if (mentorRequest.UniqueRequesteeId == null) { throw new Exception(); }
 
-
-                var percentage = (20 * 100) / 100;
                 var message = $"{mentorRequest.Mentor.FirstName} is not available right now";
-                _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("requestUpdate", message, percentage);
-
-                //var hub = new ProgressHub();
-                //hub.UpdateTeamOfMentorRequest(mentorRequest.UniqueRequesteeId, true, message);
+                _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("requestUpdate", message);
             }
         }
     }
