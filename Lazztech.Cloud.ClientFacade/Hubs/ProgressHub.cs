@@ -8,13 +8,8 @@ namespace Lazztech.Cloud.ClientFacade.Hubs
 {
     public class ProgressHub : Hub
     {
-        public void UpdateTeam(MentorRequest request, string message)
-        {
-            if (request.RequestAccepted)
-            {
-                Clients.Group(request.UniqueRequesteeId).SendAsync("RequestUpdate", request, "Mentor Accepted Request.");
-            }
-        }
+        //This is for debugging the being added to a group
+        public static ConcurrentDictionary<string, string> GroupsForDebugging = new ConcurrentDictionary<string, string>();
 
         public Task<string> GetConnectionId()
         {
@@ -24,46 +19,17 @@ namespace Lazztech.Cloud.ClientFacade.Hubs
             });
         }
 
-        public void AddConnectionToTeamGroup()
-        {
-            var teamCookieValue = Context.GetHttpContext().Request.Cookies[StaticStrings.eventUserIdCookieName];
-
-            if (!string.IsNullOrWhiteSpace(teamCookieValue))
-            {
-                Groups.AddToGroupAsync(Context.ConnectionId, teamCookieValue);
-            }
-        }
-
-        public void MessageTeam(Team team, string message)
-        {
-            Clients.Group(team.Name).SendAsync("message", message);
-        }
-
-        public static ConcurrentDictionary<string, Team> MyUsers = new ConcurrentDictionary<string, Team>();
-
         public override Task OnConnectedAsync()
         {
-            string usersTeamCookie = null;
+            string usersUniqueIDCookie = null;
             if (Context.GetHttpContext().Request.Cookies.ContainsKey(StaticStrings.eventUserIdCookieName))
-                usersTeamCookie = Context.GetHttpContext().Request.Cookies[StaticStrings.eventUserIdCookieName];
-            if (usersTeamCookie != null)
+                usersUniqueIDCookie = Context.GetHttpContext().Request.Cookies[StaticStrings.eventUserIdCookieName];
+            if (usersUniqueIDCookie != null)
             {
-                MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = usersTeamCookie });
-                //string name = Context.User.Identity.Name;
-
+                GroupsForDebugging.TryAdd(Context.ConnectionId, usersUniqueIDCookie);
                 //Groups.Add(Context.ConnectionId, name);
-                Groups.AddToGroupAsync(Context.ConnectionId, usersTeamCookie);
-
-                if (usersTeamCookie != null)
-                {
-                    MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = usersTeamCookie });
-                    //string name = Context.User.Identity.Name;
-
-                    //Groups.Add(Context.ConnectionId, name);
-
-                    //Groups.Add(Context.ConnectionId, cookie.Value);
-                    Groups.AddToGroupAsync(Context.ConnectionId, usersTeamCookie);
-                }
+                //Groups.Add(Context.ConnectionId, cookie.Value);
+                Groups.AddToGroupAsync(Context.ConnectionId, usersUniqueIDCookie);
             }
 
             return base.OnConnectedAsync();
@@ -71,34 +37,14 @@ namespace Lazztech.Cloud.ClientFacade.Hubs
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            Team team;
-            MyUsers.TryRemove(Context.ConnectionId, out team);
+            GroupsForDebugging.TryRemove(Context.ConnectionId, out string uniqueUserId);
             return base.OnDisconnectedAsync(exception);
         }
 
-        //public override Task OnReconnected()
-        //{
-        //    Cookie cookie = Context.Request.Cookies[StaticStrings.eventUserIdCookieName];
-        //    if (cookie != null)
-        //    {
-        //        MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = cookie.Value });
-        //        //string name = Context.User.Identity.Name;
-
-        //        //Groups.Add(Context.ConnectionId, name);
-        //        Groups.Add(Context.ConnectionId, cookie.Name);
-
-        //        if (cookie.Value != null)
-        //        {
-        //            MyUsers.TryAdd(Context.ConnectionId, new Team() { Name = cookie.Value });
-        //            //string name = Context.User.Identity.Name;
-
-        //            //Groups.Add(Context.ConnectionId, name);
-        //            Groups.Add(Context.ConnectionId, cookie.Name);
-        //        }
-        //    }
-
-        //    return base.OnReconnected();
-        //}
+        public void ThrowException()
+        {
+            throw new Exception();
+        }
 
         public void UpdateTeamOfMentorRequest(string teamName, bool accepted, string message = null)
         {
