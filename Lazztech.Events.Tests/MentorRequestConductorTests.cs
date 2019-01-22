@@ -127,12 +127,14 @@ namespace Lazztech.Events.Tests
                     toNumber: "MarksPhoneNumber123",
                     fromNumber: "TwilioNumber123"),
             };
+            //THIS ISN'T WORKING AND IS RETURNING NULL!
             repo.SetupSequence(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>()))
+                .Returns(requestForGian.Mentor).Returns(requestForMark.Mentor)
                 .Returns(requestForGian.Mentor).Returns(requestForMark.Mentor);
             var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
             var smsResponseFromGian = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
-            ////Act
+            //Act
             var succededForGian = conductor.TryAddRequest(requestForGian);
             var succededForMark = conductor.TryAddRequest(requestForMark);
             var result = conductor.ProcessResponse(smsResponseFromGian);
@@ -383,7 +385,7 @@ namespace Lazztech.Events.Tests
         }
 
         [Fact]
-        public void ProcessResponse_NoMatchingRequest_UnIdentifiedResponseShouldNotBeTriggered()
+        public void ProcessResponse_NoMatchingRequest_ShouldBeIgnored()
         {
             //Arrange
             var repo = new Mock<IRepository>();
@@ -403,7 +405,7 @@ namespace Lazztech.Events.Tests
 
             //Assert
             repo.Verify(x => x.Add<SmsDto>(It.IsAny<SmsDto>()));
-            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
+            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]

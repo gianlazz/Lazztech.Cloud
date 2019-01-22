@@ -48,6 +48,8 @@ namespace Lazztech.Events.Domain
             
             var matchingRequest = FindResponseRequest(inboundSms);
             var mentorFromDb = _db.Single<Mentor>(x => x.PhoneNumber.Contains(inboundSms.FromPhoneNumber.TrimStart("+1".ToCharArray())));
+            if (mentorFromDb == null)
+                return null;
             if (IsAcceptanceResponse(inboundSms) && matchingRequest != null)
             {
                 HandleRequestAcceptance(inboundSms, matchingRequest);
