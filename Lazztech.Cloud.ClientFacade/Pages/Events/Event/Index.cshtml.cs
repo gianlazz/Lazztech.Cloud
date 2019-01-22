@@ -12,7 +12,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Event
         [BindProperty]
         public List<Mentor> Mentors { get; set; }
         [BindProperty]
-        public string UniqueUserId { get; set; }
+        public string UniqueRequesteeId { get; set; }
         public string Message { get; set; }
         public string Alert { get; set; }
 
@@ -28,6 +28,9 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Event
         {
             Message = message;
             Alert = alert;
+
+            if (Request.Cookies.ContainsKey(StaticStrings.eventUserIdCookieName))
+                UniqueRequesteeId = Request.Cookies[StaticStrings.eventUserIdCookieName];
 
             //var hubContext = GlobalHost.ConnectionManager.GetHubContext<ProgressHub>();
             //string id = (string)hubContext.Clients.All.GetConnectionId().Result;

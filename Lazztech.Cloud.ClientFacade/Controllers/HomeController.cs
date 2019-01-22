@@ -76,7 +76,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
         //}
 
         [HttpPost]
-        public ActionResult MentorRequest(string teamName, string teamLocation, Guid mentorGuidId)
+        public ActionResult MentorRequest(string uniqueRequesteeId, string teamName, string teamLocation, Guid mentorGuidId)
         {
             var sms = Startup.SmsService;
             bool succeded = false;
@@ -89,7 +89,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
                     var message = EventStrings.OutBoundRequestSms(mentor.FirstName, teamName, teamLocation);
                     var request = new MentorRequest()
                     {
-                        UniqueRequesteeId = teamName,
+                        UniqueRequesteeId = uniqueRequesteeId,
                         Mentor = mentor,
                         OutboundSms = sms.SendSms(mentor.PhoneNumber, message)
                     };

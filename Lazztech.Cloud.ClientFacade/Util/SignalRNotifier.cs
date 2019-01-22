@@ -2,6 +2,7 @@
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.SignalR;
+using System;
 
 namespace Lazztech.Cloud.ClientFacade.Util
 {
@@ -18,6 +19,9 @@ namespace Lazztech.Cloud.ClientFacade.Util
         {
             if (mentorRequest.RequestAccepted == true && mentorRequest.DateTimeWhenProcessed != null)
             {
+                if (mentorRequest.UniqueRequesteeId == null) { throw new Exception(); }
+
+
                 var percentage = (20 * 100) / 100;
                 var message = $"{mentorRequest.Mentor.FirstName} accepted your request!";
                 //PUSHING DATA TO ALL CLIENTS
@@ -28,6 +32,9 @@ namespace Lazztech.Cloud.ClientFacade.Util
             }
             if (mentorRequest.RequestAccepted == false && mentorRequest.DateTimeWhenProcessed != null)
             {
+                if (mentorRequest.UniqueRequesteeId == null) { throw new Exception(); }
+
+
                 var percentage = (20 * 100) / 100;
                 var message = $"{mentorRequest.Mentor.FirstName} is not available right now";
                 _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("requestUpdate", message, percentage);
