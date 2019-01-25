@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
+using Lazztech.Standard.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -44,7 +45,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
             if (mentor.PhoneNumber != null)
                 _sms.SendSms(mentor.PhoneNumber, $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");
             if (mentor.Email != null)
-                _email.SendEmail(mentor.Email, $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");
+                _email.SendEmail(mentor.Email, "Mentor Registration", $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");
 
             _repo.Add<MentorInvite>(invite);
         }
