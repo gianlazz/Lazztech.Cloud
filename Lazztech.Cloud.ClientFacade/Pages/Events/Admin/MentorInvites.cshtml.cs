@@ -37,7 +37,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
             Invites.AddRange(invitesFromDb);
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             var invite = new MentorInvite()
             {
@@ -53,6 +53,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
             //    _email.SendEmail(NewMentor.Email, "Mentor Registration", $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");
 
             _repo.Add<MentorInvite>(invite);
+            return RedirectToPage();
         }
     }
 }

@@ -7,27 +7,24 @@
 <h2>Mentor Invites</h2>
 <hr />
 <h4>Invite New Mentor</h4>
-<div class="row">
-    <div class="col">
-        <form method="post">
-            @*<div asp-validation-summary="ModelOnly" class="text-danger">*@
-                <div class="form-group">
-                    <label asp-for="NewMentor.Email" class="custom-control-label"></label>
-                    <input asp-for="NewMentor.Email" class="form-control" />
-                    <span asp-validation-for="NewMentor.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="NewMentor.PhoneNumber" class="custom-control-label"></label>
-                    <input asp-for="NewMentor.PhoneNumber" class="form-control" />
-                    <span asp-validation-for="NewMentor.PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Send Invite" class="btn btn-default" />
-                </div>
-            @*</div>*@
-        </form>
+
+<form method="post">
+    @*<div asp-validation-summary="ModelOnly" class="text-danger">*@
+    <div class="form-group">
+        <label asp-for="NewMentor.Email" class="custom-control-label"></label>
+        <input asp-for="NewMentor.Email" class="form-control" />
+        <span asp-validation-for="NewMentor.Email" class="text-danger"></span>
     </div>
-</div>
+    <div class="form-group">
+        <label asp-for="NewMentor.PhoneNumber" class="custom-control-label"></label>
+        <input asp-for="NewMentor.PhoneNumber" class="form-control" />
+        <span asp-validation-for="NewMentor.PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Send Invite" class="btn btn-default" />
+    </div>
+    @*</div>*@
+</form>
 
 <h4>Sent</h4>
 
@@ -37,18 +34,20 @@
             <thead>
                 <tr>
                     <th>Created</th>
-                    <th>Name</th>
-                    <th>Opened</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Opened At</th>
                     <th>Accepted</th>
                     <th>Resend</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var invite in Model.Invites)
+                @foreach (var invite in Model.Invites.OrderByDescending(x => x.DateTimeWhenCreated))
                 {
                 <tr>
                     <td>@invite.DateTimeWhenCreated</td>
-                    <td>@invite.Mentor.FullName</td>
+                    <td>@invite.Mentor.Email</td>
+                    <td>@invite.Mentor.PhoneNumber</td>
                     <td>@invite.DateTimeWhenViewed</td>
                     <td>@invite.Accepted</td>
                     <td></td>
