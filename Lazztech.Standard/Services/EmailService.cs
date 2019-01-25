@@ -23,12 +23,10 @@ namespace Lazztech.Standard.Services
             _client.Host = "smtp.gmail.com";
         }
 
-
         public virtual void SendEmail(string toAddress, string subject, string emailBody)
         {
             var mail = new MailMessage(FromAddress, toAddress, subject, emailBody);
             _client.Send(mail);
-
         }
     }
 }

@@ -100,7 +100,7 @@ namespace Lazztech.Cloud.ClientFacade
             services.AddSingleton<IRepository>(s => new MongoRepository(mongoDbConnectionString));
             services.AddSingleton<IRequestNotifier, SignalRNotifier>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
-            services.AddSingleton<IEmailService>(s => new EmailService("fromEmail"));
+            services.AddSingleton<IEmailService>(s => new EmailService("gian@lazz.tech"));
 
             var provider = services.BuildServiceProvider();
             SmsService = provider.GetService<ISmsService>();
