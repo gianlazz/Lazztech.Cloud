@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Lazztech.Events.Dto.Interfaces;
+﻿using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using Lazztech.Standard.Interfaces;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Collections.Generic;
 
 namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
 {
     public class MentorInvitesModel : PageModel
     {
         public List<MentorInvite> Invites { get; set; }
+
         [BindProperty]
         public Mentor NewMentor { get; set; }
+
         [BindProperty]
         public MentorInvite NewInvite { get; set; }
 
@@ -45,7 +46,8 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
             };
 
             var eventName = "CodeDay Seattle Eastside";
-            var signUpLink = $"http://cloud.lazz.tech/Invites?Id=" + $"{invite.Id}";
+            string domainName = Request.HttpContext.Request.GetDisplayUrl().Replace(Request.Path, String.Empty);
+            var signUpLink = $"{domainName}/Events/Invites?Id=" + $"{invite.Id}";
 
             if (NewMentor.PhoneNumber != null)
                 _sms.SendSms(NewMentor.PhoneNumber, $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");
