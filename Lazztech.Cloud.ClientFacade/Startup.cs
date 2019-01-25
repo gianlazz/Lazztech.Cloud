@@ -5,6 +5,8 @@ using Lazztech.Cloud.ClientFacade.Hubs;
 using Lazztech.Cloud.ClientFacade.Util;
 using Lazztech.Events.Domain;
 using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Standard.Interfaces;
+using Lazztech.Standard.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -98,12 +100,14 @@ namespace Lazztech.Cloud.ClientFacade
             services.AddSingleton<IRepository>(s => new MongoRepository(mongoDbConnectionString));
             services.AddSingleton<IRequestNotifier, SignalRNotifier>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
+            services.AddSingleton<IEmailService, EmailService>();
 
             var provider = services.BuildServiceProvider();
             SmsService = provider.GetService<ISmsService>();
             var repo = provider.GetService<IRepository>();
             Responder = provider.GetService<IRequestNotifier>();
             var conductor = provider.GetRequiredService<IMentorRequestConductor>();
+            var email = provider.GetRequiredService<IEmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Vision.Domain", "L
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Cloud.ClientFacade", "Lazztech.Cloud.ClientFacade\Lazztech.Cloud.ClientFacade.csproj", "{6B3D2E9C-30DE-4996-B663-AF087DB08602}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Standard", "..\Lazztech.Standard\Lazztech.Standard.csproj", "{09ED99F4-349B-43CE-A091-365F4E9FDAC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{6B3D2E9C-30DE-4996-B663-AF087DB08602}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B3D2E9C-30DE-4996-B663-AF087DB08602}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B3D2E9C-30DE-4996-B663-AF087DB08602}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09ED99F4-349B-43CE-A091-365F4E9FDAC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09ED99F4-349B-43CE-A091-365F4E9FDAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09ED99F4-349B-43CE-A091-365F4E9FDAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09ED99F4-349B-43CE-A091-365F4E9FDAC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
