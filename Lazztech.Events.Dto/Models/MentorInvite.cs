@@ -15,6 +15,7 @@ namespace Lazztech.Events.Dto.Models
         public MentorInvite()
         {
             DateTimeWhenCreated = DateTime.Now;
+            Id = Guid.NewGuid();
         }
     }
 }

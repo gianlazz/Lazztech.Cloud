@@ -41,10 +41,13 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
         public async Task<ActionResult> OnPost()
         {
             Invite.Accepted = true;
+
             _repo.Delete<MentorInvite>(x => x.Id == Invite.Id);
             _repo.Add<MentorInvite>(Invite);
-            _repo.Add<Mentor>(Mentor);
+
             await UploadPhoto();
+            _repo.Add<Mentor>(Mentor);
+
             return RedirectToPage("./Event");
         }
 
