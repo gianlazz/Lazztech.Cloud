@@ -5,7 +5,28 @@
 }
 
 <h2>Mentor Invites</h2>
-
+<hr />
+<div class="row">
+    <div class="col">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+                <div class="form-group">
+                    <label asp-for="NewMentor.Email" class="custom-control-label"></label>
+                    <input asp-for="NewMentor.Email" class="form-control" />
+                    <span asp-validation-for="NewMentor.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NewMentor.PhoneNumber" class="custom-control-label"></label>
+                    <input asp-for="NewMentor.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="NewMentor.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Send Invite" class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 <h4>Sent</h4>
 

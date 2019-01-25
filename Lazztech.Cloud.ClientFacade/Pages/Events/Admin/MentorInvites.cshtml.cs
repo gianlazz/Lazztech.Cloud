@@ -12,6 +12,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
     public class MentorInvitesModel : PageModel
     {
         public List<MentorInvite> Invites { get; set; }
+        public Mentor NewMentor { get; set; }
 
         private readonly IRepository _repo;
         private readonly ISmsService _sms;
