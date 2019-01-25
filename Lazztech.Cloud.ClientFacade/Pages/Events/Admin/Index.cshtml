@@ -14,17 +14,11 @@
         <p>
             Number of Mentors: @Model.Mentors.Count()
         </p>
-        <button type="button" class="btn btn-dark"><a href="Admin/Mentors">Manage Mentors</a></button>
+        <a class="btn btn-dark" href="Admin/Mentors" role="button">Manage Mentors</a>
     </div>
     <div class="col">
-        <h3>Teams</h3>
-        <p>Number of registered Teams: @Model.Teams.Count()</p>
-        <button type="button" class="btn btn-dark"><a href="Admin/Teams">Manage Teams</a></button>
-    </div>
-    <div class="col">
-        <h3>Judges</h3>
-        <p>Number registered Judges: @Model.Judges.Count()</p>
-        <button type="button" class="btn btn-dark"><a href="Admin/Judges">Manage Judges</a></button>
+        <h3>Mentor Invites</h3>
+        <a class="btn btn-dark" href="Admin/MentorInvites" role="button" >Mentor Invites</a>
     </div>
 </div>
 <br />
