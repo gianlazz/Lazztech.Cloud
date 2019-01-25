@@ -11,13 +11,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
 {
     public class MentorInvitesModel : PageModel
     {
-        private readonly IRepository _repo;
-
-        public ISmsService _sms { get; }
-
-        private readonly IEmailService _email;
-
         public List<MentorInvite> Invites { get; set; }
+
+        private readonly IRepository _repo;
+        private readonly ISmsService _sms;
+        private readonly IEmailService _email;
 
         public MentorInvitesModel(IRepository repository, ISmsService sms, IEmailService email)
         {
