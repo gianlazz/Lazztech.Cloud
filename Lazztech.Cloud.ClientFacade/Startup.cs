@@ -78,8 +78,8 @@ namespace Lazztech.Cloud.ClientFacade
                         //options.Conventions.AuthorizeFolder("/Notifications");
                         options.Conventions.AuthorizeFolder("/Vision", "RequireAdministratorRole");
 
-                        //options.Conventions.AllowAnonymousToPage("/Private/PublicPage");
-                        //options.Conventions.AllowAnonymousToFolder("/Private/PublicPages");
+                        options.Conventions.AllowAnonymousToPage("/Events/Invites");
+                        options.Conventions.AllowAnonymousToFolder("/Events/Event");
                     })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
