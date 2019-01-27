@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
         [BindProperty]
         public Mentor Mentor { get; set; }
         [BindProperty]
+        [Required]
         public IFormFile Photo { get; set; }
         [BindProperty]
         public MentorInvite Invite { get; set; }
@@ -45,6 +47,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
 
         public async Task<ActionResult> OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
             Invite.Accepted = true;
 
             _repo.Delete<MentorInvite>(x => x.Id == Invite.Id);
