@@ -4,5 +4,51 @@
     ViewData["Title"] = "Invites";
 }
 
-<h2>Invites</h2>
+<h2>Register</h2>
 
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Mentor.FirstName" class="control-label"></label>
+                <input asp-for="Mentor.FirstName" class="form-control" />
+                <span asp-validation-for="Mentor.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mentor.LastName" class="control-label"></label>
+                <input asp-for="Mentor.LastName" class="form-control" />
+                <span asp-validation-for="Mentor.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mentor.Image" class="control-label"></label>
+                <input asp-for="Mentor.Image" class="form-control" />
+                <span asp-validation-for="Mentor.Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mentor.Description" class="control-label"></label>
+                <input asp-for="Mentor.Description" class="form-control" />
+                <span asp-validation-for="Mentor.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mentor.ProfessionalTitle" class="control-label"></label>
+                <input asp-for="Mentor.ProfessionalTitle" class="form-control" />
+                <span asp-validation-for="Mentor.ProfessionalTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mentor.PhoneNumber" class="control-label"></label>
+                <input asp-for="Mentor.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Mentor.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mentor.Email" class="control-label"></label>
+                <input asp-for="Mentor.Email" class="form-control" />
+                <span asp-validation-for="Mentor.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
