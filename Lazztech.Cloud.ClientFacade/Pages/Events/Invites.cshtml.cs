@@ -16,6 +16,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
         public Mentor Mentor { get; set; }
         [BindProperty]
         public IFormFile Photo { get; set; }
+        [BindProperty]
         public MentorInvite Invite { get; set; }
 
         private readonly IRepository _repo;
@@ -45,10 +46,10 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
             _repo.Delete<MentorInvite>(x => x.Id == Invite.Id);
             _repo.Add<MentorInvite>(Invite);
 
-            await UploadPhoto();
+            //await UploadPhoto();
             _repo.Add<Mentor>(Mentor);
 
-            return RedirectToPage("./Event");
+            return RedirectToPage("/Events/Event/Index");
         }
 
         private async Task UploadPhoto()
