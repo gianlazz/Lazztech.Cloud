@@ -101,6 +101,7 @@ namespace Lazztech.Cloud.ClientFacade
             services.AddSingleton<IRequestNotifier, SignalRNotifier>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
             services.AddSingleton<IEmailService>(s => new EmailService("gian@lazz.tech"));
+            services.AddSingleton<IFileService, FileService>();
 
             var provider = services.BuildServiceProvider();
             SmsService = provider.GetService<ISmsService>();
@@ -108,6 +109,7 @@ namespace Lazztech.Cloud.ClientFacade
             Responder = provider.GetService<IRequestNotifier>();
             var conductor = provider.GetRequiredService<IMentorRequestConductor>();
             var email = provider.GetRequiredService<IEmailService>();
+            var fileService = provider.GetRequiredService<IFileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
