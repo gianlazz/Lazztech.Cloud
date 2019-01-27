@@ -47,10 +47,10 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
 
             var eventName = "CodeDay Seattle Eastside";
             string domainName = Request.HttpContext.Request.GetDisplayUrl().Replace(Request.Path, String.Empty);
-            var signUpLink = $"{domainName}/Events/Invites?Id=" + $"{invite.Id}";
-
+            var inviteLink = $"{domainName}/Events/Invites?Id=" + $"{invite.Id}";
+            invite.InviteLink = inviteLink;
             if (NewMentor.PhoneNumber != null)
-                _sms.SendSms(NewMentor.PhoneNumber, $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");
+                _sms.SendSms(NewMentor.PhoneNumber, $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {inviteLink}");
             //if (NewMentor.Email != null)
             //    _email.SendEmail(NewMentor.Email, "Mentor Registration", $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");
 
