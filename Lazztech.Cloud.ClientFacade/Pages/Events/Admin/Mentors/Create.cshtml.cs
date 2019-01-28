@@ -42,8 +42,8 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             //_context.Mentor.Add(Mentor);
             //await _context.SaveChangesAsync();
 
-            _repo.Add<Mentor>(Mentor);
             await UploadPhoto();
+            _repo.Add<Mentor>(Mentor);
 
             return RedirectToPage("./Index");
         }

@@ -1,9 +1,13 @@
 ﻿using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
+using Lazztech.Standard.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,17 +15,22 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class EditModel : PageModel
     {
-        private readonly IRepository _repo;
-
+        [BindProperty]
+        [Required]
+        public IFormFile Photo { get; set; }
         [BindProperty]
         public Mentor Mentor { get; set; }
 
-        public EditModel(IRepository repository)
+        private readonly IRepository _repo;
+        private readonly IFileService _fileService;
+
+        public EditModel(IRepository repository, IFileService fileService)
         {
             _repo = repository;
+            _fileService = fileService;
         }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public IActionResult OnGet(Guid? id)
         {
             if (id == null)
             {
@@ -44,26 +53,13 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             {
                 return Page();
             }
-
-            //_context.Attach(Mentor).State = EntityState.Modified;
-
-            try
+            if (!MentorExists(Mentor.Id))
             {
-                _repo.Delete<Mentor>(x => x.Id == Mentor.Id);
-                _repo.Add<Mentor>(Mentor);
-                //await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MentorExists(Mentor.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await UploadPhoto();
+            _repo.Delete<Mentor>(x => x.Id == Mentor.Id);
+            _repo.Add<Mentor>(Mentor);
 
             return RedirectToPage("./Index");
         }
@@ -72,6 +68,22 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
         {
             return _repo.All<Mentor>().Any(x => x.Id == id);
             //return _context.Mentor.Any(e => e.Id == id);
+        }
+
+        private async Task UploadPhoto()
+        {
+            using (var ms = new MemoryStream())
+            {
+                await Photo.CopyToAsync(ms);
+                var extension = _fileService.GetExtension(Photo.FileName);
+                var imageBytes = ms.ToArray();
+
+                var directory = @"C:\LazztechCloud\";
+                var fileName = Mentor.Id + extension;
+                var imagePath = directory + fileName;
+                Mentor.Image = imagePath;
+                _fileService.WriteAllBytes(imagePath, imageBytes);
+            }
         }
     }
 }
