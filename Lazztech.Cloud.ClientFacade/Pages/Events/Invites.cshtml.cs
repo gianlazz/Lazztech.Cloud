@@ -73,7 +73,9 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
 
                 var directory = @"C:\LazztechCloud\";
                 var fileName = Mentor.Id + extension;
-                _fileService.WriteAllBytes(directory + fileName, imageBytes);
+                var imagePath = directory + fileName;
+                Mentor.Image = imagePath;
+                _fileService.WriteAllBytes(imagePath, imageBytes);
             }
         }
     }
