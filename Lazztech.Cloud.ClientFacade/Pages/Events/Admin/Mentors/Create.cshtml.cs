@@ -1,17 +1,30 @@
 ﻿using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
+using Lazztech.Standard.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class CreateModel : PageModel
     {
-        private readonly IRepository _repo;
+        [BindProperty]
+        [Required]
+        public IFormFile Photo { get; set; }
+        [BindProperty]
+        public Mentor Mentor { get; set; }
 
-        public CreateModel(IRepository repository)
+        private readonly IRepository _repo;
+        private readonly IFileService _fileService;
+
+        public CreateModel(IRepository repository, IFileService fileService)
         {
             _repo = repository;
+            _fileService = fileService;
         }
 
         public IActionResult OnGet()
@@ -19,10 +32,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             return Page();
         }
 
-        [BindProperty]
-        public Mentor Mentor { get; set; }
-
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
             {
@@ -31,9 +41,27 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 
             //_context.Mentor.Add(Mentor);
             //await _context.SaveChangesAsync();
+
             _repo.Add<Mentor>(Mentor);
+            await UploadPhoto();
 
             return RedirectToPage("./Index");
+        }
+
+        private async Task UploadPhoto()
+        {
+            using (var ms = new MemoryStream())
+            {
+                await Photo.CopyToAsync(ms);
+                var extension = _fileService.GetExtension(Photo.FileName);
+                var imageBytes = ms.ToArray();
+
+                var directory = @"C:\LazztechCloud\";
+                var fileName = Mentor.Id + extension;
+                var imagePath = directory + fileName;
+                Mentor.Image = imagePath;
+                _fileService.WriteAllBytes(imagePath, imageBytes);
+            }
         }
     }
 }
