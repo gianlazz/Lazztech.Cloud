@@ -68,7 +68,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
             using (var ms = new MemoryStream())
             {
                 await Photo.CopyToAsync(ms);
-                var extension = Path.GetExtension(Photo.FileName);
+                var extension = _fileService.GetExtension(Photo.FileName);
                 var imageBytes = ms.ToArray();
 
                 var directory = @"C:\LazztechCloud\";
