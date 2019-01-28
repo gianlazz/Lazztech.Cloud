@@ -18,6 +18,11 @@ namespace Lazztech.Standard.Services
             return Directory.Exists(path);
         }
 
+        public string GetExtension(string path)
+        {
+            return Path.GetExtension(path);
+        }
+
         public void WriteAllBytes(string path, byte[] bytes)
         {
             var dir = Path.GetDirectoryName(path);

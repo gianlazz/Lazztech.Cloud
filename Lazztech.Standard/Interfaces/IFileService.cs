@@ -10,5 +10,6 @@ namespace Lazztech.Standard.Interfaces
         void CreateDirectory(string path);
         void WriteAllBytes(string path, byte[] bytes);
         void WriteAllText(string path, string content);
+        string GetExtension(string path);
     }
 }
