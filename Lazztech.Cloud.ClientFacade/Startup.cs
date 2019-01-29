@@ -150,10 +150,10 @@ namespace Lazztech.Cloud.ClientFacade
                 routes.MapHub<ProgressHub>("/progressHub");
             });
 
-            var defaultAdminSection = Configuration.GetSection("DefaultAdminUser");
-            var email = defaultAdminSection["Email"];
-            var password = defaultAdminSection["Password"];
-            ApplicationDbInitializer.SeedAdminUser(userManager, roleManager, email, password);
+            //var defaultAdminSection = Configuration.GetSection("DefaultAdminUser");
+            //var email = defaultAdminSection["Email"];
+            //var password = defaultAdminSection["Password"];
+            //ApplicationDbInitializer.SeedAdminUser(userManager, roleManager, email, password);
         }
     }
 }
