@@ -7,6 +7,7 @@ services:
 #      - /Users/gianlazzarini/Desktop/face_recognition:/face/
 #      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
      - C:\face_recognition:/face/
+     - ~\AppData\Roaming\Microsoft\UserSecrets\F0D117F3-0EC4-4600-8843-FDB198DDFBBC:/root/.microsoft/usersecrets/F0D117F3-0EC4-4600-8843-FDB198DDFBBC
       # - lazztech-cloud-data:/face/
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"

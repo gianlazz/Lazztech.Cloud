@@ -3565,3 +3565,9 @@ it doesn't seem that important.
 I had many references to a magic string for the "team" cookie so I went ahead and added a field to the StaticStrings
 class for it called eventUserIdCookieName to ease the refactoring process as I transistion it's responsability from
 a team identifier cookie to a user device id cookie.
+
+### 1/28/2019
+Had lots of issues with Docker today.
+I believe the issue came from the docker-compose having periods/capitol letters in either the service or image name.
+Once I removed them having them both lower case without periods it worked. Be mindful of this as it will fail silently
+while it's trying to build the service.
