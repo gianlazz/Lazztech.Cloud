@@ -17,15 +17,17 @@ services:
       context: .
       dockerfile: Lazztech.Cloud.ClientFacade/Dockerfile
 
-#Hidden since during development I'll be using locally installed postgres server
-#  postgres_image:
-#    image: postgres:alpine
-#    ports:
-#      - "5433:5432"
-#    environment:
-#      POSTGRES_USER: "dbuser"
-#      POSTGRES_PASSWORD: "dbpwd"
-#      POSTGRES_DB: "values_db"
+  postgres_image:
+    image: postgres:alpine
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: "dbuser"
+      POSTGRES_PASSWORD: "dbpwd"
+      POSTGRES_DB: "values_db"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
 
-# volumes:
+volumes:
+    postgres-data:
 #   lazztech-cloud-data:

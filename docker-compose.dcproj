@@ -5,6 +5,10 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>{78BC127E-1A83-4FB1-B029-569F972CD01F}</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerServiceUrl>localhost</DockerServiceUrl>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
