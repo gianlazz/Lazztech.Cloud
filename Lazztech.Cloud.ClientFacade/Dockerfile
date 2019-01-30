@@ -19,7 +19,7 @@ EXPOSE 44362
 #ENV LC_ALL C.UTF-8
 #ENV LANG C.UTF-8
 
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY Lazztech.Cloud.sln ./
 COPY docker-compose.dcproj ./
