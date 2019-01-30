@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   lazztechcloudclientfacade:
-    image: lazztechcloudclientfacade:arm32
+    image: gianlazzarini/lazztechcloudclientfacade:arm32
     volumes:
       - lazztech-cloud-data:/face/
     ports: 
