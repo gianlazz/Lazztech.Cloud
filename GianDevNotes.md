@@ -18,6 +18,7 @@
 - **Launch Compose on Docker Swarm Cluster** `docker stack deploy`
 - **List all docker services** `docker service ls`
 - **Remove docker service** `docker service rm ID`
+- **Create a docker service on swarm cluster** `docker service create {container and arguments}`
 
 **Docker links:**
 - https://stackoverflow.com/questions/39988844/docker-compose-up-vs-docker-compose-up-build-vs-docker-compose-build-no-cach
@@ -3571,3 +3572,57 @@ Had lots of issues with Docker today.
 I believe the issue came from the docker-compose having periods/capitol letters in either the service or image name.
 Once I removed them having them both lower case without periods it worked. Be mindful of this as it will fail silently
 while it's trying to build the service.
+
+### 1/29/2019
+Netgear router address: http://192.168.1.1
+Glinet router address: http://192.168.8.1/html/
+Docker cluster Lazztech address from the Netgear router > 192.168.1.100: http://192.168.1.16
+SSH Into Rpi 1: ssh pi@192.168.8.100
+SSH Into Rpi 2: ssh pi@192.168.8.101
+Both rpis use the default ssh password
+
+https://hub.docker.com/r/wouterds/rpi-jenkins/
+docker run -p 8080:8080 -p 50000:50000 -v jenkins:/var/jenkins_home wouterds/rpi-jenkins
+**To Run It As A Service:**
+docker service create --name jenkinsci -u root -d -p 8888:8080/tcp --mount type=volume,source=jenkins-data,destination=/var/jenkins_home wouterds/rpi-jenkins
+However for what ever reason this one shows that it's not compatible and is for amd when ran as a service...
+
+Other option:
+https://hub.docker.com/r/joherma1/rpi-jenkins/
+docker run -p 8080:8080 -p 50000:50000 -v jenkins:/var/jenkins_home joherma1/rpi-jenkins
+**To Run It As A Service:**
+docker service create --name jenkinsci -u root -d -p 8888:8080/tcp --mount type=volume,source=jenkins-data,destination=/var/jenkins_home joherma1/rpi-jenkins
+**Without Detatch**
+docker service create --name jenkinsci -u root -p 8888:8080/tcp --mount type=volume,source=jenkins-data,destination=/var/jenkins_home joherma1/rpi-jenkins
+This seems to have worked fine and runs.
+
+**Setup Port Forwarding For Jenkins**
+Port fowarding on the glinet router:
+
+Port forwarding on the Netgear router:
+
+Supported ports for Cloudflare DNS for my cloud.lazz.tech domain name:
+The supported ports include 8080 so that's what I chosen to expose it as.
+https://support.cloudflare.com/hc/en-us/articles/200169156-Which-ports-will-Cloudflare-work-with-
+It's now accessable from: http://cloud.lazz.tech:8080
+
+**Setting up Jenkins Blue Ocean**
+After updating the joherma1/rpi-jenkins service I was able to find the jenkins blue ocean plugin however it still showed that I needed to update
+and that the version of jenkins I had installed wasn't supported.
+After installing blue ocean anyways and restarting it's throwing an error.
+The wouterds/rpi-jenkins container seems to be more up to date however it's throwing that error when I try to run it as a service...
+
+**Jenkins Docker Performance Tunning**
+If I run docker stats on the jenkins container then it shows 0% memory utilization.
+https://github.com/moby/moby/issues/18420
+Also if I run docker info it lists the following warnings at the bottom:
+WARNING: No memory limit support
+WARNING: No swap limit support
+WARNING: No kernel memory limit support
+WARNING: No oom kill disable support
+WARNING: No cpu cfs quota support
+WARNING: No cpu cfs period support
+These warning could have to do with this and other perfomance issues like I ran into when trying to compile dlib.
+
+**Example from when I was trying to use the x86 jenkins container as a service**
+docker service create --name jenkinsci -u root -d -p 8888:8080/tcp --mount type=volume,source=jenkins-data,destination=/var/jenkins_home --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock jenkinsci/blueocean

@@ -43,14 +43,15 @@ namespace Lazztech.Cloud.ClientFacade
             });
 
             // SqlServer Entity Framework Data Adapter Setup
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection")));
 
             // PostgreSql Entity Framework Data Adapter Setup
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseNpgsql(
-            //        Configuration.GetConnectionString("DefaultConnection")));
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -119,7 +120,6 @@ namespace Lazztech.Cloud.ClientFacade
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.AddEfDiagrams<ApplicationDbContext>();
             }
             else
             {
@@ -150,10 +150,10 @@ namespace Lazztech.Cloud.ClientFacade
                 routes.MapHub<ProgressHub>("/progressHub");
             });
 
-            //var defaultAdminSection = Configuration.GetSection("DefaultAdminUser");
-            //var email = defaultAdminSection["Email"];
-            //var password = defaultAdminSection["Password"];
-            //ApplicationDbInitializer.SeedAdminUser(userManager, roleManager, email, password);
+            var defaultAdminSection = Configuration.GetSection("DefaultAdminUser");
+            var email = defaultAdminSection["Email"];
+            var password = defaultAdminSection["Password"];
+            ApplicationDbInitializer.SeedAdminUser(userManager, roleManager, email, password);
         }
     }
 }

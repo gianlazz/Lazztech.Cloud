@@ -13,18 +13,14 @@ namespace Lazztech.Cloud.ClientFacade.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<MentorEntity>()
-                .Property(b => b.PhoneNumber)
-                .IsRequired();
-
             base.OnModelCreating(modelBuilder);
         }
 
-        private DbSet<VenueRoomEntity> VenueRooms { get; set; }
-        private DbSet<EventEntity> Events { get; set; }
-        private DbSet<PersonEntity> People { get; set; }
-        private DbSet<LocationEntity> Locations { get; set; }
-        private DbSet<MentorEntity> Mentors { get; set; }
-        private DbSet<JudgeEntity> Judges { get; set; }
+        //private DbSet<VenueRoomEntity> VenueRooms { get; set; }
+        //private DbSet<EventEntity> Events { get; set; }
+        //private DbSet<PersonEntity> People { get; set; }
+        //private DbSet<LocationEntity> Locations { get; set; }
+        //private DbSet<MentorEntity> Mentors { get; set; }
+        //private DbSet<JudgeEntity> Judges { get; set; }
     }
 }
