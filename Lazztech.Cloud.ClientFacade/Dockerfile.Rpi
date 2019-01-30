@@ -22,8 +22,23 @@ EXPOSE 5000
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
+COPY Lazztech.Cloud.sln ./
+COPY docker-compose.dcproj ./
 COPY ["Lazztech.Cloud.ClientFacade/Lazztech.Cloud.ClientFacade.csproj", "Lazztech.Cloud.ClientFacade/"]
-RUN dotnet restore "Lazztech.Cloud.ClientFacade/Lazztech.Cloud.ClientFacade.csproj"
+COPY ["Lazztech.Cloud.ClientFacade.Tests/Lazztech.Cloud.ClientFacade.Tests.csproj", "Lazztech.Cloud.ClientFacade.Tests/"]
+COPY ["Lazztech.Events/Lazztech.Events.Domain.csproj", "Lazztech.Events/"]
+COPY ["Lazztech.Events.Dto/Lazztech.Events.Dto.csproj", "Lazztech.Events.Dto/"]
+COPY ["Lazztech.SrndResourcesManager/Lazztech.Events.StudentRND.csproj", "Lazztech.SrndResourcesManager/"]
+COPY ["Lazztech.Events.Tests/Lazztech.Events.Tests.csproj", "Lazztech.Events.Tests/"]
+COPY ["Lazztech.MongoDB/Lazztech.MongoDB.csproj", "Lazztech.MongoDB/"]
+COPY ["Lazztech.Sms/Lazztech.Sms.csproj", "Lazztech.Sms/"]
+COPY ["Lazztech.Standard/Lazztech.Standard.csproj", "Lazztech.Standard/"]
+COPY ["Lazztech.Vision.Cli/Lazztech.Vision.Cli.csproj", "Lazztech.Vision.Cli/"]
+COPY ["Lazztech.Vision.Domain/Lazztech.Vision.Domain.csproj", "Lazztech.Vision.Domain/"]
+COPY ["Lazztech.Vision.Tests/Lazztech.Vision.Tests.csproj", "Lazztech.Vision.Tests/"]
+
+RUN dotnet restore Lazztech.Cloud.sln -nowarn:msb3202,nu1503
+#RUN dotnet restore "Lazztech.Cloud.ClientFacade/Lazztech.Cloud.ClientFacade.csproj"
 COPY . .
 WORKDIR "/src/Lazztech.Cloud.ClientFacade"
 RUN dotnet build "Lazztech.Cloud.ClientFacade.csproj" -c Release -o /app
