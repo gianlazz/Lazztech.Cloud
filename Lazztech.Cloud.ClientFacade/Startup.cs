@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Lazztech.Cloud.ClientFacade
@@ -131,7 +132,12 @@ namespace Lazztech.Cloud.ClientFacade
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My simple API"); });
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(); // For the wwwroot folder
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(StaticStrings.dataDir)
+            });
+
             app.UseCookiePolicy();
 
             app.UseAuthentication();
