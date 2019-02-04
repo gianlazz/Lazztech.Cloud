@@ -49,7 +49,7 @@
     <Content Update="Pages\Notifications\Index.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\_Layout.cshtml">
+    <Content Update="Pages\Shared\_Layout_Anonymous.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Vision\Index.cshtml">
