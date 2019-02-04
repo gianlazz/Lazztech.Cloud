@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Lazztech.Events.Domain;
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using Lazztech.Standard.Interfaces;
@@ -25,11 +26,13 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
 
         private readonly IRepository _repo;
         private readonly IFileService _fileService;
+        private readonly ISmsService _sms;
 
-        public InvitesModel(IRepository repository, IFileService fileService)
+        public InvitesModel(IRepository repository, IFileService fileService, ISmsService sms)
         {
             _repo = repository;
             _fileService = fileService;
+            _sms = sms;
         }
 
         public ActionResult OnGet(Guid? Id)
@@ -59,6 +62,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
 
             await UploadPhoto();
             _repo.Add<Mentor>(Mentor);
+            _sms.SendSms(Mentor.PhoneNumber, EventStrings.MentorRegistrationResponse(Mentor.FirstName));
 
             return RedirectToPage("/Events/Event/Index");
         }
