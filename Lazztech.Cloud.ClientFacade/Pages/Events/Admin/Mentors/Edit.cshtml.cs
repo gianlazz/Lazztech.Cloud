@@ -90,6 +90,10 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
                 var directory = StaticStrings.dataDir;
                 var fileName = Mentor.Id + extension;
                 var imagePath = directory + fileName;
+
+                if (_fileService.FileExists(imagePath))
+                    _fileService.DeleteFile(imagePath);
+
                 Mentor.Image = imagePath;
                 _fileService.WriteAllBytes(imagePath, imageBytes);
             }
