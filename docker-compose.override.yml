@@ -3,6 +3,8 @@ version: '3.4'
 services:
   lazztechcloudclientfacade:
     image: lazztechcloudclientfacade
+    depends_on:
+      - postgres_image
     volumes:
      - C:\face_recognition:/face/
      - ~\AppData\Roaming\Microsoft\UserSecrets\F0D117F3-0EC4-4600-8843-FDB198DDFBBC:/root/.microsoft/usersecrets/F0D117F3-0EC4-4600-8843-FDB198DDFBBC

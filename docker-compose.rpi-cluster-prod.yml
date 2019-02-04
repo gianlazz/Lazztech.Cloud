@@ -3,6 +3,8 @@ version: '3.4'
 services:
   lazztechcloudclientfacade:
     image: gianlazzarini/lazztechcloudclientfacade:arm32
+    depends_on:
+      - postgres_image
     volumes:
       - lazztech-vision-data:/face/
       - lazztech-cloud-data:/lazztech_data/
