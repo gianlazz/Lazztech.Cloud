@@ -18,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
 
 namespace Lazztech.Cloud.ClientFacade
 {
@@ -86,6 +87,7 @@ namespace Lazztech.Cloud.ClientFacade
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSignalR();
+            //services.AddDirectoryBrowser();
 
             //public static IRepository DbRepo;
             //public static IRequestNotifier Responder = new SignalRNotifier();
@@ -135,8 +137,15 @@ namespace Lazztech.Cloud.ClientFacade
             app.UseStaticFiles(); // For the wwwroot folder
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(StaticStrings.dataDir)
+                FileProvider = new PhysicalFileProvider(StaticStrings.dataDir),
+                RequestPath = @"/lazztech_data"
             });
+
+            //app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(StaticStrings.dataDir),
+            //    RequestPath = @"/lazztech_data"
+            //});
 
             app.UseCookiePolicy();
 
