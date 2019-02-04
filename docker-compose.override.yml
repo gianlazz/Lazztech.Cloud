@@ -4,11 +4,9 @@ services:
   lazztechcloudclientfacade:
     image: lazztechcloudclientfacade
     volumes:
-#      - /Users/gianlazzarini/Desktop/face_recognition:/face/
-#      - C:\Users\Gian Lazzarini\Desktop\face_recognition:/face/
      - C:\face_recognition:/face/
      - ~\AppData\Roaming\Microsoft\UserSecrets\F0D117F3-0EC4-4600-8843-FDB198DDFBBC:/root/.microsoft/usersecrets/F0D117F3-0EC4-4600-8843-FDB198DDFBBC
-      # - lazztech-cloud-data:/face/
+     - lazztech-cloud-data:/lazztech_data/
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
     ports: 
@@ -29,5 +27,6 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
 volumes:
-    postgres-data:
-#   lazztech-cloud-data:
+  postgres-data:
+  lazztech-vision-data:
+  lazztech-cloud-data:
