@@ -13,9 +13,14 @@ namespace Lazztech.Standard.Services
             Directory.CreateDirectory(path);
         }
 
-        public bool Exists(string path)
+        public bool DirectoryExists(string path)
         {
             return Directory.Exists(path);
+        }
+
+        public bool FileExists(string path)
+        {
+            return File.Exists(path);
         }
 
         public string GetExtension(string path)
@@ -26,7 +31,7 @@ namespace Lazztech.Standard.Services
         public void WriteAllBytes(string path, byte[] bytes)
         {
             var dir = Path.GetDirectoryName(path);
-            if (!Exists(dir))
+            if (!DirectoryExists(dir))
                 CreateDirectory(dir);
             File.WriteAllBytes(path, bytes);
         }
@@ -34,7 +39,7 @@ namespace Lazztech.Standard.Services
         public void WriteAllText(string path, string content)
         {
             var dir = Path.GetDirectoryName(path);
-            if (!Exists(dir))
+            if (!DirectoryExists(dir))
                 CreateDirectory(dir);
             File.WriteAllText(path, content);
         }
