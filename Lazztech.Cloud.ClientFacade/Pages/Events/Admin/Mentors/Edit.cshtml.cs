@@ -16,7 +16,6 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
     public class EditModel : PageModel
     {
         [BindProperty]
-        [Required]
         public IFormFile Photo { get; set; }
         [BindProperty]
         public Mentor Mentor { get; set; }
@@ -57,9 +56,19 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             {
                 return NotFound();
             }
-            await UploadPhoto();
-            _repo.Delete<Mentor>(x => x.Id == Mentor.Id);
-            _repo.Add<Mentor>(Mentor);
+
+            if (Photo != null)
+            {
+                await UploadPhoto();
+                _repo.Delete<Mentor>(x => x.Id == Mentor.Id);
+                _repo.Add<Mentor>(Mentor);
+            }
+            else
+            {
+                Mentor.Image = _repo.All<Mentor>().FirstOrDefault(m => m.Id == Mentor.Id).Image;
+                _repo.Delete<Mentor>(x => x.Id == Mentor.Id);
+                _repo.Add<Mentor>(Mentor);
+            }
 
             return RedirectToPage("./Index");
         }
