@@ -13,6 +13,11 @@ namespace Lazztech.Standard.Services
             Directory.CreateDirectory(path);
         }
 
+        public void DeleteFile(string path)
+        {
+            File.Delete(path);
+        }
+
         public bool DirectoryExists(string path)
         {
             return Directory.Exists(path);
