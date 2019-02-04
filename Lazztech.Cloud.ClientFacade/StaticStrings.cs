@@ -12,5 +12,6 @@ namespace Lazztech.Cloud.ClientFacade
         /// for event requests.
         /// </summary>
         public static string eventUserIdCookieName => "uniqueUserId";
+        public static string dataDir => @"/lazztech_data/";
     }
 }

@@ -4,7 +4,8 @@ services:
   lazztechcloudclientfacade:
     image: gianlazzarini/lazztechcloudclientfacade:arm32
     volumes:
-      - lazztech-cloud-data:/face/
+      - lazztech-vision-data:/face/
+      - lazztech-cloud-data:/lazztech_data/
     ports: 
       - 80:80
     build:
@@ -24,4 +25,5 @@ services:
 
 volumes:
   postgres-data:
+  lazztech-vision-data:
   lazztech-cloud-data:

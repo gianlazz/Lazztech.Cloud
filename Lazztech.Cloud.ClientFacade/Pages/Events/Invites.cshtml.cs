@@ -71,7 +71,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
                 var extension = _fileService.GetExtension(Photo.FileName);
                 var imageBytes = ms.ToArray();
 
-                var directory = @"C:\LazztechCloud\";
+                var directory = StaticStrings.dataDir;
                 var fileName = Mentor.Id + extension;
                 var imagePath = directory + fileName;
                 Mentor.Image = imagePath;
