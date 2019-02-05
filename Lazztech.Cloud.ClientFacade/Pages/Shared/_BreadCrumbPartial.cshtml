@@ -6,21 +6,14 @@
 {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            @for (int i = 0; i < routes.Count(); i++)
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+
+            @for (int i = 0; i < routes.Count() - 1; i++)
             {
-                @if (i == 0)
-                {
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                }
-                else if (routes[i] != routes.Last())
-                {
-                    <li class="breadcrumb-item"><a href="@GenerateRoute(i, routes)">@routes[i]</a></li>
-                }
-                else if (routes[i] == routes.Last())
-                {
-                    <li class="breadcrumb-item active" aria-current="page">@routes.Last()</li>
-                }
+                <li class="breadcrumb-item"><a href="@GenerateRoute(i, routes)">@routes[i]</a></li>
             }
+
+            <li class="breadcrumb-item active" aria-current="page">@routes.Last()</li>
         </ol>
     </nav>
     <br />
@@ -29,10 +22,11 @@
 @{ 
     string GenerateRoute(int index, string[] routesParam)
     {
-        var result = string.Empty;
-        for (int i = 0; i <= index; i++)
+        string result = string.Empty;
+        for (int j = 0; j < index; j++)
         {
-            result += $@"{routesParam[i]}/";
+            result += $@"{routesParam[j]}/";
+            return result;
         }
         return result;
     }
