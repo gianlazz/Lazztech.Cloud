@@ -10,24 +10,11 @@
 
             @for (int i = 0; i < routes.Count() - 1; i++)
             {
-                <li class="breadcrumb-item"><a href="@GenerateRoute(i, routes)">@routes[i]</a></li>
+                <li class="breadcrumb-item"><a href="/@String.Join('/', routes.Take(i + 1))">@routes[i]</a></li>
             }
 
             <li class="breadcrumb-item active" aria-current="page">@routes.Last()</li>
         </ol>
     </nav>
     <br />
-}
-
-@{ 
-    string GenerateRoute(int index, string[] routesParam)
-    {
-        string result = string.Empty;
-        for (int j = 0; j < index; j++)
-        {
-            result += $@"{routesParam[j]}/";
-            return result;
-        }
-        return result;
-    }
 }
