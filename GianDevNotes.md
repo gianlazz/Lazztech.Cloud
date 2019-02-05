@@ -3626,3 +3626,13 @@ These warning could have to do with this and other perfomance issues like I ran 
 
 **Example from when I was trying to use the x86 jenkins container as a service**
 docker service create --name jenkinsci -u root -d -p 8888:8080/tcp --mount type=volume,source=jenkins-data,destination=/var/jenkins_home --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock jenkinsci/blueocean
+
+### 2/4/19
+
+To Do:
+- Mentor Invite page losses form data when it returns you with invalid model data.
+- Formatting on the Invite registration welcome text message for readability
+- Notes during Invite page to explain the fields better
+- Setup email service for the Mentor Invites
+- Setup Hackathonhandler.com domain redirecting to cloud.lazz.tech/Events/Event
+- Setup https for cloud.lazz.tech in docker-compose on the cluster
