@@ -1,0 +1,39 @@
+﻿@{
+    var routes = Context.Request.Path.Value.Split('/');
+}
+
+@if (Context.Request.Path != "/")
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            @for (int i = 0; i < routes.Count(); i++)
+            {
+                @if (i == 0)
+                {
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                }
+                else if (routes[i] != routes.Last())
+                {
+                    <li class="breadcrumb-item"><a href="@GenerateRoute(i, routes)">@routes[i]</a></li>
+                }
+                else if (routes[i] == routes.Last())
+                {
+                    <li class="breadcrumb-item active" aria-current="page">@routes[i]</li>
+                }
+            }
+        </ol>
+    </nav>
+    <br />
+}
+
+@{ 
+    string GenerateRoute(int index, string[] routesParam)
+    {
+        var result = string.Empty;
+        for (int i = 0; i <= index; i++)
+        {
+            result += $@"{routesParam[i]}/";
+        }
+        return result;
+    }
+}
