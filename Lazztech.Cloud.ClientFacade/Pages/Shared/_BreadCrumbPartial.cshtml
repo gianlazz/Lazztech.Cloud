@@ -1,5 +1,5 @@
 ﻿@{
-    var routes = Context.Request.Path.Value.Split('/');
+    var routes = Context.Request.Path.Value.Split('/', StringSplitOptions.RemoveEmptyEntries);
 }
 
 @if (Context.Request.Path != "/")
@@ -18,7 +18,7 @@
                 }
                 else if (routes[i] == routes.Last())
                 {
-                    <li class="breadcrumb-item active" aria-current="page">@routes[i]</li>
+                    <li class="breadcrumb-item active" aria-current="page">@routes.Last()</li>
                 }
             }
         </ol>
