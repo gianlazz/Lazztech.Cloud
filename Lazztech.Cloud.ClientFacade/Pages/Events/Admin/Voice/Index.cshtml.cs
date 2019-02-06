@@ -46,6 +46,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
             return Page();
         }
 
+        //public IActionResult OnPostCall(Guid Id)
+        //{
+        //    RedirectToPage()
+        //} 
+
         private async Task Upload()
         {
             using (var ms = new MemoryStream())
