@@ -19,7 +19,6 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
         [MaxLength(10)]
         [MinLength(10)]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Please enter phone number: 5555555555")]
-        [BindProperty]
         public string PhoneNumber { get; set; }
 
         [BindProperty]
@@ -45,11 +44,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
 
         public async Task<IActionResult> OnPost()
         {
-            string domainName = Request.HttpContext.Request.GetDisplayUrl().Replace(Request.Path, String.Empty);
-            var url = "http://demo.kevinwhinnery.com/audio/zelda.mp3";
-            //await _call.PreRecordedCall(PhoneNumber, domainName + "/" + VoiceUpload.FilePath);
-            await _call.PreRecordedCall(PhoneNumber, url);
-
+            await _call.PreRecordedCall(PhoneNumber, VoiceUpload.Id.ToString());
 
             return Page();
         }

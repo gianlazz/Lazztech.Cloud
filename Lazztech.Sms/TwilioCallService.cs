@@ -27,20 +27,17 @@ namespace Lazztech.Sms
             _fromNumber = fromNumber;
         }
 
-        public async System.Threading.Tasks.Task PreRecordedCall(string phoneNumber, string filePath)
+        public async System.Threading.Tasks.Task PreRecordedCall(string phoneNumber, string audioUploadId)
         {
             await System.Threading.Tasks.Task.Run(() => 
             {
                 TwilioClient.Init(_accountSid, _authToken);
 
                 var call = CallResource.Create(
-                    url: new Uri("http://demo.twilio.com/docs/voice.xml"),
+                    url: new Uri($@"http://cloud.lazz.tech/api/twilio?Id={audioUploadId}"),
                     to: new Twilio.Types.PhoneNumber($"+1{phoneNumber}"),
                     from: new Twilio.Types.PhoneNumber($"+1{_fromNumber}")
                 );
-
-                var response = new VoiceResponse();
-                response.Play(new Uri(filePath));
             });
         }
     }
