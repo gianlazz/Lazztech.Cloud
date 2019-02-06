@@ -37,7 +37,6 @@ namespace Lazztech.Sms
 
                 var call = CallResource.Create(
                     url: new Uri(url),
-                    record: true,
                     to: new Twilio.Types.PhoneNumber($"+1{phoneNumber}"),
                     from: new Twilio.Types.PhoneNumber($"+1{_fromNumber}")
                 );
