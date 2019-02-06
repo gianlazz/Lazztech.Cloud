@@ -36,8 +36,8 @@ namespace Lazztech.Sms
                 //var url = @"http://01610e09.ngrok.io/api/twiliohelper?Id=" + $"{audioUploadId}";
 
                 var call = CallResource.Create(
-                    //url: new Uri(url),
                     url: new Uri(url),
+                    record: true,
                     to: new Twilio.Types.PhoneNumber($"+1{phoneNumber}"),
                     from: new Twilio.Types.PhoneNumber($"+1{_fromNumber}")
                 );
