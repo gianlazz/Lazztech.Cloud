@@ -45,7 +45,10 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
         public async Task<IActionResult> OnPost()
         {
             string domainName = Request.HttpContext.Request.GetDisplayUrl().Replace(Request.Path, String.Empty);
-            await _call.PreRecordedCall(PhoneNumber, domainName + "/" + VoiceUpload.FilePath);
+            var url = "http://demo.kevinwhinnery.com/audio/zelda.mp3";
+            //await _call.PreRecordedCall(PhoneNumber, domainName + "/" + VoiceUpload.FilePath);
+            await _call.PreRecordedCall(PhoneNumber, url);
+
 
             return Page();
         }

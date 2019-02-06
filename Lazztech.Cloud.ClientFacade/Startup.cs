@@ -1,10 +1,10 @@
 using HackathonManager.MongoDB;
-using HackathonManager.Sms;
 using Lazztech.Cloud.ClientFacade.Data;
 using Lazztech.Cloud.ClientFacade.Hubs;
 using Lazztech.Cloud.ClientFacade.Util;
 using Lazztech.Events.Domain;
 using Lazztech.Events.Dto.Interfaces;
+using Lazztech.Sms;
 using Lazztech.Standard.Interfaces;
 using Lazztech.Standard.Services;
 using Microsoft.AspNetCore.Builder;
@@ -101,6 +101,7 @@ namespace Lazztech.Cloud.ClientFacade
             var mongoDbConnectionString = Configuration.GetConnectionString("MongoDBConnection");
 
             services.AddSingleton<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
+            services.AddSingleton<ICallService>(s => new TwilioCallService(accountSid, authToken, fromTwilioNumber));
             services.AddSingleton<IRepository>(s => new MongoRepository(mongoDbConnectionString));
             services.AddSingleton<IRequestNotifier, SignalRNotifier>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
@@ -109,6 +110,7 @@ namespace Lazztech.Cloud.ClientFacade
 
             var provider = services.BuildServiceProvider();
             SmsService = provider.GetService<ISmsService>();
+            var callService = provider.GetService<ICallService>();
             var repo = provider.GetService<IRepository>();
             Responder = provider.GetService<IRequestNotifier>();
             var conductor = provider.GetRequiredService<IMentorRequestConductor>();

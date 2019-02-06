@@ -5,7 +5,7 @@ using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 
-namespace HackathonManager.Sms
+namespace Lazztech.Sms
 {
     public class TwilioSmsService : ISmsService
     {

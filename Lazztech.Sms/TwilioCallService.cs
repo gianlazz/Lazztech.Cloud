@@ -27,7 +27,7 @@ namespace Lazztech.Sms
             _fromNumber = fromNumber;
         }
 
-        public async System.Threading.Tasks.Task PreRecordedCall(string phoneNumber, string filePath, string responseUrl)
+        public async System.Threading.Tasks.Task PreRecordedCall(string phoneNumber, string filePath)
         {
             await System.Threading.Tasks.Task.Run(() => 
             {
