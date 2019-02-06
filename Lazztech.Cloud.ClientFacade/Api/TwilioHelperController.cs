@@ -24,8 +24,8 @@ namespace Lazztech.Cloud.ClientFacade.Api
             _db = repository;
         }
 
-        [HttpGet]
-        public IActionResult Get(string Id)
+        [HttpPost]
+        public IActionResult Index(string Id)
         {
             //string domainName = Request.HttpContext.Request.GetDisplayUrl().Replace(Request.Path, String.Empty);
             string domainName = @"http://cloud.lazz.tech";
