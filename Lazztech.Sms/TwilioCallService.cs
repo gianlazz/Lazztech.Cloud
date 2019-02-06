@@ -34,7 +34,7 @@ namespace Lazztech.Sms
                 TwilioClient.Init(_accountSid, _authToken);
 
                 var call = CallResource.Create(
-                    url: new Uri($@"http://cloud.lazz.tech/api/twilio?Id={audioUploadId}"),
+                    url: new Uri($@"http://cloud.lazz.tech/api/twiliohelper?Id={audioUploadId}"),
                     to: new Twilio.Types.PhoneNumber($"+1{phoneNumber}"),
                     from: new Twilio.Types.PhoneNumber($"+1{_fromNumber}")
                 );

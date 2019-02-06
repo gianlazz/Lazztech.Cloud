@@ -62,7 +62,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
 
                 var directory = StaticStrings.dataDir;
                 var fileName = NewUpload.FileName;
-                var filePath = directory + fileName;
+                var filePath = directory + fileName + extension;
                 NewUpload.FilePath = filePath;
                 if (_fileService.FileExists(filePath))
                     throw new Exception("Tried to save an audio file with an existing filename.");
