@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var upload in Model.Uploads.OrderByDescending(x => x.UploadDate))
+                @foreach (var upload in Model.Uploads)
                 {
                     <tr>
                         <td>@upload.UploadDate</td>

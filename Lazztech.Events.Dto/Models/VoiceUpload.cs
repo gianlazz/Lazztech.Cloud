@@ -14,6 +14,7 @@ namespace Lazztech.Events.Dto.Models
         public VoiceUpload()
         {
             Id = Guid.NewGuid();
+            UploadDate = DateTime.Now;
         }
     }
 }

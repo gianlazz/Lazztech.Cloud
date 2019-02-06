@@ -20,6 +20,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
         public IFormFile Audio { get; set; }
         [BindProperty]
         public VoiceUpload NewUpload { get; set; }
+        [BindProperty]
         public List<VoiceUpload> Uploads { get; set; }
 
         private readonly IRepository _db;

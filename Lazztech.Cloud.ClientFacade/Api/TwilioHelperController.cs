@@ -29,6 +29,7 @@ namespace Lazztech.Cloud.ClientFacade.Api
         {
             //string domainName = Request.HttpContext.Request.GetDisplayUrl().Replace(Request.Path, String.Empty);
             string domainName = @"http://cloud.lazz.tech";
+            //string domainName = @"http://01610e09.ngrok.io";
             var guidId = Guid.Parse(Id);
             var audio = _db.Single<VoiceUpload>(x => x.Id == guidId);
             var response = new VoiceResponse();
