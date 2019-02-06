@@ -18,6 +18,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
         [BindProperty]
         [Required]
         public IFormFile Audio { get; set; }
+        [BindProperty]
         public VoiceUpload NewUpload { get; set; }
         public List<VoiceUpload> Uploads { get; set; }
 

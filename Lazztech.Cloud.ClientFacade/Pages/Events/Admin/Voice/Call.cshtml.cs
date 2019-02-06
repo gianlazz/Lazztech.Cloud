@@ -19,6 +19,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
         [MaxLength(10)]
         [MinLength(10)]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Please enter phone number: 5555555555")]
+        [BindProperty]
         public string PhoneNumber { get; set; }
 
         [BindProperty]
