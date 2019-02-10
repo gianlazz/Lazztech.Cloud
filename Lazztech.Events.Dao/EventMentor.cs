@@ -4,7 +4,12 @@ using System.Text;
 
 namespace Lazztech.Events.Dao
 {
-    class EventMentor
+    public class EventMentor
     {
+        public int EventId { get; set; }
+        public Event Event { get; set; }
+
+        public int MentorId { get; set; }
+        public Mentor Mentor { get; set; }
     }
 }
