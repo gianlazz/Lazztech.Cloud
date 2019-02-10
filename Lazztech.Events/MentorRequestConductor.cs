@@ -11,13 +11,13 @@ namespace Lazztech.Events.Domain
     {
         public Dictionary<string, MentorRequest> Requests { get; private set; }
 
-        private readonly IRepository _db;
+        private readonly IDalHelper _db;
         private readonly ISmsService _sms;
         private readonly IRequestNotifier _Notifier;
 
-        public MentorRequestConductor(IRepository repository, ISmsService sms, IRequestNotifier requestResponder)
+        public MentorRequestConductor(IDalHelper dalHelper, ISmsService sms, IRequestNotifier requestResponder)
         {
-            _db = repository;
+            _db = dalHelper;
             _sms = sms;
             _Notifier = requestResponder;
             Requests = new Dictionary<string, MentorRequest>();
@@ -36,7 +36,7 @@ namespace Lazztech.Events.Domain
             else
             {
                 Requests.Add(requestedMentorId, request);
-                AddMenorRequestDb(request);
+                _db.AddMenorRequestDb(request);
                 StartRequestTimeOutAsync(request);
                 return true;
             }
@@ -44,7 +44,7 @@ namespace Lazztech.Events.Domain
 
         public MentorRequest ProcessResponse(SmsDto inboundSms)
         {
-            AddSmsDb(inboundSms);
+            _db.AddSmsDb(inboundSms);
             
             var matchingRequest = FindResponseRequest(inboundSms);
             var mentorFromDb = _db.Single<Mentor>(x => x.PhoneNumber.Contains(inboundSms.FromPhoneNumber.TrimStart("+1".ToCharArray())));
@@ -108,7 +108,7 @@ namespace Lazztech.Events.Domain
             {
                 request.TimedOut = true;
                 request.DateTimeWhenProcessed = DateTime.Now;
-                UpdateMentoRequestDb(request);
+                _db.UpdateMentoRequestDb(request);
                 Requests.Remove(request.Mentor.PhoneNumber);
                 NotifyMentorOfRequestTimeout(request.Mentor);
             }
@@ -123,7 +123,7 @@ namespace Lazztech.Events.Domain
                 {
                     var mentor = request.Mentor;
                     mentor.IsAvailable = true;
-                    UpdateMentorDb(mentor);
+                    _db.UpdateMentorDb(mentor);
                     NotifyResponseTimeUp(request);
                 }
             }
@@ -137,13 +137,13 @@ namespace Lazztech.Events.Domain
         {
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
             ResponseUnIdentified(inboundSms);
-            UpdateSmsDb(inboundSms);
+            _db.UpdateSmsDb(inboundSms);
         }
 
         private void HandleUnidentifiedRequestResponse(SmsDto inboundSms, MentorRequest mentorRequest)
         {
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
-            UpdateSmsDb(inboundSms);
+            _db.UpdateSmsDb(inboundSms);
         }
 
         private void HandleRequestRejection(SmsDto inboundSms, MentorRequest mentorRequest)
@@ -153,8 +153,8 @@ namespace Lazztech.Events.Domain
             mentorRequest.DateTimeWhenProcessed = DateTime.Now;
             mentorRequest.InboundSms = inboundSms;
 
-            UpdateMentoRequestDb(mentorRequest);
-            UpdateSmsDb(inboundSms);
+            _db.UpdateMentoRequestDb(mentorRequest);
+            _db.UpdateSmsDb(inboundSms);
 
             _Notifier.UpdateMentorRequestee(mentorRequest);
         }
@@ -167,9 +167,9 @@ namespace Lazztech.Events.Domain
             mentorRequest.InboundSms = inboundSms;
             mentorRequest.Mentor.IsAvailable = false;
 
-            UpdateSmsDb(inboundSms);
-            UpdateMentorDb(mentorRequest.Mentor);
-            UpdateMentoRequestDb(mentorRequest);
+            _db.UpdateSmsDb(inboundSms);
+            _db.UpdateMentorDb(mentorRequest.Mentor);
+            _db.UpdateMentoRequestDb(mentorRequest);
 
             _Notifier.UpdateMentorRequestee(mentorRequest);
         }
@@ -177,15 +177,15 @@ namespace Lazztech.Events.Domain
         private void HandleGuideResponse(SmsDto inboundSms)
         {
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
-            UpdateSmsDb(inboundSms);
+            _db.UpdateSmsDb(inboundSms);
         }
 
         private void HandleBusyResponse(Mentor mentor, SmsDto sms)
         {
             mentor.IsAvailable = false;
-            UpdateMentorDb(mentor);
+            _db.UpdateMentorDb(mentor);
             sms.DateTimeWhenProcessed = DateTime.Now;
-            UpdateSmsDb(sms);
+            _db.UpdateSmsDb(sms);
         }
 
         private void HandleAvailableResponse(Mentor mentor, SmsDto inboundSms)
@@ -193,9 +193,9 @@ namespace Lazztech.Events.Domain
             if (Requests.ContainsKey(mentor.PhoneNumber))
                 Requests.Remove(mentor.PhoneNumber);
             mentor.IsAvailable = true;
-            UpdateMentorDb(mentor);
+            _db.UpdateMentorDb(mentor);
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
-            UpdateSmsDb(inboundSms);
+            _db.UpdateSmsDb(inboundSms);
         }
 
         #endregion
@@ -311,37 +311,5 @@ namespace Lazztech.Events.Domain
         }
 
         #endregion MessageResponseHelperMethods
-
-        #region DbHelperMethods
-
-        private void AddSmsDb(SmsDto inboundSms)
-        {
-            _db.Add<SmsDto>(inboundSms);
-        }
-
-        private void AddMenorRequestDb(MentorRequest request)
-        {
-            _db.Add<MentorRequest>(request);
-        }
-
-        private void UpdateMentoRequestDb(MentorRequest request)
-        {
-            _db.Delete<MentorRequest>(x => x.Id == request.Id);
-            _db.Add<MentorRequest>(request);
-        }
-
-        private void UpdateMentorDb(Mentor mentor)
-        {
-            _db.Delete<Mentor>(x => x.Id == mentor.Id);
-            _db.Add<Mentor>(mentor);
-        }
-
-        private void UpdateSmsDb(SmsDto inboundSms)
-        {
-            _db.Delete<SmsDto>(x => x.GuidId == inboundSms.GuidId);
-            _db.Add<SmsDto>(inboundSms);
-        }
-
-        #endregion DbHelperMethods
     }
 }

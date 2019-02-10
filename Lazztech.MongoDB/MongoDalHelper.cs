@@ -2,6 +2,7 @@
 using Lazztech.Events.Dto.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Lazztech.MongoDB
@@ -41,6 +42,11 @@ namespace Lazztech.MongoDB
         {
             _db.Delete<SmsDto>(x => x.GuidId == inboundSms.GuidId);
             _db.Add<SmsDto>(inboundSms);
+        }
+
+        public T Single<T>(Expression<Func<T, bool>> expression) where T : class, new()
+        {
+            return _db.Single(expression);
         }
     }
 }
