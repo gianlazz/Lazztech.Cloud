@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lazztech.Events.Dao
+namespace Lazztech.Events.Dal.Dao
 {
     public class EventMentor
     {

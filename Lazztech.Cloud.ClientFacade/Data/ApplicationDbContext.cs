@@ -1,4 +1,4 @@
-﻿using Lazztech.Events.Dao;
+﻿using Lazztech.Events.Dal.Dao;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +31,6 @@ namespace Lazztech.Cloud.ClientFacade.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<EventMentor> EventMentors { get; set; }
         public DbSet<Mentor> Mentors { get; set; }
-        public DbSet<Events.Dao.Sms> SmsMessages { get; set; }
+        public DbSet<Events.Dal.Dao.Sms> SmsMessages { get; set; }
     }
 }

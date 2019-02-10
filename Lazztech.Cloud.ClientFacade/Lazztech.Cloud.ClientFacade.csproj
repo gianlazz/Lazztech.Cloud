@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lazztech.Events.Dao\Lazztech.Events.Dao.csproj" />
+    <ProjectReference Include="..\Lazztech.Event.Dal\Lazztech.Event.Dal.csproj" />
     <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.Domain.csproj" />
     <ProjectReference Include="..\Lazztech.MongoDB\Lazztech.MongoDB.csproj" />
     <ProjectReference Include="..\Lazztech.Sms\Lazztech.Sms.csproj" />
