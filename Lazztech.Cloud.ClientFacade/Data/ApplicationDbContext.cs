@@ -1,4 +1,4 @@
-﻿using Lazztech.Cloud.ClientFacade.Data.Entities;
+﻿using Lazztech.Events.Dao;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,14 +13,24 @@ namespace Lazztech.Cloud.ClientFacade.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<EventMentor>()
+                .HasKey(x => new { x.EventId, x.MentorId });
+            modelBuilder.Entity<EventMentor>()
+                .HasOne(x => x.Event)
+                .WithMany(x => x.EventMentors)
+                .HasForeignKey(x => x.EventId);
+            modelBuilder.Entity<EventMentor>()
+                .HasOne(x => x.Mentor)
+                .WithMany(x => x.EventMentors)
+                .HasForeignKey(x => x.MentorId);
+
             base.OnModelCreating(modelBuilder);
         }
 
-        //private DbSet<VenueRoomEntity> VenueRooms { get; set; }
-        //private DbSet<EventEntity> Events { get; set; }
-        //private DbSet<PersonEntity> People { get; set; }
-        //private DbSet<LocationEntity> Locations { get; set; }
-        //private DbSet<MentorEntity> Mentors { get; set; }
-        //private DbSet<JudgeEntity> Judges { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<EventMentor> EventMentors { get; set; }
+        public DbSet<Mentor> Mentors { get; set; }
+        public DbSet<Events.Dao.Sms> SmsMessages { get; set; }
     }
 }
