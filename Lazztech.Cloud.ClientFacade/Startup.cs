@@ -1,4 +1,3 @@
-using HackathonManager.MongoDB;
 using Lazztech.Cloud.ClientFacade.Data;
 using Lazztech.Cloud.ClientFacade.Hubs;
 using Lazztech.Cloud.ClientFacade.Util;

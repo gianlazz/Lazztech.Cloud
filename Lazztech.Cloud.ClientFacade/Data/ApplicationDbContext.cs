@@ -28,9 +28,10 @@ namespace Lazztech.Cloud.ClientFacade.Data
         }
 
         public DbSet<Organization> Organizations { get; set; }
-        public DbSet<Event> Events { get; set; }
+        public DbSet<Events.Dal.Dao.Event> Events { get; set; }
         public DbSet<EventMentor> EventMentors { get; set; }
         public DbSet<Mentor> Mentors { get; set; }
         public DbSet<Events.Dal.Dao.Sms> SmsMessages { get; set; }
+        public DbSet<MentorRequest> MentorRequests { get; set; }
     }
 }

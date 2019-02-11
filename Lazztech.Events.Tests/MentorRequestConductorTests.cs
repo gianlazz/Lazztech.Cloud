@@ -1,4 +1,3 @@
-using HackathonManager.MongoDB;
 using Lazztech.Events.Domain;
 using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Interfaces;
