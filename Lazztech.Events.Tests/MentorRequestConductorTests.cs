@@ -1,7 +1,9 @@
+using HackathonManager.MongoDB;
 using Lazztech.Events.Domain;
 using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
+using Lazztech.MongoDB;
 using Moq;
 using System;
 using System.ComponentModel;
@@ -23,6 +25,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request = new MentorRequest()
@@ -42,7 +45,7 @@ namespace Lazztech.Events.Tests
 
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             //Act
             var succeded = conductor.TryAddRequest(request);
             var result = conductor.ProcessResponse(smsResponse);
@@ -62,6 +65,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request = new MentorRequest()
@@ -79,7 +83,7 @@ namespace Lazztech.Events.Tests
                     fromNumber: "TwilioNumber123"),
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
@@ -96,6 +100,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var requestForGian = new MentorRequest()
@@ -131,7 +136,7 @@ namespace Lazztech.Events.Tests
             repo.SetupSequence(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>()))
                 .Returns(requestForGian.Mentor).Returns(requestForMark.Mentor)
                 .Returns(requestForGian.Mentor).Returns(requestForMark.Mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             var smsResponseFromGian = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
@@ -149,6 +154,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request = new MentorRequest()
@@ -166,7 +172,7 @@ namespace Lazztech.Events.Tests
                     fromNumber: "TwilioNumber123"),
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
 
             var smsResponse = new SmsDto(message: "asdf", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
@@ -184,6 +190,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request1 = new MentorRequest()
@@ -217,7 +224,7 @@ namespace Lazztech.Events.Tests
             };
             repo.SetupSequence(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>()))
                 .Returns(request1.Mentor).Returns(request2.Mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
 
             //Act
             var succeded = conductor.TryAddRequest(request1);
@@ -232,6 +239,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -252,7 +260,7 @@ namespace Lazztech.Events.Tests
                 MentoringDuration = new System.TimeSpan(hours: 0, minutes: 0, seconds: 0)
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
 
             //Act
             var succeded = conductor.TryAddRequest(request);
@@ -268,6 +276,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -288,7 +297,7 @@ namespace Lazztech.Events.Tests
                 MentoringDuration = new System.TimeSpan(hours: 0, minutes: 0, seconds: 0)
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: "Y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
@@ -307,6 +316,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -316,7 +326,7 @@ namespace Lazztech.Events.Tests
                 PhoneNumber = "GiansNumber123",
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
@@ -336,6 +346,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -345,7 +356,7 @@ namespace Lazztech.Events.Tests
                 PhoneNumber = "GiansNumber123",
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
@@ -365,6 +376,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -374,7 +386,7 @@ namespace Lazztech.Events.Tests
                 PhoneNumber = "GiansNumber123",
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
@@ -389,6 +401,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -397,7 +410,7 @@ namespace Lazztech.Events.Tests
                 LastName = "Lazzarini",
                 PhoneNumber = "GiansNumber123",
             };
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: "asdf", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
@@ -413,6 +426,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request = new MentorRequest()
@@ -432,7 +446,7 @@ namespace Lazztech.Events.Tests
                     fromNumber: "TwilioNumber123"),
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
 
             //Act
             var succeded = conductor.TryAddRequest(request);
@@ -447,6 +461,7 @@ namespace Lazztech.Events.Tests
         {
             ////Arrange
             //var repo = new Mock<IRepository>();
+            //var dal = new Mock<MongoDalHelper>(repo);
             //var sms = new Mock<ISmsService>();
             //var responder = new Mock<IRequestNotifier>();
             //var request = new MentorRequest()
@@ -465,7 +480,7 @@ namespace Lazztech.Events.Tests
             //    MentoringDuration = new TimeSpan(hours: 0, minutes: 0, seconds: 1)
             //};
             //repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
-            //var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            //var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             //var smsResponse = new SmsDto(message: "y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
             //var smsAvailableResponse = new SmsDto(message: "Available", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
@@ -486,6 +501,7 @@ namespace Lazztech.Events.Tests
         {
             //Arrange
             var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -495,7 +511,7 @@ namespace Lazztech.Events.Tests
                 PhoneNumber = "GiansNumber123",
             };
             repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(mentor);
-            var conductor = new MentorRequestConductor(repo.Object, sms.Object, responder.Object);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
             var smsResponse = new SmsDto(message: response, toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
             //Act
