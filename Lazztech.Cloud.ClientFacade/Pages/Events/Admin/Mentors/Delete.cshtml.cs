@@ -13,11 +13,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
         [BindProperty]
         public Mentor Mentor { get; set; }
 
-        private readonly IRepository _repo;
+        private readonly IDalHelper _db;
 
-        public DeleteModel(IRepository repository)
+        public DeleteModel(IDalHelper dal)
         {
-            _repo = repository;
+            _db = dal;
         }
 
         public async Task<IActionResult> OnGet(Guid? id)
@@ -28,7 +28,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             }
 
             //Mentor = await _context.Mentor.FirstOrDefaultAsync(m => m.Id == id);
-            Mentor = _repo.All<Mentor>().FirstOrDefault(x => x.Id == id);
+            Mentor = _db.All<Mentor>().FirstOrDefault(x => x.Id == id);
 
             if (Mentor == null)
             {
@@ -45,13 +45,13 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             }
 
             //Mentor = await _context.Mentor.FindAsync(id);
-            Mentor = _repo.All<Mentor>().FirstOrDefault(x => x.Id == id);
+            Mentor = _db.All<Mentor>().FirstOrDefault(x => x.Id == id);
 
             if (Mentor != null)
             {
                 //_context.Mentor.Remove(Mentor);
                 //await _context.SaveChangesAsync();
-                _repo.Delete<Mentor>(Mentor);
+                _db.Delete<Mentor>(Mentor);
             }
 
             return RedirectToPage("./Index");

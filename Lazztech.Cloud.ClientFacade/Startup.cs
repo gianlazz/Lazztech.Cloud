@@ -4,6 +4,7 @@ using Lazztech.Cloud.ClientFacade.Hubs;
 using Lazztech.Cloud.ClientFacade.Util;
 using Lazztech.Events.Domain;
 using Lazztech.Events.Dto.Interfaces;
+using Lazztech.MongoDB;
 using Lazztech.Sms;
 using Lazztech.Standard.Interfaces;
 using Lazztech.Standard.Services;
@@ -103,6 +104,7 @@ namespace Lazztech.Cloud.ClientFacade
             services.AddSingleton<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
             services.AddSingleton<ICallService>(s => new TwilioCallService(accountSid, authToken, fromTwilioNumber));
             services.AddSingleton<IRepository>(s => new MongoRepository(mongoDbConnectionString));
+            services.AddSingleton<IDalHelper, MongoDalHelper>();
             services.AddSingleton<IRequestNotifier, SignalRNotifier>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
             services.AddSingleton<IEmailService>(s => new EmailService("gian@lazz.tech"));
@@ -112,6 +114,7 @@ namespace Lazztech.Cloud.ClientFacade
             SmsService = provider.GetService<ISmsService>();
             var callService = provider.GetService<ICallService>();
             var repo = provider.GetService<IRepository>();
+            var dal = provider.GetService<IDalHelper>();
             Responder = provider.GetService<IRequestNotifier>();
             var conductor = provider.GetRequiredService<IMentorRequestConductor>();
             var email = provider.GetRequiredService<IEmailService>();

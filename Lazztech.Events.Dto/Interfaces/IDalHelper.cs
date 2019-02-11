@@ -11,6 +11,8 @@ namespace Lazztech.Events.Dto.Interfaces
     {
         void AddSmsDb(SmsDto inboundSms);
         void AddMenorRequestDb(MentorRequest request);
+        void Delete<T>(Expression<Func<T, bool>> expression) where T : class, new();
+        void Delete<T>(T item) where T : class, new();
         void Add<T>(T item) where T : class, new();
         void Add<T>(IEnumerable<T> items) where T : class, new();
         T Single<T>(Expression<Func<T, bool>> expression) where T : class, new();

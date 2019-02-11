@@ -10,16 +10,16 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Sms
     {
         public List<SmsDto> Messages { get; set; }
 
-        private readonly IRepository _repo;
+        private readonly IDalHelper _db;
 
-        public IndexModel(IRepository repository)
+        public IndexModel(IDalHelper dal)
         {
-            _repo = repository;
+            _db = dal;
         }
 
         public void OnGet()
         {
-            Messages = _repo.All<SmsDto>().ToList();
+            Messages = _db.All<SmsDto>().ToList();
         }
     }
 }

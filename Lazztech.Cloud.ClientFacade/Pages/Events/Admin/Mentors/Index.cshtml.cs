@@ -8,18 +8,18 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 {
     public class IndexModel : PageModel
     {
-        private readonly IRepository _repo;
+        private readonly IDalHelper _db;
 
-        public IndexModel(IRepository repository)
+        public IndexModel(IDalHelper dal)
         {
-            _repo = repository;
+            _db = dal;
         }
 
         public IList<Mentor> Mentor { get; set; }
 
         public void OnGet()
         {
-            Mentor = _repo.All<Mentor>().ToList();
+            Mentor = _db.All<Mentor>().ToList();
 
             //Mentor = await _context.Mentor.ToListAsync();
         }

@@ -24,26 +24,26 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
         [BindProperty]
         public MentorInvite Invite { get; set; }
 
-        private readonly IRepository _repo;
+        private readonly IDalHelper _db;
         private readonly IFileService _fileService;
         private readonly ISmsService _sms;
 
-        public InvitesModel(IRepository repository, IFileService fileService, ISmsService sms)
+        public InvitesModel(IDalHelper dal, IFileService fileService, ISmsService sms)
         {
-            _repo = repository;
+            _db = dal;
             _fileService = fileService;
             _sms = sms;
         }
 
         public ActionResult OnGet(Guid? Id)
         {
-            Invite = _repo.Single<MentorInvite>(x => x.Id == Id);
+            Invite = _db.Single<MentorInvite>(x => x.Id == Id);
             if (Invite == null)
                 return NotFound();
             Mentor = Invite.Mentor;
             Invite.DateTimeWhenViewed = DateTime.Now;
-            _repo.Delete<MentorInvite>(x => x.Id == Id);
-            _repo.Add<MentorInvite>(Invite);
+            _db.Delete<MentorInvite>(x => x.Id == Id);
+            _db.Add<MentorInvite>(Invite);
 
             return Page();
         }
@@ -57,11 +57,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events
 
             Invite.Accepted = true;
 
-            _repo.Delete<MentorInvite>(x => x.Id == Invite.Id);
-            _repo.Add<MentorInvite>(Invite);
+            _db.Delete<MentorInvite>(x => x.Id == Invite.Id);
+            _db.Add<MentorInvite>(Invite);
 
             await UploadPhoto();
-            _repo.Add<Mentor>(Mentor);
+            _db.Add<Mentor>(Mentor);
             _sms.SendSms(Mentor.PhoneNumber, EventStrings.MentorRegistrationResponse(Mentor.FirstName));
 
             return RedirectToPage("/Events/Event/Index");

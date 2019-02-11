@@ -19,13 +19,13 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
         [BindProperty]
         public MentorInvite NewInvite { get; set; }
 
-        private readonly IDalHelper _repo;
+        private readonly IDalHelper _db;
         private readonly ISmsService _sms;
         private readonly IEmailService _email;
 
-        public MentorInvitesModel(IDalHelper repository, ISmsService sms, IEmailService email)
+        public MentorInvitesModel(IDalHelper dal, ISmsService sms, IEmailService email)
         {
-            _repo = repository;
+            _db = dal;
             _sms = sms;
             _email = email;
             Invites = new List<MentorInvite>();
@@ -34,7 +34,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
 
         public void OnGet()
         {
-            var invitesFromDb = _repo.All<MentorInvite>();
+            var invitesFromDb = _db.All<MentorInvite>();
             Invites.AddRange(invitesFromDb);
         }
 
@@ -54,7 +54,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
             //if (NewMentor.Email != null)
             //    _email.SendEmail(NewMentor.Email, "Mentor Registration", $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");
 
-            _repo.Add<MentorInvite>(invite);
+            _db.Add<MentorInvite>(invite);
             return RedirectToPage();
         }
     }

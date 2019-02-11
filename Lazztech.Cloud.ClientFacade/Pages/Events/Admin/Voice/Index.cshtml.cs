@@ -23,12 +23,12 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
         [BindProperty]
         public List<VoiceUpload> Uploads { get; set; }
 
-        private readonly IRepository _db;
+        private readonly IDalHelper _db;
         private readonly IFileService _fileService;
 
-        public IndexModel(IRepository repository, IFileService fileService)
+        public IndexModel(IDalHelper dal, IFileService fileService)
         {
-            _db = repository;
+            _db = dal;
             _fileService = fileService;
         }
 

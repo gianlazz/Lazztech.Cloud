@@ -17,11 +17,11 @@ namespace Lazztech.Cloud.ClientFacade.Api
     [ApiController]
     public class TwilioHelperController : TwilioController
     {
-        private readonly IRepository _db;
+        private readonly IDalHelper _db;
 
-        public TwilioHelperController(IRepository repository)
+        public TwilioHelperController(IDalHelper dal)
         {
-            _db = repository;
+            _db = dal;
         }
 
         [HttpPost]

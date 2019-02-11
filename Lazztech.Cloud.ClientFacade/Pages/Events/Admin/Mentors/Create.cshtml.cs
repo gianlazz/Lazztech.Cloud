@@ -18,12 +18,12 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
         [BindProperty]
         public Mentor Mentor { get; set; }
 
-        private readonly IRepository _repo;
+        private readonly IDalHelper _db;
         private readonly IFileService _fileService;
 
-        public CreateModel(IRepository repository, IFileService fileService)
+        public CreateModel(IDalHelper dal, IFileService fileService)
         {
-            _repo = repository;
+            _db = dal;
             _fileService = fileService;
         }
 
@@ -43,7 +43,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             //await _context.SaveChangesAsync();
 
             await UploadPhoto();
-            _repo.Add<Mentor>(Mentor);
+            _db.Add<Mentor>(Mentor);
 
             return RedirectToPage("./Index");
         }

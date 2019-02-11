@@ -10,13 +10,13 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
 {
     public class HomeController : Controller
     {
-        private IMentorRequestConductor _conductor;
-        private readonly IRepository _repo;
+        private readonly IMentorRequestConductor _conductor;
+        private readonly IDalHelper _db;
 
-        public HomeController(IMentorRequestConductor conductor, IRepository repository)
+        public HomeController(IMentorRequestConductor conductor, IDalHelper dal)
         {
             _conductor = conductor;
-            _repo = repository;
+            _db = dal;
         }
 
         public IActionResult Index()
@@ -30,9 +30,9 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             var cookie = Request.Cookies[StaticStrings.eventUserIdCookieName];
 
             //CHECK IF A TEAM BY THAT PIN NUMBER EXSISTS
-            if (_repo.Single<Team>(x => x.PinNumber == teamPin) != null)
+            if (_db.Single<Team>(x => x.PinNumber == teamPin) != null)
             {
-                Team team = _repo.Single<Team>(x => x.PinNumber == teamPin);
+                Team team = _db.Single<Team>(x => x.PinNumber == teamPin);
 
                 if (cookie == null)
                 {
@@ -81,7 +81,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             var sms = Startup.SmsService;
             bool succeded = false;
 
-            var mentor = _repo.Single<Mentor>(x => x.Id == mentorGuidId);
+            var mentor = _db.Single<Mentor>(x => x.Id == mentorGuidId);
             if (mentor != null)
             {
                 try
@@ -95,11 +95,11 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
                     };
                     succeded = _conductor.TryAddRequest(request);
                     if (succeded)
-                        _repo.Add<MentorRequest>(request);
+                        _db.Add<MentorRequest>(request);
                 }
                 catch (Exception ex)
                 {
-                    _repo.Add<Log>(new Log() { Details = ex.ToString() });
+                    _db.Add<Log>(new Log() { Details = ex.ToString() });
                 }
             }
 

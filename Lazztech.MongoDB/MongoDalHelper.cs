@@ -67,5 +67,15 @@ namespace Lazztech.MongoDB
         {
             return _db.All<T>();
         }
+
+        public void Delete<T>(Expression<Func<T, bool>> expression) where T : class, new()
+        {
+            _db.Delete(expression);
+        }
+
+        public void Delete<T>(T item) where T : class, new()
+        {
+            _db.Delete(item);
+        }
     }
 }

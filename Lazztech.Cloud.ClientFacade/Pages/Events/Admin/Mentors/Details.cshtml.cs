@@ -12,11 +12,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
     {
         public Mentor Mentor { get; set; }
 
-        private readonly IRepository _repo;
+        private readonly IDalHelper _db;
 
-        public DetailsModel(IRepository repository)
+        public DetailsModel(IDalHelper dal)
         {
-            _repo = repository;
+            _db = dal;
         }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
@@ -27,7 +27,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             }
 
             //Mentor = await _context.Mentor.FirstOrDefaultAsync(m => m.Id == id);
-            Mentor = _repo.All<Mentor>().FirstOrDefault(m => m.Id == id);
+            Mentor = _db.All<Mentor>().FirstOrDefault(m => m.Id == id);
 
             if (Mentor == null)
             {

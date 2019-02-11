@@ -9,6 +9,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Event
 {
     public class IndexModel : PageModel
     {
+
         [BindProperty]
         public List<Mentor> Mentors { get; set; }
         [BindProperty]
@@ -16,11 +17,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Event
         public string Message { get; set; }
         public string Alert { get; set; }
 
-        private readonly IRepository _repo;
+        private readonly IDalHelper _db;
 
-        public IndexModel(IRepository repository)
+        public IndexModel(IDalHelper dal)
         {
-            _repo = repository;
+            _db = dal;
             Mentors = new List<Mentor>();
         }
 
@@ -36,7 +37,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Event
             //string id = (string)hubContext.Clients.All.GetConnectionId().Result;
 
             //var db = Context.GetMLabsMongoDbRepo();
-            Mentors = _repo.All<Mentor>().Where(x => x.IsPresent == true).ToList().OrderBy(e => e.IsAvailable ? 0 : 1).ToList();
+            Mentors = _db.All<Mentor>().Where(x => x.IsPresent == true).ToList().OrderBy(e => e.IsAvailable ? 0 : 1).ToList();
             //model = Db.All<Mentor>().Where(x => x.IsPresent == true).ToList();
 
             //mentorViewModel.PresentMentors = repo.All<Mentor>().Where(x => x.IsPresent == true).ToList();

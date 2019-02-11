@@ -20,12 +20,12 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
         [BindProperty]
         public Mentor Mentor { get; set; }
 
-        private readonly IRepository _repo;
+        private readonly IDalHelper _db;
         private readonly IFileService _fileService;
 
-        public EditModel(IRepository repository, IFileService fileService)
+        public EditModel(IDalHelper dal, IFileService fileService)
         {
-            _repo = repository;
+            _db = dal;
             _fileService = fileService;
         }
 
@@ -37,7 +37,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             }
 
             //Mentor = await _context.Mentor.FirstOrDefaultAsync(m => m.Id == id);
-            Mentor = _repo.All<Mentor>().FirstOrDefault(m => m.Id == id);
+            Mentor = _db.All<Mentor>().FirstOrDefault(m => m.Id == id);
 
             if (Mentor == null)
             {
@@ -60,14 +60,14 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
             if (Photo != null)
             {
                 await UploadPhoto();
-                _repo.Delete<Mentor>(x => x.Id == Mentor.Id);
-                _repo.Add<Mentor>(Mentor);
+                _db.Delete<Mentor>(x => x.Id == Mentor.Id);
+                _db.Add<Mentor>(Mentor);
             }
             else
             {
-                Mentor.Image = _repo.All<Mentor>().FirstOrDefault(m => m.Id == Mentor.Id).Image;
-                _repo.Delete<Mentor>(x => x.Id == Mentor.Id);
-                _repo.Add<Mentor>(Mentor);
+                Mentor.Image = _db.All<Mentor>().FirstOrDefault(m => m.Id == Mentor.Id).Image;
+                _db.Delete<Mentor>(x => x.Id == Mentor.Id);
+                _db.Add<Mentor>(Mentor);
             }
 
             return RedirectToPage("./Index");
@@ -75,7 +75,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Mentors
 
         private bool MentorExists(Guid id)
         {
-            return _repo.All<Mentor>().Any(x => x.Id == id);
+            return _db.All<Mentor>().Any(x => x.Id == id);
             //return _context.Mentor.Any(e => e.Id == id);
         }
 

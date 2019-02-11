@@ -25,12 +25,12 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Voice
         [BindProperty]
         public VoiceUpload VoiceUpload { get; set; }
 
-        private readonly IRepository _db;
+        private readonly IDalHelper _db;
         private readonly ICallService _call;
 
-        public CallModel(IRepository repository, ICallService call)
+        public CallModel(IDalHelper dal, ICallService call)
         {
-            _db = repository;
+            _db = dal;
             _call = call;
         }
 

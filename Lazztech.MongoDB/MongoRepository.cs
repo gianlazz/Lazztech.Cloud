@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace HackathonManager.MongoDB
+namespace Lazztech.MongoDB
 {
     public class MongoRepository : IRepository
     {

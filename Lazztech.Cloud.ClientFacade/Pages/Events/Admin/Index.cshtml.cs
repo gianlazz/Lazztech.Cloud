@@ -13,11 +13,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
         public List<Team> Teams { get; set; }
         public List<SmsDto> Messages { get; set; }
 
-        private readonly IRepository _repo;
+        private readonly IDalHelper _db;
 
-        public IndexModel(IRepository repository)
+        public IndexModel(IDalHelper dal)
         {
-            _repo = repository;
+            _db = dal;
             Mentors = new List<Mentor>();
             Judges = new List<Judge>();
             Teams = new List<Team>();
@@ -26,10 +26,10 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
 
         public void OnGet()
         {
-            Mentors.AddRange(_repo.All<Mentor>().ToList());
-            Judges.AddRange(_repo.All<Judge>().ToList());
-            Teams.AddRange(_repo.All<Team>().ToList());
-            Messages = _repo.All<SmsDto>().Take(10).ToList();
+            Mentors.AddRange(_db.All<Mentor>().ToList());
+            Judges.AddRange(_db.All<Judge>().ToList());
+            Teams.AddRange(_db.All<Team>().ToList());
+            Messages = _db.All<SmsDto>().Take(10).ToList();
         }
     }
 }
