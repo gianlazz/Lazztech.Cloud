@@ -32,22 +32,22 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
             Mentors = new List<Mentor>();
         }
 
-        public IActionResult OnGet(string message, string alert, int eventId)
+        public async Task<IActionResult> OnGetAsync(string message, string alert, int eventId)
         {
             Message = message;
             Alert = alert;
 
-            Event = _context.Events.Include(x => x.Organization).FirstOrDefault(x => x.EventId == eventId);
+            Event = await _context.Events.Include(x => x.Organization).FirstOrDefaultAsync(x => x.EventId == eventId);
             if (Event == null)
-                return NotFound();
+                return await new Task<IActionResult>(NotFound);
             Organization = Event.Organization;
 
             if (Request.Cookies.ContainsKey(StaticStrings.eventUserIdCookieName))
                 UniqueRequesteeId = Request.Cookies[StaticStrings.eventUserIdCookieName];
 
-            Mentors = _context.Mentors
+            Mentors = await _context.Mentors
                 .Where(x => x.EventMentors.FirstOrDefault(y => y.EventId == eventId) != null)
-                .OrderBy(z => z.IsAvailable ? 0 : 1).ToList();
+                .OrderBy(z => z.IsAvailable ? 0 : 1).ToListAsync();
 
             return Page();
         }
