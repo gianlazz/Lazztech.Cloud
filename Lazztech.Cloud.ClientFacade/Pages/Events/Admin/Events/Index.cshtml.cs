@@ -19,12 +19,12 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Events
             _context = context;
         }
 
-        public IList<Event> Event { get;set; }
+        public IList<Lazztech.Events.Dal.Dao.Event> Event { get;set; }
 
         public async Task OnGetAsync()
         {
             Event = await _context.Events
-                .Include(@ => @.Organization).ToListAsync();
+                .Include(x => x.Organization).ToListAsync();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Events
         }
 
         [BindProperty]
-        public Event Event { get; set; }
+        public Lazztech.Events.Dal.Dao.Event Event { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {

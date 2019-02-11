@@ -19,7 +19,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Events
             _context = context;
         }
 
-        public Event Event { get; set; }
+        public Lazztech.Events.Dal.Dao.Event Event { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,7 +29,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Events
             }
 
             Event = await _context.Events
-                .Include(@ => @.Organization).FirstOrDefaultAsync(m => m.EventId == id);
+                .Include(x => x.Organization).FirstOrDefaultAsync(m => m.EventId == id);
 
             if (Event == null)
             {
