@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Cloud.ClientFacade
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Standard", "Lazztech.Standard\Lazztech.Standard.csproj", "{85804AA9-12D1-4AE6-912C-E3B596982C08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Event.Dal", "Lazztech.Event.Dal\Lazztech.Event.Dal.csproj", "{50727DB0-EE4C-4E14-8F21-CE9DC3F27469}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Events.Dal", "Lazztech.Event.Dal\Lazztech.Events.Dal.csproj", "{50727DB0-EE4C-4E14-8F21-CE9DC3F27469}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
