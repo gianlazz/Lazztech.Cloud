@@ -57,8 +57,4 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Admin\EventManagement\" />
-  </ItemGroup>
-
 </Project>

@@ -1,0 +1,76 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.Mentors.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Mentor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Image)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.ProfessionalTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.ProfessionalTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.PhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.PhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.IsAvailable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.IsAvailable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.IsPresent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.IsPresent)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Mentor.MentorId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
