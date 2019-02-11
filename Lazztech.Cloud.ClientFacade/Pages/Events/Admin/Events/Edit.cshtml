@@ -1,0 +1,45 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Events.Admin.Events.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Event</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Event.EventId" />
+            <div class="form-group">
+                <label asp-for="Event.Name" class="control-label"></label>
+                <input asp-for="Event.Name" class="form-control" />
+                <span asp-validation-for="Event.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Event.DateOfEvent" class="control-label"></label>
+                <input asp-for="Event.DateOfEvent" class="form-control" />
+                <span asp-validation-for="Event.DateOfEvent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Event.OrganizationId" class="control-label"></label>
+                <select asp-for="Event.OrganizationId" class="form-control" asp-items="ViewBag.OrganizationId"></select>
+                <span asp-validation-for="Event.OrganizationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
