@@ -2,6 +2,7 @@
 using Lazztech.Events.Dto.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -47,6 +48,24 @@ namespace Lazztech.MongoDB
         public T Single<T>(Expression<Func<T, bool>> expression) where T : class, new()
         {
             return _db.Single(expression);
+        }
+
+        public void Add<T>(T item) where T : class, new()
+        {
+            _db.Add(item);
+        }
+
+        public void Add<T>(IEnumerable<T> items) where T : class, new()
+        {
+            foreach (T item in items)
+            {
+                Add(item);
+            }
+        }
+
+        public IQueryable<T> All<T>() where T : class, new()
+        {
+            return _db.All<T>();
         }
     }
 }

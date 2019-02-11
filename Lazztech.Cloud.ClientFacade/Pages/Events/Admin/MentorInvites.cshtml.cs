@@ -19,11 +19,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Events.Admin
         [BindProperty]
         public MentorInvite NewInvite { get; set; }
 
-        private readonly IRepository _repo;
+        private readonly IDalHelper _repo;
         private readonly ISmsService _sms;
         private readonly IEmailService _email;
 
-        public MentorInvitesModel(IRepository repository, ISmsService sms, IEmailService email)
+        public MentorInvitesModel(IDalHelper repository, ISmsService sms, IEmailService email)
         {
             _repo = repository;
             _sms = sms;
