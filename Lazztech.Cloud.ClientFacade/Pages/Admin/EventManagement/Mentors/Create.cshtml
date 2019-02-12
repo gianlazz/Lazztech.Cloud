@@ -56,20 +56,6 @@
                 <span asp-validation-for="Mentor.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Mentor.IsAvailable" /> @Html.DisplayNameFor(model => model.Mentor.IsAvailable))
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Mentor.IsPresent" /> @Html.DisplayNameFor(model => model.Mentor.IsPresent))
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
                 <label asp-for="Mentor.EventId" class="control-label"></label>
                 <select asp-for="Mentor.EventId" class="form-control" asp-items="ViewBag.EventId"></select>
             </div>
