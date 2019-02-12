@@ -39,7 +39,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
 
             Event = await _context.Events.Include(x => x.Organization).FirstOrDefaultAsync(x => x.EventId == eventId);
             if (Event == null)
-                return await new Task<IActionResult>(NotFound);
+                return NotFound();
             Organization = Event.Organization;
 
             if (Request.Cookies.ContainsKey(StaticStrings.eventUserIdCookieName))

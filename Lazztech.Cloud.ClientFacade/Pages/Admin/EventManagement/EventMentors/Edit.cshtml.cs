@@ -38,8 +38,8 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.EventMentors
             {
                 return NotFound();
             }
-           ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId");
-           ViewData["MentorId"] = new SelectList(_context.Mentors, "MentorId", "MentorId");
+           ViewData["EventId"] = new SelectList(_context.Events, "EventId", "Name");
+           ViewData["MentorId"] = new SelectList(_context.Mentors, "MentorId", "FullName");
             return Page();
         }
 

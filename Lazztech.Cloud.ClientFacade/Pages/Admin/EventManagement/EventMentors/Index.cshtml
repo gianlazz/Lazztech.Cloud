@@ -26,10 +26,10 @@
 @foreach (var item in Model.EventMentor) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Event.EventId)
+                @Html.DisplayFor(modelItem => item.Event.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Mentor.MentorId)
+                @Html.DisplayFor(modelItem => item.Mentor.FullName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
