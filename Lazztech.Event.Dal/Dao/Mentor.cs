@@ -20,6 +20,7 @@ namespace Lazztech.Events.Dal.Dao
         public bool IsAvailable { get; set; }
         public bool IsPresent { get; set; }
 
+        [Display(Name = "Event")]
         public int? EventId { get; set; }
         public Event Event { get; set; }
 

@@ -37,7 +37,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.Mentors
             {
                 return NotFound();
             }
-           ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId");
+           ViewData["EventId"] = new SelectList(_context.Events, "EventId", "Name");
             return Page();
         }
 

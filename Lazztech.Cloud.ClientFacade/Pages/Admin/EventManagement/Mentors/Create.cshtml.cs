@@ -21,7 +21,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.Mentors
 
         public IActionResult OnGet()
         {
-        ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId");
+        ViewData["EventId"] = new SelectList(_context.Events, "EventId", "Name");
             return Page();
         }
 
