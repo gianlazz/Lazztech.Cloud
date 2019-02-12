@@ -15,11 +15,11 @@ namespace Lazztech.Events.Dal.Dao
         public int OrganizationId { get; set; }
         public Organization Organization { get; set; }
 
-        public List<EventMentor> EventMentors { get; set; }
+        public List<Mentor> Mentors { get; set; }
 
         public Event()
         {
-            EventMentors = new List<EventMentor>();
+            Mentors = new List<Mentor>();
         }
     }
 }

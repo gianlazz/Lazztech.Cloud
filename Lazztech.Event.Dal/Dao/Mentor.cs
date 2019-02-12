@@ -20,14 +20,13 @@ namespace Lazztech.Events.Dal.Dao
         public bool IsAvailable { get; set; }
         public bool IsPresent { get; set; }
 
-        public List<EventMentor> EventMentors { get; set; }
+        public int? EventId { get; set; }
+        public Event Event { get; set; }
 
         public Mentor()
         {
             IsAvailable = true;
             IsPresent = true;
-
-            EventMentors = new List<EventMentor>();
         }
     }
 }

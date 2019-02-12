@@ -46,7 +46,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
                 UniqueRequesteeId = Request.Cookies[StaticStrings.eventUserIdCookieName];
 
             Mentors = await _context.Mentors
-                .Where(x => x.EventMentors.FirstOrDefault(y => y.EventId == eventId) != null)
+                .Where(x => x.EventId == eventId)
                 .OrderBy(z => z.IsAvailable ? 0 : 1).ToListAsync();
 
             return Page();
