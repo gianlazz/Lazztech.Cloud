@@ -37,7 +37,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.Events
             {
                 return NotFound();
             }
-           ViewData["OrganizationId"] = new SelectList(_context.Organizations, "OrganizationId", "OrganizationId");
+           ViewData["OrganizationId"] = new SelectList(_context.Organizations, "OrganizationId", "Name");
             return Page();
         }
 

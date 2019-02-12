@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Lazztech.Events.Dal.Dao
 {
     public class Sms
     {
+        [Display(Name = "Sms")]
         public int SmsId { get; set; }
         public DateTime DateCreated { get; set; }
         public string ToPhoneNumber { get; set; }

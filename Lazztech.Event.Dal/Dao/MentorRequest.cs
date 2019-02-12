@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Lazztech.Events.Dal.Dao
 {
     public class MentorRequest
     {
+        [Display(Name = "Mentor Request")]
         public int MentorRequestId { get; set; }
         public DateTime DateTimeOfRequest { get; set; }
 
