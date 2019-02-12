@@ -30,12 +30,14 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.Mentors
                 return NotFound();
             }
 
-            Mentor = await _context.Mentors.FirstOrDefaultAsync(m => m.MentorId == id);
+            Mentor = await _context.Mentors
+                .Include(m => m.Event).FirstOrDefaultAsync(m => m.MentorId == id);
 
             if (Mentor == null)
             {
                 return NotFound();
             }
+           ViewData["EventId"] = new SelectList(_context.Events, "EventId", "EventId");
             return Page();
         }
 

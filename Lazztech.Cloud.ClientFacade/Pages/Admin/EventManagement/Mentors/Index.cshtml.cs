@@ -23,7 +23,8 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.Mentors
 
         public async Task OnGetAsync()
         {
-            Mentor = await _context.Mentors.ToListAsync();
+            Mentor = await _context.Mentors
+                .Include(m => m.Event).ToListAsync();
         }
     }
 }

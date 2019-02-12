@@ -66,6 +66,12 @@
         <dd>
             @Html.DisplayFor(model => model.Mentor.IsPresent)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor.Event)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Event.EventId)
+        </dd>
     </dl>
     
     <form method="post">
