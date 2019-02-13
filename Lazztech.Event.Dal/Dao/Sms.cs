@@ -15,10 +15,5 @@ namespace Lazztech.Events.Dal.Dao
         public string MessageBody { get; set; }
         public string Sid { get; set; }
         public DateTime? DateTimeWhenProcessed { get; set; }
-
-        public Sms()
-        {
-            DateCreated = DateTime.Now;
-        }
     }
 }

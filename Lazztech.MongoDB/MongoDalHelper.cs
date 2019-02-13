@@ -41,7 +41,7 @@ namespace Lazztech.MongoDB
 
         public void UpdateSmsDb(SmsDto inboundSms)
         {
-            _db.Delete<SmsDto>(x => x.GuidId == inboundSms.GuidId);
+            _db.Delete<SmsDto>(x => x.Id == inboundSms.Id);
             _db.Add<SmsDto>(inboundSms);
         }
 
