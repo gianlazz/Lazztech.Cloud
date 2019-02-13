@@ -1,4 +1,5 @@
 ﻿using Lazztech.Events.Domain;
+using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
