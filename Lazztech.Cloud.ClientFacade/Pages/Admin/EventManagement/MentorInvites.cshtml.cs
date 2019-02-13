@@ -62,6 +62,8 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement
             if (NewMentor.PhoneNumber != null)
                 _sms.SendSms(NewMentor.PhoneNumber, $"You've been invited to mentor at {NewInvite.Event.Organization.Name}'s {NewInvite.Event.Name}!" +
                     $" Please follow the link to sign up: {NewInvite.InviteLink}");
+            //if (NewMentor.Email != null)
+            //    _email.SendEmail(NewMentor.Email, "Mentor Registration", $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");
 
             return RedirectToPage();
         }
