@@ -62,4 +62,8 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Events\Admin\" />
+  </ItemGroup>
+
 </Project>
