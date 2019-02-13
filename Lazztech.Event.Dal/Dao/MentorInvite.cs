@@ -10,10 +10,6 @@ namespace Lazztech.Events.Dal.Dao
         [Display(Name = "Mentor Invite")]
         public int MentorInviteId { get; set; }
 
-        [Display(Name = "Event")]
-        public int EventId { get; set; }
-        public Event Event { get; set; }
-
         public DateTime DateTimeWhenCreated { get; set; }
 
         [Display(Name = "Mentor")]
