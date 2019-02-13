@@ -62,8 +62,6 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
             Invite.Accepted = true;
 
             await UploadPhoto();
-            _context.Attach(Invite).State = EntityState.Modified;
-            _context.Attach(Invite.Mentor).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             _sms.SendSms(Invite.Mentor.PhoneNumber, EventStrings.MentorRegistrationResponse(Invite.Mentor.FirstName));
