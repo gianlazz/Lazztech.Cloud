@@ -55,11 +55,9 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
             if (!ModelState.IsValid)
                 return Page();
 
-            Invite = await _context.MentorInvites
-                .Include(x => x.Mentor)
-                .ThenInclude(x => x.Event)
-                .FirstOrDefaultAsync(x => x.MentorInviteId == Invite.MentorInviteId);
+            _context.Attach(Invite).State = EntityState.Modified;
             Invite.Accepted = true;
+            Invite.Mentor.EventId = Invite.EventId;
 
             await UploadPhoto();
             await _context.SaveChangesAsync();
@@ -78,7 +76,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
                 var imageBytes = ms.ToArray();
 
                 var directory = StaticStrings.dataDir;
-                var fileName = Invite.MentorId + extension;
+                var fileName = Invite.Mentor.MentorId + extension;
                 var imagePath = directory + fileName;
                 Invite.Mentor.Image = imagePath;
                 _fileService.WriteAllBytes(imagePath, imageBytes);
