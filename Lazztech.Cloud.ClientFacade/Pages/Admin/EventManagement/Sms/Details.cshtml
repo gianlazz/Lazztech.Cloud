@@ -1,0 +1,55 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.Sms.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sms</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sms.DateCreated)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sms.DateCreated)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sms.ToPhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sms.ToPhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sms.FromPhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sms.FromPhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sms.MessageBody)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sms.MessageBody)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sms.Sid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sms.Sid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sms.DateTimeWhenProcessed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sms.DateTimeWhenProcessed)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Sms.SmsId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

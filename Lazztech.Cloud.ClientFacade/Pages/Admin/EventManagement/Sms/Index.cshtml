@@ -1,0 +1,66 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.Sms.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Sms[0].DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sms[0].ToPhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sms[0].FromPhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sms[0].MessageBody)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sms[0].Sid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sms[0].DateTimeWhenProcessed)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Sms) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageBody)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeWhenProcessed)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SmsId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SmsId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SmsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

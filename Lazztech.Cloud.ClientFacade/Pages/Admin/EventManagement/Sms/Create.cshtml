@@ -1,0 +1,59 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.Sms.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Sms</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Sms.DateCreated" class="control-label"></label>
+                <input asp-for="Sms.DateCreated" class="form-control" />
+                <span asp-validation-for="Sms.DateCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sms.ToPhoneNumber" class="control-label"></label>
+                <input asp-for="Sms.ToPhoneNumber" class="form-control" />
+                <span asp-validation-for="Sms.ToPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sms.FromPhoneNumber" class="control-label"></label>
+                <input asp-for="Sms.FromPhoneNumber" class="form-control" />
+                <span asp-validation-for="Sms.FromPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sms.MessageBody" class="control-label"></label>
+                <input asp-for="Sms.MessageBody" class="form-control" />
+                <span asp-validation-for="Sms.MessageBody" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sms.Sid" class="control-label"></label>
+                <input asp-for="Sms.Sid" class="form-control" />
+                <span asp-validation-for="Sms.Sid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sms.DateTimeWhenProcessed" class="control-label"></label>
+                <input asp-for="Sms.DateTimeWhenProcessed" class="form-control" />
+                <span asp-validation-for="Sms.DateTimeWhenProcessed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
