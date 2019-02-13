@@ -16,10 +16,12 @@ namespace Lazztech.Events.Dal.Dao
         public Organization Organization { get; set; }
 
         public List<Mentor> Mentors { get; set; }
+        public List<MentorInvite> MentorInvites { get; set; }
 
         public Event()
         {
             Mentors = new List<Mentor>();
+            MentorInvites = new List<MentorInvite>();
         }
     }
 }
