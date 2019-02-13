@@ -15,7 +15,11 @@ namespace Lazztech.Events.Dal.Dao
         public Event Event { get; set; }
 
         public DateTime DateTimeWhenCreated { get; set; }
+
+        [Display(Name = "Mentor")]
+        public int MentorId { get; set; }
         public Mentor Mentor { get; set; }
+
         public DateTime? DateTimeWhenViewed { get; set; }
         public bool Accepted { get; set; }
         public string InviteLink { get; set; }

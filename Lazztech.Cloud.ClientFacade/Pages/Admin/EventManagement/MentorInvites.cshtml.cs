@@ -9,6 +9,7 @@ using Lazztech.Standard.Interfaces;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement
@@ -37,12 +38,16 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement
         public async Task OnGetAsync()
         {
             Invites = await _context.MentorInvites.Include(x => x.Mentor).ToListAsync();
+
+            ViewData["EventId"] = new SelectList(_context.Events.Include(x => x.Organization), "EventId", "Name");
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
                 return Page();
+            NewInvite.Mentor = NewMentor;
+            NewInvite.Event = NewMentor.Event;
 
             string domainName = Request.HttpContext.Request.GetDisplayUrl().Replace(Request.Path, String.Empty);
             NewInvite.InviteLink = $"{domainName}/Events/Invites?Id=" + $"{NewInvite.MentorInviteId}";
