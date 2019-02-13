@@ -58,15 +58,16 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
                 return Page();
 
             Invite.Accepted = true;
+            _context.Update(Invite);
             await _context.SaveChangesAsync();
 
             await UploadPhoto();
-            await _context.AddAsync(Mentor);
+            _context.Update(Mentor);
             await _context.SaveChangesAsync();
 
             _sms.SendSms(Mentor.PhoneNumber, EventStrings.MentorRegistrationResponse(Mentor.FirstName));
 
-            return RedirectToPage("./");
+            return RedirectToPage($"/Event/?eventId={Invite.EventId}");
         }
 
         private async Task UploadPhoto()

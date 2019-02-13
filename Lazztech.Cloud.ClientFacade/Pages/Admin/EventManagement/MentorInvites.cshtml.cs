@@ -49,15 +49,16 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement
             NewInvite.Mentor = NewMentor;
             NewInvite.Mentor.EventId = NewInvite.EventId;
 
-            string domainName = Request.HttpContext.Request.GetDisplayUrl().Replace(Request.Path, String.Empty);
-            NewInvite.InviteLink = $"{domainName}/Events/Invites?Id=" + $"{NewInvite.MentorInviteId}";
-
             await _context.AddAsync(NewInvite);
             await _context.SaveChangesAsync();
             NewInvite = await _context.MentorInvites
                 .Include(x => x.Event)
                 .ThenInclude(x => x.Organization)
                 .FirstOrDefaultAsync(x => x.MentorInviteId == NewInvite.MentorInviteId);
+
+            string domainName = Request.HttpContext.Request.GetDisplayUrl().Replace(Request.Path, String.Empty);
+            NewInvite.InviteLink = $"{domainName}/Event/Invites?Id=" + $"{NewInvite.MentorInviteId}";
+            await _context.SaveChangesAsync();
 
             if (NewMentor.PhoneNumber != null)
                 _sms.SendSms(NewMentor.PhoneNumber, $"You've been invited to mentor at {NewInvite.Event.Organization.Name}'s {NewInvite.Event.Name}!" +
