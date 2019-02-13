@@ -33,5 +33,6 @@ namespace Lazztech.Cloud.ClientFacade.Data
         public DbSet<Events.Dal.Dao.Sms> SmsMessages { get; set; }
         public DbSet<MentorRequest> MentorRequests { get; set; }
         public DbSet<MentorInvite> MentorInvites { get; set; }
+        public DbSet<AudioUpload> AudioUploads { get; set; }
     }
 }
