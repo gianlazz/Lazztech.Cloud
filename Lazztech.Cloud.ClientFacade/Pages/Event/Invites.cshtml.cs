@@ -19,8 +19,6 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
     public class InvitesModel : PageModel
     {
         [BindProperty]
-        public Mentor Mentor { get; set; }
-        [BindProperty]
         [Required]
         public IFormFile Photo { get; set; }
         [BindProperty]
@@ -41,11 +39,11 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
         {
             Invite = await _context.MentorInvites
                 .Include(x => x.Mentor)
+                .ThenInclude(x => x.Event)
                 .FirstOrDefaultAsync(x => x.MentorInviteId == Id);
             if (Invite == null)
                 return NotFound();
 
-            Mentor = Invite.Mentor;
             Invite.DateTimeWhenViewed = DateTime.Now;
             await _context.SaveChangesAsync();
 
@@ -57,17 +55,18 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
             if (!ModelState.IsValid)
                 return Page();
 
+            Invite = await _context.MentorInvites
+                .Include(x => x.Mentor)
+                .ThenInclude(x => x.Event)
+                .FirstOrDefaultAsync(x => x.MentorInviteId == Invite.MentorInviteId);
             Invite.Accepted = true;
-            _context.Update(Invite);
-            await _context.SaveChangesAsync();
 
             await UploadPhoto();
-            _context.Update(Mentor);
             await _context.SaveChangesAsync();
 
-            _sms.SendSms(Mentor.PhoneNumber, EventStrings.MentorRegistrationResponse(Mentor.FirstName));
+            _sms.SendSms(Invite.Mentor.PhoneNumber, EventStrings.MentorRegistrationResponse(Invite.Mentor.FirstName));
 
-            return RedirectToPage($"/Event/?eventId={Invite.EventId}");
+            return Redirect($"/Event/Index/?eventId={Invite.EventId}");
         }
 
         private async Task UploadPhoto()
@@ -79,9 +78,9 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
                 var imageBytes = ms.ToArray();
 
                 var directory = StaticStrings.dataDir;
-                var fileName = Mentor.MentorId + extension;
+                var fileName = Invite.MentorId + extension;
                 var imagePath = directory + fileName;
-                Mentor.Image = imagePath;
+                Invite.Mentor.Image = imagePath;
                 _fileService.WriteAllBytes(imagePath, imageBytes);
             }
         }
