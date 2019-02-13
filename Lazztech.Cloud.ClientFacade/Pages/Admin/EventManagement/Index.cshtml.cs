@@ -31,7 +31,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement
             OrganizationCount = await _context.Organizations.CountAsync();
             EventCount = await _context.Events.CountAsync();
             MentorCount = await _context.Mentors.CountAsync();
-            //MentorInviteCount = await _context.MentorInvites.CountAsync();
+            MentorInviteCount = await _context.MentorInvites.CountAsync();
             MentorRequestCount = await _context.MentorRequests.CountAsync();
             Messages = await _context.SmsMessages.ToListAsync();
         }
