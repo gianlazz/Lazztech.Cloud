@@ -19,7 +19,8 @@
             </div>
             <input type="hidden" asp-for="Invite.MentorInviteId" />
             <input type="hidden" asp-for="Invite.MentorId" />
-            <input type="hidden" asp-for="Invite.Mentor" />
+            <input type="hidden" asp-for="Invite.Mentor.MentorId" />
+            <input type="hidden" asp-for="Invite.Mentor.EventId" />
             <div class="form-group">
                 <label asp-for="Invite.Mentor.FirstName" class="control-label"></label>
                 <input asp-for="Invite.Mentor.FirstName" class="form-control" />
