@@ -21,6 +21,10 @@
             <input type="hidden" asp-for="Invite.MentorId" />
             <input type="hidden" asp-for="Invite.Mentor.MentorId" />
             <input type="hidden" asp-for="Invite.Mentor.EventId" />
+
+            <input type="hidden" asp-for="Invite.InviteLink" />
+            <input type="hidden" asp-for="Invite.DateTimeWhenViewed" />
+
             <div class="form-group">
                 <label asp-for="Invite.Mentor.FirstName" class="control-label"></label>
                 <input asp-for="Invite.Mentor.FirstName" class="form-control" />

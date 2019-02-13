@@ -56,11 +56,14 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
                 return Page();
 
             _context.Attach(Invite).State = EntityState.Modified;
+            _context.Attach(Invite.Mentor).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         
             Invite.Accepted = true;
 
             await UploadPhoto();
+            _context.Attach(Invite).State = EntityState.Modified;
+            _context.Attach(Invite.Mentor).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             _sms.SendSms(Invite.Mentor.PhoneNumber, EventStrings.MentorRegistrationResponse(Invite.Mentor.FirstName));
@@ -77,7 +80,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
                 var imageBytes = ms.ToArray();
 
                 var directory = StaticStrings.dataDir;
-                var fileName = Invite.Mentor.MentorId + extension;
+                var fileName = Invite.MentorId + extension;
                 var imagePath = directory + fileName;
                 Invite.Mentor.Image = imagePath;
                 _fileService.WriteAllBytes(imagePath, imageBytes);
