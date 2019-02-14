@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Lazztech.Cloud.ClientFacade.Data;
+using Lazztech.Events.Dal;
 using Lazztech.Events.Dal.Dao;
 using Lazztech.Events.Domain;
 using Lazztech.Events.Dto.Interfaces;
@@ -43,7 +44,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
                 {
                     UniqueRequesteeId = uniqueRequesteeId,
                     Mentor = mentor,
-                    OutboundSms = _sms.SendSms(mentor.PhoneNumber, message)
+                    OutboundSms = _sms.SendSms(mentor.PhoneNumber, message).MapToEntity()
                 };
                 succeded = _conductor.TryAddRequest(request);
                 if (succeded)

@@ -8,7 +8,7 @@ namespace Lazztech.Events.Dal
 {
     public static class EntityDtoMapperExtensions
     {
-        public static Sms MapToSmsEntity(this SmsDto smsDto)
+        public static Sms MapToEntity(this SmsDto smsDto)
         {
             var sms = new Sms()
             {
@@ -23,7 +23,7 @@ namespace Lazztech.Events.Dal
             return sms;
         }
 
-        public static SmsDto MapToSmsDto(this Sms smsEntity)
+        public static SmsDto MapToDto(this Sms smsEntity)
         {
             var sms = new SmsDto()
             {
