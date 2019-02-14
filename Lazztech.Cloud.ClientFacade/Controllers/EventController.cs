@@ -46,7 +46,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
                     Mentor = mentor,
                     OutboundSms = _sms.SendSms(mentor.PhoneNumber, message).MapToEntity()
                 };
-                succeded = _conductor.TryAddRequest(request);
+                succeded = _conductor.TryAddRequest(request.MapToDto());
                 if (succeded)
                 {
                     _context.MentorRequests.Add(request);
