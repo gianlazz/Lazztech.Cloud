@@ -22,7 +22,6 @@ namespace Lazztech.Events.Tests
         public void TryAddRequestANDProcessResponse_PositiveResponse_ShouldBeMarkedAccepted(string response)
         {
             //Arrange
-            var repo = new Mock<IRepository>();
             var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
@@ -62,7 +61,6 @@ namespace Lazztech.Events.Tests
         public void TryAddRequestANDProcessResponse_NegativeResponse_ShouldBeMarkedNotAccepted(string response)
         {
             //Arrange
-            var repo = new Mock<IRepository>();
             var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
@@ -273,7 +271,6 @@ namespace Lazztech.Events.Tests
         public void TryAddRequestANDProcessResponse_AcceptanceResponse_ShouldNotTimeoutAfterAcceptance()
         {
             //Arrange
-            var repo = new Mock<IRepository>();
             var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
@@ -313,7 +310,6 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_BusyResponse_MentorShouldBeMarkedAsNotAvailable(string response)
         {
             //Arrange
-            var repo = new Mock<IRepository>();
             var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
@@ -343,7 +339,6 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_AvailableResponse_MentorShouldBeMarkedAsNotAvailable(string response)
         {
             //Arrange
-            var repo = new Mock<IRepository>();
             var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
@@ -373,7 +368,6 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_GuideResponse_MentorShouldBeMarkedAsNotAvailable(string response)
         {
             //Arrange
-            var repo = new Mock<IRepository>();
             var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
@@ -398,7 +392,6 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_NoMatchingRequest_ShouldBeIgnored()
         {
             //Arrange
-            var repo = new Mock<IRepository>();
             var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
@@ -423,7 +416,6 @@ namespace Lazztech.Events.Tests
         public void TryAddRequest_MentorNotAvailableOrPresent_RequestShouldNotGoThrough()
         {
             //Arrange
-            var repo = new Mock<IRepository>();
             var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
@@ -457,39 +449,39 @@ namespace Lazztech.Events.Tests
         [Fact]
         public void TryAddRequestANDProcessResponse_PositiveResponseThenAvailableResponse_ShouldRemoveMentorsRequest()
         {
-            ////Arrange
-            //var repo = new Mock<IRepository>();
-            //var dal = new Mock<MongoDalHelper>(repo);
-            //var sms = new Mock<ISmsService>();
-            //var responder = new Mock<IRequestNotifier>();
-            //var request = new MentorRequest()
-            //{
-            //    UniqueRequesteeId = "TestTeamName123",
-            //    Mentor = new Mentor()
-            //    {
-            //        FirstName = "Gian",
-            //        LastName = "Lazzarini",
-            //        PhoneNumber = "GiansNumber123",
-            //    },
-            //    OutboundSms = new SmsDto(
-            //        message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
-            //        toNumber: "GiansNumber123",
-            //        fromNumber: "TwilioNumber123"),
-            //    MentoringDuration = new TimeSpan(hours: 0, minutes: 0, seconds: 1)
-            //};
-            //repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
-            //var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
-            //var smsResponse = new SmsDto(message: "y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
-            //var smsAvailableResponse = new SmsDto(message: "Available", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+            //Arrange
+            var repo = new Mock<IRepository>();
+            var dal = new Mock<MongoDalHelper>(repo);
+            var sms = new Mock<ISmsService>();
+            var responder = new Mock<IRequestNotifier>();
+            var request = new MentorRequest()
+            {
+                UniqueRequesteeId = "TestTeamName123",
+                Mentor = new Mentor()
+                {
+                    FirstName = "Gian",
+                    LastName = "Lazzarini",
+                    PhoneNumber = "GiansNumber123",
+                },
+                OutboundSms = new SmsDto(
+                    message: EventStrings.OutBoundRequestSms("Gian", "exampleTeam", "Example Room"),
+                    toNumber: "GiansNumber123",
+                    fromNumber: "TwilioNumber123"),
+                MentoringDuration = new TimeSpan(hours: 0, minutes: 0, seconds: 1)
+            };
+            repo.Setup(x => x.Single<Mentor>(It.IsAny<Expression<Func<Mentor, bool>>>())).Returns(request.Mentor);
+            var conductor = new MentorRequestConductor(dal.Object, sms.Object, responder.Object);
+            var smsResponse = new SmsDto(message: "y", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
+            var smsAvailableResponse = new SmsDto(message: "Available", toNumber: "TwilioNumber123", fromNumber: "GiansNumber123");
 
-            ////Act
-            //var succeeded = conductor.TryAddRequest(request);
-            //var result = conductor.ProcessResponse(smsResponse);
-            //var result2 = conductor.ProcessResponse(smsAvailableResponse);
+            //Act
+            var succeeded = conductor.TryAddRequest(request);
+            var result = conductor.ProcessResponse(smsResponse);
+            var result2 = conductor.ProcessResponse(smsAvailableResponse);
 
-            ////Assert
-            //Assert.Equal(expected: 0, actual: conductor.Requests.Count);
-            //sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
+            //Assert
+            Assert.Equal(expected: 0, actual: conductor.Requests.Count);
+            sms.Verify(x => x.SendSms(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(2));
         }
 
         [Theory]
@@ -498,7 +490,6 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_RequestResponseWithNoRequest_HandleResponseWithNoRequest(string response)
         {
             //Arrange
-            var repo = new Mock<IRepository>();
             var dal = new Mock<MongoDalHelper>(repo);
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
