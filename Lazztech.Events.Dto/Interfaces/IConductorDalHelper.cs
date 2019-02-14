@@ -12,6 +12,7 @@ namespace Lazztech.Events.Dto.Interfaces
         void UpdateMentoRequestDb(MentorRequest request);
         void UpdateMentorDb(Mentor mentor);
         void UpdateSmsDb(SmsDto inboundSms);
-        Dto.Models.Mentor FindMentor(Func<Dto.Models.Mentor, bool> p);
+        Dto.Models.Mentor FindMentor(int Id);
+        Dto.Models.Mentor FindMentorByPhoneNumber(string phoneNumber);
     }
 }

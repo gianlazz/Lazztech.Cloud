@@ -22,7 +22,7 @@ namespace Lazztech.Events.Tests
         public void TryAddRequestANDProcessResponse_PositiveResponse_ShouldBeMarkedAccepted(string response)
         {
             //Arrange
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request = new MentorRequest()
@@ -61,7 +61,7 @@ namespace Lazztech.Events.Tests
         public void TryAddRequestANDProcessResponse_NegativeResponse_ShouldBeMarkedNotAccepted(string response)
         {
             //Arrange
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request = new MentorRequest()
@@ -95,8 +95,7 @@ namespace Lazztech.Events.Tests
         public void TryAddRequestANDProcessResponse_TwoDifferentRequestsWithOneAcceptance_CorrectRequestShouldBeMarkedAccepted()
         {
             //Arrange
-            var repo = new Mock<IRepository>();
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var requestForGian = new MentorRequest()
@@ -149,8 +148,7 @@ namespace Lazztech.Events.Tests
         public void TryAddRequestANDProcessResponse_NonsenseResponseMessage_ShouldNotProcessAnyRequests()
         {
             //Arrange
-            var repo = new Mock<IRepository>();
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request = new MentorRequest()
@@ -185,8 +183,7 @@ namespace Lazztech.Events.Tests
         public void TryAddRequest_AddTwoRequestsForOneMentor_ShouldNotSucceed()
         {
             //Arrange
-            var repo = new Mock<IRepository>();
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request1 = new MentorRequest()
@@ -234,8 +231,7 @@ namespace Lazztech.Events.Tests
         public void TryAddRequest_RequestWithoutResponse_ShouldBeMarkedAvailableAfterTimeout()
         {
             //Arrange
-            var repo = new Mock<IRepository>();
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -271,7 +267,7 @@ namespace Lazztech.Events.Tests
         public void TryAddRequestANDProcessResponse_AcceptanceResponse_ShouldNotTimeoutAfterAcceptance()
         {
             //Arrange
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -310,7 +306,7 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_BusyResponse_MentorShouldBeMarkedAsNotAvailable(string response)
         {
             //Arrange
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -339,7 +335,7 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_AvailableResponse_MentorShouldBeMarkedAsNotAvailable(string response)
         {
             //Arrange
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -368,7 +364,7 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_GuideResponse_MentorShouldBeMarkedAsNotAvailable(string response)
         {
             //Arrange
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -392,7 +388,7 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_NoMatchingRequest_ShouldBeIgnored()
         {
             //Arrange
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()
@@ -416,7 +412,7 @@ namespace Lazztech.Events.Tests
         public void TryAddRequest_MentorNotAvailableOrPresent_RequestShouldNotGoThrough()
         {
             //Arrange
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request = new MentorRequest()
@@ -450,8 +446,7 @@ namespace Lazztech.Events.Tests
         public void TryAddRequestANDProcessResponse_PositiveResponseThenAvailableResponse_ShouldRemoveMentorsRequest()
         {
             //Arrange
-            var repo = new Mock<IRepository>();
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var request = new MentorRequest()
@@ -490,7 +485,7 @@ namespace Lazztech.Events.Tests
         public void ProcessResponse_RequestResponseWithNoRequest_HandleResponseWithNoRequest(string response)
         {
             //Arrange
-            var dal = new Mock<MongoDalHelper>(repo);
+            var dal = new Mock<IConductorDalHelper>();
             var sms = new Mock<ISmsService>();
             var responder = new Mock<IRequestNotifier>();
             var mentor = new Mentor()

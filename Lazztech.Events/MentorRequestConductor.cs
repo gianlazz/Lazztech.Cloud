@@ -26,7 +26,7 @@ namespace Lazztech.Events.Domain
         public bool TryAddRequest(MentorRequest request)
         {
             var requestedMentorId = request.Mentor.PhoneNumber;
-            var mentorFromDb = _db.FindMentor(x => x.Id == request.Mentor.Id);
+            var mentorFromDb = _db.FindMentor(request.Mentor.Id);
             if (Requests.ContainsKey(requestedMentorId))
                 return false;
             else if (!mentorFromDb.IsAvailable || !mentorFromDb.IsPresent)
@@ -47,7 +47,7 @@ namespace Lazztech.Events.Domain
             _db.AddSmsDb(inboundSms);
             
             var matchingRequest = FindResponseRequest(inboundSms);
-            var mentorFromDb = _db.FindMentor(x => x.PhoneNumber.Contains(inboundSms.FromPhoneNumber.TrimStart("+1".ToCharArray())));
+            var mentorFromDb = _db.FindMentorByPhoneNumber(inboundSms.FromPhoneNumber);
             if (mentorFromDb == null)
                 return null;
             if (IsAcceptanceResponse(inboundSms) && matchingRequest != null)
