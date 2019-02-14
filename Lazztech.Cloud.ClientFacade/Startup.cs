@@ -3,7 +3,6 @@ using Lazztech.Cloud.ClientFacade.Hubs;
 using Lazztech.Cloud.ClientFacade.Util;
 using Lazztech.Events.Domain;
 using Lazztech.Events.Dto.Interfaces;
-using Lazztech.MongoDB;
 using Lazztech.Sms;
 using Lazztech.Standard.Interfaces;
 using Lazztech.Standard.Services;

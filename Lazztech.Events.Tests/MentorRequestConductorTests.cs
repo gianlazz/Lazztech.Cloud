@@ -2,7 +2,6 @@ using Lazztech.Events.Domain;
 using Lazztech.Events.Dto;
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
-using Lazztech.MongoDB;
 using Moq;
 using System;
 using System.ComponentModel;
