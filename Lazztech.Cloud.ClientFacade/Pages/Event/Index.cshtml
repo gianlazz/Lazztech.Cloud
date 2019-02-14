@@ -65,7 +65,7 @@
 {
     <div class="modal fade" id="@mentor.MentorId.ToString()" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            @using (Html.BeginForm("MentorRequest", "Home"))
+            @using (Html.BeginForm("MentorRequest", "Event"))
             {
                 <div class="modal-content">
                     <div class="modal-header">
@@ -81,7 +81,7 @@
                                 @Html.TextBox("teamName", null, htmlAttributes: new { @class = "form-control", @placeholder = "Team name", @type = "text" })
                                 <br />
                                 @Html.TextBox("teamLocation", null, htmlAttributes: new { @class = "form-control", @placeholder = "Description of where you're sitting", @type = "text" })
-                                @Html.Hidden("mentorGuidId", mentor.MentorId)
+                                @Html.Hidden("mentorId", mentor.MentorId)
                                 <br />
                                 <small id="emailHelp" class="form-text text-muted">After selecting submit your mentor will be notified and come to help out.</small>
                             </div>
