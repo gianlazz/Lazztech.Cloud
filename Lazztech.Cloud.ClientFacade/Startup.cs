@@ -26,9 +26,6 @@ namespace Lazztech.Cloud.ClientFacade
     {
         public IConfiguration Configuration { get; }
 
-        public static ISmsService SmsService;
-        public static IRequestNotifier Responder;
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -102,19 +99,15 @@ namespace Lazztech.Cloud.ClientFacade
 
             services.AddSingleton<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
             services.AddSingleton<ICallService>(s => new TwilioCallService(accountSid, authToken, fromTwilioNumber));
-            services.AddSingleton<IRepository>(s => new MongoRepository(mongoDbConnectionString));
-            services.AddSingleton<IDalHelper, MongoDalHelper>();
             services.AddSingleton<IRequestNotifier, SignalRNotifier>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
             services.AddSingleton<IEmailService>(s => new EmailService("gian@lazz.tech"));
             services.AddSingleton<IFileService, FileService>();
 
             var provider = services.BuildServiceProvider();
-            SmsService = provider.GetService<ISmsService>();
+            var smsService = provider.GetService<ISmsService>();
             var callService = provider.GetService<ICallService>();
-            var repo = provider.GetService<IRepository>();
-            var dal = provider.GetService<IDalHelper>();
-            Responder = provider.GetService<IRequestNotifier>();
+            var responder = provider.GetService<IRequestNotifier>();
             var conductor = provider.GetRequiredService<IMentorRequestConductor>();
             var email = provider.GetRequiredService<IEmailService>();
             var fileService = provider.GetRequiredService<IFileService>();

@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.Domain.csproj" />
-    <ProjectReference Include="..\Lazztech.MongoDB\Lazztech.MongoDB.csproj" />
   </ItemGroup>
 
 </Project>

@@ -26,7 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Lazztech.Event.Dal\Lazztech.Events.Dal.csproj" />
     <ProjectReference Include="..\Lazztech.Events\Lazztech.Events.Domain.csproj" />
-    <ProjectReference Include="..\Lazztech.MongoDB\Lazztech.MongoDB.csproj" />
     <ProjectReference Include="..\Lazztech.Sms\Lazztech.Sms.csproj" />
     <ProjectReference Include="..\Lazztech.Standard\Lazztech.Standard.csproj" />
     <ProjectReference Include="..\Lazztech.Vision.Domain\Lazztech.Vision.Domain.csproj" />

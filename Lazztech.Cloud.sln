@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Vision.Tests", "La
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.Domain", "Lazztech.Events\Lazztech.Events.Domain.csproj", "{E797B447-4C17-414D-B11C-A42D0A21E7F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.MongoDB", "Lazztech.MongoDB\Lazztech.MongoDB.csproj", "{171A65AF-B92F-4080-B44C-C9CB9769A2BE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Sms", "Lazztech.Sms\Lazztech.Sms.csproj", "{0390E467-3158-460A-B85A-BF21E7EC0DA2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.StudentRND", "Lazztech.SrndResourcesManager\Lazztech.Events.StudentRND.csproj", "{74215587-FBDD-4061-A192-983CF0FE03A7}"
@@ -35,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Cloud.ClientFacade
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Standard", "Lazztech.Standard\Lazztech.Standard.csproj", "{85804AA9-12D1-4AE6-912C-E3B596982C08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lazztech.Events.Dal", "Lazztech.Event.Dal\Lazztech.Events.Dal.csproj", "{50727DB0-EE4C-4E14-8F21-CE9DC3F27469}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lazztech.Events.Dal", "Lazztech.Event.Dal\Lazztech.Events.Dal.csproj", "{50727DB0-EE4C-4E14-8F21-CE9DC3F27469}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +57,6 @@ Global
 		{E797B447-4C17-414D-B11C-A42D0A21E7F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E797B447-4C17-414D-B11C-A42D0A21E7F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E797B447-4C17-414D-B11C-A42D0A21E7F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{171A65AF-B92F-4080-B44C-C9CB9769A2BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{171A65AF-B92F-4080-B44C-C9CB9769A2BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{171A65AF-B92F-4080-B44C-C9CB9769A2BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{171A65AF-B92F-4080-B44C-C9CB9769A2BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0390E467-3158-460A-B85A-BF21E7EC0DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
