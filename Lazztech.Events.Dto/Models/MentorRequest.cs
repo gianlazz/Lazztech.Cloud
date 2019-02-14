@@ -5,7 +5,7 @@ namespace Lazztech.Events.Dto.Models
     public class MentorRequest
     {
         public int Id { get; set; }
-        public readonly DateTime DateTimeOfRequest;
+        public DateTime DateTimeOfRequest { get; set; }
         public Mentor Mentor { get; set; }
         public string UniqueRequesteeId { get; set; }
         public bool RequestAccepted { get; set; }

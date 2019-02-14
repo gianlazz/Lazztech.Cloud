@@ -8,6 +8,90 @@ namespace Lazztech.Events.Dal
 {
     public static class EntityDtoMapperExtensions
     {
+        #region MentorRequest
+        public static Dao.MentorRequest MapToEntity(this Events.Dto.Models.MentorRequest dto)
+        {
+            var request = new Dao.MentorRequest()
+            {
+                MentorRequestId = dto.Id,
+                DateTimeOfRequest = dto.DateTimeOfRequest,
+                MentorId = dto.Mentor.Id,
+                Mentor = dto.Mentor.MapToEntity(),
+                UniqueRequesteeId = dto.UniqueRequesteeId,
+                RequestAccepted = dto.RequestAccepted,
+                DateTimeWhenProcessed = dto.DateTimeWhenProcessed,
+                OutboundSms = dto.OutboundSms.MapToEntity(),
+                InboundSms = dto.InboundSms.MapToEntity(),
+                MentoringDuration = dto.MentoringDuration,
+                RequestTimeout = dto.RequestTimeout,
+                TimedOut = dto.TimedOut
+            };
+
+            return request;
+        }
+
+        public static Dto.Models.MentorRequest MapToDto(this Dao.MentorRequest entity)
+        {
+            var request = new Dto.Models.MentorRequest()
+            {
+                Id = entity.MentorRequestId,
+                DateTimeOfRequest = entity.DateTimeOfRequest,
+                Mentor = entity.Mentor.MapToDto(),
+                UniqueRequesteeId = entity.UniqueRequesteeId,
+                RequestAccepted = entity.RequestAccepted,
+                DateTimeWhenProcessed = entity.DateTimeWhenProcessed,
+                OutboundSms = entity.OutboundSms.MapToDto(),
+                InboundSms = entity.InboundSms.MapToDto(),
+                MentoringDuration = entity.MentoringDuration,
+                RequestTimeout = entity.RequestTimeout,
+                TimedOut = entity.TimedOut
+            };
+
+            return request;
+        }
+        #endregion
+
+        #region Mentor
+        public static Dao.Mentor MapToEntity(this Dto.Models.Mentor dto)
+        {
+            var mentor = new Dao.Mentor()
+            {
+                MentorId = dto.Id,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Image = dto.Image,
+                Description = dto.Description,
+                ProfessionalTitle = dto.ProfessionalTitle,
+                PhoneNumber = dto.PhoneNumber,
+                Email = dto.Email,
+                IsAvailable = dto.IsAvailable,
+                IsPresent = dto.IsPresent
+            };
+
+            return mentor;
+        }
+
+        public static Dto.Models.Mentor MapToDto(this Dao.Mentor entity)
+        {
+            var mentor = new Dto.Models.Mentor()
+            {
+                Id = entity.MentorId,
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                Image = entity.Image,
+                Description = entity.Description,
+                ProfessionalTitle = entity.ProfessionalTitle,
+                PhoneNumber = entity.PhoneNumber,
+                Email = entity.Email,
+                IsAvailable = entity.IsAvailable,
+                IsPresent = entity.IsPresent
+            };
+
+            return mentor;
+        }
+        #endregion
+
+        #region Sms
         public static Sms MapToEntity(this SmsDto smsDto)
         {
             var sms = new Sms()
@@ -38,5 +122,6 @@ namespace Lazztech.Events.Dal
 
             return sms;
         }
+        #endregion
     }
 }
