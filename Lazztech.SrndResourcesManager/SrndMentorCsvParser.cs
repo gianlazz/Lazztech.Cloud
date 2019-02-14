@@ -46,7 +46,6 @@ namespace Lazztech.Events.StudentRND
                 var lineValues = line.Split(',').ToArray();
                 var mentor = new Mentor()
                 {
-                    Id = Guid.NewGuid(),
                     FirstName = lineValues[3],
                     LastName = lineValues[2],
                     Email = lineValues[4],

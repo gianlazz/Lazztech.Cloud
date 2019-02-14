@@ -9,7 +9,7 @@ namespace Lazztech.Events.Dto.Models
 {
     public class Mentor
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -35,7 +35,6 @@ namespace Lazztech.Events.Dto.Models
 
         public Mentor()
         {
-            Id = Guid.NewGuid();
             IsAvailable = true;
             IsPresent = true;
         }

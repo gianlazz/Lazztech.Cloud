@@ -5,14 +5,13 @@ namespace Lazztech.Events.Dto.Models
 {
     public class Team
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public RoomNameEnum Location { get; set; }
         public int PinNumber { get; set; }
 
         public Team()
         {
-            Id = Guid.NewGuid();
         }
     }
 }

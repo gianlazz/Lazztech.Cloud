@@ -4,7 +4,7 @@ namespace Lazztech.Events.Dto.Models
 {
     public class MentorRequest
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public readonly DateTime DateTimeOfRequest;
         public Mentor Mentor { get; set; }
         public string UniqueRequesteeId { get; set; }
@@ -19,8 +19,6 @@ namespace Lazztech.Events.Dto.Models
         public MentorRequest()
         {
             DateTimeOfRequest = DateTime.Now;
-            Id = Guid.NewGuid();
-
             MentoringDuration = new TimeSpan(hours: 0, minutes: 12, seconds: 0);
             RequestTimeout = new TimeSpan(hours: 0, minutes: 5, seconds: 0);
         }

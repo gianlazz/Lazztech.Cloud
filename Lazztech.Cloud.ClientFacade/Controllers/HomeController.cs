@@ -76,12 +76,12 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
         //}
 
         [HttpPost]
-        public ActionResult MentorRequest(string uniqueRequesteeId, string teamName, string teamLocation, Guid mentorGuidId)
+        public ActionResult MentorRequest(string uniqueRequesteeId, string teamName, string teamLocation, int mentorId)
         {
             var sms = Startup.SmsService;
             bool succeded = false;
 
-            var mentor = _db.Single<Mentor>(x => x.Id == mentorGuidId);
+            var mentor = _db.Single<Mentor>(x => x.Id == mentorId);
             if (mentor != null)
             {
                 try
