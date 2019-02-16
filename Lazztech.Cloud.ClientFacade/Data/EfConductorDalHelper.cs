@@ -40,7 +40,7 @@ namespace Lazztech.Cloud.ClientFacade.Data
 
         public Mentor FindMentorByPhoneNumber(string phoneNumber)
         {
-            var entity = _context.Mentors.FirstOrDefault(x => x.PhoneNumber.Contains(phoneNumber.TrimStart("+1".ToCharArray()));
+            var entity = _context.Mentors.FirstOrDefault(x => x.PhoneNumber.Contains(phoneNumber.TrimStart("+1".ToCharArray())));
             var dto = entity.MapToDto();
             return dto;
         }

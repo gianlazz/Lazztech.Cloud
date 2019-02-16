@@ -99,6 +99,7 @@ namespace Lazztech.Cloud.ClientFacade
             services.AddSingleton<ISmsService>(s => new TwilioSmsService(accountSid, authToken, fromTwilioNumber));
             services.AddSingleton<ICallService>(s => new TwilioCallService(accountSid, authToken, fromTwilioNumber));
             services.AddSingleton<IRequestNotifier, SignalRNotifier>();
+            services.AddScoped<IConductorDalHelper, EfConductorDalHelper>();
             services.AddSingleton<IMentorRequestConductor, MentorRequestConductor>();
             services.AddSingleton<IEmailService>(s => new EmailService("gian@lazz.tech"));
             services.AddSingleton<IFileService, FileService>();
@@ -107,6 +108,7 @@ namespace Lazztech.Cloud.ClientFacade
             var smsService = provider.GetService<ISmsService>();
             var callService = provider.GetService<ICallService>();
             var responder = provider.GetService<IRequestNotifier>();
+            var conductorDal = provider.GetService<IConductorDalHelper>();
             var conductor = provider.GetRequiredService<IMentorRequestConductor>();
             var email = provider.GetRequiredService<IEmailService>();
             var fileService = provider.GetRequiredService<IFileService>();
