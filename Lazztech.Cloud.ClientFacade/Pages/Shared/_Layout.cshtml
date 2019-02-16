@@ -6,8 +6,19 @@
     <title>@ViewData["Title"] - Lazztech.Cloud.CloudWebApp</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        @*Bootstrap 4 theme*@
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />*@
+
+        @*Minton theme*@
+        <link rel="stylesheet" href="~/minton/plugins/switchery/switchery.min.css" />
+        <link rel="stylesheet" href="~/minton/plugins/jquery-circliful/css/jquery.circliful.css" />
+
+        <link rel="stylesheet" href="~/minton/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/minton/assets/css/style_dark.css" />
+        <link rel="stylesheet" href="~/minton/assets/css/icons.css" />
+        @*Minton theme*@
+
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
