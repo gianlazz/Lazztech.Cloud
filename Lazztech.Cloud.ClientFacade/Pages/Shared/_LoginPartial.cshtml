@@ -6,11 +6,11 @@
     {
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
                 </li>
-                <li>
-                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                <li class="nav-item">
+                    <button type="submit" class="btn btn-outline-secondary">Logout</button>
                 </li>
             </ul>
         </form>
@@ -18,28 +18,24 @@
     else
     {
         <ul class="nav navbar-nav navbar-right">
-            <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-            <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+            <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+            <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
         </ul>
     }*@
 
 @if (SignInManager.IsSignedIn(User))
 {
     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item">
-                <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            <li class="list-inline-item">
+                <a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
             </li>
-            <li class="nav-item">
-                <button type="submit" class="btn btn-outline-secondary">Logout</button>
+            <li class="list-inline-item">
+                <button type="submit" class="btn btn-outline-secondary waves-effect waves-light">Logout</button>
             </li>
-        </ul>
     </form>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-    </ul>
+    <li class="list-inline-item"><a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+    <li class="list-inline-item"><a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
 }
