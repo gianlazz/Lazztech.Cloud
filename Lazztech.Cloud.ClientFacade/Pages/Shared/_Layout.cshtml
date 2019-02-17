@@ -352,68 +352,60 @@
         @*<div class="container body-content">*@
         <div>
 
-          <!-- Start right Content here -->
-<!-- ============================================================== -->
-<div class="content-page">
-    <!-- Start content -->
-    <div class="content">
-        <div class="container-fluid">
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container-fluid">
 
-             @*@{
-                var routes = Context.Request.Path.Value.Split('/');
-            }
-
-            @if (Context.Request.Path != "/")
-            {
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        @for (int i = 0; i < routes.Count(); i++)
-                        {
-                            @if (i == 0)
-                            {
-                                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            }
-                            else if (routes[i] != routes.Last())
-                            {
-                                <li class="breadcrumb-item"><a href="/@routes[i]">@routes[i]</a></li>
-                            }
-                            else if (routes[i] == routes.Last())
-                            {
-                                <li class="breadcrumb-item active" aria-current="page">@routes[i]</li>
-                            }
+                        @{
+                            var routes = Context.Request.Path.Value.Split('/');
                         }
-                    </ol>
-                </nav>
-                <br />
-            }*@
 
-                    <!-- Page-Title -->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="page-title-box">
-                    <h4 class="page-title">Welcome !</h4>
-                    <ol class="breadcrumb float-right">
-                        <li class="breadcrumb-item"><a href="#">Minton</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                    <div class="clearfix"></div>
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title">Welcome !</h4>
+                                    <ol class="breadcrumb float-right">
+                                        @if (Context.Request.Path != "/")
+                                        {
+                                            @for (int i = 0; i < routes.Count(); i++)
+                                            {
+                                                @if (i == 0)
+                                                {
+                                                    <li class="breadcrumb-item"><a href="/">Lazztech</a></li>
+                                                }
+                                                else if (routes[i] != routes.Last())
+                                                {
+                                                    <li class="breadcrumb-item"><a href="/@routes[i]">@routes[i]</a></li>
+                                                }
+                                                else if (routes[i] == routes.Last())
+                                                {
+                                                    <li class="breadcrumb-item active" aria-current="page">@routes[i]</li>
+                                                }
+                                            }
+                                        }
+                                    </ol>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @RenderBody()
+
+                    </div>
+                    <!-- end content -->
                 </div>
             </div>
+
+
+            <footer class="footer">
+                <span class="text-muted">&copy; 2018    Lazztech.Cloud</span>
+            </footer>
         </div>
-
-            @RenderBody()
-
-       </div>
-       <!-- end content -->
     </div>
-</div>
-           
-
-        <footer class="footer">
-            <span class="text-muted">&copy; 2018    Lazztech.Cloud</span>
-        </footer>
-    </div>
-        </div>
 
 
     @*<footer class="footer container-fluid">
