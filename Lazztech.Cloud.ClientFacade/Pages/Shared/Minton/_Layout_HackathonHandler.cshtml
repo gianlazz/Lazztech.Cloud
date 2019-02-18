@@ -29,7 +29,6 @@
             <link rel="stylesheet" href="~/css/site.css" />*@
 
         @*Minton theme*@
-        <link rel="stylesheet" href="~/minton/plugins/switchery/switchery.min.css" />
         <link rel="stylesheet" href="~/minton/plugins/jquery-circliful/css/jquery.circliful.css" />
 
         <link rel="stylesheet" href="~/minton/dark-horizontal/assets/css/bootstrap.min.css" />
@@ -89,107 +88,102 @@
             </div> <!-- end container -->
         </div>
         <!-- end topbar-main -->
+    </header>
 
 
 
-        <div class="wrapper">
-            <div class="container-fluid">
-                @RenderBody()
-            </div>
+    <div class="wrapper">
+        <div class="container-fluid">
+            @RenderBody()
         </div>
+    </div>
 
-        <footer class="footer">
-            <span class="text-muted">&copy; @DateTime.Now.Year - Hackathon Handler™ - Gian Lazzarini - <a href="http://lazz.tech/about/">http://lazz.tech/about/</a></span>
-        </footer>
+    <footer class="footer">
+        <span class="text-muted">&copy; @DateTime.Now.Year - Hackathon Handler™ - Gian Lazzarini - <a href="http://lazz.tech/about/">http://lazz.tech/about/</a></span>
+    </footer>
 
-        <div class="modal fade" id="mentorRequestUpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Request Accepted</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p id="mentorRequestUpdateParagraph"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+    <div class="modal fade" id="mentorRequestUpdateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Request Accepted</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="mentorRequestUpdateParagraph"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
+    </div>
 
-        <environment include="Development">
-            <!--Bootstrap 4 Section-->
-            @*<script src="~/lib/jquery/dist/jquery.js"></script>
-                <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            <!--End Of Bootstrap 4 Section-->
-            @*SIGNALR EXAMPLE CODE BELOW HERE------------*@
-            <script src="~/lib/signalr/dist/browser/signalr.js"></script>
-            <script src="~/js/eventManagement.js"></script>
+    <environment include="Development">
+        <!--Bootstrap 4 Section-->
+        @*<script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <!--End Of Bootstrap 4 Section-->
+        @*SIGNALR EXAMPLE CODE BELOW HERE------------*@
+        <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/eventManagement.js"></script>
 
-            <!--Minton Theme Section-->
-            <script>
-                var resizefunc = [];
-            </script>
+        <!--Minton Theme Section-->
+        <script>
+            var resizefunc = [];
+        </script>
 
-            <!-- Plugins  -->
-            <script src="~/minton/assets/js/jquery.min.js"></script>
-            <script src="~/minton/assets/js/popper.min.js"></script>
-            <script src="~/minton/assets/js/bootstrap.min.js"></script>
-            <script src="~/minton/dark-horizontal/assets/js/detect.js"></script>
-            <script src="~/minton/dark-horizontal/assets/js/fastclick.js"></script>
-            <script src="~/minton/dark-horizontal/assets/js/jquery.slimscroll.js"></script>
-            <script src="~/minton/dark-horizontal/assets/js/jquery.blockUI.js"></script>
-            <script src="~/minton/dark-horizontal/assets/js/waves.js"></script>
-            <script src="~/minton/dark-horizontal/assets/js/wow.min.js"></script>
-            <script src="~/minton/dark-horizontal/assets/js/jquery.nicescroll.js"></script>
-            <script src="~/minton/dark-horizontal/assets/js/jquery.scrollTo.min.js"></script>
-            <script src="~/minton/plugins/switchery/switchery.min.js"></script>
+        <!-- Plugins  -->
+        <script src="~/minton/assets/js/jquery.min.js"></script>
+        <script src="~/minton/assets/js/popper.min.js"></script>
+        <script src="~/minton/assets/js/bootstrap.min.js"></script>
+        <script src="~/minton/dark-horizontal/assets/js/jquery.slimscroll.js"></script>
+        <script src="~/minton/dark-horizontal/assets/js/waves.js"></script>
+        <script src="~/minton/dark-horizontal/assets/js/jquery.scrollTo.min.js"></script>
 
-            <!-- Counter Up  -->
-            <script src="~/minton/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
-            <script src="~/minton/plugins/counterup/jquery.counterup.min.js"></script>
+        <!-- Counter Up  -->
+        <script src="~/minton/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="~/minton/plugins/counterup/jquery.counterup.min.js"></script>
 
-            <!-- circliful Chart -->
-            <script src="~/minton/plugins/jquery-circliful/js/jquery.circliful.min.js"></script>
-            <script src="~/minton/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+        <!-- circliful Chart -->
+        <script src="~/minton/plugins/jquery-circliful/js/jquery.circliful.min.js"></script>
+        <script src="~/minton/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
 
-            <!-- skycons -->
-            <script src="~/minton/plugins/skyicons/skycons.min.js"></script>
+        <!-- skycons -->
+        <script src="~/minton/plugins/skyicons/skycons.min.js"></script>
 
-            <!-- Page js  -->
-            <script src="~/minton/dark-horizontal/assets/pages/jquery.dashboard.js"></script>
+        <!-- Page js  -->
+        <script src="~/minton/dark-horizontal/assets/pages/jquery.dashboard.js"></script>
 
-            <!-- Custom main Js -->
-            <script src="~/minton/dark-horizontal/assets/js/jquery.core.js"></script>
-            <script src="~/minton/dark-horizontal/assets/js/jquery.app.js"></script>
+        <!-- Custom main Js -->
+        <script src="~/minton/dark-horizontal/assets/js/jquery.core.js"></script>
+        <script src="~/minton/dark-horizontal/assets/js/jquery.app.js"></script>
 
-            <!--End Of Minton-->
+        <!--End Of Minton-->
 
-        </environment>
-        <environment exclude="Development">
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                    crossorigin="anonymous">
-            </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                    crossorigin="anonymous">
-            </script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                    crossorigin="anonymous">
-            </script>
-            <script src="~/js/site.min.js" asp-append-version="true"></script>
-        </environment>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
 
-        @RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
