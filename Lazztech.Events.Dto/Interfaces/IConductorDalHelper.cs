@@ -9,7 +9,7 @@ namespace Lazztech.Events.Dto.Interfaces
     {
         void AddMenorRequestDb(ref MentorRequest request);
         void AddSmsDb(ref SmsDto inboundSms);
-        void UpdateMentoRequestDb(MentorRequest request);
+        void UpdateMentorRequestDb(MentorRequest request);
         void UpdateMentorDb(Mentor mentor);
         void UpdateSmsDb(SmsDto inboundSms);
         Dto.Models.Mentor FindMentor(int Id);

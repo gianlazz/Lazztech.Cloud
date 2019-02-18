@@ -101,7 +101,7 @@ namespace Lazztech.Events.Domain
             {
                 request.TimedOut = true;
                 request.DateTimeWhenProcessed = DateTime.Now;
-                _db.UpdateMentoRequestDb(request);
+                _db.UpdateMentorRequestDb(request);
                 _requestsBackplane.RemoveActiveRequest(request);
                 NotifyMentorOfRequestTimeout(request.Mentor);
             }
@@ -146,7 +146,7 @@ namespace Lazztech.Events.Domain
             mentorRequest.DateTimeWhenProcessed = DateTime.Now;
             mentorRequest.InboundSms = inboundSms;
 
-            _db.UpdateMentoRequestDb(mentorRequest);
+            _db.UpdateMentorRequestDb(mentorRequest);
             _db.UpdateSmsDb(inboundSms);
 
             _Notifier.UpdateMentorRequestee(mentorRequest);
@@ -162,7 +162,7 @@ namespace Lazztech.Events.Domain
 
             _db.UpdateSmsDb(inboundSms);
             _db.UpdateMentorDb(mentorRequest.Mentor);
-            _db.UpdateMentoRequestDb(mentorRequest);
+            _db.UpdateMentorRequestDb(mentorRequest);
 
             _Notifier.UpdateMentorRequestee(mentorRequest);
         }
