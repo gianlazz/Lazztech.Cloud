@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Lazztech.Cloud.CloudWebApp</title>
+
+    <environment include="Development">
+        @*Bootstrap 4 theme*@
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/css/site.css" />*@
+
+        @*Minton theme*@
+        <link rel="stylesheet" href="~/minton/plugins/switchery/switchery.min.css" />
+        <link rel="stylesheet" href="~/minton/plugins/jquery-circliful/css/jquery.circliful.css" />
+
+        <link rel="stylesheet" href="~/minton/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/minton/assets/css/style_dark.css" />
+        <link rel="stylesheet" href="~/minton/assets/css/icons.css" />
+
+        <link rel="stylesheet" href="~/minton/assets/js/modernizr.min.js" />
+        @*Minton theme*@
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+</head>
+<body class="fixed-left">
+
+    @*<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Lazztech Cloud</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Events/Event">Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://lazz.tech/">About Gian Lazzarini</a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>*@
+
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <div class="text-center">
+                    <a href="/" class="logo"><i class="mdi mdi-radar"></i> <span>Lazztech</span></a>
+                </div>
+            </div>
+
+            <!-- Button mobile view to collapse sidebar menu -->
+            <nav class="navbar-custom">
+
+                <ul class="list-inline float-right mb-0">
+
+                    <li class="list-inline-item notification-list hide-phone">
+                        <a class="nav-link waves-light waves-effect" href="#" id="btn-fullscreen">
+                            <i class="mdi mdi-crop-free noti-icon"></i>
+                        </a>
+                    </li>
+
+                    <partial name="_LoginPartial" />
+
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left waves-light waves-effect">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div>
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== -->
+
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <!--- Divider -->
+                <div id="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+
+                        <li>
+                            <a href="/" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Dashboard </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/Event?eventId=1" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Event </span>
+                            </a>
+                        </li>
+
+                        <li class="menu-title">Extras</li>
+
+                        <li>
+                            <a href="https://lazz.tech/" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> About Gian Lazzarini </span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        @*<partial name="_CookieConsentPartial" />*@
+
+        @*<div class="container body-content">*@
+        <div>
+
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container-fluid">
+
+                        @{
+                            var routes = Context.Request.Path.Value.Split('/');
+                        }
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title">Welcome !</h4>
+                                    <ol class="breadcrumb float-right">
+                                        @if (Context.Request.Path != "/")
+                                        {
+                                            @for (int i = 0; i < routes.Count(); i++)
+                                            {
+                                                @if (i == 0)
+                                                {
+                                                    <li class="breadcrumb-item"><a href="/">Lazztech</a></li>
+                                                }
+                                                else if (routes[i] != routes.Last())
+                                                {
+                                                    <li class="breadcrumb-item"><a href="/@routes[i]">@routes[i]</a></li>
+                                                }
+                                                else if (routes[i] == routes.Last())
+                                                {
+                                                    <li class="breadcrumb-item active" aria-current="page">@routes[i]</li>
+                                                }
+                                            }
+                                        }
+                                    </ol>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @RenderBody()
+
+                    </div>
+                    <!-- end content -->
+                </div>
+            </div>
+
+
+            <footer class="footer">
+                <span class="text-muted">&copy; 2018    Lazztech.Cloud</span>
+            </footer>
+        </div>
+    </div>
+
+    <environment include="Development">
+        <!--Bootstrap 4 Section-->
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <!--End Of Bootstrap 4 Section-->
+        <!--Minton Theme Section-->
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- Plugins  -->
+        <script src="~/minton/assets/js/jquery.min.js"></script>
+        <script src="~/minton/assets/js/popper.min.js"></script>
+        <script src="~/minton/assets/js/bootstrap.min.js"></script>
+        <script src="~/minton/assets/js/detect.js"></script>
+        <script src="~/minton/assets/js/fastclick.js"></script>
+        <script src="~/minton/assets/js/jquery.slimscroll.js"></script>
+        <script src="~/minton/assets/js/jquery.blockUI.js"></script>
+        <script src="~/minton/assets/js/waves.js"></script>
+        <script src="~/minton/assets/js/wow.min.js"></script>
+        <script src="~/minton/assets/js/jquery.nicescroll.js"></script>
+        <script src="~/minton/assets/js/jquery.scrollTo.min.js"></script>
+        <script src="~/minton/plugins/switchery/switchery.min.js"></script>
+
+        <!-- Counter Up  -->
+        <script src="~/minton/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="~/minton/plugins/counterup/jquery.counterup.min.js"></script>
+
+        <!-- circliful Chart -->
+        <script src="~/minton/plugins/jquery-circliful/js/jquery.circliful.min.js"></script>
+        <script src="~/minton/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- skycons -->
+        <script src="~/minton/plugins/skyicons/skycons.min.js"></script>
+
+        <!-- Page js  -->
+        <script src="~/minton/assets/pages/jquery.dashboard.js"></script>
+
+        <!-- Custom main Js -->
+        <script src="~/minton/assets/js/jquery.core.js"></script>
+        <script src="~/minton/assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                $('.counter').counterUp({
+                    delay: 100,
+                    time: 1200
+                });
+                $('.circliful-chart').circliful();
+            });
+
+            // BEGIN SVG WEATHER ICON
+            if (typeof Skycons !== 'undefined') {
+                var icons = new Skycons(
+                    { "color": "#3bafda" },
+                    { "resizeClear": true }
+                ),
+                    list = [
+                        "clear-day", "clear-night", "partly-cloudy-day",
+                        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                        "fog"
+                    ],
+                    i;
+
+                for (i = list.length; i--;)
+                    icons.set(list[i], list[i]);
+                icons.play();
+            };
+
+        </script>
+        <!--End Of Minton-->
+
+    </environment>
+    <environment exclude="Development">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

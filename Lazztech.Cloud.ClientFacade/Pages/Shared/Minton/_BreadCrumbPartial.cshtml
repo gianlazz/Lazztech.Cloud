@@ -1,0 +1,20 @@
+﻿@{
+    var routes = Context.Request.Path.Value.Split('/', StringSplitOptions.RemoveEmptyEntries);
+}
+
+@if (Context.Request.Path != "/")
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+
+            @for (int i = 0; i < routes.Count() - 1; i++)
+            {
+                <li class="breadcrumb-item"><a href="/@String.Join('/', routes.Take(i + 1))">@routes[i]</a></li>
+            }
+
+            <li class="breadcrumb-item active" aria-current="page">@routes.Last()</li>
+        </ol>
+    </nav>
+    <br />
+}

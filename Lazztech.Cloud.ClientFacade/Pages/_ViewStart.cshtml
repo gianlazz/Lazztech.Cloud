@@ -1,14 +1,14 @@
 ﻿@{ 
     if (User.IsInRole("Admin"))
     {
-        Layout = "_Layout_Admin";
+        Layout = "Minton/_Layout_Admin";
     }
     else if (this.User.Identity.IsAuthenticated)
     {
-        Layout = "_Layout_Admin";
+        Layout = "Minton/_Layout_Admin";
     }
     else
     {
-        Layout = "_Layout";
+        Layout = "Minton/_Layout";
     }
 }
