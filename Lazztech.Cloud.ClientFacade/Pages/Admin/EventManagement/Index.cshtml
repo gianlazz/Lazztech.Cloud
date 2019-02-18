@@ -14,63 +14,39 @@
         <p>
             Count: @Model.OrganizationCount
         </p>
-        <a class="btn btn-dark" href="./Mentors" role="button">Manage Organizations</a>
+        <a class="btn btn-dark" asp-page="./Organizations/Index" role="button">Manage Organizations</a>
     </div>
     <div class="col">
         <h3>Events</h3>
         <p>
             Count: @Model.EventCount
         </p>
-        <a class="btn btn-dark" href="./Mentors" role="button">Manage Events</a>
+        <a class="btn btn-dark" asp-page="./Events/Index" role="button">Manage Events</a>
     </div>
     <div class="col">
         <h3>Mentors</h3>
         <p>
             Count: @Model.MentorCount
         </p>
-        <a class="btn btn-dark" href="./Mentors" role="button">Manage Mentors</a>
+        <a class="btn btn-dark" asp-page="./Mentors/Index" role="button">Manage Mentors</a>
     </div>
     <div class="col">
         <h3>Mentor Requests</h3>
         <p>
             Count: @Model.MentorRequestCount
         </p>
-        <a class="btn btn-dark" href="./MentorInvites" role="button">Mentor Invites</a>
+        <a class="btn btn-dark" asp-page="./MentorInvites/Index" role="button">Mentor Invites</a>
     </div>
     <div class="col">
         <h3>Mentor Invites</h3>
         <p>
             Count: @Model.MentorInviteCount
         </p>
-        <a class="btn btn-dark" href="./MentorInvites" role="button">Mentor Invites</a>
+        <a class="btn btn-dark" asp-page="./MentorInvites" role="button">Mentor Invites</a>
     </div>
 </div>
 <br />
 <hr>
-
-<h2>Events</h2>
-<br />
-<table class="table table-striped table-dark">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Location</th>
-            <th scope="col">Date</th>
-            <th scope="col">Manage</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Seatle Eastside</td>
-            <td>@DateTime.Now</td>
-            <td>
-                <a class="btn btn-dark" href="/Events/Admin" role="button">Admin</a>
-                <a class="btn btn-dark" href="/Events/Event" role="button">Go To Event</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
 
 <h2>10 Recent Sms Messages</h2>
 <br />
