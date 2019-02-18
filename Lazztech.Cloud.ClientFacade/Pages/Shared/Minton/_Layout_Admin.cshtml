@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Lazztech.Cloud.CloudWebApp</title>
 
-    <!-- <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment> -->
-
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        @*Bootstrap 4 theme*@
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <link rel="stylesheet" href="~/css/site.css" />*@
+
+        @*Minton theme*@
+        <link rel="stylesheet" href="~/minton/plugins/switchery/switchery.min.css" />
+        <link rel="stylesheet" href="~/minton/plugins/jquery-circliful/css/jquery.circliful.css" />
+
+        <link rel="stylesheet" href="~/minton/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/minton/assets/css/style_dark.css" />
+        <link rel="stylesheet" href="~/minton/assets/css/icons.css" />
+
+        <link rel="stylesheet" href="~/minton/assets/js/modernizr.min.js" />
+        @*Minton theme*@
+
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -28,102 +30,284 @@
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
 </head>
-<body>
-    <!-- <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-page="/Index" class="navbar-brand">Lazztech.Cloud.CloudWebApp</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
+<body class="fixed-left">
+
+    @*<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Lazztech Cloud</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Events/Event">Event</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://lazz.tech/">About Gian Lazzarini</a>
+                    </li>
                 </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>*@
+
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <div class="text-center">
+                    <a href="/" class="logo"><i class="mdi mdi-radar"></i> <span>Lazztech</span></a>
+                </div>
+            </div>
+
+            <!-- Button mobile view to collapse sidebar menu -->
+            <nav class="navbar-custom">
+
+                <partial name="Minton/_LoginPartial" />
+
+                <ul class="list-inline float-right mb-0">
+                    <li class="list-inline-item notification-list hide-phone">
+                        <a class="nav-link waves-light waves-effect" href="#" id="btn-fullscreen">
+                            <i class="mdi mdi-crop-free noti-icon"></i>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left waves-light waves-effect">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                    </li>
+                </ul>
+
+            </nav>
+
+        </div>
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== -->
+
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <!--- Divider -->
+                <div id="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+
+                        <li>
+                            <a href="/" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Dashboard </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/Event?eventId=1" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Event </span>
+                            </a>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Admin </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li><a href="/Admin">Admin Dashboard</a></li>
+                                <li><a href="/Admin/EventManagement">Events</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Vision </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li><a href="/Vision">Dashboard</a></li>
+                                <li><a href="/Vision/Processed">Processed</a></li>
+                                <li><a href="/Vision/Known">Known</a></li>
+                                <li><a href="/Vision/Scan">Scan</a></li>
+                                <li><a href="/Vision/Upload">Upload</a></li>
+                                <li><a href="/Vision/Settings">Settings</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="/Crawler" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Crawler </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Garden" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Garden </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Cogneat" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Cogneat </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Notifications" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> Notifications </span>
+                            </a>
+                        </li>
+
+                        <li class="menu-title">Extras</li>
+
+                        <li>
+                            <a href="https://lazz.tech/" class="waves-effect waves-primary">
+                                <i class="ti-home"></i><span> About Gian Lazzarini </span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
             </div>
         </div>
-    </nav> -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Lazztech Cloud</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- Left Sidebar End -->
+        @*<partial name="_CookieConsentPartial" />*@
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    @*<a class="nav-link" asp-controller="Home" asp-action="Index">Home<span class="sr-only">(current)</span></a>*@
-                    @*<a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>*@
-                    <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
-                </li>
-                @*<li class="nav-item">
-                        <a class="nav-link" href="/Vision">Vision</a>
-                    </li>*@
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/Vision" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Vision
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/Vision">Index</a>
-                        <a class="dropdown-item" href="/Vision/Processed">Processed</a>
-                        <a class="dropdown-item" href="/Vision/Known">Known</a>
-                        <a class="dropdown-item" href="/Vision/Scan">Scan</a>
-                        <a class="dropdown-item" href="/Vision/Upload">Upload</a>
-                        <a class="dropdown-item" href="/Vision/Settings">Settings</a>
+        @*<div class="container body-content">*@
+        <div>
+
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container-fluid">
+
+                        @{
+                            var routes = Context.Request.Path.Value.Split('/');
+                        }
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title">Welcome !</h4>
+                                    <ol class="breadcrumb float-right">
+                                        @if (Context.Request.Path != "/")
+                                        {
+                                            @for (int i = 0; i < routes.Count(); i++)
+                                            {
+                                                @if (i == 0)
+                                                {
+                                                    <li class="breadcrumb-item"><a href="/">Lazztech</a></li>
+                                                }
+                                                else if (routes[i] != routes.Last())
+                                                {
+                                                    <li class="breadcrumb-item"><a href="/@routes[i]">@routes[i]</a></li>
+                                                }
+                                                else if (routes[i] == routes.Last())
+                                                {
+                                                    <li class="breadcrumb-item active" aria-current="page">@routes[i]</li>
+                                                }
+                                            }
+                                        }
+                                    </ol>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @RenderBody()
+
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Events">Events</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Crawler">Crawler</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Garden">Garden</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Cogneat">Cogneat</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Notifications">Notifications</a>
-                </li>
-                @*<a class="nav-link dropdown-toggle" href="/Notifications" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Notifications
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/Notifications">Index</a>
-                    </div>*@
-            </ul>
-            @*<form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>*@
-            <partial name="_LoginPartial" />
+                    <!-- end content -->
+                </div>
+            </div>
+
+
+            <footer class="footer">
+                <span class="text-muted">&copy; 2018    Lazztech.Cloud</span>
+            </footer>
         </div>
-    </nav>
-
-    @*<partial name="_CookieConsentPartial" />*@
-
-    <div class="container body-content">
-        <partial name="_BreadCrumbPartial" />
-        @RenderBody()
     </div>
 
-    <footer class="footer container-fluid">
-        <span class="text-muted">&copy; 2018 - Lazztech.Cloud</span>
-    </footer>
-
     <environment include="Development">
+        <!--Bootstrap 4 Section-->
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <!--End Of Bootstrap 4 Section-->
+        <!--Minton Theme Section-->
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- Plugins  -->
+        <script src="~/minton/assets/js/jquery.min.js"></script>
+        <script src="~/minton/assets/js/popper.min.js"></script>
+        <script src="~/minton/assets/js/bootstrap.min.js"></script>
+        <script src="~/minton/assets/js/detect.js"></script>
+        <script src="~/minton/assets/js/fastclick.js"></script>
+        <script src="~/minton/assets/js/jquery.slimscroll.js"></script>
+        <script src="~/minton/assets/js/jquery.blockUI.js"></script>
+        <script src="~/minton/assets/js/waves.js"></script>
+        <script src="~/minton/assets/js/wow.min.js"></script>
+        <script src="~/minton/assets/js/jquery.nicescroll.js"></script>
+        <script src="~/minton/assets/js/jquery.scrollTo.min.js"></script>
+        <script src="~/minton/plugins/switchery/switchery.min.js"></script>
+
+        <!-- Counter Up  -->
+        <script src="~/minton/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="~/minton/plugins/counterup/jquery.counterup.min.js"></script>
+
+        <!-- circliful Chart -->
+        <script src="~/minton/plugins/jquery-circliful/js/jquery.circliful.min.js"></script>
+        <script src="~/minton/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- skycons -->
+        <script src="~/minton/plugins/skyicons/skycons.min.js"></script>
+
+        <!-- Page js  -->
+        <script src="~/minton/assets/pages/jquery.dashboard.js"></script>
+
+        <!-- Custom main Js -->
+        <script src="~/minton/assets/js/jquery.core.js"></script>
+        <script src="~/minton/assets/js/jquery.app.js"></script>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                $('.counter').counterUp({
+                    delay: 100,
+                    time: 1200
+                });
+                $('.circliful-chart').circliful();
+            });
+
+            // BEGIN SVG WEATHER ICON
+            if (typeof Skycons !== 'undefined') {
+                var icons = new Skycons(
+                    { "color": "#3bafda" },
+                    { "resizeClear": true }
+                ),
+                    list = [
+                        "clear-day", "clear-night", "partly-cloudy-day",
+                        "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                        "fog"
+                    ],
+                    i;
+
+                for (i = list.length; i--;)
+                    icons.set(list[i], list[i]);
+                icons.play();
+            };
+
+        </script>
+        <!--End Of Minton-->
+
     </environment>
     <environment exclude="Development">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

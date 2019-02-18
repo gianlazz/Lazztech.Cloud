@@ -25,17 +25,26 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="list-inline float-right mb-0">
+        <ul class="list-inline float-right mb-0">
+
             <li class="list-inline-item">
-                <a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <input type="submit" value="Logout" class="btn btn-link nav-link nav-user" />
             </li>
-            <li class="list-inline-item">
-                <button type="submit" class="btn btn-outline-secondary waves-effect waves-light">Logout</button>
-            </li>
+        </ul>
     </form>
+
+    <ul class="list-inline float-right mb-0">
+        <li class="list-inline-item">
+            <a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        </li>
+    </ul>
 }
 else
 {
-    <li class="list-inline-item"><a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-    <li class="list-inline-item"><a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+    <ul class="list-inline float-right mb-0">
+        <li class="list-inline-item"><a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+        <li class="list-inline-item"><a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+    </ul>
+
 }
