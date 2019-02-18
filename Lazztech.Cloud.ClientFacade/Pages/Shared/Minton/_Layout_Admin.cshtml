@@ -8,7 +8,7 @@
     <environment include="Development">
         @*Bootstrap 4 theme*@
         @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />*@
+            <link rel="stylesheet" href="~/css/site.css" />*@
 
         @*Minton theme*@
         <link rel="stylesheet" href="~/minton/plugins/switchery/switchery.min.css" />
@@ -158,55 +158,19 @@
 
         @*<div class="container body-content">*@
         <div>
-
             <!-- Start right Content here -->
             <!-- ============================================================== -->
             <div class="content-page">
                 <!-- Start content -->
                 <div class="content">
                     <div class="container-fluid">
-
-                        @{
-                            var routes = Context.Request.Path.Value.Split('/');
-                        }
-
-                        <!-- Page-Title -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="page-title-box">
-                                    <h4 class="page-title">Welcome !</h4>
-                                    <ol class="breadcrumb float-right">
-                                        @if (Context.Request.Path != "/")
-                                        {
-                                            @for (int i = 0; i < routes.Count(); i++)
-                                            {
-                                                @if (i == 0)
-                                                {
-                                                    <li class="breadcrumb-item"><a href="/">Lazztech</a></li>
-                                                }
-                                                else if (routes[i] != routes.Last())
-                                                {
-                                                    <li class="breadcrumb-item"><a href="/@routes[i]">@routes[i]</a></li>
-                                                }
-                                                else if (routes[i] == routes.Last())
-                                                {
-                                                    <li class="breadcrumb-item active" aria-current="page">@routes[i]</li>
-                                                }
-                                            }
-                                        }
-                                    </ol>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-
+                        <partial name="_BreadCrumbPartial" />
                         @RenderBody()
 
                     </div>
                     <!-- end content -->
                 </div>
             </div>
-
 
             <footer class="footer">
                 <span class="text-muted">&copy; 2018    Lazztech.Cloud</span>
@@ -217,10 +181,9 @@
     <environment include="Development">
         <!--Bootstrap 4 Section-->
         @*<script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
         <script src="~/js/site.js" asp-append-version="true"></script>
         <!--End Of Bootstrap 4 Section-->
-
         <!--Minton Theme Section-->
         <script>
             var resizefunc = [];

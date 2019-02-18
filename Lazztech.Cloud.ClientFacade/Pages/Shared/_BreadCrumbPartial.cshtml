@@ -4,17 +4,22 @@
 
 @if (Context.Request.Path != "/")
 {
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Welcome !</h4>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item"><a href="/">Lazztech</a></li>
 
-            @for (int i = 0; i < routes.Count() - 1; i++)
-            {
-                <li class="breadcrumb-item"><a href="/@String.Join('/', routes.Take(i + 1))">@routes[i]</a></li>
-            }
+                    @for (int i = 0; i < routes.Count() - 1; i++)
+                    {
+                        <li class="breadcrumb-item"><a href="/@String.Join('/', routes.Take(i + 1))">@routes[i]</a></li>
+                    }
 
-            <li class="breadcrumb-item active" aria-current="page">@routes.Last()</li>
-        </ol>
-    </nav>
-    <br />
+                    <li class="breadcrumb-item active" aria-current="page">@routes.Last()</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
 }
