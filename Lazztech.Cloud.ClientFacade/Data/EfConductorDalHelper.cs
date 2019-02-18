@@ -1,6 +1,7 @@
 ﻿using Lazztech.Events.Dal;
 using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Lazztech.Cloud.ClientFacade.Data
             var requestEntity = request.MapToEntity();
             _context.MentorRequests.Add(requestEntity);
             _context.SaveChanges();
+            _context.Entry(requestEntity).State = EntityState.Detached;
             request.Id = requestEntity.MentorRequestId;
         }
 
@@ -30,19 +32,20 @@ namespace Lazztech.Cloud.ClientFacade.Data
             var smsEntity = inboundSms.MapToEntity();
             _context.SmsMessages.Add(smsEntity);
             _context.SaveChanges();
+            _context.Entry(smsEntity).State = EntityState.Detached;
             inboundSms.Id = smsEntity.SmsId;
         }
 
         public Mentor FindMentor(int Id)
         {
-            var entity = _context.Mentors.FirstOrDefault(x => x.MentorId == Id);
+            var entity = _context.Mentors.AsNoTracking().FirstOrDefault(x => x.MentorId == Id);
             var dto = entity.MapToDto();
             return dto;
         }
 
         public Mentor FindMentorByPhoneNumber(string phoneNumber)
         {
-            var entity = _context.Mentors.FirstOrDefault(x => x.PhoneNumber.Contains(phoneNumber.TrimStart("+1".ToCharArray())));
+            var entity = _context.Mentors.AsNoTracking().FirstOrDefault(x => x.PhoneNumber.Contains(phoneNumber.TrimStart("+1".ToCharArray())));
             var dto = entity.MapToDto();
             return dto;
         }
@@ -52,6 +55,7 @@ namespace Lazztech.Cloud.ClientFacade.Data
             var entity = mentor.MapToEntity();
             _context.Attach(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
+            _context.Entry(entity).State = EntityState.Detached;
         }
 
         public void UpdateMentoRequestDb(MentorRequest request)
@@ -59,13 +63,16 @@ namespace Lazztech.Cloud.ClientFacade.Data
             var entity = request.MapToEntity();
             _context.Attach(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
+            _context.Entry(entity).State = EntityState.Detached;
         }
 
         public void UpdateSmsDb(SmsDto inboundSms)
         {
             var entity = inboundSms.MapToEntity();
             _context.Attach(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Update(entity);
             _context.SaveChanges();
+            _context.Entry(entity).State = EntityState.Detached;
         }
     }
 }

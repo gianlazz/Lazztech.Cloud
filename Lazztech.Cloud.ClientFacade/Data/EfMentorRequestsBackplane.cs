@@ -23,12 +23,13 @@ namespace Lazztech.Cloud.ClientFacade.Data
             var entity = mentorRequest.MapToEntity();
             _context.Add(entity);
             _context.SaveChanges();
+            _context.Entry(entity).State = EntityState.Detached;
             mentorRequest.Id = entity.MentorId;
         }
 
         public bool ContainsOutstandingRequestForMentor(int mentorId)
         {
-            return _context.MentorRequests
+            return _context.MentorRequests.AsNoTracking()
                 .Any(x => x.MentorId == mentorId
                 &&
                 x.IsStillActive == true);
@@ -37,11 +38,12 @@ namespace Lazztech.Cloud.ClientFacade.Data
         public MentorRequest FindResponseRequest(SmsDto inboundSms)
         {
             var matchingRequestEntity = _context.MentorRequests
+                .AsNoTracking()
                 .Include(x => x.Mentor)
                 .FirstOrDefault(x => x.DateTimeWhenProcessed == null
                 &&
                 x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber);
-
+            _context.Entry(matchingRequestEntity).State = EntityState.Detached;
             var dto = matchingRequestEntity.MapToDto();
             return dto;
         }
@@ -51,6 +53,7 @@ namespace Lazztech.Cloud.ClientFacade.Data
             var entity = _context.MentorRequests.FirstOrDefault(x => x.MentorId == request.Id);
             entity.IsStillActive = false;
             _context.SaveChanges();
+            _context.Entry(entity).State = EntityState.Detached;
         }
 
         public void RemoveActiveRequestByMentorId(int mentorId)
@@ -59,6 +62,7 @@ namespace Lazztech.Cloud.ClientFacade.Data
             x.IsStillActive && x.MentorId == mentorId);
             entity.IsStillActive = false;
             _context.SaveChanges();
+            _context.Entry(entity).State = EntityState.Detached;
         }
     }
 }
