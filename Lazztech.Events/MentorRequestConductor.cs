@@ -9,25 +9,25 @@ namespace Lazztech.Events.Domain
 {
     public class MentorRequestConductor : IMentorRequestConductor
     {
-        public Dictionary<string, MentorRequest> Requests { get; private set; }
-
         private readonly IConductorDalHelper _db;
         private readonly ISmsService _sms;
         private readonly IRequestNotifier _Notifier;
+        private readonly IMentorRequestsBackplane _requestsBackplane;
 
-        public MentorRequestConductor(IConductorDalHelper dalHelper, ISmsService sms, IRequestNotifier requestResponder)
+        public MentorRequestConductor(IConductorDalHelper dalHelper, ISmsService sms, IRequestNotifier requestResponder, IMentorRequestsBackplane requestsBackplane)
         {
             _db = dalHelper;
             _sms = sms;
             _Notifier = requestResponder;
-            Requests = new Dictionary<string, MentorRequest>();
+            _requestsBackplane = requestsBackplane;
+            //Requests = new Dictionary<string, MentorRequest>();
         }
 
         public bool TryAddRequest(MentorRequest request)
         {
             var requestedMentorId = request.Mentor.PhoneNumber;
             var mentorFromDb = _db.FindMentor(request.Mentor.Id);
-            if (Requests.ContainsKey(requestedMentorId))
+            if (_requestsBackplane.ContainsOutstandingRequestForMentor(requestedMentorId))
                 return false;
             else if (!mentorFromDb.IsAvailable || !mentorFromDb.IsPresent)
             {
@@ -35,7 +35,7 @@ namespace Lazztech.Events.Domain
             }
             else
             {
-                Requests.Add(requestedMentorId, request);
+                _requestsBackplane.AddMentorRequest(request);
                 _db.AddMenorRequestDb(request);
                 StartRequestTimeOutAsync(request);
                 return true;
@@ -92,13 +92,15 @@ namespace Lazztech.Events.Domain
 
         private MentorRequest FindResponseRequest(SmsDto inboundSms)
         {
-            var MatchingRequests = Requests.Values.Where(x => x.DateTimeWhenProcessed == null
-                &&
-                x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber).ToList();
+            return _requestsBackplane.FindResponseRequest(inboundSms);
 
-            if (MatchingRequests.Count() > 1) { throw new Exception(); }
+            //var MatchingRequests = Requests.Values.Where(x => x.DateTimeWhenProcessed == null
+            //    &&
+            //    x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber).ToList();
 
-            return MatchingRequests.FirstOrDefault();
+            //if (MatchingRequests.Count() > 1) { throw new Exception(); }
+
+            //return MatchingRequests.FirstOrDefault();
         }
 
         private async Task StartRequestTimeOutAsync(MentorRequest request)
