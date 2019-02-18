@@ -120,33 +120,6 @@
             }
         }*@
 
-    <div class="modal fade" id="TeamLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-center" role="document">
-            <form asp-controller="Home" asp-action="TeamLogin" method="post">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Enter your supplied team pin to enable real time updates and continue</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            @Html.TextBox("teamPin", null, htmlAttributes: new { @class = "form-control", @placeholder = "Enter Team Pin", @type = "number" })
-                            <br />
-                            <small id="emailHelp" class="form-text text-muted">Doing so will allow you to see your respective teams real time updates. You will however still have to re-enter your pin upon requests.</small>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit">Submit</button>
-                        <script type="text/javascript">
-                            $('#teamPin').keypress(function () {
-                                if (this.value.length >= 4) // allowing you to enter only 4 chars.
-                                    return false;
-                            });</script>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
     @*@section Scripts {
             @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
         }*@
