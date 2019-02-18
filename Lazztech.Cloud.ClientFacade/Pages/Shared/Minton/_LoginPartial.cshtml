@@ -2,32 +2,11 @@
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@*@if (SignInManager.IsSignedIn(User))
-    {
-        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-                </li>
-                <li class="nav-item">
-                    <button type="submit" class="btn btn-outline-secondary">Logout</button>
-                </li>
-            </ul>
-        </form>
-    }
-    else
-    {
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-            <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-        </ul>
-    }*@
 
 @if (SignInManager.IsSignedIn(User))
 {
     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="list-inline float-right mb-0">
         <ul class="list-inline float-right mb-0">
-
             <li class="list-inline-item">
                 <input type="submit" value="Logout" class="btn btn-link nav-link nav-user" />
             </li>
