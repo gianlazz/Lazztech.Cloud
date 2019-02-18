@@ -17,18 +17,20 @@ namespace Lazztech.Cloud.ClientFacade.Data
             _context = applicationDbContext;
         }
 
-        public void AddMenorRequestDb(MentorRequest request)
+        public void AddMenorRequestDb(ref MentorRequest request)
         {
             var requestEntity = request.MapToEntity();
             _context.MentorRequests.Add(requestEntity);
             _context.SaveChanges();
+            request.Id = requestEntity.MentorRequestId;
         }
 
-        public void AddSmsDb(SmsDto inboundSms)
+        public void AddSmsDb(ref SmsDto inboundSms)
         {
             var smsEntity = inboundSms.MapToEntity();
             _context.SmsMessages.Add(smsEntity);
             _context.SaveChanges();
+            inboundSms.Id = smsEntity.SmsId;
         }
 
         public Mentor FindMentor(int Id)

@@ -35,7 +35,7 @@ namespace Lazztech.Events.Domain
             }
             else
             {
-                _requestsBackplane.AddMentorRequest(request);
+                _requestsBackplane.AddMentorRequest(ref request);
                 StartRequestTimeOutAsync(request);
                 return true;
             }
@@ -43,7 +43,7 @@ namespace Lazztech.Events.Domain
 
         public MentorRequest ProcessResponse(SmsDto inboundSms)
         {
-            _db.AddSmsDb(inboundSms);
+            _db.AddSmsDb(ref inboundSms);
             
             var matchingRequest = FindResponseRequest(inboundSms);
             var mentorFromDb = _db.FindMentorByPhoneNumber(inboundSms.FromPhoneNumber);

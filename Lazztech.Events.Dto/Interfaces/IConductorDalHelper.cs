@@ -7,8 +7,8 @@ namespace Lazztech.Events.Dto.Interfaces
 {
     public interface IConductorDalHelper
     {
-        void AddMenorRequestDb(MentorRequest request);
-        void AddSmsDb(SmsDto inboundSms);
+        void AddMenorRequestDb(ref MentorRequest request);
+        void AddSmsDb(ref SmsDto inboundSms);
         void UpdateMentoRequestDb(MentorRequest request);
         void UpdateMentorDb(Mentor mentor);
         void UpdateSmsDb(SmsDto inboundSms);
