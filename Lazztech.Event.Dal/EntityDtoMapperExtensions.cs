@@ -16,6 +16,7 @@ namespace Lazztech.Events.Dal
                 var request = new Dao.MentorRequest()
                 {
                     MentorRequestId = dto.Id,
+                    IsStillActive = dto.IsStillActive,
                     DateTimeOfRequest = dto.DateTimeOfRequest,
                     MentorId = dto.Mentor.Id,
                     Mentor = dto.Mentor.MapToEntity(),
@@ -41,6 +42,7 @@ namespace Lazztech.Events.Dal
                 var request = new Dto.Models.MentorRequest()
                 {
                     Id = entity.MentorRequestId,
+                    IsStillActive = entity.IsStillActive,
                     DateTimeOfRequest = entity.DateTimeOfRequest,
                     Mentor = entity.Mentor.MapToDto(),
                     UniqueRequesteeId = entity.UniqueRequesteeId,

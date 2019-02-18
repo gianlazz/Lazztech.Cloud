@@ -9,6 +9,7 @@ namespace Lazztech.Events.Dal.Dao
     {
         [Display(Name = "Mentor Request")]
         public int MentorRequestId { get; set; }
+        public bool IsStillActive { get; set; }
         public DateTime DateTimeOfRequest { get; set; }
 
         public int MentorId { get; set; }
@@ -25,6 +26,7 @@ namespace Lazztech.Events.Dal.Dao
 
         public MentorRequest()
         {
+            IsStillActive = true;
             DateTimeOfRequest = DateTime.Now;
 
             MentoringDuration = new TimeSpan(hours: 0, minutes: 12, seconds: 0);

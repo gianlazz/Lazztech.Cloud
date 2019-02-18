@@ -5,6 +5,7 @@ namespace Lazztech.Events.Dto.Models
     public class MentorRequest
     {
         public int Id { get; set; }
+        public bool IsStillActive { get; set; }
         public DateTime DateTimeOfRequest { get; set; }
         public Mentor Mentor { get; set; }
         public string UniqueRequesteeId { get; set; }
@@ -18,6 +19,7 @@ namespace Lazztech.Events.Dto.Models
 
         public MentorRequest()
         {
+            IsStillActive = true;
             DateTimeOfRequest = DateTime.Now;
             MentoringDuration = new TimeSpan(hours: 0, minutes: 12, seconds: 0);
             RequestTimeout = new TimeSpan(hours: 0, minutes: 5, seconds: 0);

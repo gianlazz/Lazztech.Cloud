@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Lazztech.Cloud.ClientFacade.Data
 {
-    public class MentorRequestsBackplane : IMentorRequestsBackplane
+    public class EfMentorRequestsBackplane : IMentorRequestsBackplane
     {
         private readonly ApplicationDbContext _context;
 
-        public MentorRequestsBackplane(ApplicationDbContext applicationDbContext)
+        public EfMentorRequestsBackplane(ApplicationDbContext applicationDbContext)
         {
             _context = applicationDbContext;
         }
