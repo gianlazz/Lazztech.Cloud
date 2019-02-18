@@ -111,7 +111,7 @@ namespace Lazztech.Events.Domain
                 request.TimedOut = true;
                 request.DateTimeWhenProcessed = DateTime.Now;
                 _db.UpdateMentoRequestDb(request);
-                //Requests.Remove(request.Mentor.PhoneNumber);
+                Requests.Remove(request.Mentor.PhoneNumber);
                 NotifyMentorOfRequestTimeout(request.Mentor);
             }
         }
@@ -121,13 +121,13 @@ namespace Lazztech.Events.Domain
             if (request.MentoringDuration != null)
             {
                 await Task.Delay(request.MentoringDuration);
-                //if (Requests.ContainsKey(request.Mentor.PhoneNumber))
-                //{
-                //    var mentor = request.Mentor;
-                //    mentor.IsAvailable = true;
-                //    _db.UpdateMentorDb(mentor);
-                //    NotifyResponseTimeUp(request);
-                //}
+                if (Requests.ContainsKey(request.Mentor.PhoneNumber))
+                {
+                    var mentor = request.Mentor;
+                    mentor.IsAvailable = true;
+                    _db.UpdateMentorDb(mentor);
+                    NotifyResponseTimeUp(request);
+                }
             }
         }
 
@@ -192,8 +192,8 @@ namespace Lazztech.Events.Domain
 
         private void HandleAvailableResponse(Mentor mentor, SmsDto inboundSms)
         {
-            //if (Requests.ContainsKey(mentor.PhoneNumber))
-            //    Requests.Remove(mentor.PhoneNumber);
+            if (Requests.ContainsKey(mentor.PhoneNumber))
+                Requests.Remove(mentor.PhoneNumber);
             mentor.IsAvailable = true;
             _db.UpdateMentorDb(mentor);
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
