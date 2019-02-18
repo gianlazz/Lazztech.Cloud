@@ -1,0 +1,81 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.MentorRequests.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>MentorRequest</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MentorRequest.MentorRequestId" />
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="MentorRequest.IsStillActive" /> @Html.DisplayNameFor(model => model.MentorRequest.IsStillActive)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="MentorRequest.DateTimeOfRequest" class="control-label"></label>
+                <input asp-for="MentorRequest.DateTimeOfRequest" class="form-control" />
+                <span asp-validation-for="MentorRequest.DateTimeOfRequest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MentorRequest.MentorId" class="control-label"></label>
+                <select asp-for="MentorRequest.MentorId" class="form-control" asp-items="ViewBag.MentorId"></select>
+                <span asp-validation-for="MentorRequest.MentorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MentorRequest.UniqueRequesteeId" class="control-label"></label>
+                <input asp-for="MentorRequest.UniqueRequesteeId" class="form-control" />
+                <span asp-validation-for="MentorRequest.UniqueRequesteeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="custom-checkbox">
+                    <label>
+                        <input asp-for="MentorRequest.RequestAccepted" /> @Html.DisplayNameFor(model => model.MentorRequest.RequestAccepted)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="MentorRequest.DateTimeWhenProcessed" class="control-label"></label>
+                <input asp-for="MentorRequest.DateTimeWhenProcessed" class="form-control" />
+                <span asp-validation-for="MentorRequest.DateTimeWhenProcessed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MentorRequest.MentoringDuration" class="control-label"></label>
+                <input asp-for="MentorRequest.MentoringDuration" class="form-control" />
+                <span asp-validation-for="MentorRequest.MentoringDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MentorRequest.RequestTimeout" class="control-label"></label>
+                <input asp-for="MentorRequest.RequestTimeout" class="form-control" />
+                <span asp-validation-for="MentorRequest.RequestTimeout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="MentorRequest.TimedOut" /> @Html.DisplayNameFor(model => model.MentorRequest.TimedOut)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

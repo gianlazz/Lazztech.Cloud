@@ -1,0 +1,84 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement.MentorRequests.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MentorRequest[0].IsStillActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MentorRequest[0].DateTimeOfRequest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MentorRequest[0].Mentor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MentorRequest[0].UniqueRequesteeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MentorRequest[0].RequestAccepted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MentorRequest[0].DateTimeWhenProcessed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MentorRequest[0].MentoringDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MentorRequest[0].RequestTimeout)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MentorRequest[0].TimedOut)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.MentorRequest) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsStillActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeOfRequest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mentor.MentorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UniqueRequesteeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestAccepted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeWhenProcessed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MentoringDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestTimeout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimedOut)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.MentorRequestId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.MentorRequestId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.MentorRequestId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
