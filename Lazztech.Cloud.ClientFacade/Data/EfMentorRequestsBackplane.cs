@@ -24,12 +24,12 @@ namespace Lazztech.Cloud.ClientFacade.Data
             _context.SaveChanges();
         }
 
-        public bool ContainsOutstandingRequestForMentor(string phoneNumber)
+        public bool ContainsOutstandingRequestForMentor(int mentorId)
         {
             return _context.MentorRequests
-                .Any(x => x.Mentor.PhoneNumber
-                .TrimStart("+1".ToArray())
-                .Contains(phoneNumber.TrimStart("+1".ToArray())));
+                .Any(x => x.MentorId == mentorId
+                &&
+                x.IsStillActive == true);
         }
 
         public MentorRequest FindResponseRequest(SmsDto inboundSms)
@@ -41,6 +41,21 @@ namespace Lazztech.Cloud.ClientFacade.Data
 
             var dto = matchingRequestEntity.MapToDto();
             return dto;
+        }
+
+        public void RemoveActiveRequest(MentorRequest request)
+        {
+            var entity = _context.MentorRequests.FirstOrDefault(x => x.MentorId == request.Id);
+            entity.IsStillActive = false;
+            _context.SaveChanges();
+        }
+
+        public void RemoveActiveRequestByMentorId(int mentorId)
+        {
+            var entity = _context.MentorRequests.FirstOrDefault(x =>
+            x.IsStillActive && x.MentorId == mentorId);
+            entity.IsStillActive = false;
+            _context.SaveChanges();
         }
     }
 }

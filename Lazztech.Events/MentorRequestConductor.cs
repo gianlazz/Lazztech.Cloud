@@ -25,7 +25,7 @@ namespace Lazztech.Events.Domain
 
         public bool TryAddRequest(MentorRequest request)
         {
-            var requestedMentorId = request.Mentor.PhoneNumber;
+            var requestedMentorId = request.Mentor.Id;
             var mentorFromDb = _db.FindMentor(request.Mentor.Id);
             if (_requestsBackplane.ContainsOutstandingRequestForMentor(requestedMentorId))
                 return false;
@@ -36,7 +36,6 @@ namespace Lazztech.Events.Domain
             else
             {
                 _requestsBackplane.AddMentorRequest(request);
-                _db.AddMenorRequestDb(request);
                 StartRequestTimeOutAsync(request);
                 return true;
             }
@@ -93,14 +92,6 @@ namespace Lazztech.Events.Domain
         private MentorRequest FindResponseRequest(SmsDto inboundSms)
         {
             return _requestsBackplane.FindResponseRequest(inboundSms);
-
-            //var MatchingRequests = Requests.Values.Where(x => x.DateTimeWhenProcessed == null
-            //    &&
-            //    x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber).ToList();
-
-            //if (MatchingRequests.Count() > 1) { throw new Exception(); }
-
-            //return MatchingRequests.FirstOrDefault();
         }
 
         private async Task StartRequestTimeOutAsync(MentorRequest request)
@@ -111,7 +102,7 @@ namespace Lazztech.Events.Domain
                 request.TimedOut = true;
                 request.DateTimeWhenProcessed = DateTime.Now;
                 _db.UpdateMentoRequestDb(request);
-                Requests.Remove(request.Mentor.PhoneNumber);
+                _requestsBackplane.RemoveActiveRequest(request);
                 NotifyMentorOfRequestTimeout(request.Mentor);
             }
         }
@@ -121,7 +112,7 @@ namespace Lazztech.Events.Domain
             if (request.MentoringDuration != null)
             {
                 await Task.Delay(request.MentoringDuration);
-                if (Requests.ContainsKey(request.Mentor.PhoneNumber))
+                if (_requestsBackplane.ContainsOutstandingRequestForMentor(request.Mentor.Id))
                 {
                     var mentor = request.Mentor;
                     mentor.IsAvailable = true;
@@ -192,8 +183,8 @@ namespace Lazztech.Events.Domain
 
         private void HandleAvailableResponse(Mentor mentor, SmsDto inboundSms)
         {
-            if (Requests.ContainsKey(mentor.PhoneNumber))
-                Requests.Remove(mentor.PhoneNumber);
+            if (_requestsBackplane.ContainsOutstandingRequestForMentor(mentor.Id))
+                _requestsBackplane.RemoveActiveRequestByMentorId(mentor.Id);
             mentor.IsAvailable = true;
             _db.UpdateMentorDb(mentor);
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
