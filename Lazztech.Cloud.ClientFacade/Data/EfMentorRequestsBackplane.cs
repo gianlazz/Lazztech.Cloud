@@ -41,6 +41,7 @@ namespace Lazztech.Cloud.ClientFacade.Data
                 .AsNoTracking()
                 .Include(x => x.Mentor)
                 .ThenInclude(x => x.Event)
+                .ThenInclude(x => x.Organization)
                 .FirstOrDefault(x => x.DateTimeWhenProcessed == null
                 &&
                 x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber);
@@ -59,8 +60,8 @@ namespace Lazztech.Cloud.ClientFacade.Data
 
         public void RemoveActiveRequestByMentorId(int mentorId)
         {
-            var entity = _context.MentorRequests.FirstOrDefault(x =>
-            x.IsStillActive && x.MentorId == mentorId);
+            var entity = _context.MentorRequests
+                .FirstOrDefault(x => x.IsStillActive && x.MentorId == mentorId);
             entity.IsStillActive = false;
             _context.SaveChanges();
             _context.Entry(entity).State = EntityState.Detached;

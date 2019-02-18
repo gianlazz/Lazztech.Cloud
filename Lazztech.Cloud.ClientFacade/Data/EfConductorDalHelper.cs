@@ -50,6 +50,7 @@ namespace Lazztech.Cloud.ClientFacade.Data
         {
             var entity = _context.Mentors
                 .Include(x => x.Event)
+                .ThenInclude(x => x.Organization)
                 .AsNoTracking()
                 .FirstOrDefault(x => x.PhoneNumber.Contains(phoneNumber.TrimStart("+1".ToCharArray())));
             var dto = entity.MapToDto();
@@ -60,16 +61,30 @@ namespace Lazztech.Cloud.ClientFacade.Data
         {
             var entity = mentor.MapToEntity();
             _context.Attach(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Attach(entity.Event).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Attach(entity.Event.Organization).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
             _context.Entry(entity).State = EntityState.Detached;
+            _context.Entry(entity.Event).State = EntityState.Detached;
+            _context.Entry(entity.Event.Organization).State = EntityState.Detached;
         }
 
         public void UpdateMentoRequestDb(MentorRequest request)
         {
             var entity = request.MapToEntity();
             _context.Attach(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Attach(entity.Mentor).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Attach(entity.Mentor.Event).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Attach(entity.Mentor.Event.Organization).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Attach(entity.OutboundSms).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _context.Attach(entity.InboundSms).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
             _context.Entry(entity).State = EntityState.Detached;
+            _context.Entry(entity.Mentor).State = EntityState.Detached;
+            _context.Entry(entity.Mentor.Event).State = EntityState.Detached;
+            _context.Entry(entity.Mentor.Event.Organization).State = EntityState.Detached;
+            _context.Entry(entity.OutboundSms).State = EntityState.Detached;
+            _context.Entry(entity.InboundSms).State = EntityState.Detached;
         }
 
         public void UpdateSmsDb(SmsDto inboundSms)
