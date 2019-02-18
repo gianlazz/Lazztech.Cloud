@@ -40,6 +40,7 @@ namespace Lazztech.Cloud.ClientFacade.Data
             var matchingRequestEntity = _context.MentorRequests
                 .AsNoTracking()
                 .Include(x => x.Mentor)
+                .ThenInclude(x => x.Event)
                 .FirstOrDefault(x => x.DateTimeWhenProcessed == null
                 &&
                 x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber);

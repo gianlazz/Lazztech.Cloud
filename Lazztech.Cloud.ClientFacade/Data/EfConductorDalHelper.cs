@@ -38,14 +38,20 @@ namespace Lazztech.Cloud.ClientFacade.Data
 
         public Mentor FindMentor(int Id)
         {
-            var entity = _context.Mentors.AsNoTracking().FirstOrDefault(x => x.MentorId == Id);
+            var entity = _context.Mentors
+                .Include(x => x.Event)
+                .AsNoTracking()
+                .FirstOrDefault(x => x.MentorId == Id);
             var dto = entity.MapToDto();
             return dto;
         }
 
         public Mentor FindMentorByPhoneNumber(string phoneNumber)
         {
-            var entity = _context.Mentors.AsNoTracking().FirstOrDefault(x => x.PhoneNumber.Contains(phoneNumber.TrimStart("+1".ToCharArray())));
+            var entity = _context.Mentors
+                .Include(x => x.Event)
+                .AsNoTracking()
+                .FirstOrDefault(x => x.PhoneNumber.Contains(phoneNumber.TrimStart("+1".ToCharArray())));
             var dto = entity.MapToDto();
             return dto;
         }
