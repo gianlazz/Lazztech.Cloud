@@ -84,9 +84,11 @@
 </script>
 
 <script>
-    completed = function (xhr) {
-        confetti()
-    };
+    function closeModal(id) {
+        $('#' + id).modal('toggle'); //or 
+        $('#' + id).modal('hide');
+        confetti();
+    }
 </script>
 
 <!-- MODALS -->
@@ -101,7 +103,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form asp-action="Post" asp-controller="MentorRequest" method="POST" data-ajax="true" >
+                <form asp-action="Post" asp-controller="MentorRequest" method="POST" data-ajax="true">
                     <div class="modal-body">
                         <div class="form-group">
                             @Html.Hidden("uniqueRequesteeId", Model.UniqueRequesteeId)
@@ -115,10 +117,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit">Submit</button>
+                        <button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit" data-dismiss="modal" onclick="confetti()">Submit</button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
