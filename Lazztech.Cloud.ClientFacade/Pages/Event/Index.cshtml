@@ -66,10 +66,10 @@
 </div>
 
 <script>
-    function ajax(){
+    function ajax() {
         $.ajax({
             type: "POST",
-            url: "/api/Event/MentorRequest",
+            url: "/api/Event/MentorRequest?uniqueRequesteeId=1&teamName=2&teamLocation=3&mentorId=4",
             data: null,
             contentType:  'application/json; charset=utf-8',
             error: function (response) {

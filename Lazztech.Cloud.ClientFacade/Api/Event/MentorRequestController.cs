@@ -36,7 +36,7 @@ namespace Lazztech.Cloud.ClientFacade.Controllers.Event
 
         //MentorRequest
         [HttpPost]
-        public async Task<JsonResult> Post([FromBody]string uniqueRequesteeId, [FromBody]string teamName, [FromBody]string teamLocation, [FromBody]int mentorId)
+        public async Task<JsonResult> Post(string uniqueRequesteeId, string teamName, string teamLocation, int mentorId)
         {
             bool succeded = false;
 
