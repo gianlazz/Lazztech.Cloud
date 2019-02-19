@@ -70,7 +70,7 @@
             type: "POST",
             url: "/api/Event/MentorRequest?uniqueRequesteeId=1&teamName=2&teamLocation=3&mentorId=4",
             data: null,
-            contentType:  'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8',
             error: function (response) {
                 alert("Your request did not go through. Please try submitting it again");
                 console.log(response);
@@ -83,6 +83,11 @@
     };
 </script>
 
+<script>
+    completed = function (xhr) {
+        confetti()
+    };
+</script>
 
 <!-- MODALS -->
 @foreach (var mentor in Model.Mentors)
@@ -96,7 +101,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form asp-action="Post" asp-controller="MentorRequest" method="POST" data-ajax="true" data-ajax-update="divEmp">
+                <form asp-action="Post" asp-controller="MentorRequest" method="POST" data-ajax="true" >
                     <div class="modal-body">
                         <div class="form-group">
                             @Html.Hidden("uniqueRequesteeId", Model.UniqueRequesteeId)
