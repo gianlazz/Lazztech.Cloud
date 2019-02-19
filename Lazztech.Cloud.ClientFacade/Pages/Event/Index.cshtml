@@ -55,7 +55,6 @@
                         <button type="button" class="@(Model.Mentors[i].IsAvailable ? "btn btn-primary" : "btn btn-outline-secondary")" data-toggle="modal" data-target="@(Model.Mentors[i].IsAvailable ? $"#{Model.Mentors[i].FirstName}{Model.Mentors[i].MentorId}" : "")">
                             @(Model.Mentors[i].IsAvailable ? "Request Their Assistance" : "Currently Unavailable")
                         </button>
-                        <button value="ajax" onclick="ajax()"></button>
                     </div>
                 </div>
                 <br />
@@ -90,31 +89,32 @@
 {
     <div class="modal fade" id="@mentor.FirstName@mentor.MentorId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Enter your details to help @mentor.FirstName find you</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Enter your details to help @mentor.FirstName find you</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form asp-action="Post" asp-controller="MentorRequest" method="POST" data-ajax="true" data-ajax-update="divEmp">
                     <div class="modal-body">
-                        <form asp-action="Post" asp-controller="MentorRequest" method="POST" data-ajax="true" data-ajax-update="divEmp">
-                            <div class="form-group">
-                                @Html.Hidden("uniqueRequesteeId", Model.UniqueRequesteeId)
-                                @Html.TextBox("teamName", null, htmlAttributes: new { @class = "form-control", @placeholder = "Team name", @type = "text" })
-                                <br />
-                                @Html.TextBox("teamLocation", null, htmlAttributes: new { @class = "form-control", @placeholder = "Description of where you're sitting", @type = "text" })
-                                @Html.Hidden("mentorId", mentor.MentorId)
-                                <br />
-                                <small id="emailHelp" class="form-text text-muted">After selecting submit your mentor will be notified and come to help out.</small>
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            @Html.Hidden("uniqueRequesteeId", Model.UniqueRequesteeId)
+                            @Html.TextBox("teamName", null, htmlAttributes: new { @class = "form-control", @placeholder = "Team name", @type = "text" })
+                            <br />
+                            @Html.TextBox("teamLocation", null, htmlAttributes: new { @class = "form-control", @placeholder = "Description of where you're sitting", @type = "text" })
+                            @Html.Hidden("mentorId", mentor.MentorId)
+                            <br />
+                            <small id="emailHelp" class="form-text text-muted">After selecting submit your mentor will be notified and come to help out.</small>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit">Submit</button>
                     </div>
-                </div>
+                </form>
+
+            </div>
         </div>
     </div>
 }
