@@ -11,28 +11,32 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Lazztech.Cloud.ClientFacade.Controllers
+namespace Lazztech.Cloud.ClientFacade.Controllers.Event
 {
-    public class EventController : Controller
+    [Route("api/Event/[controller]")]
+    public class MentorRequestController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly IMentorRequestConductor _conductor;
         private readonly ISmsService _sms;
 
-        public EventController(ApplicationDbContext applicationDbContext, IMentorRequestConductor conductor, ISmsService sms)
+        public MentorRequestController(ApplicationDbContext applicationDbContext, IMentorRequestConductor conductor, ISmsService sms)
         {
             _context = applicationDbContext;
             _conductor = conductor;
             _sms = sms;
         }
 
-        public IActionResult Index()
+        //MentorRequest
+        [HttpGet]
+        public IActionResult Get()
         {
-            return View();
+             return new JsonResult(new { message = "Your request has been sent! Please wait for your reply." });
         }
 
+        //MentorRequest
         [HttpPost]
-        public async Task<ActionResult> MentorRequest(string uniqueRequesteeId, string teamName, string teamLocation, int mentorId)
+        public async Task<JsonResult> Post([FromBody]string uniqueRequesteeId, [FromBody]string teamName, [FromBody]string teamLocation, [FromBody]int mentorId)
         {
             bool succeded = false;
 
@@ -55,9 +59,9 @@ namespace Lazztech.Cloud.ClientFacade.Controllers
             }
 
             if (succeded)
-                return RedirectToPage("/Event/Index", new { message = "Your request has been sent! Please wait for your reply." });
+                return new JsonResult( new { message = "Your request has been sent! Please wait for your reply." });
             else
-                return RedirectToPage("/Event/Index", new { alert = "The mentor you selected is currently helping someone else! Please select another." });
+                return new JsonResult( new { message = "The mentor you selected is currently helping someone else! Please select another." });
         }
 
         #region Depricated Team Login/Logout

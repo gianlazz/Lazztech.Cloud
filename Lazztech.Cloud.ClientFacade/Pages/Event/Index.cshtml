@@ -55,6 +55,7 @@
                         <button type="button" class="@(Model.Mentors[i].IsAvailable ? "btn btn-primary" : "btn btn-outline-secondary")" data-toggle="modal" data-target="@(Model.Mentors[i].IsAvailable ? $"#{Model.Mentors[i].FirstName}{Model.Mentors[i].MentorId}" : "")">
                             @(Model.Mentors[i].IsAvailable ? "Request Their Assistance" : "Currently Unavailable")
                         </button>
+                        <button value="ajax" onclick="ajax()"></button>
                     </div>
                 </div>
                 <br />
@@ -63,6 +64,27 @@
     </div>
     <br />
 </div>
+
+<script>
+    function ajax(){
+        $.ajax({
+            type: "POST",
+            url: "/api/Event/MentorRequest",
+            data: null,
+            contentType:  'application/json; charset=utf-8',
+            error: function (response) {
+                alert("Your request did not go through. Please try submitting it again");
+                console.log(response);
+            },
+            success: function (response) {
+                alert("Request Submited");
+                console.log(response);
+            }
+        });
+    };
+</script>
+
+
 <!-- MODALS -->
 @foreach (var mentor in Model.Mentors)
 {
