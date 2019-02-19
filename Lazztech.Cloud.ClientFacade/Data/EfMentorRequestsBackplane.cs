@@ -45,7 +45,8 @@ namespace Lazztech.Cloud.ClientFacade.Data
                 .FirstOrDefault(x => x.DateTimeWhenProcessed == null
                 &&
                 x.OutboundSms.ToPhoneNumber == inboundSms.FromPhoneNumber);
-            _context.Entry(matchingRequestEntity).State = EntityState.Detached;
+            if (matchingRequestEntity != null)
+                _context.Entry(matchingRequestEntity).State = EntityState.Detached;
             var dto = matchingRequestEntity.MapToDto();
             return dto;
         }
