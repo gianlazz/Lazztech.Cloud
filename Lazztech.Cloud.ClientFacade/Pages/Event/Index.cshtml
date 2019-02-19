@@ -90,8 +90,6 @@
 {
     <div class="modal fade" id="@mentor.FirstName@mentor.MentorId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            @using (Html.BeginForm("MentorRequest", "Event"))
-            {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Enter your details to help @mentor.FirstName find you</h5>
@@ -100,7 +98,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form asp-action="Post" asp-controller="MentorRequest" method="POST" data-ajax="true" data-ajax-update="divEmp">
                             <div class="form-group">
                                 @Html.Hidden("uniqueRequesteeId", Model.UniqueRequesteeId)
                                 @Html.TextBox("teamName", null, htmlAttributes: new { @class = "form-control", @placeholder = "Team name", @type = "text" })
@@ -117,7 +115,6 @@
                         <button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit">Submit</button>
                     </div>
                 </div>
-            }
         </div>
     </div>
 }
