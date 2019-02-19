@@ -1,8 +1,20 @@
 ﻿
-function confetti() {
-    for (var i = 0; i < 125; i++) {
+async function confetti() {
+    for (let i = 0; i < 125; i++) {
         create(i);
     }
+
+    setTimeout(stop, 4000);
+}
+
+function stop() {
+    for (let i = 0; i < 125; i++) {
+        $('#cnft' + i).remove();
+    }
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function create(i) {
@@ -20,7 +32,7 @@ function create(i) {
         default:
             colour = "red";
     }
-    $('<div class="confetti-' + i + ' ' + colour + '"></div>').css({
+    $('<div id="cnft' + i + '"' + 'class="confetti-' + i + ' ' + colour + '"></div>').css({
         "width": width + "px",
         "height": height + "px",
         "top": -Math.random() * 20 + "%",
