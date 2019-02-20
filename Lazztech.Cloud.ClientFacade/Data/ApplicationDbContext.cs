@@ -24,6 +24,17 @@ namespace Lazztech.Cloud.ClientFacade.Data
             //    .WithMany(x => x.EventMentors)
             //    .HasForeignKey(x => x.MentorId);
 
+            modelBuilder.Entity<MentorInvite>()
+                .HasOne(x => x.Event)
+                .WithMany(x => x.MentorInvites)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Mentor>()
+                .HasOne(x => x.MentorInvite)
+                .WithOne(x => x.Mentor)
+                .HasForeignKey<MentorInvite>(x => x.MentorId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             base.OnModelCreating(modelBuilder);
         }
 

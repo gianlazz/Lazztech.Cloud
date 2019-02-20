@@ -11,18 +11,18 @@
 <form method="post">
     @*<div asp-validation-summary="ModelOnly" class="text-danger">*@
     <div class="form-group">
-        <label asp-for="NewInvite.Mentor.EventId" class="control-label"></label>
-        <select asp-for="NewInvite.Mentor.EventId" class="form-control" asp-items="ViewBag.EventId"></select>
+        <label asp-for="NewInvite.EventId" class="control-label"></label>
+        <select asp-for="NewInvite.EventId" class="form-control" asp-items="ViewBag.EventId"></select>
     </div>
     <div class="form-group">
-        <label asp-for="NewInvite.Mentor.Email" class="custom-control-label"></label>
-        <input asp-for="NewInvite.Mentor.Email" class="form-control" />
-        <span asp-validation-for="NewInvite.Mentor.Email" class="text-danger"></span>
+        <label asp-for="NewInvite.Email" class="custom-control-label"></label>
+        <input asp-for="NewInvite.Email" class="form-control" />
+        <span asp-validation-for="NewInvite.Email" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="NewInvite.Mentor.PhoneNumber" class="custom-control-label"></label>
-        <input asp-for="NewInvite.Mentor.PhoneNumber" class="form-control" />
-        <span asp-validation-for="NewInvite.Mentor.PhoneNumber" class="text-danger"></span>
+        <label asp-for="NewInvite.PhoneNumber" class="custom-control-label"></label>
+        <input asp-for="NewInvite.PhoneNumber" class="form-control" />
+        <span asp-validation-for="NewInvite.PhoneNumber" class="text-danger"></span>
     </div>
     <div class="form-group">
         <input type="submit" value="Send Invite" class="btn btn-default" />
@@ -51,8 +51,8 @@
                 {
                     <tr>
                         <td>@invite.DateTimeWhenCreated</td>
-                        <td>@invite.Mentor.Email</td>
-                        <td>@invite.Mentor.PhoneNumber</td>
+                        <td>@invite.Email</td>
+                        <td>@invite.PhoneNumber</td>
                         <td>@invite.DateTimeWhenViewed</td>
                         <td>@invite.Accepted</td>
                         <td><a href="@invite.InviteLink">@invite.InviteLink</a></td>

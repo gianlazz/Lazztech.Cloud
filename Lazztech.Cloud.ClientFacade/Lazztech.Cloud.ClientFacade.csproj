@@ -10,6 +10,10 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20190212222930_ReplacedEventMentorManyToManyWithEventToManyMentor.cs" />
     <Compile Remove="Data\Migrations\20190212222930_ReplacedEventMentorManyToManyWithEventToManyMentor.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190220060721_MadeMentorInviteMentorFKNullableAddedPhoneEmail.cs" />
+    <Compile Remove="Data\Migrations\20190220060721_MadeMentorInviteMentorFKNullableAddedPhoneEmail.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190220072932_ChangedMentorOnDeleteBehavior.cs" />
+    <Compile Remove="Data\Migrations\20190220072932_ChangedMentorOnDeleteBehavior.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

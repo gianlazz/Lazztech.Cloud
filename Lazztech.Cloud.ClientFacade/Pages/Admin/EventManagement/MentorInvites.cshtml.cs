@@ -47,8 +47,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement
             await _context.AddAsync(NewInvite);
             await _context.SaveChangesAsync();
             NewInvite = await _context.MentorInvites
-                .Include(x => x.Mentor)
-                .ThenInclude(x => x.Event)
+                .Include(x => x.Event)
                 .ThenInclude(x => x.Organization)
                 .FirstOrDefaultAsync(x => x.MentorInviteId == NewInvite.MentorInviteId);
 
@@ -56,9 +55,9 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Admin.EventManagement
             NewInvite.InviteLink = $"{domainName}/Event/Invites?Id=" + $"{NewInvite.MentorInviteId}";
             await _context.SaveChangesAsync();
 
-            if (NewInvite.Mentor.PhoneNumber != null)
-                _sms.SendSms(NewInvite.Mentor.PhoneNumber, $"You've been invited to mentor at " +
-                    $"{NewInvite.Mentor.Event.Organization.Name}'s {NewInvite.Mentor.Event.Name}!" +
+            if (NewInvite.PhoneNumber != null)
+                _sms.SendSms(NewInvite.PhoneNumber, $"You've been invited to mentor at " +
+                    $"{NewInvite.Event.Organization.Name}'s {NewInvite.Event.Name} event!" +
                     $" Please follow the link to sign up: {NewInvite.InviteLink}");
             //if (NewMentor.Email != null)
             //    _email.SendEmail(NewMentor.Email, "Mentor Registration", $"You've been invited to mentor at {eventName}! Please follow the link to sign up: {signUpLink}");

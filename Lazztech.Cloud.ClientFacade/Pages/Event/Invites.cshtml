@@ -18,12 +18,18 @@
                 </div>
             </div>
             <input type="hidden" asp-for="Invite.MentorInviteId" />
+            <input type="hidden" asp-for="Invite.EventId" />
             <input type="hidden" asp-for="Invite.MentorId" />
-            <input type="hidden" asp-for="Invite.Mentor.MentorId" />
+            @*<input type="hidden" asp-for="Invite.Mentor.MentorId" />*@
             <input type="hidden" asp-for="Invite.Mentor.EventId" />
 
             <input type="hidden" asp-for="Invite.InviteLink" />
             <input type="hidden" asp-for="Invite.DateTimeWhenViewed" />
+            <input type="hidden" asp-for="Invite.DateTimeWhenCreated" />
+
+
+            <input type="hidden" asp-for="Invite.PhoneNumber" />
+            <input type="hidden" asp-for="Invite.Email" />
 
             <div class="form-group">
                 <label asp-for="Invite.Mentor.FirstName" class="control-label"></label>

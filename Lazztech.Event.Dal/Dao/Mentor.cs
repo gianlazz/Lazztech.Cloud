@@ -24,6 +24,10 @@ namespace Lazztech.Events.Dal.Dao
         public int? EventId { get; set; }
         public Event Event { get; set; }
 
+        [Display(Name = "Mentor Invite")]
+        public int? MentorInviteId { get; set; }
+        public MentorInvite MentorInvite { get; set; }
+
         public Mentor()
         {
             IsAvailable = true;

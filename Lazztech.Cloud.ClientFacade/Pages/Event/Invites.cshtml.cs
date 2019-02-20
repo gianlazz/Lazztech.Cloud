@@ -38,8 +38,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
         public async Task<ActionResult> OnGetAsync(int Id)
         {
             Invite = await _context.MentorInvites
-                .Include(x => x.Mentor)
-                .ThenInclude(x => x.Event)
+                .Include(x => x.Event)
                 .FirstOrDefaultAsync(x => x.MentorInviteId == Id);
             if (Invite == null)
                 return NotFound();
@@ -55,8 +54,8 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
             if (!ModelState.IsValid)
                 return Page();
 
+            Invite.Mentor.EventId = Invite.EventId;
             _context.Attach(Invite).State = EntityState.Modified;
-            _context.Attach(Invite.Mentor).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         
             Invite.Accepted = true;
@@ -66,7 +65,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
 
             _sms.SendSms(Invite.Mentor.PhoneNumber, EventStrings.MentorRegistrationResponse(Invite.Mentor.FirstName));
 
-            return Redirect($"/Event/Index/?eventId={Invite.Mentor.EventId}");
+            return Redirect($"/Event/Index/?eventId={Invite.EventId}");
         }
 
         private async Task UploadPhoto()

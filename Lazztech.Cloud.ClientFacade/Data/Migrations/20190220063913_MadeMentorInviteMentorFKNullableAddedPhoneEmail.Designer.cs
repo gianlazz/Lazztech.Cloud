@@ -3,15 +3,17 @@ using System;
 using Lazztech.Cloud.ClientFacade.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Lazztech.Cloud.ClientFacade.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190220063913_MadeMentorInviteMentorFKNullableAddedPhoneEmail")]
+    partial class MadeMentorInviteMentorFKNullableAddedPhoneEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,8 +76,6 @@ namespace Lazztech.Cloud.ClientFacade.Migrations
 
                     b.Property<string>("LastName");
 
-                    b.Property<int?>("MentorInviteId");
-
                     b.Property<string>("PhoneNumber");
 
                     b.Property<string>("ProfessionalTitle");
@@ -112,8 +112,7 @@ namespace Lazztech.Cloud.ClientFacade.Migrations
 
                     b.HasIndex("EventId");
 
-                    b.HasIndex("MentorId")
-                        .IsUnique();
+                    b.HasIndex("MentorId");
 
                     b.ToTable("MentorInvites");
                 });
@@ -374,9 +373,8 @@ namespace Lazztech.Cloud.ClientFacade.Migrations
                         .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Lazztech.Events.Dal.Dao.Mentor", "Mentor")
-                        .WithOne("MentorInvite")
-                        .HasForeignKey("Lazztech.Events.Dal.Dao.MentorInvite", "MentorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("MentorId");
                 });
 
             modelBuilder.Entity("Lazztech.Events.Dal.Dao.MentorRequest", b =>
