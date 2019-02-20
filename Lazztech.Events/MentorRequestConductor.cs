@@ -24,24 +24,6 @@ namespace Lazztech.Events.Domain
             //Requests = new Dictionary<string, MentorRequest>();
         }
 
-        public bool TryAddRequest(MentorRequest request)
-        {
-            var requestedMentorId = request.Mentor.Id;
-            var mentorFromDb = _db.FindMentor(request.Mentor.Id);
-            if (_requestsBackplane.ContainsOutstandingRequestForMentor(requestedMentorId))
-                return false;
-            else if (!mentorFromDb.IsAvailable || !mentorFromDb.IsPresent)
-            {
-                return false;
-            }
-            else
-            {
-                _requestsBackplane.AddMentorRequest(ref request);
-                StartRequestTimeOutAsync(request);
-                return true;
-            }
-        }
-
         public void SubmitRequest(string uniqueRequesteeId, string teamName, string teamLocation, int mentorId)
         {
             if (_requestsBackplane.ContainsOutstandingRequestForMentor(mentorId) == false)
@@ -56,6 +38,8 @@ namespace Lazztech.Events.Domain
                         Mentor = mentor,
                         OutboundSms = _sms.SendSms(mentor.PhoneNumber, message)
                     };
+                    mentor.IsAvailable = false;
+                    _db.UpdateMentorDb(mentor);
                     _requestsBackplane.AddMentorRequest(ref request);
                     StartRequestTimeOutAsync(request);
                 }
