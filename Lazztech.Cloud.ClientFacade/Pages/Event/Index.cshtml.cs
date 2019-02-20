@@ -45,9 +45,17 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Event
             if (Request.Cookies.ContainsKey(StaticStrings.eventUserIdCookieName))
                 UniqueRequesteeId = Request.Cookies[StaticStrings.eventUserIdCookieName];
 
-            Mentors = await _context.Mentors
+            var mentors = _context.Mentors
                 .Where(x => x.EventId == eventId)
-                .OrderBy(z => z.IsAvailable ? 0 : 1).ToListAsync();
+                .OrderBy(z => z.IsAvailable ? 0 : 1);
+            var invites = _context.MentorInvites.Where(x => x.Mentor.EventId == eventId);
+            var incompletedInvites = invites.Where(x => x.Accepted == false);
+
+            foreach (var mentor in mentors)
+            {
+                if (!incompletedInvites.Any(x => x.MentorId == mentor.MentorId))
+                    Mentors.Add(mentor);
+            }
 
             return Page();
         }
