@@ -151,6 +151,10 @@ namespace Lazztech.Events.Domain
             mentorRequest.DateTimeWhenProcessed = DateTime.Now;
             mentorRequest.InboundSms = inboundSms;
 
+            var mentor = mentorRequest.Mentor;
+            mentor.IsAvailable = true;
+            _db.UpdateMentorDb(mentor);
+
             _db.UpdateMentorRequestDb(mentorRequest);
             _db.UpdateSmsDb(inboundSms);
 

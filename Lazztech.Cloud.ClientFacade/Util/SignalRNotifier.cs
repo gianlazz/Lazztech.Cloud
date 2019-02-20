@@ -28,7 +28,7 @@ namespace Lazztech.Cloud.ClientFacade.Util
             {
                 if (mentorRequest.UniqueRequesteeId == null) { throw new Exception(); }
 
-                var message = $"{mentorRequest.Mentor.FirstName} is not available right now";
+                var message = $"{mentorRequest.Mentor.FirstName} denied request.";
                 _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("requestUpdate", message);
             }
         }
