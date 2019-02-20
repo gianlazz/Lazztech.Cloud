@@ -1,4 +1,5 @@
-﻿using Lazztech.Events.Dto.Interfaces;
+﻿using Lazztech.Events.Dal;
+using Lazztech.Events.Dto.Interfaces;
 using Lazztech.Events.Dto.Models;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,26 @@ namespace Lazztech.Events.Domain
                 _requestsBackplane.AddMentorRequest(ref request);
                 StartRequestTimeOutAsync(request);
                 return true;
+            }
+        }
+
+        public void SubmitRequest(string uniqueRequesteeId, string teamName, string teamLocation, int mentorId)
+        {
+            if (_requestsBackplane.ContainsOutstandingRequestForMentor(mentorId) == false)
+            {
+                var mentor = _db.FindMentor(mentorId);
+                if (mentor != null && mentor.IsAvailable && mentor.IsPresent)
+                {
+                    var message = EventStrings.OutBoundRequestSms(mentor.FirstName, teamName, teamLocation);
+                    var request = new MentorRequest()
+                    {
+                        UniqueRequesteeId = uniqueRequesteeId,
+                        Mentor = mentor,
+                        OutboundSms = _sms.SendSms(mentor.PhoneNumber, message)
+                    };
+                    _requestsBackplane.AddMentorRequest(ref request);
+                    StartRequestTimeOutAsync(request);
+                }
             }
         }
 

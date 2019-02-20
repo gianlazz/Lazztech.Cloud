@@ -36,32 +36,9 @@ namespace Lazztech.Cloud.ClientFacade.Controllers.Event
 
         //MentorRequest
         [HttpPost]
-        public async Task<JsonResult> Post(string uniqueRequesteeId, string teamName, string teamLocation, int mentorId)
+        public void Post(string uniqueRequesteeId, string teamName, string teamLocation, int mentorId)
         {
-            bool succeded = false;
-
-            var mentor = await _context.Mentors.SingleOrDefaultAsync(x => x.MentorId == mentorId);
-            if (mentor != null)
-            {
-                var message = EventStrings.OutBoundRequestSms(mentor.FirstName, teamName, teamLocation);
-                var request = new MentorRequest()
-                {
-                    UniqueRequesteeId = uniqueRequesteeId,
-                    Mentor = mentor,
-                    OutboundSms = _sms.SendSms(mentor.PhoneNumber, message).MapToEntity()
-                };
-                succeded = _conductor.TryAddRequest(request.MapToDto());
-                if (succeded)
-                {
-                    _context.MentorRequests.Add(request);
-                    await _context.SaveChangesAsync();
-                }
-            }
-
-            if (succeded)
-                return new JsonResult( new { message = "Your request has been sent! Please wait for your reply." });
-            else
-                return new JsonResult( new { message = "The mentor you selected is currently helping someone else! Please select another." });
+            _conductor.SubmitRequest(uniqueRequesteeId, teamName, teamLocation, mentorId);
         }
 
         #region Depricated Team Login/Logout

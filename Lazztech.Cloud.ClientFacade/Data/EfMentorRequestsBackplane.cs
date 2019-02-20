@@ -22,17 +22,20 @@ namespace Lazztech.Cloud.ClientFacade.Data
         {
             var entity = mentorRequest.MapToEntity();
             _context.Add(entity);
+            _context.Entry(entity.Mentor).State = EntityState.Detached;
             _context.SaveChanges();
             _context.Entry(entity).State = EntityState.Detached;
+            if (entity.OutboundSms != null)
+                _context.Entry(entity.OutboundSms).State = EntityState.Detached;
+            if (entity.InboundSms != null)
+                _context.Entry(entity.InboundSms).State = EntityState.Detached;
             mentorRequest.Id = entity.MentorId;
         }
 
         public bool ContainsOutstandingRequestForMentor(int mentorId)
         {
-            return _context.MentorRequests.AsNoTracking()
-                .Any(x => x.MentorId == mentorId
-                &&
-                x.IsStillActive == true);
+            var result = _context.MentorRequests.AsNoTracking().Any(x => x.MentorId == mentorId && x.IsStillActive == true);
+            return result;
         }
 
         public MentorRequest FindResponseRequest(SmsDto inboundSms)
