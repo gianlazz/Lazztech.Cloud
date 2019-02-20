@@ -15,6 +15,20 @@ namespace Lazztech.Cloud.ClientFacade.Util
             _hubContext = hubContext;
         }
 
+        public void NofityThatMentorIsntAvailable(string uniqueRequesteeId, string mentorName)
+        {
+            if (String.IsNullOrEmpty(uniqueRequesteeId)) { throw new Exception(); }
+
+            var message = $"{mentorName} isn't available for a new request. Please refresh your page.";
+            _hubContext.Clients.Group(uniqueRequesteeId).SendAsync("requestUpdate", message);
+        }
+
+        public void NofityThatMentorAvailableAgain(string mentorName)
+        {
+            var message = $"{mentorName} has been set as available again. Please refresh your page.";
+            _hubContext.Clients.All.SendAsync("requestUpdate", message);
+        }
+
         public void UpdateMentorRequestee(MentorRequest mentorRequest)
         {
             if (mentorRequest.RequestAccepted == true && mentorRequest.DateTimeWhenProcessed != null)

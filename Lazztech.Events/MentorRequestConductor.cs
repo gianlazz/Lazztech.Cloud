@@ -12,14 +12,14 @@ namespace Lazztech.Events.Domain
     {
         private readonly IConductorDalHelper _db;
         private readonly ISmsService _sms;
-        private readonly IRequestNotifier _Notifier;
+        private readonly IRequestNotifier _notifier;
         private readonly IMentorRequestsBackplane _requestsBackplane;
 
         public MentorRequestConductor(IConductorDalHelper dalHelper, ISmsService sms, IRequestNotifier requestResponder, IMentorRequestsBackplane requestsBackplane)
         {
             _db = dalHelper;
             _sms = sms;
-            _Notifier = requestResponder;
+            _notifier = requestResponder;
             _requestsBackplane = requestsBackplane;
             //Requests = new Dictionary<string, MentorRequest>();
         }
@@ -43,6 +43,12 @@ namespace Lazztech.Events.Domain
                     _requestsBackplane.AddMentorRequest(ref request);
                     StartRequestTimeOutAsync(request);
                 }
+            }
+            else
+            {
+                var mentor = _db.FindMentor(mentorId);
+                if (mentor != null)
+                    _notifier.NofityThatMentorIsntAvailable(uniqueRequesteeId, mentor.FirstName);
             }
         }
 
@@ -107,8 +113,14 @@ namespace Lazztech.Events.Domain
                 request.TimedOut = true;
                 request.DateTimeWhenProcessed = DateTime.Now;
                 _db.UpdateMentorRequestDb(request);
-                _requestsBackplane.RemoveActiveRequest(request);
+
+                var mentor = request.Mentor;
+
+                if (_requestsBackplane.ContainsOutstandingRequestForMentor(mentor.Id))
+                    _requestsBackplane.RemoveActiveRequestByMentorId(mentor.Id);
+
                 NotifyMentorOfRequestTimeout(request.Mentor);
+                _notifier.NofityThatMentorAvailableAgain(mentor.FirstName);
             }
         }
 
@@ -122,7 +134,12 @@ namespace Lazztech.Events.Domain
                     var mentor = request.Mentor;
                     mentor.IsAvailable = true;
                     _db.UpdateMentorDb(mentor);
+
+                    if (_requestsBackplane.ContainsOutstandingRequestForMentor(mentor.Id))
+                        _requestsBackplane.RemoveActiveRequestByMentorId(mentor.Id);
+
                     NotifyResponseTimeUp(request);
+                    _notifier.NofityThatMentorAvailableAgain(mentor.FirstName);
                 }
             }
         }
@@ -156,9 +173,13 @@ namespace Lazztech.Events.Domain
             _db.UpdateMentorDb(mentor);
 
             _db.UpdateMentorRequestDb(mentorRequest);
+
+            if (_requestsBackplane.ContainsOutstandingRequestForMentor(mentor.Id))
+                _requestsBackplane.RemoveActiveRequestByMentorId(mentor.Id);
+
             _db.UpdateSmsDb(inboundSms);
 
-            _Notifier.UpdateMentorRequestee(mentorRequest);
+            _notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         private void HandleRequestAcceptance(SmsDto inboundSms, MentorRequest mentorRequest)
@@ -173,7 +194,7 @@ namespace Lazztech.Events.Domain
             _db.UpdateMentorDb(mentorRequest.Mentor);
             _db.UpdateMentorRequestDb(mentorRequest);
 
-            _Notifier.UpdateMentorRequestee(mentorRequest);
+            _notifier.UpdateMentorRequestee(mentorRequest);
         }
 
         private void HandleGuideResponse(SmsDto inboundSms)
@@ -198,6 +219,8 @@ namespace Lazztech.Events.Domain
             _db.UpdateMentorDb(mentor);
             inboundSms.DateTimeWhenProcessed = DateTime.Now;
             _db.UpdateSmsDb(inboundSms);
+
+            _notifier.NofityThatMentorAvailableAgain(mentor.FirstName);
         }
 
         #endregion
