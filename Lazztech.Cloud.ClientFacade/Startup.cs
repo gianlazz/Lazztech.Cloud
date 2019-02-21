@@ -104,6 +104,7 @@ namespace Lazztech.Cloud.ClientFacade
             services.AddScoped<IMentorRequestConductor, MentorRequestConductor>();
             services.AddSingleton<IEmailService>(s => new EmailService("gian@lazz.tech"));
             services.AddSingleton<IFileService, FileService>();
+            services.AddScoped<IDbSeeder, DbSeeder>();
 
             var provider = services.BuildServiceProvider();
             var smsService = provider.GetService<ISmsService>();
@@ -163,11 +164,6 @@ namespace Lazztech.Cloud.ClientFacade
                 routes.MapHub<ChatHub>("/chatHub");
                 routes.MapHub<ProgressHub>("/progressHub");
             });
-
-            var defaultAdminSection = Configuration.GetSection("DefaultAdminUser");
-            var email = defaultAdminSection["Email"];
-            var password = defaultAdminSection["Password"];
-            ApplicationDbInitializer.SeedAdminUser(userManager, roleManager, email, password);
         }
     }
 }
