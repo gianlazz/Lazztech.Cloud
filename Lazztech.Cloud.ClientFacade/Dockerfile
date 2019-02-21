@@ -25,11 +25,11 @@ COPY Lazztech.Cloud.sln ./
 COPY docker-compose.dcproj ./
 COPY ["Lazztech.Cloud.ClientFacade/Lazztech.Cloud.ClientFacade.csproj", "Lazztech.Cloud.ClientFacade/"]
 COPY ["Lazztech.Cloud.ClientFacade.Tests/Lazztech.Cloud.ClientFacade.Tests.csproj", "Lazztech.Cloud.ClientFacade.Tests/"]
+COPY ["Lazztech.Events.Dal/Lazztech.Events.Dal.csproj", "Lazztech.Events.Dal/"]
 COPY ["Lazztech.Events/Lazztech.Events.Domain.csproj", "Lazztech.Events/"]
 COPY ["Lazztech.Events.Dto/Lazztech.Events.Dto.csproj", "Lazztech.Events.Dto/"]
 COPY ["Lazztech.SrndResourcesManager/Lazztech.Events.StudentRND.csproj", "Lazztech.SrndResourcesManager/"]
 COPY ["Lazztech.Events.Tests/Lazztech.Events.Tests.csproj", "Lazztech.Events.Tests/"]
-COPY ["Lazztech.MongoDB/Lazztech.MongoDB.csproj", "Lazztech.MongoDB/"]
 COPY ["Lazztech.Sms/Lazztech.Sms.csproj", "Lazztech.Sms/"]
 COPY ["Lazztech.Standard/Lazztech.Standard.csproj", "Lazztech.Standard/"]
 COPY ["Lazztech.Vision.Cli/Lazztech.Vision.Cli.csproj", "Lazztech.Vision.Cli/"]

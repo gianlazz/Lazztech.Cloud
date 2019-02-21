@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lazztech.Event.Dal\Lazztech.Events.Dal.csproj" />
+    <ProjectReference Include="..\Lazztech.Events.Dal\Lazztech.Events.Dal.csproj" />
     <ProjectReference Include="..\Lazztech.Events.Dto\Lazztech.Events.Dto.csproj" />
   </ItemGroup>
 
