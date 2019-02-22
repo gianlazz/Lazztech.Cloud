@@ -82,6 +82,8 @@ namespace Lazztech.Cloud.ClientFacade
                     })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddProgressiveWebApp();
+
             services.AddSignalR();
             //services.AddDirectoryBrowser();
 
