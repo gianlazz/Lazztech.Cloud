@@ -9,40 +9,42 @@
 <br />
 <br />
 <div class="row">
-    <div class="col">
-        <h3>Organizations</h3>
-        <p>
-            Count: @Model.OrganizationCount
-        </p>
-        <a class="btn btn-dark" asp-page="./Organizations/Index" role="button">Manage Organizations</a>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Organizations</h4>
+            <h3 class="text-success m-t-10">@Model.OrganizationCount</h3>
+            <span>
+                <a class="btn btn-dark" asp-page="./Organizations/Index" role="button">Manage Organizations</a>
+            </span>
+        </div>
     </div>
-    <div class="col">
-        <h3>Events</h3>
-        <p>
-            Count: @Model.EventCount
-        </p>
-        <a class="btn btn-dark" asp-page="./Events/Index" role="button">Manage Events</a>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Events</h4>
+            <h3 class="text-primary m-t-10">@Model.EventCount</h3>
+            <a class="btn btn-dark" asp-page="./Events/Index" role="button">Manage Events</a>
+        </div>
     </div>
-    <div class="col">
-        <h3>Mentors</h3>
-        <p>
-            Count: @Model.MentorCount
-        </p>
-        <a class="btn btn-dark" asp-page="./Mentors/Index" role="button">Manage Mentors</a>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Mentors</h4>
+            <h3 class="text-pink m-t-10">@Model.MentorCount</h3>
+            <a class="btn btn-dark" asp-page="./Mentors/Index" role="button">Manage Mentors</a>
+        </div>
     </div>
-    <div class="col">
-        <h3>Mentor Requests</h3>
-        <p>
-            Count: @Model.MentorRequestCount
-        </p>
-        <a class="btn btn-dark" asp-page="./MentorRequests/Index" role="button">Mentor Requests</a>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Mentor Requests</h4>
+            <h3 class="text-muted m-t-10">@Model.MentorRequestCount</h3>
+            <a class="btn btn-dark" asp-page="./MentorRequests/Index" role="button">Mentor Requests</a>
+        </div>
     </div>
-    <div class="col">
-        <h3>Mentor Invites</h3>
-        <p>
-            Count: @Model.MentorInviteCount
-        </p>
-        <a class="btn btn-dark" asp-page="./MentorInvites" role="button">Mentor Invites</a>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Mentor Invites</h4>
+            <h3 class="text-purple m-t-10">@Model.MentorInviteCount</h3>
+            <a class="btn btn-dark" asp-page="./MentorInvites" role="button">Mentor Invites</a>
+        </div>
     </div>
 </div>
 <br />
@@ -54,7 +56,7 @@
     <div class="col">
         @using (Html.BeginForm())
         {
-            <table class="table table-striped table-dark table-responsive">
+            <table class="table table-responsive">
                 <thead>
                     <tr>
                         @{
