@@ -4,7 +4,7 @@ async function confetti() {
         create(i);
     }
 
-    setTimeout(stop, 4000);
+    setTimeout(stop, 4300);
 }
 
 function stop() {

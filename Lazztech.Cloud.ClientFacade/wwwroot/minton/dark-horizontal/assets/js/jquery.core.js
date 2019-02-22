@@ -86,7 +86,7 @@ function($) {
             showAnimation: "show",
             showDuration: 0,
             hideDuration: 0,
-            autoHide: true,
+            autoHide: false,
             clickToHide: true
         });
     },
