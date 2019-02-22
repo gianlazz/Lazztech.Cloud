@@ -124,7 +124,7 @@ function($) {
         });
     },
     //confirmation notification
-    Notification.prototype.confirm = function(style,position, title) {
+    Notification.prototype.confirm = function(style,position, title, message) {
         var icon = "fa fa-adjust";
         if(style == "error"){
             icon = "fa fa-exclamation";
@@ -141,7 +141,7 @@ function($) {
         }
         $.notify({
             title: title,
-            text: 'Are you sure you want to do nothing?<div class="clearfix"></div><br><a class="btn btn-sm btn-white yes">Yes</a> <a class="btn btn-sm btn-danger no">No</a>',
+            text: message + '<div class="clearfix"></div><br><a class="btn btn-sm btn-white yes">Yes</a> <a class="btn btn-sm btn-danger no">No</a>',
             image: "<i class='"+icon+"'></i>"
         }, {
             style: 'metro',

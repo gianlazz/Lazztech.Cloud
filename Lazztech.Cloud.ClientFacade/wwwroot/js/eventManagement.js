@@ -26,6 +26,26 @@ connection.on("requestUpdate", (message) => {
     MentorRequestUpdateModal(message);
 });
 
+connection.on("notifySuccess", (title, message) => {
+    $.Notification.notify('success', 'top right', title, message);
+});
+
+connection.on("notifyError", (title, message) => {
+    $.Notification.notify('error', 'top right', title, message);
+});
+
+connection.on("notifySuccessAutoHide", (title, message) => {
+    $.Notification.autoHideNotify('success', 'top right', title, message);
+});
+
+connection.on("notifyErrorAutoHide", (title, message) => {
+    $.Notification.autoHideNotify('error', 'top right', title, message);
+});
+
+connection.on("confetti", () => {
+    confetti();
+});
+
 function ProgressBarModal(showHide) {
 
     if (showHide === 'show') {

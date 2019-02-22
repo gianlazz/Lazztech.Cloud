@@ -42,6 +42,7 @@ namespace Lazztech.Events.Domain
                     _db.UpdateMentorDb(mentor);
                     _requestsBackplane.AddMentorRequest(ref request);
                     StartRequestTimeOutAsync(request);
+                    _notifier.NotifyThatRequestHasBeenSent(request);
                 }
             }
             else

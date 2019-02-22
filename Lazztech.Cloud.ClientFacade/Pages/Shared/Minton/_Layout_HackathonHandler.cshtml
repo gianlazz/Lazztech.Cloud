@@ -34,27 +34,9 @@
         <link rel="stylesheet" href="~/minton/dark-horizontal/assets/css/icons.css" />
 
         <link rel="stylesheet" href="~/minton/dark-horizontal/assets/js/modernizr.min.js" />
+        <script src="~/minton/dark-horizontal/assets/js/jquery.min.js"></script>
         @*Minton theme*@
 
-    </environment>
-    <environment exclude="Development">
-        @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-              crossorigin="anonymous" />
-        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
-
-        <link rel="stylesheet" href="~/confetti/css/confetti.css" />
-
-        @*Minton theme*@
-        <link rel="stylesheet" href="~/minton/plugins/jquery-circliful/css/jquery.circliful.css" />
-
-        <link rel="stylesheet" href="~/minton/dark-horizontal/assets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/minton/dark-horizontal/assets/css/style.css" />
-        <link rel="stylesheet" href="~/minton/dark-horizontal/assets/css/icons.css" />
-
-        <link rel="stylesheet" href="~/minton/dark-horizontal/assets/js/modernizr.min.js" />
-        @*Minton theme*@
     </environment>
 </head>
 <body>
@@ -134,7 +116,7 @@
 
     <environment include="Development">
         <!--Bootstrap 4 Section-->
-        <script src="~/lib/jquery/dist/jquery.js"></script>
+        @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
         @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
         <script src="~/js/site.js" asp-append-version="true"></script>
         <!--End Of Bootstrap 4 Section-->
@@ -151,7 +133,7 @@
         </script>
 
         <!-- Plugins  -->
-        <script src="~/minton/dark-horizontal/assets/js/jquery.min.js"></script>
+        @*<script src="~/minton/dark-horizontal/assets/js/jquery.min.js"></script>*@
         <script src="~/minton/dark-horizontal/assets/js/popper.min.js"></script>
         <script src="~/minton/dark-horizontal/assets/js/bootstrap.min.js"></script>
         <script src="~/minton/dark-horizontal/assets/js/jquery.slimscroll.js"></script>
@@ -176,72 +158,12 @@
         <script src="~/minton/dark-horizontal/assets/js/jquery.core.js"></script>
         <script src="~/minton/dark-horizontal/assets/js/jquery.app.js"></script>
 
-        <!--End Of Minton-->
-
-    </environment>
-    <environment exclude="Development">
-        @*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous">
-        </script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                crossorigin="anonymous">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>*@
-
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <!--End Of Bootstrap 4 Section-->
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
-        <script src="~/lib/jquery-ajax-unobtrusive/src/jquery.unobtrusive-ajax.js"></script>
-        <script src="~/confetti/js/confetti.js"></script>
-
-        @*SIGNALR EXAMPLE CODE BELOW HERE------------*@
-        <script src="~/lib/signalr/dist/browser/signalr.js"></script>
-        <script src="~/js/eventManagement.js"></script>
-
-        <!--Minton Theme Section-->
-        <script>
-            var resizefunc = [];
-        </script>
-
-        <!-- Plugins  -->
-        <script src="~/minton/dark-horizontal/assets/js/jquery.min.js"></script>
-        <script src="~/minton/dark-horizontal/assets/js/popper.min.js"></script>
-        <script src="~/minton/dark-horizontal/assets/js/bootstrap.min.js"></script>
-        <script src="~/minton/dark-horizontal/assets/js/jquery.slimscroll.js"></script>
-        <script src="~/minton/dark-horizontal/assets/js/waves.js"></script>
-        <script src="~/minton/dark-horizontal/assets/js/jquery.scrollTo.min.js"></script>
-
-        <!-- Counter Up  -->
-        <script src="~/minton/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
-        <script src="~/minton/plugins/counterup/jquery.counterup.min.js"></script>
-
-        <!-- circliful Chart -->
-        <script src="~/minton/plugins/jquery-circliful/js/jquery.circliful.min.js"></script>
-        <script src="~/minton/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
-
-        <!-- skycons -->
-        <script src="~/minton/plugins/skyicons/skycons.min.js"></script>
-
-        <!-- Page js  -->
-        <script src="~/minton/dark-horizontal/assets/pages/jquery.dashboard.js"></script>
-
-        <!-- Custom main Js -->
-        <script src="~/minton/dark-horizontal/assets/js/jquery.core.js"></script>
-        <script src="~/minton/dark-horizontal/assets/js/jquery.app.js"></script>
+        <!-- Notifications Js -->
+        <script src="~/minton/plugins/notifyjs/dist/notify.min.js"></script>
+        <script src="~/minton/plugins/notifications/notify-metro.js"></script>
 
         <!--End Of Minton-->
+
     </environment>
 
     @RenderSection("Scripts", required: false)

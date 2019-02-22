@@ -23,6 +23,12 @@ namespace Lazztech.Cloud.ClientFacade.Util
             _hubContext.Clients.Group(uniqueRequesteeId).SendAsync("requestUpdate", message);
         }
 
+        public void NotifyThatRequestHasBeenSent(MentorRequest mentorRequest)
+        {
+            _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("confetti");
+            _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("notifySuccessAutoHide", "Request Sent", "Please wait for their response.");
+        }
+
         public void NofityThatMentorAvailableAgain(string mentorName)
         {
             var message = $"{mentorName} has been set as available again. Please refresh your page.";
@@ -35,15 +41,16 @@ namespace Lazztech.Cloud.ClientFacade.Util
             {
                 if (mentorRequest.UniqueRequesteeId == null) { throw new Exception(); }
 
-                var message = $"{mentorRequest.Mentor.FirstName} accepted your request!";
-                _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("requestUpdate", message);
+                var message = $"{mentorRequest.Mentor.FirstName} accepted your request! They'll be on their way.";
+                _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("confetti");
+                _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("notifySuccess", "Request Accepted", message);
             }
             if (mentorRequest.RequestAccepted == false && mentorRequest.DateTimeWhenProcessed != null)
             {
                 if (mentorRequest.UniqueRequesteeId == null) { throw new Exception(); }
 
                 var message = $"{mentorRequest.Mentor.FirstName} denied request.";
-                _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("requestUpdate", message);
+                _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("notifyError", "Request Denied", message);
             }
         }
     }

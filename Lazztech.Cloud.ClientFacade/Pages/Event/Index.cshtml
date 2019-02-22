@@ -120,7 +120,14 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit">Submit</button>
-                        @*<button class="btn btn-primary" type="submit" value="#teamPin" id="btnSubmit" data-dismiss="modal" onclick="confetti()">Submit</button>*@
+                        <script>
+                            @{ var modalId = mentor.FirstName + mentor.MentorId; }
+                            $(document).ready(function () {
+                                $('#btnSubmit').click(function () {
+                                    $('#@modalId').modal('hide');
+                                });
+                            });
+                        </script>
                     </div>
                 </form>
             </div>
