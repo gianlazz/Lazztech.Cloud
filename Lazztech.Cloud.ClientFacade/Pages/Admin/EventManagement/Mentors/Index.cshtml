@@ -38,8 +38,6 @@
                 @Html.DisplayNameFor(model => model.Mentor[0].Event)
             </th>
             <th></th>
-            <th></th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -77,6 +75,11 @@
             </td>
             <td>
                 <a class="btn btn-dark" role="button" asp-page="./Delete" asp-route-id="@item.MentorId">Delete</a>
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.MentorId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.MentorId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.MentorId">Delete</a>
             </td>
         </tr>
 }
