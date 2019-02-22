@@ -140,7 +140,7 @@ namespace Lazztech.Events.Domain
                         _requestsBackplane.RemoveActiveRequestByMentorId(mentor.Id);
 
                     NotifyResponseTimeUp(request);
-                    _notifier.NofityThatMentorAvailableAgain(mentor.FirstName);
+                    _notifier.NofityThatMentorDidntRespond(request);
                 }
             }
         }

@@ -29,6 +29,12 @@ namespace Lazztech.Cloud.ClientFacade.Util
             _hubContext.Clients.Group(mentorRequest.UniqueRequesteeId).SendAsync("notifySuccessAutoHide", "Request Sent", "Please wait for their response.");
         }
 
+        public void NofityThatMentorDidntRespond(MentorRequest request)
+        {
+            var message = $"{request.Mentor.FirstName} didn't reply before the request timout.";
+            _hubContext.Clients.Group(request.UniqueRequesteeId).SendAsync("notifyError", "Request Timed Out", message);
+        }
+
         public void NofityThatMentorAvailableAgain(string mentorName)
         {
             var message = $"{mentorName} has been set as available again. Please refresh your page.";

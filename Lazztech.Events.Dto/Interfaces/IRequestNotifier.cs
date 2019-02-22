@@ -8,5 +8,6 @@ namespace Lazztech.Events.Dto.Interfaces
         void NofityThatMentorIsntAvailable(string uniqueRequesteeId, string mentorName);
         void NofityThatMentorAvailableAgain(string mentorName);
         void NotifyThatRequestHasBeenSent(MentorRequest mentorRequest);
+        void NofityThatMentorDidntRespond(MentorRequest request);
     }
 }
