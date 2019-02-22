@@ -18,7 +18,7 @@ function sleep(ms) {
 }
 
 function create(i) {
-    var width = Math.random() * 8;
+    var width = Math.random() * 12;
     var height = width * 0.4;
     var colourIdx = Math.ceil(Math.random() * 3);
     var colour = "red";
