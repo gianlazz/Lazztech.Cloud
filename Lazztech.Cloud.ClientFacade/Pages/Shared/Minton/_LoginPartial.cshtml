@@ -5,19 +5,51 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="list-inline float-right mb-0">
-        <ul class="list-inline float-right mb-0">
-            <li class="list-inline-item">
-                <input type="submit" value="Logout" class="btn btn-link nav-link nav-user" />
-            </li>
-        </ul>
-    </form>
+    @*<form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="list-inline float-right mb-0">
+            <ul class="list-inline float-right mb-0">
+                <li class="list-inline-item">
+                    <input type="submit" value="Logout" class="btn btn-link nav-link nav-user" />
+                </li>
+            </ul>
+        </form>*@
 
-    <ul class="list-inline float-right mb-0">
-        <li class="list-inline-item">
-            <a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-        </li>
-    </ul>
+    @*<ul class="list-inline float-right mb-0">
+            <li class="list-inline-item">
+                <a class="nav-link waves-effect waves-light nav-user" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+            </li>
+        </ul>*@
+
+    <li class="list-inline-item dropdown notification-list">
+        <a class="nav-link dropdown-toggle waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
+           aria-haspopup="false" aria-expanded="false">
+            @*<img src="" alt="profile" class="rounded-circle">*@
+            <i class="fa fa-user-circle"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+            <!-- item-->
+            <div class="dropdown-item noti-title">
+                <h5 class="text-overflow"><small class="text-white">@UserManager.GetUserName(User)</small> </h5>
+            </div>
+
+            <!-- item-->
+            <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="dropdown-item notify-item">
+                <i class="mdi mdi-account"></i> <span>Profile</span>
+            </a>
+
+            <!-- item-->
+            @*<a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <i class="mdi mdi-settings"></i> <span>Settings</span>
+                </a>*@
+
+
+            <form name="LogoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="">
+                <div class="dropdown-item notify-item">
+                    <i class="mdi mdi-logout"></i><span onclick="LogoutForm.submit()">Logout</span>
+                </div>
+            </form>
+        </div>
+    </li>
+
 }
 else
 {
