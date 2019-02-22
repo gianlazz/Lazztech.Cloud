@@ -9,8 +9,7 @@
 
 <div class="background-container">
     <div class="jumbotron">
-        <h1>@Model.Organization.Name</h1>
-        <h1>Mentors On The @Model.Event.Name Premise</h1>
+        <h1>Welcome to @Model.Organization.Name's @Model.Event.Name event!</h1>
         <p class="lead">Browse through the selection of on premise mentors. If they're available you can request their assistance; doing so will send the mentor an sms message alerting them to come meet up with you.</p>
         <p class="lead">If the mentor accepts the request to help their card will be greyed out until they are finished.</p>
     </div>
@@ -107,9 +106,12 @@
                     <div class="modal-body">
                         <div class="form-group">
                             @Html.Hidden("uniqueRequesteeId", Model.UniqueRequesteeId)
-                            @Html.TextBox("teamName", null, htmlAttributes: new { @class = "form-control", @placeholder = "Team name", @type = "text" })
+                            @Html.Label("Team Name", "Team Name")
+                            @Html.TextBox("teamName", null, htmlAttributes: new { @class = "form-control valid", @type = "text", required = "required" @*@data_val = "true", @data_val_required = "Please enter Team name or personal name."*@ })
                             <br />
-                            @Html.TextBox("teamLocation", null, htmlAttributes: new { @class = "form-control", @placeholder = "Description of where you're sitting", @type = "text" })
+                            @Html.Label("Team Location", "Team Location")
+                            <small id="emailHelp" class="form-text text-muted">Description of where you're sitting</small>
+                            @Html.TextBox("teamLocation", null, htmlAttributes: new { @class = "form-control valid", @type = "text", required = "required" @*@data_val = "true", @data_val_required = "Please enter a description of where you are to help your mentor find you."*@ })
                             @Html.Hidden("mentorId", mentor.MentorId)
                             <br />
                             <small id="emailHelp" class="form-text text-muted">After selecting submit your mentor will be notified and come to help out.</small>
