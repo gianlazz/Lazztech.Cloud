@@ -9,7 +9,9 @@ namespace Lazztech.Events.Dal.Dao
     {
         [Display(Name = "Mentor")]
         public int MentorId { get; set; }
+        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         public string FirstName { get; set; }
+        [RegularExpression(@"^\S*$", ErrorMessage = "No white space allowed")]
         public string LastName { get; set; }
         public string FullName { get { return $"{FirstName} {LastName}"; } }
         public string Image { get; set; }

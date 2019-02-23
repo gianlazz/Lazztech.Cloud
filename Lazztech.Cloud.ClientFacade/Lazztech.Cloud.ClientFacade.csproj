@@ -14,6 +14,8 @@
     <Compile Remove="Data\Migrations\20190220060721_MadeMentorInviteMentorFKNullableAddedPhoneEmail.Designer.cs" />
     <Compile Remove="Data\Migrations\20190220072932_ChangedMentorOnDeleteBehavior.cs" />
     <Compile Remove="Data\Migrations\20190220072932_ChangedMentorOnDeleteBehavior.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190223210826_NoWhiteSpaceInMentorNameValues.cs" />
+    <Compile Remove="Data\Migrations\20190223210826_NoWhiteSpaceInMentorNameValues.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
