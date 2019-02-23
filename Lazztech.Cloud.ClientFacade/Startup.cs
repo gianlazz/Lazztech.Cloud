@@ -155,6 +155,12 @@ namespace Lazztech.Cloud.ClientFacade
 
             app.UseAuthentication();
 
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("X-Frame-Options", "AllowAll");
+                await next();
+            });
+
             //app.UseMvc();
             app.UseMvc(routes =>
             {
