@@ -50,7 +50,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@Model.Mentors[i].FirstName</h5>
                         <p>@Model.Mentors[i].ProfessionalTitle</p>
-                        <p class="card-text">Interests: @Model.Mentors[i].Description</p>
+                        <p class="card-text">Skill: @Model.Mentors[i].Skills</p>
                         <button type="button" class="@(Model.Mentors[i].IsAvailable ? "btn btn-primary" : "btn btn-outline-secondary")" data-toggle="modal" data-target="@(Model.Mentors[i].IsAvailable ? $"#{Model.Mentors[i].FirstName}{Model.Mentors[i].MentorId}" : "")">
                             @(Model.Mentors[i].IsAvailable ? "Request Their Assistance" : "Currently Unavailable")
                         </button>

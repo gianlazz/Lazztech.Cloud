@@ -13,7 +13,7 @@ namespace Lazztech.Events.Dal.Dao
         public string LastName { get; set; }
         public string FullName { get { return $"{FirstName} {LastName}"; } }
         public string Image { get; set; }
-        public string Description { get; set; }
+        public string Skills { get; set; }
         public string ProfessionalTitle { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
