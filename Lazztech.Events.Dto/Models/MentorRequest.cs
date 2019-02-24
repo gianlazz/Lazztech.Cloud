@@ -21,8 +21,12 @@ namespace Lazztech.Events.Dto.Models
         {
             IsStillActive = true;
             DateTimeOfRequest = DateTime.Now;
+
             MentoringDuration = new TimeSpan(hours: 0, minutes: 12, seconds: 0);
             RequestTimeout = new TimeSpan(hours: 0, minutes: 5, seconds: 0);
+
+            //MentoringDuration = new TimeSpan(hours: 0, minutes: 0, seconds: 15);
+            //RequestTimeout = new TimeSpan(hours: 0, minutes: 0, seconds: 15);
         }
     }
 }

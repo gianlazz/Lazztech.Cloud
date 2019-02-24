@@ -102,8 +102,8 @@ namespace Lazztech.Cloud.ClientFacade
             services.AddSingleton<ICallService>(s => new TwilioCallService(accountSid, authToken, fromTwilioNumber));
             services.AddSingleton<IRequestNotifier, SignalRNotifier>();
             services.AddScoped<IConductorDalHelper, EfConductorDalHelper>();
-            services.AddScoped<IMentorRequestsBackplane, EfMentorRequestsBackplane>();
-            services.AddScoped<IMentorRequestConductor, MentorRequestConductor>();
+            services.AddTransient<IMentorRequestsBackplane, EfMentorRequestsBackplane>();
+            services.AddTransient<IMentorRequestConductor, MentorRequestConductor>();
             services.AddSingleton<IEmailService>(s => new EmailService("gian@lazz.tech"));
             services.AddSingleton<IFileService, FileService>();
             services.AddScoped<IDbSeeder, DbSeeder>();
