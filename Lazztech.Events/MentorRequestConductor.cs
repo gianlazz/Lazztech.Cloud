@@ -109,19 +109,23 @@ namespace Lazztech.Events.Domain
         private async Task StartRequestTimeOutAsync(MentorRequest request)
         {
             await Task.Delay(request.RequestTimeout);
+            request = _db.FindMentorRequestById(request.Id);
             if (!request.RequestAccepted)
             {
                 request.TimedOut = true;
                 request.DateTimeWhenProcessed = DateTime.Now;
-                _db.UpdateMentorRequestDb(request);
+                await _db.UpdateMentorRequestDbAsync(request);
 
                 var mentor = request.Mentor;
 
                 if (_requestsBackplane.ContainsOutstandingRequestForMentor(mentor.Id))
                     _requestsBackplane.RemoveActiveRequestByMentorId(mentor.Id);
 
+                mentor.IsAvailable = true;
+                _db.UpdateMentorDb(mentor);
+
                 NotifyMentorOfRequestTimeout(request.Mentor);
-                _notifier.NofityThatMentorAvailableAgain(mentor.FirstName);
+                _notifier.NofityThatMentorDidntRespond(request);
             }
         }
 
@@ -130,6 +134,7 @@ namespace Lazztech.Events.Domain
             if (request.MentoringDuration != null)
             {
                 await Task.Delay(request.MentoringDuration);
+                request = _db.FindMentorRequestById(request.Id);
                 if (_requestsBackplane.ContainsOutstandingRequestForMentor(request.Mentor.Id))
                 {
                     var mentor = request.Mentor;
@@ -140,7 +145,7 @@ namespace Lazztech.Events.Domain
                         _requestsBackplane.RemoveActiveRequestByMentorId(mentor.Id);
 
                     NotifyResponseTimeUp(request);
-                    _notifier.NofityThatMentorDidntRespond(request);
+                    _notifier.NofityThatMentorAvailableAgain(mentor.FirstName);
                 }
             }
         }
