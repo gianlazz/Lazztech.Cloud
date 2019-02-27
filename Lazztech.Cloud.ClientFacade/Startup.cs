@@ -80,7 +80,7 @@ namespace Lazztech.Cloud.ClientFacade
                         options.Conventions.AllowAnonymousToPage("/Events/Invites");
                         options.Conventions.AllowAnonymousToFolder("/Events/Event");
                     })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddProgressiveWebApp();
 
