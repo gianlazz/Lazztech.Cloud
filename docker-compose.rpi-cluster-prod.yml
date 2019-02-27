@@ -14,6 +14,13 @@ services:
       context: .
       dockerfile: Lazztech.Cloud.ClientFacade/Dockerfile.Rpi
 
+  redis_db:
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
   postgres_image:
     image: postgres:alpine
     ports:
@@ -26,6 +33,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
 volumes:
+  redis-data:
   postgres-data:
   lazztech-vision-data:
   lazztech-cloud-data:

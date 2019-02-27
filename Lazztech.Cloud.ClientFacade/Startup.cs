@@ -84,7 +84,12 @@ namespace Lazztech.Cloud.ClientFacade
 
             services.AddProgressiveWebApp();
 
-            services.AddSignalR();
+            //services.AddSignalR();
+            services.AddSignalR(o =>
+            {
+                o.EnableDetailedErrors = true;
+            }).AddStackExchangeRedis("redis://redis_db:6379");
+            //services.AddSignalR().AddStackExchangeRedis("redis://redis_db:6379");
             //services.AddDirectoryBrowser();
 
             //public static IRepository DbRepo;
@@ -161,18 +166,18 @@ namespace Lazztech.Cloud.ClientFacade
                 await next();
             });
 
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<ChatHub>("/chatHub");
+                routes.MapHub<ProgressHub>("/progressHub");
+            });
+
             //app.UseMvc();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action}");
-            });
-
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<ChatHub>("/chatHub");
-                routes.MapHub<ProgressHub>("/progressHub");
             });
         }
     }
