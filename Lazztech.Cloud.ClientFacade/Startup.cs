@@ -31,7 +31,7 @@ namespace Lazztech.Cloud.ClientFacade
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services, IHostingEnvironment env)
+        public void ConfigureServices(IServiceCollection services/*, IHostingEnvironment env*/)
         {
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -46,14 +46,14 @@ namespace Lazztech.Cloud.ClientFacade
             //        Configuration.GetConnectionString("DefaultConnection")));
 
             // PostgreSql Entity Framework Data Adapter Setup
-            if (env.IsDevelopment())
+            //if (env.IsDevelopment())
                 services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("DevelopmentConnection")));
-            else
-                services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            //else
+                //services.AddDbContext<ApplicationDbContext>(options =>
+                //options.UseNpgsql(
+                //    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
