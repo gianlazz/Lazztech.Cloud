@@ -18,7 +18,10 @@ namespace Lazztech.Cloud.ClientFacade.Data
 
         //Marketing Entities
         public DbSet<FocusGroup> FocusGroups { get; set; }
+        public DbSet<SelectedInstaContent> SelectedInstaContents { get; set; }
+        public DbSet<InstagramHashtag> InstagramHashtags { get; set; }
         public DbSet<InstagramNode> InstagramNodes { get; set; }
+        public DbSet<InstagramPost> InstagramPosts { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

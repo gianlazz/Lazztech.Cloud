@@ -16,6 +16,8 @@
     <Compile Remove="Data\Migrations\20190220072932_ChangedMentorOnDeleteBehavior.Designer.cs" />
     <Compile Remove="Data\Migrations\20190223210826_NoWhiteSpaceInMentorNameValues.cs" />
     <Compile Remove="Data\Migrations\20190223210826_NoWhiteSpaceInMentorNameValues.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190310003645_AddedHashtagsToMarketingFocusGroup.cs" />
+    <Compile Remove="Data\Migrations\20190310003645_AddedHashtagsToMarketingFocusGroup.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

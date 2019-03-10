@@ -9,8 +9,10 @@ namespace Lazztech.Marketing.Dal.Dao
         public int FocusGroupId { get; set; }
         public string Name { get; set; }
         public DateTime DateStarted { get; set; }
+
+        public List<SelectedInstaContent> SelectedInstaContents { get; set; }
         public List<InstagramNode> InstagramNodes { get; set; }
-        public List<string> HashTags { get; set; }
+        public List<InstagramHashtag> Hashtags { get; set; }
 
         public FocusGroup()
         {

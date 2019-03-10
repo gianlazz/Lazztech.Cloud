@@ -3,15 +3,17 @@ using System;
 using Lazztech.Cloud.ClientFacade.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Lazztech.Cloud.ClientFacade.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190310010116_AddedSelectedContentHashTagsAndPosts")]
+    partial class AddedSelectedContentHashTagsAndPosts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,13 +245,9 @@ namespace Lazztech.Cloud.ClientFacade.Migrations
 
                     b.Property<DateTime>("DateStarted");
 
-                    b.Property<string>("Email");
-
                     b.Property<int>("FocusGroupId");
 
                     b.Property<string>("Link");
-
-                    b.Property<string>("Password");
 
                     b.Property<string>("UserName");
 
