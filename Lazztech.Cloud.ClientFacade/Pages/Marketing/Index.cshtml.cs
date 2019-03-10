@@ -16,6 +16,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Marketing
         public int CampaignCount { get; set; }
         public int FocusGroupCount { get; set; }
         public int InstagramNodeCount { get; set; }
+        public int InstagramHashtagCount { get; private set; }
         public int InstagramPostCount { get; set; }
         public int SelectedInstaContentCount { get; set; }
 
@@ -33,6 +34,7 @@ namespace Lazztech.Cloud.ClientFacade.Pages.Marketing
             CampaignCount = await _context.Campaigns.CountAsync();
             FocusGroupCount = await _context.FocusGroups.CountAsync();
             InstagramNodeCount = await _context.InstagramNodes.CountAsync();
+            InstagramHashtagCount = await _context.InstagramHashtags.CountAsync();
             InstagramPostCount = await _context.InstagramPosts.CountAsync();
             SelectedInstaContentCount = await _context.SelectedInstaContents.CountAsync();
 

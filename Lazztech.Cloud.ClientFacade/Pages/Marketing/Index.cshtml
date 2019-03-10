@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-sm-6 col-lg-3">
         <div class="text-center card-box">
-            <h4>Organizations</h4>
+            <h4>Campaigns</h4>
             <h3 class="text-success m-t-10">@Model.CampaignCount</h3>
             <span>
                 <a class="btn btn-dark" asp-page="./Admin/Campaigns/Index" role="button">Manage Campaigns</a>
@@ -20,28 +20,35 @@
     </div>
     <div class="col-sm-6 col-lg-3">
         <div class="text-center card-box">
-            <h4>Events</h4>
+            <h4>Focus Groups</h4>
             <h3 class="text-primary m-t-10">@Model.FocusGroupCount</h3>
             <a class="btn btn-dark" asp-page="./Admin/FocusGroups/Index" role="button">Manage FocusGroups</a>
         </div>
     </div>
     <div class="col-sm-6 col-lg-3">
         <div class="text-center card-box">
-            <h4>Mentors</h4>
+            <h4>Instagram Nodes</h4>
             <h3 class="text-pink m-t-10">@Model.InstagramNodeCount</h3>
             <a class="btn btn-dark" asp-page="./Admin/InstagramNodes/Index" role="button">Manage InstagramNodes</a>
         </div>
     </div>
     <div class="col-sm-6 col-lg-3">
         <div class="text-center card-box">
-            <h4>Mentor Requests</h4>
+            <h4>Instagram Hashtags</h4>
+            <h3 class="text-pink m-t-10">@Model.InstagramHashtagCount</h3>
+            <a class="btn btn-dark" asp-page="./Admin/InstagramNodes/Index" role="button">Manage InstagramHashtags</a>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Instagram Posts</h4>
             <h3 class="text-muted m-t-10">@Model.InstagramPostCount</h3>
             <a class="btn btn-dark" asp-page="./Admin/InstagramPosts/Index" role="button">Manage InstagramPosts</a>
         </div>
     </div>
     <div class="col-sm-6 col-lg-3">
         <div class="text-center card-box">
-            <h4>Mentor Invites</h4>
+            <h4>SelectedInstaContent</h4>
             <h3 class="text-purple m-t-10">@Model.SelectedInstaContentCount</h3>
             <a class="btn btn-dark" asp-page="./Admin/SelectedInstaContents/Index" role="button">Manage SelectedInstaContent</a>
         </div>
@@ -50,5 +57,34 @@
 <br />
 <h4>Marketing Dashboard</h4>
 <hr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FocusGroups[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FocusGroups[0].DateStarted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FocusGroups)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateStarted)
+                </td>
+                <td>
+                    <a asp-page="./FocusGroup/Index?Id=@item.FocusGroupId" asp-route-id="@item.FocusGroupId">Go To</a> |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 
