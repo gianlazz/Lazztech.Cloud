@@ -1,0 +1,37 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Marketing.Campaigns.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Campaign</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Campaign.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Campaign.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Campaign.DateStarted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Campaign.DateStarted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Campaign.Link)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Campaign.Link)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Campaign.CampaignId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

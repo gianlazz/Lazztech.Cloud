@@ -1,0 +1,40 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Marketing.Campaigns.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Campaign</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Campaign.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Campaign.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Campaign.DateStarted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Campaign.DateStarted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Campaign.Link)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Campaign.Link)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Campaign.CampaignId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

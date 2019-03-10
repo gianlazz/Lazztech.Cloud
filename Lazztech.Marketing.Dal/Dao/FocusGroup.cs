@@ -10,6 +10,7 @@ namespace Lazztech.Marketing.Dal.Dao
         public string Name { get; set; }
         public DateTime DateStarted { get; set; }
         public List<InstagramNode> InstagramNodes { get; set; }
+        public List<string> HashTags { get; set; }
 
         public FocusGroup()
         {
