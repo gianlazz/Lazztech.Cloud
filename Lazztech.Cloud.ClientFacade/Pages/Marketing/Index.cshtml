@@ -4,5 +4,51 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Marketing</h2>
+<br />
+<h3>Admin Crud</h3>
+<br />
+<div class="row">
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Organizations</h4>
+            <h3 class="text-success m-t-10">@Model.CampaignCount</h3>
+            <span>
+                <a class="btn btn-dark" asp-page="./Admin/Campaigns/Index" role="button">Manage Campaigns</a>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Events</h4>
+            <h3 class="text-primary m-t-10">@Model.FocusGroupCount</h3>
+            <a class="btn btn-dark" asp-page="./Admin/FocusGroups/Index" role="button">Manage FocusGroups</a>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Mentors</h4>
+            <h3 class="text-pink m-t-10">@Model.InstagramNodeCount</h3>
+            <a class="btn btn-dark" asp-page="./Admin/InstagramNodes/Index" role="button">Manage InstagramNodes</a>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Mentor Requests</h4>
+            <h3 class="text-muted m-t-10">@Model.InstagramPostCount</h3>
+            <a class="btn btn-dark" asp-page="./Admin/InstagramPosts/Index" role="button">Manage InstagramPosts</a>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="text-center card-box">
+            <h4>Mentor Invites</h4>
+            <h3 class="text-purple m-t-10">@Model.SelectedInstaContentCount</h3>
+            <a class="btn btn-dark" asp-page="./Admin/SelectedInstaContents/Index" role="button">Manage SelectedInstaContent</a>
+        </div>
+    </div>
+</div>
+<br />
+<hr>
+<h3>Marketing Dashboard</h3>
+
 

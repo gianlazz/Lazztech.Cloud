@@ -945,12 +945,4 @@
     <None Include="wwwroot\minton\dark-horizontal\assets\scss\_wysiwig.scss" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Marketing\Campaigns\" />
-    <Folder Include="Pages\Marketing\FocusGroups\" />
-    <Folder Include="Pages\Marketing\InstagramNodes\" />
-    <Folder Include="Pages\Marketing\InstagramPosts\" />
-    <Folder Include="Pages\Marketing\SelectedInstaContents\" />
-  </ItemGroup>
-
 </Project>

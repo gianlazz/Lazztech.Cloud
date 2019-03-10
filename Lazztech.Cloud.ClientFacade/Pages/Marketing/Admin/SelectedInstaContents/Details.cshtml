@@ -1,0 +1,31 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Marketing.Admin.SelectedInstaContents.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SelectedInstaContent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedInstaContent.DateTimeWhenSelected)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SelectedInstaContent.DateTimeWhenSelected)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedInstaContent.LinkToContent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SelectedInstaContent.LinkToContent)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.SelectedInstaContent.SelectedInstaContentId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

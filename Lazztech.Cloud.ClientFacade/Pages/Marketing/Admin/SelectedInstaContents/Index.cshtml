@@ -1,0 +1,42 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Marketing.Admin.SelectedInstaContents.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SelectedInstaContent[0].DateTimeWhenSelected)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SelectedInstaContent[0].LinkToContent)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.SelectedInstaContent) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeWhenSelected)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkToContent)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SelectedInstaContentId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SelectedInstaContentId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SelectedInstaContentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

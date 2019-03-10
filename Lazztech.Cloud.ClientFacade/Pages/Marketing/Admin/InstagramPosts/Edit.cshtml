@@ -1,0 +1,62 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Marketing.Admin.InstagramPosts.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>InstagramPost</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="InstagramPost.InstagramPostId" />
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="InstagramPost.Posted" /> @Html.DisplayNameFor(model => model.InstagramPost.Posted)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstagramPost.DateTimeForPost" class="control-label"></label>
+                <input asp-for="InstagramPost.DateTimeForPost" class="form-control" />
+                <span asp-validation-for="InstagramPost.DateTimeForPost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstagramPost.LinkToContent" class="control-label"></label>
+                <input asp-for="InstagramPost.LinkToContent" class="form-control" />
+                <span asp-validation-for="InstagramPost.LinkToContent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstagramPost.Caption" class="control-label"></label>
+                <input asp-for="InstagramPost.Caption" class="form-control" />
+                <span asp-validation-for="InstagramPost.Caption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstagramPost.PostUrl" class="control-label"></label>
+                <input asp-for="InstagramPost.PostUrl" class="form-control" />
+                <span asp-validation-for="InstagramPost.PostUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstagramPost.InstagramNodeId" class="control-label"></label>
+                <select asp-for="InstagramPost.InstagramNodeId" class="form-control" asp-items="ViewBag.InstagramNodeId"></select>
+                <span asp-validation-for="InstagramPost.InstagramNodeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

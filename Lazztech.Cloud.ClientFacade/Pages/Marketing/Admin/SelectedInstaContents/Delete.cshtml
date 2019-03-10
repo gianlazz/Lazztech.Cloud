@@ -1,0 +1,34 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Marketing.Admin.SelectedInstaContents.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SelectedInstaContent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedInstaContent.DateTimeWhenSelected)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SelectedInstaContent.DateTimeWhenSelected)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedInstaContent.LinkToContent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SelectedInstaContent.LinkToContent)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="SelectedInstaContent.SelectedInstaContentId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

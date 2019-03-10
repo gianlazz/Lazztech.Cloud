@@ -1,0 +1,48 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Marketing.Admin.Campaigns.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Campaign[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Campaign[0].DateStarted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Campaign[0].Link)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Campaign) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateStarted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Link)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CampaignId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CampaignId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CampaignId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

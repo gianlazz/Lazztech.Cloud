@@ -1,0 +1,58 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Marketing.Admin.InstagramPosts.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>InstagramPost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InstagramPost.Posted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstagramPost.Posted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstagramPost.DateTimeForPost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstagramPost.DateTimeForPost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstagramPost.LinkToContent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstagramPost.LinkToContent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstagramPost.Caption)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstagramPost.Caption)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstagramPost.PostUrl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstagramPost.PostUrl)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstagramPost.InstagramNode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstagramPost.InstagramNode.InstagramNodeId)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="InstagramPost.InstagramPostId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,66 @@
+﻿@page
+@model Lazztech.Cloud.ClientFacade.Pages.Marketing.Admin.InstagramPosts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InstagramPost[0].Posted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstagramPost[0].DateTimeForPost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstagramPost[0].LinkToContent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstagramPost[0].Caption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstagramPost[0].PostUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstagramPost[0].InstagramNode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.InstagramPost) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Posted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeForPost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkToContent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Caption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstagramNode.InstagramNodeId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.InstagramPostId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.InstagramPostId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.InstagramPostId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
